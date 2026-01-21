@@ -23,6 +23,15 @@ This project is built with a lightweight, modern stack ensuring fast performance
 -   **State Management**: Custom GameEngine class
 -   **Storage**: `localStorage` for saving records/stamps
 
+## 📚 Documentation
+
+Detailed documentation is available in the `docs/` directory:
+
+-   [**Roadmap**](./docs/ROADMAP.md): Future development plans and features.
+-   [**Architecture**](./docs/ARCHITECTURE.md): System overview and component breakdown.
+-   [**Asset Generation**](./docs/ASSET_GENERATION.md): Guide for creating "Dark Cartoon" style assets with AI.
+-   [**Development Guide**](./docs/DEVELOPMENT.md): Coding standards, testing, and contribution process.
+
 ## 🚀 Getting Started
 
 ### Prerequisites
