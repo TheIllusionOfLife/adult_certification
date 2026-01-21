@@ -4,8 +4,6 @@
 
 **Adult Certification** is a satirical dystopian adventure game where you are judged by an AI named **Unit 0-ADULT**. You must survive a series of "adult literacy" tests covering finance, law, and social etiquette to earn your place in society—or be recycled as a biological processor.
 
-![Start Screen](./src/assets/adult_certification_logo_corrected.png)
-
 ## 🎮 Game Concepts
 
 -   **Educational Dystopia**: Learn about taxes, labor laws, and contracts through a lens of dark humor and survival.
