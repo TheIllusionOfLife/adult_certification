@@ -57,15 +57,49 @@ The face of the application. It handles all DOM manipulations.
 4.  **Feedback Rendering**: `UIManager` receives the result and displays the overlay/result text.
 5.  **HUD Update**: `UIManager` refreshes the status bars based on the new state.
 
-## 🛠️ File Structure
+## 💻 Technology Stack
+
+### Core Framework
+-   **Vite**: Build tool and dev server. Chosen for speed and minimal config.
+-   **TypeScript**: Strict typing is Enforced. No `any` allow-list.
+-   **Vanilla JS/DOM**: No UI frameworks (React/Vue) allowed for the Game Loop to keep overhead low and control precise.
+
+### Libraries & Tools
+-   **Prettier**: Code formatting.
+-   **ESLint**: Static analysis (Standard config).
+-   **Mermaid**: For diagrams in documentation.
+
+### Technical Constraints
+-   **Zero Runtime Dependencies**: The core game engine must run without external libraries to ensure portability.
+-   **Asset Size**: All images must be optimized (WebP/PNG) to keep initial load under 5MB.
+-   **Browser Support**: Modern browsers only (Chrome/Edge/Safari/Firefox latest).
+
+## 📂 Project Structure
+
+### File Organization
+The project follows a "Feature-by-Layer" organization:
 
 ```text
 src/
-├── assets/          # Images, Icons
-├── data/            # Static Data (Questions, Skills)
-├── logic/           # Business Logic (GameEngine)
-├── ui/              # Presentation Logic (UIManager)
-├── types.ts         # TypeScript Interfaces
-├── main.ts          # Entry Point & Wiring
-└── style.css        # Global Styles
+├── assets/          # Static Assets (Images, Icons)
+│   └── [category]_q[id].png  # Naming: category_qid.png
+├── data/            # Static Data Definitions
+│   ├── questions.ts # The immutable database of questions
+│   └── skills.ts    # Skill definitions
+├── logic/           # Pure Business Logic (No side effects, No DOM)
+│   └── gameEngine.ts
+├── ui/              # Presentation Layer (Side effects allowed)
+│   └── render.ts
+└── main.ts          # Composition Root
 ```
+
+### Naming Conventions
+-   **Files**: `camelCase.ts` (e.g., `gameEngine.ts`) unless exporting a single class, then `PascalCase.ts` represents the class.
+    -   *Current Exception*: `gameEngine.ts` exports `GameEngine` class (should ideally be `GameEngine.ts` or kept as module name).
+-   **Classes**: `PascalCase` (`GameEngine`, `UIManager`).
+-   **methods**: `camelCase` (`processChoice`).
+-   **Constants**: `UPPER_SNAKE_CASE` for configuration values.
+
+### Import Patterns
+-   Prefer explicit relative imports (`./logic/gameEngine`).
+-   Avoid circular dependencies between `ui` and `logic`. `ui` depends on `logic`. `logic` should NOT depend on `ui`.

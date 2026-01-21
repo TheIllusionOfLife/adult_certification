@@ -27,10 +27,11 @@ This project is built with a lightweight, modern stack ensuring fast performance
 
 Detailed documentation is available in the `docs/` directory:
 
--   [**Roadmap**](./docs/ROADMAP.md): Future development plans and features.
--   [**Architecture**](./docs/ARCHITECTURE.md): System overview and component breakdown.
--   [**Asset Generation**](./docs/ASSET_GENERATION.md): Guide for creating "Dark Cartoon" style assets with AI.
--   [**Development Guide**](./docs/DEVELOPMENT.md): Coding standards, testing, and contribution process.
+-   [**Product Overview**](./docs/PRODUCT.md): Purpose, Target Audience, and Business Goals. (aka `product.md`)
+-   [**Architecture & Tech Stack**](./docs/ARCHITECTURE.md): System design, structure, and constraints. (aka `tech.md`, `structure.md`)
+-   [**Roadmap**](./docs/ROADMAP.md): Future development plans.
+-   [**Asset Generation**](./docs/ASSET_GENERATION.md): Guide for AI art pipelines.
+-   [**Development Guide**](./docs/DEVELOPMENT.md): Setup and testing.
 
 ## 🚀 Getting Started
 
