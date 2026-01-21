@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>大人免許 (Adult Certification)</title>
+</head>
+
+<body>
+  <div id="game-container">
+
+
+    <div id="progress-wrapper">
+      <div id="progress-bar"></div>
+    </div>
+
+    <div id="hud">
+      <div class="stat-group">
+        <div class="stat-badge">
+          <span class="stat-label">信用度</span>
+          <span class="stat-value" id="score-cs">500</span>
+        </div>
+        <div class="stat-badge">
+          <span class="stat-label">資産</span>
+          <span class="stat-value" id="score-money">100,000</span>
+        </div>
+        <div class="stat-badge">
+          <span class="stat-label">正気</span>
+          <span class="stat-value" id="score-sanity">80</span>
+        </div>
+      </div>
+
+      <div id="mascot-container">
+        <img id="mascot-img" src="/src/assets/mascot_default.png" alt="Mascot" />
+      </div>
+    </div>
+
+    <!-- New Image Area -->
+    <div id="image-area">
+      <img id="main-image" src="" alt="Scene" />
+      <div id="scene-desc-overlay">...INITIATING TEST...</div>
+    </div>
+
+    <div id="interaction-area">
+      <div id="dialogue-box">
+        <div id="question-header">
+          <span id="q-category">SYSTEM</span>
+          <span id="q-number">Q.0 / 20</span>
+        </div>
+        <p id="question-text">Loading simulation...</p>
+      </div>
+      <div id="choices-grid"></div>
+    </div>
+
+    <div id="skills-footer">SKILLS: <span id="skill-list">未所持</span></div>
+
+    <div id="overlay">
+      <h1 id="overlay-title">ASSESSMENT</h1>
+      <p id="overlay-body"></p>
+      <div id="overlay-stats"></div>
+      <div id="skill-select-box" style="display:none; flex-direction: row; gap: 20px;"></div>
+      <button id="btn-next" class="btn-proceed">PROCEED</button>
+    </div>
+  </div>
+  <!-- Start Screen -->
+  <div id="start-screen">
+    <img id="title-logo-img" src="/src/assets/adult_certification_logo_corrected.png" alt="Adult Certification" />
+    <div id="title-desc" class="title-desc">オールAで立派なオトナになろう</div>
+    <div id="difficulty-list" style="display: flex; flex-direction: column; gap: 15px;"></div>
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>

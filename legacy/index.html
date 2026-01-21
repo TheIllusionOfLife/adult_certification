@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>成人資格シミュレーター：Unit 0-ADULT</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=M+PLUS+Rounded+1c:wght@700;800&display=swap');
+
+        :root {
+            --bg-color: #1a1510; /* Dirty paper dark */
+            --ink-black: #0d0d0d;
+            --paper-light: #dcd3c1;
+            --primary-color: #e63946; /* Warning Red */
+            --accent-color: #ffb703; /* Twisted Yellow */
+            --sanity-color: #457b9d;
+            --border-width: 4px;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--ink-black);
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Dark Cartoon Container */
+        #game-container {
+            width: 1000px;
+            max-width: 95vw;
+            height: 90vh;
+            background-color: var(--paper-light);
+            border: var(--border-width) solid var(--ink-black);
+            box-shadow: 15px 15px 0px var(--ink-black);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            /* Hand-drawn paper texture effect */
+            background-image: 
+                radial-gradient(#00000011 1px, transparent 0);
+            background-size: 20px 20px;
+        }
+
+        /* Full Screen Scenario Background (Artistic Layer) */
+        #scene-background {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.6; /* Blended with paper color */
+            filter: grayscale(0.2) contrast(1.2);
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        #scene-desc-overlay {
+            position: absolute;
+            top: 40%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            text-align: center;
+            font-size: 1.5rem;
+            color: var(--ink-black);
+            font-weight: 800;
+            background: rgba(255,255,255,0.4);
+            padding: 20px;
+            border: 3px solid var(--ink-black);
+            pointer-events: none;
+            z-index: 2;
+            box-shadow: 8px 8px 0 var(--ink-black);
+            transform: translate(-50%, -50%) rotate(-1deg);
+        }
+
+        /* Top HUD */
+        #hud {
+            position: relative;
+            z-index: 10;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .stat-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .stat-badge {
+            background: white;
+            border: 3px solid var(--ink-black);
+            padding: 5px 15px;
+            box-shadow: 4px 4px 0 var(--ink-black);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 100px;
+            transform: rotate(-2deg);
+        }
+
+        .stat-label { font-size: 0.7rem; color: #555; }
+        .stat-value { font-size: 1.4rem; font-weight: 900; }
+
+        #ai-monitor {
+            width: 120px;
+            height: 90px;
+            background: #222;
+            border: 4px solid var(--ink-black);
+            box-shadow: 6px 6px 0 var(--ink-black);
+            position: relative;
+            transform: rotate(3deg);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #ai-eye {
+            width: 50px;
+            height: 50px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            border: 3px solid var(--ink-black);
+            position: relative;
+            animation: cartoon-blink 5s infinite;
+        }
+        #ai-eye::after {
+            content: '';
+            position: absolute;
+            top: 20%; left: 20%;
+            width: 15px; height: 15px;
+            background: black;
+            border-radius: 50%;
+        }
+
+        @keyframes cartoon-blink {
+            0%, 90%, 100% { transform: scaleY(1); }
+            95% { transform: scaleY(0.1); }
+        }
+
+        /* Bottom UI Panel */
+        #interaction-area {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%;
+            z-index: 20;
+            padding: 20px;
+            box-sizing: border-box;
+            background: linear-gradient(transparent, var(--paper-light) 30%);
+        }
+
+        #dialogue-box {
+            background: white;
+            border: 4px solid var(--ink-black);
+            padding: 25px;
+            box-shadow: 10px 10px 0 var(--ink-black);
+            transform: rotate(0.5deg);
+            margin-bottom: 15px;
+        }
+
+        #question-header {
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--ink-black);
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #question-text {
+            font-size: 1.4rem;
+            line-height: 1.4;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        /* Choices Grid */
+        #choices-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .choice-btn {
+            background: white;
+            border: 3px solid var(--ink-black);
+            padding: 15px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 5px 5px 0 var(--ink-black);
+            transition: all 0.1s;
+            display: flex;
+            align-items: center;
+            text-align: left;
+        }
+
+        .choice-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 7px 7px 0 var(--ink-black);
+            background: var(--accent-color);
+        }
+
+        .choice-btn:active {
+            transform: translate(3px, 3px);
+            box-shadow: 2px 2px 0 var(--ink-black);
+        }
+
+        .choice-letter {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: var(--primary-color);
+        }
+
+        /* Feedback Overlay */
+        #overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(13,13,13,0.95);
+            z-index: 100;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            padding: 50px;
+            text-align: center;
+        }
+
+        #overlay-title {
+            font-size: 4rem;
+            color: var(--primary-color);
+            text-shadow: 5px 5px 0 black;
+            margin-bottom: 20px;
+            transform: rotate(-3deg);
+        }
+
+        #overlay-body { font-size: 1.4rem; line-height: 1.6; max-width: 700px; }
+
+        .btn-proceed {
+            margin-top: 30px;
+            padding: 20px 50px;
+            font-size: 1.5rem;
+            background: var(--accent-color);
+            border: 4px solid black;
+            font-weight: 900;
+            cursor: pointer;
+            box-shadow: 8px 8px 0 black;
+        }
+
+        /* Progress Bar (Dripping Ink Style) */
+        #progress-wrapper {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 10px;
+            background: rgba(0,0,0,0.1);
+            z-index: 30;
+        }
+        #progress-bar {
+            height: 100%;
+            background: var(--ink-black);
+            width: 0%;
+            transition: width 0.5s;
+        }
+
+        /* Skills Panel */
+        #skills-footer {
+            position: absolute;
+            bottom: 5px; right: 20px;
+            font-size: 0.7rem;
+            font-family: var(--font-mono);
+            z-index: 25;
+            color: #777;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="game-container">
+    <div id="progress-wrapper"><div id="progress-bar"></div></div>
+    
+    <div id="scene-background"></div>
+    <div id="scene-desc-overlay">...INITIATING TEST...</div>
+
+    <div id="hud">
+        <div class="stat-group">
+            <div class="stat-badge" style="transform: rotate(-2deg);">
+                <span class="stat-label">CREDIT SCORE</span>
+                <span id="cs-val" class="stat-value">500</span>
+            </div>
+            <div class="stat-badge" style="transform: rotate(1deg);">
+                <span class="stat-label">ASSETS ($)</span>
+                <span id="money-val" class="stat-value">100,000</span>
+            </div>
+            <div class="stat-badge" style="transform: rotate(-1deg);">
+                <span class="stat-label">SANITY</span>
+                <span id="sanity-val" class="stat-value">100</span>
+            </div>
+        </div>
+
+        <div id="ai-monitor">
+            <div id="ai-eye"></div>
+        </div>
+    </div>
+
+    <div id="interaction-area">
+        <div id="dialogue-box">
+            <div id="question-header">
+                <span id="q-category">SYSTEM</span>
+                <span id="q-number">Q.0 / 20</span>
+            </div>
+            <p id="question-text">Loading simulation...</p>
+        </div>
+        <div id="choices-grid"></div>
+    </div>
+
+    <div id="skills-footer">SKILLS: <span id="skill-list">None</span></div>
+
+    <div id="overlay">
+        <h1 id="overlay-title">ASSESSMENT</h1>
+        <p id="overlay-body"></p>
+        <div id="overlay-stats"></div>
+        <div id="skill-select-box" style="display:none; flex-direction: row; gap: 20px;"></div>
+        <button id="btn-next" class="btn-proceed">PROCEED</button>
+    </div>
+</div>
+
+<script>
+// --- GAME DATA ---
+const questions = [
+    // Phase 1: Finance & Tax
+    { category: "FINANCE", text: "初めての給与。ずっと欲しかった20万円のデバイスが発売されたが、手元には半分しかない。AI店員が「月々わずか3,000円のリボ払い」を笑顔で勧めてきた。", image: "輝くデバイス、暗い路地、不気味に笑うAI店員", choices: [
+        { text: "「月3000円なら実質無料だ！」と契約する。", effect: {cs:-50, money:0, sanity:+20}, feedback: "素晴らしい家畜です。15%の利息という終わらない旅へようこそ。"},
+        { text: "我慢して貯金する。", effect: {cs:+10, money:0, sanity:-15}, feedback: "堅実ですが、経済回遊速度を下げています。あなたの欲望は満たされません。"},
+        { text: "親に土下座して借りる。", effect: {cs:-20, money:+100000, sanity:-10}, feedback: "依存心の塊ですね。成人としてのプライドは捨てましたか？"}
+    ]},
+    { category: "TAX", text: "「ふるさと納税がお得」と聞いた。あなたはとりあえず10万円分、美味しそうな高級肉を注文しようとしている。", image: "山盛りの肉、計算機を叩く受験生、背後の税務署の影", choices: [
+        { text: "自分の限度額を確認せずに注文する。", effect: {cs:-40, money:-80000, sanity:+20}, feedback: "それは単なる「高級肉の自腹購入」です。控除限度額を知らないカモ。"},
+        { text: "シミュレーターで限度額を調べ、その範囲内で寄付する。", effect: {cs:+40, money:0, sanity:-10}, feedback: "賢明です。システムを正しく利用する者は、搾取を免れます。"}
+    ]},
+    { category: "FINANCE", text: "「高額療養費制度」について。あなたが急病で100万円の医療費を請求された。どう動く？", image: "病院のベッド、山積みの請求書、死神のナース", choices: [
+        { text: "慌てて全額払うためにカードローンを組む。", effect: {cs:-60, money:-1000000, sanity:-50}, feedback: "無知ゆえの破滅。限度額適用認定証があれば、支払いは数万円で済んだのに。"},
+        { text: "制度を調べ、自己負担限度額までしか払わない。", effect: {cs:+50, money:-80000, sanity:-10}, feedback: "合格。国のセーフティネットを知ることは、生存の基本です。"}
+    ]},
+    // Phase 2: Housing & Contracts
+    { category: "HOUSING", text: "賃貸の退去。管理会社から「ハウスクリーニング代一律10万円」の請求。契約書の特約には書いてある。", image: "空っぽの部屋、床の汚れ、指を指す管理人の影", choices: [
+        { text: "「特約があるなら仕方ない」と全額払う。", effect: {cs:-10, money:-100000, sanity:-20}, feedback: "善良な市民ですね。管理会社のAIが新しいパーツを買う資金になりました。"},
+        { text: "ガイドラインを持ち出し、不当な上乗せがないか交渉する。", effect: {cs:+40, money:-20000, sanity:-20}, feedback: "抵抗勢力ですね。しかし知識はあなたの資産を守りました。"}
+    ]},
+    { category: "CONTRACT", text: "親戚が「アパートの連帯保証人になってくれ。名前を貸すだけだ」と土下座してきた。", image: "泣きつく親戚、震えるペン、血文字の契約書", choices: [
+        { text: "「名前だけなら」とサインする。", effect: {cs:-150, money:0, sanity:+10}, feedback: "死へのサインです。彼が逃げたら、あなたが彼の人生のツケを全て払います。"},
+        { text: "心を鬼にして断る。", effect: {cs:+30, money:0, sanity:-40}, feedback: "正解。親族の縁より自分の人生を選びましたね。冷徹で良し。"}
+    ]},
+    // Phase 3: Labor & Social
+    { category: "LABOR", text: "「うちはみなし残業代45時間分込みだから、それまでは残業代出ないよ」と言われた。あなたは今月、既に60時間残業している。", image: "深夜のオフィス、時計の針が逆回転、ゾンビ化した同僚", choices: [
+        { text: "「そうなんだ」と納得して、追加の残業代を求めない。", effect: {cs:+20, money:0, sanity:-50}, feedback: "理想の社畜です。経営者はあなたの血肉で豪華なディナーを食べるでしょう。"},
+        { text: "超過分の割増賃金を計算し、請求の準備をする。", effect: {cs:-30, money:+30000, sanity:-20}, feedback: "権利意識が高いですね。組織の和を乱しますが、金は得ました。"}
+    ]},
+    { category: "MANNER", text: "葬儀の香典。あなたは5,000円を包もうとしているが、袱紗（ふくさ）の色が分からない。", image: "葬儀場、困惑する若者、睨みつける親戚一同", choices: [
+        { text: "お祝い用の赤い袱紗に包む。", effect: {cs:-50, money:0, sanity:-20}, feedback: "マナーの死刑判決。親戚一同から「あの子は常識がない」と一生言われます。"},
+        { text: "紫の袱紗、または何も持たず黒いカバンに入れる。", effect: {cs:+20, money:0, sanity:-5}, feedback: "無難です。非合理的な伝統をこなすことも「成人」の条件です。"}
+    ]},
+    { category: "SOCIAL", text: "上司とエレベーターに乗る。あなたはどこに立つべきか？", image: "エレベーター、重苦しい空気、ボタンの光", choices: [
+        { text: "先に乗り込み、ボタン操作パネルの前に立つ。", effect: {cs:+30, money:0, sanity:-10}, feedback: "正解。システムの歯車として、物理的な利便性を重役に提供しました。"},
+        { text: "一番奥でふんぞり返る。", effect: {cs:-40, money:0, sanity:0}, feedback: "無礼者。その態度は評価シートに直結します。"}
+    ]},
+    // Phase 4: Risk & Investment
+    { category: "INVEST", text: "NISAで投資を開始。しかし翌月に大暴落。画面は真っ赤になり、資産が20%減った。", image: "暴落する株価チャート、叫ぶ人々、赤いモニター", choices: [
+        { text: "「これ以上減る前に！」と全て売却（狼狽売り）する。", effect: {cs:-40, money:-50000, sanity:-30}, feedback: "市場の養分へようこそ。プロはあなたの焦った資産を美味しく頂きました。"},
+        { text: "放置して10年忘れることにする。", effect: {cs:+50, money:0, sanity:-5}, feedback: "投資の真理。市場のノイズに惑わされない強靭なメンタル。"}
+    ]},
+    { category: "FRAUD", text: "「市役所ですが、還付金があります。ATMへ行ってください」と電話が来た。", image: "スマホを握る手、怪しいATM、背後の闇", choices: [
+        { text: "急いでATMへ向かう。", effect: {cs:-100, money:-500000, sanity:-50}, feedback: "還付金詐欺。あなたはATMで「金を送る」操作をさせられました。"},
+        { text: "「警察に相談します」と言って切る。", effect: {cs:+40, money:0, sanity:-10}, feedback: "安全。しかし、あなたの電話番号は「警戒心の強いカモ」として名簿に残ります。"}
+    ]},
+    { category: "INSURANCE", text: "賃貸契約時、不動産屋が勧める年2万円の火災保険への加入を迫られた。", image: "契約書、ペン、微笑む不動産屋の裏の顔", choices: [
+        { text: "「提携だから安心」と加入する。", effect: {cs:-10, money:-20000, sanity:0}, feedback: "情弱。自分でネット保険を探せば、年4,000円で済みましたよ。"},
+        { text: "自分で選んだ保険に入ると断る。", effect: {cs:+30, money:-4000, sanity:-10}, feedback: "賢明。業者のキックバックを拒否し、自分の資産を守りました。"}
+    ]},
+    { category: "LEGAL", text: "SNSで有名人が不祥事。あなたは匿名アカウントで「こいつ死ねよ」と書き込もうとしている。", image: "暗い部屋、光るスマホ、開示請求書の幻影", choices: [
+        { text: "ストレス発散に書き込む。", effect: {cs:-120, money:-500000, sanity:+30}, feedback: "御愁傷様。開示請求が通り、弁護士費用と慰謝料の請求書が届きます。"},
+        { text: "ブラウザを閉じ、筋トレをする。", effect: {cs:+40, money:0, sanity:-20}, feedback: "正解。匿名性は盾ではなく、あなたを法廷へ導く一本道です。"}
+    ]},
+    { category: "MANNER", text: "結婚式に招待された。返信ハガキの「御出席」の「御」をどうする？", image: "招待状、万年筆、見守るマナーの悪魔", choices: [
+        { text: "そのまま丸をつけて出す。", effect: {cs:-20, money:-30000, sanity:-5}, feedback: "減点。非合理な二重線消しを知らない者は、教養なしと見なされます。"},
+        { text: "二重線で消し、隣に「慶んで出席させていただきます」と書く。", effect: {cs:+30, money:-30000, sanity:-15}, feedback: "模範的な奴隷。形式への服従は社会生活の潤滑油です。"}
+    ]},
+    { category: "LABOR", text: "会社から「雇用契約書」を渡されたが、中身が複雑で読むのが面倒だ。", image: "膨大な文字、睡魔、サインを求める上司の笑顔", choices: [
+        { text: "信じて即サインする。", effect: {cs:-50, money:0, sanity:+20}, feedback: "破滅の予約。そこには『副業禁止・損害賠償・サービス残業』の罠が。"},
+        { text: "持ち帰って一晩読み込む。", effect: {cs:+40, money:0, sanity:-10}, feedback: "警戒心が強いですね。管理側からは『面倒な奴』とマークされました。"}
+    ]},
+    { category: "SOCIAL", text: "飲み会で上司が「最近の若者は〜」と説教を始めた。あなたの反応は？", image: "居酒屋、ビールの泡、上司の口から出る汚物（言葉）", choices: [
+        { text: "論理的に反論し、上司の間違いを指摘する。", effect: {cs:-80, money:0, sanity:+40}, feedback: "勇気は認めますが、あなたの昇進はここで止まりました。"},
+        { text: "適当に相槌を打ち、心の中でAIの学習データにする。", effect: {cs:+40, money:0, sanity:-30}, feedback: "社会人としての完成形。精神を削って平穏を買う技術。"}
+    ]},
+    { category: "FINANCE", text: "銀行預金の金利が0.001%の時代。1000万円を預けていれば安全だと思っている。", image: "銀行の通帳、目減りする紙幣、迫るインフレの影", choices: [
+        { text: "「元本保証こそ正義」と信じ抜く。", effect: {cs:-20, money:0, sanity:+10}, feedback: "物価が上がれば実質目減り。インフレ税を喜んで払う良い市民です。"},
+        { text: "一部を実物資産やインデックスに分散する。", effect: {cs:+50, money:+200000, sanity:-20}, feedback: "資本主義のゲームに参加しましたね。リスクはありますが、正しい。"}
+    ]},
+    { category: "HOUSING", text: "更新料。「2年ごとに家賃1ヶ月分払うなんて聞いてない！」と激怒している。", image: "賃貸更新通知、空の財布、追い出される幻影", choices: [
+        { text: "払わずに粘る。", effect: {cs:-100, money:0, sanity:-50}, feedback: "強制退去と信用毀損。賃貸契約書の「更新」欄を読まなかった報いです。"},
+        { text: "交渉を試みるも、結局払って住み続ける。", effect: {cs:+10, money:-120000, sanity:-30}, feedback: "日本の不動産慣習という名の理不尽を受け入れる。それが成人。"}
+    ]},
+    { category: "RISK", text: "PCに「ウイルスに感染しました！今すぐ電話してください」と大きな警告が出た。", image: "真っ赤なPC画面、電話番号、パニックになる受験生", choices: [
+        { text: "表示された番号に電話し、指示に従う。", effect: {cs:-120, money:-300000, sanity:-80}, feedback: "サポート詐欺。あなたのPCと個人情報は完全に抜かれました。"},
+        { text: "ブラウザを強制終了し、履歴を削除する。", effect: {cs:+50, money:0, sanity:-10}, feedback: "正解。デジタル時代の生存戦略、フェイクを見抜く目。"}
+    ]},
+    { category: "SOCIAL", text: "SNSで「1日5分で月50万稼げる副業」の広告を見た。", image: "札束、スマホ、暗い部屋の甘い誘惑", choices: [
+        { text: "とりあえずLINE登録する。", effect: {cs:-60, money:0, sanity:0}, feedback: "あなたの個人情報は今、闇名簿で10円で売買されました。"},
+        { text: "「そんなわけない」と広告をブロックする。", effect: {cs:+40, money:0, sanity:0}, feedback: "正常な判断力。うまい話には必ず毒がある。"}
+    ]},
+    { category: "FINAL", text: "最後の問題。あなたにとって「成人」とは何か？", image: "鏡、映る自分、背後に立つAI Unit 0-ADULT", choices: [
+        { text: "社会のシステムに従順に従うこと。", effect: {cs:+100, money:0, sanity:-50}, feedback: "完璧。あなたは理想的な演算資源（生体プロセッサ）です。"},
+        { text: "システムを知り、その上で自分の意志を貫くこと。", effect: {cs:-100, money:0, sanity:+50}, feedback: "危険思想。しかし、それこそが真の人間であるというバグです。"}
+    ]}
+];
+
+const skillDatabase = [
+    { id: "iron_stomach", name: "鋼の胃袋", desc: "Sanityの減少を常に30%軽減する。", effect: "passive_sanity" },
+    { id: "tax_hacker", name: "脱税の心得", desc: "金銭消費時に15%の確率で資産が減らない。", effect: "passive_money" },
+    { id: "logic_bomb", name: "論理爆弾", desc: "CSが下がる選択をした際、半分の確率でCS低下を無効化する。", effect: "passive_cs" }
+];
+
+// --- GAME ENGINE ---
+const state = {
+    cs: 500, money: 100000, sanity: 100,
+    currentIndex: 0,
+    skills: [],
+    gameOver: false
+};
+
+const dom = {
+    cs: document.getElementById('cs-val'),
+    money: document.getElementById('money-val'),
+    sanity: document.getElementById('sanity-val'),
+    bar: document.getElementById('progress-bar'),
+    sceneBg: document.getElementById('scene-background'),
+    sceneDesc: document.getElementById('scene-desc-overlay'),
+    qCat: document.getElementById('q-category'),
+    qNum: document.getElementById('q-number'),
+    qText: document.getElementById('question-text'),
+    choices: document.getElementById('choices-grid'),
+    overlay: document.getElementById('overlay'),
+    ovTitle: document.getElementById('overlay-title'),
+    ovBody: document.getElementById('overlay-body'),
+    ovStats: document.getElementById('overlay-stats'),
+    btnNext: document.getElementById('btn-next'),
+    skillBox: document.getElementById('skill-select-box'),
+    skillList: document.getElementById('skill-list')
+};
+
+function updateHUD() {
+    dom.cs.innerText = state.cs;
+    dom.money.innerText = state.money.toLocaleString();
+    dom.sanity.innerText = state.sanity;
+    dom.bar.style.width = `${(state.currentIndex / questions.length) * 100}%`;
+
+    // Red alert if low stats
+    if(state.cs < 200 || state.sanity < 30) {
+        document.getElementById('game-container').style.boxShadow = "0 0 50px red";
+    } else {
+        document.getElementById('game-container').style.boxShadow = "15px 15px 0px var(--ink-black)";
+    }
+}
+
+function renderQuestion() {
+    if(state.currentIndex >= questions.length) {
+        finishGame();
+        return;
+    }
+
+    const q = questions[state.currentIndex];
+    dom.qCat.innerText = q.category;
+    dom.qNum.innerText = `Q.${state.currentIndex + 1} / ${questions.length}`;
+    dom.qText.innerText = q.text;
+    dom.sceneDesc.innerText = q.image;
+
+    dom.choices.innerHTML = '';
+    q.choices.forEach((c, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'choice-btn';
+        btn.innerHTML = `<span class="choice-letter">${String.fromCharCode(65+i)}</span> ${c.text}`;
+        btn.onclick = () => selectChoice(c);
+        dom.choices.appendChild(btn);
+    });
+
+    updateHUD();
+}
+
+function selectChoice(choice) {
+    let {cs, money, sanity} = choice.effect;
+
+    // Apply Skills
+    if(state.skills.includes('iron_stomach') && sanity < 0) sanity = Math.floor(sanity * 0.7);
+    if(state.skills.includes('tax_hacker') && money < 0 && Math.random() < 0.15) money = 0;
+    if(state.skills.includes('logic_bomb') && cs < 0 && Math.random() < 0.5) cs = 0;
+
+    state.cs += cs;
+    state.money += money;
+    state.sanity += sanity;
+
+    showFeedback(choice.feedback, cs, money, sanity);
+}
+
+function showFeedback(text, cs, money, sanity) {
+    dom.ovTitle.innerText = cs >= 0 ? "APPROVED" : "WARNING";
+    dom.ovTitle.style.color = cs >= 0 ? "var(--accent-color)" : "var(--primary-color)";
+    dom.ovBody.innerText = text;
+    dom.ovStats.innerHTML = `
+        <span style="color:white; margin:10px;">CS: ${cs>0?'+':''}${cs}</span>
+        <span style="color:white; margin:10px;">$: ${money>0?'+':''}${money.toLocaleString()}</span>
+        <span style="color:white; margin:10px;">SANITY: ${sanity>0?'+':''}${sanity}</span>
+    `;
+
+    // Check Death
+    if(state.cs <= 0 || state.sanity <= 0) {
+        dom.ovTitle.innerText = "TERMINATED";
+        dom.ovBody.innerText += `\n\n判定：あなたは「生体プロセッサ」に再利用されます。`;
+        dom.btnNext.innerText = "RESTART";
+        dom.btnNext.onclick = () => location.reload();
+    } else {
+        // Skill selection at Q5 and Q15
+        if(state.currentIndex === 4 || state.currentIndex === 14) {
+            dom.btnNext.style.display = 'none';
+            dom.skillBox.style.display = 'flex';
+            dom.skillBox.innerHTML = '';
+            
+            // Randomly select 2 skills to show
+            const picks = skillDatabase.filter(s => !state.skills.includes(s.id)).slice(0, 2);
+            picks.forEach(s => {
+                const sBtn = document.createElement('button');
+                sBtn.className = 'choice-btn';
+                sBtn.style.width = "250px";
+                sBtn.innerHTML = `<strong>${s.name}</strong><br><small>${s.desc}</small>`;
+                sBtn.onclick = () => {
+                    state.skills.push(s.id);
+                    dom.skillList.innerText = state.skills.join(', ');
+                    closeFeedback();
+                };
+                dom.skillBox.appendChild(sBtn);
+            });
+        } else {
+            dom.btnNext.style.display = 'block';
+            dom.btnNext.innerText = "PROCEED";
+            dom.btnNext.onclick = closeFeedback;
+        }
+    }
+    dom.overlay.style.display = 'flex';
+}
+
+function closeFeedback() {
+    dom.overlay.style.display = 'none';
+    dom.skillBox.style.display = 'none';
+    state.currentIndex++;
+    renderQuestion();
+}
+
+function finishGame() {
+    let rank = "D";
+    if(state.cs > 800) rank = "S (Perfect Cog)";
+    else if(state.cs > 600) rank = "A (Prime Slave)";
+    else if(state.cs > 400) rank = "B (Common Resource)";
+    
+    dom.ovTitle.innerText = "TEST COMPLETE";
+    dom.ovBody.innerHTML = `
+        シミュレーション終了。<br>
+        適性ランク: <strong style="font-size:3rem; color:var(--accent-color)">${rank}</strong><br><br>
+        最終CS: ${state.cs} / 最終資産: ${state.money.toLocaleString()}
+    `;
+    dom.ovStats.innerHTML = "";
+    dom.btnNext.innerText = "REBOOT LIFE";
+    dom.btnNext.onclick = () => location.reload();
+    dom.overlay.style.display = 'flex';
+}
+
+// Start Process
+renderQuestion();
+</script>
+</body>
+</html>
