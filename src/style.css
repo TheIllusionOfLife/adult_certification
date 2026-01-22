@@ -48,13 +48,25 @@ body {
 @media (min-width: 601px) {
     #hud {
         position: absolute;
-        top: 20px;
-        left: 0;
-        width: 100%;
+        top: 10px;
+        left: 10px;
+        width: auto;
         z-index: 20;
         background: transparent;
-        justify-content: center;
-        padding: 0 40px;
+        justify-content: flex-start;
+        padding: 0;
+        gap: 8px;
+    }
+
+    /* Hide mascot during gameplay on PC */
+    #mascot-container {
+        display: none !important;
+    }
+
+    .stat-badge {
+        background: rgba(20, 20, 20, 0.65) !important;
+        padding: 6px 12px !important;
+        min-width: 65px !important;
     }
 
     #main-image {
@@ -194,25 +206,29 @@ body {
         box-shadow: 3px 3px 0 var(--ink-black) !important;
     }
 
+    /* Hide mascot during gameplay on mobile */
     #mascot-container {
-        transform: none !important;
-        /* Fix cutoff on mobile */
-        width: 80px !important;
-        height: 80px !important;
-        margin-right: -10px;
-        /* Adjust spacing */
+        display: none !important;
     }
 
-    /* HUD in overlay mode */
+    /* HUD in top-left corner, more transparent */
     #hud {
         position: absolute;
-        top: 10px;
-        left: 10px;
-        right: 10px;
+        top: 8px;
+        left: 8px;
+        right: auto;
+        width: auto;
         z-index: 15;
-        background: rgba(0, 0, 0, 0.6);
-        border-radius: 8px;
-        padding: 8px 15px !important;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 6px;
+        padding: 6px 10px !important;
+        gap: 6px !important;
+    }
+
+    .stat-badge {
+        background: rgba(20, 20, 20, 0.6) !important;
+        padding: 4px 8px !important;
+        min-width: 55px !important;
     }
 
     .stat-badge {
@@ -223,6 +239,20 @@ body {
 
     .stat-value {
         font-size: 1rem !important;
+    }
+
+    /* Mobile: Static image, no animation, fully visible, positioned at top */
+    #main-image {
+        width: 100% !important;
+        height: 100% !important;
+        max-height: 100% !important;
+        object-fit: contain !important;
+        object-position: 100% 20% !important;
+        animation: none !important;
+        transform: none !important;
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
     }
 
     #skills-footer {
@@ -1020,4 +1050,3 @@ body {
             2px 0 0 rgba(0, 255, 255, 0.5);
     }
 }
-
