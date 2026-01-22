@@ -631,6 +631,7 @@ body {
     color: var(--primary-color);
     text-shadow: 4px 4px 0 black;
     margin-bottom: 20px;
+    animation: chromatic-aberration 2s ease-in-out infinite;
 }
 
 #overlay-body {
@@ -701,7 +702,7 @@ body {
 
 #start-screen::before {
     content: '';
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -709,7 +710,6 @@ body {
     background: rgba(20, 10, 5, 0.3);
     /* Sepia-tinted dimmer */
     z-index: -1;
-    position: fixed;
     pointer-events: none;
 }
 
@@ -963,12 +963,3 @@ body {
     }
 }
 
-/* Apply to title logo for glitch effect */
-#title-logo-img {
-    animation: title-float 3s ease-in-out infinite, chromatic-aberration 4s ease-in-out infinite;
-}
-
-/* Apply subtle chromatic aberration to overlay title on warnings */
-#overlay-title {
-    animation: chromatic-aberration 2s ease-in-out infinite;
-}

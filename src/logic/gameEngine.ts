@@ -1,6 +1,7 @@
 import type { GameState, Question, Choice } from '../types';
 import { skills as skillDatabase } from '../data/skills';
 import { CONFIG } from '../config';
+import { shuffle } from '../utils/shuffle';
 
 export class GameEngine {
     state: GameState;
@@ -128,12 +129,7 @@ export class GameEngine {
 
     getAvailableSkills(count: number) {
         const available = skillDatabase.filter(s => !this.state.skills.includes(s.id));
-        // Fisher-Yates shuffle
-        for (let i = available.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [available[i], available[j]] = [available[j], available[i]];
-        }
-        return available.slice(0, count);
+        return shuffle(available).slice(0, count);
     }
 
     getSkillById(id: string) {

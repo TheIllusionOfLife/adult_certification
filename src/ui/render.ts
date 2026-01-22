@@ -110,12 +110,15 @@ export class UIManager {
             { d: 'Nightmare', name: 'LEVEL 5: NIGHTMARE', desc: '闇の支配者（裏級）' }
         ];
 
+        const allowedRanks = ['S', 'A', 'B', 'B-', 'C', 'C+', 'D', 'E', 'F'];
+
         levels.forEach(lvl => {
             const btn = document.createElement('div');
             btn.className = 'diff-btn';
 
             const record = this.records[lvl.d];
-            const stampHtml = record ? `<span class="rank-stamp rank-${record.rank.charAt(0)}">${record.rank}</span>` : '';
+            const safeRank = record && allowedRanks.includes(record.rank) ? record.rank : '';
+            const rankClass = safeRank ? `rank-${safeRank.charAt(0)}` : '';
 
             btn.innerHTML = `
                 <div class="diff-info">
@@ -123,10 +126,14 @@ export class UIManager {
                     <span class="diff-desc">${lvl.desc}</span>
                 </div>
                 <div class="btn-right-col">
-                    ${stampHtml}
+                    ${safeRank ? `<span class="rank-stamp ${rankClass}"></span>` : ''}
                     <span class="arrow">▶</span>
                 </div>
             `;
+            if (safeRank) {
+                const stampEl = btn.querySelector('.rank-stamp');
+                if (stampEl) stampEl.textContent = safeRank;
+            }
             btn.addEventListener('click', () => {
                 this.dom.startScreen.style.display = 'none';
                 onSelect(lvl.d);
