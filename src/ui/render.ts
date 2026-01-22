@@ -1,40 +1,73 @@
 import { GameEngine } from '../logic/gameEngine';
 import type { Choice, Difficulty } from '../types';
+import { CONFIG } from '../config';
 
 // Vite glob import for assets
 const images = import.meta.glob('../assets/*.{png,jpg,jpeg,webp}', { eager: true });
 
+interface DOMElements {
+    mainImage: HTMLImageElement;
+    qCat: HTMLElement;
+    qNum: HTMLElement;
+    qText: HTMLElement;
+    choices: HTMLElement;
+    cs: HTMLElement;
+    money: HTMLElement;
+    sanity: HTMLElement;
+    bar: HTMLElement;
+    container: HTMLElement;
+    sceneDesc: HTMLElement;
+    overlay: HTMLElement;
+    ovTitle: HTMLElement;
+    ovBody: HTMLElement;
+    ovStats: HTMLElement;
+    btnNext: HTMLButtonElement;
+    skillBox: HTMLElement;
+    skillList: HTMLElement;
+    startScreen: HTMLElement;
+    diffList: HTMLElement;
+    mascotContainer: HTMLElement;
+    mascotImg: HTMLImageElement;
+    scoreHistory: HTMLElement;
+    titleLogo: HTMLImageElement;
+}
+
 export class UIManager {
     engine: GameEngine;
-    dom: any;
+    private dom: DOMElements;
 
     constructor(engine: GameEngine) {
         this.engine = engine;
+        const getEl = <T extends HTMLElement>(id: string): T => {
+            const el = document.getElementById(id);
+            if (!el) throw new Error(`Required element #${id} not found`);
+            return el as T;
+        };
         this.dom = {
-            mainImage: document.getElementById('main-image') as HTMLImageElement,
-            qCat: document.getElementById('q-category') as HTMLElement,
-            qNum: document.getElementById('q-number') as HTMLElement,
-            qText: document.getElementById('question-text') as HTMLElement,
-            choices: document.getElementById('choices-grid') as HTMLElement,
-            cs: document.getElementById('score-cs') as HTMLElement,
-            money: document.getElementById('score-money') as HTMLElement,
-            sanity: document.getElementById('score-sanity') as HTMLElement,
-            bar: document.getElementById('progress-bar') as HTMLElement,
-            container: document.getElementById('game-container') as HTMLElement,
-            sceneDesc: document.getElementById('scene-desc-overlay') as HTMLElement,
-            overlay: document.getElementById('overlay') as HTMLElement,
-            ovTitle: document.getElementById('overlay-title') as HTMLElement,
-            ovBody: document.getElementById('overlay-body') as HTMLElement,
-            ovStats: document.getElementById('overlay-stats') as HTMLElement,
-            btnNext: document.getElementById('btn-next') as HTMLButtonElement,
-            skillBox: document.getElementById('skill-select-box') as HTMLElement,
-            skillList: document.getElementById('skill-list') as HTMLElement,
-            startScreen: document.getElementById('start-screen') as HTMLElement,
-            diffList: document.getElementById('difficulty-list') as HTMLElement,
-            mascotContainer: document.getElementById('mascot-container') as HTMLElement,
-            mascotImg: document.getElementById('mascot-img') as HTMLImageElement,
-            scoreHistory: document.getElementById('score-history') as HTMLElement,
-            titleLogo: document.getElementById('title-logo-img') as HTMLImageElement
+            mainImage: getEl<HTMLImageElement>('main-image'),
+            qCat: getEl<HTMLElement>('q-category'),
+            qNum: getEl<HTMLElement>('q-number'),
+            qText: getEl<HTMLElement>('question-text'),
+            choices: getEl<HTMLElement>('choices-grid'),
+            cs: getEl<HTMLElement>('score-cs'),
+            money: getEl<HTMLElement>('score-money'),
+            sanity: getEl<HTMLElement>('score-sanity'),
+            bar: getEl<HTMLElement>('progress-bar'),
+            container: getEl<HTMLElement>('game-container'),
+            sceneDesc: getEl<HTMLElement>('scene-desc-overlay'),
+            overlay: getEl<HTMLElement>('overlay'),
+            ovTitle: getEl<HTMLElement>('overlay-title'),
+            ovBody: getEl<HTMLElement>('overlay-body'),
+            ovStats: getEl<HTMLElement>('overlay-stats'),
+            btnNext: getEl<HTMLButtonElement>('btn-next'),
+            skillBox: getEl<HTMLElement>('skill-select-box'),
+            skillList: getEl<HTMLElement>('skill-list'),
+            startScreen: getEl<HTMLElement>('start-screen'),
+            diffList: getEl<HTMLElement>('difficulty-list'),
+            mascotContainer: getEl<HTMLElement>('mascot-container'),
+            mascotImg: getEl<HTMLImageElement>('mascot-img'),
+            scoreHistory: getEl<HTMLElement>('score-history'),
+            titleLogo: getEl<HTMLImageElement>('title-logo-img')
         };
         this.loadRecords();
     }
@@ -42,14 +75,22 @@ export class UIManager {
     private records: Record<string, { rank: string, score: number, date: string }> = {};
 
     loadRecords() {
-        const stored = localStorage.getItem('ac_records');
-        if (stored) this.records = JSON.parse(stored);
+        try {
+            const stored = localStorage.getItem('ac_records');
+            if (stored) this.records = JSON.parse(stored);
+        } catch {
+            console.warn('Failed to load records, resetting');
+            this.records = {};
+        }
     }
 
     saveRecord(difficulty: string, rank: string, score: number) {
-        // Only update if new score is better or same (for now just overwrite with latest as requested)
         this.records[difficulty] = { rank, score, date: new Date().toLocaleDateString() };
-        localStorage.setItem('ac_records', JSON.stringify(this.records));
+        try {
+            localStorage.setItem('ac_records', JSON.stringify(this.records));
+        } catch {
+            console.warn('Failed to save record (private browsing?)');
+        }
     }
 
     setEngine(engine: GameEngine) {
@@ -88,15 +129,15 @@ export class UIManager {
                     <span class="arrow">▶</span>
                 </div>
             `;
-            btn.onclick = () => {
+            btn.addEventListener('click', () => {
                 this.dom.startScreen.style.display = 'none';
                 onSelect(lvl.d);
-            };
+            });
             this.dom.diffList.appendChild(btn);
         });
     }
 
-    private lastScores = { cs: 500, money: 100000, sanity: 100 };
+    private lastScores = { cs: CONFIG.INITIAL_STATE.CS, money: CONFIG.INITIAL_STATE.MONEY, sanity: CONFIG.INITIAL_STATE.SANITY };
 
     updateHUD() {
         const s = this.engine.state;
@@ -117,7 +158,9 @@ export class UIManager {
         // Update last scores
         this.lastScores = { cs: s.cs, money: s.money, sanity: s.sanity };
 
-        const progress = (s.currentQuestionIndex / s.questions.length) * 100;
+        const progress = s.questions.length > 0
+            ? (s.currentQuestionIndex / s.questions.length) * 100
+            : 0;
         this.dom.bar.style.width = `${progress}%`;
 
         if (s.cs < 200 || s.sanity < 30) {
@@ -154,11 +197,8 @@ export class UIManager {
         // Image Handling
         if (q.imagePath) {
             const assetPath = `../assets/${q.imagePath}`;
-            console.log('Looking for image:', assetPath);
-            // console.log('Available images:', Object.keys(images));
-            const mod = images[assetPath] as any;
-            // console.log('Found module:', mod);
-            if (mod && mod.default) {
+            const mod = images[assetPath] as { default: string } | undefined;
+            if (mod?.default) {
                 this.dom.mainImage.src = mod.default;
                 this.dom.mainImage.classList.add('loaded');
             } else {
@@ -178,7 +218,7 @@ export class UIManager {
             const btn = document.createElement('button');
             btn.className = 'choice-btn';
             btn.innerHTML = `<span class="choice-letter">${String.fromCharCode(65 + i)}</span><span>${c.text}</span>`;
-            btn.onclick = () => this.handleChoice(c);
+            btn.addEventListener('click', () => this.handleChoice(c));
             this.dom.choices.appendChild(btn);
         });
 
@@ -190,7 +230,11 @@ export class UIManager {
         this.showFeedback(result);
     }
 
-    showFeedback(result: { outcome: any, feedback: string, isTerminated: boolean }) {
+    showFeedback(result: {
+        outcome: { cs: number; money: number; sanity: number };
+        feedback: string;
+        isTerminated: boolean
+    }) {
         const { outcome, feedback, isTerminated } = result;
         const { cs, money, sanity } = outcome;
 
@@ -225,22 +269,20 @@ export class UIManager {
 
         if (isTerminated) {
             this.dom.ovTitle.innerText = "TERMINATED";
-            this.dom.ovBody.innerText += `\n\n判定：あなたは「生体プロセッサ」に再利用されます。`;
+            this.dom.btnNext.style.display = 'block';
+            this.dom.ovBody.innerHTML += `<br><br>判定：あなたは「生体プロセッサ」に再利用されます。`;
             this.dom.btnNext.innerText = "人生再起動";
-            this.dom.btnNext.onclick = () => location.reload();
+            this.dom.btnNext.addEventListener('click', () => location.reload());
             this.dom.btnNext.disabled = false;
             this.dom.btnNext.style.opacity = '1';
         } else {
             const idx = this.engine.state.currentQuestionIndex;
-            // Offer skills at Q4 (after 4th) and Q7 (after 7th) since max 10 questions?
-            // Let's say Q3 (index 2) and Q7 (index 6)
-            if (idx === 2 || idx === 6) {
+            if (CONFIG.SKILL_OFFER_POSITIONS.includes(idx)) {
                 this.offerSkills();
             } else {
                 this.dom.btnNext.style.display = 'block';
                 this.dom.btnNext.innerText = "NEXT";
 
-                // 0.5s Delay
                 this.dom.btnNext.disabled = true;
                 this.dom.btnNext.style.opacity = '0.5';
                 this.dom.btnNext.style.cursor = 'not-allowed';
@@ -249,9 +291,9 @@ export class UIManager {
                     this.dom.btnNext.disabled = false;
                     this.dom.btnNext.style.opacity = '1';
                     this.dom.btnNext.style.cursor = 'pointer';
-                }, 500);
+                }, CONFIG.BUTTON_DELAY_MS);
 
-                this.dom.btnNext.onclick = () => this.closeFeedback();
+                this.dom.btnNext.addEventListener('click', () => this.closeFeedback());
             }
         }
         this.dom.overlay.style.display = 'flex';
@@ -274,7 +316,7 @@ export class UIManager {
                     <span class="skill-desc">${s.desc}</span>
                 </div>
             `;
-            sBtn.onclick = () => {
+            sBtn.addEventListener('click', () => {
                 this.engine.addSkill(s.id);
                 // Map IDs to Japanese Names
                 const skillNames = this.engine.state.skills.map(id => {
@@ -284,7 +326,7 @@ export class UIManager {
                 });
                 this.dom.skillList.innerText = skillNames.length > 0 ? skillNames.join(', ') : "未所持";
                 this.closeFeedback();
-            };
+            });
             this.dom.skillBox.appendChild(sBtn);
         });
     }
@@ -297,6 +339,7 @@ export class UIManager {
     }
 
     finishGame() {
+        this.dom.bar.style.width = '100%';
         const s = this.engine.state;
         const ending = this.engine.calculateEnding();
 
@@ -310,7 +353,7 @@ export class UIManager {
         `;
         this.dom.ovStats.innerHTML = "";
         this.dom.btnNext.innerText = "人生再起動";
-        this.dom.btnNext.onclick = () => location.reload();
+        this.dom.btnNext.addEventListener('click', () => location.reload());
         this.dom.overlay.style.display = 'flex';
 
         if (this.engine.difficulty) {

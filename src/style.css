@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=M+PLUS+Rounded+1c:wght@700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=M+PLUS+Rounded+1c:wght@700;800&family=Oswald:wght@400;700&display=swap');
 
 :root {
     --bg-color: #1a1510;
@@ -82,6 +82,31 @@ body {
         background: #000;
         /* Remove paper texture on mobile */
         background-image: none;
+    }
+
+    /* Mobile Start Screen Fixes */
+    #start-screen {
+        background-position: center center !important;
+        /* Fix black gap at top */
+        background-size: auto 100% !important;
+        /* Show more of the background width */
+        padding: 15px 15px !important;
+    }
+
+    #title-logo-img {
+        max-height: 22vh !important;
+        /* Slightly larger logo on mobile */
+        width: 95% !important;
+    }
+
+    .diff-btn {
+        width: 100% !important;
+        max-width: calc(100% - 20px) !important;
+        /* Prevent edge clipping */
+        font-size: 1.1rem !important;
+        padding: 12px 15px !important;
+        margin: 0 10px 10px 10px !important;
+        /* Restore bottom margin */
     }
 
     #overlay-title {
@@ -657,20 +682,21 @@ body {
     z-index: 200;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    /* Start from top to allow scrolling */
+    justify-content: center;
+    /* Center vertically */
     align-items: center;
-    gap: 15px;
-    /* Reverted to original background image */
-    background-image: url('/src/assets/title_bg.png');
+    gap: 20px;
+    /* Use the new vertical background */
+    background-image: url('/assets/title_bg_v2.png');
     background-size: cover;
-    background-position: top center;
+    background-position: center;
     overflow-y: auto;
     /* Allow scrolling if content is too tall */
-    padding: 10px 0 40px 0;
-    /* Minimize top padding */
+    padding: 20px 20px;
+    /* Sufficient padding but not too much top/bottom */
     box-sizing: border-box;
-    background-attachment: fixed;
+    background-attachment: scroll;
+    /* Fix scrolling issue on mobile */
 }
 
 #start-screen::before {
@@ -680,44 +706,51 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    /* Dim background */
+    background: rgba(20, 10, 5, 0.3);
+    /* Sepia-tinted dimmer */
     z-index: -1;
     position: fixed;
-    /* Fix the dimmer so it doesn't scroll away */
+    pointer-events: none;
 }
 
 #title-logo-img {
-    width: 80%;
-    max-width: 500px;
+    width: 90%;
+    max-width: 600px;
+    /* Increased max width for PC */
     height: auto;
+    max-height: 40vh;
+    /* Prevent logo from taking too much height on small screens */
+    object-fit: contain;
+
     /* Blend mode to hide black background of the logo */
     mix-blend-mode: screen;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
 
     /* Enhance contrast to make background pure black for blending */
-    filter: contrast(1.5) brightness(1.2);
+    filter: contrast(1.2) brightness(1.1) drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
 
-    /* Mask edges to prevent visible rectangular border */
-    mask-image: radial-gradient(ellipse at center, black 70%, transparent 90%);
-    -webkit-mask-image: radial-gradient(ellipse at center, black 70%, transparent 90%);
+    /* Remove mask as new logo has clean black bg */
+    mask-image: none;
+    -webkit-mask-image: none;
 
     transform: rotate(-2deg);
-    animation: title-float 3s ease-in-out infinite;
+    animation: title-float 3s ease-in-out infinite, chromatic-aberration 4s ease-in-out infinite;
     flex-shrink: 0;
 }
 
 .title-desc {
-    color: white;
-    margin-bottom: 10px;
-    font-weight: 700;
-    text-shadow: 1px 1px 2px black;
-    background: rgba(0, 0, 0, 0.6);
-    padding: 8px 20px;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(4px);
+    color: #f0e6d2;
+    /* Off-white paper color */
+    margin-bottom: 20px;
+    font-weight: 800;
+    text-shadow: 2px 2px 0px #000, -1px -1px 0 #000;
+    background: #1a1510;
+    padding: 10px 30px;
+    transform: rotate(1deg);
+    box-shadow: 5px 5px 0 #000;
+    border: 2px solid #f0e6d2;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
     flex-shrink: 0;
 }
 
@@ -734,36 +767,54 @@ body {
 }
 
 .diff-btn {
-    width: 380px;
-    /* Slightly wider */
-    max-width: 90%;
-    /* Ensure it fits on small screens */
-    padding: 15px 20px;
+    width: 500px;
+    max-width: 95%;
+    /* Ensure safe margin on mobile */
+    padding: 15px 25px;
     font-size: 1.4rem;
-    font-weight: 800;
-    background: white;
-    border: 3px solid var(--ink-black);
-    box-shadow: 6px 6px 0 var(--ink-black);
+    font-weight: 900;
+
+    /* Paper Texture Look */
+    background: #f4ecd8;
+    background-image: repeating-linear-gradient(45deg,
+            transparent,
+            transparent 10px,
+            rgba(0, 0, 0, 0.02) 10px,
+            rgba(0, 0, 0, 0.02) 20px);
+
+    color: #1a1510;
+    border: 2px solid #1a1510;
+    border-radius: 2px;
+
+    /* Deep 3D Shadow */
+    box-shadow:
+        8px 8px 0 #000,
+        inset 0 0 20px rgba(139, 69, 19, 0.1);
+
     cursor: pointer;
-    transition: all 0.1s;
+    transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+
     text-align: left;
     position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-shrink: 0;
-    /* Prevent buttons from squishing */
+    margin-bottom: 5px;
+
+    transform: perspective(500px) rotateX(0deg);
 }
 
 .diff-btn:hover {
-    transform: translate(-3px, -3px);
-    box-shadow: 9px 9px 0 var(--ink-black);
-    background: var(--accent-color);
+    transform: translate(-3px, -3px) rotate(-1deg) scale(1.02);
+    box-shadow: 12px 12px 0 #000;
+    background-color: #fff;
+    z-index: 10;
 }
 
 .diff-btn:active {
-    transform: translate(2px, 2px);
-    box-shadow: 3px 3px 0 var(--ink-black);
+    transform: translate(4px, 4px);
+    box-shadow: 4px 4px 0 #000;
 }
 
 .diff-info {
@@ -785,14 +836,47 @@ body {
 
 .diff-name {
     font-weight: 900;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 2px;
+    margin-bottom: 2px;
 }
 
 .diff-desc {
-    font-size: 0.7rem;
-    font-weight: normal;
+    font-size: 0.75rem;
+    font-weight: 700;
     color: #555;
     margin-top: 4px;
 }
+
+/* Difficulty Specific Styles (applied via JS or nth-child) */
+.diff-btn:nth-child(1) {
+    border-left: 8px solid #4CAF50;
+}
+
+/* Intro */
+.diff-btn:nth-child(2) {
+    border-left: 8px solid #8BC34A;
+}
+
+/* Common */
+.diff-btn:nth-child(3) {
+    border-left: 8px solid #FFC107;
+}
+
+/* Advanced */
+.diff-btn:nth-child(4) {
+    border-left: 8px solid #FF5722;
+}
+
+/* Expert */
+.diff-btn:nth-child(5) {
+    border-left: 8px solid #F44336;
+}
+
+/* Nightmare */
 
 /* Rank Stamp Styles */
 .rank-stamp {
@@ -856,4 +940,35 @@ body {
     display: block;
     font-size: 1.5rem;
     color: var(--ink-black);
+}
+
+/* Chromatic Aberration Effect */
+@keyframes chromatic-aberration {
+    0% {
+        text-shadow:
+            -2px 0 0 rgba(255, 0, 0, 0.5),
+            2px 0 0 rgba(0, 255, 255, 0.5);
+    }
+
+    50% {
+        text-shadow:
+            2px 0 0 rgba(255, 0, 0, 0.5),
+            -2px 0 0 rgba(0, 255, 255, 0.5);
+    }
+
+    100% {
+        text-shadow:
+            -2px 0 0 rgba(255, 0, 0, 0.5),
+            2px 0 0 rgba(0, 255, 255, 0.5);
+    }
+}
+
+/* Apply to title logo for glitch effect */
+#title-logo-img {
+    animation: title-float 3s ease-in-out infinite, chromatic-aberration 4s ease-in-out infinite;
+}
+
+/* Apply subtle chromatic aberration to overlay title on warnings */
+#overlay-title {
+    animation: chromatic-aberration 2s ease-in-out infinite;
 }

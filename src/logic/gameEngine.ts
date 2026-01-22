@@ -1,5 +1,6 @@
 import type { GameState, Question, Choice } from '../types';
 import { skills as skillDatabase } from '../data/skills';
+import { CONFIG } from '../config';
 
 export class GameEngine {
     state: GameState;
@@ -7,9 +8,9 @@ export class GameEngine {
 
     constructor(questions: Question[]) {
         this.state = {
-            cs: 500,
-            money: 100000,
-            sanity: 100,
+            cs: CONFIG.INITIAL_STATE.CS,
+            money: CONFIG.INITIAL_STATE.MONEY,
+            sanity: CONFIG.INITIAL_STATE.SANITY,
             skills: [],
             currentQuestionIndex: 0,
             isGameOver: false,
@@ -36,16 +37,16 @@ export class GameEngine {
 
         if (this.state.skills.includes('iron_stomach') && sanity < 0) {
             const original = sanity;
-            sanity = Math.floor(sanity * 0.7);
-            skillActivated += `\n<span style="color:#4cc9f0">【鋼の胃袋】発動: 精神ダメージ軽減 (${original} -> ${sanity})</span>`;
+            sanity = Math.ceil(sanity * CONFIG.SKILLS.IRON_STOMACH_REDUCTION);
+            skillActivated += `<br><span style="color:#4cc9f0">【鋼の胃袋】発動: 精神ダメージ軽減 (${original} -> ${sanity})</span>`;
         }
-        if (this.state.skills.includes('tax_hacker') && money < 0 && Math.random() < 0.15) {
+        if (this.state.skills.includes('tax_hacker') && money < 0 && Math.random() < CONFIG.SKILLS.TAX_HACKER_CHANCE) {
             money = 0;
-            skillActivated += `\n<span style="color:#ffd700">【脱税の心得】発動: 支払いを回避しました！</span>`;
+            skillActivated += `<br><span style="color:#ffd700">【脱税の心得】発動: 支払いを回避しました！</span>`;
         }
-        if (this.state.skills.includes('logic_bomb') && cs < 0 && Math.random() < 0.5) {
+        if (this.state.skills.includes('logic_bomb') && cs < 0 && Math.random() < CONFIG.SKILLS.LOGIC_BOMB_CHANCE) {
             cs = 0;
-            skillActivated += `\n<span style="color:#f72585">【論理爆弾】発動: 信用失墜を計算あわせで無効化！</span>`;
+            skillActivated += `<br><span style="color:#f72585">【論理爆弾】発動: 信用失墜を計算あわせで無効化！</span>`;
         }
 
         // Update State
@@ -70,7 +71,7 @@ export class GameEngine {
 
         return {
             outcome: { cs, money, sanity },
-            feedback: `${choice.feedback}${skillActivated}\n\n<span style="color:#aaa; font-size:0.9em;">[AI]: ${sarcasm}</span>`,
+            feedback: `${choice.feedback}${skillActivated}<br><br><span style="color:#aaa; font-size:0.9em;">[AI]: ${sarcasm}</span>`,
             isTerminated
         };
     }
@@ -124,10 +125,13 @@ export class GameEngine {
     }
 
     getAvailableSkills(count: number) {
-        return skillDatabase
-            .filter(s => !this.state.skills.includes(s.id))
-            .sort(() => 0.5 - Math.random()) // Simple shuffle
-            .slice(0, count);
+        const available = skillDatabase.filter(s => !this.state.skills.includes(s.id));
+        // Fisher-Yates shuffle
+        for (let i = available.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [available[i], available[j]] = [available[j], available[i]];
+        }
+        return available.slice(0, count);
     }
 
     getSkillById(id: string) {
