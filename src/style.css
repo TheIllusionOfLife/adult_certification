@@ -44,128 +44,6 @@ body {
     background-size: 20px 20px;
 }
 
-/* PC Specific Overrides */
-@media (min-width: 601px) {
-    #hud {
-        position: absolute;
-        top: 20px;
-        left: 0;
-        width: 100%;
-        z-index: 20;
-        background: transparent;
-        justify-content: center;
-        padding: 0 40px;
-    }
-
-    #main-image {
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: cover;
-        object-position: center !important;
-        animation: none !important;
-        transform: none !important;
-    }
-}
-
-@media (max-width: 600px) {
-    body {
-        background: #000;
-        /* Solid black background */
-    }
-
-    #game-container {
-        width: 100vw;
-        height: 100vh;
-        max-width: 100vw;
-        border: none;
-        box-shadow: none;
-        background: #000;
-        /* Remove paper texture on mobile */
-        background-image: none;
-    }
-
-    /* Mobile Start Screen Fixes */
-    #start-screen {
-        background-position: center center !important;
-        /* Fix black gap at top */
-        background-size: auto 100% !important;
-        /* Show more of the background width */
-        padding: 15px 15px !important;
-    }
-
-    #title-logo-img {
-        max-height: 22vh !important;
-        /* Slightly larger logo on mobile */
-        width: 95% !important;
-    }
-
-    .diff-btn {
-        width: 100% !important;
-        max-width: calc(100% - 20px) !important;
-        /* Prevent edge clipping */
-        font-size: 1.1rem !important;
-        padding: 12px 15px !important;
-        margin: 0 10px 10px 10px !important;
-        /* Restore bottom margin */
-    }
-
-    #overlay-title {
-        font-size: 2.5rem !important;
-    }
-
-    #overlay-stats {
-        font-size: 0.9rem !important;
-    }
-
-    #question-text {
-        font-size: 1.1rem !important;
-    }
-
-    .choice-btn {
-        padding: 12px 12px 12px 65px !important;
-        font-size: 0.95rem !important;
-        /* Make it look more clickable on mobile */
-        border-width: 2px !important;
-        box-shadow: 3px 3px 0 var(--ink-black) !important;
-    }
-
-    #mascot-container {
-        transform: none !important;
-        /* Fix cutoff on mobile */
-        width: 80px !important;
-        height: 80px !important;
-        margin-right: -10px;
-        /* Adjust spacing */
-    }
-
-    /* HUD in overlay mode */
-    #hud {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        right: 10px;
-        z-index: 15;
-        background: rgba(0, 0, 0, 0.6);
-        border-radius: 8px;
-        padding: 8px 15px !important;
-    }
-
-    .stat-badge {
-        min-width: 60px !important;
-        padding: 4px 8px !important;
-        font-size: 0.75rem !important;
-    }
-
-    .stat-value {
-        font-size: 1rem !important;
-    }
-
-    #skills-footer {
-        font-size: 0.8rem !important;
-        padding: 5px 12px !important;
-    }
-}
-
 /* Progress Bar */
 #progress-wrapper {
     width: 100%;
@@ -683,18 +561,18 @@ body {
     z-index: 200;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    /* Center vertically */
+    justify-content: flex-start;
+    /* Start from top to allow scrolling */
     align-items: center;
-    gap: 20px;
+    gap: 15px;
     /* Use the new vertical background */
     background-image: url('/assets/title_bg_v2.png');
     background-size: cover;
     background-position: center;
     overflow-y: auto;
     /* Allow scrolling if content is too tall */
-    padding: 20px 20px;
-    /* Sufficient padding but not too much top/bottom */
+    padding: 30px 20px 40px 20px;
+    /* More bottom padding for Level 5 */
     box-sizing: border-box;
     background-attachment: scroll;
     /* Fix scrolling issue on mobile */
@@ -714,27 +592,20 @@ body {
 }
 
 #title-logo-img {
-    width: 90%;
-    max-width: 600px;
-    /* Increased max width for PC */
+    width: 95%;
+    max-width: 700px;
+    /* Larger max width for PC */
     height: auto;
-    max-height: 40vh;
-    /* Prevent logo from taking too much height on small screens */
+    max-height: 50vh;
+    /* Larger logo for title screen impact */
     object-fit: contain;
-
-    /* Blend mode to hide black background of the logo */
-    mix-blend-mode: screen;
     margin-bottom: 20px;
 
-    /* Enhance contrast to make background pure black for blending */
-    filter: contrast(1.2) brightness(1.1) drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
-
-    /* Remove mask as new logo has clean black bg */
-    mask-image: none;
-    -webkit-mask-image: none;
+    /* Drop shadow for depth */
+    filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.5));
 
     transform: rotate(-2deg);
-    animation: title-float 3s ease-in-out infinite, chromatic-aberration 4s ease-in-out infinite;
+    animation: title-float 3s ease-in-out infinite;
     flex-shrink: 0;
 }
 
@@ -963,3 +834,205 @@ body {
     }
 }
 
+/* ===========================================
+   RESPONSIVE OVERRIDES - Must be at end of file
+   =========================================== */
+
+/* PC Specific Overrides (min-width: 601px) */
+@media (min-width: 601px) {
+    #hud {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: auto;
+        z-index: 20;
+        background: transparent;
+        justify-content: flex-start;
+        padding: 0;
+        gap: 8px;
+    }
+
+    #mascot-container {
+        display: none;
+    }
+
+    .stat-badge {
+        background: rgba(20, 20, 20, 0.65);
+        padding: 6px 12px;
+        min-width: 65px;
+    }
+
+    #main-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        animation: none;
+        transform: none;
+    }
+
+    #start-screen {
+        padding: 15px 20px 15px 20px;
+        justify-content: flex-start;
+        gap: 8px;
+    }
+
+    #title-logo-img {
+        max-height: 33vh;
+        max-width: 720px;
+        margin-bottom: 8px;
+    }
+
+    .title-desc {
+        margin-bottom: 8px;
+        padding: 6px 20px;
+        font-size: 0.95rem;
+    }
+
+    .diff-btn {
+        padding: 8px 18px;
+        font-size: 1.1rem;
+        margin-bottom: 0;
+        box-shadow: 6px 6px 0 #000;
+        min-height: auto;
+    }
+
+    .diff-btn:hover {
+        box-shadow: 9px 9px 0 #000;
+    }
+
+    .diff-name {
+        font-size: 1.15rem;
+    }
+
+    .diff-desc {
+        font-size: 0.75rem;
+    }
+
+    #difficulty-list {
+        gap: 10px;
+    }
+}
+
+/* Mobile Specific Overrides (max-width: 600px) */
+@media (max-width: 600px) {
+    body {
+        background: #000;
+    }
+
+    #game-container {
+        width: 100vw;
+        height: 100vh;
+        max-width: 100vw;
+        border: none;
+        box-shadow: none;
+        background: #000;
+        background-image: none;
+    }
+
+    #start-screen {
+        background-position: center center;
+        background-size: auto 100%;
+        padding: 20px 15px 30px 15px;
+        justify-content: flex-start;
+    }
+
+    #title-logo-img {
+        max-height: 28vh;
+        width: 95%;
+        margin-bottom: 8px;
+    }
+
+    .title-desc {
+        width: auto;
+        max-width: 80%;
+        margin: 0 auto 12px auto;
+        padding: 6px 20px;
+        transform: none;
+        box-sizing: border-box;
+        text-align: center;
+        font-size: 0.95rem;
+    }
+
+    #difficulty-list {
+        width: 100%;
+        padding: 0 15px;
+        gap: 12px;
+        box-sizing: border-box;
+    }
+
+    .diff-btn {
+        width: 100%;
+        max-width: 100%;
+        font-size: 0.95rem;
+        padding: 10px 12px;
+        margin: 0;
+        box-shadow: 5px 5px 0 #000;
+        box-sizing: border-box;
+    }
+
+    #overlay-title {
+        font-size: 2.5rem;
+    }
+
+    #overlay-stats {
+        font-size: 0.9rem;
+    }
+
+    #question-text {
+        font-size: 1.1rem;
+    }
+
+    .choice-btn {
+        padding: 12px 12px 12px 65px;
+        font-size: 0.95rem;
+        border-width: 2px;
+        box-shadow: 3px 3px 0 var(--ink-black);
+    }
+
+    #mascot-container {
+        display: none;
+    }
+
+    #hud {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        right: auto;
+        width: auto;
+        z-index: 15;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 6px;
+        padding: 6px 10px;
+        gap: 6px;
+    }
+
+    .stat-badge {
+        background: rgba(20, 20, 20, 0.6);
+        padding: 4px 8px;
+        min-width: 60px;
+        font-size: 0.75rem;
+    }
+
+    .stat-value {
+        font-size: 1rem;
+    }
+
+    #main-image {
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        object-position: 100% 20%;
+        animation: none;
+        transform: none;
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+
+    #skills-footer {
+        font-size: 0.8rem;
+        padding: 5px 12px;
+    }
+}
