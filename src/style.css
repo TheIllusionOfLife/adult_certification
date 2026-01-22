@@ -65,6 +65,49 @@ body {
         animation: none !important;
         transform: none !important;
     }
+
+    /* PC Start Screen - ensure all levels visible without scrolling */
+    #start-screen {
+        padding: 15px 20px 15px 20px !important;
+        justify-content: flex-start !important;
+        gap: 8px !important;
+    }
+
+    #title-logo-img {
+        max-height: 33vh !important;
+        max-width: 720px !important;
+        margin-bottom: 8px !important;
+    }
+
+    .title-desc {
+        margin-bottom: 8px !important;
+        padding: 6px 20px !important;
+        font-size: 0.95rem !important;
+    }
+
+    .diff-btn {
+        padding: 8px 18px !important;
+        font-size: 1.1rem !important;
+        margin-bottom: 0 !important;
+        box-shadow: 6px 6px 0 #000 !important;
+        min-height: auto !important;
+    }
+
+    .diff-btn:hover {
+        box-shadow: 9px 9px 0 #000 !important;
+    }
+
+    .diff-name {
+        font-size: 1.15rem !important;
+    }
+
+    .diff-desc {
+        font-size: 0.75rem !important;
+    }
+
+    #difficulty-list {
+        gap: 10px !important;
+    }
 }
 
 @media (max-width: 600px) {
@@ -90,23 +133,45 @@ body {
         /* Fix black gap at top */
         background-size: auto 100% !important;
         /* Show more of the background width */
-        padding: 15px 15px !important;
+        padding: 20px 15px 30px 15px !important;
+        /* Ensure bottom padding for Level 5 */
+        justify-content: flex-start !important;
     }
 
     #title-logo-img {
-        max-height: 22vh !important;
-        /* Slightly larger logo on mobile */
+        max-height: 28vh !important;
+        /* Bigger logo on mobile */
         width: 95% !important;
+        margin-bottom: 8px !important;
+    }
+
+    /* Mobile: Centered tagline */
+    .title-desc {
+        width: auto !important;
+        max-width: 80% !important;
+        margin: 0 auto 12px auto !important;
+        padding: 6px 20px !important;
+        transform: none !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
+        font-size: 0.95rem !important;
+    }
+
+    #difficulty-list {
+        width: 100% !important;
+        padding: 0 15px !important;
+        gap: 12px !important;
+        box-sizing: border-box !important;
     }
 
     .diff-btn {
         width: 100% !important;
-        max-width: calc(100% - 20px) !important;
-        /* Prevent edge clipping */
-        font-size: 1.1rem !important;
-        padding: 12px 15px !important;
-        margin: 0 10px 10px 10px !important;
-        /* Restore bottom margin */
+        max-width: 100% !important;
+        font-size: 0.95rem !important;
+        padding: 10px 12px !important;
+        margin: 0 !important;
+        box-shadow: 5px 5px 0 #000 !important;
+        box-sizing: border-box !important;
     }
 
     #overlay-title {
@@ -683,18 +748,18 @@ body {
     z-index: 200;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    /* Center vertically */
+    justify-content: flex-start;
+    /* Start from top to allow scrolling */
     align-items: center;
-    gap: 20px;
+    gap: 15px;
     /* Use the new vertical background */
     background-image: url('/assets/title_bg_v2.png');
     background-size: cover;
     background-position: center;
     overflow-y: auto;
     /* Allow scrolling if content is too tall */
-    padding: 20px 20px;
-    /* Sufficient padding but not too much top/bottom */
+    padding: 30px 20px 40px 20px;
+    /* More bottom padding for Level 5 */
     box-sizing: border-box;
     background-attachment: scroll;
     /* Fix scrolling issue on mobile */
@@ -714,27 +779,20 @@ body {
 }
 
 #title-logo-img {
-    width: 90%;
-    max-width: 600px;
-    /* Increased max width for PC */
+    width: 95%;
+    max-width: 700px;
+    /* Larger max width for PC */
     height: auto;
-    max-height: 40vh;
-    /* Prevent logo from taking too much height on small screens */
+    max-height: 50vh;
+    /* Larger logo for title screen impact */
     object-fit: contain;
-
-    /* Blend mode to hide black background of the logo */
-    mix-blend-mode: screen;
     margin-bottom: 20px;
 
-    /* Enhance contrast to make background pure black for blending */
-    filter: contrast(1.2) brightness(1.1) drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
-
-    /* Remove mask as new logo has clean black bg */
-    mask-image: none;
-    -webkit-mask-image: none;
+    /* Drop shadow for depth */
+    filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.5));
 
     transform: rotate(-2deg);
-    animation: title-float 3s ease-in-out infinite, chromatic-aberration 4s ease-in-out infinite;
+    animation: title-float 3s ease-in-out infinite;
     flex-shrink: 0;
 }
 
