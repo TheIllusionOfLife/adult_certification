@@ -44,223 +44,6 @@ body {
     background-size: 20px 20px;
 }
 
-/* PC Specific Overrides */
-@media (min-width: 601px) {
-    #hud {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        width: auto;
-        z-index: 20;
-        background: transparent;
-        justify-content: flex-start;
-        padding: 0;
-        gap: 8px;
-    }
-
-    /* Hide mascot during gameplay on PC */
-    #mascot-container {
-        display: none !important;
-    }
-
-    .stat-badge {
-        background: rgba(20, 20, 20, 0.65) !important;
-        padding: 6px 12px !important;
-        min-width: 65px !important;
-    }
-
-    #main-image {
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: cover;
-        object-position: center !important;
-        animation: none !important;
-        transform: none !important;
-    }
-
-    /* PC Start Screen - ensure all levels visible without scrolling */
-    #start-screen {
-        padding: 15px 20px 15px 20px !important;
-        justify-content: flex-start !important;
-        gap: 8px !important;
-    }
-
-    #title-logo-img {
-        max-height: 33vh !important;
-        max-width: 720px !important;
-        margin-bottom: 8px !important;
-    }
-
-    .title-desc {
-        margin-bottom: 8px !important;
-        padding: 6px 20px !important;
-        font-size: 0.95rem !important;
-    }
-
-    .diff-btn {
-        padding: 8px 18px !important;
-        font-size: 1.1rem !important;
-        margin-bottom: 0 !important;
-        box-shadow: 6px 6px 0 #000 !important;
-        min-height: auto !important;
-    }
-
-    .diff-btn:hover {
-        box-shadow: 9px 9px 0 #000 !important;
-    }
-
-    .diff-name {
-        font-size: 1.15rem !important;
-    }
-
-    .diff-desc {
-        font-size: 0.75rem !important;
-    }
-
-    #difficulty-list {
-        gap: 10px !important;
-    }
-}
-
-@media (max-width: 600px) {
-    body {
-        background: #000;
-        /* Solid black background */
-    }
-
-    #game-container {
-        width: 100vw;
-        height: 100vh;
-        max-width: 100vw;
-        border: none;
-        box-shadow: none;
-        background: #000;
-        /* Remove paper texture on mobile */
-        background-image: none;
-    }
-
-    /* Mobile Start Screen Fixes */
-    #start-screen {
-        background-position: center center !important;
-        /* Fix black gap at top */
-        background-size: auto 100% !important;
-        /* Show more of the background width */
-        padding: 20px 15px 30px 15px !important;
-        /* Ensure bottom padding for Level 5 */
-        justify-content: flex-start !important;
-    }
-
-    #title-logo-img {
-        max-height: 28vh !important;
-        /* Bigger logo on mobile */
-        width: 95% !important;
-        margin-bottom: 8px !important;
-    }
-
-    /* Mobile: Centered tagline */
-    .title-desc {
-        width: auto !important;
-        max-width: 80% !important;
-        margin: 0 auto 12px auto !important;
-        padding: 6px 20px !important;
-        transform: none !important;
-        box-sizing: border-box !important;
-        text-align: center !important;
-        font-size: 0.95rem !important;
-    }
-
-    #difficulty-list {
-        width: 100% !important;
-        padding: 0 15px !important;
-        gap: 12px !important;
-        box-sizing: border-box !important;
-    }
-
-    .diff-btn {
-        width: 100% !important;
-        max-width: 100% !important;
-        font-size: 0.95rem !important;
-        padding: 10px 12px !important;
-        margin: 0 !important;
-        box-shadow: 5px 5px 0 #000 !important;
-        box-sizing: border-box !important;
-    }
-
-    #overlay-title {
-        font-size: 2.5rem !important;
-    }
-
-    #overlay-stats {
-        font-size: 0.9rem !important;
-    }
-
-    #question-text {
-        font-size: 1.1rem !important;
-    }
-
-    .choice-btn {
-        padding: 12px 12px 12px 65px !important;
-        font-size: 0.95rem !important;
-        /* Make it look more clickable on mobile */
-        border-width: 2px !important;
-        box-shadow: 3px 3px 0 var(--ink-black) !important;
-    }
-
-    /* Hide mascot during gameplay on mobile */
-    #mascot-container {
-        display: none !important;
-    }
-
-    /* HUD in top-left corner, more transparent */
-    #hud {
-        position: absolute;
-        top: 8px;
-        left: 8px;
-        right: auto;
-        width: auto;
-        z-index: 15;
-        background: rgba(0, 0, 0, 0.5);
-        border-radius: 6px;
-        padding: 6px 10px !important;
-        gap: 6px !important;
-    }
-
-    .stat-badge {
-        background: rgba(20, 20, 20, 0.6) !important;
-        padding: 4px 8px !important;
-        min-width: 55px !important;
-    }
-
-    .stat-badge {
-        min-width: 60px !important;
-        padding: 4px 8px !important;
-        font-size: 0.75rem !important;
-    }
-
-    .stat-value {
-        font-size: 1rem !important;
-    }
-
-    /* Mobile: Static image, no animation, fully visible, positioned at top */
-    #main-image {
-        width: 100% !important;
-        height: 100% !important;
-        max-height: 100% !important;
-        object-fit: contain !important;
-        object-position: 100% 20% !important;
-        animation: none !important;
-        transform: none !important;
-        position: relative !important;
-        top: 0 !important;
-        left: 0 !important;
-    }
-
-    #skills-footer {
-        font-size: 0.8rem !important;
-        padding: 5px 12px !important;
-    }
-}
-
 /* Progress Bar */
 #progress-wrapper {
     width: 100%;
@@ -1048,5 +831,208 @@ body {
         text-shadow:
             -2px 0 0 rgba(255, 0, 0, 0.5),
             2px 0 0 rgba(0, 255, 255, 0.5);
+    }
+}
+
+/* ===========================================
+   RESPONSIVE OVERRIDES - Must be at end of file
+   =========================================== */
+
+/* PC Specific Overrides (min-width: 601px) */
+@media (min-width: 601px) {
+    #hud {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: auto;
+        z-index: 20;
+        background: transparent;
+        justify-content: flex-start;
+        padding: 0;
+        gap: 8px;
+    }
+
+    #mascot-container {
+        display: none;
+    }
+
+    .stat-badge {
+        background: rgba(20, 20, 20, 0.65);
+        padding: 6px 12px;
+        min-width: 65px;
+    }
+
+    #main-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        animation: none;
+        transform: none;
+    }
+
+    #start-screen {
+        padding: 15px 20px 15px 20px;
+        justify-content: flex-start;
+        gap: 8px;
+    }
+
+    #title-logo-img {
+        max-height: 33vh;
+        max-width: 720px;
+        margin-bottom: 8px;
+    }
+
+    .title-desc {
+        margin-bottom: 8px;
+        padding: 6px 20px;
+        font-size: 0.95rem;
+    }
+
+    .diff-btn {
+        padding: 8px 18px;
+        font-size: 1.1rem;
+        margin-bottom: 0;
+        box-shadow: 6px 6px 0 #000;
+        min-height: auto;
+    }
+
+    .diff-btn:hover {
+        box-shadow: 9px 9px 0 #000;
+    }
+
+    .diff-name {
+        font-size: 1.15rem;
+    }
+
+    .diff-desc {
+        font-size: 0.75rem;
+    }
+
+    #difficulty-list {
+        gap: 10px;
+    }
+}
+
+/* Mobile Specific Overrides (max-width: 600px) */
+@media (max-width: 600px) {
+    body {
+        background: #000;
+    }
+
+    #game-container {
+        width: 100vw;
+        height: 100vh;
+        max-width: 100vw;
+        border: none;
+        box-shadow: none;
+        background: #000;
+        background-image: none;
+    }
+
+    #start-screen {
+        background-position: center center;
+        background-size: auto 100%;
+        padding: 20px 15px 30px 15px;
+        justify-content: flex-start;
+    }
+
+    #title-logo-img {
+        max-height: 28vh;
+        width: 95%;
+        margin-bottom: 8px;
+    }
+
+    .title-desc {
+        width: auto;
+        max-width: 80%;
+        margin: 0 auto 12px auto;
+        padding: 6px 20px;
+        transform: none;
+        box-sizing: border-box;
+        text-align: center;
+        font-size: 0.95rem;
+    }
+
+    #difficulty-list {
+        width: 100%;
+        padding: 0 15px;
+        gap: 12px;
+        box-sizing: border-box;
+    }
+
+    .diff-btn {
+        width: 100%;
+        max-width: 100%;
+        font-size: 0.95rem;
+        padding: 10px 12px;
+        margin: 0;
+        box-shadow: 5px 5px 0 #000;
+        box-sizing: border-box;
+    }
+
+    #overlay-title {
+        font-size: 2.5rem;
+    }
+
+    #overlay-stats {
+        font-size: 0.9rem;
+    }
+
+    #question-text {
+        font-size: 1.1rem;
+    }
+
+    .choice-btn {
+        padding: 12px 12px 12px 65px;
+        font-size: 0.95rem;
+        border-width: 2px;
+        box-shadow: 3px 3px 0 var(--ink-black);
+    }
+
+    #mascot-container {
+        display: none;
+    }
+
+    #hud {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        right: auto;
+        width: auto;
+        z-index: 15;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 6px;
+        padding: 6px 10px;
+        gap: 6px;
+    }
+
+    .stat-badge {
+        background: rgba(20, 20, 20, 0.6);
+        padding: 4px 8px;
+        min-width: 60px;
+        font-size: 0.75rem;
+    }
+
+    .stat-value {
+        font-size: 1rem;
+    }
+
+    #main-image {
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        object-position: 100% 20%;
+        animation: none;
+        transform: none;
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+
+    #skills-footer {
+        font-size: 0.8rem;
+        padding: 5px 12px;
     }
 }
