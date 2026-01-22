@@ -38,6 +38,8 @@ export class GameEngine {
         if (this.state.skills.includes('iron_stomach') && sanity < 0) {
             const original = sanity;
             sanity = Math.ceil(sanity * CONFIG.SKILLS.IRON_STOMACH_REDUCTION);
+            // Ensure at least -1 damage to prevent full nullification
+            if (sanity === 0 && original < 0) sanity = -1;
             skillActivated += `<br><span style="color:#4cc9f0">【鋼の胃袋】発動: 精神ダメージ軽減 (${original} -> ${sanity})</span>`;
         }
         if (this.state.skills.includes('tax_hacker') && money < 0 && Math.random() < CONFIG.SKILLS.TAX_HACKER_CHANCE) {

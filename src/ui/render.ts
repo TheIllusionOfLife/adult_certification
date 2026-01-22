@@ -28,7 +28,6 @@ interface DOMElements {
     diffList: HTMLElement;
     mascotContainer: HTMLElement;
     mascotImg: HTMLImageElement;
-    scoreHistory: HTMLElement;
     titleLogo: HTMLImageElement;
 }
 
@@ -66,7 +65,6 @@ export class UIManager {
             diffList: getEl<HTMLElement>('difficulty-list'),
             mascotContainer: getEl<HTMLElement>('mascot-container'),
             mascotImg: getEl<HTMLImageElement>('mascot-img'),
-            scoreHistory: getEl<HTMLElement>('score-history'),
             titleLogo: getEl<HTMLImageElement>('title-logo-img')
         };
         this.loadRecords();
@@ -272,7 +270,7 @@ export class UIManager {
             this.dom.btnNext.style.display = 'block';
             this.dom.ovBody.innerHTML += `<br><br>判定：あなたは「生体プロセッサ」に再利用されます。`;
             this.dom.btnNext.innerText = "人生再起動";
-            this.dom.btnNext.addEventListener('click', () => location.reload());
+            this.dom.btnNext.onclick = () => location.reload();
             this.dom.btnNext.disabled = false;
             this.dom.btnNext.style.opacity = '1';
         } else {
@@ -293,7 +291,7 @@ export class UIManager {
                     this.dom.btnNext.style.cursor = 'pointer';
                 }, CONFIG.BUTTON_DELAY_MS);
 
-                this.dom.btnNext.addEventListener('click', () => this.closeFeedback());
+                this.dom.btnNext.onclick = () => this.closeFeedback();
             }
         }
         this.dom.overlay.style.display = 'flex';
@@ -353,7 +351,7 @@ export class UIManager {
         `;
         this.dom.ovStats.innerHTML = "";
         this.dom.btnNext.innerText = "人生再起動";
-        this.dom.btnNext.addEventListener('click', () => location.reload());
+        this.dom.btnNext.onclick = () => location.reload();
         this.dom.overlay.style.display = 'flex';
 
         if (this.engine.difficulty) {
