@@ -34,7 +34,7 @@ export const STAGE_1_METADATA: StageMetadata = {
                 id: "s1_normal_03",
                 name: "デジタル衛生",
                 desc: "セキュリティ関連の信用度低下を30%軽減します。",
-                effect: { type: "category_cs_damage_reduction", category: "SECURITY", value: 0.3 },
+                effect: { type: "category_cs_damage_reduction", category: "SEC", value: 0.3 },
                 category: "normal"
             },
             {

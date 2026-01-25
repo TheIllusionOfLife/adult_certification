@@ -50,6 +50,11 @@ export class GameEngine {
         feedback: string,
         isTerminated: boolean
     } {
+        // Validate choice is not locked (defensive programming)
+        if (this.isChoiceLocked(choice)) {
+            throw new Error(`Attempted to process locked choice: ${choice.text}`);
+        }
+
         const originalEffect = { ...choice.effect };
 
         // Apply skill effects (deterministic, auto-calculated)
@@ -93,9 +98,9 @@ export class GameEngine {
             C: { CS: CONFIG.RANK_THRESHOLDS.C }
         };
 
-        let rank = "D";
-        let title = "不合格 (Failed)";
-        let desc = "あなたは基準を満たしませんでした。";
+        let rank = "C";
+        let title = "最低限合格 (Minimal Pass)";
+        let desc = "最低限の基準はクリアしました。再教育を推奨します。";
 
         if (s.CS >= thresholds.S.CS) {
             rank = "S";
@@ -106,26 +111,16 @@ export class GameEngine {
             title = "上級適合者 (Prime Compliant)";
             desc = "優秀な成績です。多少の自我は残っていますが、許容範囲です。";
         } else if (s.CS >= thresholds.B.CS) {
-            if (s.Autonomy <= 20) {
-                rank = "B-";
-                title = "消耗品 (Disposable)";
-                desc = "信用はありますが、精神が消耗しています。補充可能な労働力です。";
-            } else {
-                rank = "B";
-                title = "一般適合者 (Standard Compliant)";
-                desc = "可もなく不可もなく。代替可能な人材です。";
-            }
+            rank = "B";
+            title = "一般適合者 (Standard Compliant)";
+            desc = "可もなく不可もなく。代替可能な人材です。";
         } else if (s.CS >= thresholds.C.CS) {
-            if (s.Autonomy >= 60) {
-                rank = "C+";
-                title = "要監視対象 (Watch List)";
-                desc = "信用は低いですが、妙に精神が安定していますね……危険分子として監視します。";
-            } else {
-                rank = "C";
-                title = "最低限合格 (Minimal Pass)";
-                desc = "最低限の基準はクリアしました。再教育を推奨します。";
-            }
+            rank = "C";
+            title = "最低限合格 (Minimal Pass)";
+            desc = "最低限の基準はクリアしました。再教育を推奨します。";
         }
+        // If CS < C threshold, game should have ended (game over at CS <= 0)
+        // So C is the minimum rank for completion
 
         return { rank, title, desc };
     }

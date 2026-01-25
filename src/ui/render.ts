@@ -1,5 +1,5 @@
 import { GameEngine } from '../logic/gameEngine';
-import type { Choice, Difficulty } from '../types';
+import type { Choice, Difficulty, Question } from '../types';
 import { CONFIG } from '../config';
 
 // Vite glob import for assets
@@ -224,11 +224,17 @@ export class UIManager {
             const isLocked = this.engine.isChoiceLocked(c);
 
             btn.className = isLocked ? 'choice-btn choice-locked' : 'choice-btn';
-            btn.innerHTML = `<span class="choice-letter">${String.fromCharCode(65 + i)}</span><span>${c.text}</span>`;
+
+            let content = `<span class="choice-letter">${String.fromCharCode(65 + i)}</span><span>${c.text}</span>`;
+
+            if (isLocked && c.lockedFeedback) {
+                content += `<div class="lock-reason">${c.lockedFeedback}</div>`;
+            }
+
+            btn.innerHTML = content;
 
             if (isLocked) {
                 btn.disabled = true;
-                btn.title = c.lockedFeedback || 'この選択肢は利用できません';
             } else {
                 btn.addEventListener('click', () => this.handleChoice(c, q));
             }
@@ -239,7 +245,7 @@ export class UIManager {
         this.updateHUD();
     }
 
-    handleChoice(choice: Choice, question: any) {
+    handleChoice(choice: Choice, question: Question) {
         const result = this.engine.processChoice(choice, question);
         this.showFeedback(result);
     }
@@ -334,7 +340,7 @@ export class UIManager {
             sBtn.className = isKeySkill ? 'choice-btn skill-btn key-skill-btn' : 'choice-btn skill-btn';
 
             const keyBadge = isKeySkill ? '<span class="key-skill-badge">★KEY SKILL★</span>' : '';
-            const keyNote = isKeySkill ? '<div class="key-skill-note">※効果は今ステージのみ有効<br>※クリア時に「収集済み」として記録</div>' : '';
+            const keyNote = isKeySkill ? '<div class="key-skill-note">※効果は今ステージのみ有効<br>※取得時に「収集済み」として記録（真エンド条件）</div>' : '';
 
             sBtn.innerHTML = `
                 <div class="skill-info">

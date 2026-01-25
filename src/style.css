@@ -1146,3 +1146,20 @@ body {
   width: 100%;
 }
 
+
+/* Lock Reason Visible Feedback */
+.lock-reason {
+  margin-top: 8px;
+  padding: 6px 10px;
+  background: rgba(255, 50, 50, 0.15);
+  border-left: 3px solid #ff3232;
+  font-size: 0.8em;
+  color: #ff8888;
+  text-align: left;
+  border-radius: 3px;
+}
+
+.choice-locked .lock-reason {
+  display: block;
+}
+

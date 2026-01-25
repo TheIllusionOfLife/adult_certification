@@ -19,8 +19,11 @@ export function applySkillEffects(
         switch (skill.effect.type) {
             case "autonomy_damage_reduction":
                 // Reduce all Autonomy damage by value%
+                // Math.ceil ensures we round toward zero (less damage)
+                // Note: Very small damage (-1, -2) may round to 0, which is intentional
                 if (Autonomy < 0) {
-                    Autonomy = Math.ceil(Autonomy * (1 - skill.effect.value));
+                    const reduced = Autonomy * (1 - skill.effect.value);
+                    Autonomy = Math.ceil(reduced);
                 }
                 break;
 
@@ -33,15 +36,19 @@ export function applySkillEffects(
 
             case "category_cs_damage_reduction":
                 // Reduce CS damage for specific category by value%
+                // Math.ceil ensures we round toward zero (less damage)
                 if (question.category === skill.effect.category && CS < 0) {
-                    CS = Math.ceil(CS * (1 - skill.effect.value));
+                    const reduced = CS * (1 - skill.effect.value);
+                    CS = Math.ceil(reduced);
                 }
                 break;
 
             case "autonomy_small_damage_reduction":
                 // Reduce Autonomy damage under threshold by value%
+                // Only applies to "small" damage (e.g., >= -20)
                 if (Autonomy < 0 && Autonomy >= (skill.effect.threshold || -20)) {
-                    Autonomy = Math.ceil(Autonomy * (1 - skill.effect.value));
+                    const reduced = Autonomy * (1 - skill.effect.value);
+                    Autonomy = Math.ceil(reduced);
                 }
                 break;
         }
