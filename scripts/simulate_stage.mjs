@@ -82,29 +82,108 @@ function parseArgs(argv) {
   return args;
 }
 
+// Cache for transpiled TS modules
+const tsModuleCache = new Map();
+
+// Shared compiler options for all TS transpilation
+const tsCompilerOptions = {
+  target: ts.ScriptTarget.ES2022,
+  module: ts.ModuleKind.CommonJS,
+  strict: true,
+  esModuleInterop: true,
+  skipLibCheck: true,
+};
+
+// Transpile a TS file and return the output text
+function transpileTS(absPath) {
+  if (tsModuleCache.has(absPath)) {
+    return tsModuleCache.get(absPath);
+  }
+
+  const source = fs.readFileSync(absPath, "utf8");
+  const out = ts.transpileModule(source, {
+    compilerOptions: tsCompilerOptions,
+    fileName: absPath,
+  });
+
+  tsModuleCache.set(absPath, out.outputText);
+  return out.outputText;
+}
+
+// Create a TS-aware require function for the sandbox
+function createTSRequire(baseDir) {
+  const moduleCache = new Map();
+
+  return function customRequire(request) {
+    // Handle relative paths
+    let absPath;
+    if (request.startsWith(".")) {
+      absPath = path.resolve(baseDir, request);
+    } else {
+      // Non-relative: delegate to native require (node_modules, builtins)
+      return require(request);
+    }
+
+    // Add .ts extension if not present and file doesn't exist
+    if (!fs.existsSync(absPath)) {
+      for (const ext of [".ts", ".mts", ".cts", "/index.ts"]) {
+        const withExt = absPath + ext;
+        if (fs.existsSync(withExt)) {
+          absPath = withExt;
+          break;
+        }
+      }
+    }
+
+    // If still not found or not a TS file, try native require
+    if (!fs.existsSync(absPath) || !absPath.match(/\.(ts|mts|cts)$/)) {
+      return require(request);
+    }
+
+    // Check module cache
+    if (moduleCache.has(absPath)) {
+      return moduleCache.get(absPath);
+    }
+
+    // Transpile and execute
+    const outputText = transpileTS(absPath);
+    const moduleDir = path.dirname(absPath);
+
+    const childModule = { exports: {} };
+    const childSandbox = {
+      module: childModule,
+      exports: childModule.exports,
+      require: createTSRequire(moduleDir),
+      __dirname: moduleDir,
+      __filename: absPath,
+      console,
+      process,
+    };
+    childSandbox.exports = childSandbox.module.exports;
+
+    vm.createContext(childSandbox);
+    vm.runInContext(outputText, childSandbox, { filename: absPath });
+
+    // Cache and return
+    moduleCache.set(absPath, childSandbox.module.exports);
+    return childSandbox.module.exports;
+  };
+}
+
 function evalTSModule(filePath) {
   const abs = path.resolve(process.cwd(), filePath);
   if (!fs.existsSync(abs)) {
     die(`File not found: ${filePath}`);
   }
 
-  const source = fs.readFileSync(abs, "utf8");
-  const out = ts.transpileModule(source, {
-    compilerOptions: {
-      target: ts.ScriptTarget.ES2022,
-      module: ts.ModuleKind.CommonJS,
-      strict: true,
-      esModuleInterop: true,
-      skipLibCheck: true,
-    },
-    fileName: abs,
-  });
+  const outputText = transpileTS(abs);
+  const moduleDir = path.dirname(abs);
 
   const sandbox = {
     module: { exports: {} },
     exports: {},
-    require, // not expected for stage/data modules, but safe for future use
-    __dirname: path.dirname(abs),
+    require: createTSRequire(moduleDir),
+    __dirname: moduleDir,
     __filename: abs,
     console,
     process,
@@ -112,7 +191,7 @@ function evalTSModule(filePath) {
   sandbox.exports = sandbox.module.exports;
 
   vm.createContext(sandbox);
-  vm.runInContext(out.outputText, sandbox, { filename: abs });
+  vm.runInContext(outputText, sandbox, { filename: abs });
   return sandbox.module.exports;
 }
 

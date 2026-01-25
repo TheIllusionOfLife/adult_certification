@@ -24,6 +24,11 @@ This directory contains historical documents from the development process that a
 - `index.html` - Previous version of index.html
 - `public/assets/` - Old asset directory (replaced by src/assets/)
 
+### Legacy Code (Difficulty-based System)
+- `src/data/questions/` - Old difficulty-based questions (Intro, Common, Advanced, Expert, Nightmare)
+- `src/data/questions.ts` - Aggregator for old question database
+- `src/data/skills.ts` - Deprecated random skill system (replaced by stageMetadata.ts)
+
 ## Note
 
 These files are preserved for historical reference but are not part of the active codebase. For current documentation, see:
