@@ -132,7 +132,7 @@ export const expertQuestions: Question[] = [
                     "Asset": 500000,
                     "Autonomy": -10
                 },
-                "feedback": "貴族の遊び。、累進課税低い税率を家族全員で分け合う高等テクニックです。"
+                "feedback": "貴族の遊び。累進課税の低い税率を家族全員で分け合う高等テクニックです。"
             }
         ]
     },

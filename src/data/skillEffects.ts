@@ -19,11 +19,10 @@ export function applySkillEffects(
         switch (skill.effect.type) {
             case "autonomy_damage_reduction":
                 // Reduce all Autonomy damage by value%
-                // Math.ceil ensures we round toward zero (less damage)
-                // Note: Very small damage (-1, -2) may round to 0, which is intentional
+                // Math.floor ensures we round away from zero (preserving damage magnitude)
                 if (Autonomy < 0) {
                     const reduced = Autonomy * (1 - skill.effect.value);
-                    Autonomy = Math.ceil(reduced);
+                    Autonomy = Math.floor(reduced);
                 }
                 break;
 
@@ -36,19 +35,19 @@ export function applySkillEffects(
 
             case "category_cs_damage_reduction":
                 // Reduce CS damage for specific category by value%
-                // Math.ceil ensures we round toward zero (less damage)
+                // Math.floor ensures we round away from zero (preserving damage magnitude)
                 if (question.category === skill.effect.category && CS < 0) {
                     const reduced = CS * (1 - skill.effect.value);
-                    CS = Math.ceil(reduced);
+                    CS = Math.floor(reduced);
                 }
                 break;
 
             case "autonomy_small_damage_reduction":
                 // Reduce Autonomy damage under threshold by value%
                 // Only applies to "small" damage (e.g., >= -20)
-                if (Autonomy < 0 && Autonomy >= (skill.effect.threshold || -20)) {
+                if (Autonomy < 0 && Autonomy >= (skill.effect.threshold ?? -20)) {
                     const reduced = Autonomy * (1 - skill.effect.value);
-                    Autonomy = Math.ceil(reduced);
+                    Autonomy = Math.floor(reduced);
                 }
                 break;
         }
@@ -57,51 +56,78 @@ export function applySkillEffects(
     return { CS, Asset, Autonomy };
 }
 
-export function getSkillActivationMessage(
+export interface SkillActivation {
+    skillName: string;
+    description: string;
+    originalValue: number;
+    modifiedValue: number;
+}
+
+export function getSkillActivations(
     originalEffect: Effect,
     modifiedEffect: Effect,
+    question: Question,
     activeSkills: Skill[]
-): string {
-    const messages: string[] = [];
+): SkillActivation[] {
+    const activations: SkillActivation[] = [];
 
     activeSkills.forEach(skill => {
         let activated = false;
-        let message = "";
+        let description = "";
+        let originalValue = 0;
+        let modifiedValue = 0;
 
         switch (skill.effect.type) {
             case "autonomy_damage_reduction":
+                // Only show if Autonomy damage was actually reduced
                 if (originalEffect.Autonomy < 0 && modifiedEffect.Autonomy !== originalEffect.Autonomy) {
                     activated = true;
-                    message = `【${skill.name}】発動: 自律性ダメージ軽減 (${originalEffect.Autonomy} → ${modifiedEffect.Autonomy})`;
+                    description = "自律性ダメージ軽減";
+                    originalValue = originalEffect.Autonomy;
+                    modifiedValue = modifiedEffect.Autonomy;
                 }
                 break;
 
             case "admin_cost_reduction":
-                if (originalEffect.Asset < 0 && modifiedEffect.Asset !== originalEffect.Asset) {
+                // Only show if this is an ADMIN question with Asset cost
+                if (question.category === "ADMIN" && originalEffect.Asset < 0 && modifiedEffect.Asset !== originalEffect.Asset) {
                     activated = true;
-                    message = `【${skill.name}】発動: 資産減少軽減 (${originalEffect.Asset} → ${modifiedEffect.Asset})`;
+                    description = "資産減少軽減";
+                    originalValue = originalEffect.Asset;
+                    modifiedValue = modifiedEffect.Asset;
                 }
                 break;
 
             case "category_cs_damage_reduction":
-                if (originalEffect.CS < 0 && modifiedEffect.CS !== originalEffect.CS) {
+                // Only show if question category matches and CS was reduced
+                if (question.category === skill.effect.category && originalEffect.CS < 0 && modifiedEffect.CS !== originalEffect.CS) {
                     activated = true;
-                    message = `【${skill.name}】発動: 信用度低下軽減 (${originalEffect.CS} → ${modifiedEffect.CS})`;
+                    description = "信用度低下軽減";
+                    originalValue = originalEffect.CS;
+                    modifiedValue = modifiedEffect.CS;
                 }
                 break;
 
             case "autonomy_small_damage_reduction":
-                if (originalEffect.Autonomy < 0 && modifiedEffect.Autonomy !== originalEffect.Autonomy) {
+                // Only show if damage meets threshold and was reduced
+                if (originalEffect.Autonomy < 0 && originalEffect.Autonomy >= (skill.effect.threshold ?? -20) && modifiedEffect.Autonomy !== originalEffect.Autonomy) {
                     activated = true;
-                    message = `【${skill.name}】発動: 小ダメージ軽減 (${originalEffect.Autonomy} → ${modifiedEffect.Autonomy})`;
+                    description = "小ダメージ軽減";
+                    originalValue = originalEffect.Autonomy;
+                    modifiedValue = modifiedEffect.Autonomy;
                 }
                 break;
         }
 
-        if (activated && message) {
-            messages.push(`<span style="color:#4cc9f0">${message}</span>`);
+        if (activated) {
+            activations.push({
+                skillName: skill.name,
+                description,
+                originalValue,
+                modifiedValue
+            });
         }
     });
 
-    return messages.length > 0 ? "<br>" + messages.join("<br>") : "";
+    return activations;
 }

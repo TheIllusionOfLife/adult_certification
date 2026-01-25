@@ -1,6 +1,6 @@
 import type { GameState, Question, Choice, Skill } from '../types';
 import { getStageMetadata } from '../data/stageMetadata';
-import { applySkillEffects, getSkillActivationMessage } from '../data/skillEffects';
+import { applySkillEffects, getSkillActivations, type SkillActivation } from '../data/skillEffects';
 import { getADAMCommentForEffect } from '../data/adamDialogue';
 import { CONFIG } from '../config';
 
@@ -48,7 +48,8 @@ export class GameEngine {
     processChoice(choice: Choice, question: Question): {
         outcome: { CS: number, Asset: number, Autonomy: number },
         feedback: string,
-        isTerminated: boolean
+        isTerminated: boolean,
+        skillActivations: SkillActivation[]
     } {
         // Validate choice is not locked (defensive programming)
         if (this.isChoiceLocked(choice)) {
@@ -73,16 +74,17 @@ export class GameEngine {
             this.state.isGameOver = true;
         }
 
-        // Generate skill activation messages
-        const skillMessages = getSkillActivationMessage(originalEffect, modifiedEffect, this.activeSkills);
+        // Get skill activations (structured data, no HTML)
+        const skillActivations = getSkillActivations(originalEffect, modifiedEffect, question, this.activeSkills);
 
         // Generate A.D.A.M. commentary
         const adamComment = getADAMCommentForEffect(modifiedEffect);
 
         return {
             outcome: modifiedEffect,
-            feedback: `${choice.feedback}${skillMessages}<br><br><span style="color:#aaa; font-size:0.9em;">[A.D.A.M.]: ${adamComment}</span>`,
-            isTerminated
+            feedback: `${choice.feedback}<br><br><span style="color:#aaa; font-size:0.9em;">[A.D.A.M.]: ${adamComment}</span>`,
+            isTerminated,
+            skillActivations
         };
     }
 

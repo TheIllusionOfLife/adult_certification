@@ -44,7 +44,7 @@ export const STAGE_1_METADATA: StageMetadata = {
                 desc: "場のルール、距離感、最低限の作法を読み、不要な摩擦を避ける能力。自律性への小ダメージ（-20以下）を30%軽減します。",
                 effect: { type: "autonomy_small_damage_reduction", threshold: -20, value: 0.3 },
                 category: "key",
-                persistent: true,
+                isCollectible: true,
                 acquiredStage: 1,
                 adamComment: "……あなたは『システムを理解しながら、自我を保つ』術を習得しました。厄介ですね。"
             }

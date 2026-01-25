@@ -202,7 +202,7 @@ Stage 1 of the "License to Adult" redesign has been successfully implemented. Th
 ### Dev Server Test ✅
 - **Status**: PASSED
 - **Command**: `npm run dev`
-- **Result**: Server starts successfully on http://localhost:5173/
+- **Result**: Server starts successfully on <http://localhost:5173/>
 
 ### Manual Testing Required ⚠️
 The following should be tested manually by running the game:

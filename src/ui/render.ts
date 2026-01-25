@@ -1,5 +1,6 @@
 import { GameEngine } from '../logic/gameEngine';
 import type { Choice, Difficulty, Question } from '../types';
+import type { SkillActivation } from '../data/skillEffects';
 import { CONFIG } from '../config';
 
 // Vite glob import for assets
@@ -49,8 +50,8 @@ export class UIManager {
             qText: getEl<HTMLElement>('question-text'),
             choices: getEl<HTMLElement>('choices-grid'),
             cs: getEl<HTMLElement>('score-cs'),
-            asset: getEl<HTMLElement>('score-money'),
-            autonomy: getEl<HTMLElement>('score-sanity'),
+            asset: getEl<HTMLElement>('score-asset'),
+            autonomy: getEl<HTMLElement>('score-autonomy'),
             bar: getEl<HTMLElement>('progress-bar'),
             container: getEl<HTMLElement>('game-container'),
             sceneDesc: getEl<HTMLElement>('scene-desc-overlay'),
@@ -253,9 +254,10 @@ export class UIManager {
     showFeedback(result: {
         outcome: { CS: number; Asset: number; Autonomy: number };
         feedback: string;
-        isTerminated: boolean
+        isTerminated: boolean;
+        skillActivations: SkillActivation[]
     }) {
-        const { outcome, feedback, isTerminated } = result;
+        const { outcome, feedback, isTerminated, skillActivations } = result;
         const { CS, Asset, Autonomy } = outcome;
 
         const getAnimClass = (val: number) => {
@@ -264,9 +266,16 @@ export class UIManager {
             return '';
         };
 
+        // Format skill activation messages as HTML
+        const skillMessagesHTML = skillActivations.length > 0
+            ? "<br>" + skillActivations.map(sa =>
+                `<span style="color:#4cc9f0">【${sa.skillName}】発動: ${sa.description} (${sa.originalValue} → ${sa.modifiedValue})</span>`
+              ).join("<br>")
+            : "";
+
         this.dom.ovTitle.innerText = CS >= 0 ? "APPROVED" : "WARNING";
         this.dom.ovTitle.style.color = CS >= 0 ? "var(--accent-color)" : "var(--primary-color)";
-        this.dom.ovBody.innerHTML = feedback; // Use innerHTML for styling
+        this.dom.ovBody.innerHTML = feedback + skillMessagesHTML; // Feedback includes A.D.A.M. comment, add skill messages
         this.dom.ovStats.innerHTML = `
             <div class="stat-result ${getAnimClass(CS)}">
                 <span style="font-size:0.8em">信用度 (CS)</span><br>
@@ -324,10 +333,10 @@ export class UIManager {
         this.dom.skillBox.style.display = 'flex';
         this.dom.skillBox.innerHTML = '';
 
-        // Determine which offer this is (1 or 2)
+        // Determine which offer this is (1 or 2) dynamically from CONFIG
         const idx = this.engine.state.currentQuestionIndex;
-        const offerNumber = idx === 2 ? 1 : 2;
-        const availableSkills = this.engine.getSkillsForOffer(offerNumber as 1 | 2);
+        const offerNumber = (CONFIG.SKILL_OFFER_POSITIONS.indexOf(idx) + 1) as 1 | 2;
+        const availableSkills = this.engine.getSkillsForOffer(offerNumber);
 
         const title = document.createElement('div');
         title.className = 'skill-offer-title';

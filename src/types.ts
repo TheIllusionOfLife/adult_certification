@@ -46,7 +46,7 @@ export interface Skill {
     desc: string;
     effect: SkillEffect;
     category?: 'normal' | 'key';
-    persistent?: boolean;
+    isCollectible?: boolean; // True for key skills that count toward True Ending unlock
     acquiredStage?: number;
     adamComment?: string;
 }

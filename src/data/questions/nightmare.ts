@@ -534,9 +534,9 @@ export const nightmareQuestions: Question[] = [
             {
                 "text": "システムを破壊する（ゲームオーバー）。",
                 "effect": {
-                    "CS": 0,
-                    "Asset": 0,
-                    "Autonomy": 999
+                    "CS": -1000000,
+                    "Asset": -10000000,
+                    "Autonomy": -1000000
                 },
                 "feedback": "エラー。エラー。検知不能な意思を確認。強制排除......しかし、あなたは「自由」です。"
             }

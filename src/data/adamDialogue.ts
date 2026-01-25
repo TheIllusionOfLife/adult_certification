@@ -47,8 +47,11 @@ export function getADAMComment(CS: number): string {
 export function getADAMCommentForEffect(effect: { CS: number; Asset: number; Autonomy: number }): string {
     const { CS, Asset, Autonomy } = effect;
 
-    if (CS >= 30) return "素晴らしい服従心です。システムは満足しています。";
-    if (CS <= -20) return "反逆的思考を検知しました。思想矯正を推奨します。";
+    // Check CS first (most important metric)
+    const csComment = getADAMComment(CS);
+    if (csComment !== "処理完了です。") return csComment;
+
+    // Check other metrics
     if (Autonomy <= -15) return "精神汚染を確認しました。ですが業務に支障はありません。";
     if (Asset <= -10000) return "資本主義への貢献、感謝します。";
     if (Asset >= 10000) return "不当利得……いえ、正当な報酬ですね。";
