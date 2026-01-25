@@ -6,7 +6,7 @@ export const stage1Questions: Question[] = [
         id: "s1_q01",
         category: "MANNER",
         text: "上司から「至急メールして」と言われた。CC（カーボン・コピー）の意味を理解しているか？",
-        imagePrompt: "Scene: an office PC showing an email draft with the CC field highlighted; coworkers watching from behind; a CCTV camera looming overhead. Composition: monitor in the foreground, watchers in the background. Mood: surveillance and pressure.",
+        imagePrompt: "Scene: an office PC with glowing screen and highlighted field (no readable text needed); coworkers peering nervously from cubicle walls; a CCTV camera with blinking red light overhead. Composition: monitor in foreground, watchers lurking in midground. Mood: surveillance and pressure.",
         imagePath: "s1_q01.png",
         choices: [
             {
@@ -82,7 +82,7 @@ export const stage1Questions: Question[] = [
         id: "s1_q04",
         category: "ADMIN",
         text: "マイナンバーカード。「持ち歩くと危険だから」と通知カードのままにしている。",
-        imagePrompt: "Scene: a dusty safe holding an old card; outside, a modern ID card and online services glow with convenience; an all-seeing bureaucratic eye watches; scales weigh security vs convenience. Composition: split or scale-based framing with both options visible. Mood: paranoia vs practicality.",
+        imagePrompt: "Scene: protagonist standing hesitantly between a dusty cobwebbed safe (old card visible inside) and a glowing modern ID card floating with golden aura; a large bureaucratic eye watches from above. Composition: protagonist in center looking torn, safe on left in shadow, glowing card on right. Mood: paranoia vs opportunity, being watched.",
         imagePath: "s1_q04.png",
         choices: [
             {

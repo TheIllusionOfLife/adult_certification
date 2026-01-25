@@ -50,6 +50,7 @@ with intentional imperfections
 
 **Global Consistency Rules (apply to all stages unless Stage 10 exception)**:
 - **Scene illustration** (NOT poster/title-card). Avoid big headline typography.
+- **No decorative frame borders** - image should fill the canvas edge-to-edge with no aged photo frames, vignettes, or border effects.
 - **Text policy**:
   - Text is allowed only if it is **intentional** and **fully readable**.
   - If any text appears, it must be **English-only** (Stage 1-9).
@@ -274,6 +275,7 @@ Nano Banana Pro.
 Run this checklist after generating all 10 images for a stage:
 
 - [ ] **Scene illustration** for all 10 (no poster/title-card)
+- [ ] **No decorative frames** - images fill canvas edge-to-edge (no aged borders, vignettes)
 - [ ] **Comparison scenes** show narrative, not infographic diagrams
 - [ ] Rubber hose character style is consistent across all 10
 - [ ] Ink outline thickness and shading style are consistent across all 10
@@ -739,6 +741,7 @@ decorative frame, existential choice symbolism, climactic finale atmosphere
 - [ ] Scenario is clear
 - [ ] Mood is appropriate
 - [ ] No watermarks
+- [ ] No decorative frame borders (edge-to-edge)
 - [ ] No poster/title-card headline typography
 - [ ] No gibberish/garbled AI text (regenerate if present)
 - [ ] Text (if any) is intentional, fully readable, and English-only (Stage 1-9)
