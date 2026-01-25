@@ -1,7 +1,7 @@
 # Image Generation Workflow
 
-**Version**: 1.0
-**Date**: 2026-01-25
+**Version**: 1.1
+**Date**: 2026-01-26
 **Purpose**: Step-by-step guide for generating images for questions
 
 ---
@@ -48,6 +48,17 @@ Cuphead-inspired, dark humor, dystopian mood, hand-drawn feel
 with intentional imperfections
 ```
 
+**Global Consistency Rules (apply to all stages unless Stage 10 exception)**:
+- **Scene illustration** (NOT poster/title-card). Avoid big headline typography.
+- **No decorative frame borders** - image should fill the canvas edge-to-edge with no aged photo frames, vignettes, or border effects.
+- **Text policy**:
+  - Text is allowed only if it is **intentional** and **fully readable**.
+  - If any text appears, it must be **English-only** (Stage 1-9).
+  - Prefer **minimal text**. Avoid banners/headlines/giant labels.
+  - Avoid “concept labeling” (e.g., words like `SECURITY` / `CONVENIENCE` / `WARMTH`) as a substitute for visual storytelling.
+  - **If text cannot be made readable, omit it entirely** - no gibberish/garbled AI text.
+  - Stage 10 may intentionally use **glitch text** as a special effect.
+
 ### Key Elements
 
 **Visual Style**:
@@ -75,6 +86,48 @@ with intentional imperfections
 ---
 
 ## Writing Prompts
+
+### What `imagePrompt` Means (Source-of-Truth)
+
+In this project, each question has an `imagePrompt` field (e.g. `src/data/stages/stage1.ts`).
+
+**Important**: `imagePrompt` is a **scene brief**, not the full generation prompt.
+
+When generating an image, build the final prompt like this:
+
+```text
+[BASE STYLE TEMPLATE] + [QUESTION.imagePrompt]
+```
+
+#### `imagePrompt` MUST include
+- **Scene**: what is happening (who/where/what)
+- **Composition**: how it is framed (split scene, close-up, focus object, foreground/background)
+- **Mood**: what the player should feel (tense, oppressive, conflicted, etc.)
+- **Key props/symbols**: 2-4 specific visual anchors (clock, form field, CCTV, money, etc.)
+  - If readable text is essential to the scene, specify **exactly** what it says (keep it short) and **where** it appears.
+
+#### `imagePrompt` MUST NOT include
+- Base style keywords (e.g., "1930s", "rubber hose", "Fleischer", "Cuphead", "film noir lighting")
+- Tool instructions (resolution, PNG, negative prompts, seed, etc.)
+- Big headline/title-card instructions (we prefer scene illustration)
+- Abstract “concept labels” intended to explain the theme instead of showing it (avoid poster/infographic drift)
+
+#### Language rule
+- Write `imagePrompt` in **English** (consistent across the game).
+
+#### Examples
+
+✅ Good `imagePrompt` (scene brief):
+```text
+Scene: an office PC showing an email draft with the CC field highlighted; coworkers watching from behind; a CCTV camera looming.
+Composition: focus on the monitor in foreground, watchers in midground.
+Mood: oppressive surveillance.
+```
+
+❌ Bad `imagePrompt` (duplicates global template / causes drift):
+```text
+1930s rubber hose animation style, Fleischer Studios aesthetic, Cuphead-inspired...
+```
 
 ### Prompt Structure
 
@@ -104,6 +157,8 @@ with intentional imperfections
 "forced perspective making desk loom menacingly"
 "David vs Goliath composition"
 ```
+
+**⚠️ For comparison/choice scenes**: Always frame as a **narrative scene with characters**, not as an infographic or diagram. Avoid labeling each side with big text headlines. Show the protagonist experiencing the choice, not a poster explaining it. If text is needed, keep it **small and diegetic** (on a screen, form field, or in-world sign), not banner-like headings.
 
 **3. Emotional Tone** (What player should feel):
 ```
@@ -148,6 +203,7 @@ Nano Banana Pro.
 - [ ] Scene conveys question's situation
 - [ ] Key elements are recognizable
 - [ ] Composition supports understanding
+- [ ] **Scene illustration** (not poster/title card)
 
 #### 3. Emotional Tone ✅
 - [ ] Mood matches question type (dilemma = tense, etc.)
@@ -158,7 +214,10 @@ Nano Banana Pro.
 - [ ] Resolution: 1024x1024 pixels
 - [ ] Format: PNG
 - [ ] File size: < 2MB (for web performance)
-- [ ] No watermarks or text (except intentional)
+- [ ] No watermarks
+- [ ] Text (if any) is intentional and **fully readable** (no AI gibberish)
+- [ ] Text language is **English-only** (Stage 1-9)
+- [ ] No banner/headline typography; avoid large concept labels
 
 ---
 
@@ -174,6 +233,7 @@ Nano Banana Pro.
 - [ ] Subtle references to stage theme
 - [ ] Visual metaphors for concepts
 - [ ] Personality in character expressions
+- [ ] **Characterful details** (e.g., clocks with faces, objects with personality) - don't over-simplify
 
 ---
 
@@ -191,16 +251,39 @@ Nano Banana Pro.
 - Completely abstract (unreadable)
 
 ❌ **Technical issues**:
-- Text/words (unless intentional glitch for Stage 10)
+- Unintended text/words, or garbled/unreadable AI text (Stage 1-9)
+- Any non-English text (Stage 1-9)
 - Watermarks or logos
 - Low resolution or blurry
 - Wrong aspect ratio (not square)
+
+**Stage 10 exception**:
+- Intentional glitch text is allowed (by design).
 
 ❌ **Composition problems**:
 - Nothing happening (static)
 - Too cluttered (can't parse)
 - Missing key elements from prompt
 - Unclear focus
+- Poster/title-card feel (big headline typography, framed like a poster)
+- Infographic feel (large labels explaining the theme instead of showing it)
+
+---
+
+## Stage Batch Consistency Checklist (10 images)
+
+Run this checklist after generating all 10 images for a stage:
+
+- [ ] **Scene illustration** for all 10 (no poster/title-card)
+- [ ] **No decorative frames** - images fill canvas edge-to-edge (no aged borders, vignettes)
+- [ ] **Comparison scenes** show narrative, not infographic diagrams
+- [ ] Rubber hose character style is consistent across all 10
+- [ ] Ink outline thickness and shading style are consistent across all 10
+- [ ] Accent colors are consistent (use the same few accents across the stage)
+- [ ] Any text is intentional, fully readable, and **English-only** (Stage 1-9)
+- [ ] **No AI gibberish text** anywhere - regenerate if present
+- [ ] No banner/headline typography; no “concept label” words used as an explanation shortcut
+- [ ] Characterful details (animated objects, expressive clocks, etc.) are maintained
 
 ---
 
@@ -336,6 +419,11 @@ src/assets/s{N}_q{YY}.png
 
 ## Examples
 
+**Note**:
+- The examples below show **full generation prompts** (base style + scene).
+- In question source files, store only the **scene brief** portion as `imagePrompt`.
+  The base style stays global in this document.
+
 ### Example 1: Dilemma Question (Friends vs Career)
 
 **Question Context**:
@@ -457,14 +545,14 @@ halves (left half conforming with forced smile and dead eyes, right half
 autonomous with fire in eyes and determined expression), behind protagonist
 A.D.A.M.'s growing shadow as puppet master with visible control strings
 descending toward player, dramatic spotlight from above, ink splatter
-decorative frame, existential choice symbolism, climactic finale atmosphere
+detailing on the mirror's ornate frame, existential choice symbolism, climactic finale atmosphere
 ```
 
 **Key Elements**:
 - ✅ Split face reflection (duality)
 - ✅ Contrasting expressions (conformity vs autonomy)
 - ✅ A.D.A.M. shadow with strings (system control)
-- ✅ Ornate frame (importance)
+- ✅ Ornate mirror frame (importance) - note: this is the mirror's frame, not an image border
 - ✅ Dramatic lighting (finale feel)
 
 **Expected Result**: Symbolic image of choice between conformity and independence, with A.D.A.M.'s looming presence.
@@ -547,6 +635,59 @@ decorative frame, existential choice symbolism, climactic finale atmosphere
 
 ---
 
+### Problem: Comparison Scene Looks Like Infographic/Poster
+
+**Symptoms**: Split scene with big labels ("SECURITY" vs "CONVENIENCE"), feels like a diagram not a story
+
+**Solutions**:
+1. Reframe as narrative:
+   ```
+   Instead of: "security on left, convenience on right"
+   Try: "protagonist standing between a dusty safe and a glowing modern ID card,
+   looking conflicted, scales in background"
+   ```
+
+2. Add character interaction:
+   ```
+   "protagonist reaching toward [option], hesitating"
+   "character caught between two pulling forces"
+   ```
+
+3. Remove label instructions:
+   ```
+   Don't mention text labels in prompts for comparison scenes.
+   Let the visual elements speak for themselves.
+   ```
+
+---
+
+### Problem: Gibberish/Garbled Text Appears
+
+**Symptoms**: AI-generated nonsense text on screens, signs, or documents (e.g., "trrase [con] vorsters")
+
+**Solutions**:
+1. Avoid text-heavy elements in prompts:
+   ```
+   Instead of: "email screen showing CC field with text"
+   Try: "email interface with highlighted CC field (no readable text needed)"
+   ```
+
+2. Use symbolic representation:
+   ```
+   "form with empty field circled in red" (no text required)
+   "document with official seal" (seal conveys authority without text)
+   ```
+
+3. If text is essential, be extremely specific:
+   ```
+   "sign reading exactly 'DEADLINE'" (simple, single word)
+   "clock showing '2 AM'" (numbers are safer than words)
+   ```
+
+4. Regenerate if gibberish appears - it's a red flag.
+
+---
+
 ### Problem: Style Inconsistent with Stage 1
 
 **Symptoms**: Looks different from existing images
@@ -599,9 +740,14 @@ decorative frame, existential choice symbolism, climactic finale atmosphere
 - [ ] Style matches base template
 - [ ] Scenario is clear
 - [ ] Mood is appropriate
-- [ ] No watermarks or unwanted text
+- [ ] No watermarks
+- [ ] No decorative frame borders (edge-to-edge)
+- [ ] No poster/title-card headline typography
+- [ ] No gibberish/garbled AI text (regenerate if present)
+- [ ] Text (if any) is intentional, fully readable, and English-only (Stage 1-9)
 - [ ] Composition is readable
 - [ ] Expressions are exaggerated (cartoon style)
+- [ ] Characterful details preserved (animated objects, expressive props)
 
 ---
 

@@ -276,34 +276,12 @@ This creates causal connection: demonstrate the behavior → earn the right to s
 
 #### Step 5.1: Write Image Prompts
 
-For each question, write image prompt using base style:
+Write `imagePrompt` as a **scene brief** (scene + composition + mood + key props),
+and rely on the single global generation template in:
 
-**Base Style Template:**
-```
-1930s rubber hose animation style, Fleischer Studios aesthetic,
-vintage cartoon noir, high contrast black and white with selective
-color accents, bold ink outlines, exaggerated expressions,
-Cuphead-inspired, dark humor, dystopian mood, hand-drawn feel
-with intentional imperfections
-```
+- `docs/IMAGE_GENERATION_WORKFLOW.md`
 
-**Prompt Structure:**
-```
-[BASE STYLE], [MAIN SUBJECT/SCENE], [EMOTIONAL TONE],
-[COMPOSITION DETAILS], [LIGHTING/ATMOSPHERE]
-```
-
-**Example from Stage 1 Q5:**
-```
-[BASE STYLE], split scene composition: left side warm cozy gathering
-with smiling friends holding drinks in soft orange glow, right side
-cold blue spotlight on lonely figure at desk buried in documents
-with laptop, ominous wall clock ticking dramatically between scenes
-showing time pressure, both paths visualized as equally valid but
-conflicting, exaggerated emotional expressions showing internal conflict
-```
-
-See **IMAGE_GENERATION_WORKFLOW.md** for step-by-step process.
+Do NOT embed base style keywords (e.g., "1930s", "Cuphead") inside question files.
 
 #### Step 5.2: Generate Images
 
@@ -319,11 +297,8 @@ See **IMAGE_GENERATION_WORKFLOW.md** for step-by-step process.
 - Location: `src/assets/`
 
 **Quality Check:**
-- [ ] Style matches base template
-- [ ] Scene conveys question's dilemma/situation
-- [ ] Mood appropriate (dark humor, not too serious)
-- [ ] No text/words in image (except intentional glitches for Stage 10)
-- [ ] File size < 2MB
+Use the **Quality Standards** and **Stage Batch Consistency Checklist** in:
+- `docs/IMAGE_GENERATION_WORKFLOW.md`
 
 #### Step 5.3: Integrate Images
 
@@ -380,7 +355,7 @@ src/
     id: "s{N}_q{YY}",                          // Stage number + question number (01-10)
     category: "{CATEGORY}",                     // ADMIN, FINANCE, SEC, LABOR, SOCIAL, HOUSING, TAX, LEGAL, MANNER, HEALTH
     text: "{問題文（状況設定）}",              // 2-3 sentences, present a scenario
-    imagePrompt: "{Base style + scene description}", // For image generation
+    imagePrompt: "{Scene brief (scene + composition + mood + key props)}", // See docs/IMAGE_GENERATION_WORKFLOW.md
     imagePath: "s{N}_q{YY}.png",               // Will be generated separately
     choices: [
         {
@@ -418,7 +393,7 @@ src/
     id: "s{N}_q{YY}",
     category: "{CATEGORY}",
     text: "{状況を提示し、正しい対応を問う}",
-    imagePrompt: "{Person facing bureaucratic/technical challenge}",
+    imagePrompt: "{Scene brief: person facing a bureaucratic/technical challenge}",
     imagePath: "s{N}_q{YY}.png",
     choices: [
         {
@@ -444,7 +419,7 @@ src/
     id: "s{N}_q{YY}",
     category: "{CATEGORY}",
     text: "{2つの価値観が対立する状況}",
-    imagePrompt: "{Split scene or crossroads showing both paths}",
+    imagePrompt: "{Scene brief: split scene or crossroads showing both paths}",
     imagePath: "s{N}_q{YY}.png",
     choices: [
         {
@@ -473,7 +448,7 @@ src/
     id: "s{N}_q{YY}",
     category: "{CATEGORY}",
     text: "{パラメータが足りないと選べない状況}",
-    imagePrompt: "{Scene showing disparity or locked door metaphor}",
+    imagePrompt: "{Scene brief: disparity or locked-access metaphor (still a scene illustration)}",
     imagePath: "s{N}_q{YY}.png",
     choices: [
         {
@@ -503,7 +478,7 @@ src/
     id: "s{N}_q10",  // Usually Q7 or Q10
     category: "SOCIAL",
     text: "{このステージのテーマについての哲学的問い}",
-    imagePrompt: "{Abstract or symbolic representation of theme}",
+    imagePrompt: "{Scene brief: symbolic representation of theme (keep it as a scene, not a poster)}",
     imagePath: "s{N}_q10.png",
     choices: [
         {

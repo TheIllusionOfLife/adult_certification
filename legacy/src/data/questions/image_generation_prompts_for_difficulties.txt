@@ -1,0 +1,17 @@
+# LEGACY PROMPTS - For reference only. Do not use as template for new prompts.
+# New prompts should use the scene-brief format defined in docs/IMAGE_GENERATION_WORKFLOW.md
+
+q_intro_03:
+A new credit card, a pen, and the signature strip on the back. Dark Cartoon style, thick ink outlines, distorted perspective, dirty paper texture, limited color palette (black, white, red, yellow).
+
+q_adv_01:
+A pile of receipts, a calculator, and a faint light of tax refund. Dark Cartoon style, thick ink outlines, distorted perspective, dirty paper texture, limited color palette (black, white, red, yellow).
+
+q_exp_06:
+A mountain of Bitcoin coins, an airport departure gate, and the suspicious eyes of a customs officer. Dark Cartoon style, thick ink outlines, distorted perspective, dirty paper texture, limited color palette (black, white, red, yellow).
+
+q_nm_01:
+A twisted, angry face of a boss shouting with flying spit, a closed small room, and a smartphone hidden in a pocket recording. Dark Cartoon style, thick ink outlines, distorted perspective, dirty paper texture, limited color palette (black, white, red, yellow).
+
+q_finance_01:
+A sleek, glowing high-tech gadget in a dark alley. A creepy AI shopkeeper with a fake smile is holding it out. Dark Cartoon style, thick ink outlines, distorted perspective, dirty paper texture, limited color palette (black, white, red, yellow).
