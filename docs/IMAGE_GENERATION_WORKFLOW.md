@@ -53,6 +53,8 @@ with intentional imperfections
 - **Text policy**:
   - Text is allowed only if it is **intentional** and **fully readable**.
   - If any text appears, it must be **English-only** (Stage 1-9).
+  - Prefer **minimal text**. Avoid banners/headlines/giant labels.
+  - Avoid “concept labeling” (e.g., words like `SECURITY` / `CONVENIENCE` / `WARMTH`) as a substitute for visual storytelling.
   - **If text cannot be made readable, omit it entirely** - no gibberish/garbled AI text.
   - Stage 10 may intentionally use **glitch text** as a special effect.
 
@@ -101,11 +103,13 @@ When generating an image, build the final prompt like this:
 - **Composition**: how it is framed (split scene, close-up, focus object, foreground/background)
 - **Mood**: what the player should feel (tense, oppressive, conflicted, etc.)
 - **Key props/symbols**: 2-4 specific visual anchors (clock, form field, CCTV, money, etc.)
+  - If readable text is essential to the scene, specify **exactly** what it says (keep it short) and **where** it appears.
 
 #### `imagePrompt` MUST NOT include
 - Base style keywords (e.g., "1930s", "rubber hose", "Fleischer", "Cuphead", "film noir lighting")
 - Tool instructions (resolution, PNG, negative prompts, seed, etc.)
 - Big headline/title-card instructions (we prefer scene illustration)
+- Abstract “concept labels” intended to explain the theme instead of showing it (avoid poster/infographic drift)
 
 #### Language rule
 - Write `imagePrompt` in **English** (consistent across the game).
@@ -153,7 +157,7 @@ Mood: oppressive surveillance.
 "David vs Goliath composition"
 ```
 
-**⚠️ For comparison/choice scenes**: Always frame as a **narrative scene with characters**, not as an infographic or diagram. Avoid labeling each side with big text headlines. Show the protagonist experiencing the choice, not a poster explaining it.
+**⚠️ For comparison/choice scenes**: Always frame as a **narrative scene with characters**, not as an infographic or diagram. Avoid labeling each side with big text headlines. Show the protagonist experiencing the choice, not a poster explaining it. If text is needed, keep it **small and diegetic** (on a screen, form field, or in-world sign), not banner-like headings.
 
 **3. Emotional Tone** (What player should feel):
 ```
@@ -212,6 +216,7 @@ Nano Banana Pro.
 - [ ] No watermarks
 - [ ] Text (if any) is intentional and **fully readable** (no AI gibberish)
 - [ ] Text language is **English-only** (Stage 1-9)
+- [ ] No banner/headline typography; avoid large concept labels
 
 ---
 
@@ -260,6 +265,7 @@ Nano Banana Pro.
 - Missing key elements from prompt
 - Unclear focus
 - Poster/title-card feel (big headline typography, framed like a poster)
+- Infographic feel (large labels explaining the theme instead of showing it)
 
 ---
 
@@ -274,6 +280,7 @@ Run this checklist after generating all 10 images for a stage:
 - [ ] Accent colors are consistent (use the same few accents across the stage)
 - [ ] Any text is intentional, fully readable, and **English-only** (Stage 1-9)
 - [ ] **No AI gibberish text** anywhere - regenerate if present
+- [ ] No banner/headline typography; no “concept label” words used as an explanation shortcut
 - [ ] Characterful details (animated objects, expressive clocks, etc.) are maintained
 
 ---
