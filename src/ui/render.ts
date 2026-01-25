@@ -1,5 +1,5 @@
 import { GameEngine } from '../logic/gameEngine';
-import type { Choice, Difficulty, Question } from '../types';
+import type { Choice, Question } from '../types';
 import type { SkillActivation } from '../data/skillEffects';
 import { CONFIG } from '../config';
 
@@ -96,7 +96,7 @@ export class UIManager {
         this.engine = engine;
     }
 
-    showStartScreen(onSelect: (diff: Difficulty) => void) {
+    showStartScreen(onSelect: (stageNum: number) => void) {
         this.dom.startScreen.style.display = 'flex';
         this.dom.diffList.innerHTML = '';
 
@@ -104,17 +104,18 @@ export class UIManager {
 
 
         // All 10 stages - only show unlocked stages (previous stage beaten)
-        const allStages: { key: string, d: Difficulty, name: string, desc: string }[] = [
-            { key: 'Stage1', d: 'Intro', name: 'STAGE 1', desc: '社会の基本' },
-            { key: 'Stage2', d: 'Common', name: 'STAGE 2', desc: '仕事の基礎' },
-            { key: 'Stage3', d: 'Advanced', name: 'STAGE 3', desc: '住居と契約' },
-            { key: 'Stage4', d: 'Expert', name: 'STAGE 4', desc: '人間関係' },
-            { key: 'Stage5', d: 'Nightmare', name: 'STAGE 5', desc: '金融リテラシー' },
-            { key: 'Stage6', d: 'Intro', name: 'STAGE 6', desc: '健康管理' },
-            { key: 'Stage7', d: 'Intro', name: 'STAGE 7', desc: '法と権利' },
-            { key: 'Stage8', d: 'Intro', name: 'STAGE 8', desc: '危機対応' },
-            { key: 'Stage9', d: 'Intro', name: 'STAGE 9', desc: '自己実現' },
-            { key: 'Stage10', d: 'Intro', name: 'STAGE 10', desc: '最終審査' }
+        // Themes aligned with improvement_plan_2026-01-24_integrated.md section 3.1
+        const allStages: { key: string, name: string, desc: string }[] = [
+            { key: 'Stage1', name: 'STAGE 1', desc: '社会の基本' },
+            { key: 'Stage2', name: 'STAGE 2', desc: '仕事の基礎' },
+            { key: 'Stage3', name: 'STAGE 3', desc: '金の基礎' },
+            { key: 'Stage4', name: 'STAGE 4', desc: '税金' },
+            { key: 'Stage5', name: 'STAGE 5', desc: '社会保険' },
+            { key: 'Stage6', name: 'STAGE 6', desc: '住まい' },
+            { key: 'Stage7', name: 'STAGE 7', desc: '契約・法律' },
+            { key: 'Stage8', name: 'STAGE 8', desc: 'デジタル安全' },
+            { key: 'Stage9', name: 'STAGE 9', desc: '危機対応' },
+            { key: 'Stage10', name: 'STAGE 10', desc: '最終審判' }
         ];
 
         const allowedRanks = ['S', 'A', 'B', 'C'];
@@ -143,7 +144,7 @@ export class UIManager {
             `;
             btn.addEventListener('click', () => {
                 this.dom.startScreen.style.display = 'none';
-                onSelect(stage.d);
+                onSelect(index + 1); // Pass stage number (1-indexed)
             });
             this.dom.diffList.appendChild(btn);
         });
@@ -395,7 +396,7 @@ export class UIManager {
         const skillsContainer = document.createElement('div');
         skillsContainer.className = 'skill-buttons-container';
 
-        skillsWithStatus.forEach(({ skill: s, isAvailable }, i) => {
+        skillsWithStatus.forEach(({ skill: s, isAvailable, lockedReason }, i) => {
             const sBtn = document.createElement('button');
             const isKeySkill = s.category === 'key';
             const isLocked = !isAvailable;
@@ -410,11 +411,17 @@ export class UIManager {
 
             const recommendedBadge = isRecommended ? '<span class="recommended-badge">推奨</span>' : '';
 
+            // Show locked reason for key skills that weren't earned
+            const lockedReasonHtml = isLocked && lockedReason
+                ? `<span class="skill-locked-reason">${lockedReason}</span>`
+                : '';
+
             sBtn.innerHTML = `
                 <div class="skill-letter-circle">${String.fromCharCode(65 + i)}</div>
                 <div class="skill-content">
                     <span class="skill-name">${s.name}${recommendedBadge}</span>
                     <span class="skill-desc">${s.desc}</span>
+                    ${lockedReasonHtml}
                 </div>
             `;
 

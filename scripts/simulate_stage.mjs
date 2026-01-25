@@ -166,7 +166,8 @@ function simulateStage({
     if (cs >= t.S.CS) return "S";
     if (cs >= t.A.CS) return "A";
     if (cs >= t.B.CS) return "B";
-    if (cs >= t.C.CS) return "C";
+    // C = "clear" (CS >= 1), not defined in metadata
+    if (cs >= 1) return "C";
     return "F";
   }
 

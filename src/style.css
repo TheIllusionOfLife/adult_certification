@@ -1177,6 +1177,18 @@ body {
   color: #ff6666 !important;
 }
 
+/* Locked reason for key skills */
+.skill-locked-reason {
+  display: block;
+  margin-top: 6px;
+  padding: 4px 8px;
+  font-size: 0.8rem;
+  color: #ff6666;
+  background: rgba(255, 50, 50, 0.1);
+  border-radius: 3px;
+  border-left: 2px solid #ff3232;
+}
+
 /* A.D.A.M. Recommended Skill Styles */
 .skill-recommended {
   border: 2px solid #4cc9f0 !important;

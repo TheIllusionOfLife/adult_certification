@@ -23,7 +23,7 @@
 ### Prerequisites
 
 Before creating a new stage, ensure you have:
-- ✅ Read `improvement_plan_2026-01-24_integrated.md` (sections 3-6)
+- ✅ Read `legacy/improvement_plan_2026-01-24_integrated.md` (sections 3-6)
 - ✅ Studied Stage 1 implementation (`src/data/stages/stage1.ts`)
 - ✅ Read `QUESTION_DESIGN_GUIDE.md`
 - ✅ Read `SKILL_DESIGN_GUIDE.md`
@@ -885,7 +885,7 @@ Don't aim for perfection on first draft.
 - **SKILL_DESIGN_GUIDE.md** - Skill balancing and design principles
 - **ADAM_STYLE_GUIDE.md** - A.D.A.M. tone and dialogue patterns
 - **IMAGE_GENERATION_WORKFLOW.md** - Step-by-step image creation
-- **improvement_plan_2026-01-24_integrated.md** - Master design document
+- **legacy/improvement_plan_2026-01-24_integrated.md** - Master design document
 - **scripts/simulate_stage.mjs** - Exhaustive stage simulation tool for validation
 
 ---

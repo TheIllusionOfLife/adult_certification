@@ -207,7 +207,7 @@ Key skills serve **dual purpose**:
 
 ### Pre-Defined List
 
-All 9 key skills are specified in `improvement_plan_2026-01-24_integrated.md` section 6.1:
+All 9 key skills are specified in `legacy/improvement_plan_2026-01-24_integrated.md` section 6.1:
 
 | Stage | Key Skill ID | Japanese Name | Core Learning |
 |-------|-------------|---------------|---------------|

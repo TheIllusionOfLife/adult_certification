@@ -1,4 +1,11 @@
-export type Difficulty = 'Intro' | 'Common' | 'Advanced' | 'Expert' | 'Nightmare';
+// Legacy difficulty types (for backward compatibility with old question database)
+export type LegacyDifficulty = 'Intro' | 'Common' | 'Advanced' | 'Expert' | 'Nightmare';
+
+// Stage-based difficulty (new system)
+export type StageDifficulty = 'Stage1' | 'Stage2' | 'Stage3' | 'Stage4' | 'Stage5' |
+                              'Stage6' | 'Stage7' | 'Stage8' | 'Stage9' | 'Stage10';
+
+export type Difficulty = LegacyDifficulty | StageDifficulty;
 
 // ============================================================
 // FUTURE ARCHITECTURE: Global Ending System (Stage 10+)
