@@ -562,6 +562,7 @@ Before committing your stage, verify:
 - [ ] Key skill matches improvement plan specification
 - [ ] Skill effects are balanced (20-50% reductions, 5000-10000 yen)
 - [ ] Skills are meaningful for this stage's challenges
+- [ ] **CRITICAL**: Run `node scripts/simulate_stage.mjs --stage {N}` to verify all skills trigger
 
 #### Images ✅
 - [ ] All images follow base style template
@@ -575,6 +576,28 @@ Before committing your stage, verify:
 ## Testing Protocol
 
 ### Pre-Commit Testing
+
+#### Test 0: Stage Simulation (MANDATORY)
+
+Before any manual testing, run the exhaustive stage simulation:
+
+```bash
+node scripts/simulate_stage.mjs --stage {N}
+```
+
+This script simulates **all possible decision paths** through the stage and reports:
+- **Skill trigger analysis**: Which skills actually trigger and when
+- **Parameter ranges**: Min/max values for CS, Asset, Autonomy across all paths
+- **Lock analysis**: Which choices get locked and under what conditions
+- **Path viability**: Whether any path leads to game over
+
+**What to check in output:**
+- [ ] All skills trigger at least once (critical - see SKILL_DESIGN_GUIDE.md)
+- [ ] No path leads to parameter ≤ 0 (game over prevention)
+- [ ] S-rank path exists (best path achieves CS ≥ 80)
+- [ ] Locked choices have available alternatives
+
+**If skills don't trigger**: Redesign skill effects to match actual damage types in questions. This is the #1 skill design failure - see SKILL_DESIGN_GUIDE.md for details.
 
 #### Test 1: Build Verification
 ```bash
@@ -839,6 +862,7 @@ Don't aim for perfection on first draft.
 - **ADAM_STYLE_GUIDE.md** - A.D.A.M. tone and dialogue patterns
 - **IMAGE_GENERATION_WORKFLOW.md** - Step-by-step image creation
 - **improvement_plan_2026-01-24_integrated.md** - Master design document
+- **scripts/simulate_stage.mjs** - Exhaustive stage simulation tool for validation
 
 ---
 
@@ -858,6 +882,7 @@ If you encounter issues:
 | Version | Date | Changes |
 |---------|------|---------|
 | 1.0 | 2026-01-25 | Initial production guide created |
+| 1.1 | 2026-01-25 | Added simulate_stage.mjs as mandatory pre-commit test |
 
 ---
 

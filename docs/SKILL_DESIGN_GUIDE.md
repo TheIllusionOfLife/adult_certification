@@ -460,6 +460,54 @@ case "cs_damage_reduction":
 
 ## Balancing Guidelines
 
+### ⚠️ CRITICAL: Skills Must Actually Trigger
+
+**THE #1 SKILL DESIGN FAILURE**: Creating skills that never trigger in their stage.
+
+This happened in Stage 1's initial design:
+- `admin_cost_reduction`: No ADMIN questions had Asset < 0 → **never triggered**
+- `category_cs_damage_reduction` for SEC: No SEC questions existed → **never triggered**
+- Result: Skill offers had **obvious "correct" answers**, violating design goals
+
+**MANDATORY VALIDATION PROCESS**:
+
+1. **List all question categories in stage**:
+   ```
+   Stage 1: MANNER, ADMIN, SOCIAL, HOUSING, LABOR
+   Stage 1 does NOT have: SEC, FINANCE, LEGAL, TAX, HEALTH
+   ```
+
+2. **List all damage types by category**:
+   ```
+   ADMIN questions with CS damage: Q4A(-10), Q6A(-30) ✅
+   ADMIN questions with Asset damage: NONE ❌
+   ```
+
+3. **Match skills to ACTUAL damage types**:
+   ```
+   ✅ GOOD: category_cs_damage_reduction for ADMIN (triggers Q4A, Q6A)
+   ❌ BAD: admin_cost_reduction (no ADMIN Asset costs exist)
+   ```
+
+4. **Verify triggers after skill is acquired** (timing matters!):
+   ```
+   Offer 1 (after Q3): Skills affect Q4-Q10
+   Offer 2 (after Q7): Skills affect Q8-Q10 ONLY
+
+   ✅ LABOR CS reduction acquired at Offer 2: triggers Q8A
+   ❌ MANNER CS reduction acquired at Offer 2: Q9 is MANNER but damage is small (-10)
+   ```
+
+**VALIDATION COMMAND**:
+```bash
+# Run stage simulation to verify skills trigger
+node scripts/simulate_stage.mjs --stage 1
+
+# Check "Player intent modes" section for skill activation patterns
+```
+
+---
+
 ### Testing Your Skill
 
 **Test Questions**:
@@ -567,19 +615,25 @@ offer1: [
 ```typescript
 offer2: [
     {
-        name: "デジタル衛生",
-        effect: { type: "category_cs_damage_reduction", category: "SEC", value: 0.3 }
-        // Normal skill, strong for SEC questions
+        name: "プロフェッショナリズム",
+        effect: { type: "category_cs_damage_reduction", category: "LABOR", value: 0.3 }
+        // Normal skill - helps if Q8 interview goes badly
+        // Triggers: Q8A (-20 CS) → reduced to -14 CS
     },
     {
         name: "社会較正",  // KEY SKILL
         effect: { type: "autonomy_small_damage_reduction", threshold: -20, value: 0.3 }
         // Weaker but collectible
+        // Triggers: Q10A (-20 Autonomy) → reduced to -14 Autonomy
     }
 ]
 ```
 
-**Why Good**: Player choosing normal skill gets immediate strong benefit. Player choosing key skill makes strategic long-term choice.
+**Why Good**: Both skills trigger on actual questions in Q8-Q10:
+- Normal skill helps Q8 (LABOR category with -20 CS damage)
+- Key skill helps Q10 (Autonomy damage = -20 meets threshold)
+- Player choosing normal skill gets interview protection
+- Player choosing key skill prioritizes True Ending path
 
 ---
 
@@ -809,9 +863,12 @@ Before finalizing your 4 skills:
 ### Normal Skills ✅
 - [ ] 3 normal skills total
 - [ ] Skills fit stage theme
-- [ ] Skills will trigger in Q8-Q10
+- [ ] **CRITICAL: Verified each skill has questions where it triggers**
+- [ ] **CRITICAL: Effect types match actual damage types in stage**
+- [ ] Skills will trigger in remaining questions (Offer 1: Q4-Q10, Offer 2: Q8-Q10)
 - [ ] Offer 1 pair creates meaningful choice
 - [ ] Offer 2 skill complements Offer 1
+- [ ] **Ran `node scripts/simulate_stage.mjs --stage N` to verify**
 
 ### Key Skill ✅
 - [ ] ID matches predefined list
