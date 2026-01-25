@@ -1,7 +1,7 @@
 # Image Generation Workflow
 
-**Version**: 1.0
-**Date**: 2026-01-25
+**Version**: 1.1
+**Date**: 2026-01-26
 **Purpose**: Step-by-step guide for generating images for questions
 
 ---
@@ -53,6 +53,7 @@ with intentional imperfections
 - **Text policy**:
   - Text is allowed only if it is **intentional** and **fully readable**.
   - If any text appears, it must be **English-only** (Stage 1-9).
+  - **If text cannot be made readable, omit it entirely** - no gibberish/garbled AI text.
   - Stage 10 may intentionally use **glitch text** as a special effect.
 
 ### Key Elements
@@ -152,6 +153,8 @@ Mood: oppressive surveillance.
 "David vs Goliath composition"
 ```
 
+**⚠️ For comparison/choice scenes**: Always frame as a **narrative scene with characters**, not as an infographic or diagram. Avoid labeling each side with big text headlines. Show the protagonist experiencing the choice, not a poster explaining it.
+
 **3. Emotional Tone** (What player should feel):
 ```
 "tense and conflicted"
@@ -224,6 +227,7 @@ Nano Banana Pro.
 - [ ] Subtle references to stage theme
 - [ ] Visual metaphors for concepts
 - [ ] Personality in character expressions
+- [ ] **Characterful details** (e.g., clocks with faces, objects with personality) - don't over-simplify
 
 ---
 
@@ -264,11 +268,13 @@ Nano Banana Pro.
 Run this checklist after generating all 10 images for a stage:
 
 - [ ] **Scene illustration** for all 10 (no poster/title-card)
+- [ ] **Comparison scenes** show narrative, not infographic diagrams
 - [ ] Rubber hose character style is consistent across all 10
 - [ ] Ink outline thickness and shading style are consistent across all 10
 - [ ] Accent colors are consistent (use the same few accents across the stage)
 - [ ] Any text is intentional, fully readable, and **English-only** (Stage 1-9)
-- [ ] No AI gibberish text appears anywhere (signs, screens, labels, etc.)
+- [ ] **No AI gibberish text** anywhere - regenerate if present
+- [ ] Characterful details (animated objects, expressive clocks, etc.) are maintained
 
 ---
 
@@ -620,6 +626,59 @@ decorative frame, existential choice symbolism, climactic finale atmosphere
 
 ---
 
+### Problem: Comparison Scene Looks Like Infographic/Poster
+
+**Symptoms**: Split scene with big labels ("SECURITY" vs "CONVENIENCE"), feels like a diagram not a story
+
+**Solutions**:
+1. Reframe as narrative:
+   ```
+   Instead of: "security on left, convenience on right"
+   Try: "protagonist standing between a dusty safe and a glowing modern ID card,
+   looking conflicted, scales in background"
+   ```
+
+2. Add character interaction:
+   ```
+   "protagonist reaching toward [option], hesitating"
+   "character caught between two pulling forces"
+   ```
+
+3. Remove label instructions:
+   ```
+   Don't mention text labels in prompts for comparison scenes.
+   Let the visual elements speak for themselves.
+   ```
+
+---
+
+### Problem: Gibberish/Garbled Text Appears
+
+**Symptoms**: AI-generated nonsense text on screens, signs, or documents (e.g., "trrase [con] vorsters")
+
+**Solutions**:
+1. Avoid text-heavy elements in prompts:
+   ```
+   Instead of: "email screen showing CC field with text"
+   Try: "email interface with highlighted CC field (no readable text needed)"
+   ```
+
+2. Use symbolic representation:
+   ```
+   "form with empty field circled in red" (no text required)
+   "document with official seal" (seal conveys authority without text)
+   ```
+
+3. If text is essential, be extremely specific:
+   ```
+   "sign reading exactly 'DEADLINE'" (simple, single word)
+   "clock showing '2 AM'" (numbers are safer than words)
+   ```
+
+4. Regenerate if gibberish appears - it's a red flag.
+
+---
+
 ### Problem: Style Inconsistent with Stage 1
 
 **Symptoms**: Looks different from existing images
@@ -674,9 +733,11 @@ decorative frame, existential choice symbolism, climactic finale atmosphere
 - [ ] Mood is appropriate
 - [ ] No watermarks
 - [ ] No poster/title-card headline typography
+- [ ] No gibberish/garbled AI text (regenerate if present)
 - [ ] Text (if any) is intentional, fully readable, and English-only (Stage 1-9)
 - [ ] Composition is readable
 - [ ] Expressions are exaggerated (cartoon style)
+- [ ] Characterful details preserved (animated objects, expressive props)
 
 ---
 
