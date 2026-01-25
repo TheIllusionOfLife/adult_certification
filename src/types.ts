@@ -39,6 +39,11 @@ export interface SkillEffect {
     threshold?: number;
 }
 
+export interface KeySkillRequirement {
+    questionId: string;
+    choiceIndex: number; // 0-based index of the choice that must be selected
+}
+
 export interface Skill {
     id: string;
     name: string;
@@ -49,6 +54,7 @@ export interface Skill {
     isCollectible?: boolean; // True for key skills that count toward True Ending unlock
     acquiredStage?: number;
     adamComment?: string;
+    keySkillRequirement?: KeySkillRequirement; // For key skills: which Q/choice unlocks it
 }
 
 export interface StageMetadata {
@@ -65,7 +71,7 @@ export interface StageMetadata {
         S: { CS: number };
         A: { CS: number };
         B: { CS: number };
-        C: { CS: number };
+        // C = clear (CS >= 1), no explicit threshold needed
     };
     skills: {
         offer1: [Skill, Skill];
@@ -83,4 +89,5 @@ export interface GameState {
     currentStage: number;
     isGameOver: boolean;
     questions: Question[];
+    choiceHistory: Record<string, number>; // questionId -> choiceIndex (0-based)
 }

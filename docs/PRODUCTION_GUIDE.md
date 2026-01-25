@@ -142,9 +142,9 @@ export const STAGE_{N}_METADATA: StageMetadata = {
     initialParams: { CS: 50, Asset: 100000, Autonomy: 50 }, // Adjust if needed
     rankThresholds: {
         S: { CS: 80 },
-        A: { CS: 60 },
-        B: { CS: 40 },
-        C: { CS: 20 }
+        A: { CS: 50 },
+        B: { CS: 20 }
+        // C = clear (CS >= 1), no explicit threshold
     },
     skills: {
         offer1: [
@@ -238,6 +238,18 @@ Key skill is pre-defined in improvement plan. Your job:
 2. Design appropriate effect (usually 20-30% reduction)
 3. Write A.D.A.M. comment for acquisition
 4. Ensure Q7 leads naturally to this skill
+5. **Set keySkillRequirement to Q7's locked choice (B)**
+
+**IMPORTANT: Key Skill Causal Earning**
+
+Key skills are NOT automatically available in Offer 2. Players must **earn** them by demonstrating the skill's behavior in Q7:
+
+- Q7's choice B should be locked (require parameter threshold)
+- Q7's choice B should embody the key skill's philosophy
+- If player selects Q7 choice B → key skill becomes selectable in Offer 2
+- If player didn't select Q7 choice B → key skill is shown but disabled with reason
+
+This creates causal connection: demonstrate the behavior → earn the right to select the skill.
 
 **Key Skill Template:**
 ```typescript
@@ -250,7 +262,11 @@ Key skill is pre-defined in improvement plan. Your job:
     category: "key",
     isCollectible: true,
     acquiredStage: {N},
-    adamComment: "……{皮肉なコメント（です/ます調）}"
+    adamComment: "……{皮肉なコメント（です/ます調）}",
+    keySkillRequirement: {
+        questionId: "s{N}_q07",
+        choiceIndex: 1 // Choice B (0-indexed)
+    }
 }
 ```
 
@@ -616,8 +632,8 @@ Play through choosing "best" answer each time:
 
 #### Test 3: C-Rank Path (Worst Choices)
 Play through choosing "worst" answer each time:
-- [ ] Achieves final CS ≥ 20 but < 40 (C rank)
-- [ ] NO game over (parameters stay above 0)
+- [ ] Completes without game over (C rank = clear with CS >= 1)
+- [ ] NO game over (all parameters stay above 0)
 - [ ] Still feels completable despite mistakes
 - [ ] Feedback makes poor choices clear
 
@@ -635,13 +651,21 @@ Choose different skills in Offer 1 and Offer 2:
 - [ ] Parameter changes reflect skill effects
 - [ ] Skills feel meaningful (not too weak/strong)
 
-#### Test 6: Key Skill Path
-Play through acquiring key skill:
-- [ ] Q7 choice leads naturally to key skill
-- [ ] Key skill offer appears in Offer 2
+#### Test 6: Key Skill Path (Earned)
+Play through selecting Q7 choice B (the locked choice):
+- [ ] Q7 choice B is locked (requires parameter threshold)
+- [ ] Q7 choice B embodies the key skill's behavior
+- [ ] In Offer 2, key skill is **selectable** (earned through Q7B)
 - [ ] Key skill has special badge/note
-- [ ] A.D.A.M. special comment displays
+- [ ] A.D.A.M. special comment displays when selected
 - [ ] Key skill collection counter updates
+
+#### Test 6b: Key Skill Path (Not Earned)
+Play through selecting Q7 choice A (the safe choice):
+- [ ] In Offer 2, key skill is **disabled** with reason shown
+- [ ] Reason message: "Q7で選択肢Bを選ぶ必要があります"
+- [ ] Normal skill in Offer 2 remains selectable
+- [ ] Player can still complete stage without key skill
 
 #### Test 7: A.D.A.M. Dialogue
 Verify dialogue throughout:

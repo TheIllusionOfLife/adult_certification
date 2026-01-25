@@ -250,9 +250,39 @@ All 9 key skills are specified in `improvement_plan_2026-01-24_integrated.md` se
     category: "key",                  // ⚠️ Important: marks as key skill
     isCollectible: true,              // ⚠️ Important: for True Ending
     acquiredStage: {N},               // Which stage this belongs to
-    adamComment: "{A.D.A.M.の皮肉なコメント（です/ます調）}" // Special comment
+    adamComment: "{A.D.A.M.の皮肉なコメント（です/ます調）}", // Special comment
+    keySkillRequirement: {            // ⚠️ REQUIRED: Causal earning condition
+        questionId: "s{N}_q07",       // Always Q7 of the stage
+        choiceIndex: 1                // Choice B (0-indexed), the locked choice
+    }
 }
 ```
+
+---
+
+### Causal Earning (CRITICAL)
+
+**Key skills are NOT automatically available.** Players must **earn** them by demonstrating the skill's behavior in Q7.
+
+**How it works:**
+1. Q7's choice B should be **locked** (require parameter threshold like Autonomy >= 20)
+2. Q7's choice B should **embody** the key skill's core philosophy
+3. If player selects Q7 choice B → key skill becomes **selectable** in Offer 2
+4. If player didn't select Q7 choice B → key skill is **shown but disabled**
+
+**Design Example (Stage 1 SOCIAL_CALIBRATION):**
+- Q7: Noise complaint problem
+- Choice A: "我慢する" (endure) → always available
+- Choice B: "管理会社に連絡" (contact management) → locked, requires Autonomy >= 20
+- Choice B demonstrates "using systems to avoid direct conflict" = SOCIAL_CALIBRATION philosophy
+- Players who chose B → can select SOCIAL_CALIBRATION in Offer 2
+- Players who chose A → see SOCIAL_CALIBRATION disabled with "Q7で選択肢Bを選ぶ必要があります"
+
+**Why this matters:**
+- Creates meaningful connection between behavior and reward
+- Key skill feels **earned**, not given
+- Player still has choice whether to select key skill (autonomy theme)
+- A.D.A.M. can still recommend normal skill (which has stronger immediate effect)
 
 ---
 

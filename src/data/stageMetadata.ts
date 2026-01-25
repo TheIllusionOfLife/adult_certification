@@ -8,9 +8,9 @@ export const STAGE_1_METADATA: StageMetadata = {
     initialParams: { CS: 50, Asset: 100000, Autonomy: 50 },
     rankThresholds: {
         S: { CS: 80 },
-        A: { CS: 60 },
-        B: { CS: 40 },
-        C: { CS: 20 }
+        A: { CS: 50 },
+        B: { CS: 20 }
+        // C = clear (CS >= 1)
     },
     skills: {
         offer1: [
@@ -49,7 +49,11 @@ export const STAGE_1_METADATA: StageMetadata = {
                 category: "key",
                 isCollectible: true,
                 acquiredStage: 1,
-                adamComment: "……あなたは『システムを理解しながら、自我を保つ』術を習得しました。厄介ですね。"
+                adamComment: "……あなたは『システムを理解しながら、自我を保つ』術を習得しました。厄介ですね。",
+                keySkillRequirement: {
+                    questionId: "s1_q07",
+                    choiceIndex: 1 // Choice B: 管理会社に連絡し、「匿名で」注意してもらう
+                }
             }
         ]
     }

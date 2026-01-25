@@ -4,8 +4,8 @@ export const CONFIG = {
     BUTTON_DELAY_MS: 500,
     RANK_THRESHOLDS: {
         S: 80,
-        A: 60,
-        B: 40,
-        C: 20
+        A: 50,
+        B: 20
+        // C = clear (CS >= 1), no explicit threshold
     }
 };

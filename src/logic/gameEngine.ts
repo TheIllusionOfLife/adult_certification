@@ -22,7 +22,8 @@ export class GameEngine {
             currentQuestionIndex: 0,
             currentStage: stageId,
             isGameOver: false,
-            questions: questions
+            questions: questions,
+            choiceHistory: {}
         };
     }
 
@@ -45,7 +46,7 @@ export class GameEngine {
         return false;
     }
 
-    processChoice(choice: Choice, question: Question): {
+    processChoice(choice: Choice, question: Question, choiceIndex: number): {
         outcome: { CS: number, Asset: number, Autonomy: number },
         feedback: string,
         isTerminated: boolean,
@@ -55,6 +56,9 @@ export class GameEngine {
         if (this.isChoiceLocked(choice)) {
             throw new Error(`Attempted to process locked choice: ${choice.text}`);
         }
+
+        // Track choice history for key skill requirements
+        this.state.choiceHistory[question.id] = choiceIndex;
 
         const originalEffect = { ...choice.effect };
 
@@ -93,11 +97,11 @@ export class GameEngine {
         const stageMetadata = getStageMetadata(s.currentStage);
 
         // Get thresholds - use stage metadata if available, otherwise use defaults
+        // Note: C = clear (CS >= 1), no explicit threshold
         const thresholds = stageMetadata?.rankThresholds || {
             S: { CS: CONFIG.RANK_THRESHOLDS.S },
             A: { CS: CONFIG.RANK_THRESHOLDS.A },
-            B: { CS: CONFIG.RANK_THRESHOLDS.B },
-            C: { CS: CONFIG.RANK_THRESHOLDS.C }
+            B: { CS: CONFIG.RANK_THRESHOLDS.B }
         };
 
         let rank = "C";
@@ -116,13 +120,9 @@ export class GameEngine {
             rank = "B";
             title = "一般適合者 (Standard Compliant)";
             desc = "可もなく不可もなく。代替可能な人材です。";
-        } else if (s.CS >= thresholds.C.CS) {
-            rank = "C";
-            title = "最低限合格 (Minimal Pass)";
-            desc = "最低限の基準はクリアしました。再教育を推奨します。";
         }
-        // If CS < C threshold, game should have ended (game over at CS <= 0)
-        // So C is the minimum rank for completion
+        // C = clear: If CS >= 1 and you finished, you get C rank
+        // Game over happens at CS <= 0, so completing means at least C
 
         return { rank, title, desc };
     }
@@ -160,5 +160,59 @@ export class GameEngine {
 
         const allSkills = [...stageMetadata.skills.offer1, ...stageMetadata.skills.offer2];
         return allSkills.find(s => s.id === id);
+    }
+
+    /**
+     * Check if a key skill's requirement has been met.
+     * Key skills require the player to have chosen a specific choice in a specific question.
+     */
+    isKeySkillEarned(skill: Skill): boolean {
+        if (!skill.keySkillRequirement) {
+            // No requirement = always available (shouldn't happen for key skills, but defensive)
+            return true;
+        }
+
+        const { questionId, choiceIndex } = skill.keySkillRequirement;
+        const selectedChoice = this.state.choiceHistory[questionId];
+
+        // Check if the required choice was selected
+        return selectedChoice === choiceIndex;
+    }
+
+    /**
+     * Get skills for offer with availability status.
+     * Key skills may be locked if the player didn't demonstrate the required behavior.
+     */
+    getSkillsForOfferWithStatus(offerNumber: 1 | 2): Array<{
+        skill: Skill;
+        isAvailable: boolean;
+        lockedReason?: string;
+    }> {
+        const skills = this.getSkillsForOffer(offerNumber);
+
+        return skills.map(skill => {
+            if (skill.category !== 'key') {
+                // Normal skills are always available
+                return { skill, isAvailable: true };
+            }
+
+            // Key skills require earning through behavior
+            const isEarned = this.isKeySkillEarned(skill);
+            if (isEarned) {
+                return { skill, isAvailable: true };
+            }
+
+            // Key skill not earned - show why
+            const req = skill.keySkillRequirement;
+            const question = this.state.questions.find(q => q.id === req?.questionId);
+            const choiceLetter = req ? String.fromCharCode(65 + req.choiceIndex) : '?';
+            const questionNum = question ? this.state.questions.indexOf(question) + 1 : '?';
+
+            return {
+                skill,
+                isAvailable: false,
+                lockedReason: `Q${questionNum}で選択肢${choiceLetter}を選ぶ必要があります`
+            };
+        });
     }
 }

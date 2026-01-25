@@ -237,7 +237,7 @@ export class UIManager {
             if (isLocked) {
                 btn.disabled = true;
             } else {
-                btn.addEventListener('click', () => this.handleChoice(c, q));
+                btn.addEventListener('click', () => this.handleChoice(c, q, i));
             }
 
             this.dom.choices.appendChild(btn);
@@ -246,8 +246,8 @@ export class UIManager {
         this.updateHUD();
     }
 
-    handleChoice(choice: Choice, question: Question) {
-        const result = this.engine.processChoice(choice, question);
+    handleChoice(choice: Choice, question: Question, choiceIndex: number) {
+        const result = this.engine.processChoice(choice, question, choiceIndex);
         this.showFeedback(result);
     }
 
@@ -336,20 +336,35 @@ export class UIManager {
         // Determine which offer this is (1 or 2) dynamically from CONFIG
         const idx = this.engine.state.currentQuestionIndex;
         const offerNumber = (CONFIG.SKILL_OFFER_POSITIONS.indexOf(idx) + 1) as 1 | 2;
-        const availableSkills = this.engine.getSkillsForOffer(offerNumber);
+        const skillsWithStatus = this.engine.getSkillsForOfferWithStatus(offerNumber);
 
         const title = document.createElement('div');
         title.className = 'skill-offer-title';
         title.innerHTML = `<h3>スキル選択 (${offerNumber}/2)</h3><p>どちらかを選択してください</p>`;
         this.dom.skillBox.appendChild(title);
 
-        availableSkills.forEach((s, i) => {
+        skillsWithStatus.forEach(({ skill: s, isAvailable, lockedReason }, i) => {
             const sBtn = document.createElement('button');
             const isKeySkill = s.category === 'key';
-            sBtn.className = isKeySkill ? 'choice-btn skill-btn key-skill-btn' : 'choice-btn skill-btn';
+            const isLocked = !isAvailable;
+
+            // Build class names
+            let className = 'choice-btn skill-btn';
+            if (isKeySkill) className += ' key-skill-btn';
+            if (isLocked) className += ' skill-locked';
+            sBtn.className = className;
 
             const keyBadge = isKeySkill ? '<span class="key-skill-badge">★KEY SKILL★</span>' : '';
-            const keyNote = isKeySkill ? '<div class="key-skill-note">※効果は今ステージのみ有効<br>※取得時に「収集済み」として記録（真エンド条件）</div>' : '';
+
+            let keyNote = '';
+            if (isKeySkill) {
+                if (isLocked) {
+                    // Show why the key skill is locked
+                    keyNote = `<div class="key-skill-note key-skill-locked-note">🔒 ${lockedReason}</div>`;
+                } else {
+                    keyNote = '<div class="key-skill-note">※効果は今ステージのみ有効<br>※取得時に「収集済み」として記録（真エンド条件）</div>';
+                }
+            }
 
             sBtn.innerHTML = `
                 <div class="skill-info">
@@ -361,21 +376,27 @@ export class UIManager {
                     </div>
                 </div>
             `;
-            sBtn.addEventListener('click', () => {
-                this.engine.addSkill(s);
 
-                // Show A.D.A.M. comment for key skills
-                if (s.category === 'key' && s.adamComment) {
-                    this.dom.ovBody.innerHTML += `<br><br><span style="color:#f72585; font-style:italic;">[A.D.A.M.]: ${s.adamComment}</span>`;
-                }
+            if (isLocked) {
+                sBtn.disabled = true;
+            } else {
+                sBtn.addEventListener('click', () => {
+                    this.engine.addSkill(s);
 
-                // Update skill list display
-                const allSkills = [...this.engine.activeSkills];
-                const skillNames = allSkills.map(skill => skill.name);
-                this.dom.skillList.innerText = skillNames.length > 0 ? skillNames.join(', ') : "未所持";
+                    // Show A.D.A.M. comment for key skills
+                    if (s.category === 'key' && s.adamComment) {
+                        this.dom.ovBody.innerHTML += `<br><br><span style="color:#f72585; font-style:italic;">[A.D.A.M.]: ${s.adamComment}</span>`;
+                    }
 
-                this.closeFeedback();
-            });
+                    // Update skill list display
+                    const allSkills = [...this.engine.activeSkills];
+                    const skillNames = allSkills.map(skill => skill.name);
+                    this.dom.skillList.innerText = skillNames.length > 0 ? skillNames.join(', ') : "未所持";
+
+                    this.closeFeedback();
+                });
+            }
+
             this.dom.skillBox.appendChild(sBtn);
         });
     }

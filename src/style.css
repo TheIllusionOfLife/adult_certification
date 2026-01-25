@@ -1127,6 +1127,32 @@ body {
   font-style: italic;
 }
 
+/* Locked Key Skill Styles */
+.skill-locked {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+}
+
+.skill-locked.key-skill-btn {
+  border-color: #666 !important;
+  background: linear-gradient(135deg, #1a1a1a 0%, #222 100%);
+}
+
+.skill-locked.key-skill-btn::before {
+  animation: none; /* Stop shimmer */
+}
+
+.skill-locked .key-skill-badge {
+  background: #666;
+  animation: none; /* Stop pulse */
+}
+
+.key-skill-locked-note {
+  background: rgba(255, 50, 50, 0.15) !important;
+  border-left-color: #ff3232 !important;
+  color: #ff6666 !important;
+}
+
 .skill-offer-title {
   width: 100%;
   text-align: center;
