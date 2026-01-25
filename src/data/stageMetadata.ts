@@ -20,22 +20,25 @@ export const STAGE_1_METADATA: StageMetadata = {
                 desc: "対人トラブルでの自律性ダメージを常に50%軽減します。",
                 effect: { type: "autonomy_damage_reduction", value: 0.5 },
                 category: "normal"
+                // Triggers: Q4B(-5), Q5B(-15), Q7A(-30), Q8A(-10), Q10A(-20)
             },
             {
                 id: "s1_normal_02",
-                name: "お役所ショートカット",
-                desc: "行政手続き関連の資産減少を10,000円軽減します。",
-                effect: { type: "admin_cost_reduction", value: 10000 },
+                name: "お役所ナビゲーター",
+                desc: "行政手続き(ADMIN)での信用度低下を30%軽減します。",
+                effect: { type: "category_cs_damage_reduction", category: "ADMIN", value: 0.3 },
                 category: "normal"
+                // Triggers: Q4A(-10), Q6A(-30) - helps if you mess up bureaucratic questions
             }
         ],
         offer2: [
             {
                 id: "s1_normal_03",
-                name: "デジタル衛生",
-                desc: "セキュリティ関連の信用度低下を30%軽減します。",
-                effect: { type: "category_cs_damage_reduction", category: "SEC", value: 0.3 },
+                name: "プロフェッショナリズム",
+                desc: "仕事関連(LABOR)での信用度低下を30%軽減します。",
+                effect: { type: "category_cs_damage_reduction", category: "LABOR", value: 0.3 },
                 category: "normal"
+                // Triggers: Q8A(-20) - helps if interview goes badly
             },
             {
                 id: "SOCIAL_CALIBRATION",

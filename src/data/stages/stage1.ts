@@ -106,7 +106,7 @@ export const stage1Questions: Question[] = [
         category: "SOCIAL",
         text: "大学時代の親友から久々の連絡。「みんなで集まる！来週の金曜日、絶対来てね」。しかし翌日は重要なプレゼン。準備は終わっていない。",
         imagePrompt: "1930s rubber hose style dark cartoon. Split scene: left side shows smiling friends at cozy gathering with warm drinks and laughter bathed in warm orange glow, right side shows lonely figure at desk surrounded by documents and laptop under cold blue spotlight, ominous clock ticking dramatically between two scenes showing time pressure. High contrast noir with warm glow on friends side, cold isolation on work side. Fleischer aesthetic, exaggerated expressions showing both paths as equally valid but conflicting, ink splatter effects.",
-        imagePath: "s1_q05.png",
+        imagePath: "q_intro_03.png", // TODO: Replace with s1_q05.png when generated
         choices: [
             {
                 text: "人間関係が大事。参加して、徹夜で準備する。",
@@ -132,7 +132,7 @@ export const stage1Questions: Question[] = [
         category: "ADMIN",
         text: "緊急連絡先の記入。親と疎遠だが、書かないわけにはいかない。どうする？",
         imagePrompt: "Dark vintage cartoon 1930s style. Empty official form on desk with glowing red 'emergency contact' field pulsing ominously with animated heartbeat effect, smartphone lying beside showing contact list fading to shadows and question marks, solitary figure hunched over desk with face in hands showing isolation and despair, heavy ink shadows surrounding entire scene creating claustrophobic feeling, dramatic spotlight from above creating strong noir contrast on form. Fleischer Brothers aesthetic, melancholic mood, film noir lighting, rubber hose character design showing emotional weight.",
-        imagePath: "s1_q06.png",
+        imagePath: "q_intro_03.png", // TODO: Replace with s1_q06.png when generated
         choices: [
             {
                 text: "適当な番号を書いておく。",
@@ -156,7 +156,7 @@ export const stage1Questions: Question[] = [
         category: "HOUSING",
         text: "隣人の騒音が酷い。深夜2時の壁ドンと音楽。どう対処する？",
         imagePrompt: "Rubber hose cartoon 1930s Fleischer style. Thin apartment wall vibrating with wavy distortion lines and animated musical notes bouncing chaotically across frame, wall clock showing 2 AM with menacing grin and shifty animated eyes moving side to side, neighbor's exaggerated silhouette visible through semi-transparent wall partying with drink raised high celebrating, protagonist in foreground covering ears with hands in cartoonish distress with sweat drops and anger symbols flying. High contrast noir lighting creating dramatic shadows, exaggerated rubberhose expressions showing extreme frustration, ink splatter effects around noise sources, Cuphead-esque bold linework, sound wave visualizations rippling through scene.",
-        imagePath: "s1_q07.png",
+        imagePath: "q_intro_03.png", // TODO: Replace with s1_q07.png when generated
         choices: [
             {
                 text: "我慢する。関わりたくない。",
@@ -185,7 +185,7 @@ export const stage1Questions: Question[] = [
         category: "LABOR",
         text: "明日、大手企業の最終面接。しかし手持ちのスーツがヨレヨレで、靴も傷んでいる。",
         imagePrompt: "Dark vintage animation 1930s rubber hose. Split scene: left shows worn-out suit hanging limply with visible holes and patches, scuffed shoes with sole peeling off, empty wallet with moths flying out; right shows pristine new suit glowing with golden aura in shop window with expensive price tag dangling, polished shoes sparkling. Protagonist in center looking torn, calendar showing tomorrow's date circled in ominous red. High contrast noir, Fleischer Studios aesthetic, exaggerated poverty vs professionalism visualization, corporate dystopia meets opportunity.",
-        imagePath: "s1_q08.png",
+        imagePath: "q_intro_03.png", // TODO: Replace with s1_q08.png when generated
         choices: [
             {
                 text: "今のスーツのまま面接に行く。中身で勝負。",
@@ -232,7 +232,7 @@ export const stage1Questions: Question[] = [
         category: "SOCIAL",
         text: "Stage 1の最終問題。あなたにとって「社会の基本」とは何ですか？",
         imagePrompt: "Dark rubber hose climax 1930s. Large ornate mirror with decorative baroque frame reflecting protagonist's face split vertically down center (left half conforming with forced corporate smile and dead eyes, right half autonomous with fire in eyes and determined expression showing true self), behind protagonist A.D.A.M.'s shadow growing large and ominous as puppet master with visible glowing control strings descending toward player from above. Dramatic spotlight from above creating strong noir shadows and highlighting the choice, ink splatter decorative frame elements, Fleischer Brothers meets existential philosophical choice, high contrast symbolism showing duality, theatrical staging, climactic moment visualization.",
-        imagePath: "s1_q10.png",
+        imagePath: "q_intro_03.png", // TODO: Replace with s1_q10.png when generated
         choices: [
             {
                 text: "空気を読み、波風を立てないこと。",
