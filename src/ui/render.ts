@@ -1,5 +1,6 @@
 import { GameEngine } from '../logic/gameEngine';
-import type { Choice, Difficulty } from '../types';
+import type { Choice, Question } from '../types';
+import type { SkillActivation } from '../data/skillEffects';
 import { CONFIG } from '../config';
 
 // Vite glob import for assets
@@ -12,8 +13,8 @@ interface DOMElements {
     qText: HTMLElement;
     choices: HTMLElement;
     cs: HTMLElement;
-    money: HTMLElement;
-    sanity: HTMLElement;
+    asset: HTMLElement;
+    autonomy: HTMLElement;
     bar: HTMLElement;
     container: HTMLElement;
     sceneDesc: HTMLElement;
@@ -49,8 +50,8 @@ export class UIManager {
             qText: getEl<HTMLElement>('question-text'),
             choices: getEl<HTMLElement>('choices-grid'),
             cs: getEl<HTMLElement>('score-cs'),
-            money: getEl<HTMLElement>('score-money'),
-            sanity: getEl<HTMLElement>('score-sanity'),
+            asset: getEl<HTMLElement>('score-asset'),
+            autonomy: getEl<HTMLElement>('score-autonomy'),
             bar: getEl<HTMLElement>('progress-bar'),
             container: getEl<HTMLElement>('game-container'),
             sceneDesc: getEl<HTMLElement>('scene-desc-overlay'),
@@ -95,54 +96,61 @@ export class UIManager {
         this.engine = engine;
     }
 
-    showStartScreen(onSelect: (diff: Difficulty) => void) {
+    showStartScreen(onSelect: (stageNum: number) => void) {
         this.dom.startScreen.style.display = 'flex';
         this.dom.diffList.innerHTML = '';
 
         // Initialize start screen logic if needed (currently static text handled in HTML)
 
 
-        const levels: { d: Difficulty, name: string, desc: string }[] = [
-            { d: 'Intro', name: 'LEVEL 1: INTRO', desc: '社会人ごっこ（初級）' },
-            { d: 'Common', name: 'LEVEL 2: COMMON', desc: '現代の奴隷（中級）' },
-            { d: 'Advanced', name: 'LEVEL 3: ADVANCED', desc: '抵抗勢力（上級）' },
-            { d: 'Expert', name: 'LEVEL 4: EXPERT', desc: 'システムハッカー（超級）' },
-            { d: 'Nightmare', name: 'LEVEL 5: NIGHTMARE', desc: '闇の支配者（裏級）' }
+        // All 10 stages - only show unlocked stages (previous stage beaten)
+        // Themes aligned with improvement_plan_2026-01-24_integrated.md section 3.1
+        const allStages: { key: string, name: string, desc: string }[] = [
+            { key: 'Stage1', name: 'STAGE 1', desc: '社会の基本' },
+            { key: 'Stage2', name: 'STAGE 2', desc: '仕事の基礎' },
+            { key: 'Stage3', name: 'STAGE 3', desc: '金の基礎' },
+            { key: 'Stage4', name: 'STAGE 4', desc: '税金' },
+            { key: 'Stage5', name: 'STAGE 5', desc: '社会保険' },
+            { key: 'Stage6', name: 'STAGE 6', desc: '住まい' },
+            { key: 'Stage7', name: 'STAGE 7', desc: '契約・法律' },
+            { key: 'Stage8', name: 'STAGE 8', desc: 'デジタル安全' },
+            { key: 'Stage9', name: 'STAGE 9', desc: '危機対応' },
+            { key: 'Stage10', name: 'STAGE 10', desc: '最終審判' }
         ];
 
-        const allowedRanks = ['S', 'A', 'B', 'B-', 'C', 'C+', 'D', 'E', 'F'];
+        const allowedRanks = ['S', 'A', 'B', 'C'];
 
-        levels.forEach(lvl => {
+        // Only show stages that are unlocked (Stage 1 always visible, others require previous stage beaten)
+        allStages.forEach((stage, index) => {
+            const isUnlocked = index === 0 || this.records[`Stage${index}`]; // Previous stage beaten
+            if (!isUnlocked) return; // Don't render locked stages
+
             const btn = document.createElement('div');
             btn.className = 'diff-btn';
 
-            const record = this.records[lvl.d];
+            const record = this.records[stage.key];
             const safeRank = record && allowedRanks.includes(record.rank) ? record.rank : '';
-            const rankClass = safeRank ? `rank-${safeRank.charAt(0)}` : '';
+            const rankClass = safeRank ? `rank-${safeRank}` : '';
 
             btn.innerHTML = `
                 <div class="diff-info">
-                    <span class="diff-name">${lvl.name}</span>
-                    <span class="diff-desc">${lvl.desc}</span>
+                    <span class="diff-name">${stage.name}</span>
+                    <span class="diff-desc">${stage.desc}</span>
                 </div>
                 <div class="btn-right-col">
-                    ${safeRank ? `<span class="rank-stamp ${rankClass}"></span>` : ''}
+                    ${safeRank ? `<span class="rank-stamp ${rankClass}">${safeRank}</span>` : ''}
                     <span class="arrow">▶</span>
                 </div>
             `;
-            if (safeRank) {
-                const stampEl = btn.querySelector('.rank-stamp');
-                if (stampEl) stampEl.textContent = safeRank;
-            }
             btn.addEventListener('click', () => {
                 this.dom.startScreen.style.display = 'none';
-                onSelect(lvl.d);
+                onSelect(index + 1); // Pass stage number (1-indexed)
             });
             this.dom.diffList.appendChild(btn);
         });
     }
 
-    private lastScores = { cs: CONFIG.INITIAL_STATE.CS, money: CONFIG.INITIAL_STATE.MONEY, sanity: CONFIG.INITIAL_STATE.SANITY };
+    private lastScores = { CS: 50, Asset: 100000, Autonomy: 50 };
 
     updateHUD() {
         const s = this.engine.state;
@@ -156,19 +164,19 @@ export class UIManager {
             if (newVal < oldVal) el.classList.add('score-pop-down');
         };
 
-        animate(this.dom.cs, s.cs, this.lastScores.cs);
-        animate(this.dom.money, s.money, this.lastScores.money);
-        animate(this.dom.sanity, s.sanity, this.lastScores.sanity);
+        animate(this.dom.cs, s.CS, this.lastScores.CS);
+        animate(this.dom.asset, s.Asset, this.lastScores.Asset);
+        animate(this.dom.autonomy, s.Autonomy, this.lastScores.Autonomy);
 
         // Update last scores
-        this.lastScores = { cs: s.cs, money: s.money, sanity: s.sanity };
+        this.lastScores = { CS: s.CS, Asset: s.Asset, Autonomy: s.Autonomy };
 
         const progress = s.questions.length > 0
             ? (s.currentQuestionIndex / s.questions.length) * 100
             : 0;
         this.dom.bar.style.width = `${progress}%`;
 
-        if (s.cs < 200 || s.sanity < 30) {
+        if (s.CS < 30 || s.Autonomy < 20 || s.Asset < 20000) {
             this.dom.container.style.boxShadow = "0 0 50px red";
             this.updateMascot('glitch');
         } else {
@@ -221,27 +229,48 @@ export class UIManager {
         this.dom.choices.innerHTML = '';
         q.choices.forEach((c: Choice, i: number) => {
             const btn = document.createElement('button');
-            btn.className = 'choice-btn';
-            btn.innerHTML = `<span class="choice-letter">${String.fromCharCode(65 + i)}</span><span>${c.text}</span>`;
-            btn.addEventListener('click', () => this.handleChoice(c));
+            const isLocked = this.engine.isChoiceLocked(c);
+
+            btn.className = isLocked ? 'choice-btn choice-locked' : 'choice-btn';
+
+            let content = `<span class="choice-letter">${String.fromCharCode(65 + i)}</span><span class="choice-text">${c.text}</span>`;
+
+            if (isLocked && c.lockRequirements) {
+                // Generate simple lock reason text
+                const req = c.lockRequirements;
+                const parts: string[] = [];
+                if (req.CS !== undefined) parts.push(`信用度が${req.CS}以上必要`);
+                if (req.Asset !== undefined) parts.push(`資産が${req.Asset.toLocaleString()}円以上必要`);
+                if (req.Autonomy !== undefined) parts.push(`自律性が${req.Autonomy}以上必要`);
+                content += `<div class="lock-reason">${parts.join('、')}</div>`;
+            }
+
+            btn.innerHTML = content;
+
+            if (!isLocked) {
+                btn.addEventListener('click', () => this.handleChoice(c, q, i));
+            }
+            // Locked choices are not clickable at all
+
             this.dom.choices.appendChild(btn);
         });
 
         this.updateHUD();
     }
 
-    handleChoice(choice: Choice) {
-        const result = this.engine.processChoice(choice);
+    handleChoice(choice: Choice, question: Question, choiceIndex: number) {
+        const result = this.engine.processChoice(choice, question, choiceIndex);
         this.showFeedback(result);
     }
 
     showFeedback(result: {
-        outcome: { cs: number; money: number; sanity: number };
+        outcome: { CS: number; Asset: number; Autonomy: number };
         feedback: string;
-        isTerminated: boolean
+        isTerminated: boolean;
+        skillActivations: SkillActivation[]
     }) {
-        const { outcome, feedback, isTerminated } = result;
-        const { cs, money, sanity } = outcome;
+        const { outcome, feedback, isTerminated, skillActivations } = result;
+        const { CS, Asset, Autonomy } = outcome;
 
         const getAnimClass = (val: number) => {
             if (val > 0) return 'score-pop-up';
@@ -249,33 +278,55 @@ export class UIManager {
             return '';
         };
 
-        this.dom.ovTitle.innerText = cs >= 0 ? "APPROVED" : "WARNING";
-        this.dom.ovTitle.style.color = cs >= 0 ? "var(--accent-color)" : "var(--primary-color)";
-        this.dom.ovBody.innerHTML = feedback; // Use innerHTML for styling
+        // Format skill activation messages as HTML
+        const skillMessagesHTML = skillActivations.length > 0
+            ? "<br>" + skillActivations.map(sa =>
+                `<span style="color:#4cc9f0">【${sa.skillName}】発動: ${sa.description} (${sa.originalValue} → ${sa.modifiedValue})</span>`
+              ).join("<br>")
+            : "";
+
+        this.dom.ovTitle.innerText = CS >= 0 ? "APPROVED" : "WARNING";
+        this.dom.ovTitle.style.color = CS >= 0 ? "var(--accent-color)" : "var(--primary-color)";
+
+        // A.D.A.M. comment section commented out for smoother gameplay flow
+        // const adamCommentMatch = feedback.match(/\[A\.D\.A\.M\.\]: (.+)$/);
+        // const adamCommentHTML = adamCommentMatch
+        //     ? `<div class="adam-comment-section">
+        //         <img src="${this.dom.mascotImg.src}" alt="A.D.A.M." class="adam-comment-img" />
+        //         <div class="adam-comment-text">[A.D.A.M.]: ${adamCommentMatch[1]}</div>
+        //        </div>`
+        //     : '';
+        const mainFeedback = feedback.replace(/<br><br><span.*?\[A\.D\.A\.M\.\]:.*?<\/span>$/, '');
+
+        this.dom.ovBody.innerHTML = mainFeedback + skillMessagesHTML;
         this.dom.ovStats.innerHTML = `
-            <div class="stat-result ${getAnimClass(cs)}">
+            <div class="stat-result ${getAnimClass(CS)}">
                 <span style="font-size:0.8em">信用度</span><br>
-                <span style="font-size:1.2em; font-weight:bold">${cs > 0 ? '+' : ''}${cs}</span>
+                <span style="font-size:1.2em; font-weight:bold">${CS > 0 ? '+' : ''}${CS}</span>
             </div>
-            <div class="stat-result ${getAnimClass(money)}">
+            <div class="stat-result ${getAnimClass(Asset)}">
                 <span style="font-size:0.8em">資産</span><br>
-                <span style="font-size:1.2em; font-weight:bold">${money > 0 ? '+' : ''}${money.toLocaleString()}</span>
+                <span style="font-size:1.2em; font-weight:bold">${Asset > 0 ? '+' : ''}${Asset.toLocaleString()}</span>
             </div>
-            <div class="stat-result ${getAnimClass(sanity)}">
-                <span style="font-size:0.8em">正気</span><br>
-                <span style="font-size:1.2em; font-weight:bold">${sanity > 0 ? '+' : ''}${sanity}</span>
+            <div class="stat-result ${getAnimClass(Autonomy)}">
+                <span style="font-size:0.8em">自律性</span><br>
+                <span style="font-size:1.2em; font-weight:bold">${Autonomy > 0 ? '+' : ''}${Autonomy}</span>
             </div>
         `;
 
         // Mascot Reaction
-        if (cs > 0) this.updateMascot('happy');
-        else if (sanity < 0 || cs < 0) this.updateMascot('glitch');
+        if (CS > 0) this.updateMascot('happy');
+        else if (Autonomy < 0 || CS < 0) this.updateMascot('glitch');
         else this.updateMascot('neutral');
 
         if (isTerminated) {
             this.dom.ovTitle.innerText = "TERMINATED";
             this.dom.btnNext.style.display = 'block';
-            this.dom.ovBody.innerHTML += `<br><br>判定：あなたは「生体プロセッサ」に再利用されます。`;
+            this.dom.ovBody.innerHTML += `
+                <div class="adam-comment-section" style="margin-top: 20px;">
+                    <img src="${this.dom.mascotImg.src}" alt="A.D.A.M." class="adam-comment-img" />
+                    <div class="adam-comment-text">[A.D.A.M.]: 判定……あなたは「生体プロセッサ」に再利用されます。</div>
+                </div>`;
             this.dom.btnNext.innerText = "人生再起動";
             this.dom.btnNext.onclick = () => location.reload();
             this.dom.btnNext.disabled = false;
@@ -309,31 +360,96 @@ export class UIManager {
         this.dom.skillBox.style.display = 'flex';
         this.dom.skillBox.innerHTML = '';
 
-        const availableSkills = this.engine.getAvailableSkills(2);
+        // Determine which offer this is (1 or 2) dynamically from CONFIG
+        const idx = this.engine.state.currentQuestionIndex;
+        const offerNumber = (CONFIG.SKILL_OFFER_POSITIONS.indexOf(idx) + 1) as 1 | 2;
+        const skillsWithStatus = this.engine.getSkillsForOfferWithStatus(offerNumber);
 
-        availableSkills.forEach(s => {
-            const sBtn = document.createElement('button');
-            sBtn.className = 'choice-btn skill-btn';
-            // sBtn.style.width = "250px"; // Handled in CSS
-            sBtn.innerHTML = `
-                <div class="skill-info">
-                    <span class="skill-name">${s.name}</span>
-                    <span class="skill-desc">${s.desc}</span>
+        // Find recommended skill for A.D.A.M.'s speech
+        const recommendedSkill = skillsWithStatus.find(s => s.skill.isRecommended);
+
+        // Create wrapper for proper layout
+        const wrapper = document.createElement('div');
+        wrapper.className = 'skill-offer-wrapper';
+
+        // Title section
+        const title = document.createElement('div');
+        title.className = 'skill-offer-title';
+        title.innerHTML = `<h3>スキル選択</h3>`;
+        wrapper.appendChild(title);
+
+        // A.D.A.M. recommendation speech
+        if (recommendedSkill) {
+            const adamSection = document.createElement('div');
+            adamSection.className = 'adam-recommendation';
+            adamSection.innerHTML = `
+                <img src="${this.dom.mascotImg.src}" alt="A.D.A.M." class="adam-recommend-img" />
+                <div class="adam-recommend-speech">
+                    <span class="adam-label">[A.D.A.M.]:</span>
+                    「${recommendedSkill.skill.name}」を推奨します。実利的な選択です。
                 </div>
             `;
-            sBtn.addEventListener('click', () => {
-                this.engine.addSkill(s.id);
-                // Map IDs to Japanese Names
-                const skillNames = this.engine.state.skills.map(id => {
-                    const skillObj = availableSkills.find(s => s.id === id) ||
-                        this.engine.getSkillById(id);
-                    return skillObj ? skillObj.name : id;
+            wrapper.appendChild(adamSection);
+        }
+
+        // Skills container (horizontal)
+        const skillsContainer = document.createElement('div');
+        skillsContainer.className = 'skill-buttons-container';
+
+        skillsWithStatus.forEach(({ skill: s, isAvailable, lockedReason }, i) => {
+            const sBtn = document.createElement('button');
+            const isKeySkill = s.category === 'key';
+            const isLocked = !isAvailable;
+            const isRecommended = s.isRecommended === true;
+
+            // Build class names
+            let className = 'choice-btn skill-btn';
+            if (isKeySkill) className += ' key-skill-btn';
+            if (isLocked) className += ' skill-locked';
+            if (isRecommended) className += ' skill-recommended';
+            sBtn.className = className;
+
+            const recommendedBadge = isRecommended ? '<span class="recommended-badge">推奨</span>' : '';
+
+            // Show locked reason for key skills that weren't earned
+            const lockedReasonHtml = isLocked && lockedReason
+                ? `<span class="skill-locked-reason">${lockedReason}</span>`
+                : '';
+
+            sBtn.innerHTML = `
+                <div class="skill-letter-circle">${String.fromCharCode(65 + i)}</div>
+                <div class="skill-content">
+                    <span class="skill-name">${s.name}${recommendedBadge}</span>
+                    <span class="skill-desc">${s.desc}</span>
+                    ${lockedReasonHtml}
+                </div>
+            `;
+
+            if (isLocked) {
+                sBtn.disabled = true;
+            } else {
+                sBtn.addEventListener('click', () => {
+                    this.engine.addSkill(s);
+
+                    // Show A.D.A.M. comment for key skills
+                    if (s.category === 'key' && s.adamComment) {
+                        this.dom.ovBody.innerHTML += `<br><br><span style="color:#f72585; font-style:italic;">[A.D.A.M.]: ${s.adamComment}</span>`;
+                    }
+
+                    // Update skill list display
+                    const allSkills = [...this.engine.activeSkills];
+                    const skillNames = allSkills.map(skill => skill.name);
+                    this.dom.skillList.innerText = skillNames.length > 0 ? skillNames.join(', ') : "未所持";
+
+                    this.closeFeedback();
                 });
-                this.dom.skillList.innerText = skillNames.length > 0 ? skillNames.join(', ') : "未所持";
-                this.closeFeedback();
-            });
-            this.dom.skillBox.appendChild(sBtn);
+            }
+
+            skillsContainer.appendChild(sBtn);
         });
+
+        wrapper.appendChild(skillsContainer);
+        this.dom.skillBox.appendChild(wrapper);
     }
 
     closeFeedback() {
@@ -348,21 +464,31 @@ export class UIManager {
         const s = this.engine.state;
         const ending = this.engine.calculateEnding();
 
-        this.dom.ovTitle.innerText = "COMPLETE";
+        this.dom.ovTitle.innerText = "STAGE COMPLETE";
         this.dom.ovTitle.style.color = "var(--accent-color)";
+
+        const keySkillCount = s.keySkills.length;
+
         this.dom.ovBody.innerHTML = `
-            シミュレーション終了。<br>
-            適性ランク: <br><strong style="font-size:2.5rem; color:var(--accent-color)">${ending.rank} - ${ending.title}</strong><br>
-            <span style="font-size:0.9rem; color:#ccc">${ending.desc}</span><br><br>
-            最終信用度: ${s.cs} <br> 最終資産: ${s.money.toLocaleString()}円
+            <div style="margin-bottom: 15px;">ステージ ${s.currentStage} 終了</div>
+            <strong style="font-size:2.5rem; color:var(--accent-color)">${ending.rank}</strong><br>
+            <span style="font-size:1.2rem; color:var(--accent-color)">${ending.title}</span><br><br>
+            <div style="font-size:0.9rem; color:#888; margin-bottom: 15px;">
+                信用度: ${s.CS} / 資産: ${s.Asset.toLocaleString()}円 / 自律性: ${s.Autonomy}
+            </div>
+            <div class="adam-comment-section">
+                <img src="${this.dom.mascotImg.src}" alt="A.D.A.M." class="adam-comment-img" />
+                <div class="adam-comment-text">[A.D.A.M.]: ${ending.desc}</div>
+            </div>
+            <div style="margin-top: 15px; font-size: 0.85rem; color: #666;">鍵スキル: ${keySkillCount}/9</div>
         `;
         this.dom.ovStats.innerHTML = "";
-        this.dom.btnNext.innerText = "人生再起動";
+        this.dom.btnNext.innerText = "タイトルに戻る";
         this.dom.btnNext.onclick = () => location.reload();
         this.dom.overlay.style.display = 'flex';
 
         if (this.engine.difficulty) {
-            this.saveRecord(this.engine.difficulty, ending.rank, s.cs);
+            this.saveRecord(this.engine.difficulty, ending.rank, s.CS);
         }
     }
 }

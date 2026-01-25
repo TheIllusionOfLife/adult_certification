@@ -30,7 +30,7 @@ graph TD
 ### 1. `GameEngine` (`src/logic/gameEngine.ts`)
 The brain of the application. It holds no reference to the DOM.
 -   **Responsibilities**:
-    -   Managing `GameState` (CS, Money, Sanity, History).
+    -   Managing `GameState` (CS, Asset, Autonomy, History).
     -   Processing user choices and calculating effects.
     -   Handling skill logic and random probability checks.
     -   Determining Game Over / Victory conditions.
@@ -53,7 +53,7 @@ The face of the application. It handles all DOM manipulations.
 
 1.  **User Action**: Clicks a choice button in `UIManager`.
 2.  **Logic Processing**: `UIManager` calls `engine.processChoice(choice)`.
-3.  **State Update**: `GameEngine` updates `cs`, `money`, `sanity` and returns a result object.
+3.  **State Update**: `GameEngine` updates `CS`, `Asset`, `Autonomy` and returns a result object.
 4.  **Feedback Rendering**: `UIManager` receives the result and displays the overlay/result text.
 5.  **HUD Update**: `UIManager` refreshes the status bars based on the new state.
 
