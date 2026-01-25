@@ -261,7 +261,7 @@ function simulateStage({
       const original = choice.effect;
       const modified = applySkillEffects(original, q, activeSkills);
 
-      // Track skill activations (when modified differs from original)
+      // Track skill activations (measure each skill's ISOLATED impact)
       activeSkills.forEach(skill => {
         const skillId = skill.id;
         const entry = stats.skillActivations.get(skillId) ?? {
@@ -273,10 +273,11 @@ function simulateStage({
         // Count as opportunity whenever skill is active
         entry.opportunities++;
 
-        // Check if this skill could have modified the effect
-        const csDiff = modified.CS - original.CS;
-        const assetDiff = modified.Asset - original.Asset;
-        const autoDiff = modified.Autonomy - original.Autonomy;
+        // Apply ONLY this skill to measure its isolated impact
+        const isolatedModified = applySkillEffects(original, q, [skill]);
+        const csDiff = isolatedModified.CS - original.CS;
+        const assetDiff = isolatedModified.Asset - original.Asset;
+        const autoDiff = isolatedModified.Autonomy - original.Autonomy;
 
         if (csDiff !== 0 || assetDiff !== 0 || autoDiff !== 0) {
           entry.activations++;
