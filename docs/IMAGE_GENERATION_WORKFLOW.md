@@ -28,26 +28,9 @@ Each question needs **one image** that:
 - Creates appropriate mood (dark humor, tension, dystopian)
 - Is 1024x1024 PNG format
 
-### Time Estimate
-
-- Writing prompt: 10-15 minutes
-- Generating image: 5-10 minutes per attempt
-- Refinement: 2-3 attempts average
-- Total per image: ~30-40 minutes
-
 ### Required Images per Stage
 
-**Minimum** (5 images):
-- Q5 (climax dilemma) - REQUIRED
-- Q6 (locked choice demo) - REQUIRED
-- Q7 (key skill question) - REQUIRED
-- Q8 (skill effects) - REQUIRED
-- Q10 (finale) - REQUIRED
-
-**Optional** (5 more images for Q1-Q4, Q9):
-- Improves immersion
-- Can reuse/adapt legacy images initially
-- Generate later if time permits
+Basically 1 stage contains 10 questions, meaning 10 images per stage.
 
 ---
 
@@ -147,103 +130,10 @@ with intentional imperfections
 ```
 
 ---
-
 ## Generation Tools
-
-### Recommended Tools
-
-#### Option 1: Stable Diffusion (Best Control)
-
-**Pros**:
-- ✅ Free (if self-hosted)
-- ✅ Complete control over parameters
-- ✅ Can iterate quickly
-- ✅ Best for matching specific style
-
-**Cons**:
-- ❌ Requires technical setup
-- ❌ Needs good hardware (GPU)
-- ❌ Steeper learning curve
-
-**Best For**: If you have GPU and want precise control
-
-**Setup**:
-1. Install Stable Diffusion WebUI (AUTOMATIC1111)
-2. Download Cuphead/vintage cartoon style LoRA
-3. Use negative prompts to exclude modern elements
-
-**Key Settings**:
-- Model: Stable Diffusion 1.5 or XL
-- LoRA: Cuphead or 1930s Cartoon style (search CivitAI)
-- Steps: 30-50
-- CFG Scale: 7-9
-- Negative Prompt: "modern, 3D, realistic, anime, photo"
+Nano Banana Pro.
 
 ---
-
-#### Option 2: Midjourney (Best Quality)
-
-**Pros**:
-- ✅ Highest quality output
-- ✅ Great at understanding art styles
-- ✅ Fast generation
-- ✅ Good at composition
-
-**Cons**:
-- ❌ Subscription cost ($10-30/month)
-- ❌ Less precise control
-- ❌ Requires Discord
-
-**Best For**: If budget allows and want best results
-
-**Usage**:
-1. Join Midjourney Discord
-2. Use `/imagine` command with full prompt
-3. Add `--ar 1:1` for square format
-4. Add `--stylize 250` for strong style adherence
-
-**Example Command**:
-```
-/imagine [YOUR PROMPT] --ar 1:1 --stylize 250 --v 6
-```
-
----
-
-#### Option 3: DALL-E 3 (Easiest)
-
-**Pros**:
-- ✅ Easy to use (ChatGPT interface)
-- ✅ Good prompt understanding
-- ✅ Safe/consistent output
-- ✅ No technical knowledge needed
-
-**Cons**:
-- ❌ Subscription ($20/month for ChatGPT Plus)
-- ❌ Sometimes overly sanitizes prompts
-- ❌ Less control over exact style
-
-**Best For**: If you want simplicity and have ChatGPT Plus
-
-**Usage**:
-1. Open ChatGPT
-2. Paste full prompt
-3. Request "square format, 1024x1024"
-4. Iterate with modifications
-
----
-
-### Tool Comparison
-
-| Tool | Quality | Control | Cost | Ease | Speed |
-|------|---------|---------|------|------|-------|
-| Stable Diffusion | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | Free* | ⭐⭐ | ⭐⭐⭐⭐ |
-| Midjourney | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | $-$$ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
-| DALL-E 3 | ⭐⭐⭐⭐ | ⭐⭐⭐ | $$ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
-
-\* Free if self-hosted, otherwise cloud services charge fees
-
----
-
 ## Quality Standards
 
 ### Must-Have Criteria
@@ -720,21 +610,15 @@ decorative frame, existential choice symbolism, climactic finale atmosphere
 ### Batch Processing
 
 Instead of generating one at a time:
-1. Write ALL 5-10 prompts first (1 hour)
-2. Generate ALL images in one session (1-2 hours)
-3. Review and iterate ALL images (30 minutes)
+1. Write ALL 10 prompts.
+2. Generate ALL images in one session.
+3. Review and iterate ALL images.
 
 **Benefit**: Stay in creative flow, maintain consistency
 
 ### Priority Order
 
-If time-limited, generate in this order:
-1. Q5 (climax) - Most important
-2. Q7 (key skill) - Thematically important
-3. Q10 (finale) - Strong finish
-4. Q6 (lock demo) - Teaches mechanic
-5. Q8 (skill effects) - Shows system working
-6. Others - If time permits
+Generate in the order of the stage.
 
 ### Iteration Limits
 
@@ -742,10 +626,6 @@ If time-limited, generate in this order:
 - Attempt 1: Use full prompt
 - Attempt 2: Adjust based on result
 - Attempt 3: Final refinement
-- If still not working: Use placeholder, move on
+- If still not working: Notify the user.
 
 **Why**: Better to have 5 good images than spend all day perfecting 1.
-
----
-
-**Good luck generating! 🎨**
