@@ -179,26 +179,26 @@ export const stage1Questions: Question[] = [
     },
     // [SKILL OFFER 2 HAPPENS AFTER Q7]
 
-    // Q8: 因果② (Skill Effects Apply) - NEW: Job Interview
+    // Q8: 因果② (Asset Lock Demo) - NEW: Professional Appearance
     {
         id: "s1_q08",
         category: "LABOR",
-        text: "面接で「当社の欠点を教えてください」と聞かれた。正直に答えるべきか？",
-        imagePrompt: "Dark vintage animation 1930s rubber hose. Interview room with oversized intimidating desk dominating frame and looming over small applicant, interviewer with exaggerated carnival barker smile and calculating eyes (Betty Boop villain aesthetic) tapping fingers together menacingly, nervous applicant on comically tiny chair with visible cartoon sweat drops falling like rain, contract papers floating ominously in background with visible small print and legal text, spotlight effect. Exaggerated forced perspective making desk loom menacingly over scene, high contrast noir with golden opportunity aura radiating around interviewer creating ironic halo, Fleischer Studios meets corporate dystopia atmosphere, bold ink outlines, power dynamic visualization.",
+        text: "明日、大手企業の最終面接。しかし手持ちのスーツがヨレヨレで、靴も傷んでいる。",
+        imagePrompt: "Dark vintage animation 1930s rubber hose. Split scene: left shows worn-out suit hanging limply with visible holes and patches, scuffed shoes with sole peeling off, empty wallet with moths flying out; right shows pristine new suit glowing with golden aura in shop window with expensive price tag dangling, polished shoes sparkling. Protagonist in center looking torn, calendar showing tomorrow's date circled in ominous red. High contrast noir, Fleischer Studios aesthetic, exaggerated poverty vs professionalism visualization, corporate dystopia meets opportunity.",
         imagePath: "s1_q08.png",
         choices: [
             {
-                text: "「御社に欠点はありません！」と答える。",
+                text: "今のスーツのまま面接に行く。中身で勝負。",
                 effect: { CS: -20, Asset: 0, Autonomy: -10 },
-                feedback: "見え透いた嘘です。面接官は「思考力のない人材」と判断しました。",
+                feedback: "理想論です。面接官は第一印象で「自己管理できない人材」と判断しました。",
                 lockRequirements: null
             },
             {
-                text: "「ウェブサイトの情報が古いと感じました」と建設的な指摘をする。",
-                effect: { CS: 40, Asset: 50000, Autonomy: 10 },
-                feedback: "社会較正です。批判を建設的に伝える技術。内定通知が届きました。",
-                lockRequirements: { Autonomy: 30 },
-                lockedFeedback: "LOCKED: Autonomy >= 30 必要 - 建設的批判をする自信がありません。"
+                text: "新しいスーツと靴を購入して、万全の状態で臨む。",
+                effect: { CS: 40, Asset: -30000, Autonomy: 10 },
+                feedback: "正しい投資です。プロフェッショナルな外見が評価され、内定を獲得しました。",
+                lockRequirements: { Asset: 100000 },
+                lockedFeedback: "LOCKED: Asset >= 100,000円 必要 - スーツと靴を買う余裕がありません。"
             }
         ]
     },
