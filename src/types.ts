@@ -95,6 +95,7 @@ export interface Skill {
     nameEN?: string;
     desc: string;
     effect: SkillEffect;
+    effects?: SkillEffect[];  // For multi-effect skills (applied in addition to main effect)
     category?: 'normal' | 'key';
     isCollectible?: boolean; // True for key skills that count toward True Ending unlock
     acquiredStage?: number;

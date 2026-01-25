@@ -180,6 +180,7 @@ function simulateStage({
     clearsByRank: { S: 0, A: 0, B: 0, C: 0, F: 0 },
     lockStats: new Map(), // key `${qid}:${choiceIndex}` -> { reached, locked, req }
     deadEnds: 0, // reached a question where all choices were locked (should be 0)
+    skillActivations: new Map(), // skillId -> { activations: number, totalImpact: { CS, Asset, Autonomy } }
   };
 
   const clears = [];
@@ -257,7 +258,35 @@ function simulateStage({
 
     for (const ci of availableChoiceIndices) {
       const choice = q.choices[ci];
-      const modified = applySkillEffects(choice.effect, q, activeSkills);
+      const original = choice.effect;
+      const modified = applySkillEffects(original, q, activeSkills);
+
+      // Track skill activations (when modified differs from original)
+      activeSkills.forEach(skill => {
+        const skillId = skill.id;
+        const entry = stats.skillActivations.get(skillId) ?? {
+          activations: 0,
+          opportunities: 0,
+          totalImpact: { CS: 0, Asset: 0, Autonomy: 0 }
+        };
+
+        // Count as opportunity whenever skill is active
+        entry.opportunities++;
+
+        // Check if this skill could have modified the effect
+        const csDiff = modified.CS - original.CS;
+        const assetDiff = modified.Asset - original.Asset;
+        const autoDiff = modified.Autonomy - original.Autonomy;
+
+        if (csDiff !== 0 || assetDiff !== 0 || autoDiff !== 0) {
+          entry.activations++;
+          entry.totalImpact.CS += csDiff;
+          entry.totalImpact.Asset += assetDiff;
+          entry.totalImpact.Autonomy += autoDiff;
+        }
+
+        stats.skillActivations.set(skillId, entry);
+      });
 
       const next = {
         CS: state.CS + modified.CS,
@@ -377,6 +406,20 @@ function simulateStage({
     });
   }
 
+  // Build skill activation summary
+  const skillActivationSummary = [];
+  for (const [skillId, v] of [...stats.skillActivations.entries()].sort((a, b) =>
+    a[0].localeCompare(b[0])
+  )) {
+    skillActivationSummary.push({
+      skillId,
+      activations: v.activations,
+      opportunities: v.opportunities,
+      activationRate: v.opportunities > 0 ? v.activations / v.opportunities : 0,
+      totalImpact: v.totalImpact,
+    });
+  }
+
   return {
     stageId,
     questionCount: questions.length,
@@ -391,6 +434,7 @@ function simulateStage({
     gameOverByParam: stats.gameOverByParam,
     gameOverByQ: stats.gameOverByQ,
     locks: lockSummary,
+    skillActivations: skillActivationSummary,
     deadEnds: stats.deadEnds,
     intents,
   };
@@ -452,6 +496,23 @@ function printReport(report) {
     console.log(`WARNING: deadEnds (all choices locked) = ${report.deadEnds}`);
     console.log("");
   }
+
+  console.log("Skill activations (when skill modified effect)");
+  if (!report.skillActivations || report.skillActivations.length === 0) {
+    console.log("- (no skill activations tracked)");
+  } else {
+    for (const s of report.skillActivations) {
+      const impactParts = [];
+      if (s.totalImpact.CS !== 0) impactParts.push(`CS: ${s.totalImpact.CS >= 0 ? '+' : ''}${s.totalImpact.CS}`);
+      if (s.totalImpact.Asset !== 0) impactParts.push(`Asset: ${s.totalImpact.Asset >= 0 ? '+' : ''}${s.totalImpact.Asset.toLocaleString()}`);
+      if (s.totalImpact.Autonomy !== 0) impactParts.push(`Autonomy: ${s.totalImpact.Autonomy >= 0 ? '+' : ''}${s.totalImpact.Autonomy}`);
+      const impactStr = impactParts.length > 0 ? impactParts.join(', ') : 'no impact';
+      console.log(
+        `- ${s.skillId}: ${s.activations}/${s.opportunities} activations (${pct(s.activations, s.opportunities)}) | impact: ${impactStr}`
+      );
+    }
+  }
+  console.log("");
 
   console.log("Player intent modes (representative clears)");
   const intentOrder = [
