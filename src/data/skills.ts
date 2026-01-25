@@ -11,7 +11,7 @@ export const skills: Skill[] = [
     {
         id: "iron_stomach",
         name: "鋼の胃袋",
-        desc: "正気の減少を常に30%軽減する。",
+        desc: "自律性の減少を常に30%軽減する。",
         effect: { type: "passive_autonomy", value: 0.3 }
     },
     {

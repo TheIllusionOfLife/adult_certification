@@ -271,7 +271,7 @@ Thank you for noting:
 
 **Category Standards for Future Stages**:
 - ADMIN - Administrative/bureaucratic
-- FINANCE - Financial/money
+- FINANCE - Financial/asset
 - SEC - Security/safety
 - LABOR - Work/employment
 - SOCIAL - Interpersonal/relationships
