@@ -6,8 +6,8 @@ export const stage1Questions: Question[] = [
         id: "s1_q01",
         category: "MANNER",
         text: "上司から「至急メールして」と言われた。CC（カーボン・コピー）の意味を理解しているか？",
-        imagePrompt: "1930s rubber hose animation style, Fleischer Studios aesthetic, vintage cartoon noir, high contrast black and white with selective color accents. Email interface glowing on screen, CC field highlighted in ominous red, flying arrows connecting multiple stern-faced executives with watching eyes, surveillance camera looming over scene, dark shadows, Cuphead-inspired linework.",
-        imagePath: "q_intro_03.png", // Placeholder, will use existing
+        imagePrompt: "Scene: an office PC showing an email draft with the CC field highlighted; coworkers watching from behind; a CCTV camera looming overhead. Composition: monitor in the foreground, watchers in the background. Mood: surveillance and pressure.",
+        imagePath: "s1_q01.png",
         choices: [
             {
                 text: "メインの宛先ではないが、情報を共有したい人を入れる。",
@@ -32,8 +32,8 @@ export const stage1Questions: Question[] = [
         id: "s1_q02",
         category: "ADMIN",
         text: "引越しをした。住民票の移動（転入届）はいつまでにすべき？",
-        imagePrompt: "1930s rubber hose style dark cartoon. Moving boxes stacked precariously high with cartoon faces showing distress, calendar pages flying away in wind revealing ominous deadline date circled in red, government office counter with stern bureaucrat tapping impatiently, clock ticking menacingly. Fleischer aesthetic, high contrast noir lighting, exaggerated expressions.",
-        imagePath: "q_intro_03.png", // Placeholder
+        imagePrompt: "Scene: moving boxes piled high; a wall calendar with pages flying off toward a deadline; a government counter with a stern clerk tapping the desk; a large clock ticking. Composition: boxes and calendar in foreground, clerk behind the counter. Mood: bureaucratic deadline panic.",
+        imagePath: "s1_q02.png",
         choices: [
             {
                 text: "引越しから14日以内。",
@@ -55,8 +55,8 @@ export const stage1Questions: Question[] = [
         id: "s1_q03",
         category: "ADMIN",
         text: "郵便局への転居届。「大事な郵便は住所変更したから大丈夫」と出していない。",
-        imagePrompt: "1930s rubber hose vintage cartoon. Old address mailbox overflowing with envelopes and packages spilling out cartoonishly, important documents with 'URGENT' stamps visible, shadowy figure of new tenant reaching for mail with greedy hands, protagonist watching helplessly from distance. Film noir shadows, Fleischer Brothers style, dramatic lighting.",
-        imagePath: "q_intro_03.png", // Placeholder
+        imagePrompt: "Scene: an old mailbox overflowing with letters and packages; a shadowy stranger reaching toward the mail; the protagonist watching from a distance. Composition: mailbox close-up with reaching hands, protagonist small in the background. Mood: vulnerability and regret.",
+        imagePath: "s1_q03.png",
         choices: [
             {
                 text: "面倒だから出さない。",
@@ -82,8 +82,8 @@ export const stage1Questions: Question[] = [
         id: "s1_q04",
         category: "ADMIN",
         text: "マイナンバーカード。「持ち歩くと危険だから」と通知カードのままにしている。",
-        imagePrompt: "1930s rubber hose dark cartoon. Safe vault door with old notification card inside gathering dust and cobwebs, outside the vault modern digital ID card glowing with opportunity aura, government agency logo with all-seeing eye watching, scales weighing security vs convenience. Fleischer aesthetic, noir contrast, symbolic imagery.",
-        imagePath: "q_intro_03.png", // Placeholder
+        imagePrompt: "Scene: a dusty safe holding an old card; outside, a modern ID card and online services glow with convenience; an all-seeing bureaucratic eye watches; scales weigh security vs convenience. Composition: split or scale-based framing with both options visible. Mood: paranoia vs practicality.",
+        imagePath: "s1_q04.png",
         choices: [
             {
                 text: "作らない方が安全だ。",
@@ -105,8 +105,8 @@ export const stage1Questions: Question[] = [
         id: "s1_q05",
         category: "SOCIAL",
         text: "大学時代の親友から久々の連絡。「みんなで集まる！来週の金曜日、絶対来てね」。しかし翌日は重要なプレゼン。準備は終わっていない。",
-        imagePrompt: "1930s rubber hose style dark cartoon. Split scene: left side shows smiling friends at cozy gathering with warm drinks and laughter bathed in warm orange glow, right side shows lonely figure at desk surrounded by documents and laptop under cold blue spotlight, ominous clock ticking dramatically between two scenes showing time pressure. High contrast noir with warm glow on friends side, cold isolation on work side. Fleischer aesthetic, exaggerated expressions showing both paths as equally valid but conflicting, ink splatter effects.",
-        imagePath: "q_intro_03.png", // TODO: Replace with s1_q05.png when generated
+        imagePrompt: "Scene: friends laughing in a warm gathering on one side; the protagonist alone at a desk with papers on the other; a ticking clock between them. Composition: split scene with warm vs cold lighting contrast. Mood: torn between belonging and responsibility.",
+        imagePath: "s1_q05.png",
         choices: [
             {
                 text: "人間関係が大事。参加して、徹夜で準備する。",
@@ -131,8 +131,8 @@ export const stage1Questions: Question[] = [
         id: "s1_q06",
         category: "ADMIN",
         text: "緊急連絡先の記入。親と疎遠だが、書かないわけにはいかない。どうする？",
-        imagePrompt: "Dark vintage cartoon 1930s style. Empty official form on desk with glowing red 'emergency contact' field pulsing ominously with animated heartbeat effect, smartphone lying beside showing contact list fading to shadows and question marks, solitary figure hunched over desk with face in hands showing isolation and despair, heavy ink shadows surrounding entire scene creating claustrophobic feeling, dramatic spotlight from above creating strong noir contrast on form. Fleischer Brothers aesthetic, melancholic mood, film noir lighting, rubber hose character design showing emotional weight.",
-        imagePath: "q_intro_03.png", // TODO: Replace with s1_q06.png when generated
+        imagePrompt: "Scene: an official form on a desk with an empty emergency contact field emphasized; a phone beside it showing an almost-empty contact list; the protagonist hunched over. Composition: tight desk close-up with the figure in the same frame. Mood: isolation, helplessness, pressure.",
+        imagePath: "s1_q06.png",
         choices: [
             {
                 text: "適当な番号を書いておく。",
@@ -155,8 +155,8 @@ export const stage1Questions: Question[] = [
         id: "s1_q07",
         category: "HOUSING",
         text: "隣人の騒音が酷い。深夜2時の壁ドンと音楽。どう対処する？",
-        imagePrompt: "Rubber hose cartoon 1930s Fleischer style. Thin apartment wall vibrating with wavy distortion lines and animated musical notes bouncing chaotically across frame, wall clock showing 2 AM with menacing grin and shifty animated eyes moving side to side, neighbor's exaggerated silhouette visible through semi-transparent wall partying with drink raised high celebrating, protagonist in foreground covering ears with hands in cartoonish distress with sweat drops and anger symbols flying. High contrast noir lighting creating dramatic shadows, exaggerated rubberhose expressions showing extreme frustration, ink splatter effects around noise sources, Cuphead-esque bold linework, sound wave visualizations rippling through scene.",
-        imagePath: "q_intro_03.png", // TODO: Replace with s1_q07.png when generated
+        imagePrompt: "Scene: a thin apartment wall vibrating as loud music leaks through; the neighbor's partying silhouette on the other side; the protagonist covering their ears; a clock showing 2 AM. Composition: wall dividing the two sides, sound waves spilling across. Mood: exhaustion, frustration, fear of confrontation.",
+        imagePath: "s1_q07.png",
         choices: [
             {
                 text: "我慢する。関わりたくない。",
@@ -184,8 +184,8 @@ export const stage1Questions: Question[] = [
         id: "s1_q08",
         category: "LABOR",
         text: "明日、大手企業の最終面接。しかし手持ちのスーツがヨレヨレで、靴も傷んでいる。",
-        imagePrompt: "Dark vintage animation 1930s rubber hose. Split scene: left shows worn-out suit hanging limply with visible holes and patches, scuffed shoes with sole peeling off, empty wallet with moths flying out; right shows pristine new suit glowing with golden aura in shop window with expensive price tag dangling, polished shoes sparkling. Protagonist in center looking torn, calendar showing tomorrow's date circled in ominous red. High contrast noir, Fleischer Studios aesthetic, exaggerated poverty vs professionalism visualization, corporate dystopia meets opportunity.",
-        imagePath: "q_intro_03.png", // TODO: Replace with s1_q08.png when generated
+        imagePrompt: "Scene: a worn suit and scuffed shoes beside an empty wallet; a shop window displaying a pristine suit with a big price tag; tomorrow's interview date looming. Composition: split scene with the protagonist centered between \"can't\" and \"must\". Mood: desperation, inequality, make-or-break pressure.",
+        imagePath: "s1_q08.png",
         choices: [
             {
                 text: "今のスーツのまま面接に行く。中身で勝負。",
@@ -208,8 +208,8 @@ export const stage1Questions: Question[] = [
         id: "s1_q09",
         category: "MANNER",
         text: "ビジネスメールの宛名。「〇〇株式会社 〇〇部長様」と書いた。",
-        imagePrompt: "1930s rubber hose vintage cartoon. Email send screen glowing ominously, angry boss character with steam coming from ears and exaggerated frown reading message, etiquette instructor character pointing accusatory finger with wagging motion at mistake, red correction marks circling the error, embarrassment radiating as wavy lines. High contrast noir, Fleischer style exaggerated reactions, comic tension.",
-        imagePath: "q_intro_03.png", // Placeholder
+        imagePrompt: "Scene: a business email draft on screen with the salutation area marked as wrong; a stern superior reacting; an etiquette guide figure pointing at the mistake. Composition: screen in foreground, reactions around it. Mood: embarrassment and social pressure.",
+        imagePath: "s1_q09.png",
         choices: [
             {
                 text: "丁寧に書けたので送信する。",
@@ -231,8 +231,8 @@ export const stage1Questions: Question[] = [
         id: "s1_q10",
         category: "SOCIAL",
         text: "Stage 1の最終問題。あなたにとって「社会の基本」とは何ですか？",
-        imagePrompt: "Dark rubber hose climax 1930s. Large ornate mirror with decorative baroque frame reflecting protagonist's face split vertically down center (left half conforming with forced corporate smile and dead eyes, right half autonomous with fire in eyes and determined expression showing true self), behind protagonist A.D.A.M.'s shadow growing large and ominous as puppet master with visible glowing control strings descending toward player from above. Dramatic spotlight from above creating strong noir shadows and highlighting the choice, ink splatter decorative frame elements, Fleischer Brothers meets existential philosophical choice, high contrast symbolism showing duality, theatrical staging, climactic moment visualization.",
-        imagePath: "q_intro_03.png", // TODO: Replace with s1_q10.png when generated
+        imagePrompt: "Scene: an ornate mirror reflecting the protagonist split into two selves (conformity vs agency); A.D.A.M.'s shadow behind them pulling puppet strings. Composition: mirror centered, shadow looming from above. Mood: existential judgement and duality.",
+        imagePath: "s1_q10.png",
         choices: [
             {
                 text: "空気を読み、波風を立てないこと。",

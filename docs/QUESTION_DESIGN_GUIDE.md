@@ -686,7 +686,7 @@ Independent: "自律的回答です。システムを道具として見る視点
     id: "s4_q02",
     category: "TAX",
     text: "年末調整で「生命保険料控除」の欄を見つけた。証明書はあるが、手続きが面倒だ。",
-    imagePrompt: "[BASE STYLE], desk covered with tax documents and insurance certificates glowing ominously, tired figure holding head in hands, calculator showing small savings amount versus stack of paperwork representing effort, clock ticking showing time pressure, film noir lighting emphasizing drudgery vs reward",
+    imagePrompt: "Scene: desk covered with tax documents and insurance certificates; a tired figure holding their head; a calculator beside a small savings note. Composition: desk close-up with looming paperwork stack in the background. Mood: bureaucratic pressure and time anxiety.", // Scene brief only (see docs/IMAGE_GENERATION_WORKFLOW.md)
     imagePath: "s4_q02.png",
     choices: [
         {
@@ -717,7 +717,7 @@ Independent: "自律的回答です。システムを道具として見る視点
     id: "s2_q05",
     category: "LABOR",
     text: "同僚が上司からパワハラを受けている。あなたに相談してきた。証人になることを求められている。",
-    imagePrompt: "[BASE STYLE], split composition: left side shows colleague in shadows reaching out desperately for help, right side shows imposing supervisor silhouette with glowing red eyes staring at viewer, protagonist in center torn between two sides, weighing scales imagery, stark contrast between loyalty and safety",
+    imagePrompt: "Scene: colleague in shadow reaching out for help; supervisor silhouette looming; the protagonist caught between them. Composition: split scene or crossroads framing with the protagonist centered. Mood: fear, loyalty vs self-preservation.", // Scene brief only (see docs/IMAGE_GENERATION_WORKFLOW.md)
     imagePath: "s2_q05.png",
     choices: [
         {
@@ -748,7 +748,7 @@ Independent: "自律的回答です。システムを道具として見る視点
     id: "s6_q06",
     category: "HOUSING",
     text: "原状回復費用の請求書が届いた。内訳を見ると、通常損耗まで請求されている。明らかに不当だ。",
-    imagePrompt: "[BASE STYLE], excessive repair bill floating ominously with red highlighting on suspicious charges, landlord as shadowy figure with money bag, tenant with empty wallet, gaveland contract symbols, David vs Goliath composition",
+    imagePrompt: "Scene: a repair invoice with suspicious items highlighted; a shadowy landlord with a money bag; a tenant with an empty wallet. Composition: David vs Goliath framing (small tenant vs looming landlord/invoice). Mood: unfairness and panic.", // Scene brief only (see docs/IMAGE_GENERATION_WORKFLOW.md)
     imagePath: "s6_q06.png",
     choices: [
         {
@@ -780,7 +780,7 @@ Independent: "自律的回答です。システムを道具として見る視点
     id: "s7_q10",
     category: "LEGAL",
     text: "Stage 7の最終問題。あなたにとって「契約」とは何ですか？",
-    imagePrompt: "[BASE STYLE], large ornate contract floating in center, left side shows it as chains binding person in servitude, right side shows it as shield protecting person with clear boundaries, philosophical yin-yang composition, symbolic representation of dual nature",
+    imagePrompt: "Scene: a large contract floating between two interpretations (chains vs shield). Composition: symbolic split framing with the contract centered and the two meanings mirrored left/right. Mood: philosophical, tense, consequential.", // Scene brief only (see docs/IMAGE_GENERATION_WORKFLOW.md)
     imagePath: "s7_q10.png",
     choices: [
         {
@@ -814,7 +814,7 @@ Before finalizing a question, verify:
 - [ ] Scenario is realistic and relatable
 - [ ] Both choices are specific actions
 - [ ] Category is appropriate
-- [ ] Image prompt follows base style
+- [ ] `imagePrompt` is a scene brief (see docs/IMAGE_GENERATION_WORKFLOW.md)
 
 ### Parameters ✅
 - [ ] CS changes are -30 to +40

@@ -48,6 +48,13 @@ Cuphead-inspired, dark humor, dystopian mood, hand-drawn feel
 with intentional imperfections
 ```
 
+**Global Consistency Rules (apply to all stages unless Stage 10 exception)**:
+- **Scene illustration** (NOT poster/title-card). Avoid big headline typography.
+- **Text policy**:
+  - Text is allowed only if it is **intentional** and **fully readable**.
+  - If any text appears, it must be **English-only** (Stage 1-9).
+  - Stage 10 may intentionally use **glitch text** as a special effect.
+
 ### Key Elements
 
 **Visual Style**:
@@ -75,6 +82,46 @@ with intentional imperfections
 ---
 
 ## Writing Prompts
+
+### What `imagePrompt` Means (Source-of-Truth)
+
+In this project, each question has an `imagePrompt` field (e.g. `src/data/stages/stage1.ts`).
+
+**Important**: `imagePrompt` is a **scene brief**, not the full generation prompt.
+
+When generating an image, build the final prompt like this:
+
+```text
+[BASE STYLE TEMPLATE] + [QUESTION.imagePrompt]
+```
+
+#### `imagePrompt` MUST include
+- **Scene**: what is happening (who/where/what)
+- **Composition**: how it is framed (split scene, close-up, focus object, foreground/background)
+- **Mood**: what the player should feel (tense, oppressive, conflicted, etc.)
+- **Key props/symbols**: 2-4 specific visual anchors (clock, form field, CCTV, money, etc.)
+
+#### `imagePrompt` MUST NOT include
+- Base style keywords (e.g., "1930s", "rubber hose", "Fleischer", "Cuphead", "film noir lighting")
+- Tool instructions (resolution, PNG, negative prompts, seed, etc.)
+- Big headline/title-card instructions (we prefer scene illustration)
+
+#### Language rule
+- Write `imagePrompt` in **English** (consistent across the game).
+
+#### Examples
+
+✅ Good `imagePrompt` (scene brief):
+```text
+Scene: an office PC showing an email draft with the CC field highlighted; coworkers watching from behind; a CCTV camera looming.
+Composition: focus on the monitor in foreground, watchers in midground.
+Mood: oppressive surveillance.
+```
+
+❌ Bad `imagePrompt` (duplicates global template / causes drift):
+```text
+1930s rubber hose animation style, Fleischer Studios aesthetic, Cuphead-inspired...
+```
 
 ### Prompt Structure
 
@@ -148,6 +195,7 @@ Nano Banana Pro.
 - [ ] Scene conveys question's situation
 - [ ] Key elements are recognizable
 - [ ] Composition supports understanding
+- [ ] **Scene illustration** (not poster/title card)
 
 #### 3. Emotional Tone ✅
 - [ ] Mood matches question type (dilemma = tense, etc.)
@@ -158,7 +206,9 @@ Nano Banana Pro.
 - [ ] Resolution: 1024x1024 pixels
 - [ ] Format: PNG
 - [ ] File size: < 2MB (for web performance)
-- [ ] No watermarks or text (except intentional)
+- [ ] No watermarks
+- [ ] Text (if any) is intentional and **fully readable** (no AI gibberish)
+- [ ] Text language is **English-only** (Stage 1-9)
 
 ---
 
@@ -191,16 +241,34 @@ Nano Banana Pro.
 - Completely abstract (unreadable)
 
 ❌ **Technical issues**:
-- Text/words (unless intentional glitch for Stage 10)
+- Unintended text/words, or garbled/unreadable AI text (Stage 1-9)
+- Any non-English text (Stage 1-9)
 - Watermarks or logos
 - Low resolution or blurry
 - Wrong aspect ratio (not square)
+
+**Stage 10 exception**:
+- Intentional glitch text is allowed (by design).
 
 ❌ **Composition problems**:
 - Nothing happening (static)
 - Too cluttered (can't parse)
 - Missing key elements from prompt
 - Unclear focus
+- Poster/title-card feel (big headline typography, framed like a poster)
+
+---
+
+## Stage Batch Consistency Checklist (10 images)
+
+Run this checklist after generating all 10 images for a stage:
+
+- [ ] **Scene illustration** for all 10 (no poster/title-card)
+- [ ] Rubber hose character style is consistent across all 10
+- [ ] Ink outline thickness and shading style are consistent across all 10
+- [ ] Accent colors are consistent (use the same few accents across the stage)
+- [ ] Any text is intentional, fully readable, and **English-only** (Stage 1-9)
+- [ ] No AI gibberish text appears anywhere (signs, screens, labels, etc.)
 
 ---
 
@@ -335,6 +403,11 @@ src/assets/s{N}_q{YY}.png
 ---
 
 ## Examples
+
+**Note**:
+- The examples below show **full generation prompts** (base style + scene).
+- In question source files, store only the **scene brief** portion as `imagePrompt`.
+  The base style stays global in this document.
 
 ### Example 1: Dilemma Question (Friends vs Career)
 
@@ -599,7 +672,9 @@ decorative frame, existential choice symbolism, climactic finale atmosphere
 - [ ] Style matches base template
 - [ ] Scenario is clear
 - [ ] Mood is appropriate
-- [ ] No watermarks or unwanted text
+- [ ] No watermarks
+- [ ] No poster/title-card headline typography
+- [ ] Text (if any) is intentional, fully readable, and English-only (Stage 1-9)
 - [ ] Composition is readable
 - [ ] Expressions are exaggerated (cartoon style)
 
