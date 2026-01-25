@@ -347,14 +347,17 @@ export class UIManager {
             const sBtn = document.createElement('button');
             const isKeySkill = s.category === 'key';
             const isLocked = !isAvailable;
+            const isRecommended = s.isRecommended === true;
 
             // Build class names
             let className = 'choice-btn skill-btn';
             if (isKeySkill) className += ' key-skill-btn';
             if (isLocked) className += ' skill-locked';
+            if (isRecommended) className += ' skill-recommended';
             sBtn.className = className;
 
             const keyBadge = isKeySkill ? '<span class="key-skill-badge">★KEY SKILL★</span>' : '';
+            const recommendedBadge = isRecommended ? '<span class="recommended-badge">[A.D.A.M. 推奨]</span>' : '';
 
             let keyNote = '';
             if (isKeySkill) {
@@ -370,7 +373,7 @@ export class UIManager {
                 <div class="skill-info">
                     <span class="skill-letter">${String.fromCharCode(65 + i)}</span>
                     <div class="skill-content">
-                        <span class="skill-name">${s.name}${keyBadge}</span>
+                        <span class="skill-name">${s.name}${keyBadge}${recommendedBadge}</span>
                         <span class="skill-desc">${s.desc}</span>
                         ${keyNote}
                     </div>

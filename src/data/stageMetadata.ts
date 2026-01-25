@@ -16,36 +16,38 @@ export const STAGE_1_METADATA: StageMetadata = {
         offer1: [
             {
                 id: "s1_normal_01",
-                name: "コミュニケーション緩衝材",
-                desc: "対人トラブルでの自律性ダメージを常に50%軽減します。",
-                effect: { type: "autonomy_damage_reduction", value: 0.5 },
+                name: "メンタルシールド",
+                desc: "全ての自律性ダメージを30%軽減します。",
+                effect: { type: "autonomy_damage_reduction", value: 0.3 },
                 category: "normal"
-                // Triggers: Q4B(-5), Q5B(-15), Q7A(-30), Q8A(-10), Q10A(-20)
+                // Protects Autonomy - the hidden critical resource for True Ending
             },
             {
                 id: "s1_normal_02",
-                name: "お役所ナビゲーター",
-                desc: "行政手続き(ADMIN)での信用度低下を30%軽減します。",
-                effect: { type: "category_cs_damage_reduction", category: "ADMIN", value: 0.3 },
-                category: "normal"
-                // Triggers: Q4A(-10), Q6A(-30) - helps if you mess up bureaucratic questions
+                name: "節約マインド",
+                desc: "全ての資産減少を30%軽減します。",
+                effect: { type: "asset_damage_reduction", value: 0.3 },
+                category: "normal",
+                isRecommended: true
+                // A.D.A.M. recommends: protects Asset (practical survival resource)
             }
         ],
         offer2: [
             {
                 id: "s1_normal_03",
-                name: "プロフェッショナリズム",
-                desc: "仕事関連(LABOR)での信用度低下を30%軽減します。",
-                effect: { type: "category_cs_damage_reduction", category: "LABOR", value: 0.3 },
-                category: "normal"
-                // Triggers: Q8A(-20) - helps if interview goes badly
+                name: "印象操作",
+                desc: "全ての信用度低下を50%軽減します。",
+                effect: { type: "cs_damage_reduction", value: 0.5 },
+                category: "normal",
+                isRecommended: true
+                // A.D.A.M. recommends: protects CS (objective ranking resource)
             },
             {
                 id: "SOCIAL_CALIBRATION",
                 name: "社会較正",
                 nameEN: "SOCIAL_CALIBRATION",
-                desc: "場のルール、距離感、最低限の作法を読み、不要な摩擦を避ける能力。自律性への小ダメージ（-20以下）を30%軽減します。",
-                effect: { type: "autonomy_small_damage_reduction", threshold: -20, value: 0.3 },
+                desc: "場のルール、距離感、最低限の作法を読み、不要な摩擦を避ける能力。全ての自律性ダメージを50%軽減します。",
+                effect: { type: "autonomy_damage_reduction", value: 0.5 },
                 category: "key",
                 isCollectible: true,
                 acquiredStage: 1,
@@ -54,6 +56,7 @@ export const STAGE_1_METADATA: StageMetadata = {
                     questionId: "s1_q07",
                     choiceIndex: 1 // Choice B: 管理会社に連絡し、「匿名で」注意してもらう
                 }
+                // Protects Autonomy strongly - for players who prioritize True Ending
             }
         ]
     }

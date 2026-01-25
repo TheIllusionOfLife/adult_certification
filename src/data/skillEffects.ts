@@ -50,6 +50,22 @@ export function applySkillEffects(
                     Autonomy = Math.floor(reduced);
                 }
                 break;
+
+            case "asset_damage_reduction":
+                // Reduce all Asset damage by value%
+                if (Asset < 0) {
+                    const reduced = Asset * (1 - skill.effect.value);
+                    Asset = Math.floor(reduced);
+                }
+                break;
+
+            case "cs_damage_reduction":
+                // Reduce all CS damage by value%
+                if (CS < 0) {
+                    const reduced = CS * (1 - skill.effect.value);
+                    CS = Math.floor(reduced);
+                }
+                break;
         }
     });
 
@@ -115,6 +131,26 @@ export function getSkillActivations(
                     description = "小ダメージ軽減";
                     originalValue = originalEffect.Autonomy;
                     modifiedValue = modifiedEffect.Autonomy;
+                }
+                break;
+
+            case "asset_damage_reduction":
+                // Only show if Asset damage was actually reduced
+                if (originalEffect.Asset < 0 && modifiedEffect.Asset !== originalEffect.Asset) {
+                    activated = true;
+                    description = "資産減少軽減";
+                    originalValue = originalEffect.Asset;
+                    modifiedValue = modifiedEffect.Asset;
+                }
+                break;
+
+            case "cs_damage_reduction":
+                // Only show if CS damage was actually reduced
+                if (originalEffect.CS < 0 && modifiedEffect.CS !== originalEffect.CS) {
+                    activated = true;
+                    description = "信用度低下軽減";
+                    originalValue = originalEffect.CS;
+                    modifiedValue = modifiedEffect.CS;
                 }
                 break;
         }

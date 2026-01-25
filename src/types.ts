@@ -55,6 +55,7 @@ export interface Skill {
     acquiredStage?: number;
     adamComment?: string;
     keySkillRequirement?: KeySkillRequirement; // For key skills: which Q/choice unlocks it
+    isRecommended?: boolean; // A.D.A.M.'s recommendation - helps new players trust the system
 }
 
 export interface StageMetadata {
