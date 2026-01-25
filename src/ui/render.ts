@@ -320,7 +320,7 @@ export class UIManager {
 
         // Determine which offer this is (1 or 2)
         const idx = this.engine.state.currentQuestionIndex;
-        const offerNumber = idx === 3 ? 1 : 2;
+        const offerNumber = idx === 2 ? 1 : 2;
         const availableSkills = this.engine.getSkillsForOffer(offerNumber as 1 | 2);
 
         const title = document.createElement('div');

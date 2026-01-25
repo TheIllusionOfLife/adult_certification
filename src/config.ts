@@ -1,5 +1,5 @@
 export const CONFIG = {
-    SKILL_OFFER_POSITIONS: [3, 7] as number[], // After Q3 and Q7
+    SKILL_OFFER_POSITIONS: [2, 6] as number[], // After Q3 (index 2) and Q7 (index 6)
     QUESTIONS_PER_GAME: 10,
     BUTTON_DELAY_MS: 500,
     RANK_THRESHOLDS: {
