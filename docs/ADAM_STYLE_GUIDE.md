@@ -256,7 +256,7 @@ Use "……" (6 dots) to show A.D.A.M.'s "thought" or hesitation:
 **Examples**:
 ```
 "……補足です。"
-"……あなたは鍵スキル『SOCIAL_CALIBRATION』を獲得しました。"
+"……あなたは鍵スキル『MEDIATION』を獲得しました。"
 "……この能力の効果は、今ステージのみ有効です。"
 "……厄介な知識を持ちましたね。"
 ```

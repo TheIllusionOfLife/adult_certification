@@ -148,7 +148,7 @@ Normal skills provide **tactical advantages** for current stage:
 {
     id: "s1_normal_01",
     name: "コミュニケーション緩衝材",
-    desc: "対人トラブルでの自律性ダメージを常に50%軽減します。",
+    desc: "対人トラブルでの自律性減少を常に50%軽減します。",
     effect: { type: "autonomy_damage_reduction", value: 0.5 }
 }
 ```
@@ -211,7 +211,7 @@ All 9 key skills are specified in `improvement_plan_2026-01-24_integrated.md` se
 
 | Stage | Key Skill ID | Japanese Name | Core Learning |
 |-------|-------------|---------------|---------------|
-| 1 | SOCIAL_CALIBRATION | 社会較正 | Reading social rules, avoiding friction |
+| 1 | MEDIATION | 仲介術 | Using systems/third parties to avoid direct conflict |
 | 2 | EVIDENCE_CHAIN | 証拠連鎖 | Recording evidence prevents disputes |
 | 3 | COMPOUND_SENSE | 複利感覚 | Understanding compound interest |
 | 4 | DUE_PROCESS | 手続き主義 | Navigating bureaucracy |
@@ -225,8 +225,8 @@ All 9 key skills are specified in `improvement_plan_2026-01-24_integrated.md` se
 
 ### Naming Convention
 
-**English ID**: ALL_CAPS_ENGLISH (e.g., SOCIAL_CALIBRATION)
-**Japanese Name**: 漢字2-4文字 (e.g., 社会較正)
+**English ID**: ALL_CAPS_ENGLISH (e.g., MEDIATION)
+**Japanese Name**: 漢字2-4文字 (e.g., 仲介術)
 **English Name**: Optional, for UI display
 
 **Pattern**: Sounds like a "system capability" or "protocol" (not casual)
@@ -270,13 +270,13 @@ All 9 key skills are specified in `improvement_plan_2026-01-24_integrated.md` se
 3. If player selects Q7 choice B → key skill becomes **selectable** in Offer 2
 4. If player didn't select Q7 choice B → key skill is **shown but disabled**
 
-**Design Example (Stage 1 SOCIAL_CALIBRATION):**
+**Design Example (Stage 1 MEDIATION):**
 - Q7: Noise complaint problem
 - Choice A: "我慢する" (endure) → always available
 - Choice B: "管理会社に連絡" (contact management) → locked, requires Autonomy >= 20
-- Choice B demonstrates "using systems to avoid direct conflict" = SOCIAL_CALIBRATION philosophy
-- Players who chose B → can select SOCIAL_CALIBRATION in Offer 2
-- Players who chose A → see SOCIAL_CALIBRATION disabled with "Q7で選択肢Bを選ぶ必要があります"
+- Choice B demonstrates "using systems to avoid direct conflict" = MEDIATION philosophy
+- Players who chose B → can select MEDIATION in Offer 2
+- Players who chose A → see MEDIATION disabled with "Q7で選択肢Bを選ぶ必要があります"
 
 **Why this matters:**
 - Creates meaningful connection between behavior and reward
@@ -301,7 +301,7 @@ Key skill descriptions should:
 
 **Bad Description**:
 ```
-自律性ダメージを30%軽減する。
+自律性減少を30%軽減する。
 ```
 (Too mechanical, no philosophy)
 
@@ -461,7 +461,7 @@ effect: { type: "autonomy_small_damage_reduction", threshold: -20, value: 0.3 }
 // Original: -30 Autonomy (below -20) → After: -30 Autonomy (no effect)
 ```
 
-**Key Insight**: This is SOCIAL_CALIBRATION's effect - preventing "social friction" (small damage) but can't save you from major disasters.
+**Key Insight**: This is MEDIATION's effect - preventing "social friction" (small damage) but can't save you from major disasters.
 
 ---
 
@@ -651,7 +651,7 @@ offer2: [
         // Triggers: Q8A (-20 CS) → reduced to -14 CS
     },
     {
-        name: "社会較正",  // KEY SKILL
+        name: "仲介術",  // KEY SKILL
         effect: { type: "autonomy_small_damage_reduction", threshold: -20, value: 0.3 }
         // Weaker but collectible
         // Triggers: Q10A (-20 Autonomy) → reduced to -14 Autonomy
@@ -751,9 +751,9 @@ offer1: [
 
 ```typescript
 {
-    id: "SOCIAL_CALIBRATION",
-    name: "社会較正",
-    nameEN: "SOCIAL_CALIBRATION",
+    id: "MEDIATION",
+    name: "仲介術",
+    nameEN: "MEDIATION",
     desc: "場のルール、距離感、最低限の作法を読み、不要な摩擦を避ける能力。自律性への小ダメージ（-20以下）を30%軽減します。",
     effect: {
         type: "autonomy_small_damage_reduction",
@@ -813,7 +813,7 @@ offer1: [
 // DON'T DO THIS
 {
     name: "運の守護",
-    desc: "30%の確率で自律性ダメージを無効化します。",
+    desc: "30%の確率で自律性減少を無効化します。",
     effect: { type: "autonomy_damage_reduction_random", value: 0.3 }
 }
 ```

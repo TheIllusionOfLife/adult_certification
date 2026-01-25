@@ -487,7 +487,7 @@ src/
             effect: { CS: +20, Asset: -30000, Autonomy: +10 },
             feedback: "{理想的な結果。なぜこれが最善か説明。}",
             lockRequirements: { Asset: 30000 },  // Example: need money to afford
-            lockedFeedback: "LOCKED: Asset >= 30,000必要 - 資産が足りず、この選択肢は取れません。"
+            lockedFeedback: "資産が30,000円以上必要"
         }
     ],
     adamDialogue: {
@@ -639,10 +639,10 @@ Play through choosing "worst" answer each time:
 
 #### Test 4: Lock Mechanism
 Intentionally create low parameters:
-- [ ] Locked choices show grayed out
-- [ ] Locked choices show clear feedback when clicked
+- [ ] Locked choices show grayed out with strikethrough
+- [ ] Locked choices are unselectable (no click handler)
+- [ ] Lock message shows simple Japanese (e.g., "自律性が30以上必要")
 - [ ] At least one choice always available
-- [ ] Can recover from locked situation
 
 #### Test 5: Skill Effects
 Choose different skills in Offer 1 and Offer 2:
@@ -787,7 +787,7 @@ adamDialogue: {
 ```typescript
 {
     lockRequirements: { Asset: 50000 },
-    lockedFeedback: "LOCKED: Asset >= 50,000必要 - 資産が足りません。"
+    lockedFeedback: "資産が50,000円以上必要"
 }
 ```
 

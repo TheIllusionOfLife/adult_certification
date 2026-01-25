@@ -47,7 +47,7 @@ The game uses three parameters, each with a distinct role in gameplay and narrat
     text: "新しいスーツと靴を購入して、万全の状態で臨む。",
     effect: { CS: 40, Asset: -30000, Autonomy: 10 },
     lockRequirements: { Asset: 100000 },
-    lockedFeedback: "LOCKED: Asset >= 100,000円 必要"
+    lockedFeedback: "資産が100,000円以上必要"
 }
 ```
 
@@ -77,7 +77,7 @@ The game uses three parameters, each with a distinct role in gameplay and narrat
     text: "管理会社に連絡し、「匿名で」注意してもらう。",
     effect: { CS: 30, Asset: 0, Autonomy: 15 },
     lockRequirements: { Autonomy: 20 },
-    lockedFeedback: "LOCKED: Autonomy >= 20 必要"
+    lockedFeedback: "自律性が20以上必要"
 }
 ```
 
@@ -245,7 +245,7 @@ Before finalizing a stage:
 ```typescript
 text: "新しいスーツと靴を購入して、万全の状態で臨む。"
 lockRequirements: { Asset: 100000 }
-lockedFeedback: "LOCKED: Asset >= 100,000円 必要 - スーツと靴を買う余裕がありません。"
+lockedFeedback: "資産が100,000円以上必要"
 ```
 ✅ Clear economic logic (buying costs money)
 ✅ Threshold at starting value (100k) creates tension
@@ -255,7 +255,7 @@ lockedFeedback: "LOCKED: Asset >= 100,000円 必要 - スーツと靴を買う�
 ```typescript
 text: "管理会社に連絡し、「匿名で」注意してもらう。"
 lockRequirements: { Autonomy: 20 }
-lockedFeedback: "LOCKED: Autonomy >= 20 必要 - システムを使う発想が浮かびません。"
+lockedFeedback: "自律性が20以上必要"
 ```
 ✅ Clear psychological logic (requires confidence to use systems)
 ✅ Low threshold (20) allows recovery
@@ -265,7 +265,7 @@ lockedFeedback: "LOCKED: Autonomy >= 20 必要 - システムを使う発想が�
 ```typescript
 text: "建設的な指摘をする。"
 lockRequirements: { Asset: 100000 }
-lockedFeedback: "LOCKED: Asset >= 100,000円 必要"
+lockedFeedback: "資産が100,000円以上必要"
 ```
 ❌ No economic logic (why does speaking require money?)
 ❌ Lock doesn't make narrative sense

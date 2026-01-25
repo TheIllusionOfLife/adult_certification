@@ -564,10 +564,10 @@ Total = 10 + 0 + 40 = +50
    - This is the "anyone can access" option
    - Usually the weaker/compromise option
 
-2. **Locked choice must have `lockedFeedback`**
-   - Clearly state requirement
-   - Explain WHY player can't access it
-   - Format: `"LOCKED: {Parameter} >= {Value}必要 - {Reason}"`
+2. **Locked choice feedback is auto-generated**
+   - Simple Japanese format: "自律性が20以上必要"
+   - The `lockedFeedback` field is optional (UI generates from `lockRequirements`)
+   - Locked choices are unselectable (no click handler)
 
 3. **Test worst-case scenario**
    - Simulate player with lowest possible parameters
@@ -587,9 +587,9 @@ Total = 10 + 0 + 40 = +50
         {
             text: "管理会社に連絡し、「匿名で」注意してもらう。",
             effect: { CS: +30, Asset: 0, Autonomy: +15 },
-            feedback: "社会較正です。システムを使う技術です。",
-            lockRequirements: { Autonomy: 20 },
-            lockedFeedback: "LOCKED: Autonomy >= 20必要 - システムを使う発想が浮かびません。"
+            feedback: "仲介術です。システムを使う技術です。",
+            lockRequirements: { Autonomy: 20 }
+            // lockedFeedback auto-generated: "自律性が20以上必要"
         }
     ]
 }
@@ -761,8 +761,8 @@ Independent: "自律的回答です。システムを道具として見る視点
             text: "弁護士に相談し、法的措置をちらつかせて交渉する。",
             effect: { CS: +30, Asset: -20000, Autonomy: +20 },
             feedback: "正当防衛です。費用をかけましたが、不当請求を半分以下に削減しました。",
-            lockRequirements: { Asset: 50000 },
-            lockedFeedback: "LOCKED: Asset >= 50,000必要 - 弁護士費用が払えません。資産がないと正義も買えません。"
+            lockRequirements: { Asset: 50000 }
+            // lockedFeedback auto-generated: "資産が50,000円以上必要"
         }
     ],
     adamDialogue: {
