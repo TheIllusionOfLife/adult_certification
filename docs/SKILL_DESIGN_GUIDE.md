@@ -294,13 +294,13 @@ Key skill descriptions should:
 3. **Be inspiring** - This is a "power" player earned
 
 **Good Description**:
-```
+```text
 場のルール、距離感、最低限の作法を読み、不要な摩擦を避ける能力。
 自律性への小ダメージ（-20以下）を30%軽減します。
 ```
 
 **Bad Description**:
-```
+```text
 自律性減少を30%軽減する。
 ```
 (Too mechanical, no philosophy)
@@ -918,4 +918,4 @@ Before finalizing your 4 skills:
 
 ---
 
-**Good luck designing! ⚡**
+### Good luck designing! ⚡

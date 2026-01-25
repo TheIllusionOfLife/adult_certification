@@ -23,7 +23,7 @@ export const adamDialogue = {
         ],
         keySkillAcquired: [
             "[A.D.A.M.]: ……補足です。",
-            "[A.D.A.M.]: あなたは鍵スキル『SOCIAL_CALIBRATION』を獲得しました。",
+            "[A.D.A.M.]: あなたは鍵スキル『MEDIATION』を獲得しました。",
             "[A.D.A.M.]: この能力の効果は、今ステージのみ有効です。",
             "[A.D.A.M.]: ただし、収集記録として保存されます。",
             "[A.D.A.M.]: ……厄介な知識を持ちましたね。"
