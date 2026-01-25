@@ -545,14 +545,14 @@ halves (left half conforming with forced smile and dead eyes, right half
 autonomous with fire in eyes and determined expression), behind protagonist
 A.D.A.M.'s growing shadow as puppet master with visible control strings
 descending toward player, dramatic spotlight from above, ink splatter
-decorative frame, existential choice symbolism, climactic finale atmosphere
+detailing on the mirror's ornate frame, existential choice symbolism, climactic finale atmosphere
 ```
 
 **Key Elements**:
 - ✅ Split face reflection (duality)
 - ✅ Contrasting expressions (conformity vs autonomy)
 - ✅ A.D.A.M. shadow with strings (system control)
-- ✅ Ornate frame (importance)
+- ✅ Ornate mirror frame (importance) - note: this is the mirror's frame, not an image border
 - ✅ Dramatic lighting (finale feel)
 
 **Expected Result**: Symbolic image of choice between conformity and independence, with A.D.A.M.'s looming presence.

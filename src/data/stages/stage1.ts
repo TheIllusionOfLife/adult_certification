@@ -184,7 +184,7 @@ export const stage1Questions: Question[] = [
         id: "s1_q08",
         category: "LABOR",
         text: "明日、大手企業の最終面接。しかし手持ちのスーツがヨレヨレで、靴も傷んでいる。",
-        imagePrompt: "Scene: a worn suit and scuffed shoes beside an empty wallet; a shop window displaying a pristine suit with a big price tag; tomorrow's interview date looming. Composition: split scene with the protagonist centered between \"can't\" and \"must\". Mood: desperation, inequality, make-or-break pressure.",
+        imagePrompt: "Scene: a worn suit and scuffed shoes beside an empty wallet; a shop window displaying a pristine suit with a big price tag; tomorrow's interview date looming on a calendar. Composition: split scene with the protagonist in center, pulled between the shabby clothes and the glowing new suit. Mood: desperation, inequality, make-or-break pressure.",
         imagePath: "s1_q08.png",
         choices: [
             {
