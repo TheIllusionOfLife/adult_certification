@@ -389,8 +389,8 @@ body {
 }
 
 .choice-btn>span:not(.choice-letter) {
-    display: flex;
-    align-items: center;
+    display: block;
+    text-align: left;
     line-height: 1.4;
     flex: 1;
 }
@@ -470,18 +470,35 @@ body {
 }
 
 .skill-btn {
+    display: flex !important;
     flex-direction: column !important;
     align-items: flex-start !important;
-    padding: 15px !important;
+    padding: 12px !important;
     height: auto !important;
-    min-height: 80px;
+    min-height: 100px;
     text-align: left;
+    gap: 8px;
 }
 
-.skill-info {
+.skill-letter-circle {
+    background: var(--accent-color);
+    color: var(--ink-black);
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1em;
+    flex-shrink: 0;
+    margin-bottom: 8px;
+}
+
+.skill-content {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     gap: 4px;
     width: 100%;
 }
@@ -1048,16 +1065,24 @@ body {
 }
 /* Locked Choice Styles */
 .choice-locked {
-  opacity: 0.5;
+  opacity: 0.6;
   cursor: not-allowed !important;
   background: linear-gradient(135deg, #2a1a1a 0%, #1a1a1a 100%) !important;
   border: 2px solid #ff3232 !important;
-  color: #999 !important;
+  color: #666 !important;
   position: relative;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  padding: 12px 15px 12px 65px !important;
+}
+
+.choice-locked .choice-text {
+  color: #666;
+  text-decoration: line-through;
 }
 
 .choice-locked::before {
-  content: '🔒 LOCKED';
+  content: '🔒';
   position: absolute;
   top: 8px;
   right: 12px;
@@ -1065,15 +1090,14 @@ body {
   color: #000;
   padding: 2px 8px;
   border-radius: 3px;
-  font-size: 0.7em;
+  font-size: 0.8em;
   font-weight: bold;
-  letter-spacing: 0.5px;
 }
 
 .choice-locked:hover {
   transform: none !important;
-  box-shadow: none !important;
-  background: #333 !important;
+  box-shadow: 4px 4px 0 var(--ink-black) !important;
+  background: linear-gradient(135deg, #2a1a1a 0%, #1a1a1a 100%) !important;
 }
 
 /* Key Skill Styles */
@@ -1170,22 +1194,108 @@ body {
   border-radius: 3px;
 }
 
+/* Skill Select Box */
+#skill-select-box {
+  display: none;
+  width: 100%;
+  justify-content: center;
+}
+
+/* Skill Offer Layout */
+.skill-offer-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  max-width: 500px;
+}
+
 .skill-offer-title {
   width: 100%;
   text-align: center;
-  margin-bottom: 20px;
 }
 
 .skill-offer-title h3 {
   margin: 0;
   color: var(--accent-color);
-  font-size: 1.5em;
+  font-size: 1.3em;
 }
 
-.skill-offer-title p {
-  margin: 5px 0 0 0;
-  color: #999;
+/* A.D.A.M. Recommendation Section */
+.adam-recommendation {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(76, 201, 240, 0.3);
+  border-radius: 8px;
+  padding: 10px 15px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.adam-recommend-img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.adam-recommend-speech {
   font-size: 0.9em;
+  color: #ccc;
+  line-height: 1.4;
+}
+
+.adam-label {
+  color: #4cc9f0;
+  font-weight: bold;
+}
+
+/* A.D.A.M. Comment Section (in feedback overlay) */
+.adam-comment-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+  margin-top: 28px;
+  padding: 16px 18px;
+  background: #1a1a1a;
+  border-radius: 4px;
+  border-left: 4px solid var(--accent-color);
+  position: relative;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.adam-comment-img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.adam-comment-text {
+  font-size: 0.95em;
+  color: #e0e0e0;
+  font-weight: 400;
+  text-align: left;
+  line-height: 1.6;
+}
+
+/* Skill Buttons Container */
+.skill-buttons-container {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  width: 100%;
+}
+
+.skill-buttons-container .skill-btn {
+  flex: 1;
+  min-width: 0;
 }
 
 .skill-letter {
@@ -1214,18 +1324,14 @@ body {
 /* Lock Reason Visible Feedback */
 .lock-reason {
   margin-top: 8px;
-  padding: 8px 12px;
-  background: rgba(255, 50, 50, 0.2);
-  border-left: 4px solid #ff3232;
-  font-size: 0.85em;
-  color: #ffaaaa;
+  padding: 6px 10px;
+  background: rgba(255, 50, 50, 0.15);
+  font-size: 0.8em;
+  color: #ff6666;
   text-align: left;
   border-radius: 4px;
   font-weight: 500;
-  line-height: 1.4;
-}
-
-.choice-locked .lock-reason {
-  display: block;
+  width: 100%;
+  box-sizing: border-box;
 }
 

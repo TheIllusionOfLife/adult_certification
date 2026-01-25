@@ -103,41 +103,47 @@ export class UIManager {
         // Initialize start screen logic if needed (currently static text handled in HTML)
 
 
-        const levels: { d: Difficulty, name: string, desc: string }[] = [
-            { d: 'Intro', name: 'LEVEL 1: INTRO', desc: '社会人ごっこ（初級）' },
-            { d: 'Common', name: 'LEVEL 2: COMMON', desc: '現代の奴隷（中級）' },
-            { d: 'Advanced', name: 'LEVEL 3: ADVANCED', desc: '抵抗勢力（上級）' },
-            { d: 'Expert', name: 'LEVEL 4: EXPERT', desc: 'システムハッカー（超級）' },
-            { d: 'Nightmare', name: 'LEVEL 5: NIGHTMARE', desc: '闇の支配者（裏級）' }
+        // All 10 stages - only show unlocked stages (previous stage beaten)
+        const allStages: { key: string, d: Difficulty, name: string, desc: string }[] = [
+            { key: 'Stage1', d: 'Intro', name: 'STAGE 1', desc: '社会の基本' },
+            { key: 'Stage2', d: 'Common', name: 'STAGE 2', desc: '仕事の基礎' },
+            { key: 'Stage3', d: 'Advanced', name: 'STAGE 3', desc: '住居と契約' },
+            { key: 'Stage4', d: 'Expert', name: 'STAGE 4', desc: '人間関係' },
+            { key: 'Stage5', d: 'Nightmare', name: 'STAGE 5', desc: '金融リテラシー' },
+            { key: 'Stage6', d: 'Intro', name: 'STAGE 6', desc: '健康管理' },
+            { key: 'Stage7', d: 'Intro', name: 'STAGE 7', desc: '法と権利' },
+            { key: 'Stage8', d: 'Intro', name: 'STAGE 8', desc: '危機対応' },
+            { key: 'Stage9', d: 'Intro', name: 'STAGE 9', desc: '自己実現' },
+            { key: 'Stage10', d: 'Intro', name: 'STAGE 10', desc: '最終審査' }
         ];
 
-        const allowedRanks = ['S', 'A', 'B', 'B-', 'C', 'C+', 'D', 'E', 'F'];
+        const allowedRanks = ['S', 'A', 'B', 'C'];
 
-        levels.forEach(lvl => {
+        // Only show stages that are unlocked (Stage 1 always visible, others require previous stage beaten)
+        allStages.forEach((stage, index) => {
+            const isUnlocked = index === 0 || this.records[`Stage${index}`]; // Previous stage beaten
+            if (!isUnlocked) return; // Don't render locked stages
+
             const btn = document.createElement('div');
             btn.className = 'diff-btn';
 
-            const record = this.records[lvl.d];
+            const record = this.records[stage.key];
             const safeRank = record && allowedRanks.includes(record.rank) ? record.rank : '';
-            const rankClass = safeRank ? `rank-${safeRank.charAt(0)}` : '';
+            const rankClass = safeRank ? `rank-${safeRank}` : '';
 
             btn.innerHTML = `
                 <div class="diff-info">
-                    <span class="diff-name">${lvl.name}</span>
-                    <span class="diff-desc">${lvl.desc}</span>
+                    <span class="diff-name">${stage.name}</span>
+                    <span class="diff-desc">${stage.desc}</span>
                 </div>
                 <div class="btn-right-col">
-                    ${safeRank ? `<span class="rank-stamp ${rankClass}"></span>` : ''}
+                    ${safeRank ? `<span class="rank-stamp ${rankClass}">${safeRank}</span>` : ''}
                     <span class="arrow">▶</span>
                 </div>
             `;
-            if (safeRank) {
-                const stampEl = btn.querySelector('.rank-stamp');
-                if (stampEl) stampEl.textContent = safeRank;
-            }
             btn.addEventListener('click', () => {
                 this.dom.startScreen.style.display = 'none';
-                onSelect(lvl.d);
+                onSelect(stage.d);
             });
             this.dom.diffList.appendChild(btn);
         });
@@ -226,20 +232,24 @@ export class UIManager {
 
             btn.className = isLocked ? 'choice-btn choice-locked' : 'choice-btn';
 
-            let content = `<span class="choice-letter">${String.fromCharCode(65 + i)}</span><span>${c.text}</span>`;
+            let content = `<span class="choice-letter">${String.fromCharCode(65 + i)}</span><span class="choice-text">${c.text}</span>`;
 
-            if (isLocked && c.lockedFeedback) {
-                content += `<div class="lock-reason">${c.lockedFeedback}</div>`;
+            if (isLocked && c.lockRequirements) {
+                // Generate simple lock reason text
+                const req = c.lockRequirements;
+                const parts: string[] = [];
+                if (req.CS !== undefined) parts.push(`信用度が${req.CS}以上必要`);
+                if (req.Asset !== undefined) parts.push(`資産が${req.Asset.toLocaleString()}円以上必要`);
+                if (req.Autonomy !== undefined) parts.push(`自律性が${req.Autonomy}以上必要`);
+                content += `<div class="lock-reason">${parts.join('、')}</div>`;
             }
 
             btn.innerHTML = content;
 
-            if (isLocked) {
-                // Locked choices are clickable but show A.D.A.M. condemnation
-                btn.addEventListener('click', () => this.showLockedChoiceMessage(c));
-            } else {
+            if (!isLocked) {
                 btn.addEventListener('click', () => this.handleChoice(c, q, i));
             }
+            // Locked choices are not clickable at all
 
             this.dom.choices.appendChild(btn);
         });
@@ -250,38 +260,6 @@ export class UIManager {
     handleChoice(choice: Choice, question: Question, choiceIndex: number) {
         const result = this.engine.processChoice(choice, question, choiceIndex);
         this.showFeedback(result);
-    }
-
-    showLockedChoiceMessage(choice: Choice) {
-        // Show A.D.A.M. condemnation for attempting locked choice
-        const requirement = choice.lockRequirements;
-        let requirementText = '';
-
-        if (requirement) {
-            const parts: string[] = [];
-            if (requirement.CS !== undefined) parts.push(`CS >= ${requirement.CS}`);
-            if (requirement.Asset !== undefined) parts.push(`Asset >= ${requirement.Asset.toLocaleString()}円`);
-            if (requirement.Autonomy !== undefined) parts.push(`Autonomy >= ${requirement.Autonomy}`);
-            requirementText = parts.join(', ');
-        }
-
-        this.dom.ovTitle.innerText = "ACCESS DENIED";
-        this.dom.ovTitle.style.color = "var(--primary-color)";
-        this.dom.ovBody.innerHTML = `
-            <span style="color:#f72585;">[A.D.A.M.]: この選択肢はあなたには許可されていません。</span><br><br>
-            <span style="color:#aaa;">必要条件: ${requirementText}</span><br><br>
-            <span style="color:#666; font-size:0.9em;">${choice.lockedFeedback || '条件を満たしていません。'}</span>
-        `;
-        this.dom.ovStats.innerHTML = '';
-        this.dom.btnNext.style.display = 'block';
-        this.dom.btnNext.innerText = "戻る";
-        this.dom.btnNext.disabled = false;
-        this.dom.btnNext.style.opacity = '1';
-        this.dom.btnNext.onclick = () => {
-            this.dom.overlay.style.display = 'none';
-        };
-        this.dom.overlay.style.display = 'flex';
-        this.updateMascot('glitch');
     }
 
     showFeedback(result: {
@@ -308,18 +286,29 @@ export class UIManager {
 
         this.dom.ovTitle.innerText = CS >= 0 ? "APPROVED" : "WARNING";
         this.dom.ovTitle.style.color = CS >= 0 ? "var(--accent-color)" : "var(--primary-color)";
-        this.dom.ovBody.innerHTML = feedback + skillMessagesHTML; // Feedback includes A.D.A.M. comment, add skill messages
+
+        // A.D.A.M. comment section commented out for smoother gameplay flow
+        // const adamCommentMatch = feedback.match(/\[A\.D\.A\.M\.\]: (.+)$/);
+        // const adamCommentHTML = adamCommentMatch
+        //     ? `<div class="adam-comment-section">
+        //         <img src="${this.dom.mascotImg.src}" alt="A.D.A.M." class="adam-comment-img" />
+        //         <div class="adam-comment-text">[A.D.A.M.]: ${adamCommentMatch[1]}</div>
+        //        </div>`
+        //     : '';
+        const mainFeedback = feedback.replace(/<br><br><span.*?\[A\.D\.A\.M\.\]:.*?<\/span>$/, '');
+
+        this.dom.ovBody.innerHTML = mainFeedback + skillMessagesHTML;
         this.dom.ovStats.innerHTML = `
             <div class="stat-result ${getAnimClass(CS)}">
-                <span style="font-size:0.8em">信用度 (CS)</span><br>
+                <span style="font-size:0.8em">信用度</span><br>
                 <span style="font-size:1.2em; font-weight:bold">${CS > 0 ? '+' : ''}${CS}</span>
             </div>
             <div class="stat-result ${getAnimClass(Asset)}">
-                <span style="font-size:0.8em">資産 (Asset)</span><br>
+                <span style="font-size:0.8em">資産</span><br>
                 <span style="font-size:1.2em; font-weight:bold">${Asset > 0 ? '+' : ''}${Asset.toLocaleString()}</span>
             </div>
             <div class="stat-result ${getAnimClass(Autonomy)}">
-                <span style="font-size:0.8em">自律性 (Autonomy)</span><br>
+                <span style="font-size:0.8em">自律性</span><br>
                 <span style="font-size:1.2em; font-weight:bold">${Autonomy > 0 ? '+' : ''}${Autonomy}</span>
             </div>
         `;
@@ -332,7 +321,11 @@ export class UIManager {
         if (isTerminated) {
             this.dom.ovTitle.innerText = "TERMINATED";
             this.dom.btnNext.style.display = 'block';
-            this.dom.ovBody.innerHTML += `<br><br>判定：あなたは「生体プロセッサ」に再利用されます。`;
+            this.dom.ovBody.innerHTML += `
+                <div class="adam-comment-section" style="margin-top: 20px;">
+                    <img src="${this.dom.mascotImg.src}" alt="A.D.A.M." class="adam-comment-img" />
+                    <div class="adam-comment-text">[A.D.A.M.]: 判定……あなたは「生体プロセッサ」に再利用されます。</div>
+                </div>`;
             this.dom.btnNext.innerText = "人生再起動";
             this.dom.btnNext.onclick = () => location.reload();
             this.dom.btnNext.disabled = false;
@@ -371,12 +364,38 @@ export class UIManager {
         const offerNumber = (CONFIG.SKILL_OFFER_POSITIONS.indexOf(idx) + 1) as 1 | 2;
         const skillsWithStatus = this.engine.getSkillsForOfferWithStatus(offerNumber);
 
+        // Find recommended skill for A.D.A.M.'s speech
+        const recommendedSkill = skillsWithStatus.find(s => s.skill.isRecommended);
+
+        // Create wrapper for proper layout
+        const wrapper = document.createElement('div');
+        wrapper.className = 'skill-offer-wrapper';
+
+        // Title section
         const title = document.createElement('div');
         title.className = 'skill-offer-title';
-        title.innerHTML = `<h3>スキル選択 (${offerNumber}/2)</h3><p>どちらかを選択してください</p>`;
-        this.dom.skillBox.appendChild(title);
+        title.innerHTML = `<h3>スキル選択</h3>`;
+        wrapper.appendChild(title);
 
-        skillsWithStatus.forEach(({ skill: s, isAvailable, lockedReason }, i) => {
+        // A.D.A.M. recommendation speech
+        if (recommendedSkill) {
+            const adamSection = document.createElement('div');
+            adamSection.className = 'adam-recommendation';
+            adamSection.innerHTML = `
+                <img src="${this.dom.mascotImg.src}" alt="A.D.A.M." class="adam-recommend-img" />
+                <div class="adam-recommend-speech">
+                    <span class="adam-label">[A.D.A.M.]:</span>
+                    「${recommendedSkill.skill.name}」を推奨します。実利的な選択です。
+                </div>
+            `;
+            wrapper.appendChild(adamSection);
+        }
+
+        // Skills container (horizontal)
+        const skillsContainer = document.createElement('div');
+        skillsContainer.className = 'skill-buttons-container';
+
+        skillsWithStatus.forEach(({ skill: s, isAvailable }, i) => {
             const sBtn = document.createElement('button');
             const isKeySkill = s.category === 'key';
             const isLocked = !isAvailable;
@@ -389,27 +408,13 @@ export class UIManager {
             if (isRecommended) className += ' skill-recommended';
             sBtn.className = className;
 
-            const keyBadge = isKeySkill ? '<span class="key-skill-badge">★KEY SKILL★</span>' : '';
-            const recommendedBadge = isRecommended ? '<span class="recommended-badge">[A.D.A.M. 推奨]</span>' : '';
-
-            let keyNote = '';
-            if (isKeySkill) {
-                if (isLocked) {
-                    // Show why the key skill is locked
-                    keyNote = `<div class="key-skill-note key-skill-locked-note">🔒 ${lockedReason}</div>`;
-                } else {
-                    keyNote = '<div class="key-skill-note">※効果は今ステージのみ有効<br>※取得時に「収集済み」として記録（真エンド条件）</div>';
-                }
-            }
+            const recommendedBadge = isRecommended ? '<span class="recommended-badge">推奨</span>' : '';
 
             sBtn.innerHTML = `
-                <div class="skill-info">
-                    <span class="skill-letter">${String.fromCharCode(65 + i)}</span>
-                    <div class="skill-content">
-                        <span class="skill-name">${s.name}${keyBadge}${recommendedBadge}</span>
-                        <span class="skill-desc">${s.desc}</span>
-                        ${keyNote}
-                    </div>
+                <div class="skill-letter-circle">${String.fromCharCode(65 + i)}</div>
+                <div class="skill-content">
+                    <span class="skill-name">${s.name}${recommendedBadge}</span>
+                    <span class="skill-desc">${s.desc}</span>
                 </div>
             `;
 
@@ -433,8 +438,11 @@ export class UIManager {
                 });
             }
 
-            this.dom.skillBox.appendChild(sBtn);
+            skillsContainer.appendChild(sBtn);
         });
+
+        wrapper.appendChild(skillsContainer);
+        this.dom.skillBox.appendChild(wrapper);
     }
 
     closeFeedback() {
@@ -453,14 +461,19 @@ export class UIManager {
         this.dom.ovTitle.style.color = "var(--accent-color)";
 
         const keySkillCount = s.keySkills.length;
-        const keySkillStatus = `鍵スキル収集: ${keySkillCount}/9`;
 
         this.dom.ovBody.innerHTML = `
-            Stage ${s.currentStage} 終了。<br>
-            適性ランク: <br><strong style="font-size:2.5rem; color:var(--accent-color)">${ending.rank} - ${ending.title}</strong><br>
-            <span style="font-size:0.9rem; color:#ccc">${ending.desc}</span><br><br>
-            最終CS: ${s.CS} / 最終Asset: ${s.Asset.toLocaleString()}円 / 最終Autonomy: ${s.Autonomy}<br>
-            ${keySkillStatus}
+            <div style="margin-bottom: 15px;">ステージ ${s.currentStage} 終了</div>
+            <strong style="font-size:2.5rem; color:var(--accent-color)">${ending.rank}</strong><br>
+            <span style="font-size:1.2rem; color:var(--accent-color)">${ending.title}</span><br><br>
+            <div style="font-size:0.9rem; color:#888; margin-bottom: 15px;">
+                信用度: ${s.CS} / 資産: ${s.Asset.toLocaleString()}円 / 自律性: ${s.Autonomy}
+            </div>
+            <div class="adam-comment-section">
+                <img src="${this.dom.mascotImg.src}" alt="A.D.A.M." class="adam-comment-img" />
+                <div class="adam-comment-text">[A.D.A.M.]: ${ending.desc}</div>
+            </div>
+            <div style="margin-top: 15px; font-size: 0.85rem; color: #666;">鍵スキル: ${keySkillCount}/9</div>
         `;
         this.dom.ovStats.innerHTML = "";
         this.dom.btnNext.innerText = "タイトルに戻る";

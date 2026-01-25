@@ -17,7 +17,7 @@ export const STAGE_1_METADATA: StageMetadata = {
             {
                 id: "s1_normal_01",
                 name: "メンタルシールド",
-                desc: "全ての自律性ダメージを30%軽減します。",
+                desc: "全ての自律性減少を30%軽減します。",
                 effect: { type: "autonomy_damage_reduction", value: 0.3 },
                 category: "normal"
                 // Protects Autonomy - the hidden critical resource for True Ending
@@ -46,7 +46,7 @@ export const STAGE_1_METADATA: StageMetadata = {
                 id: "MEDIATION",
                 name: "仲介術",
                 nameEN: "MEDIATION",
-                desc: "直接対決を避け、システムや第三者を介して問題を解決する技術。全ての自律性ダメージを50%軽減します。",
+                desc: "直接対決を避け、システムや第三者を介して問題を解決する技術。全ての自律性減少を50%軽減します。",
                 effect: { type: "autonomy_damage_reduction", value: 0.5 },
                 category: "key",
                 isCollectible: true,

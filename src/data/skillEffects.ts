@@ -101,7 +101,7 @@ export function getSkillActivations(
                 // Only show if Autonomy damage was actually reduced
                 if (originalEffect.Autonomy < 0 && modifiedEffect.Autonomy !== originalEffect.Autonomy) {
                     activated = true;
-                    description = "自律性ダメージ軽減";
+                    description = "自律性減少軽減";
                     originalValue = originalEffect.Autonomy;
                     modifiedValue = modifiedEffect.Autonomy;
                 }
@@ -131,7 +131,7 @@ export function getSkillActivations(
                 // Only show if damage meets threshold and was reduced
                 if (originalEffect.Autonomy < 0 && originalEffect.Autonomy >= (skill.effect.threshold ?? -20) && modifiedEffect.Autonomy !== originalEffect.Autonomy) {
                     activated = true;
-                    description = "小ダメージ軽減";
+                    description = "自律性減少軽減";
                     originalValue = originalEffect.Autonomy;
                     modifiedValue = modifiedEffect.Autonomy;
                 }
