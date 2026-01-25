@@ -4,7 +4,7 @@ export const STAGE_1_METADATA: StageMetadata = {
     id: 1,
     theme: "Social Basics",
     themeJP: "社会の基本",
-    keySkillId: "SOCIAL_CALIBRATION",
+    keySkillId: "MEDIATION",
     initialParams: { CS: 50, Asset: 100000, Autonomy: 50 },
     rankThresholds: {
         S: { CS: 80 },
@@ -43,15 +43,15 @@ export const STAGE_1_METADATA: StageMetadata = {
                 // A.D.A.M. recommends: protects CS (objective ranking resource)
             },
             {
-                id: "SOCIAL_CALIBRATION",
-                name: "社会較正",
-                nameEN: "SOCIAL_CALIBRATION",
-                desc: "場のルール、距離感、最低限の作法を読み、不要な摩擦を避ける能力。全ての自律性ダメージを50%軽減します。",
+                id: "MEDIATION",
+                name: "仲介術",
+                nameEN: "MEDIATION",
+                desc: "直接対決を避け、システムや第三者を介して問題を解決する技術。全ての自律性ダメージを50%軽減します。",
                 effect: { type: "autonomy_damage_reduction", value: 0.5 },
                 category: "key",
                 isCollectible: true,
                 acquiredStage: 1,
-                adamComment: "……あなたは『システムを理解しながら、自我を保つ』術を習得しました。厄介ですね。",
+                adamComment: "……あなたは『間接的に問題を処理する』術を習得しました。厄介ですね。",
                 keySkillRequirement: {
                     questionId: "s1_q07",
                     choiceIndex: 1 // Choice B: 管理会社に連絡し、「匿名で」注意してもらう

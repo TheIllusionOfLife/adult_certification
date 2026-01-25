@@ -167,7 +167,7 @@ export const stage1Questions: Question[] = [
             {
                 text: "管理会社に連絡し、「匿名で」注意してもらう。",
                 effect: { CS: 30, Asset: 0, Autonomy: 15 },
-                feedback: "社会較正です。システムを間に挟むことで、直接対決を避ける技術です。",
+                feedback: "仲介術です。システムを間に挟むことで、直接対決を避ける技術です。",
                 lockRequirements: { Autonomy: 20 },
                 lockedFeedback: "LOCKED: Autonomy >= 20 必要 - システムを使う発想が浮かびません。"
             }

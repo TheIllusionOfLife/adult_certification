@@ -19,10 +19,10 @@ export function applySkillEffects(
         switch (skill.effect.type) {
             case "autonomy_damage_reduction":
                 // Reduce all Autonomy damage by value%
-                // Math.floor ensures we round away from zero (preserving damage magnitude)
+                // Math.ceil rounds toward zero for negative values (reduces damage magnitude)
                 if (Autonomy < 0) {
                     const reduced = Autonomy * (1 - skill.effect.value);
-                    Autonomy = Math.floor(reduced);
+                    Autonomy = Math.ceil(reduced);
                 }
                 break;
 
@@ -35,35 +35,38 @@ export function applySkillEffects(
 
             case "category_cs_damage_reduction":
                 // Reduce CS damage for specific category by value%
-                // Math.floor ensures we round away from zero (preserving damage magnitude)
+                // Math.ceil rounds toward zero for negative values (reduces damage magnitude)
                 if (question.category === skill.effect.category && CS < 0) {
                     const reduced = CS * (1 - skill.effect.value);
-                    CS = Math.floor(reduced);
+                    CS = Math.ceil(reduced);
                 }
                 break;
 
             case "autonomy_small_damage_reduction":
                 // Reduce Autonomy damage under threshold by value%
                 // Only applies to "small" damage (e.g., >= -20)
+                // Math.ceil rounds toward zero for negative values (reduces damage magnitude)
                 if (Autonomy < 0 && Autonomy >= (skill.effect.threshold ?? -20)) {
                     const reduced = Autonomy * (1 - skill.effect.value);
-                    Autonomy = Math.floor(reduced);
+                    Autonomy = Math.ceil(reduced);
                 }
                 break;
 
             case "asset_damage_reduction":
                 // Reduce all Asset damage by value%
+                // Math.ceil rounds toward zero for negative values (reduces damage magnitude)
                 if (Asset < 0) {
                     const reduced = Asset * (1 - skill.effect.value);
-                    Asset = Math.floor(reduced);
+                    Asset = Math.ceil(reduced);
                 }
                 break;
 
             case "cs_damage_reduction":
                 // Reduce all CS damage by value%
+                // Math.ceil rounds toward zero for negative values (reduces damage magnitude)
                 if (CS < 0) {
                     const reduced = CS * (1 - skill.effect.value);
-                    CS = Math.floor(reduced);
+                    CS = Math.ceil(reduced);
                 }
                 break;
         }

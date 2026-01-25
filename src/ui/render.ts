@@ -235,7 +235,8 @@ export class UIManager {
             btn.innerHTML = content;
 
             if (isLocked) {
-                btn.disabled = true;
+                // Locked choices are clickable but show A.D.A.M. condemnation
+                btn.addEventListener('click', () => this.showLockedChoiceMessage(c));
             } else {
                 btn.addEventListener('click', () => this.handleChoice(c, q, i));
             }
@@ -249,6 +250,38 @@ export class UIManager {
     handleChoice(choice: Choice, question: Question, choiceIndex: number) {
         const result = this.engine.processChoice(choice, question, choiceIndex);
         this.showFeedback(result);
+    }
+
+    showLockedChoiceMessage(choice: Choice) {
+        // Show A.D.A.M. condemnation for attempting locked choice
+        const requirement = choice.lockRequirements;
+        let requirementText = '';
+
+        if (requirement) {
+            const parts: string[] = [];
+            if (requirement.CS !== undefined) parts.push(`CS >= ${requirement.CS}`);
+            if (requirement.Asset !== undefined) parts.push(`Asset >= ${requirement.Asset.toLocaleString()}円`);
+            if (requirement.Autonomy !== undefined) parts.push(`Autonomy >= ${requirement.Autonomy}`);
+            requirementText = parts.join(', ');
+        }
+
+        this.dom.ovTitle.innerText = "ACCESS DENIED";
+        this.dom.ovTitle.style.color = "var(--primary-color)";
+        this.dom.ovBody.innerHTML = `
+            <span style="color:#f72585;">[A.D.A.M.]: この選択肢はあなたには許可されていません。</span><br><br>
+            <span style="color:#aaa;">必要条件: ${requirementText}</span><br><br>
+            <span style="color:#666; font-size:0.9em;">${choice.lockedFeedback || '条件を満たしていません。'}</span>
+        `;
+        this.dom.ovStats.innerHTML = '';
+        this.dom.btnNext.style.display = 'block';
+        this.dom.btnNext.innerText = "戻る";
+        this.dom.btnNext.disabled = false;
+        this.dom.btnNext.style.opacity = '1';
+        this.dom.btnNext.onclick = () => {
+            this.dom.overlay.style.display = 'none';
+        };
+        this.dom.overlay.style.display = 'flex';
+        this.updateMascot('glitch');
     }
 
     showFeedback(result: {

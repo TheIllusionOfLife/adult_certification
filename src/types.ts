@@ -1,5 +1,43 @@
 export type Difficulty = 'Intro' | 'Common' | 'Advanced' | 'Expert' | 'Nightmare';
 
+// ============================================================
+// FUTURE ARCHITECTURE: Global Ending System (Stage 10+)
+// ============================================================
+
+/**
+ * License types for the 5 ending outcomes.
+ * Determined by worst rank across all 10 stages.
+ */
+export type LicenseType =
+    | 'GOLD'      // All stages S rank
+    | 'SILVER'    // Worst rank is A
+    | 'BRONZE'    // Worst rank is B
+    | 'PAPER'     // Worst rank is C
+    | 'TRUE';     // 9/9 key skills + Stage 10 Q10 choice C
+
+/**
+ * Cross-stage progress tracking for global ending calculation.
+ * Will be persisted to localStorage.
+ */
+export interface GlobalProgress {
+    stageRanks: Record<number, 'S' | 'A' | 'B' | 'C'>; // stageId -> rank
+    keySkillsCollected: string[];                       // Array of key skill IDs
+    completedStages: number[];                          // Array of completed stage IDs
+}
+
+/**
+ * Conditional choice that only appears under certain conditions.
+ * Used for Stage 10 Q10's 3rd choice (requires 9 key skills).
+ */
+export interface ConditionalChoice extends Choice {
+    condition?: {
+        type: 'key_skill_count';
+        requiredCount: number;      // e.g., 9 for True Ending
+    };
+}
+
+// ============================================================
+
 export interface Choice {
     text: string;
     effect: {
