@@ -11,18 +11,18 @@ export const introQuestions: Question[] = [
             {
                 "text": "メインの宛先ではないが、情報を共有したい人を入れる。",
                 "effect": {
-                    "cs": 10,
-                    "money": 0,
-                    "sanity": -5
+                    "CS": 10,
+                    "Asset": 0,
+                    "Autonomy": -5
                 },
                 "feedback": "正解。組織では「知らなかった」を防ぐための証拠作りとして機能します。"
             },
             {
                 "text": "秘密にしておきたい人を入れる（Co-Conspirator）。",
                 "effect": {
-                    "cs": -20,
-                    "money": 0,
-                    "sanity": 0
+                    "CS": -20,
+                    "Asset": 0,
+                    "Autonomy": 0
                 },
                 "feedback": "それはBCCです。誤送信で情報漏洩を起こし、あなたのクビが飛びます。"
             }
@@ -38,18 +38,18 @@ export const introQuestions: Question[] = [
             {
                 "text": "引越しから14日以内。",
                 "effect": {
-                    "cs": 20,
-                    "money": 0,
-                    "sanity": -10
+                    "CS": 20,
+                    "Asset": 0,
+                    "Autonomy": -10
                 },
                 "feedback": "適正。これを過ぎると最大5万円の過料が発生する場合があります。"
             },
             {
                 "text": "次の更新の時でいい。",
                 "effect": {
-                    "cs": -30,
-                    "money": 0,
-                    "sanity": 0
+                    "CS": -30,
+                    "Asset": 0,
+                    "Autonomy": 0
                 },
                 "feedback": "違法。選挙権も行使できず、行政サービスも受けられない「幽霊市民」になります。"
             }
@@ -66,18 +66,18 @@ export const introQuestions: Question[] = [
             {
                 "text": "裏面に署名（サイン）をする。",
                 "effect": {
-                    "cs": 10,
-                    "money": 0,
-                    "sanity": 0
+                    "CS": 10,
+                    "Asset": 0,
+                    "Autonomy": 0
                 },
                 "feedback": "基本です。署名のないカードは紛失時に補償されず、ただのプラスチックゴミです。"
             },
             {
                 "text": "番号をSNSにアップして自慢する。",
                 "effect": {
-                    "cs": -100,
-                    "money": -500000,
-                    "sanity": -50
+                    "CS": -100,
+                    "Asset": -500000,
+                    "Autonomy": -50
                 },
                 "feedback": "即座に不正利用されました。あなたの承認欲求は高くつきましたね。"
             }
@@ -93,18 +93,18 @@ export const introQuestions: Question[] = [
             {
                 "text": "管理が楽だからこれでいい。",
                 "effect": {
-                    "cs": -50,
-                    "money": -100000,
-                    "sanity": -20
+                    "CS": -50,
+                    "Asset": -100000,
+                    "Autonomy": -20
                 },
                 "feedback": "リスト型攻撃の餌食です。1つ漏れれば、あなたの人生の全てが乗っ取られます。"
             },
             {
                 "text": "面倒でもサービスごとに変える。",
                 "effect": {
-                    "cs": 30,
-                    "money": 0,
-                    "sanity": -10
+                    "CS": 30,
+                    "Asset": 0,
+                    "Autonomy": -10
                 },
                 "feedback": "セキュリティの基本。パスワードマネージャーを使うのが賢い現代人です。"
             }
@@ -120,18 +120,18 @@ export const introQuestions: Question[] = [
             {
                 "text": "よく分からないので捨てる。",
                 "effect": {
-                    "cs": -20,
-                    "money": 0,
-                    "sanity": 0
+                    "CS": -20,
+                    "Asset": 0,
+                    "Autonomy": 0
                 },
                 "feedback": "愚か。それはあなたの所得証明書であり、ローン審査や転職、確定申告の必須アイテムです。"
             },
             {
                 "text": "大切に保管する。",
                 "effect": {
-                    "cs": 10,
-                    "money": 0,
-                    "sanity": 0
+                    "CS": 10,
+                    "Asset": 0,
+                    "Autonomy": 0
                 },
                 "feedback": "合格。紙切れ一枚であなたの信用力が証明されます。"
             }
@@ -147,18 +147,18 @@ export const introQuestions: Question[] = [
             {
                 "text": "値段が高いか安いかの違い。",
                 "effect": {
-                    "cs": -10,
-                    "money": 0,
-                    "sanity": 0
+                    "CS": -10,
+                    "Asset": 0,
+                    "Autonomy": 0
                 },
                 "feedback": "不勉強。実印は役所に登録した「法的効力が最強」の印鑑です。"
             },
             {
                 "text": "役所に登録しているかどうかの違い。",
                 "effect": {
-                    "cs": 20,
-                    "money": 0,
-                    "sanity": 0
+                    "CS": 20,
+                    "Asset": 0,
+                    "Autonomy": 0
                 },
                 "feedback": "正解。実印を他人に貸すことは、あなたの全財産を預けるのと同じ意味です。"
             }
@@ -174,18 +174,18 @@ export const introQuestions: Question[] = [
             {
                 "text": "作らない方が安全だ。",
                 "effect": {
-                    "cs": -10,
-                    "money": 0,
-                    "sanity": 0
+                    "CS": -10,
+                    "Asset": 0,
+                    "Autonomy": 0
                 },
                 "feedback": "保守的ですが、身分証としての機能やコンビニ交付の利便性を捨てています。"
             },
             {
                 "text": "交付申請して取得する。",
                 "effect": {
-                    "cs": 20,
-                    "money": +20000,
-                    "sanity": -5
+                    "CS": 20,
+                    "Asset": +20000,
+                    "Autonomy": -5
                 },
                 "feedback": "適応。ポイントも貰え、行政手続きがスムーズになります。管理さえできれば。"
             }
@@ -201,18 +201,18 @@ export const introQuestions: Question[] = [
             {
                 "text": "丁寧に書けたので送信する。",
                 "effect": {
-                    "cs": -10,
-                    "money": 0,
-                    "sanity": 0
+                    "CS": -10,
+                    "Asset": 0,
+                    "Autonomy": 0
                 },
                 "feedback": "重複敬語です。「部長」は役職名なので敬称を含みます。「〇〇部長」か「〇〇様」です。"
             },
             {
                 "text": "「〇〇株式会社 〇〇様」または「〇〇部長」に直す。",
                 "effect": {
-                    "cs": 10,
-                    "money": 0,
-                    "sanity": 0
+                    "CS": 10,
+                    "Asset": 0,
+                    "Autonomy": 0
                 },
                 "feedback": "正解。細かいことですが、教養は細部に宿ります。"
             }
@@ -228,18 +228,18 @@ export const introQuestions: Question[] = [
             {
                 "text": "どかない方が悪い。",
                 "effect": {
-                    "cs": -50,
-                    "money": -20000,
-                    "sanity": 0
+                    "CS": -50,
+                    "Asset": -20000,
+                    "Autonomy": 0
                 },
                 "feedback": "道交法違反。歩道は歩行者優先であり、ベルを鳴らして威嚇するのは違法行為です。"
             },
             {
                 "text": "自転車を降りて押すか、車道を走る。",
                 "effect": {
-                    "cs": 20,
-                    "money": 0,
-                    "sanity": -5
+                    "CS": 20,
+                    "Asset": 0,
+                    "Autonomy": -5
                 },
                 "feedback": "順法精神。自転車は「軽車両」であることを忘れてはいけません。"
             }
@@ -255,18 +255,18 @@ export const introQuestions: Question[] = [
             {
                 "text": "払い損なので無視し続ける。",
                 "effect": {
-                    "cs": -50,
-                    "money": 0,
-                    "sanity": 0
+                    "CS": -50,
+                    "Asset": 0,
+                    "Autonomy": 0
                 },
                 "feedback": "危険。将来の年金だけでなく、事故に遭った時の「障害年金」も貰えなくなります。"
             },
             {
                 "text": "払えないなら「免除・猶予申請」をする。",
                 "effect": {
-                    "cs": 10,
-                    "money": 0,
-                    "sanity": -5
+                    "CS": 10,
+                    "Asset": 0,
+                    "Autonomy": -5
                 },
                 "feedback": "賢明。手続きをすれば未納にはならず、受給資格期間もカウントされます。"
             }
@@ -282,18 +282,18 @@ export const introQuestions: Question[] = [
             {
                 "text": "バレなきゃいい。",
                 "effect": {
-                    "cs": -30,
-                    "money": 0,
-                    "sanity": +5
+                    "CS": -30,
+                    "Asset": 0,
+                    "Autonomy": +5
                 },
                 "feedback": "地域社会からの追放。ゴミの中身から特定され、あなたの社会的信用は地に落ちます。"
             },
             {
                 "text": "指定通り分別して出す。",
                 "effect": {
-                    "cs": 10,
-                    "money": 0,
-                    "sanity": -5
+                    "CS": 10,
+                    "Asset": 0,
+                    "Autonomy": -5
                 },
                 "feedback": "当然です。最低限のルールも守れない人間に、社会システムを利用する資格はありません。"
             }
@@ -309,18 +309,18 @@ export const introQuestions: Question[] = [
             {
                 "text": "生年月日を「公開」に設定する。",
                 "effect": {
-                    "cs": -20,
-                    "money": 0,
-                    "sanity": +10
+                    "CS": -20,
+                    "Asset": 0,
+                    "Autonomy": +10
                 },
                 "feedback": "セキュリティホール。生年月日は多くの本人確認で使われる重要な「鍵」です。"
             },
             {
                 "text": "親しい友達のみ公開、または非公開にする。",
                 "effect": {
-                    "cs": 10,
-                    "money": 0,
-                    "sanity": -5
+                    "CS": 10,
+                    "Asset": 0,
+                    "Autonomy": -5
                 },
                 "feedback": "管理できています。個人情報は切り売りするものではありません。"
             }
@@ -336,18 +336,18 @@ export const introQuestions: Question[] = [
             {
                 "text": "たかが100円、気にせず引き出す。",
                 "effect": {
-                    "cs": -10,
-                    "money": -110,
-                    "sanity": 0
+                    "CS": -10,
+                    "Asset": -110,
+                    "Autonomy": 0
                 },
                 "feedback": "チリも積もれば山。その110円を稼ぐのに、どれだけの労働時間が必要か計算しましたか？"
             },
             {
                 "text": "手数料無料の時間やネット銀行を使う。",
                 "effect": {
-                    "cs": 10,
-                    "money": 0,
-                    "sanity": 0
+                    "CS": 10,
+                    "Asset": 0,
+                    "Autonomy": 0
                 },
                 "feedback": "正解。銀行に無駄な寄付をする必要はありません。"
             }
@@ -363,18 +363,18 @@ export const introQuestions: Question[] = [
             {
                 "text": "面倒だから出さない。",
                 "effect": {
-                    "cs": -30,
-                    "money": 0,
-                    "sanity": 0
+                    "CS": -30,
+                    "Asset": 0,
+                    "Autonomy": 0
                 },
                 "feedback": "ミス。クレジットカードの更新カードや重要書類が旧住所に届き、見知らぬ誰かの手に渡ります。"
             },
             {
                 "text": "ネットやハガキで転送を申し込む。",
                 "effect": {
-                    "cs": 10,
-                    "money": 0,
-                    "sanity": -5
+                    "CS": 10,
+                    "Asset": 0,
+                    "Autonomy": -5
                 },
                 "feedback": "安全策。1年間無料で転送してくれるシステムを使わない手はありません。"
             }
@@ -390,18 +390,18 @@ export const introQuestions: Question[] = [
             {
                 "text": "小声で「今エレベーターなので」と手短に出る。",
                 "effect": {
-                    "cs": -10,
-                    "money": 0,
-                    "sanity": -5
+                    "CS": -10,
+                    "Asset": 0,
+                    "Autonomy": -5
                 },
                 "feedback": "グレーゾーン。マナー的には「出ずに後でかけ直す」あるいは「降りてから出る」が正解です。"
             },
             {
                 "text": "無視して、降りてからかけ直す。",
                 "effect": {
-                    "cs": 10,
-                    "money": 0,
-                    "sanity": 0
+                    "CS": 10,
+                    "Asset": 0,
+                    "Autonomy": 0
                 },
                 "feedback": "スマート。電波状況も悪く、同乗者にも迷惑。かけ直して謝罪するのが最適解です。"
             }
@@ -417,18 +417,18 @@ export const introQuestions: Question[] = [
             {
                 "text": "気まずいので言われた通りの高い保険に入る。",
                 "effect": {
-                    "cs": -10,
-                    "money": -20000,
-                    "sanity": 0
+                    "CS": -10,
+                    "Asset": -20000,
+                    "Autonomy": 0
                 },
                 "feedback": "カモ認定。その「気まずさ」につけ込むのが彼らのビジネスです。"
             },
             {
                 "text": "「法的な義務はない」と突っぱねて安い保険に入る。",
                 "effect": {
-                    "cs": 20,
-                    "money": -5000,
-                    "sanity": -10
+                    "CS": 20,
+                    "Asset": -5000,
+                    "Autonomy": -10
                 },
                 "feedback": "勝利。補償内容が十分なら、どの保険会社を選ぶかは借主の自由です。"
             }
@@ -444,18 +444,18 @@ export const introQuestions: Question[] = [
             {
                 "text": "「ありません」と嘘をつく。",
                 "effect": {
-                    "cs": -10,
-                    "money": 0,
-                    "sanity": -10
+                    "CS": -10,
+                    "Asset": 0,
+                    "Autonomy": -10
                 },
                 "feedback": "リスクあり。放送法と嘘の板挟み。テレビを捨てるか、正しく払うか、PCモニターにするかです。"
             },
             {
                 "text": "テレビがあるなら契約して払う。",
                 "effect": {
-                    "cs": 10,
-                    "money": -24000,
-                    "sanity": 0
+                    "CS": 10,
+                    "Asset": -24000,
+                    "Autonomy": 0
                 },
                 "feedback": "順法。それが法律です。見ないならテレビを捨てるのが唯一の解約方法です。"
             }
@@ -471,18 +471,18 @@ export const introQuestions: Question[] = [
             {
                 "text": "怖いので連絡せず、昼過ぎにしれっと出社する。",
                 "effect": {
-                    "cs": -50,
-                    "money": 0,
-                    "sanity": -20
+                    "CS": -50,
+                    "Asset": 0,
+                    "Autonomy": -20
                 },
                 "feedback": "無断欠勤は最悪の評価。信用はマイナスになり、解雇のリスクも高まります。"
             },
             {
                 "text": "正直に「体調不良」と始業前に連絡する。",
                 "effect": {
-                    "cs": -5,
-                    "money": 0,
-                    "sanity": -5
+                    "CS": -5,
+                    "Asset": 0,
+                    "Autonomy": -5
                 },
                 "feedback": "マシな選択。嘘でも「体調不良」として、連絡を入れることが組織人の最低条件です。"
             }
@@ -498,18 +498,18 @@ export const introQuestions: Question[] = [
             {
                 "text": "ラッキー！と接続して通販サイトで買い物をする。",
                 "effect": {
-                    "cs": -50,
-                    "money": -30000,
-                    "sanity": -20
+                    "CS": -50,
+                    "Asset": -30000,
+                    "Autonomy": -20
                 },
                 "feedback": "盗聴され放題。クレカ情報を空中にばら撒くようなものです。"
             },
             {
                 "text": "VPNを通すか、接続しない。",
                 "effect": {
-                    "cs": 10,
-                    "money": 0,
-                    "sanity": 0
+                    "CS": 10,
+                    "Asset": 0,
+                    "Autonomy": 0
                 },
                 "feedback": "正解。タダより高いものはありません。"
             }
@@ -525,18 +525,18 @@ export const introQuestions: Question[] = [
             {
                 "text": "繋がらない番号を書く。",
                 "effect": {
-                    "cs": -30,
-                    "money": 0,
-                    "sanity": 0
+                    "CS": -30,
+                    "Asset": 0,
+                    "Autonomy": 0
                 },
                 "feedback": "虚偽申告。職場で倒れた時、誰にも連絡がいかず、そのまま孤独死ルートです。"
             },
             {
                 "text": "事情を話し、友人や信頼できる人に頼む。",
                 "effect": {
-                    "cs": 10,
-                    "money": 0,
-                    "sanity": 0
+                    "CS": 10,
+                    "Asset": 0,
+                    "Autonomy": 0
                 },
                 "feedback": "解決策。必ず連絡が取れる相手を確保するのは、あなたの生存戦略です。"
             }

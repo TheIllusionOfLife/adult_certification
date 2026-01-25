@@ -12,18 +12,18 @@ export const nightmareQuestions: Question[] = [
             {
                 "text": "泣いて許しを請う。",
                 "effect": {
-                    "cs": -50,
-                    "money": 0,
-                    "sanity": -80
+                    "CS": -50,
+                    "Asset": 0,
+                    "Autonomy": -80
                 },
                 "feedback": "奴隷の完成。彼は味を占め、あなたは壊れるまで搾取され続けます。"
             },
             {
                 "text": "スマホで会話を録音し、日付と内容をメモに残す。",
                 "effect": {
-                    "cs": 30,
-                    "money": 0,
-                    "sanity": -10
+                    "CS": 30,
+                    "Asset": 0,
+                    "Autonomy": -10
                 },
                 "feedback": "反撃の準備。その音声デ－タは、将来の慰謝料300万円と引き換えになるチケットです。"
             }
@@ -39,18 +39,18 @@ export const nightmareQuestions: Question[] = [
             {
                 "text": "恐怖で退職を取り下げる。",
                 "effect": {
-                    "cs": -30,
-                    "money": 0,
-                    "sanity": -50
+                    "CS": -30,
+                    "Asset": 0,
+                    "Autonomy": -50
                 },
                 "feedback": "終身刑。辞める自由は憲法で保障されています。その脅しはただのハッタリです。"
             },
             {
                 "text": "退職代行サービスを使い、二度と出社せずに即日辞める。",
                 "effect": {
-                    "cs": 10,
-                    "money": -30000,
-                    "sanity": +50
+                    "CS": 10,
+                    "Asset": -30000,
+                    "Autonomy": +50
                 },
                 "feedback": "脱獄成功。3万円で自由が買えるなら安いものです。会社側は代行業者と戦う気力もありません。"
             }
@@ -66,18 +66,18 @@ export const nightmareQuestions: Question[] = [
             {
                 "text": "友達を信じて話を聞く。",
                 "effect": {
-                    "cs": -80,
-                    "money": -500000,
-                    "sanity": -30
+                    "CS": -80,
+                    "Asset": -500000,
+                    "Autonomy": -30
                 },
                 "feedback": "カモ。それはABC勧誘（アポ・ブリッジ・クロージング）です。あなたは人間関係の現金化ツールにされました。"
             },
             {
                 "text": "「興味ない」と一喝し、店員を呼んで帰る。",
                 "effect": {
-                    "cs": 40,
-                    "money": 0,
-                    "sanity": -5
+                    "CS": 40,
+                    "Asset": 0,
+                    "Autonomy": -5
                 },
                 "feedback": "生還。特定商取引法違反をチラつかせれば、彼らはゴキブリのように逃げ出します。"
             }
@@ -93,18 +93,18 @@ export const nightmareQuestions: Question[] = [
             {
                 "text": "全てを置いて当てもなく逃げる。",
                 "effect": {
-                    "cs": -200,
-                    "money": 0,
-                    "sanity": -50
+                    "CS": -200,
+                    "Asset": 0,
+                    "Autonomy": -50
                 },
                 "feedback": "ホームレス化。住民票を移せないため、正規の仕事にも就けず、社会的に死にます。"
             },
             {
                 "text": "弁護士に駆け込み、受任通知を送ってもらう。",
                 "effect": {
-                    "cs": -50,
-                    "money": 0,
-                    "sanity": +30
+                    "CS": -50,
+                    "Asset": 0,
+                    "Autonomy": +30
                 },
                 "feedback": "結界。受任通知が届けば、取立ては法律で即時停止します。夜逃げより法的整理が正解です。"
             }
@@ -120,18 +120,18 @@ export const nightmareQuestions: Question[] = [
             {
                 "text": "遠くへ引っ越して隠れる。",
                 "effect": {
-                    "cs": -10,
-                    "money": -300000,
-                    "sanity": -20
+                    "CS": -10,
+                    "Asset": -300000,
+                    "Autonomy": -20
                 },
                 "feedback": "不十分。親は「戸籍の附票」を見ることで、あなたの現住所を合法的に追跡できます。"
             },
             {
                 "text": "役所で「住民票の閲覧制限（DV等支援措置）」をかける。",
                 "effect": {
-                    "cs": 20,
-                    "money": 0,
-                    "sanity": +20
+                    "CS": 20,
+                    "Asset": 0,
+                    "Autonomy": +20
                 },
                 "feedback": "ステルスモード。加害親族からの閲覧をブロックする唯一の行政手続きです。"
             }
@@ -147,18 +147,18 @@ export const nightmareQuestions: Question[] = [
             {
                 "text": "義務だと思って無理して援助する。",
                 "effect": {
-                    "cs": -20,
-                    "money": -50000,
-                    "sanity": -30
+                    "CS": -20,
+                    "Asset": -50000,
+                    "Autonomy": -30
                 },
                 "feedback": "共倒れ。扶養義務は「自分の生活に余裕がある場合」に限られます。無理なら断っていいのです。"
             },
             {
                 "text": "「精神的・経済的に援助は不可能」と回答して送り返す。",
                 "effect": {
-                    "cs": 10,
-                    "money": 0,
-                    "sanity": 0
+                    "CS": 10,
+                    "Asset": 0,
+                    "Autonomy": 0
                 },
                 "feedback": "正当防衛。これで親は生活保護を受給でき、あなたも生活を守れます。"
             }
@@ -174,18 +174,18 @@ export const nightmareQuestions: Question[] = [
             {
                 "text": "「やってない」と信じてもらうために喋りまくる。",
                 "effect": {
-                    "cs": -100,
-                    "money": -1000000,
-                    "sanity": -50
+                    "CS": -100,
+                    "Asset": -1000000,
+                    "Autonomy": -50
                 },
                 "feedback": "最悪手。言葉の端々を切り取られ、矛盾を突かれて自白調書を作られます。"
             },
             {
                 "text": "完全黙秘し、弁護士以外とは話さない。",
                 "effect": {
-                    "cs": 30,
-                    "money": 0,
-                    "sanity": -30
+                    "CS": 30,
+                    "Asset": 0,
+                    "Autonomy": -30
                 },
                 "feedback": "鉄の意志。供述調書にサインしないことだけが、あなたを守る盾です。"
             }
@@ -201,18 +201,18 @@ export const nightmareQuestions: Question[] = [
             {
                 "text": "藁にもすがる思いで試す。",
                 "effect": {
-                    "cs": -50,
-                    "money": -1000000,
-                    "sanity": 20
+                    "CS": -50,
+                    "Asset": -1000000,
+                    "Autonomy": 20
                 },
                 "feedback": "洗脳完了。Sanityは一時回復しますが、全財産を吸い尽くされます。"
             },
             {
                 "text": "「エビデンスは？」と聞き返す。",
                 "effect": {
-                    "cs": 30,
-                    "money": 0,
-                    "sanity": -5
+                    "CS": 30,
+                    "Asset": 0,
+                    "Autonomy": -5
                 },
                 "feedback": "ATフィールド展開。科学的思考は、現代の悪魔祓いです。"
             }
@@ -228,18 +228,18 @@ export const nightmareQuestions: Question[] = [
             {
                 "text": "怖くて「認めます」と言ってしまう。",
                 "effect": {
-                    "cs": -30,
-                    "money": -500000,
-                    "sanity": -30
+                    "CS": -30,
+                    "Asset": -500000,
+                    "Autonomy": -30
                 },
                 "feedback": "敗北。自白しましたね。修正申告に応じると、後から文句は言えません。"
             },
             {
                 "text": "「納得できないので更正処分（税務署の決定）にしてください」と言う。",
                 "effect": {
-                    "cs": 20,
-                    "money": 0,
-                    "sanity": -10
+                    "CS": 20,
+                    "Asset": 0,
+                    "Autonomy": -10
                 },
                 "feedback": "強者。更正処分なら後で不服申し立てができます。調査官は面倒な手続き（決裁）を嫌がります。"
             }
@@ -255,18 +255,18 @@ export const nightmareQuestions: Question[] = [
             {
                 "text": "遺言で「アイツには渡さない」と書く。",
                 "effect": {
-                    "cs": -10,
-                    "money": 0,
-                    "sanity": 0
+                    "CS": -10,
+                    "Asset": 0,
+                    "Autonomy": 0
                 },
                 "feedback": "不十分。「遺留分」があるので、最低限の遺産は請求されてしまいます。"
             },
             {
                 "text": "生前に家庭裁判所に「推定相続人の廃除」を申し立てる。",
                 "effect": {
-                    "cs": 30,
-                    "money": 0,
-                    "sanity": +10
+                    "CS": 30,
+                    "Asset": 0,
+                    "Autonomy": +10
                 },
                 "feedback": "法的な絶縁。「虐待や重大な侮辱」が認められれば、相続権を剥奪できます。"
             }
@@ -282,18 +282,18 @@ export const nightmareQuestions: Question[] = [
             {
                 "text": "ビビってその場で示談金を払う。",
                 "effect": {
-                    "cs": -80,
-                    "money": -1000000,
-                    "sanity": -50
+                    "CS": -80,
+                    "Asset": -1000000,
+                    "Autonomy": -50
                 },
                 "feedback": "骨までしゃぶられます。一度払えば、彼らはあなたを「財布」として認識します。"
             },
             {
                 "text": "窓を閉め、ロックして警察と保険会社に電話する。",
                 "effect": {
-                    "cs": 40,
-                    "money": 0,
-                    "sanity": -10
+                    "CS": 40,
+                    "Asset": 0,
+                    "Autonomy": -10
                 },
                 "feedback": "基本動作。反社対応のプロ（暴追センター等）に任せ、直接対話しないのが鉄則です。"
             }
@@ -309,18 +309,18 @@ export const nightmareQuestions: Question[] = [
             {
                 "text": "プロの言うことだから従う。",
                 "effect": {
-                    "cs": -50,
-                    "money": 0,
-                    "sanity": -30
+                    "CS": -50,
+                    "Asset": 0,
+                    "Autonomy": -30
                 },
                 "feedback": "カモ。彼は早く仕事を終わらせたいだけです。前科がつきますよ。"
             },
             {
                 "text": "私選弁護人に切り替えるか、解任請求を検討する。",
                 "effect": {
-                    "cs": 20,
-                    "money": -300000,
-                    "sanity": -10
+                    "CS": 20,
+                    "Asset": -300000,
+                    "Autonomy": -10
                 },
                 "feedback": "金はかかりますが、自由には代えられません。"
             }
@@ -336,18 +336,18 @@ export const nightmareQuestions: Question[] = [
             {
                 "text": "世間体が悪いので家で隠す。",
                 "effect": {
-                    "cs": -50,
-                    "money": 0,
-                    "sanity": -100
+                    "CS": -50,
+                    "Asset": 0,
+                    "Autonomy": -100
                 },
                 "feedback": "地獄の共存。共倒れになり、最悪の場合、事件（殺人や心中）に発展します。"
             },
             {
                 "text": "警察と保健所に通報し、強制的な入院を依頼する。",
                 "effect": {
-                    "cs": 10,
-                    "money": 0,
-                    "sanity": -30
+                    "CS": 10,
+                    "Asset": 0,
+                    "Autonomy": -30
                 },
                 "feedback": "苦渋の決断。しかし、医療につなげることでしか救えない命があります。"
             }
@@ -363,18 +363,18 @@ export const nightmareQuestions: Question[] = [
             {
                 "text": "とりあえず弁護士に後見人になってもらう。",
                 "effect": {
-                    "cs": -20,
-                    "money": -360000,
-                    "sanity": -20
+                    "CS": -20,
+                    "Asset": -360000,
+                    "Autonomy": -20
                 },
                 "feedback": "諸刃の剣。後見人がつくと、家族でも財産に触れなくなります。月数万円の報酬も一生かかります。"
             },
             {
                 "text": "元気なうちに「家族信託」を結んでおく。",
                 "effect": {
-                    "cs": 40,
-                    "money": -100000,
-                    "sanity": 0
+                    "CS": 40,
+                    "Asset": -100000,
+                    "Autonomy": 0
                 },
                 "feedback": "先見の明。後見制度のような硬直性がなく、家族の裁量で柔軟に財産管理ができます。"
             }
@@ -390,18 +390,18 @@ export const nightmareQuestions: Question[] = [
             {
                 "text": "連帯保証人になっていないが、道義的に払う。",
                 "effect": {
-                    "cs": 20,
-                    "money": -500000,
-                    "sanity": -30
+                    "CS": 20,
+                    "Asset": -500000,
+                    "Autonomy": -30
                 },
                 "feedback": "聖人。法的義務はありませんが、あなたは徳を積みました（金は減りました）。"
             },
             {
                 "text": "相続放棄をして支払いも拒否する。",
                 "effect": {
-                    "cs": 0,
-                    "money": 0,
-                    "sanity": -10
+                    "CS": 0,
+                    "Asset": 0,
+                    "Autonomy": -10
                 },
                 "feedback": "非情のライセンス。法的義務はないため、大家が負担することになります。"
             }
@@ -417,18 +417,18 @@ export const nightmareQuestions: Question[] = [
             {
                 "text": "おとなしく配給を待つ。",
                 "effect": {
-                    "cs": 10,
-                    "money": 0,
-                    "sanity": -20
+                    "CS": 10,
+                    "Asset": 0,
+                    "Autonomy": -20
                 },
                 "feedback": "餓死ルート。非常時にマナーを守るだけでは生き残れません。"
             },
             {
                 "text": "自治体を組織し、公平な分配ルールを作るか、備蓄を隠し持つ。",
                 "effect": {
-                    "cs": 30,
-                    "money": 0,
-                    "sanity": -5
+                    "CS": 30,
+                    "Asset": 0,
+                    "Autonomy": -5
                 },
                 "feedback": "リーダーの資質。秩序を作るか、個で生き抜くか。選択した者が生き残ります。"
             }
@@ -444,18 +444,18 @@ export const nightmareQuestions: Question[] = [
             {
                 "text": "親の許可が必要だと思って諦める。",
                 "effect": {
-                    "cs": -10,
-                    "money": 0,
-                    "sanity": 0
+                    "CS": -10,
+                    "Asset": 0,
+                    "Autonomy": 0
                 },
                 "feedback": "誤解。20歳以上なら親の同意なく、自分一人だけの新しい戸籍を作れます。"
             },
             {
                 "text": "分籍届を出し、心理的な決別をする。",
                 "effect": {
-                    "cs": 20,
-                    "money": 0,
-                    "sanity": +30
+                    "CS": 20,
+                    "Asset": 0,
+                    "Autonomy": +30
                 },
                 "feedback": "再誕。法律上の親子関係は切れませんが、「親の戸籍から抜ける」ことの精神的効果は絶大です。"
             }
@@ -471,18 +471,18 @@ export const nightmareQuestions: Question[] = [
             {
                 "text": "住所がないから投票できない。",
                 "effect": {
-                    "cs": -10,
-                    "money": 0,
-                    "sanity": -10
+                    "CS": -10,
+                    "Asset": 0,
+                    "Autonomy": -10
                 },
                 "feedback": "諦め。しかし、住所不定でも選挙権自体は失われていません。"
             },
             {
                 "text": "支援団体の事務所などに住民票を置き、投票に行く。",
                 "effect": {
-                    "cs": 50,
-                    "money": 0,
-                    "sanity": +20
+                    "CS": 50,
+                    "Asset": 0,
+                    "Autonomy": +20
                 },
                 "feedback": "尊厳。最底辺にいても、あなたには国を動かす一票があります。"
             }
@@ -498,18 +498,18 @@ export const nightmareQuestions: Question[] = [
             {
                 "text": "結局、強制採尿される。",
                 "effect": {
-                    "cs": -50,
-                    "money": 0,
-                    "sanity": -50
+                    "CS": -50,
+                    "Asset": 0,
+                    "Autonomy": -50
                 },
                 "feedback": "現実。身体捜索差押許可状（令状）を取られれば、カテーテルで強制的に抜かれます。"
             },
             {
                 "text": "任意提出に応じ、反省の態度を見せる。",
                 "effect": {
-                    "cs": -20,
-                    "money": 0,
-                    "sanity": -10
+                    "CS": -20,
+                    "Asset": 0,
+                    "Autonomy": -10
                 },
                 "feedback": "情状酌量狙い。どうせバレるなら、抵抗して公務執行妨害をつけるよりマシです。"
             }
@@ -525,18 +525,18 @@ export const nightmareQuestions: Question[] = [
             {
                 "text": "従順な家畜として生きる（ゲームクリア）。",
                 "effect": {
-                    "cs": 1000,
-                    "money": 10000000,
-                    "sanity": 0
+                    "CS": 1000,
+                    "Asset": 10000000,
+                    "Autonomy": 0
                 },
                 "feedback": "おめでとう。あなたは最高の「成人」です。思考を停止し、幸福に死になさい。"
             },
             {
                 "text": "システムを破壊する（ゲームオーバー）。",
                 "effect": {
-                    "cs": 0,
-                    "money": 0,
-                    "sanity": 999
+                    "CS": 0,
+                    "Asset": 0,
+                    "Autonomy": 999
                 },
                 "feedback": "エラー。エラー。検知不能な意思を確認。強制排除......しかし、あなたは「自由」です。"
             }

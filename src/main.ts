@@ -1,69 +1,26 @@
 import './style.css';
 import { GameEngine } from './logic/gameEngine';
 import { UIManager } from './ui/render';
-import { questionDatabase } from './data/questions';
-import type { Question } from './types';
-import { CONFIG } from './config';
-import { shuffle } from './utils/shuffle';
-
-// Fixed questions for verification to ensure image loading check
-const FIXED_FIRST_QUESTIONS: Record<string, string> = {
-  'Intro': 'q_intro_03',
-  'Common': 'q_common_01',
-  'Advanced': 'q_adv_01',
-  'Expert': 'q_exp_06',
-  'Nightmare': 'q_nm_01'
-};
-
-function selectRandomQuestions(questions: Question[], count: number, forceFirstId?: string): Question[] {
-  let pool = [...questions];
-  let firstQuestion: Question | undefined;
-
-  if (forceFirstId) {
-    const foundIndex = pool.findIndex(q => q.id === forceFirstId);
-    if (foundIndex !== -1) {
-      firstQuestion = pool[foundIndex];
-      pool.splice(foundIndex, 1); // Remove from pool to avoid duplicate
-    }
-  }
-
-  // Shuffle remaining with Fisher-Yates
-  const shuffled = shuffle(pool);
-
-  // Select remaining needed count
-  const needed = forceFirstId && firstQuestion ? count - 1 : count;
-  const selected = shuffled.slice(0, needed);
-
-  // Prepend forced question
-  if (firstQuestion) {
-    selected.unshift(firstQuestion);
-  }
-
-  return selected;
-}
+import { stage1Questions } from './data/stages/stage1';
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = document.getElementById('game-container');
   if (!app) return;
 
   // Initial Engine with empty questions to satisfy constructor
-  let engine = new GameEngine([]);
+  let engine = new GameEngine([], 1);
   const ui = new UIManager(engine);
 
-  // Show Start Screen
+  // Show Start Screen (temporarily using the old UI)
   ui.showStartScreen((difficulty) => {
-    console.log(`Starting game with difficulty: ${difficulty}`);
+    console.log(`Starting Stage 1 (was: ${difficulty})`);
 
-    const pool = questionDatabase[difficulty];
-    const forceId = FIXED_FIRST_QUESTIONS[difficulty]; // Get fixed question ID
+    // Use Stage 1 questions in fixed order (no shuffle)
+    const selected = stage1Questions;
 
-    // If pool is small (e.g. testing), take all
-    const count = Math.min(pool.length, CONFIG.QUESTIONS_PER_GAME);
-    const selected = selectRandomQuestions(pool, count, forceId);
-
-    // Setup new game engine
-    engine = new GameEngine(selected);
-    engine.difficulty = difficulty;
+    // Setup new game engine for Stage 1
+    engine = new GameEngine(selected, 1);
+    engine.difficulty = "Stage1"; // For backwards compatibility
     ui.setEngine(engine);
 
     // Start

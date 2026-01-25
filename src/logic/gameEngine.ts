@@ -1,19 +1,26 @@
-import type { GameState, Question, Choice } from '../types';
-import { skills as skillDatabase } from '../data/skills';
+import type { GameState, Question, Choice, Skill } from '../types';
+import { getStageMetadata } from '../data/stageMetadata';
+import { applySkillEffects, getSkillActivationMessage } from '../data/skillEffects';
+import { getADAMCommentForEffect } from '../data/adamDialogue';
 import { CONFIG } from '../config';
-import { shuffle } from '../utils/shuffle';
 
 export class GameEngine {
     state: GameState;
-    difficulty: string = "";
+    difficulty: string = ""; // Kept for backwards compatibility
+    activeSkills: Skill[] = []; // Currently active skills for this stage
 
-    constructor(questions: Question[]) {
+    constructor(questions: Question[], stageId: number = 1) {
+        const stageMetadata = getStageMetadata(stageId);
+        const initialParams = stageMetadata?.initialParams || { CS: 50, Asset: 100000, Autonomy: 50 };
+
         this.state = {
-            cs: CONFIG.INITIAL_STATE.CS,
-            money: CONFIG.INITIAL_STATE.MONEY,
-            sanity: CONFIG.INITIAL_STATE.SANITY,
+            CS: initialParams.CS,
+            Asset: initialParams.Asset,
+            Autonomy: initialParams.Autonomy,
             skills: [],
+            keySkills: [],
             currentQuestionIndex: 0,
+            currentStage: stageId,
             isGameOver: false,
             questions: questions
         };
@@ -26,92 +33,98 @@ export class GameEngine {
         return this.state.questions[this.state.currentQuestionIndex];
     }
 
-    processChoice(choice: Choice): {
-        outcome: { cs: number, money: number, sanity: number },
+    isChoiceLocked(choice: Choice): boolean {
+        if (!choice.lockRequirements) return false;
+
+        const { CS, Asset, Autonomy } = choice.lockRequirements;
+
+        if (CS !== undefined && this.state.CS < CS) return true;
+        if (Asset !== undefined && this.state.Asset < Asset) return true;
+        if (Autonomy !== undefined && this.state.Autonomy < Autonomy) return true;
+
+        return false;
+    }
+
+    processChoice(choice: Choice, question: Question): {
+        outcome: { CS: number, Asset: number, Autonomy: number },
         feedback: string,
         isTerminated: boolean
     } {
-        let { cs, money, sanity } = choice.effect;
+        const originalEffect = { ...choice.effect };
 
-        // Apply Passive Skills
-        let skillActivated = "";
+        // Apply skill effects (deterministic, auto-calculated)
+        const modifiedEffect = applySkillEffects(originalEffect, question, this.activeSkills);
 
-        if (this.state.skills.includes('iron_stomach') && sanity < 0) {
-            const original = sanity;
-            sanity = Math.ceil(sanity * CONFIG.SKILLS.IRON_STOMACH_REDUCTION);
-            // Ensure at least -1 damage to prevent full nullification
-            if (sanity === 0 && original < 0) sanity = -1;
-            skillActivated += `<br><span style="color:#4cc9f0">【鋼の胃袋】発動: 精神ダメージ軽減 (${original} -> ${sanity})</span>`;
-        }
-        if (this.state.skills.includes('tax_hacker') && money < 0 && Math.random() < CONFIG.SKILLS.TAX_HACKER_CHANCE) {
-            money = 0;
-            skillActivated += `<br><span style="color:#ffd700">【脱税の心得】発動: 支払いを回避しました！</span>`;
-        }
-        if (this.state.skills.includes('logic_bomb') && cs < 0 && Math.random() < CONFIG.SKILLS.LOGIC_BOMB_CHANCE) {
-            cs = 0;
-            skillActivated += `<br><span style="color:#f72585">【論理爆弾】発動: 信用失墜を計算あわせで無効化！</span>`;
-        }
+        let { CS, Asset, Autonomy } = modifiedEffect;
 
         // Update State
-        this.state.cs += cs;
-        this.state.money += money;
-        this.state.sanity += sanity;
+        this.state.CS += CS;
+        this.state.Asset += Asset;
+        this.state.Autonomy += Autonomy;
 
-        // Check Death Condition
-        const isTerminated = this.state.cs <= 0 || this.state.sanity <= 0;
+        // Check Game Over Condition - ANY parameter <= 0
+        const isTerminated = this.state.CS <= 0 || this.state.Asset <= 0 || this.state.Autonomy <= 0;
         if (isTerminated) {
             this.state.isGameOver = true;
         }
 
-        // Generate Sarcastic Commentary
-        let sarcasm = "";
-        if (cs >= 30) sarcasm = "素晴らしい服従心です！システムは満足しています。";
-        else if (cs <= -20) sarcasm = "反逆的思考を検知。思想矯正を推奨します。";
-        else if (sanity <= -15) sarcasm = "精神汚染を確認。ですが業務に支障はありません。";
-        else if (money <= -10000) sarcasm = "資本主義への貢献、感謝します。";
-        else if (money >= 10000) sarcasm = "不当利益...いえ、正当な報酬ですね。";
-        else sarcasm = "処理完了。";
+        // Generate skill activation messages
+        const skillMessages = getSkillActivationMessage(originalEffect, modifiedEffect, this.activeSkills);
+
+        // Generate A.D.A.M. commentary
+        const adamComment = getADAMCommentForEffect(modifiedEffect);
 
         return {
-            outcome: { cs, money, sanity },
-            feedback: `${choice.feedback}${skillActivated}<br><br><span style="color:#aaa; font-size:0.9em;">[AI]: ${sarcasm}</span>`,
+            outcome: modifiedEffect,
+            feedback: `${choice.feedback}${skillMessages}<br><br><span style="color:#aaa; font-size:0.9em;">[A.D.A.M.]: ${adamComment}</span>`,
             isTerminated
         };
     }
 
     calculateEnding() {
         const s = this.state;
-        let rank = "D";
-        let title = "廃棄対象 (Waste)";
-        let desc = "あなたは社会の役に立ちませんでした。";
+        const stageMetadata = getStageMetadata(s.currentStage);
 
-        if (s.cs >= 800) {
+        // Get thresholds - use stage metadata if available, otherwise use defaults
+        const thresholds = stageMetadata?.rankThresholds || {
+            S: { CS: CONFIG.RANK_THRESHOLDS.S },
+            A: { CS: CONFIG.RANK_THRESHOLDS.A },
+            B: { CS: CONFIG.RANK_THRESHOLDS.B },
+            C: { CS: CONFIG.RANK_THRESHOLDS.C }
+        };
+
+        let rank = "D";
+        let title = "不合格 (Failed)";
+        let desc = "あなたは基準を満たしませんでした。";
+
+        if (s.CS >= thresholds.S.CS) {
             rank = "S";
             title = "完全なる歯車 (Perfect Cog)";
-            desc = "完璧です！あなたは個を捨て、社会の立派な部品となりました！";
-        } else if (s.cs >= 600) {
+            desc = "完璧です。あなたは個を捨て、社会の立派な部品となりました。";
+        } else if (s.CS >= thresholds.A.CS) {
             rank = "A";
-            title = "上級市民 (Prime Citizen)";
+            title = "上級適合者 (Prime Compliant)";
             desc = "優秀な成績です。多少の自我は残っていますが、許容範囲です。";
-        } else if (s.cs >= 400) {
-            // Check for specific sub-endings
-            if (s.sanity <= 20) {
+        } else if (s.CS >= thresholds.B.CS) {
+            if (s.Autonomy <= 20) {
                 rank = "B-";
-                title = "壊れた玩具 (Broken Toy)";
-                desc = "信用はありますが、精神が崩壊しています。使い捨て労働力として最適です。";
+                title = "消耗品 (Disposable)";
+                desc = "信用はありますが、精神が消耗しています。補充可能な労働力です。";
             } else {
                 rank = "B";
-                title = "一般資源 (Common Resource)";
+                title = "一般適合者 (Standard Compliant)";
                 desc = "可もなく不可もなく。代替可能な人材です。";
             }
-        } else if (s.sanity >= 80) {
-            rank = "C+";
-            title = "隠れ革命家 (Silent Rebel)";
-            desc = "信用は低いですが、妙に精神が安定していますね...危険分子として監視します。";
-        } else {
-            rank = "C";
-            title = "社会のお荷物 (Burden)";
-            desc = "生産性が低すぎます。再教育が必要です。";
+        } else if (s.CS >= thresholds.C.CS) {
+            if (s.Autonomy >= 60) {
+                rank = "C+";
+                title = "要監視対象 (Watch List)";
+                desc = "信用は低いですが、妙に精神が安定していますね……危険分子として監視します。";
+            } else {
+                rank = "C";
+                title = "最低限合格 (Minimal Pass)";
+                desc = "最低限の基準はクリアしました。再教育を推奨します。";
+            }
         }
 
         return { rank, title, desc };
@@ -121,18 +134,34 @@ export class GameEngine {
         this.state.currentQuestionIndex++;
     }
 
-    addSkill(skillId: string) {
-        if (!this.state.skills.includes(skillId)) {
-            this.state.skills.push(skillId);
+    addSkill(skill: Skill) {
+        if (!this.state.skills.includes(skill.id)) {
+            this.state.skills.push(skill.id);
+            this.activeSkills.push(skill);
+
+            // Track key skills separately
+            if (skill.category === 'key') {
+                if (!this.state.keySkills.includes(skill.id)) {
+                    this.state.keySkills.push(skill.id);
+                }
+            }
         }
     }
 
-    getAvailableSkills(count: number) {
-        const available = skillDatabase.filter(s => !this.state.skills.includes(s.id));
-        return shuffle(available).slice(0, count);
+    getSkillsForOffer(offerNumber: 1 | 2): [Skill, Skill] {
+        const stageMetadata = getStageMetadata(this.state.currentStage);
+        if (!stageMetadata) {
+            throw new Error(`No metadata found for stage ${this.state.currentStage}`);
+        }
+
+        return offerNumber === 1 ? stageMetadata.skills.offer1 : stageMetadata.skills.offer2;
     }
 
-    getSkillById(id: string) {
-        return skillDatabase.find(s => s.id === id);
+    getSkillById(id: string): Skill | undefined {
+        const stageMetadata = getStageMetadata(this.state.currentStage);
+        if (!stageMetadata) return undefined;
+
+        const allSkills = [...stageMetadata.skills.offer1, ...stageMetadata.skills.offer2];
+        return allSkills.find(s => s.id === id);
     }
 }

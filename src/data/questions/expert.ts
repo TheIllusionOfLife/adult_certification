@@ -11,18 +11,18 @@ export const expertQuestions: Question[] = [
             {
                 "text": "面倒なので個人のまま税金を払い続ける。",
                 "effect": {
-                    "cs": -10,
-                    "money": -500000,
-                    "sanity": 0
+                    "CS": -10,
+                    "Asset": -500000,
+                    "Autonomy": 0
                 },
                 "feedback": "高コスト。所得が800万を超えると、法人化した方が税率は大幅に下がることが多いです。"
             },
             {
                 "text": "法人化し、役員報酬で節税を図る。",
                 "effect": {
-                    "cs": 30,
-                    "money": 300000,
-                    "sanity": -10
+                    "CS": 30,
+                    "Asset": 300000,
+                    "Autonomy": -10
                 },
                 "feedback": "上級国民への第一歩。給与所得控除と法人税率の差を利用した錬金術です。"
             }
@@ -38,18 +38,18 @@ export const expertQuestions: Question[] = [
             {
                 "text": "資金がロックされるので入らない。",
                 "effect": {
-                    "cs": 0,
-                    "money": 0,
-                    "sanity": 0
+                    "CS": 0,
+                    "Asset": 0,
+                    "Autonomy": 0
                 },
                 "feedback": "機会損失。掛金が全額控除になる最強の節税商品を見送りましたね。"
             },
             {
                 "text": "満額（月7万円）加入して所得を圧縮する。",
                 "effect": {
-                    "cs": 30,
-                    "money": 840000,
-                    "sanity": -5
+                    "CS": 30,
+                    "Asset": 840000,
+                    "Autonomy": -5
                 },
                 "feedback": "賢者。将来の退職金を作りながら、現在の税金を年間数十万円減らしました。"
             }
@@ -65,18 +65,18 @@ export const expertQuestions: Question[] = [
             {
                 "text": "ただの積立だと思って放置。",
                 "effect": {
-                    "cs": -10,
-                    "money": -1000000,
-                    "sanity": -20
+                    "CS": -10,
+                    "Asset": -1000000,
+                    "Autonomy": -20
                 },
                 "feedback": "宝の持ち腐れ。取引先倒産時に、掛金の10倍まで無担保・無保証人で借りられる制度です。"
             },
             {
                 "text": "解約して解約手当金（約100%）を受け取り雑収入にする。",
                 "effect": {
-                    "cs": 10,
-                    "money": 0,
-                    "sanity": 0
+                    "CS": 10,
+                    "Asset": 0,
+                    "Autonomy": 0
                 },
                 "feedback": "出口戦略。40ヶ月以上掛けていれば元本割れせず、利益の繰り延べに使えます。"
             }
@@ -92,18 +92,18 @@ export const expertQuestions: Question[] = [
             {
                 "text": "複式簿記が分からないので10万円控除で済ます。",
                 "effect": {
-                    "cs": -10,
-                    "money": -100000,
-                    "sanity": 0
+                    "CS": -10,
+                    "Asset": -100000,
+                    "Autonomy": 0
                 },
                 "feedback": "怠慢。会計ソフトを使えば知識ゼロでも複式簿記は作れます。"
             },
             {
                 "text": "e-Taxで申告し、65万円控除をフル活用する。",
                 "effect": {
-                    "cs": 30,
-                    "money": 100000,
-                    "sanity": -10
+                    "CS": 30,
+                    "Asset": 100000,
+                    "Autonomy": -10
                 },
                 "feedback": "正解。紙で出すと55万円に減ります。デジタル化への適応が利益を生みます。"
             }
@@ -119,18 +119,18 @@ export const expertQuestions: Question[] = [
             {
                 "text": "怪しいのでやめる。",
                 "effect": {
-                    "cs": 0,
-                    "money": 0,
-                    "sanity": 0
+                    "CS": 0,
+                    "Asset": 0,
+                    "Autonomy": 0
                 },
                 "feedback": "現状維持ですが、相続対策の切り札を捨てています。"
             },
             {
                 "text": "家族を役員にして所得分散する。",
                 "effect": {
-                    "cs": 30,
-                    "money": 500000,
-                    "sanity": -10
+                    "CS": 30,
+                    "Asset": 500000,
+                    "Autonomy": -10
                 },
                 "feedback": "貴族の遊び。、累進課税低い税率を家族全員で分け合う高等テクニックです。"
             }
@@ -147,18 +147,18 @@ export const expertQuestions: Question[] = [
             {
                 "text": "日本で利確して納税する。",
                 "effect": {
-                    "cs": 50,
-                    "money": -55000000,
-                    "sanity": -30
+                    "CS": 50,
+                    "Asset": -55000000,
+                    "Autonomy": -30
                 },
                 "feedback": "愛国者。道路や橋の一部はあなたが作りました。残りは4500万です。"
             },
             {
                 "text": "税制の優遇される国（シンガポール等）へ移住してから利確する。",
                 "effect": {
-                    "cs": -20,
-                    "money": 45000000,
-                    "sanity": +20
+                    "CS": -20,
+                    "Asset": 45000000,
+                    "Autonomy": +20
                 },
                 "feedback": "国家の枠を超えた存在。出国税などの罠はありますが、手残りは段違いです。"
             }
@@ -174,18 +174,18 @@ export const expertQuestions: Question[] = [
             {
                 "text": "会社員に経費なんて認められない。",
                 "effect": {
-                    "cs": -10,
-                    "money": 0,
-                    "sanity": 0
+                    "CS": -10,
+                    "Asset": 0,
+                    "Autonomy": 0
                 },
                 "feedback": "常識に囚われています。条件は厳しいですが、スーツ代や研修費が控除できる制度は存在します。"
             },
             {
                 "text": "基準（給与所得控除の半分）を超える支出を申告する。",
                 "effect": {
-                    "cs": 20,
-                    "money": 30000,
-                    "sanity": -20
+                    "CS": 20,
+                    "Asset": 30000,
+                    "Autonomy": -20
                 },
                 "feedback": "ハック成功。会社員の皮を被った個人事業主のような動きです。"
             }
@@ -201,18 +201,18 @@ export const expertQuestions: Question[] = [
             {
                 "text": "月額400円の「付加年金」を払う。",
                 "effect": {
-                    "cs": 30,
-                    "money": 0,
-                    "sanity": 0
+                    "CS": 30,
+                    "Asset": 0,
+                    "Autonomy": 0
                 },
                 "feedback": "最強のコスパ。2年で元が取れる、公的制度のバグレベルにお得なオプションです。"
             },
             {
                 "text": "民間の個人年金保険に入る。",
                 "effect": {
-                    "cs": 0,
-                    "money": -10000,
-                    "sanity": 0
+                    "CS": 0,
+                    "Asset": -10000,
+                    "Autonomy": 0
                 },
                 "feedback": "悪くはないですが、付加年金の利回りには勝てません。"
             }
@@ -228,18 +228,18 @@ export const expertQuestions: Question[] = [
             {
                 "text": "全額自腹で払う。",
                 "effect": {
-                    "cs": 10,
-                    "money": -500000,
-                    "sanity": -20
+                    "CS": 10,
+                    "Asset": -500000,
+                    "Autonomy": -20
                 },
                 "feedback": "もったいない。専門実践教育訓練なら、費用の最大70%が国から戻ってきます。"
             },
             {
                 "text": "講座指定を受けてから受講し、給付を申請する。",
                 "effect": {
-                    "cs": 30,
-                    "money": 350000,
-                    "sanity": 0
+                    "CS": 30,
+                    "Asset": 350000,
+                    "Autonomy": 0
                 },
                 "feedback": "正解。自分のスキルアップを他人の金（雇用保険）でやる。これが大人の勉強法です。"
             }
@@ -255,18 +255,18 @@ export const expertQuestions: Question[] = [
             {
                 "text": "残りの失業保険が貰えなくて損した気分。",
                 "effect": {
-                    "cs": -10,
-                    "money": 0,
-                    "sanity": -10
+                    "CS": -10,
+                    "Asset": 0,
+                    "Autonomy": -10
                 },
                 "feedback": "無知。残日数の60〜70%を一括で貰えるボーナス制度があります。"
             },
             {
                 "text": "要件（残日数1/3以上など）を満たして申請する。",
                 "effect": {
-                    "cs": 30,
-                    "money": 200000,
-                    "sanity": +10
+                    "CS": 30,
+                    "Asset": 200000,
+                    "Autonomy": +10
                 },
                 "feedback": "完全勝利。早く就職した方が、総受取額（給与+手当）が増えるように設計されています。"
             }
@@ -282,18 +282,18 @@ export const expertQuestions: Question[] = [
             {
                 "text": "給料が減ったのでモチベーションを下げる。",
                 "effect": {
-                    "cs": -20,
-                    "money": 0,
-                    "sanity": -10
+                    "CS": -20,
+                    "Asset": 0,
+                    "Autonomy": -10
                 },
                 "feedback": "ただの愚痴。給与の最大15%が支給される制度を使わない手はありません。"
             },
             {
                 "text": "会社経由で申請してもらう。",
                 "effect": {
-                    "cs": 20,
-                    "money": 30000,
-                    "sanity": 0
+                    "CS": 20,
+                    "Asset": 30000,
+                    "Autonomy": 0
                 },
                 "feedback": "正解。年金との調整はありますが、貰えるものは貰うのが鉄則です。"
             }
@@ -309,18 +309,18 @@ export const expertQuestions: Question[] = [
             {
                 "text": "そんな制度あるの？貯金で耐える。",
                 "effect": {
-                    "cs": -20,
-                    "money": -200000,
-                    "sanity": -30
+                    "CS": -20,
+                    "Asset": -200000,
+                    "Autonomy": -30
                 },
                 "feedback": "破綻します。介護貧乏への入り口です。"
             },
             {
                 "text": "給料の67%が支給される制度を利用する。",
                 "effect": {
-                    "cs": 30,
-                    "money": 0,
-                    "sanity": +10
+                    "CS": 30,
+                    "Asset": 0,
+                    "Autonomy": +10
                 },
                 "feedback": "命綱。最長93日、3回まで分割取得可能。これを知らないと家族共倒れです。"
             }
@@ -336,18 +336,18 @@ export const expertQuestions: Question[] = [
             {
                 "text": "精神疾患では貰えないと諦める。",
                 "effect": {
-                    "cs": -30,
-                    "money": -1000000,
-                    "sanity": -50
+                    "CS": -30,
+                    "Asset": -1000000,
+                    "Autonomy": -50
                 },
                 "feedback": "誤解。うつ病や統合失調症も対象です。初診日が重要です。"
             },
             {
                 "text": "初診日を証明し、申請手続きを行う。",
                 "effect": {
-                    "cs": 30,
-                    "money": 780000,
-                    "sanity": +20
+                    "CS": 30,
+                    "Asset": 780000,
+                    "Autonomy": +20
                 },
                 "feedback": "生存権の行使。障害基礎年金2級なら年約78万円。これは恵みではなく権利です。"
             }
@@ -363,18 +363,18 @@ export const expertQuestions: Question[] = [
             {
                 "text": "役所の言うことだから諦めて帰る。",
                 "effect": {
-                    "cs": 0,
-                    "money": 0,
-                    "sanity": -20
+                    "CS": 0,
+                    "Asset": 0,
+                    "Autonomy": -20
                 },
                 "feedback": "水際作戦に敗北。エアコンは保有容認されるケースが多く、車の条件も緩和されています。"
             },
             {
                 "text": "申請権の侵害だと主張し、申請書を無理やり置いてくる。",
                 "effect": {
-                    "cs": 40,
-                    "money": 130000,
-                    "sanity": +10
+                    "CS": 40,
+                    "Asset": 130000,
+                    "Autonomy": +10
                 },
                 "feedback": "突破。役所は申請を受理する義務があります。審査させるまでが勝負です。"
             }
@@ -390,18 +390,18 @@ export const expertQuestions: Question[] = [
             {
                 "text": "じゃあ破産できない。夜逃げしかない。",
                 "effect": {
-                    "cs": -100,
-                    "money": 0,
-                    "sanity": -50
+                    "CS": -100,
+                    "Asset": 0,
+                    "Autonomy": -50
                 },
                 "feedback": "早計。裁量免責という救済措置があります。真摯に反省すれば認められるケースも多いです。"
             },
             {
                 "text": "「裁量免責」を狙って、正直に全て話し反省文を書く。",
                 "effect": {
-                    "cs": -50,
-                    "money": 0,
-                    "sanity": 0
+                    "CS": -50,
+                    "Asset": 0,
+                    "Autonomy": 0
                 },
                 "feedback": "再生への道。CSは地に落ちますが、借金はゼロになり、人生をリセットできます。"
             }
@@ -417,18 +417,18 @@ export const expertQuestions: Question[] = [
             {
                 "text": "「返します」と1円でも払う。",
                 "effect": {
-                    "cs": -20,
-                    "money": -500000,
-                    "sanity": -20
+                    "CS": -20,
+                    "Asset": -500000,
+                    "Autonomy": -20
                 },
                 "feedback": "罠にかかりました。債務を承認すると時効が更新（リセット）され、全額支払う義務が復活します。"
             },
             {
                 "text": "「時効の援用」を内容証明で通知する。",
                 "effect": {
-                    "cs": 30,
-                    "money": 0,
-                    "sanity": +10
+                    "CS": 30,
+                    "Asset": 0,
+                    "Autonomy": +10
                 },
                 "feedback": "完全勝利。商事債権の時効は5年。援用通知を送れば、支払義務は法的に消滅します。"
             }
@@ -444,18 +444,18 @@ export const expertQuestions: Question[] = [
             {
                 "text": "大家が受け取らないなら払わなくていい。",
                 "effect": {
-                    "cs": -50,
-                    "money": 0,
-                    "sanity": 0
+                    "CS": -50,
+                    "Asset": 0,
+                    "Autonomy": 0
                 },
                 "feedback": "未納扱いで契約解除されます。相手の思う壺です。"
             },
             {
                 "text": "法務局に家賃を「供託」する。",
                 "effect": {
-                    "cs": 30,
-                    "money": -70000,
-                    "sanity": 0
+                    "CS": 30,
+                    "Asset": -70000,
+                    "Autonomy": 0
                 },
                 "feedback": "鉄壁防御。供託すれば法的に「支払った」ことになり、滞納による解除を防げます。"
             }
@@ -471,18 +471,18 @@ export const expertQuestions: Question[] = [
             {
                 "text": "計算が簡単そうだから選ぶ。",
                 "effect": {
-                    "cs": 0,
-                    "money": 0,
-                    "sanity": 0
+                    "CS": 0,
+                    "Asset": 0,
+                    "Autonomy": 0
                 },
                 "feedback": "思考停止。実際の仕入れ税額と比較し、得な方を選ぶシミュレーションが必要です。"
             },
             {
                 "text": "みなし仕入率が高い業種なので、あえて簡易課税を選ぶ。",
                 "effect": {
-                    "cs": 20,
-                    "money": 200000,
-                    "sanity": -5
+                    "CS": 20,
+                    "Asset": 200000,
+                    "Autonomy": -5
                 },
                 "feedback": "戦略的選択。サービス業など仕入れが少ない業種では、簡易課税の方が大幅に節税になる場合があります。"
             }
@@ -498,18 +498,18 @@ export const expertQuestions: Question[] = [
             {
                 "text": "公私混同に見えるのでやめる。",
                 "effect": {
-                    "cs": 0,
-                    "money": 0,
-                    "sanity": 0
+                    "CS": 0,
+                    "Asset": 0,
+                    "Autonomy": 0
                 },
                 "feedback": "美学ですが、損です。"
             },
             {
                 "text": "適正な家賃（賃料相当額）を徴収し、残りを経費にする。",
                 "effect": {
-                    "cs": 30,
-                    "money": 600000,
-                    "sanity": 0
+                    "CS": 30,
+                    "Asset": 600000,
+                    "Autonomy": 0
                 },
                 "feedback": "錬金術。実質的に家賃の50〜80%を経費化でき、個人の手取りも増えます。"
             }
@@ -525,18 +525,18 @@ export const expertQuestions: Question[] = [
             {
                 "text": "意味がないので上限までにする。",
                 "effect": {
-                    "cs": 10,
-                    "money": 0,
-                    "sanity": 0
+                    "CS": 10,
+                    "Asset": 0,
+                    "Autonomy": 0
                 },
                 "feedback": "普通の正解。しかし..."
             },
             {
                 "text": "純粋な寄付として行い、名誉市民の称号やコネを得る。",
                 "effect": {
-                    "cs": 100,
-                    "money": -1000000,
-                    "sanity": +50
+                    "CS": 100,
+                    "Asset": -1000000,
+                    "Autonomy": +50
                 },
                 "feedback": "超越者。税金対策を超え、社会的地位（Credit Score）を買う行為です。本物の富裕層の遊び。"
             }

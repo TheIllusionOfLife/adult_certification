@@ -12,8 +12,8 @@ interface DOMElements {
     qText: HTMLElement;
     choices: HTMLElement;
     cs: HTMLElement;
-    money: HTMLElement;
-    sanity: HTMLElement;
+    asset: HTMLElement;
+    autonomy: HTMLElement;
     bar: HTMLElement;
     container: HTMLElement;
     sceneDesc: HTMLElement;
@@ -49,8 +49,8 @@ export class UIManager {
             qText: getEl<HTMLElement>('question-text'),
             choices: getEl<HTMLElement>('choices-grid'),
             cs: getEl<HTMLElement>('score-cs'),
-            money: getEl<HTMLElement>('score-money'),
-            sanity: getEl<HTMLElement>('score-sanity'),
+            asset: getEl<HTMLElement>('score-money'),
+            autonomy: getEl<HTMLElement>('score-sanity'),
             bar: getEl<HTMLElement>('progress-bar'),
             container: getEl<HTMLElement>('game-container'),
             sceneDesc: getEl<HTMLElement>('scene-desc-overlay'),
@@ -142,7 +142,7 @@ export class UIManager {
         });
     }
 
-    private lastScores = { cs: CONFIG.INITIAL_STATE.CS, money: CONFIG.INITIAL_STATE.MONEY, sanity: CONFIG.INITIAL_STATE.SANITY };
+    private lastScores = { CS: 50, Asset: 100000, Autonomy: 50 };
 
     updateHUD() {
         const s = this.engine.state;
@@ -156,19 +156,19 @@ export class UIManager {
             if (newVal < oldVal) el.classList.add('score-pop-down');
         };
 
-        animate(this.dom.cs, s.cs, this.lastScores.cs);
-        animate(this.dom.money, s.money, this.lastScores.money);
-        animate(this.dom.sanity, s.sanity, this.lastScores.sanity);
+        animate(this.dom.cs, s.CS, this.lastScores.CS);
+        animate(this.dom.asset, s.Asset, this.lastScores.Asset);
+        animate(this.dom.autonomy, s.Autonomy, this.lastScores.Autonomy);
 
         // Update last scores
-        this.lastScores = { cs: s.cs, money: s.money, sanity: s.sanity };
+        this.lastScores = { CS: s.CS, Asset: s.Asset, Autonomy: s.Autonomy };
 
         const progress = s.questions.length > 0
             ? (s.currentQuestionIndex / s.questions.length) * 100
             : 0;
         this.dom.bar.style.width = `${progress}%`;
 
-        if (s.cs < 200 || s.sanity < 30) {
+        if (s.CS < 30 || s.Autonomy < 20 || s.Asset < 20000) {
             this.dom.container.style.boxShadow = "0 0 50px red";
             this.updateMascot('glitch');
         } else {
@@ -221,27 +221,36 @@ export class UIManager {
         this.dom.choices.innerHTML = '';
         q.choices.forEach((c: Choice, i: number) => {
             const btn = document.createElement('button');
-            btn.className = 'choice-btn';
+            const isLocked = this.engine.isChoiceLocked(c);
+
+            btn.className = isLocked ? 'choice-btn choice-locked' : 'choice-btn';
             btn.innerHTML = `<span class="choice-letter">${String.fromCharCode(65 + i)}</span><span>${c.text}</span>`;
-            btn.addEventListener('click', () => this.handleChoice(c));
+
+            if (isLocked) {
+                btn.disabled = true;
+                btn.title = c.lockedFeedback || 'この選択肢は利用できません';
+            } else {
+                btn.addEventListener('click', () => this.handleChoice(c, q));
+            }
+
             this.dom.choices.appendChild(btn);
         });
 
         this.updateHUD();
     }
 
-    handleChoice(choice: Choice) {
-        const result = this.engine.processChoice(choice);
+    handleChoice(choice: Choice, question: any) {
+        const result = this.engine.processChoice(choice, question);
         this.showFeedback(result);
     }
 
     showFeedback(result: {
-        outcome: { cs: number; money: number; sanity: number };
+        outcome: { CS: number; Asset: number; Autonomy: number };
         feedback: string;
         isTerminated: boolean
     }) {
         const { outcome, feedback, isTerminated } = result;
-        const { cs, money, sanity } = outcome;
+        const { CS, Asset, Autonomy } = outcome;
 
         const getAnimClass = (val: number) => {
             if (val > 0) return 'score-pop-up';
@@ -249,27 +258,27 @@ export class UIManager {
             return '';
         };
 
-        this.dom.ovTitle.innerText = cs >= 0 ? "APPROVED" : "WARNING";
-        this.dom.ovTitle.style.color = cs >= 0 ? "var(--accent-color)" : "var(--primary-color)";
+        this.dom.ovTitle.innerText = CS >= 0 ? "APPROVED" : "WARNING";
+        this.dom.ovTitle.style.color = CS >= 0 ? "var(--accent-color)" : "var(--primary-color)";
         this.dom.ovBody.innerHTML = feedback; // Use innerHTML for styling
         this.dom.ovStats.innerHTML = `
-            <div class="stat-result ${getAnimClass(cs)}">
-                <span style="font-size:0.8em">信用度</span><br>
-                <span style="font-size:1.2em; font-weight:bold">${cs > 0 ? '+' : ''}${cs}</span>
+            <div class="stat-result ${getAnimClass(CS)}">
+                <span style="font-size:0.8em">信用度 (CS)</span><br>
+                <span style="font-size:1.2em; font-weight:bold">${CS > 0 ? '+' : ''}${CS}</span>
             </div>
-            <div class="stat-result ${getAnimClass(money)}">
-                <span style="font-size:0.8em">資産</span><br>
-                <span style="font-size:1.2em; font-weight:bold">${money > 0 ? '+' : ''}${money.toLocaleString()}</span>
+            <div class="stat-result ${getAnimClass(Asset)}">
+                <span style="font-size:0.8em">資産 (Asset)</span><br>
+                <span style="font-size:1.2em; font-weight:bold">${Asset > 0 ? '+' : ''}${Asset.toLocaleString()}</span>
             </div>
-            <div class="stat-result ${getAnimClass(sanity)}">
-                <span style="font-size:0.8em">正気</span><br>
-                <span style="font-size:1.2em; font-weight:bold">${sanity > 0 ? '+' : ''}${sanity}</span>
+            <div class="stat-result ${getAnimClass(Autonomy)}">
+                <span style="font-size:0.8em">自律性 (Autonomy)</span><br>
+                <span style="font-size:1.2em; font-weight:bold">${Autonomy > 0 ? '+' : ''}${Autonomy}</span>
             </div>
         `;
 
         // Mascot Reaction
-        if (cs > 0) this.updateMascot('happy');
-        else if (sanity < 0 || cs < 0) this.updateMascot('glitch');
+        if (CS > 0) this.updateMascot('happy');
+        else if (Autonomy < 0 || CS < 0) this.updateMascot('glitch');
         else this.updateMascot('neutral');
 
         if (isTerminated) {
@@ -309,27 +318,47 @@ export class UIManager {
         this.dom.skillBox.style.display = 'flex';
         this.dom.skillBox.innerHTML = '';
 
-        const availableSkills = this.engine.getAvailableSkills(2);
+        // Determine which offer this is (1 or 2)
+        const idx = this.engine.state.currentQuestionIndex;
+        const offerNumber = idx === 3 ? 1 : 2;
+        const availableSkills = this.engine.getSkillsForOffer(offerNumber as 1 | 2);
 
-        availableSkills.forEach(s => {
+        const title = document.createElement('div');
+        title.className = 'skill-offer-title';
+        title.innerHTML = `<h3>スキル選択 (${offerNumber}/2)</h3><p>どちらかを選択してください</p>`;
+        this.dom.skillBox.appendChild(title);
+
+        availableSkills.forEach((s, i) => {
             const sBtn = document.createElement('button');
-            sBtn.className = 'choice-btn skill-btn';
-            // sBtn.style.width = "250px"; // Handled in CSS
+            const isKeySkill = s.category === 'key';
+            sBtn.className = isKeySkill ? 'choice-btn skill-btn key-skill-btn' : 'choice-btn skill-btn';
+
+            const keyBadge = isKeySkill ? '<span class="key-skill-badge">★KEY SKILL★</span>' : '';
+            const keyNote = isKeySkill ? '<div class="key-skill-note">※効果は今ステージのみ有効<br>※クリア時に「収集済み」として記録</div>' : '';
+
             sBtn.innerHTML = `
                 <div class="skill-info">
-                    <span class="skill-name">${s.name}</span>
-                    <span class="skill-desc">${s.desc}</span>
+                    <span class="skill-letter">${String.fromCharCode(65 + i)}</span>
+                    <div class="skill-content">
+                        <span class="skill-name">${s.name}${keyBadge}</span>
+                        <span class="skill-desc">${s.desc}</span>
+                        ${keyNote}
+                    </div>
                 </div>
             `;
             sBtn.addEventListener('click', () => {
-                this.engine.addSkill(s.id);
-                // Map IDs to Japanese Names
-                const skillNames = this.engine.state.skills.map(id => {
-                    const skillObj = availableSkills.find(s => s.id === id) ||
-                        this.engine.getSkillById(id);
-                    return skillObj ? skillObj.name : id;
-                });
+                this.engine.addSkill(s);
+
+                // Show A.D.A.M. comment for key skills
+                if (s.category === 'key' && s.adamComment) {
+                    this.dom.ovBody.innerHTML += `<br><br><span style="color:#f72585; font-style:italic;">[A.D.A.M.]: ${s.adamComment}</span>`;
+                }
+
+                // Update skill list display
+                const allSkills = [...this.engine.activeSkills];
+                const skillNames = allSkills.map(skill => skill.name);
                 this.dom.skillList.innerText = skillNames.length > 0 ? skillNames.join(', ') : "未所持";
+
                 this.closeFeedback();
             });
             this.dom.skillBox.appendChild(sBtn);
@@ -348,21 +377,26 @@ export class UIManager {
         const s = this.engine.state;
         const ending = this.engine.calculateEnding();
 
-        this.dom.ovTitle.innerText = "COMPLETE";
+        this.dom.ovTitle.innerText = "STAGE COMPLETE";
         this.dom.ovTitle.style.color = "var(--accent-color)";
+
+        const keySkillCount = s.keySkills.length;
+        const keySkillStatus = `鍵スキル収集: ${keySkillCount}/9`;
+
         this.dom.ovBody.innerHTML = `
-            シミュレーション終了。<br>
+            Stage ${s.currentStage} 終了。<br>
             適性ランク: <br><strong style="font-size:2.5rem; color:var(--accent-color)">${ending.rank} - ${ending.title}</strong><br>
             <span style="font-size:0.9rem; color:#ccc">${ending.desc}</span><br><br>
-            最終信用度: ${s.cs} <br> 最終資産: ${s.money.toLocaleString()}円
+            最終CS: ${s.CS} / 最終Asset: ${s.Asset.toLocaleString()}円 / 最終Autonomy: ${s.Autonomy}<br>
+            ${keySkillStatus}
         `;
         this.dom.ovStats.innerHTML = "";
-        this.dom.btnNext.innerText = "人生再起動";
+        this.dom.btnNext.innerText = "タイトルに戻る";
         this.dom.btnNext.onclick = () => location.reload();
         this.dom.overlay.style.display = 'flex';
 
         if (this.engine.difficulty) {
-            this.saveRecord(this.engine.difficulty, ending.rank, s.cs);
+            this.saveRecord(this.engine.difficulty, ending.rank, s.CS);
         }
     }
 }

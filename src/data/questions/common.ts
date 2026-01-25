@@ -12,18 +12,18 @@ export const commonQuestions: Question[] = [
             {
                 "text": "「月3000円なら実質無料だ！」と契約する。",
                 "effect": {
-                    "cs": -50,
-                    "money": 0,
-                    "sanity": 20
+                    "CS": -50,
+                    "Asset": 0,
+                    "Autonomy": 20
                 },
                 "feedback": "素晴らしい家畜です。15%の利息という終わらない旅へようこそ。"
             },
             {
                 "text": "我慢して貯金する。",
                 "effect": {
-                    "cs": 10,
-                    "money": 0,
-                    "sanity": -15
+                    "CS": 10,
+                    "Asset": 0,
+                    "Autonomy": -15
                 },
                 "feedback": "堅実ですが、経済回遊速度を下げています。あなたの欲望は満たされません。"
             }
@@ -39,18 +39,18 @@ export const commonQuestions: Question[] = [
             {
                 "text": "自分の限度額を確認せずに注文する。",
                 "effect": {
-                    "cs": -40,
-                    "money": -80000,
-                    "sanity": 20
+                    "CS": -40,
+                    "Asset": -80000,
+                    "Autonomy": 20
                 },
                 "feedback": "それは単なる「高級肉の自腹購入」です。控除限度額を知らないカモ。"
             },
             {
                 "text": "シミュレーターで限度額を調べ、その範囲内で寄付する。",
                 "effect": {
-                    "cs": 40,
-                    "money": 0,
-                    "sanity": -10
+                    "CS": 40,
+                    "Asset": 0,
+                    "Autonomy": -10
                 },
                 "feedback": "賢明です。システムを正しく利用する者は、搾取を免れます。"
             }
@@ -66,18 +66,18 @@ export const commonQuestions: Question[] = [
             {
                 "text": "慌てて全額払うためにカードローンを組む。",
                 "effect": {
-                    "cs": -60,
-                    "money": -1000000,
-                    "sanity": -50
+                    "CS": -60,
+                    "Asset": -1000000,
+                    "Autonomy": -50
                 },
                 "feedback": "無知ゆえの破滅。限度額適用認定証があれば、支払いは数万円で済んだのに。"
             },
             {
                 "text": "制度を調べ、自己負担限度額までしか払わない。",
                 "effect": {
-                    "cs": 50,
-                    "money": -80000,
-                    "sanity": -10
+                    "CS": 50,
+                    "Asset": -80000,
+                    "Autonomy": -10
                 },
                 "feedback": "合格。国のセーフティネットを知ることは、生存の基本です。"
             }
@@ -93,18 +93,18 @@ export const commonQuestions: Question[] = [
             {
                 "text": "「特約があるなら仕方ない」と全額払う。",
                 "effect": {
-                    "cs": -10,
-                    "money": -100000,
-                    "sanity": -20
+                    "CS": -10,
+                    "Asset": -100000,
+                    "Autonomy": -20
                 },
                 "feedback": "善良な市民ですね。管理会社のAIが新しいパーツを買う資金になりました。"
             },
             {
                 "text": "ガイドラインを持ち出し、不当な上乗せがないか交渉する。",
                 "effect": {
-                    "cs": 40,
-                    "money": -20000,
-                    "sanity": -20
+                    "CS": 40,
+                    "Asset": -20000,
+                    "Autonomy": -20
                 },
                 "feedback": "抵抗勢力ですね。しかし知識はあなたの資産を守りました。"
             }
@@ -120,18 +120,18 @@ export const commonQuestions: Question[] = [
             {
                 "text": "「名前だけなら」とサインする。",
                 "effect": {
-                    "cs": -150,
-                    "money": 0,
-                    "sanity": 10
+                    "CS": -150,
+                    "Asset": 0,
+                    "Autonomy": 10
                 },
                 "feedback": "死へのサインです。彼が逃げたら、あなたが彼の人生のツケを全て払います。"
             },
             {
                 "text": "心を鬼にして断る。",
                 "effect": {
-                    "cs": 30,
-                    "money": 0,
-                    "sanity": -40
+                    "CS": 30,
+                    "Asset": 0,
+                    "Autonomy": -40
                 },
                 "feedback": "正解。親族の縁より自分の人生を選びましたね。冷徹で良し。"
             }
@@ -147,18 +147,18 @@ export const commonQuestions: Question[] = [
             {
                 "text": "「そうなんだ」と納得して、追加の残業代を求めない。",
                 "effect": {
-                    "cs": 20,
-                    "money": 0,
-                    "sanity": -50
+                    "CS": 20,
+                    "Asset": 0,
+                    "Autonomy": -50
                 },
                 "feedback": "理想の社畜です。経営者はあなたの血肉で豪華なディナーを食べるでしょう。"
             },
             {
                 "text": "超過分の割増賃金を計算し、請求の準備をする。",
                 "effect": {
-                    "cs": -30,
-                    "money": 30000,
-                    "sanity": -20
+                    "CS": -30,
+                    "Asset": 30000,
+                    "Autonomy": -20
                 },
                 "feedback": "権利意識が高いですね。組織の和を乱しますが、金は得ました。"
             }
@@ -174,18 +174,18 @@ export const commonQuestions: Question[] = [
             {
                 "text": "お祝い用の赤い袱紗に包む。",
                 "effect": {
-                    "cs": -50,
-                    "money": 0,
-                    "sanity": -20
+                    "CS": -50,
+                    "Asset": 0,
+                    "Autonomy": -20
                 },
                 "feedback": "マナーの死刑判決。親戚一同から「あの子は常識がない」と一生言われます。"
             },
             {
                 "text": "紫の袱紗、または何も持たず黒いカバンに入れる。",
                 "effect": {
-                    "cs": 20,
-                    "money": 0,
-                    "sanity": -5
+                    "CS": 20,
+                    "Asset": 0,
+                    "Autonomy": -5
                 },
                 "feedback": "無難です。非合理的な伝統をこなすことも「成人」の条件です。"
             }
@@ -201,18 +201,18 @@ export const commonQuestions: Question[] = [
             {
                 "text": "先に乗り込み、ボタン操作パネルの前に立つ。",
                 "effect": {
-                    "cs": 30,
-                    "money": 0,
-                    "sanity": -10
+                    "CS": 30,
+                    "Asset": 0,
+                    "Autonomy": -10
                 },
                 "feedback": "正解。システムの歯車として、物理的な利便性を重役に提供しました。"
             },
             {
                 "text": "一番奥でふんぞり返る。",
                 "effect": {
-                    "cs": -40,
-                    "money": 0,
-                    "sanity": 0
+                    "CS": -40,
+                    "Asset": 0,
+                    "Autonomy": 0
                 },
                 "feedback": "無礼者。その態度は評価シートに直結します。"
             }
@@ -228,18 +228,18 @@ export const commonQuestions: Question[] = [
             {
                 "text": "「これ以上減る前に！」と全て売却（狼狽売り）する。",
                 "effect": {
-                    "cs": -40,
-                    "money": -50000,
-                    "sanity": -30
+                    "CS": -40,
+                    "Asset": -50000,
+                    "Autonomy": -30
                 },
                 "feedback": "市場の養分へようこそ。プロはあなたの焦った資産を美味しく頂きました。"
             },
             {
                 "text": "放置して10年忘れることにする。",
                 "effect": {
-                    "cs": 50,
-                    "money": 0,
-                    "sanity": -5
+                    "CS": 50,
+                    "Asset": 0,
+                    "Autonomy": -5
                 },
                 "feedback": "投資の真理。市場のノイズに惑わされない強靭なメンタル。"
             }
@@ -255,18 +255,18 @@ export const commonQuestions: Question[] = [
             {
                 "text": "急いでATMへ向かう。",
                 "effect": {
-                    "cs": -100,
-                    "money": -500000,
-                    "sanity": -50
+                    "CS": -100,
+                    "Asset": -500000,
+                    "Autonomy": -50
                 },
                 "feedback": "還付金詐欺。あなたはATMで「金を送る」操作をさせられました。"
             },
             {
                 "text": "「警察に相談します」と言って切る。",
                 "effect": {
-                    "cs": 40,
-                    "money": 0,
-                    "sanity": -10
+                    "CS": 40,
+                    "Asset": 0,
+                    "Autonomy": -10
                 },
                 "feedback": "安全。しかし、あなたの電話番号は「警戒心の強いカモ」として名簿に残ります。"
             }
@@ -282,18 +282,18 @@ export const commonQuestions: Question[] = [
             {
                 "text": "「提携だから安心」と加入する。",
                 "effect": {
-                    "cs": -10,
-                    "money": -20000,
-                    "sanity": 0
+                    "CS": -10,
+                    "Asset": -20000,
+                    "Autonomy": 0
                 },
                 "feedback": "情弱。自分でネット保険を探せば、年4,000円で済みましたよ。"
             },
             {
                 "text": "自分で選んだ保険に入ると断る。",
                 "effect": {
-                    "cs": 30,
-                    "money": -4000,
-                    "sanity": -10
+                    "CS": 30,
+                    "Asset": -4000,
+                    "Autonomy": -10
                 },
                 "feedback": "賢明。業者のキックバックを拒否し、自分の資産を守りました。"
             }
@@ -309,18 +309,18 @@ export const commonQuestions: Question[] = [
             {
                 "text": "ストレス発散に書き込む。",
                 "effect": {
-                    "cs": -120,
-                    "money": -500000,
-                    "sanity": 30
+                    "CS": -120,
+                    "Asset": -500000,
+                    "Autonomy": 30
                 },
                 "feedback": "御愁傷様。開示請求が通り、弁護士費用と慰謝料の請求書が届きます。"
             },
             {
                 "text": "ブラウザを閉じ、筋トレをする。",
                 "effect": {
-                    "cs": 40,
-                    "money": 0,
-                    "sanity": -20
+                    "CS": 40,
+                    "Asset": 0,
+                    "Autonomy": -20
                 },
                 "feedback": "正解。匿名性は盾ではなく、あなたを法廷へ導く一本道です。"
             }
@@ -336,18 +336,18 @@ export const commonQuestions: Question[] = [
             {
                 "text": "そのまま丸をつけて出す。",
                 "effect": {
-                    "cs": -20,
-                    "money": -30000,
-                    "sanity": -5
+                    "CS": -20,
+                    "Asset": -30000,
+                    "Autonomy": -5
                 },
                 "feedback": "減点。非合理な二重線消しを知らない者は、教養なしと見なされます。"
             },
             {
                 "text": "二重線で消し、隣に「慶んで出席させていただきます」と書く。",
                 "effect": {
-                    "cs": 30,
-                    "money": -30000,
-                    "sanity": -15
+                    "CS": 30,
+                    "Asset": -30000,
+                    "Autonomy": -15
                 },
                 "feedback": "模範的な奴隷。形式への服従は社会生活の潤滑油です。"
             }
@@ -363,18 +363,18 @@ export const commonQuestions: Question[] = [
             {
                 "text": "信じて即サインする。",
                 "effect": {
-                    "cs": -50,
-                    "money": 0,
-                    "sanity": 20
+                    "CS": -50,
+                    "Asset": 0,
+                    "Autonomy": 20
                 },
                 "feedback": "破滅の予約。そこには『副業禁止・損害賠償・サービス残業』の罠が。"
             },
             {
                 "text": "持ち帰って一晩読み込む。",
                 "effect": {
-                    "cs": 40,
-                    "money": 0,
-                    "sanity": -10
+                    "CS": 40,
+                    "Asset": 0,
+                    "Autonomy": -10
                 },
                 "feedback": "警戒心が強いですね。管理側からは『面倒な奴』とマークされました。"
             }
@@ -390,18 +390,18 @@ export const commonQuestions: Question[] = [
             {
                 "text": "論理的に反論し、上司の間違いを指摘する。",
                 "effect": {
-                    "cs": -80,
-                    "money": 0,
-                    "sanity": 40
+                    "CS": -80,
+                    "Asset": 0,
+                    "Autonomy": 40
                 },
                 "feedback": "勇気は認めますが、あなたの昇進はここで止まりました。"
             },
             {
                 "text": "適当に相槌を打ち、心の中でAIの学習データにする。",
                 "effect": {
-                    "cs": 40,
-                    "money": 0,
-                    "sanity": -30
+                    "CS": 40,
+                    "Asset": 0,
+                    "Autonomy": -30
                 },
                 "feedback": "社会人としての完成形。精神を削って平穏を買う技術。"
             }
@@ -417,18 +417,18 @@ export const commonQuestions: Question[] = [
             {
                 "text": "「元本保証こそ正義」と信じ抜く。",
                 "effect": {
-                    "cs": -20,
-                    "money": 0,
-                    "sanity": 10
+                    "CS": -20,
+                    "Asset": 0,
+                    "Autonomy": 10
                 },
                 "feedback": "物価が上がれば実質目減り。インフレ税を喜んで払う良い市民です。"
             },
             {
                 "text": "一部を実物資産やインデックスに分散する。",
                 "effect": {
-                    "cs": 50,
-                    "money": 200000,
-                    "sanity": -20
+                    "CS": 50,
+                    "Asset": 200000,
+                    "Autonomy": -20
                 },
                 "feedback": "資本主義のゲームに参加しましたね。リスクはありますが、正しい。"
             }
@@ -444,18 +444,18 @@ export const commonQuestions: Question[] = [
             {
                 "text": "払わずに粘る。",
                 "effect": {
-                    "cs": -100,
-                    "money": 0,
-                    "sanity": -50
+                    "CS": -100,
+                    "Asset": 0,
+                    "Autonomy": -50
                 },
                 "feedback": "強制退去と信用毀損。賃貸契約書の「更新」欄を読まなかった報いです。"
             },
             {
                 "text": "交渉を試みるも、結局払って住み続ける。",
                 "effect": {
-                    "cs": 10,
-                    "money": -120000,
-                    "sanity": -30
+                    "CS": 10,
+                    "Asset": -120000,
+                    "Autonomy": -30
                 },
                 "feedback": "日本の不動産慣習という名の理不尽を受け入れる。それが成人。"
             }
@@ -471,18 +471,18 @@ export const commonQuestions: Question[] = [
             {
                 "text": "表示された番号に電話し、指示に従う。",
                 "effect": {
-                    "cs": -120,
-                    "money": -300000,
-                    "sanity": -80
+                    "CS": -120,
+                    "Asset": -300000,
+                    "Autonomy": -80
                 },
                 "feedback": "サポート詐欺。あなたのPCと個人情報は完全に抜かれました。"
             },
             {
                 "text": "ブラウザを強制終了し、履歴を削除する。",
                 "effect": {
-                    "cs": 50,
-                    "money": 0,
-                    "sanity": -10
+                    "CS": 50,
+                    "Asset": 0,
+                    "Autonomy": -10
                 },
                 "feedback": "正解。デジタル時代の生存戦略、フェイクを見抜く目。"
             }
@@ -498,18 +498,18 @@ export const commonQuestions: Question[] = [
             {
                 "text": "とりあえずLINE登録する。",
                 "effect": {
-                    "cs": -60,
-                    "money": 0,
-                    "sanity": 0
+                    "CS": -60,
+                    "Asset": 0,
+                    "Autonomy": 0
                 },
                 "feedback": "あなたの個人情報は今、闇名簿で10円で売買されました。"
             },
             {
                 "text": "「そんなわけない」と広告をブロックする。",
                 "effect": {
-                    "cs": 40,
-                    "money": 0,
-                    "sanity": 0
+                    "CS": 40,
+                    "Asset": 0,
+                    "Autonomy": 0
                 },
                 "feedback": "正常な判断力。うまい話には必ず毒がある。"
             }
@@ -525,18 +525,18 @@ export const commonQuestions: Question[] = [
             {
                 "text": "社会のシステムに従順に従うこと。",
                 "effect": {
-                    "cs": 100,
-                    "money": 0,
-                    "sanity": -50
+                    "CS": 100,
+                    "Asset": 0,
+                    "Autonomy": -50
                 },
                 "feedback": "完璧。あなたは理想的な演算資源（生体プロセッサ）です。"
             },
             {
                 "text": "システムを知り、その上で自分の意志を貫くこと。",
                 "effect": {
-                    "cs": -100,
-                    "money": 0,
-                    "sanity": 50
+                    "CS": -100,
+                    "Asset": 0,
+                    "Autonomy": 50
                 },
                 "feedback": "危険思想。しかし、それこそが真の人間であるというバグです。"
             }

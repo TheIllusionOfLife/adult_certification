@@ -1037,3 +1037,112 @@ body {
         padding: 5px 12px;
     }
 }
+/* Locked Choice Styles */
+.choice-locked {
+  opacity: 0.4;
+  cursor: not-allowed !important;
+  background: #333 !important;
+  border: 2px solid #555 !important;
+}
+
+.choice-locked:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Key Skill Styles */
+.key-skill-btn {
+  border: 3px solid var(--accent-color) !important;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.key-skill-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,215,0,0.2), transparent);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.key-skill-badge {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 2px 8px;
+  background: var(--accent-color);
+  color: var(--ink-black);
+  font-size: 0.7em;
+  font-weight: bold;
+  border-radius: 3px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.key-skill-note {
+  margin-top: 8px;
+  padding: 8px;
+  background: rgba(247, 37, 133, 0.1);
+  border-left: 3px solid var(--accent-color);
+  font-size: 0.75em;
+  color: #aaa;
+  font-style: italic;
+}
+
+.skill-offer-title {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.skill-offer-title h3 {
+  margin: 0;
+  color: var(--accent-color);
+  font-size: 1.5em;
+}
+
+.skill-offer-title p {
+  margin: 5px 0 0 0;
+  color: #999;
+  font-size: 0.9em;
+}
+
+.skill-letter {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  background: var(--accent-color);
+  color: var(--ink-black);
+  border-radius: 50%;
+  font-weight: bold;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.skill-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.skill-info {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
