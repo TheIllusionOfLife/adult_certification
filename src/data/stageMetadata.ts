@@ -46,8 +46,8 @@ export const STAGE_1_METADATA: StageMetadata = {
                 id: "MEDIATION",
                 name: "仲介術",
                 nameEN: "MEDIATION",
-                desc: "直接対決を避け、システムや第三者を介して問題を解決する技術。全ての自律性減少を50%軽減します。",
-                effect: { type: "autonomy_damage_reduction", value: 0.5 },
+                desc: "直接対決を避け、システムや第三者を介して問題を解決する技術。SOCIAL系質問での自律性減少を60%軽減します。",
+                effect: { type: "category_autonomy_damage_reduction", value: 0.6, category: "SOCIAL" },
                 category: "key",
                 isCollectible: true,
                 acquiredStage: 1,
@@ -56,7 +56,7 @@ export const STAGE_1_METADATA: StageMetadata = {
                     questionId: "s1_q07",
                     choiceIndex: 1 // Choice B: 管理会社に連絡し、「匿名で」注意してもらう
                 }
-                // Protects Autonomy strongly - for players who prioritize True Ending
+                // Protects Autonomy in SOCIAL questions - for players who prioritize True Ending
             }
         ]
     }
@@ -108,8 +108,8 @@ export const STAGE_2_METADATA: StageMetadata = {
                 id: "EVIDENCE_CHAIN",
                 name: "証拠連鎖",
                 nameEN: "EVIDENCE_CHAIN",
-                desc: "重要な会話は記録すべし。全ての自律性減少を50%軽減します。証拠があれば「言った言わない」は通用しません。",
-                effect: { type: "autonomy_damage_reduction", value: 0.5 },
+                desc: "重要な会話は記録すべし。LABOR系質問での自律性減少を60%軽減します。証拠があれば「言った言わない」は通用しません。",
+                effect: { type: "category_autonomy_damage_reduction", value: 0.6, category: "LABOR" },
                 category: "key",
                 isCollectible: true,
                 acquiredStage: 2,
@@ -118,7 +118,7 @@ export const STAGE_2_METADATA: StageMetadata = {
                     questionId: "s2_q07",
                     choiceIndex: 1 // Choice B: 「確認のためメールでいただけますか」と記録を求める
                 }
-                // Key skill - for players who prioritize True Ending
+                // Key skill - protects Autonomy in LABOR questions for True Ending path
             }
         ]
     }

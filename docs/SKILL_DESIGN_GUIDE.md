@@ -66,15 +66,21 @@ Already used in Stage 1:
 - メンタルシールド (autonomy_damage_reduction @ 30%)
 - 節約マインド (asset_damage_reduction @ 30%)
 - 印象操作 (cs_damage_reduction @ 50%)
-- MEDIATION (autonomy_damage_reduction @ 50%)
+- MEDIATION (category_autonomy_damage_reduction SOCIAL @ 60%)
 
 Already used in Stage 2:
 - 交渉術 (asset_gain_amplification @ 30%)
 - 報連相の型 (autonomy_gain_amplification @ 20%)
 - 労働法知識 (category_cs_damage_reduction LABOR @ 40%)
-- EVIDENCE_CHAIN (autonomy_damage_reduction @ 50%)
+- EVIDENCE_CHAIN (category_autonomy_damage_reduction LABOR @ 60%)
 
 New stages must use different names AND effect combinations.
+
+**Key Skill Design Pattern:**
+Key skills should use `category_autonomy_damage_reduction` with a category that:
+1. Matches the stage theme thematically
+2. Has Autonomy damage in Q8-Q10 (questions after key skill is acquired)
+3. Uses 60% reduction (higher than normal skills due to narrower scope)
 
 ---
 

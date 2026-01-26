@@ -50,6 +50,15 @@ function applySingleEffect(
                 }
                 break;
 
+            case "category_autonomy_damage_reduction":
+                // Reduce Autonomy damage for specific category by value%
+                // Math.ceil rounds toward zero for negative values (reduces damage magnitude)
+                if (question.category === effect.category && Autonomy < 0) {
+                    const reduced = Autonomy * (1 - effect.value);
+                    Autonomy = Math.ceil(reduced);
+                }
+                break;
+
             case "asset_damage_reduction":
                 // Reduce all Asset damage by value%
                 // Math.ceil rounds toward zero for negative values (reduces damage magnitude)
@@ -219,6 +228,16 @@ export function getSkillActivations(
             case "autonomy_small_damage_reduction":
                 // Only show if damage meets threshold and was reduced
                 if (originalEffect.Autonomy < 0 && originalEffect.Autonomy >= (effect.threshold ?? -20) && modifiedEffect.Autonomy !== originalEffect.Autonomy) {
+                    activated = true;
+                    description = "自律性減少軽減";
+                    originalValue = originalEffect.Autonomy;
+                    modifiedValue = modifiedEffect.Autonomy;
+                }
+                break;
+
+            case "category_autonomy_damage_reduction":
+                // Only show if question category matches and Autonomy was reduced
+                if (question.category === effect.category && originalEffect.Autonomy < 0 && modifiedEffect.Autonomy !== originalEffect.Autonomy) {
                     activated = true;
                     description = "自律性減少軽減";
                     originalValue = originalEffect.Autonomy;
