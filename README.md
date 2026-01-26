@@ -1,8 +1,8 @@
-# Adult Certification (大人免許)
+# License to Adult (大人免許)
 
 > "School didn't teach you this, but ignorance will kill you."
 
-**Adult Certification** is a satirical dystopian adventure game where you are judged by **A.D.A.M.** (Autonomous Decision & Assessment Module). Survive 10 stages of "adult literacy" tests covering finance, labor laws, taxes, and social navigation—or be recycled as a biological processor.
+**License to Adult** is a satirical dystopian adventure game where you are judged by **A.D.A.M.** (Autonomous Decision & Assessment Module). Survive 10 stages of "adult literacy" tests covering finance, labor laws, taxes, and social navigation—or be recycled as a biological processor.
 
 ## 🎮 Game Concepts
 
