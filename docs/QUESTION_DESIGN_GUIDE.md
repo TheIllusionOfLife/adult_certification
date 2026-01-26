@@ -273,10 +273,12 @@ Independent: CS: +5 to +15, Autonomy: +15 to +25
 ### Feedback
 **Format**: `[Judgment] [Explanation] [Implication]`
 
+**Do NOT include parameter change descriptions** in the feedback text (e.g., 「信用度+10」「資産-50,000」). These are displayed in a separate UI section.
+
+Guidelines by question type:
 - Knowledge: Explain why + teach concept
 - Dilemma: Acknowledge validity + show trade-off (NEVER say "正解です")
 - Philosophy: Label philosophy + show system judgment
-- **Do NOT include parameter change descriptions** (e.g., 「信用度+10」「資産-50,000」) - parameter changes are displayed in a separate UI section
 
 **Voice**: A.D.A.M. (clinical, cynical, dark humor)
 
