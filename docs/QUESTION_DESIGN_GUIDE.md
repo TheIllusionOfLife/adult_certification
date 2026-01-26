@@ -204,7 +204,7 @@ Independent: CS: +5 to +15, Autonomy: +15 to +25
 ```typescript
 {
     text: "新しいスーツと靴を購入して、万全の状態で臨む。",
-    effect: { CS: 40, Asset: -30000, Autonomy: 10 },  // Good outcome
+    effect: { CS: 20, Asset: -30000, Autonomy: 10 },  // Good outcome
     lockRequirements: { Asset: 50000 },  // Need money to invest
     lockedFeedback: "資産が50,000円以上必要。お金がないとチャンスすら掴めない。"
 }
