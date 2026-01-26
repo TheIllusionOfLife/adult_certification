@@ -1,29 +1,29 @@
 import type { Question } from '../../types';
 
 export const stage1Questions: Question[] = [
-    // Q1: 導入 - Reuse q_intro_01
+    // Q1: Knowledge (FINANCE) - Credit card basics - Immediate Asset teaching
     {
         id: "s1_q01",
-        category: "MANNER",
-        text: "上司から「至急メールして」と言われた。CC（カーボン・コピー）の意味を理解しているか？",
-        imagePrompt: "Scene: an office PC with glowing screen and highlighted field (no readable text needed); coworkers peering nervously from cubicle walls; a CCTV camera with blinking red light overhead. Composition: monitor in foreground, watchers lurking in midground. Mood: surveillance and pressure.",
+        category: "FINANCE",
+        text: "新社会人になり、クレジットカードを初めて作った。「リボ払い」を勧められたが、どうする？",
+        imagePrompt: "Scene: a shiny new credit card glowing; one path shows 'easy payments' with smiling face; another shows shadow of mounting debt with chains; a calculator showing interest rates. Mood: temptation vs hidden danger.",
         imagePath: "s1_q01.png",
         choices: [
             {
-                text: "メインの宛先ではないが、情報を共有したい人を入れる。",
-                effect: { CS: 10, Asset: 0, Autonomy: -5 },
-                feedback: "正解です。組織では「知らなかった」を防ぐための証拠作りとして機能します。",
+                text: "毎月の支払いが一定で楽そうなので、リボ払いを設定する。",
+                effect: { CS: 0, Asset: -10000, Autonomy: -10 },
+                feedback: "罠です。「資産-10,000」—年利15%前後で「返済が終わらない設計」になりがち。便利さの裏に利息地獄があります。お金の知識不足が資産を削ります。",
                 lockRequirements: null
             },
             {
-                text: "秘密にしておきたい人を入れる（Co-Conspirator）。",
-                effect: { CS: -20, Asset: 0, Autonomy: 0 },
-                feedback: "それはBCCです。誤送信で情報漏洩を起こし、あなたのクビが飛びます。",
+                text: "年利を確認し、一括払いを基本にする。",
+                effect: { CS: 10, Asset: 0, Autonomy: 5 },
+                feedback: "正解です。「信用度+10」「自律性+5」—クレカの明細チェックと一括払いが「お金の自衛」の基本。知識が資産を守ります。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "ここからが本番です。あなたの基礎知識を試します。"
+            intro: "ここからが本番です。あなたの「お金のリテラシー」を試します。"
         }
     },
 
@@ -38,13 +38,13 @@ export const stage1Questions: Question[] = [
             {
                 text: "引越しから14日以内。",
                 effect: { CS: 20, Asset: 0, Autonomy: -10 },
-                feedback: "適正です。これを過ぎると最大5万円の過料が発生する場合があります。",
+                feedback: "適正です。「信用度+20」—法定期限を守ることで社会から信頼されます。「自律性-10」—義務に従う代償です。これを過ぎると最大5万円の過料があり、「信頼できない市民」として記録されます。",
                 lockRequirements: null
             },
             {
                 text: "次の更新の時でいい。",
                 effect: { CS: -30, Asset: 0, Autonomy: 0 },
-                feedback: "違法です。選挙権も行使できず、行政サービスも受けられない「幽霊市民」になります。",
+                feedback: "違法です。「信用度-30」—選挙権も行使できず、行政サービスも受けられない「幽霊市民」になります。社会はルールを無視する人を排除します。",
                 lockRequirements: null
             }
         ]
@@ -61,13 +61,13 @@ export const stage1Questions: Question[] = [
             {
                 text: "面倒だから出さない。",
                 effect: { CS: -30, Asset: 0, Autonomy: 0 },
-                feedback: "ミスです。クレジットカードの更新カードや重要書類が旧住所に届き、見知らぬ誰かの手に渡ります。",
+                feedback: "ミスです。「信用度-30」—クレジットカードの更新カードや重要書類が旧住所に届き、見知らぬ誰かの手に渡ります。個人情報管理ができない人と見なされます。",
                 lockRequirements: null
             },
             {
                 text: "ネットやハガキで転送を申し込む。",
                 effect: { CS: 10, Asset: 0, Autonomy: -5 },
-                feedback: "安全策です。1年間無料で転送してくれるシステムを使わない手はありません。",
+                feedback: "安全策です。「信用度+10」—1年間無料で転送してくれるシステムを使わない手はありません。「自律性-5」—行政システムに依存する代償です。",
                 lockRequirements: null
             }
         ],
@@ -77,24 +77,24 @@ export const stage1Questions: Question[] = [
     },
     // [SKILL OFFER 1 HAPPENS AFTER Q3]
 
-    // Q4: 収束 - Reuse q_intro_07 (Same Q, varied reactions)
+    // Q4: Knowledge (TAX) - Residence tax trap - teaches "hidden rules that break people"
     {
         id: "s1_q04",
-        category: "ADMIN",
-        text: "マイナンバーカード。「持ち歩くと危険だから」と通知カードのままにしている。",
-        imagePrompt: "Scene: protagonist standing hesitantly between a dusty cobwebbed safe (old card visible inside) and a glowing modern ID card floating with golden aura; a large bureaucratic eye watches from above. Composition: protagonist in center looking torn, safe on left in shadow, glowing card on right. Mood: paranoia vs opportunity, being watched.",
+        category: "TAX",
+        text: "転職して収入が激減。しかし翌年、見覚えのない高額の請求書が届いた。「住民税」と書いてある。",
+        imagePrompt: "Scene: protagonist shocked at a bill; calendar showing 'last year' crossed out and 'this year' with the bill; empty wallet on table. Mood: confusion, delayed consequence, system catching up.",
         imagePath: "s1_q04.png",
         choices: [
             {
-                text: "作らない方が安全だ。",
-                effect: { CS: -10, Asset: 0, Autonomy: 0 },
-                feedback: "保守的ですが、身分証としての機能やコンビニ交付の利便性を捨てています。",
+                text: "「間違いだ」と無視する。",
+                effect: { CS: -30, Asset: -20000, Autonomy: 0 },
+                feedback: "致命傷です。「信用度-30」「資産-20,000」—住民税は「前年の所得に基づく翌年課税」。無視すると延滞金が膨らみ、財産差し押さえの対象になります。知識がないと、お金は奪われます。",
                 lockRequirements: null
             },
             {
-                text: "交付申請して取得する。",
-                effect: { CS: 20, Asset: 20000, Autonomy: -5 },
-                feedback: "適応です。ポイントも貰え、行政手続きがスムーズになります。管理さえできれば。",
+                text: "「住民税は翌年課税」を思い出し、分割払いを交渉する。",
+                effect: { CS: 20, Asset: -5000, Autonomy: 10 },
+                feedback: "適応です。「信用度+20」「自律性+10」—制度を知っていれば「想定内」にできます。「資産-5,000」—役所との分割相談で手数料は発生しますが、破滅は回避できます。",
                 lockRequirements: null
             }
         ]
@@ -111,13 +111,13 @@ export const stage1Questions: Question[] = [
             {
                 text: "人間関係が大事。参加して、徹夜で準備する。",
                 effect: { CS: 0, Asset: -5000, Autonomy: 20 },
-                feedback: "優先順位の選択です。人脈は資産です。ただし、体力的代償を払います。",
+                feedback: "優先順位の選択です。「自律性+20」—自分の価値観で決めました。人脈は資産ですが、仕事より人を選ぶ勇気には代償（徹夜・「資産-5,000」の交通費）が伴います。",
                 lockRequirements: null
             },
             {
                 text: "仕事が大事。断って、準備に集中する。",
                 effect: { CS: 30, Asset: 0, Autonomy: -15 },
-                feedback: "現実的判断です。プレゼンは成功しました。しかし、友人との距離は広がりました。",
+                feedback: "現実的判断です。「信用度+30」—会社からの評価は上がりました。しかし「自律性-15」—あなたは「仕事優先」を選ばされた感覚があるはずです。これが社会の圧力です。",
                 lockRequirements: null
             }
         ],
@@ -126,7 +126,7 @@ export const stage1Questions: Question[] = [
         }
     },
 
-    // Q6: 因果① (Lock Demonstration) - NEW: Emergency Contact
+    // Q6: Knowledge (ADMIN) - Emergency Contact - Plain knowledge (no lock)
     {
         id: "s1_q06",
         category: "ADMIN",
@@ -137,20 +137,19 @@ export const stage1Questions: Question[] = [
             {
                 text: "適当な番号を書いておく。",
                 effect: { CS: -30, Asset: 0, Autonomy: 0 },
-                feedback: "虚偽申告です。職場で倒れた時、誰にも連絡がいかず、そのまま孤独死ルートです。",
+                feedback: "虚偽申告です。「信用度-30」—職場で倒れた時、誰にも連絡がいかず、そのまま孤独死ルートです。嘘は社会的死を招きます。",
                 lockRequirements: null
             },
             {
                 text: "事情を説明し、信頼できる友人に頼む。",
                 effect: { CS: 10, Asset: 0, Autonomy: 10 },
-                feedback: "解決策です。人間関係を構築する能力は、あなたの生存戦略です。",
-                lockRequirements: { Autonomy: 30 },
-                lockedFeedback: "LOCKED: Autonomy >= 30 必要 - 自律性が低く、他者に頼む決断ができません。"
+                feedback: "解決策です。「信用度+10」「自律性+10」—人間関係を構築する能力は、あなたの生存戦略です。助けを求めることも自律の一形態です。",
+                lockRequirements: null
             }
         ]
     },
 
-    // Q7: 鍵スキル (Key Skill Pathway) - NEW: Noise Complaint
+    // Q7: Key Skill Pathway (HOUSING) - Noise Complaint - Autonomy lock (key teaching)
     {
         id: "s1_q07",
         category: "HOUSING",
@@ -161,15 +160,15 @@ export const stage1Questions: Question[] = [
             {
                 text: "我慢する。関わりたくない。",
                 effect: { CS: 0, Asset: 0, Autonomy: -30 },
-                feedback: "思考停止です。ストレスで自律性が削られ、やがて精神が崩壊します。",
+                feedback: "思考停止です。「自律性-30」—ストレスで自律性が削られ、やがて精神が崩壊します。我慢は美徳ではなく、自己破壊です。",
                 lockRequirements: null
             },
             {
                 text: "管理会社に連絡し、「匿名で」注意してもらう。",
                 effect: { CS: 30, Asset: 0, Autonomy: 15 },
-                feedback: "仲介術です。システムを間に挟むことで、直接対決を避ける技術です。",
+                feedback: "仲介術です。「信用度+30」「自律性+15」—システムを間に挟むことで、直接対決を避ける技術です。これが「大人の解決法」です。",
                 lockRequirements: { Autonomy: 20 },
-                lockedFeedback: "LOCKED: Autonomy >= 20 必要 - システムを使う発想が浮かびません。"
+                lockedFeedback: "LOCKED: 自律性が20以上必要。受動的に耐えてきた結果、「第三者を使う」という発想すら浮かびません。自律性は「選択肢の数」です。"
             }
         ],
         adamDialogue: {
@@ -179,7 +178,7 @@ export const stage1Questions: Question[] = [
     },
     // [SKILL OFFER 2 HAPPENS AFTER Q7]
 
-    // Q8: 因果② (Asset Lock Demo) - NEW: Professional Appearance
+    // Q8: Knowledge (LABOR) - Professional Appearance - no lock (plain knowledge)
     {
         id: "s1_q08",
         category: "LABOR",
@@ -190,43 +189,46 @@ export const stage1Questions: Question[] = [
             {
                 text: "今のスーツのまま面接に行く。中身で勝負。",
                 effect: { CS: -20, Asset: 0, Autonomy: -10 },
-                feedback: "理想論です。面接官は第一印象で「自己管理できない人材」と判断しました。",
+                feedback: "理想論です。「信用度-20」「自律性-10」—面接官は第一印象で「自己管理できない人材」と判断しました。実力があっても、見た目で門前払いされる現実があります。",
                 lockRequirements: null
             },
             {
                 text: "新しいスーツと靴を購入して、万全の状態で臨む。",
                 effect: { CS: 40, Asset: -30000, Autonomy: 10 },
-                feedback: "正しい投資です。プロフェッショナルな外見が評価され、内定を獲得しました。",
-                lockRequirements: { Asset: 100000 },
-                lockedFeedback: "LOCKED: Asset >= 100,000円 必要 - スーツと靴を買う余裕がありません。"
+                feedback: "正しい投資です。「信用度+40」「自律性+10」—プロフェッショナルな外見が評価され、内定を獲得しました。「資産-30,000」の出費ですが、これが「自分への投資」です。",
+                lockRequirements: null
             }
         ]
     },
 
-    // Q9: 鏡合わせ - Reuse q_intro_08
+    // Q9: Dilemma (SOCIAL) - Co-signer request - Asset lock teaches "money enables risky choices"
     {
         id: "s1_q09",
-        category: "MANNER",
-        text: "ビジネスメールの宛名。「〇〇株式会社 〇〇部長様」と書いた。",
-        imagePrompt: "Scene: a business email draft on screen with the salutation area marked as wrong; a stern superior reacting; an etiquette guide figure pointing at the mistake. Composition: screen in foreground, reactions around it. Mood: embarrassment and social pressure.",
+        category: "SOCIAL",
+        text: "親友から「起業資金の連帯保証人になって」と頼まれた。信頼はあるが、連帯保証人は「本人と同等の返済義務」を負う。",
+        imagePrompt: "Scene: protagonist at crossroads; one path shows friend succeeding, other shows debt collectors; a contract paper floats between them with ominous shadow. Mood: loyalty vs self-preservation.",
         imagePath: "s1_q09.png",
         choices: [
             {
-                text: "丁寧に書けたので送信する。",
-                effect: { CS: -10, Asset: 0, Autonomy: 0 },
-                feedback: "重複敬語です。「部長」は役職名なので敬称を含みます。「〇〇部長」か「〇〇様」です。",
+                text: "「連帯保証は無理だけど、別の形で応援する」と断る。",
+                effect: { CS: -15, Asset: 0, Autonomy: 20 },
+                feedback: "自己防衛の選択です。「信用度-15」—友情には傷がつきましたが、「自律性+20」—連帯保証は「自分の借金」と同義。あなたの人生は守られました。",
                 lockRequirements: null
             },
             {
-                text: "「〇〇株式会社 〇〇様」または「〇〇部長」に直す。",
-                effect: { CS: 10, Asset: 0, Autonomy: 0 },
-                feedback: "正解です。細かいことですが、教養は細部に宿ります。",
-                lockRequirements: null
+                text: "友人を信じて、連帯保証人になる。",
+                effect: { CS: 10, Asset: 0, Autonomy: -15 },
+                feedback: "忠誠の選択です。「信用度+10」—友人は喜びました。「自律性-15」—ただし事業が失敗すれば、あなたが数百万円の債務を背負います。お金は人を縛ります。",
+                lockRequirements: { Asset: 70000 },
+                lockedFeedback: "LOCKED: 資産が70,000円以上必要。銀行はあなたの資産状況を審査し、保証人として不適格と判断しました。お金がないと、リスクを取る選択肢すらありません。"
             }
-        ]
+        ],
+        adamDialogue: {
+            intro: "友情か、自己防衛か。どちらも正解はありません。"
+        }
     },
 
-    // Q10: Final (Rank + Foreshadowing) - NEW: Social Philosophy
+    // Q10: Philosophy (SOCIAL) - Social basics meaning - Final reflection
     {
         id: "s1_q10",
         category: "SOCIAL",
@@ -237,13 +239,13 @@ export const stage1Questions: Question[] = [
             {
                 text: "空気を読み、波風を立てないこと。",
                 effect: { CS: 30, Asset: 0, Autonomy: -20 },
-                feedback: "服従的回答です。あなたは社会の歯車として最適化されています。",
+                feedback: "服従的回答です。「信用度+30」—社会はあなたを歓迎します。「自律性-20」—しかし、あなたは社会の歯車として最適化されました。それで幸せですか？",
                 lockRequirements: null
             },
             {
                 text: "ルールを理解し、必要なら使いこなすこと。",
                 effect: { CS: 10, Asset: 0, Autonomy: 20 },
-                feedback: "自律的回答です。システムを道具として見る視点。危険ですが、正しいです。",
+                feedback: "自律的回答です。「信用度+10」「自律性+20」—システムを道具として見る視点。危険ですが、正しいです。True Endingへの鍵は、ここにあります。",
                 lockRequirements: null
             }
         ],
