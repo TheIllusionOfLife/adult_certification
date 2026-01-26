@@ -53,6 +53,8 @@ export interface Choice {
         Autonomy: number;
     };
     feedback: string;
+    // Player-facing overlay label. When omitted, UI falls back to CS delta.
+    verdict?: 'APPROVED' | 'WARNING' | 'NEUTRAL';
     lockRequirements?: {
         CS?: number;
         Asset?: number;

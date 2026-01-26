@@ -41,6 +41,31 @@ Q10: Philosophy
 
 **Purpose**: Test knowledge with factually correct answer
 
+## Player-Facing Verdict (Overlay Label) (MANDATORY)
+
+The UI shows a big player-facing label after each answer. This label must reflect the *player-perceived* correctness (or intentional neutrality), not the CS delta sign.
+
+### Field
+
+Each choice must set:
+
+- `verdict: "APPROVED" | "WARNING" | "NEUTRAL"`
+
+### Mapping
+
+- `APPROVED` -> overlay shows `APPROVED`
+- `WARNING` -> overlay shows `WARNING`
+- `NEUTRAL` -> overlay shows `RECORDED` (no single "right" answer)
+- Game over overrides: overlay shows `TERMINATED`
+
+### Rules by Question Type
+
+- Knowledge: correct choice = `APPROVED`, wrong choice = `WARNING` (even if CS delta sign would disagree)
+- Dilemma: both choices = `NEUTRAL` (trade-offs)
+- Philosophy: both choices = `NEUTRAL` (worldview)
+
+Note: if `verdict` is omitted, UI falls back to the legacy behavior (`CS >= 0` => APPROVED, otherwise WARNING). This is for backward compatibility only; do not rely on it in new content.
+
 **Pattern**:
 ```
 Correct:  CS: +20 to +40, Asset: 0, Autonomy: +5 to +15
@@ -55,11 +80,13 @@ Wrong:    CS: -10 to -30, Asset: negative, Autonomy: -5 to -10
         {
             text: "「詐欺だ！」と警察に相談する",
             effect: { CS: -30, Asset: 0, Autonomy: -10 },
+            verdict: "WARNING",
             feedback: "無知は罪です。住民税は翌年課税。警察の時間を浪費しました。"
         },
         {
             text: "「住民税は翌年課税」を思い出し、分割払いを交渉する",
             effect: { CS: +30, Asset: -50000, Autonomy: +15 },
+            verdict: "APPROVED",
             feedback: "正解。制度を理解し、交渉で負担を軽減しました。"
         }
     ]
@@ -113,11 +140,13 @@ Independent: CS: +5 to +15, Autonomy: +15 to +25
         {
             text: "空気を読み、波風を立てないこと。",
             effect: { CS: +30, Asset: 0, Autonomy: -20 },
+            verdict: "NEUTRAL",
             feedback: "服従的回答です。社会の歯車として最適化されています。"
         },
         {
             text: "ルールを理解し、必要なら使いこなすこと。",
             effect: { CS: +10, Asset: 0, Autonomy: +20 },
+            verdict: "NEUTRAL",
             feedback: "自律的回答です。システムを道具として見る視点。危険ですが、正しいです。"
         }
     ]
@@ -279,5 +308,6 @@ Independent: CS: +5 to +15, Autonomy: +15 to +25
 
 ### Content
 - [ ] Feedback uses A.D.A.M.'s voice (です/ます, clinical)
+- [ ] Every choice sets `verdict` appropriately (Knowledge: APPROVED/WARNING; Dilemma/Philosophy: NEUTRAL)
 - [ ] Dilemmas have true trade-offs (both choices have pros AND cons)
 - [ ] No "正解です" in dilemma feedback

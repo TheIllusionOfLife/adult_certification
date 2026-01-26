@@ -13,12 +13,14 @@ export const stage2Questions: Question[] = [
                 text: "言い訳から入る（「忙しくて…」）。",
                 effect: { CS: -15, Asset: 0, Autonomy: 0 },
                 feedback: "失敗です。言い訳は信用を削ります。上司の時間を浪費し、問題解決が遅れます。",
+                verdict: "WARNING",
                 lockRequirements: null
             },
             {
                 text: "事実と影響と対策を先に伝える。",
                 effect: { CS: 20, Asset: 0, Autonomy: 5 },
                 feedback: "正解です。報連相の基本は「結論ファースト」。信用を守る最速の方法です。",
+                verdict: "APPROVED",
                 lockRequirements: null
             }
         ],
@@ -39,12 +41,14 @@ export const stage2Questions: Question[] = [
                 text: "個人で記録をつけつつ、表向きは従う。",
                 effect: { CS: 5, Asset: 0, Autonomy: 10 },
                 feedback: "戦略的です。証拠を集めながら機を待つ。残業代の割増率は時間外25%、休日35%、深夜25%。請求の時効は3年。36協定なしの残業は違法です。",
+                verdict: "APPROVED",
                 lockRequirements: null
             },
             {
                 text: "「違法です」と上司に直接抗議し、労基署への相談をほのめかす。",
                 effect: { CS: -20, Asset: 0, Autonomy: 20 },
                 feedback: "正論ですが、職場で孤立しました。正義を振りかざすタイミングを誤ると、味方がいなくなります。証拠を固めてからでも遅くはなかったはずです。",
+                verdict: "WARNING",
                 lockRequirements: null
             }
         ]
@@ -62,12 +66,14 @@ export const stage2Questions: Question[] = [
                 text: "「すみません」と諦める。",
                 effect: { CS: 10, Asset: 0, Autonomy: -20 },
                 feedback: "権利放棄です。有給取得に理由は不要。6ヶ月経過で10日付与は法定の権利です。",
+                verdict: "WARNING",
                 lockRequirements: null
             },
             {
                 text: "「理由は私用です。日程の調整は可能です」と再度申請する。",
                 effect: { CS: -5, Asset: 0, Autonomy: 15 },
                 feedback: "正解です。有給取得に理由説明は不要（労基法39条）。会社には時季変更権がありますが、代替日の提示が必要です。",
+                verdict: "APPROVED",
                 lockRequirements: null
             }
         ],
@@ -89,12 +95,14 @@ export const stage2Questions: Question[] = [
                 text: "「仕方ない」と受け入れる。",
                 effect: { CS: 0, Asset: -30000, Autonomy: -15 },
                 feedback: "無知は搾取の入口です。30日分の解雇予告手当を放棄しました。",
+                verdict: "WARNING",
                 lockRequirements: null
             },
             {
                 text: "解雇予告手当（30日分）の支払いを求める。",
                 effect: { CS: 25, Asset: 30000, Autonomy: 10 },
                 feedback: "正解です。労働基準法第20条。知識は金になります。",
+                verdict: "APPROVED",
                 lockRequirements: null
             }
         ]
@@ -112,12 +120,14 @@ export const stage2Questions: Question[] = [
                 text: "引き受ける。成長のためにリスクを取る。",
                 effect: { CS: 20, Asset: -5000, Autonomy: -10 },
                 feedback: "野心的選択です。キャリアは加速しますが、プライベートの時間は犠牲になります。",
+                verdict: "NEUTRAL",
                 lockRequirements: null
             },
             {
                 text: "断る。今のワークライフバランスを守る。",
                 effect: { CS: -10, Asset: 5000, Autonomy: 15 },
                 feedback: "慎重な選択です。自律性は保たれますが、「やる気がない」と見られるリスクがあります。",
+                verdict: "NEUTRAL",
                 lockRequirements: null
             }
         ],
@@ -138,12 +148,14 @@ export const stage2Questions: Question[] = [
                 text: "上司の言う通りだと思い、転職先に入社延期を頼む。",
                 effect: { CS: 10, Asset: -20000, Autonomy: -15 },
                 feedback: "誤解に基づく損失です。民法627条により、期間の定めのない雇用は2週間前の意思表示で解約可能。転職先を待たせた3ヶ月分の機会費用は取り戻せません。",
+                verdict: "WARNING",
                 lockRequirements: null
             },
             {
                 text: "「法的には2週間で有効です。引継ぎは誠意を持って行います」と伝える。",
                 effect: { CS: -5, Asset: 0, Autonomy: 15 },
                 feedback: "正解です。法律は就業規則に優先します。ただし円満退職のため、引継ぎ計画を示して誠意を見せるのが大人の対応です。",
+                verdict: "APPROVED",
                 lockRequirements: null
             }
         ]
@@ -161,12 +173,14 @@ export const stage2Questions: Question[] = [
                 text: "「わかりました」と従う。",
                 effect: { CS: 10, Asset: 0, Autonomy: -30 },
                 feedback: "服従は楽です。しかし、後で問題が起きても「証拠がない」と言われます。",
+                verdict: "WARNING",
                 lockRequirements: null
             },
             {
                 text: "「確認のためメールでいただけますか」と記録を求める。",
                 effect: { CS: -5, Asset: 0, Autonomy: 25 },
                 feedback: "摩擦を恐れない選択です。記録を求める行為自体が、あなたの権利を守ります。",
+                verdict: "APPROVED",
                 lockRequirements: { Autonomy: 30 },
                 lockedFeedback: "LOCKED: 自律性が30以上必要 - 記録を求める勇気がありません。"
             }
@@ -190,12 +204,14 @@ export const stage2Questions: Question[] = [
                 text: "「お願いします」と任せる。会社がやってくれるはず。",
                 effect: { CS: -15, Asset: -10000, Autonomy: -5 },
                 feedback: "致命的なミスです。源泉徴収票がないと確定申告ができず、追徴課税が待っています。会社は言わないと動きません。",
+                verdict: "WARNING",
                 lockRequirements: null
             },
             {
                 text: "「離職票と源泉徴収票は必ずお願いします」と具体的に伝える。",
                 effect: { CS: 15, Asset: 0, Autonomy: 10 },
                 feedback: "正解です。退職手続きは「もらう側」が主導しないと、会社は最低限しかしません。確認リストを作るのが大人です。",
+                verdict: "APPROVED",
                 lockRequirements: null
             }
         ]
@@ -213,6 +229,7 @@ export const stage2Questions: Question[] = [
                 text: "引き受ける。記録を提供し、必要なら証言する。",
                 effect: { CS: -15, Asset: 0, Autonomy: 20 },
                 feedback: "連帯の選択です。同僚は救われる可能性が上がりました。しかし、あなたも「要注意人物」としてマークされます。報復人事のリスクを背負いました。",
+                verdict: "NEUTRAL",
                 lockRequirements: { CS: 60 },
                 lockedFeedback: "LOCKED: 信用度が60以上必要 - 職場での評判が低く、証言者として信用されません。"
             },
@@ -220,6 +237,7 @@ export const stage2Questions: Question[] = [
                 text: "断る。「証拠集めと労基署への相談を勧めるけど、巻き込まれたくない」と正直に伝える。",
                 effect: { CS: 10, Asset: 0, Autonomy: -10 },
                 feedback: "自己防衛の選択です。同僚との関係は冷えますが、あなたのキャリアは守られました。相談先（労基署・法テラス）を伝えたのはせめてもの誠意です。",
+                verdict: "NEUTRAL",
                 lockRequirements: null
             }
         ],
@@ -240,12 +258,14 @@ export const stage2Questions: Question[] = [
                 text: "生活のための手段。波風を立てず、淡々とこなす。",
                 effect: { CS: 30, Asset: 0, Autonomy: -20 },
                 feedback: "服従的回答です。安定した歯車として機能します。しかし、歯車は交換可能です。",
+                verdict: "NEUTRAL",
                 lockRequirements: null
             },
             {
                 text: "対等な契約関係。権利を守りながら、価値を提供する。",
                 effect: { CS: 5, Asset: 0, Autonomy: 25 },
                 feedback: "自律的回答です。契約は双方向のもの。搾取されない姿勢は、長期的な生存戦略です。",
+                verdict: "NEUTRAL",
                 lockRequirements: null
             }
         ],
