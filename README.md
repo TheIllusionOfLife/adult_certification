@@ -2,14 +2,14 @@
 
 > "School didn't teach you this, but ignorance will kill you."
 
-**Adult Certification** is a satirical dystopian adventure game where you are judged by an AI named **Unit 0-ADULT**. You must survive a series of "adult literacy" tests covering finance, law, and social etiquette to earn your place in society—or be recycled as a biological processor.
+**Adult Certification** is a satirical dystopian adventure game where you are judged by **A.D.A.M.** (Autonomous Decision & Assessment Module). Survive 10 stages of "adult literacy" tests covering finance, labor laws, taxes, and social navigation—or be recycled as a biological processor.
 
 ## 🎮 Game Concepts
 
--   **Educational Dystopia**: Learn about taxes, labor laws, and contracts through a lens of dark humor and survival.
--   **3-Axis Status System**: Balance **Credit Score (CS)**, **Money**, and **Sanity**. Failing any leads to Game Over.
--   **Skill System**: Acquire abilities like "Tax Hacker", "Iron Stomach", or "Logic Bomb" to navigate the unfair system.
--   **Multiple Endings**: From "Perfect Cog" (S Rank) to "Industrial Waste" (F Rank), your fate depends on your score and choices.
+-   **Educational Dystopia**: Learn real-world survival skills (taxes, contracts, labor rights) through dark humor.
+-   **3-Parameter System**: Balance **CS (Credit Score)**, **Asset**, and **Autonomy**. Any hitting 0 = Game Over.
+-   **Skill System**: Acquire skills like MEDIATION, EVIDENCE_CHAIN, or COMPOUND_SENSE to navigate the system.
+-   **Multiple Endings**: From S Rank (system's ideal citizen) to C Rank, plus a hidden True Ending.
 
 ## 🛠️ Tech Stack
 
@@ -25,18 +25,27 @@ This project is built with a lightweight, modern stack ensuring fast performance
 
 Detailed documentation is available in the `docs/` directory:
 
--   [**Product Overview**](./docs/PRODUCT.md): Purpose, Target Audience, and Business Goals. (aka `product.md`)
--   [**Architecture & Tech Stack**](./docs/ARCHITECTURE.md): System design, structure, and constraints. (aka `tech.md`, `structure.md`)
--   [**Roadmap**](./docs/ROADMAP.md): Future development plans.
--   [**Image Generation**](./docs/IMAGE_GENERATION_WORKFLOW.md): Guide for AI art pipelines.
--   [**Development Guide**](./docs/DEVELOPMENT.md): Setup and testing.
+### Overview
+-   [**Product Overview**](./docs/PRODUCT.md): Purpose, target audience, and goals
+-   [**Architecture**](./docs/ARCHITECTURE.md): System design and tech stack
+-   [**Roadmap**](./docs/ROADMAP.md): Future development plans
+
+### Design Guides
+-   [**Question Design**](./docs/QUESTION_DESIGN_GUIDE.md): Question types, locks, parameter effects
+-   [**Skill Design**](./docs/SKILL_DESIGN_GUIDE.md): Skill system and key skills
+-   [**Parameter Philosophy**](./docs/PARAMETER_PHILOSOPHY.md): CS/Asset/Autonomy design
+-   [**A.D.A.M. Style Guide**](./docs/ADAM_STYLE_GUIDE.md): AI narrator voice and dialogue
+
+### Production
+-   [**Production Guide**](./docs/PRODUCTION_GUIDE.md): Stage creation workflow
+-   [**Image Generation**](./docs/IMAGE_GENERATION_WORKFLOW.md): AI art pipeline
+-   [**Development**](./docs/DEVELOPMENT.md): Setup and testing
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
--   Node.js (LTS version recommended)
--   npm
+-   [Bun](https://bun.sh/) (recommended) or Node.js
 
 ### Installation
 
@@ -48,12 +57,12 @@ Detailed documentation is available in the `docs/` directory:
 
 2.  Install dependencies:
     ```bash
-    npm install
+    bun install
     ```
 
 3.  Start the development server:
     ```bash
-    npm run dev
+    bun run dev
     ```
 
 4.  Open `http://localhost:5173` in your browser.
@@ -63,7 +72,7 @@ Detailed documentation is available in the `docs/` directory:
 To create a production build:
 
 ```bash
-npm run build
+bun run build
 ```
 
 The output will be in the `dist/` directory.
