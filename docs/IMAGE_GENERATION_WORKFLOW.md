@@ -26,8 +26,7 @@ Cuphead-inspired, dark humor, dystopian mood, hand-drawn feel
 ### Global Rules
 - **Scene illustration** (NOT poster/title-card)
 - **No decorative frame borders** - image fills canvas edge-to-edge
-- **Text policy**: English-only (Stage 1-9), minimal, fully readable. If text can't be readable, omit it entirely.
-- **Stage 10 exception**: Intentional glitch text allowed
+- **Text policy**: English-only, minimal, fully readable. If text can't be readable, omit it entirely.
 
 ### Color Palette
 - Primarily black and white
