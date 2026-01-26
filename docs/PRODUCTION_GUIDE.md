@@ -11,39 +11,15 @@
 - Study Stage 1 implementation (`src/data/stages/stage1.ts`)
 - Read `QUESTION_DESIGN_GUIDE.md` and `SKILL_DESIGN_GUIDE.md`
 
-### Stage Themes & Key Skills
-
-| Stage | Theme | Key Skill |
-|-------|-------|-----------|
-| 2 | 仕事の基礎 | EVIDENCE_CHAIN (証拠連鎖) |
-| 3 | 金の基礎 | COMPOUND_SENSE (複利感覚) |
-| 4 | 税金 | DUE_PROCESS (手続き主義) |
-| 5 | 社会保険 | SAFETY_NET_NAVIGATION |
-| 6 | 住まい | NEGOTIATION_PROTOCOL |
-| 7 | 契約・法律 | CONTRACT_LITERACY |
-| 8 | デジタル安全 | IDENTITY_HYGIENE |
-| 9 | 危機対応 | DAMAGE_CONTROL |
-| 10 | 最終審判 | (Complex multi-stage finale) |
+### References
+- **Stage themes & key skills**: See `SKILL_DESIGN_GUIDE.md`
+- **Question flow & lock design**: See `QUESTION_DESIGN_GUIDE.md`
 
 ---
 
 ## Stage Creation Workflow
 
 ### Phase 1: Planning
-
-#### Question Flow (Standard)
-```
-Q1-Q3: Knowledge
-[SKILL OFFER 1: CS/Asset skill + Autonomy skill]
-Q4: Knowledge
-Q5: Dilemma ★ (TRUE dilemma, no correct answer)
-Q6: Knowledge
-Q7: Knowledge ★ (locked choice → key skill pathway)
-[SKILL OFFER 2: Normal skill + Key skill (earned via Q7-B)]
-Q8: Knowledge
-Q9: Dilemma ★ (CS lock)
-Q10: Philosophy
-```
 
 #### Source Coverage (MANDATORY)
 
@@ -91,12 +67,6 @@ See **QUESTION_DESIGN_GUIDE.md** for detailed templates.
 See **SKILL_DESIGN_GUIDE.md** for details.
 
 **Per stage:** 3 normal skills + 1 key skill
-
-**Key Skill Earning:**
-- Q7 choice B must be locked (parameter threshold)
-- Q7 choice B embodies key skill philosophy
-- If Q7-B selected → key skill available in Offer 2
-- If Q7-A selected → key skill disabled with reason
 
 ---
 
@@ -155,7 +125,7 @@ After technical testing, review as a game designer.
 
 ### Structure
 - [ ] 10 questions, 4 skills (3 normal + 1 key)
-- [ ] Q7 has Autonomy lock, Q9 has CS lock
+- [ ] Locks per QUESTION_DESIGN_GUIDE.md (1 Asset + 1 Autonomy/CS, availability 40-80%)
 - [ ] At least one choice always available per question
 
 ### Safety

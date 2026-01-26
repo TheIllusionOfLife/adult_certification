@@ -28,7 +28,7 @@ Detailed documentation is available in the `docs/` directory:
 -   [**Product Overview**](./docs/PRODUCT.md): Purpose, Target Audience, and Business Goals. (aka `product.md`)
 -   [**Architecture & Tech Stack**](./docs/ARCHITECTURE.md): System design, structure, and constraints. (aka `tech.md`, `structure.md`)
 -   [**Roadmap**](./docs/ROADMAP.md): Future development plans.
--   [**Asset Generation**](./docs/ASSET_GENERATION.md): Guide for AI art pipelines.
+-   [**Image Generation**](./docs/IMAGE_GENERATION_WORKFLOW.md): Guide for AI art pipelines.
 -   [**Development Guide**](./docs/DEVELOPMENT.md): Setup and testing.
 
 ## 🚀 Getting Started
