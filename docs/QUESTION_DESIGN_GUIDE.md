@@ -276,12 +276,15 @@ Independent: CS: +5 to +15, Autonomy: +15 to +25
 - Knowledge: Explain why + teach concept
 - Dilemma: Acknowledge validity + show trade-off (NEVER say "正解です")
 - Philosophy: Label philosophy + show system judgment
+- **Do NOT include parameter change descriptions** (e.g., 「信用度+10」「資産-50,000」) - parameter changes are displayed in a separate UI section
 
 **Voice**: A.D.A.M. (clinical, cynical, dark humor)
 
 ✅ Good: `"無知は罪です。住民税は翌年課税。制度を理解していません。"`
 
 ❌ Bad: `"もっと頑張りましょう。"` (too encouraging)
+
+❌ Bad: `"「信用度-30」「資産-20,000」—無知は罪です。住民税は翌年課税。"` (redundant param display)
 
 ---
 
