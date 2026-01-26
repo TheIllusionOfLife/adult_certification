@@ -83,25 +83,24 @@ Each stage has exactly **one key skill** from the list of 9:
 Use the fixed structure from improvement plan section 4.1:
 
 ```
-Q1: 導入 (Introduction) - Introduce theme with scenario
-Q2: 基礎 (Foundation) - Test basic knowledge/safety
-Q3: 小分岐 (Small Branch) - Character-defining choice
-    └ SKILL OFFER 1 (after Q3) - 2 normal skills
-Q4: 収束 (Convergence) - Same Q, reactions vary by params
-Q5: 山場 (Climax) - TRUE DILEMMA ★ (no perfect answer)
-Q6: 因果① (Consequence 1) - Locked choices demonstrate inequality
-Q7: 鍵スキル (Key Skill) - Question leading to key skill ★
-    └ SKILL OFFER 2 (after Q7) - 1 normal + 1 key skill
-Q8: 因果② (Consequence 2) - Skills visibly affect outcomes
-Q9: 鏡合わせ (Mirror) - Revisit theme from different angle
-Q10: Final - Philosophical reflection + next stage foreshadowing
+Q1-Q3: Knowledge (introduce theme, teach facts)
+    └ SKILL OFFER 1 (after Q3) - CS/Asset skill (ADAM recommends) + Autonomy skill
+Q4: Knowledge (continue learning)
+Q5: Dilemma ★ (no perfect answer, skills from Offer 1 affect outcomes)
+Q6: Knowledge (more facts)
+Q7: Knowledge (key skill pathway) ★ - One answer locked (Autonomy threshold)
+    └ SKILL OFFER 2 (after Q7) - CS/Asset skill (ADAM recommends) + Key skill (locked until Q7-B)
+Q8: Knowledge (near end)
+Q9: Dilemma ★ - One answer locked (CS threshold, first CS lock)
+Q10: Philosophy - Define character, no correct answer
 ```
 
 **Planning Checklist:**
 - [ ] Theme aligns with improvement plan
 - [ ] Key skill identified and makes sense for theme
-- [ ] Question topics cover 40% knowledge, 40% dilemma, 20% philosophy
-- [ ] At least 2 questions will have locked choices (Q6, Q7 recommended)
+- [ ] Question topics cover 70% knowledge, 20% dilemma, 10% philosophy
+- [ ] Questions follow standard flow template (dilemmas at Q5 and Q9, not consecutive)
+- [ ] Exactly 2 questions will have locked choices (Q7 and Q9)
 - [ ] Q5 is a TRUE dilemma (both choices defensible)
 - [ ] Q7 leads naturally to key skill acquisition
 
@@ -203,9 +202,22 @@ For each question, follow the **QUESTION_DESIGN_GUIDE.md** and use templates fro
 5. **A.D.A.M. dialogue maintains 丁寧語** (です/ます form)
 
 **Question Type Distribution (10 questions total):**
-- Knowledge: ~4 questions (Q1, Q2, Q4, Q8)
-- Dilemma: ~4 questions (Q3, Q5, Q6, Q9)
-- Philosophy: ~2 questions (Q7, Q10)
+- Knowledge: 7 questions (Q1, Q2, Q3, Q4, Q6, Q7, Q8)
+- Dilemma: 2 questions (Q5, Q9)
+- Philosophy: 1 question (Q10)
+
+**Question Flow Template:**
+```
+Q1-Q3: knowledge
+[SKILL OFFER 1: CS/Asset skill (ADAM recommends) + Autonomy skill]
+Q4: knowledge
+Q5: dilemma (skills from offer 1 affect parameter changes)
+Q6-Q7: knowledge (Q7 has one locked answer - key skill pathway)
+[SKILL OFFER 2: CS/Asset skill (ADAM recommends) + Autonomy key skill]
+Q8: knowledge
+Q9: dilemma (one answer locked - CS/Asset lock)
+Q10: philosophy
+```
 
 See **QUESTION_DESIGN_GUIDE.md** for detailed writing instructions.
 
@@ -519,9 +531,11 @@ Before committing your stage, verify:
   - [ ] `src/assets/s{N}_q*.png` (5-10 images)
 
 #### Question Distribution ✅
-- [ ] ~4 knowledge questions (correct answer exists)
-- [ ] ~4 dilemma questions (both choices defensible)
-- [ ] ~2 philosophy questions (no correct answer)
+- [ ] 7 knowledge questions (Q1, Q2, Q3, Q4, Q6, Q7, Q8)
+- [ ] 2 dilemma questions (Q5, Q9) - not consecutive
+- [ ] 1 philosophy question (Q10)
+- [ ] Q7 has key skill pathway lock (Autonomy)
+- [ ] Q9 has CS/Asset lock
 - [ ] Q5 is TRUE dilemma (equally valid paths)
 - [ ] Q7 leads to key skill acquisition
 

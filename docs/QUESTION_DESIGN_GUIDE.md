@@ -25,13 +25,62 @@ Every stage needs **10 questions** with this distribution:
 
 | Type | Count | % | Purpose |
 |------|-------|---|---------|
-| Knowledge | ~4 | 40% | Test understanding, teach facts |
-| Dilemma | ~4 | 40% | Explore trade-offs, no perfect answer |
-| Philosophy | ~2 | 20% | Define character, no correct answer |
+| Knowledge | 7 | 70% | Test understanding, teach facts |
+| Dilemma | 2 | 20% | Explore trade-offs, no perfect answer |
+| Philosophy | 1 | 10% | Define character, no correct answer |
 
 ---
 
-### Type 1: Knowledge Questions (40%)
+## Stage Design Constraints
+
+### Question Flow Template (Standard for All Stages)
+```
+Q1: knowledge
+Q2: knowledge
+Q3: knowledge
+[SKILL OFFER 1: CS/Asset skill (ADAM recommends) + Autonomy skill]
+Q4: knowledge
+Q5: dilemma (skills from offer 1 affect parameter changes)
+Q6: knowledge
+Q7: knowledge (one answer locked - key skill pathway)
+[SKILL OFFER 2: CS/Asset skill (ADAM recommends) + Autonomy key skill (locked until Q7-B)]
+Q8: knowledge
+Q9: dilemma (one answer locked)
+Q10: philosophy
+```
+
+Key principles:
+- Dilemmas are separated (Q5 and Q9), never in a row
+- Skill effects from Offer 1 apply to Q5 (first meaningful skill use)
+- Q7's locked choice unlocks key skill in Offer 2
+- Q9's lock demonstrates CS-based barriers
+
+### Lock Requirements Limit
+**Maximum locks per stage: 2**
+
+Rationale:
+- Too many locks create frustrating gameplay
+- Locks should demonstrate meaningful barriers, not punish players
+- Standard positions: Q7 (key skill pathway) and Q9 (CS lock)
+
+### Question Uniqueness
+**All questions must be unique across all stages.**
+
+Process:
+1. Review existing stages to avoid duplication
+2. Check `/src/data/question_sources/` for inspiration
+3. Use different scenarios even for same concepts
+
+### Question Sources
+**Generate questions from `/src/data/question_sources/`**
+
+Available files:
+- `claude_deep_research.md` - Comprehensive adult knowledge
+- `new_question_ideas.md` - Pre-designed question ideas by category
+
+---
+
+### Type 1: Knowledge Questions (70%)
 
 **Purpose**: Test player's knowledge of adult life concepts. There IS a correct answer based on facts/laws/best practices.
 
@@ -89,7 +138,7 @@ Wrong Answer:     CS: -10 to -30, Asset: negative, Autonomy: -5 to -10
 
 ---
 
-### Type 2: Dilemma Questions (40%)
+### Type 2: Dilemma Questions (20%)
 
 **Purpose**: Present situations where both choices are defensible. Explore trade-offs between values (CS vs Autonomy, money vs relationships, etc.)
 
@@ -173,7 +222,7 @@ Choice B (Independence):   CS: -10 to +10, Autonomy: +15 to +25
 
 ---
 
-### Type 3: Philosophy Questions (20%)
+### Type 3: Philosophy Questions (10%)
 
 **Purpose**: Define player's worldview. No factually correct answer, reflects values and character.
 
@@ -840,7 +889,10 @@ Before finalizing a question, verify:
 - [ ] Knowledge Q: Has factually correct answer
 - [ ] Dilemma Q: Both choices defensible
 - [ ] Philosophy Q: Reflects worldview, not facts
-- [ ] Distribution: ~40% knowledge, ~40% dilemma, ~20% philosophy
+- [ ] Distribution: 70% knowledge (7), 20% dilemma (2), 10% philosophy (1)
+- [ ] Dilemmas at Q5 and Q9 (not consecutive)
+- [ ] Q7 has key skill pathway lock (Autonomy)
+- [ ] Q9 has CS/Asset lock
 
 ---
 

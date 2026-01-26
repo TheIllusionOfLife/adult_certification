@@ -59,6 +59,23 @@ Each stage has **2 skill offers**:
 - ❌ Overpowered effects (removes challenge)
 - ❌ Useless effects (why choose it?)
 
+### Skill Uniqueness Requirement
+**All skills must be unique in BOTH name AND effect across all stages.**
+
+Already used in Stage 1:
+- メンタルシールド (autonomy_damage_reduction @ 30%)
+- 節約マインド (asset_damage_reduction @ 30%)
+- 印象操作 (cs_damage_reduction @ 50%)
+- MEDIATION (autonomy_damage_reduction @ 50%)
+
+Already used in Stage 2:
+- 交渉術 (asset_gain_amplification @ 30%)
+- 報連相の型 (autonomy_gain_amplification @ 20%)
+- 労働法知識 (category_cs_damage_reduction LABOR @ 40%)
+- EVIDENCE_CHAIN (autonomy_damage_reduction @ 50%)
+
+New stages must use different names AND effect combinations.
+
 ---
 
 ## Normal Skills
