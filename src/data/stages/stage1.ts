@@ -11,8 +11,8 @@ export const stage1Questions: Question[] = [
         choices: [
             {
                 text: "毎月の支払いが一定で楽そうなので、リボ払いを設定する。",
-                effect: { CS: 0, Asset: -10000, Autonomy: -10 },
-                feedback: "罠です。「資産-10,000」—年利15%前後で「返済が終わらない設計」になりがち。便利さの裏に利息地獄があります。お金の知識不足が資産を削ります。",
+                effect: { CS: 0, Asset: -50000, Autonomy: -10 },
+                feedback: "罠です。「資産-50,000」—年利15%前後で「返済が終わらない設計」になりがち。便利さの裏に利息地獄があります。お金の知識不足が資産を削ります。",
                 lockRequirements: null
             },
             {
@@ -37,8 +37,8 @@ export const stage1Questions: Question[] = [
         choices: [
             {
                 text: "引越しから14日以内。",
-                effect: { CS: 20, Asset: 0, Autonomy: -10 },
-                feedback: "適正です。「信用度+20」—法定期限を守ることで社会から信頼されます。「自律性-10」—義務に従う代償です。これを過ぎると最大5万円の過料があり、「信頼できない市民」として記録されます。",
+                effect: { CS: 20, Asset: 0, Autonomy: 10 },
+                feedback: "適正です。「信用度+20」「自律性+10」—法定期限を守ることで社会から信頼されます。自分で期限を管理する行動力も評価されます。これを過ぎると最大5万円の過料があり、「信頼できない市民」として記録されます。",
                 lockRequirements: null
             },
             {
@@ -66,8 +66,8 @@ export const stage1Questions: Question[] = [
             },
             {
                 text: "ネットやハガキで転送を申し込む。",
-                effect: { CS: 10, Asset: 0, Autonomy: -5 },
-                feedback: "安全策です。「信用度+10」—1年間無料で転送してくれるシステムを使わない手はありません。「自律性-5」—行政システムに依存する代償です。",
+                effect: { CS: 10, Asset: 0, Autonomy: 10 },
+                feedback: "安全策です。「信用度+10」「自律性+10」—1年間無料で転送してくれるシステムを使わない手はありません。自ら行動してリスクを回避しました。",
                 lockRequirements: null
             }
         ],
@@ -167,8 +167,8 @@ export const stage1Questions: Question[] = [
                 text: "管理会社に連絡し、「匿名で」注意してもらう。",
                 effect: { CS: 30, Asset: 0, Autonomy: 15 },
                 feedback: "仲介術です。「信用度+30」「自律性+15」—システムを間に挟むことで、直接対決を避ける技術です。これが「大人の解決法」です。",
-                lockRequirements: { Autonomy: 20 },
-                lockedFeedback: "LOCKED: 自律性が20以上必要。受動的に耐えてきた結果、「第三者を使う」という発想すら浮かびません。自律性は「選択肢の数」です。"
+                lockRequirements: { Autonomy: 80 },
+                lockedFeedback: "LOCKED: 自律性が80以上必要。受動的に耐えてきた結果、「第三者を使う」という発想すら浮かびません。自律性は「選択肢の数」です。"
             }
         ],
         adamDialogue: {
@@ -178,53 +178,56 @@ export const stage1Questions: Question[] = [
     },
     // [SKILL OFFER 2 HAPPENS AFTER Q7]
 
-    // Q8: Knowledge (LABOR) - Professional Appearance - no lock (plain knowledge)
+    // Q8: Knowledge (SOCIAL) - Co-signer request - teaches "連帯保証人 = danger"
     {
         id: "s1_q08",
-        category: "LABOR",
-        text: "明日、大手企業の最終面接。しかし手持ちのスーツがヨレヨレで、靴も傷んでいる。",
-        imagePrompt: "Scene: a worn suit and scuffed shoes beside an empty wallet; a shop window displaying a pristine suit with a big price tag; tomorrow's interview date looming on a calendar. Composition: split scene with the protagonist in center, pulled between the shabby clothes and the glowing new suit. Mood: desperation, inequality, make-or-break pressure.",
+        category: "SOCIAL",
+        text: "親友から「起業資金の連帯保証人になって」と頼まれた。信頼はあるが、連帯保証人は「本人と同等の返済義務」を負う。",
+        imagePrompt: "Scene: protagonist at crossroads; one path shows friend succeeding, other shows debt collectors; a contract paper floats between them with ominous shadow. Mood: loyalty vs self-preservation.",
         imagePath: "s1_q08.png",
         choices: [
             {
+                text: "「連帯保証は無理だけど、別の形で応援する」と断る。",
+                effect: { CS: 10, Asset: 0, Autonomy: 20 },
+                feedback: "正解です。「信用度+10」「自律性+20」—連帯保証は「自分の借金」と同義。断る勇気があなたの人生を守りました。別の形で応援すれば友情も保てます。",
+                lockRequirements: null
+            },
+            {
+                text: "友人を信じて、連帯保証人になる。",
+                effect: { CS: -20, Asset: -50000, Autonomy: -20 },
+                feedback: "危険な選択です。「信用度-20」「資産-50,000」「自律性-20」—事業が失敗すれば、あなたが数百万円の債務を背負います。情に流されて自分の人生を危険に晒しました。",
+                lockRequirements: null
+            }
+        ],
+        adamDialogue: {
+            intro: "連帯保証人。この言葉の重さを、あなたは理解していますか？"
+        }
+    },
+
+    // Q9: Dilemma (LABOR) - Professional Appearance - Asset lock teaches "money opens doors"
+    {
+        id: "s1_q09",
+        category: "LABOR",
+        text: "明日、大手企業の最終面接。しかし手持ちのスーツがヨレヨレで、靴も傷んでいる。",
+        imagePrompt: "Scene: a worn suit and scuffed shoes beside an empty wallet; a shop window displaying a pristine suit with a big price tag; tomorrow's interview date looming on a calendar. Composition: split scene with the protagonist in center, pulled between the shabby clothes and the glowing new suit. Mood: desperation, inequality, make-or-break pressure.",
+        imagePath: "s1_q09.png",
+        choices: [
+            {
                 text: "今のスーツのまま面接に行く。中身で勝負。",
-                effect: { CS: -20, Asset: 0, Autonomy: -10 },
-                feedback: "理想論です。「信用度-20」「自律性-10」—面接官は第一印象で「自己管理できない人材」と判断しました。実力があっても、見た目で門前払いされる現実があります。",
+                effect: { CS: -20, Asset: 0, Autonomy: 10 },
+                feedback: "理想論です。「信用度-20」—面接官は第一印象で「自己管理できない人材」と判断しました。「自律性+10」—ただし、お金に頼らない覚悟は評価できます。",
                 lockRequirements: null
             },
             {
                 text: "新しいスーツと靴を購入して、万全の状態で臨む。",
                 effect: { CS: 40, Asset: -30000, Autonomy: 10 },
-                feedback: "正しい投資です。「信用度+40」「自律性+10」—プロフェッショナルな外見が評価され、内定を獲得しました。「資産-30,000」の出費ですが、これが「自分への投資」です。",
-                lockRequirements: null
-            }
-        ]
-    },
-
-    // Q9: Dilemma (SOCIAL) - Co-signer request - Asset lock teaches "money enables risky choices"
-    {
-        id: "s1_q09",
-        category: "SOCIAL",
-        text: "親友から「起業資金の連帯保証人になって」と頼まれた。信頼はあるが、連帯保証人は「本人と同等の返済義務」を負う。",
-        imagePrompt: "Scene: protagonist at crossroads; one path shows friend succeeding, other shows debt collectors; a contract paper floats between them with ominous shadow. Mood: loyalty vs self-preservation.",
-        imagePath: "s1_q09.png",
-        choices: [
-            {
-                text: "「連帯保証は無理だけど、別の形で応援する」と断る。",
-                effect: { CS: -15, Asset: 0, Autonomy: 20 },
-                feedback: "自己防衛の選択です。「信用度-15」—友情には傷がつきましたが、「自律性+20」—連帯保証は「自分の借金」と同義。あなたの人生は守られました。",
-                lockRequirements: null
-            },
-            {
-                text: "友人を信じて、連帯保証人になる。",
-                effect: { CS: 10, Asset: 0, Autonomy: -15 },
-                feedback: "忠誠の選択です。「信用度+10」—友人は喜びました。「自律性-15」—ただし事業が失敗すれば、あなたが数百万円の債務を背負います。お金は人を縛ります。",
-                lockRequirements: { Asset: 70000 },
-                lockedFeedback: "LOCKED: 資産が70,000円以上必要。銀行はあなたの資産状況を審査し、保証人として不適格と判断しました。お金がないと、リスクを取る選択肢すらありません。"
+                feedback: "正しい投資です。「信用度+40」「自律性+10」—プロフェッショナルな外見が評価され、内定を獲得しました。「資産-30,000」の出費ですが、これが「お金が扉を開く」現実です。",
+                lockRequirements: { Asset: 50000 },
+                lockedFeedback: "LOCKED: 資産が50,000円以上必要。スーツと靴を買う余裕がありません。お金がないと、チャンスすら掴めない。これが「資産の役割」です。"
             }
         ],
         adamDialogue: {
-            intro: "友情か、自己防衛か。どちらも正解はありません。"
+            intro: "見た目か、中身か。社会はどちらを見ていると思いますか？"
         }
     },
 

@@ -18,7 +18,7 @@ Q6: Knowledge
 Q7: Knowledge ★ (locked choice → key skill pathway)
 [SKILL OFFER 2: Normal skill + Key skill (earned via Q7-B)]
 Q8: Knowledge
-Q9: Dilemma ★ (CS lock)
+Q9: Dilemma ★ (lock)
 Q10: Philosophy
 ```
 
@@ -162,34 +162,60 @@ Independent: CS: +5 to +15, Autonomy: +15 to +25
 
 ## Lock Requirements
 
-### When to Use
-- Financial barriers (Asset threshold)
-- Social barriers (CS threshold)
-- Knowledge barriers (Autonomy threshold)
+### Core Principles (CRITICAL)
+
+1. **Parameter changes must be realistic**
+   - Match real-world consequences (e.g., リボ払い = -50K, not -10K)
+   - Taking positive action should increase Autonomy, not decrease it
+   - Following rules properly shouldn't hurt Autonomy
+
+2. **Locked choice = desirable choice**
+   - The locked option should be the "better" or "more desirable" outcome
+   - Lock teaches: "You need X resource to access this opportunity"
+   - ❌ Bad: Lock the "wrong" answer
+   - ✅ Good: Lock the "investment" or "empowered" answer
+
+3. **Lock type distribution per stage**
+   - Every stage: **1 Asset lock + 1 Autonomy/CS lock**
+   - Stage 1: No CS lock (CS is the obvious goal, self-explanatory)
+   - Stage 2+: CS lock allowed
+
+4. **Lock availability must be meaningful (40-80%)**
+   - 0% availability = impossible = bad design
+   - 100% availability = no impact = pointless
+   - Target: 40-80% of paths can unlock
+   - **Always simulate to verify** before finalizing
 
 ### Thresholds
 | Parameter | Low | Medium | High |
 |-----------|-----|--------|------|
-| CS | ≥20 | ≥40 | ≥50 |
-| Asset | ≥10k | ≥30k | ≥50k |
-| Autonomy | ≥20 | ≥30 | ≥40 |
+| CS | ≥20 | ≥40 | ≥60 |
+| Asset | ≥30k | ≥50k | ≥80k |
+| Autonomy | ≥40 | ≥60 | ≥80 |
 
-### Safety Rules (CRITICAL)
+### Safety Rules
 1. **ONE choice must have `lockRequirements: null`** - Always available
-2. Test worst-case scenario - lowest params must complete stage
+2. **Simulate worst-case** - lowest params must complete stage
+3. **Check cumulative effects** - multiple bad choices shouldn't cause unavoidable game over
 
+### Lock Design Examples
+
+✅ **Good Lock Design (Q9 Interview Suit)**:
 ```typescript
 {
-    choices: [
-        {
-            text: "我慢する。",
-            lockRequirements: null  // ✅ Always available (safety)
-        },
-        {
-            text: "管理会社に連絡する。",
-            lockRequirements: { Autonomy: 20 }
-        }
-    ]
+    text: "新しいスーツと靴を購入して、万全の状態で臨む。",
+    effect: { CS: 40, Asset: -30000, Autonomy: 10 },  // Good outcome
+    lockRequirements: { Asset: 50000 },  // Need money to invest
+    lockedFeedback: "資産が50,000円以上必要。お金がないとチャンスすら掴めない。"
+}
+```
+
+❌ **Bad Lock Design**:
+```typescript
+{
+    text: "適当な番号を書いておく。",  // Bad choice
+    effect: { CS: -30, Asset: 0, Autonomy: 0 },
+    lockRequirements: { CS: 30 }  // Why lock a bad choice?
 }
 ```
 
@@ -232,12 +258,26 @@ Independent: CS: +5 to +15, Autonomy: +15 to +25
 
 ## Quality Checklist
 
+### Structure
 - [ ] 10 questions: 7 knowledge, 2 dilemma (Q5, Q9), 1 philosophy (Q10)
-- [ ] Q7 has Autonomy lock (key skill pathway)
-- [ ] Q9 has CS lock
 - [ ] At least one choice always available per question
+
+### Locks (CRITICAL - Run Simulator)
+- [ ] Exactly 2 locks: Q7 + Q9
+- [ ] 1 Asset lock + 1 Autonomy/CS lock
+- [ ] Stage 1 only: No CS lock
+- [ ] Locked choice is the "desirable" option
+- [ ] Lock availability: 40-80% (not 0%, not 100%)
+- [ ] Run `node scripts/simulate_stage.mjs --stage N` to verify
+
+### Parameter Balance
+- [ ] Parameter changes are realistic to real-world consequences
+- [ ] Positive actions increase Autonomy (not decrease)
 - [ ] CS: -30 to +40, Asset: -50k to +50k, Autonomy: -30 to +20
 - [ ] Best path: 50 → 80+ CS (S rank)
 - [ ] Worst path: survives (no param hits 0)
+
+### Content
 - [ ] Feedback uses A.D.A.M.'s voice (です/ます, clinical)
 - [ ] Dilemmas have true trade-offs (both choices have pros AND cons)
+- [ ] No "正解です" in dilemma feedback
