@@ -183,7 +183,7 @@ export const stage2Questions: Question[] = [
         id: "s2_q08",
         category: "ADMIN",
         text: "退職日が近づいている。人事から「書類は最終日に渡すから」と言われた。何を確認すべき？",
-        imagePrompt: "Scene: a cluttered desk with various official documents; one critical document (源泉徴収票) glowing; a tax form with question marks; next year's calendar showing tax season. Composition: documents scattered, key document highlighted, confused worker scratching head. Mood: bureaucratic maze, hidden consequence, future dread.",
+        imagePrompt: "Scene: a cluttered desk with various official documents; one critical document glowing; a tax form with question marks; next year's calendar showing tax season. Composition: documents scattered, key document highlighted, confused worker scratching head. Mood: bureaucratic maze, hidden consequence, future dread.",
         imagePath: "s2_q08.png",
         choices: [
             {

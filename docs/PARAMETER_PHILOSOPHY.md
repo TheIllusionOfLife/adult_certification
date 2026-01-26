@@ -31,23 +31,23 @@ The game uses three parameters, each with a distinct role in gameplay and narrat
 **Design Intent**: Represents economic capital as gate to opportunities
 
 **Characteristics**:
-- **Unlocks choices** via locks (e.g., "Asset >= 100,000円 required")
+- **Unlocks choices** via locks (e.g., "Asset >= 50,000円 required")
 - Not directly scored, but enables paths to higher CS
 - Game over if ≤ 0 (encourages resource management)
 - **"Money opens doors"** metaphor
 
 **Teaching Method**:
-- Stage 1: Introduce Asset lock (Q8 - buying interview suit)
+- Stage 1: Introduce Asset lock (Q9 - buying interview suit)
 - Show that Asset gates access to better outcomes
 - Players learn: "Keep Asset healthy or lose opportunities"
 
-**Lock Example (Stage 1 Q8)**:
+**Lock Example (Stage 1 Q9)**:
 ```typescript
 {
     text: "新しいスーツと靴を購入して、万全の状態で臨む。",
-    effect: { CS: 40, Asset: -30000, Autonomy: 10 },
-    lockRequirements: { Asset: 100000 },
-    lockedFeedback: "資産が100,000円以上必要"
+    effect: { CS: 20, Asset: -30000, Autonomy: 10 },
+    lockRequirements: { Asset: 50000 },
+    lockedFeedback: "資産が50,000円以上必要"
 }
 ```
 
@@ -66,7 +66,7 @@ The game uses three parameters, each with a distinct role in gameplay and narrat
 - Required for key skill collection (need 9/9 key skills for True Ending)
 
 **Teaching Method**:
-- Stage 1: Show Autonomy gates choices (Q6, Q7 locks)
+- Stage 1: Show Autonomy gates choices (Q7 lock)
 - Demonstrate trade-offs (Q5: CS+30/-15 Autonomy vs Autonomy+20)
 - Reveal importance gradually across stages
 - True purpose revealed at Stage 10
@@ -76,8 +76,8 @@ The game uses three parameters, each with a distinct role in gameplay and narrat
 {
     text: "管理会社に連絡し、「匿名で」注意してもらう。",
     effect: { CS: 30, Asset: 0, Autonomy: 15 },
-    lockRequirements: { Autonomy: 20 },
-    lockedFeedback: "自律性が20以上必要"
+    lockRequirements: { Autonomy: 80 },
+    lockedFeedback: "自律性が80以上必要"
 }
 ```
 
@@ -87,15 +87,15 @@ The game uses three parameters, each with a distinct role in gameplay and narrat
 
 ### Teaching All Three Parameters
 
-**Q8 (Asset Lock)**:
-- First and only Asset lock in Stage 1
+**Q9 (Asset Lock)**:
+- Asset lock in Stage 1 (threshold: 50,000)
 - Clear cause-effect: "No money → can't buy suit → can't access better choice"
 - Teaches: Asset is a supportive resource that enables opportunities
 
-**Q6, Q7 (Autonomy Locks)**:
-- Multiple Autonomy locks to emphasize this parameter
+**Q7 (Autonomy Lock)**:
+- Autonomy lock to emphasize this parameter (threshold: 80)
 - Teaches: Autonomy = breadth of choices
-- Shows trade-offs between CS and Autonomy
+- Gates key skill pathway (MEDIATION)
 
 **No CS Locks in Stage 1**:
 - CS is straightforward (higher is better)
@@ -105,7 +105,7 @@ The game uses three parameters, each with a distinct role in gameplay and narrat
 ### Parameter Introduction Strategy
 
 **Gradual Complexity**:
-1. **Stage 1**: Autonomy locks (primary) + 1 Asset lock (introduction)
+1. **Stage 1**: 1 Autonomy lock (Q7) + 1 Asset lock (Q9)
 2. **Stage 2+**: More complex combinations (CS + Asset, all three, etc.)
 3. **Stage 5+**: Philosophical dilemmas (CS vs Autonomy trade-offs)
 4. **Stage 10**: True Ending unlock (requires high Autonomy history via key skills)
@@ -143,14 +143,14 @@ The game uses three parameters, each with a distinct role in gameplay and narrat
 ### Asset Balance (Starting: 100,000 yen)
 
 **Stage 1 Range**:
-- Best path: 95,000 - 120,000 yen
-- Worst path: 95,000 - 100,000 yen
-- Q8 lock threshold: 100,000 yen
+- Best path: ~96,500 yen
+- Worst path: ~1,000 yen (near game over)
+- Q9 lock threshold: 50,000 yen
 
 **Design Goals**:
-- Q5 choice (-5,000 for friends) should matter
-- Players who skip Q4 bonus (+20,000) can still survive but face consequences
-- Lock threshold at starting value (100,000) creates tension
+- Q1 リボ払い trap (-50,000) creates major early divergence
+- Q8 co-signer trap (-50,000) is the deadliest question
+- Lock threshold at 50,000 creates meaningful gate (~44% availability)
 
 **Future Stages**:
 - Gradually increase costs and stakes
@@ -162,19 +162,19 @@ The game uses three parameters, each with a distinct role in gameplay and narrat
 ### Autonomy Balance (Starting: 50)
 
 **Stage 1 Range**:
-- Best path: 105 Autonomy (all active choices)
-- Worst path: 5 Autonomy (all passive choices)
-- Lock thresholds: 20, 30
+- Best path: ~180 Autonomy (all active choices)
+- Worst path: ~5 Autonomy (all passive choices, near game over)
+- Lock threshold: 80 (Q7)
 
 **Design Goals**:
 - Show clear consequences of passivity
-- Allow recovery if player course-corrects
+- Q7 lock at 80 requires mostly positive choices to unlock (~49% availability)
 - Demonstrate trade-offs (Q5: work gives -15, friends gives +20)
 
 **Lock Cascade**:
 - Intentional: Sustained passivity leads to lockout
-- Fair: Single "wrong" choice doesn't doom player
-- Example: Q5 work (-15) → still 35 Autonomy → all locks still available
+- Fair: Need good choices in Q1-Q6 to reach threshold 80
+- Key skill pathway (MEDIATION) requires unlocking Q7 choice B
 
 ---
 
@@ -241,25 +241,25 @@ Before finalizing a stage:
 
 ## Examples
 
-### Good Asset Lock (Stage 1 Q8)
+### Good Asset Lock (Stage 1 Q9)
 ```typescript
 text: "新しいスーツと靴を購入して、万全の状態で臨む。"
-lockRequirements: { Asset: 100000 }
-lockedFeedback: "資産が100,000円以上必要"
+lockRequirements: { Asset: 50000 }
+lockedFeedback: "資産が50,000円以上必要"
 ```
 ✅ Clear economic logic (buying costs money)
-✅ Threshold at starting value (100k) creates tension
+✅ Threshold at 50k creates meaningful gate (~44% availability)
 ✅ Feedback explains reason clearly
 
 ### Good Autonomy Lock (Stage 1 Q7)
 ```typescript
 text: "管理会社に連絡し、「匿名で」注意してもらう。"
-lockRequirements: { Autonomy: 20 }
-lockedFeedback: "自律性が20以上必要"
+lockRequirements: { Autonomy: 80 }
+lockedFeedback: "自律性が80以上必要"
 ```
 ✅ Clear psychological logic (requires confidence to use systems)
-✅ Low threshold (20) allows recovery
-✅ Feedback explains psychological state
+✅ High threshold (80) requires mostly positive choices (~49% availability)
+✅ Gates key skill pathway (MEDIATION)
 
 ### Bad Lock Example ❌
 ```typescript
