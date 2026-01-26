@@ -38,7 +38,8 @@ Before creating a new stage, ensure you have:
 | A.D.A.M. dialogue | 1 hour | Intro, mid-stage, outro, teaser |
 | Image generation | 2-3 hours | 5-10 images (user responsibility) |
 | Testing | 1-2 hours | Full playthrough + edge cases |
-| **Total** | **9-13 hours** | Per stage |
+| Game designer review | 30 min | Pattern detection, dilemma authenticity |
+| **Total** | **10-14 hours** | Per stage |
 
 ---
 
@@ -355,6 +356,81 @@ Vite will automatically bundle images from `src/assets/`.
 ### Phase 6: Testing (1-2 hours)
 
 Follow **Testing Protocol** section below.
+
+---
+
+### Phase 7: Game Designer Review (30 minutes)
+
+After technical testing passes, review the stage as a game designer. This catches issues that simulations miss.
+
+#### Step 7.1: Read Through All Questions
+
+Read the entire stage file sequentially. Ask yourself:
+
+**Educational Value:**
+- [ ] Does each question teach something actionable?
+- [ ] Are specific numbers/thresholds included where applicable?
+- [ ] Would a naive 20-year-old learn something useful?
+
+**Engagement:**
+- [ ] Does each scenario have emotional stakes?
+- [ ] Are question texts written as scenarios, not trivia?
+- [ ] Is there variety in situation types?
+
+#### Step 7.2: Pattern Detection
+
+Look for repetitive structures:
+
+**Common Anti-Patterns:**
+- ❌ Multiple "authority says X → submit vs assert" questions
+- ❌ "Correct" answer is always the assertive option
+- ❌ All dilemmas follow same trade-off pattern
+
+**Variety Checklist:**
+- [ ] At least one question where assertiveness has real costs
+- [ ] Mix of interpersonal, bureaucratic, and financial scenarios
+- [ ] Different emotional tones (fear, frustration, hope, conflict)
+
+#### Step 7.3: Dilemma Authenticity
+
+For each dilemma question (Q5, Q9):
+
+| Check | Q5 | Q9 |
+|-------|----|----|
+| Both choices have pros AND cons | ☐ | ☐ |
+| Neither feedback says "正解です" | ☐ | ☐ |
+| A reasonable person could defend either choice | ☐ | ☐ |
+| Trade-off is clear (X vs Y, not good vs bad) | ☐ | ☐ |
+
+#### Step 7.4: Scenario Quality
+
+For each question, verify:
+- [ ] Text reads as a scenario with a verb, not a topic summary
+- [ ] Stakes are clear (what happens if wrong?)
+- [ ] Choices are specific actions, not vague attitudes
+
+**Red Flags:**
+- "〜について" (about X) → Should be "〜が起きた" (X happened)
+- "〜すべき書類" (documents you should get) → Should be "〜と言われた。何をすべき？" (you were told X. What do you do?)
+- Choices like "適切に対応する" → Should be specific action
+
+#### Step 7.5: Document Findings
+
+If issues found, create a revision list before committing:
+
+```markdown
+## Game Designer Review Findings
+
+### Issues
+1. Q2/Q3/Q7 all follow "submit vs assert" pattern - add variety
+2. Q9 has "正解です" in feedback - not a true dilemma
+3. Q6 reads like trivia, lacks stakes
+
+### Revisions Needed
+- [ ] Q2: Change to show nuance (assertiveness can backfire)
+- [ ] Q9: Rewrite as true dilemma
+- [ ] Q6: Add scenario tension
+```
 
 ---
 

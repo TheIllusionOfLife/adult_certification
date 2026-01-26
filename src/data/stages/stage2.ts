@@ -27,7 +27,7 @@ export const stage2Questions: Question[] = [
         }
     },
 
-    // Q2: Overtime Records (LABOR) - Knowledge
+    // Q2: Overtime Records (LABOR) - Knowledge (nuanced: method matters)
     {
         id: "s2_q02",
         category: "LABOR",
@@ -36,15 +36,15 @@ export const stage2Questions: Question[] = [
         imagePath: "s2_q02.png",
         choices: [
             {
-                text: "「みんなそうしている」から従う。",
-                effect: { CS: 10, Asset: -10000, Autonomy: -20 },
-                feedback: "サービス残業の共犯者です。あなたの労働価値は踏み潰されました。",
+                text: "個人で記録をつけつつ、表向きは従う。",
+                effect: { CS: 5, Asset: 0, Autonomy: 10 },
+                feedback: "戦略的です。証拠を集めながら機を待つ。残業代の割増率は時間外25%、休日35%、深夜25%。請求の時効は3年。36協定なしの残業は違法です。",
                 lockRequirements: null
             },
             {
-                text: "個人で記録をつけ、証拠を残す。",
-                effect: { CS: -5, Asset: 0, Autonomy: 15 },
-                feedback: "賢明です。自分のログは自分で守る。残業代の割増率は時間外25%、休日35%、深夜25%。請求の時効は3年。36協定なしの残業は違法です。いつか必要になる日が来ます。",
+                text: "「違法です」と上司に直接抗議し、労基署への相談をほのめかす。",
+                effect: { CS: -20, Asset: 0, Autonomy: 20 },
+                feedback: "正論ですが、職場で孤立しました。正義を振りかざすタイミングを誤ると、味方がいなくなります。証拠を固めてからでも遅くはなかったはずです。",
                 lockRequirements: null
             }
         ]
@@ -130,20 +130,20 @@ export const stage2Questions: Question[] = [
     {
         id: "s2_q06",
         category: "LABOR",
-        text: "退職を決意。就業規則には「退職は3ヶ月前に申し出ること」とある。法律上の最短は？",
+        text: "転職先が決まった。上司に退職を伝えたら「就業規則は3ヶ月前申告だ。来月からなんて認めない」と言われた。",
         imagePrompt: "Scene: a worker holding a resignation letter; on one side a company rulebook showing '3 months'; on the other side a law book glowing showing '2 weeks'. Composition: worker centered between two contrasting documents, scale of justice metaphor. Mood: tension between rules and rights, legal knowledge empowerment.",
         imagePath: "s2_q06.png",
         choices: [
             {
-                text: "就業規則通り3ヶ月前でないと辞められない。",
-                effect: { CS: 0, Asset: 0, Autonomy: -15 },
-                feedback: "誤解です。民法627条により、期間の定めのない雇用契約は2週間前の意思表示で解約可能。就業規則より法律が優先されます。",
+                text: "上司の言う通りだと思い、転職先に入社延期を頼む。",
+                effect: { CS: 10, Asset: -20000, Autonomy: -15 },
+                feedback: "誤解に基づく損失です。民法627条により、期間の定めのない雇用は2週間前の意思表示で解約可能。転職先を待たせた3ヶ月分の機会費用は取り戻せません。",
                 lockRequirements: null
             },
             {
-                text: "法律上は2週間前の意思表示で有効。ただし円満退職のため調整は必要。",
-                effect: { CS: 15, Asset: 0, Autonomy: 10 },
-                feedback: "正解です。法的には2週間前で有効ですが、引継ぎや人間関係を考慮して早めに伝えるのが大人の対応です。",
+                text: "「法的には2週間で有効です。引継ぎは誠意を持って行います」と伝える。",
+                effect: { CS: -5, Asset: 0, Autonomy: 15 },
+                feedback: "正解です。法律は就業規則に優先します。ただし円満退職のため、引継ぎ計画を示して誠意を見せるのが大人の対応です。",
                 lockRequirements: null
             }
         ]
@@ -182,20 +182,20 @@ export const stage2Questions: Question[] = [
     {
         id: "s2_q08",
         category: "ADMIN",
-        text: "退職時に会社から受け取るべき書類。もらい忘れると翌年の税金で詰む。",
+        text: "退職日が近づいている。人事から「書類は最終日に渡すから」と言われた。何を確認すべき？",
         imagePrompt: "Scene: a cluttered desk with various official documents; one critical document (源泉徴収票) glowing; a tax form with question marks; next year's calendar showing tax season. Composition: documents scattered, key document highlighted, confused worker scratching head. Mood: bureaucratic maze, hidden consequence, future dread.",
         imagePath: "s2_q08.png",
         choices: [
             {
-                text: "何も確認せず退職する。",
+                text: "「お願いします」と任せる。会社がやってくれるはず。",
                 effect: { CS: -15, Asset: -10000, Autonomy: -5 },
-                feedback: "致命的なミスです。源泉徴収票がないと確定申告ができず、追徴課税が待っています。",
+                feedback: "致命的なミスです。源泉徴収票がないと確定申告ができず、追徴課税が待っています。会社は言わないと動きません。",
                 lockRequirements: null
             },
             {
-                text: "離職票・源泉徴収票を必ず請求する。",
+                text: "「離職票と源泉徴収票は必ずお願いします」と具体的に伝える。",
                 effect: { CS: 15, Asset: 0, Autonomy: 10 },
-                feedback: "正解です。退職の手続きは「もらう側」が主導しないと、会社は動きません。",
+                feedback: "正解です。退職手続きは「もらう側」が主導しないと、会社は最低限しかしません。確認リストを作るのが大人です。",
                 lockRequirements: null
             }
         ]
@@ -205,26 +205,26 @@ export const stage2Questions: Question[] = [
     {
         id: "s2_q09",
         category: "LABOR",
-        text: "同僚がパワハラを受けている。「相談に乗って」と言われた。まず何をすべき？",
+        text: "同僚がパワハラを受けている。「証人になってほしい」と頼まれた。引き受けるか？",
         imagePrompt: "Scene: an office corridor; a colleague being berated by a supervisor in a glass room; another worker watching from the shadows; a choice between stepping forward or shrinking back. Composition: glass room center with confrontation, observer at threshold, two paths visible. Mood: moral crossroads, fear, solidarity vs self-preservation.",
         imagePath: "s2_q09.png",
         choices: [
             {
-                text: "「大変だね」と話を聞くだけにする。巻き込まれたくない。",
-                effect: { CS: 20, Asset: 0, Autonomy: -25 },
-                feedback: "保身です。ただし、見て見ぬふりは加害者を助長します。次はあなたの番かもしれません。",
-                lockRequirements: null
+                text: "引き受ける。記録を提供し、必要なら証言する。",
+                effect: { CS: -15, Asset: 0, Autonomy: 20 },
+                feedback: "連帯の選択です。同僚は救われる可能性が上がりました。しかし、あなたも「要注意人物」としてマークされます。報復人事のリスクを背負いました。",
+                lockRequirements: { CS: 60 },
+                lockedFeedback: "LOCKED: 信用度が60以上必要 - 職場での評判が低く、証言者として信用されません。"
             },
             {
-                text: "日時・場所・発言内容の記録を勧め、社内窓口・労基署・法テラスの存在を伝える。",
-                effect: { CS: -10, Asset: 0, Autonomy: 20 },
-                feedback: "正解です。ハラスメント対応の初動は「記録」と「相談先の把握」。証拠があれば解決が早まります。",
-                lockRequirements: { CS: 60 },
-                lockedFeedback: "LOCKED: 信用度が60以上必要 - 職場での評判が低く、アドバイスが信用されません。"
+                text: "断る。「証拠集めと労基署への相談を勧めるけど、巻き込まれたくない」と正直に伝える。",
+                effect: { CS: 10, Asset: 0, Autonomy: -10 },
+                feedback: "自己防衛の選択です。同僚との関係は冷えますが、あなたのキャリアは守られました。相談先（労基署・法テラス）を伝えたのはせめてもの誠意です。",
+                lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "価値観の試練です。正義か、保身か。"
+            intro: "連帯か、自己防衛か。どちらも正解はありません。"
         }
     },
 

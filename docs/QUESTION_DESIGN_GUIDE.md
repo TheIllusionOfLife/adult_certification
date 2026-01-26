@@ -76,7 +76,9 @@ Process:
 
 Available files:
 - `claude_deep_research.md` - Comprehensive adult knowledge
-- `new_question_ideas.md` - Pre-designed question ideas by category
+- `gemini_deep_research.md` - Additional research and knowledge points
+- `new_question_ideas_1.md` - Pre-designed question ideas by category (Part 1)
+- `new_question_ideas_2.md` - Pre-designed question ideas by category (Part 2)
 
 ### Topic Coverage Requirements
 
