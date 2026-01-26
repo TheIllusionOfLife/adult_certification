@@ -34,22 +34,26 @@ function loadTSModule(relPath) {
   return sandbox.module.exports;
 }
 
+function toPlainJSON(value) {
+  return JSON.parse(JSON.stringify(value));
+}
+
 test('getOverlayPresentation prefers explicit choiceVerdict', () => {
   const mod = loadTSModule('src/ui/overlayVerdict.ts');
   assert.equal(typeof mod.getOverlayPresentation, 'function');
 
   assert.deepEqual(
-    mod.getOverlayPresentation({ isTerminated: false, choiceVerdict: 'APPROVED', csDelta: -10 }),
+    toPlainJSON(mod.getOverlayPresentation({ isTerminated: false, choiceVerdict: 'APPROVED', csDelta: -10 })),
     { title: 'APPROVED', colorVar: 'var(--accent-color)' }
   );
 
   assert.deepEqual(
-    mod.getOverlayPresentation({ isTerminated: false, choiceVerdict: 'WARNING', csDelta: +20 }),
+    toPlainJSON(mod.getOverlayPresentation({ isTerminated: false, choiceVerdict: 'WARNING', csDelta: +20 })),
     { title: 'WARNING', colorVar: 'var(--primary-color)' }
   );
 
   assert.deepEqual(
-    mod.getOverlayPresentation({ isTerminated: false, choiceVerdict: 'NEUTRAL', csDelta: -999 }),
+    toPlainJSON(mod.getOverlayPresentation({ isTerminated: false, choiceVerdict: 'NEUTRAL', csDelta: -999 })),
     { title: 'RECORDED', colorVar: 'var(--accent-color)' }
   );
 });
@@ -58,12 +62,12 @@ test('getOverlayPresentation falls back to csDelta sign when verdict is missing'
   const mod = loadTSModule('src/ui/overlayVerdict.ts');
 
   assert.deepEqual(
-    mod.getOverlayPresentation({ isTerminated: false, csDelta: 0 }),
+    toPlainJSON(mod.getOverlayPresentation({ isTerminated: false, csDelta: 0 })),
     { title: 'APPROVED', colorVar: 'var(--accent-color)' }
   );
 
   assert.deepEqual(
-    mod.getOverlayPresentation({ isTerminated: false, csDelta: -1 }),
+    toPlainJSON(mod.getOverlayPresentation({ isTerminated: false, csDelta: -1 })),
     { title: 'WARNING', colorVar: 'var(--primary-color)' }
   );
 });
@@ -72,7 +76,7 @@ test('getOverlayPresentation terminates regardless of verdict or csDelta', () =>
   const mod = loadTSModule('src/ui/overlayVerdict.ts');
 
   assert.deepEqual(
-    mod.getOverlayPresentation({ isTerminated: true, choiceVerdict: 'APPROVED', csDelta: 999 }),
+    toPlainJSON(mod.getOverlayPresentation({ isTerminated: true, choiceVerdict: 'APPROVED', csDelta: 999 })),
     { title: 'TERMINATED', colorVar: 'var(--primary-color)' }
   );
 });

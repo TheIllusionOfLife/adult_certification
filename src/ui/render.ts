@@ -2,6 +2,7 @@ import { GameEngine } from '../logic/gameEngine';
 import type { Choice, Question } from '../types';
 import type { SkillActivation } from '../data/skillEffects';
 import { CONFIG } from '../config';
+import { getOverlayPresentation } from './overlayVerdict';
 
 // Vite glob import for assets
 const images = import.meta.glob('../assets/*.{png,jpg,jpeg,webp}', { eager: true });
@@ -260,7 +261,7 @@ export class UIManager {
 
     handleChoice(choice: Choice, question: Question, choiceIndex: number) {
         const result = this.engine.processChoice(choice, question, choiceIndex);
-        this.showFeedback(result);
+        this.showFeedback({ ...result, choiceVerdict: choice.verdict });
     }
 
     showFeedback(result: {
@@ -268,8 +269,9 @@ export class UIManager {
         feedback: string;
         isTerminated: boolean;
         skillActivations: SkillActivation[]
+        choiceVerdict?: Choice['verdict'];
     }) {
-        const { outcome, feedback, isTerminated, skillActivations } = result;
+        const { outcome, feedback, isTerminated, skillActivations, choiceVerdict } = result;
         const { CS, Asset, Autonomy } = outcome;
 
         const getAnimClass = (val: number) => {
@@ -285,8 +287,13 @@ export class UIManager {
               ).join("<br>")
             : "";
 
-        this.dom.ovTitle.innerText = CS >= 0 ? "APPROVED" : "WARNING";
-        this.dom.ovTitle.style.color = CS >= 0 ? "var(--accent-color)" : "var(--primary-color)";
+        const overlay = getOverlayPresentation({
+            isTerminated,
+            csDelta: CS,
+            choiceVerdict: choiceVerdict,
+        });
+        this.dom.ovTitle.innerText = overlay.title;
+        this.dom.ovTitle.style.color = overlay.colorVar;
 
         // A.D.A.M. comment section commented out for smoother gameplay flow
         // const adamCommentMatch = feedback.match(/\[A\.D\.A\.M\.\]: (.+)$/);
@@ -320,7 +327,6 @@ export class UIManager {
         else this.updateMascot('neutral');
 
         if (isTerminated) {
-            this.dom.ovTitle.innerText = "TERMINATED";
             this.dom.btnNext.style.display = 'block';
             this.dom.ovBody.innerHTML += `
                 <div class="adam-comment-section" style="margin-top: 20px;">
