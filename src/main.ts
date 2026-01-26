@@ -5,11 +5,12 @@ import type { Question } from './types';
 
 // Import all stage questions (add more as stages are implemented)
 import { stage1Questions } from './data/stages/stage1';
+import { stage2Questions } from './data/stages/stage2';
 
 // Stage question registry - add more stages as they are implemented
 const stageQuestions: Record<number, Question[]> = {
   1: stage1Questions,
-  // 2: stage2Questions,
+  2: stage2Questions,
   // 3: stage3Questions,
   // etc.
 };

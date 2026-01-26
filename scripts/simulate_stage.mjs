@@ -33,6 +33,7 @@ function parseArgs(argv) {
     stageId: 1,
     stageFile: null,
     exportName: null,
+    metaFile: null,
     json: false,
   };
 
@@ -55,6 +56,9 @@ function parseArgs(argv) {
     } else if (a === "--export") {
       args.exportName = argv[++i] ?? null;
       if (!args.exportName) die("Missing value for --export");
+    } else if (a === "--meta") {
+      args.metaFile = argv[++i] ?? null;
+      if (!args.metaFile) die("Missing value for --meta");
     } else if (a === "--json") {
       args.json = true;
     } else if (a === "--help" || a === "-h") {
@@ -67,6 +71,7 @@ function parseArgs(argv) {
           "  --stageId N      Stage id to fetch metadata (default: stage).",
           "  --stageFile PATH TS stage file path (default: src/data/stages/stage{N}.ts).",
           "  --export NAME    Export name for questions array (default: stage{N}Questions).",
+          "  --meta PATH      Optional JSON metadata to enrich analysis (question types/tags/must-cover).",
           "  --json           Output machine-readable JSON.",
         ].join("\n")
       );
@@ -200,6 +205,11 @@ function pct(n, d) {
   return `${((n * 100) / d).toFixed(1)}%`;
 }
 
+function pct2(n, d) {
+  if (!d) return "0.00%";
+  return `${((n * 100) / d).toFixed(2)}%`;
+}
+
 function formatPathSteps(steps) {
   return steps.join(" ");
 }
@@ -208,12 +218,52 @@ function minOf3(a, b, c) {
   return Math.min(a, b, c);
 }
 
+function minParam(state) {
+  return Math.min(state.CS, state.Asset, state.Autonomy);
+}
+
+function percentile(sortedValues, p) {
+  if (!sortedValues.length) return null;
+  if (p <= 0) return sortedValues[0];
+  if (p >= 100) return sortedValues[sortedValues.length - 1];
+  const idx = (p / 100) * (sortedValues.length - 1);
+  const lo = Math.floor(idx);
+  const hi = Math.ceil(idx);
+  if (lo === hi) return sortedValues[lo];
+  const w = idx - lo;
+  return sortedValues[lo] * (1 - w) + sortedValues[hi] * w;
+}
+
+function computePercentiles(values) {
+  const sorted = [...values].sort((a, b) => a - b);
+  return {
+    p5: percentile(sorted, 5),
+    p25: percentile(sorted, 25),
+    p50: percentile(sorted, 50),
+    p75: percentile(sorted, 75),
+    p95: percentile(sorted, 95),
+    min: sorted.length ? sorted[0] : null,
+    max: sorted.length ? sorted[sorted.length - 1] : null,
+  };
+}
+
+function safeReadJSON(filePath) {
+  const abs = path.resolve(process.cwd(), filePath);
+  if (!fs.existsSync(abs)) die(`Meta file not found: ${filePath}`);
+  try {
+    return JSON.parse(fs.readFileSync(abs, "utf8"));
+  } catch (e) {
+    die(`Failed to parse meta JSON: ${filePath} (${e?.message ?? e})`);
+  }
+}
+
 function simulateStage({
   questions,
   stageMetadata,
   config,
   applySkillEffects,
   stageId,
+  meta,
 }) {
   if (!Array.isArray(questions) || questions.length === 0) {
     die("Stage questions are empty or invalid.");
@@ -229,6 +279,24 @@ function simulateStage({
   // CONFIG.SKILL_OFFER_POSITIONS holds question indices (0-based) where offer happens AFTER answering that question.
   for (let i = 0; i < config.SKILL_OFFER_POSITIONS.length; i++) {
     offerPositions.set(config.SKILL_OFFER_POSITIONS[i], i + 1); // 1 or 2
+  }
+
+  // Optional meta format:
+  // {
+  //   "questions": {
+  //     "s2_q05": { "type": "dilemma", "tags": ["career", "overtime"] }
+  //   },
+  //   "mustCover": ["overtime", "paid_leave"]
+  // }
+  const metaQuestions = meta?.questions && typeof meta.questions === "object" ? meta.questions : {};
+  const mustCover = Array.isArray(meta?.mustCover) ? meta.mustCover : null;
+
+  const questionTypeById = new Map();
+  for (const q of questions) {
+    const mt = metaQuestions[q.id]?.type;
+    if (mt === "knowledge" || mt === "dilemma" || mt === "philosophy") {
+      questionTypeById.set(q.id, mt);
+    }
   }
 
   function isLocked(state, choice) {
@@ -260,6 +328,9 @@ function simulateStage({
     lockStats: new Map(), // key `${qid}:${choiceIndex}` -> { reached, locked, req }
     deadEnds: 0, // reached a question where all choices were locked (should be 0)
     skillActivations: new Map(), // skillId -> { activations: number, totalImpact: { CS, Asset, Autonomy } }
+    lethalChoices: new Map(), // key `${qid}:${choiceIndex}` -> { total, byParam: {CS, Asset, Autonomy} }
+    keySkillAvailability: new Map(), // key skillId -> { reached, unlocked, locked, req }
+    coverage: mustCover ? { mustCover, tagsByQuestion: new Map() } : null,
   };
 
   const clears = [];
@@ -280,13 +351,26 @@ function simulateStage({
     });
   }
 
-  function recordGameOver(idxQ1Based, stateAfter) {
+  function recordGameOver(idxQ1Based, stateAfter, q, choiceIndex) {
     stats.totalTerminalPaths++;
     stats.gameOvers++;
     stats.gameOverByQ[idxQ1Based] = (stats.gameOverByQ[idxQ1Based] ?? 0) + 1;
-    if (stateAfter.CS <= 0) stats.gameOverByParam.CS++;
-    else if (stateAfter.Asset <= 0) stats.gameOverByParam.Asset++;
-    else stats.gameOverByParam.Autonomy++;
+    let killer = "Autonomy";
+    if (stateAfter.CS <= 0) killer = "CS";
+    else if (stateAfter.Asset <= 0) killer = "Asset";
+    stats.gameOverByParam[killer]++;
+
+    if (q && Number.isFinite(choiceIndex)) {
+      const key = `${q.id}:${choiceIndex}`;
+      const entry =
+        stats.lethalChoices.get(key) ?? {
+          total: 0,
+          byParam: { CS: 0, Asset: 0, Autonomy: 0 },
+        };
+      entry.total++;
+      entry.byParam[killer]++;
+      stats.lethalChoices.set(key, entry);
+    }
   }
 
   function recordClear(stateFinal, steps, selectedSkillIds) {
@@ -304,6 +388,112 @@ function simulateStage({
     });
   }
 
+  function recordCoverage(q) {
+    if (!stats.coverage) return;
+    const tags = Array.isArray(metaQuestions[q.id]?.tags) ? metaQuestions[q.id].tags : [];
+    stats.coverage.tagsByQuestion.set(q.id, tags);
+  }
+
+  function recordKeySkillAvailability(skill, choiceHistory) {
+    if (skill.category !== "key") return;
+    const req = skill.keySkillRequirement;
+    const entry =
+      stats.keySkillAvailability.get(skill.id) ?? {
+        reached: 0,
+        unlocked: 0,
+        locked: 0,
+        req: req ?? null,
+      };
+
+    entry.reached++;
+    let available = true;
+    if (req) {
+      const selected = choiceHistory[req.questionId];
+      available = selected === req.choiceIndex;
+    }
+    if (available) entry.unlocked++;
+    else entry.locked++;
+    stats.keySkillAvailability.set(skill.id, entry);
+    return available;
+  }
+
+  function shouldCheckAsDilemma(qIndex, q) {
+    const t = questionTypeById.get(q.id);
+    if (t) return t === "dilemma";
+    // Default stage template: Q5 and Q9.
+    return qIndex === 4 || qIndex === 8;
+  }
+
+  function evaluateDilemmaWarnings() {
+    const warnings = [];
+
+    function hasPosNeg(effect) {
+      const vals = [effect.CS, effect.Asset, effect.Autonomy];
+      const hasPos = vals.some((v) => v > 0);
+      const hasNeg = vals.some((v) => v < 0);
+      return { hasPos, hasNeg };
+    }
+
+    function dominates(a, b) {
+      const geAll = a.CS >= b.CS && a.Asset >= b.Asset && a.Autonomy >= b.Autonomy;
+      const gtAny = a.CS > b.CS || a.Asset > b.Asset || a.Autonomy > b.Autonomy;
+      return geAll && gtAny;
+    }
+
+    questions.forEach((q, qIndex) => {
+      if (!shouldCheckAsDilemma(qIndex, q)) return;
+      if (!Array.isArray(q.choices) || q.choices.length !== 2) return;
+
+      const a = q.choices[0];
+      const b = q.choices[1];
+      const aPN = hasPosNeg(a.effect);
+      const bPN = hasPosNeg(b.effect);
+
+      if (!(aPN.hasPos && aPN.hasNeg)) {
+        warnings.push(`${q.id}: Choice A lacks trade-off (needs both + and - effects).`);
+      }
+      if (!(bPN.hasPos && bPN.hasNeg)) {
+        warnings.push(`${q.id}: Choice B lacks trade-off (needs both + and - effects).`);
+      }
+      if (dominates(a.effect, b.effect) || dominates(b.effect, a.effect)) {
+        warnings.push(`${q.id}: One choice dominates the other (not a true dilemma).`);
+      }
+
+      const hasCorrectWord =
+        (typeof a.feedback === "string" && a.feedback.includes("正解")) ||
+        (typeof b.feedback === "string" && b.feedback.includes("正解"));
+      if (hasCorrectWord) {
+        warnings.push(`${q.id}: Dilemma feedback contains "正解" (avoid correct-answer framing).`);
+      }
+    });
+
+    return warnings;
+  }
+
+  function loadoutKey(selectedSkillIds) {
+    // Offer 1 then Offer 2. Keep stable string even if key skill is unavailable in some runs.
+    const s1 = selectedSkillIds[0] ?? "(none)";
+    const s2 = selectedSkillIds[1] ?? "(none)";
+    return `${s1} + ${s2}`;
+  }
+
+  const loadoutStats = new Map(); // key -> { terminalPaths, clears, gameOvers, rankDist, gameOverByParam, clearValues }
+
+  function getLoadoutEntry(selectedSkillIds) {
+    const key = loadoutKey(selectedSkillIds);
+    const entry =
+      loadoutStats.get(key) ?? {
+        terminalPaths: 0,
+        clears: 0,
+        gameOvers: 0,
+        rankDist: { S: 0, A: 0, B: 0, C: 0, F: 0 },
+        gameOverByParam: { CS: 0, Asset: 0, Autonomy: 0 },
+        clearsFinal: { CS: [], Asset: [], Autonomy: [], minParam: [] },
+      };
+    loadoutStats.set(key, entry);
+    return entry;
+  }
+
   function dfs({
     qIndex,
     state,
@@ -312,14 +502,24 @@ function simulateStage({
     offerPicked2,
     selectedSkillIds,
     steps,
+    choiceHistory,
   }) {
     if (qIndex >= questions.length) {
       recordClear(state, steps, selectedSkillIds);
+      const le = getLoadoutEntry(selectedSkillIds);
+      le.terminalPaths++;
+      le.clears++;
+      le.rankDist[rankForCS(state.CS)]++;
+      le.clearsFinal.CS.push(state.CS);
+      le.clearsFinal.Asset.push(state.Asset);
+      le.clearsFinal.Autonomy.push(state.Autonomy);
+      le.clearsFinal.minParam.push(minParam(state));
       return;
     }
 
     const q = questions[qIndex];
     recordLockStats(state, q);
+    recordCoverage(q);
 
     const availableChoiceIndices = [];
     for (let ci = 0; ci < q.choices.length; ci++) {
@@ -332,6 +532,10 @@ function simulateStage({
       stats.totalTerminalPaths++;
       stats.gameOvers++;
       stats.gameOverByQ[qIndex + 1] = (stats.gameOverByQ[qIndex + 1] ?? 0) + 1;
+
+      const le = getLoadoutEntry(selectedSkillIds);
+      le.terminalPaths++;
+      le.gameOvers++;
       return;
     }
 
@@ -346,11 +550,18 @@ function simulateStage({
         const entry = stats.skillActivations.get(skillId) ?? {
           activations: 0,
           opportunities: 0,
-          totalImpact: { CS: 0, Asset: 0, Autonomy: 0 }
+          totalImpact: { CS: 0, Asset: 0, Autonomy: 0 },
+          perQuestion: new Map(), // qid -> { activations, opportunities, totalImpact }
         };
 
         // Count as opportunity whenever skill is active
         entry.opportunities++;
+        const qEntry = entry.perQuestion.get(q.id) ?? {
+          activations: 0,
+          opportunities: 0,
+          totalImpact: { CS: 0, Asset: 0, Autonomy: 0 },
+        };
+        qEntry.opportunities++;
 
         // Apply ONLY this skill to measure its isolated impact
         const isolatedModified = applySkillEffects(original, q, [skill]);
@@ -363,8 +574,14 @@ function simulateStage({
           entry.totalImpact.CS += csDiff;
           entry.totalImpact.Asset += assetDiff;
           entry.totalImpact.Autonomy += autoDiff;
+
+          qEntry.activations++;
+          qEntry.totalImpact.CS += csDiff;
+          qEntry.totalImpact.Asset += assetDiff;
+          qEntry.totalImpact.Autonomy += autoDiff;
         }
 
+        entry.perQuestion.set(q.id, qEntry);
         stats.skillActivations.set(skillId, entry);
       });
 
@@ -375,9 +592,17 @@ function simulateStage({
       };
 
       const nextSteps = [...steps, `Q${qIndex + 1}${String.fromCharCode(65 + ci)}`];
+      const nextChoiceHistory = { ...choiceHistory, [q.id]: ci };
 
       if (next.CS <= 0 || next.Asset <= 0 || next.Autonomy <= 0) {
-        recordGameOver(qIndex + 1, next);
+        recordGameOver(qIndex + 1, next, q, ci);
+        const le = getLoadoutEntry(selectedSkillIds);
+        le.terminalPaths++;
+        le.gameOvers++;
+        let killer = "Autonomy";
+        if (next.CS <= 0) killer = "CS";
+        else if (next.Asset <= 0) killer = "Asset";
+        le.gameOverByParam[killer]++;
         continue;
       }
 
@@ -392,13 +617,26 @@ function simulateStage({
             offerPicked2,
             selectedSkillIds: [...selectedSkillIds, s.id],
             steps: [...nextSteps, `SK1:${s.id}`],
+            choiceHistory: nextChoiceHistory,
           });
         }
         continue;
       }
 
       if (offerNumber === 2 && offerPicked1 && !offerPicked2) {
+        // Evaluate availability once per reached offer screen (not per enumerated pick).
+        // Normal skills are always pickable; key skills require earning via choiceHistory.
+        const pickable = [];
         for (const s of stageMetadata.skills.offer2) {
+          if (s.category !== "key") {
+            pickable.push(s);
+            continue;
+          }
+          const available = recordKeySkillAvailability(s, nextChoiceHistory);
+          if (available) pickable.push(s);
+        }
+
+        for (const s of pickable) {
           dfs({
             qIndex: qIndex + 1,
             state: next,
@@ -407,6 +645,7 @@ function simulateStage({
             offerPicked2: true,
             selectedSkillIds: [...selectedSkillIds, s.id],
             steps: [...nextSteps, `SK2:${s.id}`],
+            choiceHistory: nextChoiceHistory,
           });
         }
         continue;
@@ -420,6 +659,7 @@ function simulateStage({
         offerPicked2,
         selectedSkillIds,
         steps: nextSteps,
+        choiceHistory: nextChoiceHistory,
       });
     }
   }
@@ -432,6 +672,7 @@ function simulateStage({
     offerPicked2: false,
     selectedSkillIds: [],
     steps: [],
+    choiceHistory: {},
   });
 
   // Player intent modes = pick representative clears using objective functions.
@@ -497,7 +738,81 @@ function simulateStage({
       opportunities: v.opportunities,
       activationRate: v.opportunities > 0 ? v.activations / v.opportunities : 0,
       totalImpact: v.totalImpact,
+      perQuestion: v.perQuestion
+        ? [...v.perQuestion.entries()]
+            .sort((a, b) => a[0].localeCompare(b[0]))
+            .map(([qid, qv]) => ({ qid, ...qv }))
+        : [],
     });
+  }
+
+  const lethalChoiceSummary = [...stats.lethalChoices.entries()]
+    .map(([key, v]) => ({ key, ...v }))
+    .sort((a, b) => b.total - a.total)
+    .slice(0, 10);
+
+  const keySkillAvailabilitySummary = [...stats.keySkillAvailability.entries()]
+    .map(([skillId, v]) => ({
+      skillId,
+      reached: v.reached,
+      unlocked: v.unlocked,
+      locked: v.locked,
+      unlockedPct: v.reached ? v.unlocked / v.reached : 0,
+      req: v.req,
+    }))
+    .sort((a, b) => a.skillId.localeCompare(b.skillId));
+
+  const clearCS = clears.map((c) => c.CS);
+  const clearAsset = clears.map((c) => c.Asset);
+  const clearAutonomy = clears.map((c) => c.Autonomy);
+  const clearMin = clears.map((c) => minParam(c));
+
+  const clearDistributions = {
+    CS: computePercentiles(clearCS),
+    Asset: computePercentiles(clearAsset),
+    Autonomy: computePercentiles(clearAutonomy),
+    minParam: computePercentiles(clearMin),
+    nearDeath: {
+      minParamLe5: clearMin.filter((v) => v <= 5).length,
+      minParamLe10: clearMin.filter((v) => v <= 10).length,
+      minParamLe20: clearMin.filter((v) => v <= 20).length,
+      autonomyLe5: clearAutonomy.filter((v) => v <= 5).length,
+      autonomyLe10: clearAutonomy.filter((v) => v <= 10).length,
+    },
+  };
+
+  const loadouts = [...loadoutStats.entries()]
+    .map(([key, v]) => ({
+      loadout: key,
+      terminalPaths: v.terminalPaths,
+      clears: v.clears,
+      gameOvers: v.gameOvers,
+      clearRate: v.terminalPaths ? v.clears / v.terminalPaths : 0,
+      rankDistribution: v.rankDist,
+      gameOverByParam: v.gameOverByParam,
+      clearsFinal: {
+        CS: computePercentiles(v.clearsFinal.CS),
+        Asset: computePercentiles(v.clearsFinal.Asset),
+        Autonomy: computePercentiles(v.clearsFinal.Autonomy),
+        minParam: computePercentiles(v.clearsFinal.minParam),
+      },
+    }))
+    .sort((a, b) => b.clearRate - a.clearRate);
+
+  const dilemmaWarnings = evaluateDilemmaWarnings();
+
+  let coverageSummary = null;
+  if (stats.coverage) {
+    const questionTags = {};
+    for (const [qid, tags] of stats.coverage.tagsByQuestion.entries()) {
+      questionTags[qid] = tags;
+    }
+    const tagCounts = {};
+    for (const tags of stats.coverage.tagsByQuestion.values()) {
+      for (const t of tags) tagCounts[t] = (tagCounts[t] ?? 0) + 1;
+    }
+    const missingMustCover = mustCover.filter((t) => !tagCounts[t]);
+    coverageSummary = { mustCover, tagCounts, missingMustCover, questionTags };
   }
 
   return {
@@ -514,9 +829,15 @@ function simulateStage({
     gameOverByParam: stats.gameOverByParam,
     gameOverByQ: stats.gameOverByQ,
     locks: lockSummary,
+    keySkillAvailability: keySkillAvailabilitySummary,
+    topLethalChoices: lethalChoiceSummary,
     skillActivations: skillActivationSummary,
     deadEnds: stats.deadEnds,
     intents,
+    clearDistributions,
+    loadouts,
+    dilemmaWarnings,
+    coverage: coverageSummary,
   };
 }
 
@@ -558,6 +879,22 @@ function printReport(report) {
   }
   console.log("");
 
+  if (report.topLethalChoices && report.topLethalChoices.length > 0) {
+    console.log("Top lethal choices (immediate game over)");
+    for (const lc of report.topLethalChoices) {
+      const parts = [];
+      if (lc.byParam.CS) parts.push(`CS:${lc.byParam.CS}`);
+      if (lc.byParam.Asset) parts.push(`Asset:${lc.byParam.Asset}`);
+      if (lc.byParam.Autonomy) parts.push(`Autonomy:${lc.byParam.Autonomy}`);
+      console.log(
+        `- ${lc.key}: ${lc.total} (${pct(lc.total, totals.terminalPaths)}) killers=[${parts.join(
+          ", "
+        )}]`
+      );
+    }
+    console.log("");
+  }
+
   console.log("Lock availability (unlocked / reached)");
   if (report.locks.length === 0) {
     console.log("- (no locks)");
@@ -572,8 +909,70 @@ function printReport(report) {
   }
   console.log("");
 
+  if (report.keySkillAvailability && report.keySkillAvailability.length > 0) {
+    console.log("Key skill availability (unlocked / reached at Offer 2)");
+    for (const ks of report.keySkillAvailability) {
+      console.log(
+        `- ${ks.skillId}: ${ks.unlocked}/${ks.reached} (${pct(ks.unlocked, ks.reached)}) req=${JSON.stringify(
+          ks.req
+        )}`
+      );
+    }
+    console.log("");
+  }
+
   if (report.deadEnds > 0) {
     console.log(`WARNING: deadEnds (all choices locked) = ${report.deadEnds}`);
+    console.log("");
+  }
+
+  if (report.dilemmaWarnings && report.dilemmaWarnings.length > 0) {
+    console.log("Dilemma warnings");
+    for (const w of report.dilemmaWarnings) console.log(`- ${w}`);
+    console.log("");
+  }
+
+  if (report.coverage) {
+    console.log("Coverage (meta)");
+    const missing = report.coverage.missingMustCover ?? [];
+    if (missing.length) {
+      console.log(`- missingMustCover: ${missing.join(", ")}`);
+    } else {
+      console.log("- missingMustCover: (none)");
+    }
+    console.log("");
+  }
+
+  if (report.clearDistributions) {
+    console.log("Clear distributions (percentiles)");
+    const cd = report.clearDistributions;
+    function fmt(v) {
+      if (v === null || v === undefined) return "-";
+      // prefer integer-like output for this simulator
+      return Number.isFinite(v) ? `${Math.round(v)}` : `${v}`;
+    }
+    function line(name, obj) {
+      console.log(
+        `- ${name}: p5=${fmt(obj.p5)} p25=${fmt(obj.p25)} p50=${fmt(obj.p50)} p75=${fmt(obj.p75)} p95=${fmt(obj.p95)} min=${fmt(obj.min)} max=${fmt(obj.max)}`
+      );
+    }
+    line("CS", cd.CS);
+    line("Asset", cd.Asset);
+    line("Autonomy", cd.Autonomy);
+    line("minParam", cd.minParam);
+    console.log(
+      `- nearDeath: min<=5 ${cd.nearDeath.minParamLe5} (${pct2(cd.nearDeath.minParamLe5, totals.clears)}), min<=10 ${cd.nearDeath.minParamLe10} (${pct2(cd.nearDeath.minParamLe10, totals.clears)}), min<=20 ${cd.nearDeath.minParamLe20} (${pct2(cd.nearDeath.minParamLe20, totals.clears)}), autonomy<=5 ${cd.nearDeath.autonomyLe5} (${pct2(cd.nearDeath.autonomyLe5, totals.clears)}), autonomy<=10 ${cd.nearDeath.autonomyLe10} (${pct2(cd.nearDeath.autonomyLe10, totals.clears)})`
+    );
+    console.log("");
+  }
+
+  if (report.loadouts && report.loadouts.length > 0) {
+    console.log("Loadouts");
+    for (const l of report.loadouts) {
+      console.log(
+        `- ${l.loadout}: clears ${l.clears}/${l.terminalPaths} (${pct(l.clears, l.terminalPaths)}), gameOvers ${l.gameOvers} | ranks S:${l.rankDistribution.S} A:${l.rankDistribution.A} B:${l.rankDistribution.B} C:${l.rankDistribution.C}`
+      );
+    }
     console.log("");
   }
 
@@ -590,6 +989,22 @@ function printReport(report) {
       console.log(
         `- ${s.skillId}: ${s.activations}/${s.opportunities} activations (${pct(s.activations, s.opportunities)}) | impact: ${impactStr}`
       );
+      if (s.perQuestion && s.perQuestion.length > 0) {
+        const hot = s.perQuestion
+          .filter((qv) => (qv.activations ?? 0) > 0)
+          .sort((a, b) => (b.activations ?? 0) - (a.activations ?? 0))
+          .slice(0, 5);
+        if (hot.length > 0) {
+          console.log(
+            `  topQuestions: ${hot
+              .map(
+                (qv) =>
+                  `${qv.qid} ${qv.activations}/${qv.opportunities} (${pct(qv.activations, qv.opportunities)})`
+              )
+              .join(", ")}`
+          );
+        }
+      }
     }
   }
   console.log("");
@@ -650,12 +1065,15 @@ function main() {
 
   const stageMetadata = getStageMetadata(args.stageId);
 
+  const meta = args.metaFile ? safeReadJSON(args.metaFile) : null;
+
   const report = simulateStage({
     questions,
     stageMetadata,
     config,
     applySkillEffects,
     stageId: args.stageId,
+    meta,
   });
 
   if (args.json) {
