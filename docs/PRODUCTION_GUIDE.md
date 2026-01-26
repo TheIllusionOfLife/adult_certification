@@ -122,7 +122,7 @@ Check:
 - [ ] Locked choices have alternatives
 
 #### Manual Testing
-- [ ] Build succeeds (`bun run build`)
+- [ ] Build succeeds (`npm run build`)
 - [ ] S-rank path works
 - [ ] C-rank path (worst choices) still completes
 - [ ] Lock mechanisms work correctly

@@ -27,7 +27,7 @@ export const stage2Questions: Question[] = [
         }
     },
 
-    // Q2: Overtime Records (LABOR) - Knowledge (nuanced: method matters)
+    // Q2: Overtime Records (LABOR) - Knowledge
     {
         id: "s2_q02",
         category: "LABOR",
@@ -37,14 +37,14 @@ export const stage2Questions: Question[] = [
         choices: [
             {
                 text: "個人で記録をつけつつ、表向きは従う。",
-                effect: { CS: 5, Asset: 0, Autonomy: 10 },
-                feedback: "戦略的です。証拠を集めながら機を待つ。残業代の割増率は時間外25%、休日35%、深夜25%。請求の時効は3年。36協定なしの残業は違法です。",
+                effect: { CS: 15, Asset: 0, Autonomy: 5 },
+                feedback: "正解です。証拠を集めながら機を待つのが正しい手順。残業代の割増率は時間外25%、休日35%、深夜25%。請求の時効は3年。36協定なしの残業は違法です。",
                 lockRequirements: null
             },
             {
                 text: "「違法です」と上司に直接抗議し、労基署への相談をほのめかす。",
-                effect: { CS: -20, Asset: 0, Autonomy: 20 },
-                feedback: "正論ですが、職場で孤立しました。正義を振りかざすタイミングを誤ると、味方がいなくなります。証拠を固めてからでも遅くはなかったはずです。",
+                effect: { CS: -20, Asset: 0, Autonomy: -10 },
+                feedback: "失敗です。証拠なしの抗議は空振りに終わり、職場で孤立しました。正しい手順は「まず記録、それから行動」です。",
                 lockRequirements: null
             }
         ]
@@ -142,8 +142,8 @@ export const stage2Questions: Question[] = [
             },
             {
                 text: "「法的には2週間で有効です。引継ぎは誠意を持って行います」と伝える。",
-                effect: { CS: -5, Asset: 0, Autonomy: 15 },
-                feedback: "正解です。法律は就業規則に優先します。ただし円満退職のため、引継ぎ計画を示して誠意を見せるのが大人の対応です。",
+                effect: { CS: -5, Asset: 10000, Autonomy: 15 },
+                feedback: "正解です。法律は就業規則に優先します。予定通り転職でき、機会損失を回避しました。",
                 lockRequirements: null
             }
         ]
@@ -165,8 +165,8 @@ export const stage2Questions: Question[] = [
             },
             {
                 text: "「確認のためメールでいただけますか」と記録を求める。",
-                effect: { CS: -5, Asset: 0, Autonomy: 25 },
-                feedback: "摩擦を恐れない選択です。記録を求める行為自体が、あなたの権利を守ります。",
+                effect: { CS: -5, Asset: 5000, Autonomy: 25 },
+                feedback: "摩擦を恐れない選択です。記録があれば、後で残業代を請求できます。",
                 lockRequirements: { Autonomy: 30 },
                 lockedFeedback: "LOCKED: 自律性が30以上必要 - 記録を求める勇気がありません。"
             }
@@ -178,24 +178,24 @@ export const stage2Questions: Question[] = [
     },
     // [SKILL OFFER 2 HAPPENS AFTER Q7]
 
-    // Q8: Source Tax Form (ADMIN) - Knowledge
+    // Q8: Retirement Documents (LABOR) - Knowledge
     {
         id: "s2_q08",
-        category: "ADMIN",
+        category: "LABOR",
         text: "退職日が近づいている。人事から「書類は最終日に渡すから」と言われた。何を確認すべき？",
         imagePrompt: "Scene: a cluttered desk with various official documents; one critical document (源泉徴収票) glowing; a tax form with question marks; next year's calendar showing tax season. Composition: documents scattered, key document highlighted, confused worker scratching head. Mood: bureaucratic maze, hidden consequence, future dread.",
         imagePath: "s2_q08.png",
         choices: [
             {
                 text: "「お願いします」と任せる。会社がやってくれるはず。",
-                effect: { CS: -15, Asset: -10000, Autonomy: -5 },
+                effect: { CS: -15, Asset: -10000, Autonomy: -15 },
                 feedback: "致命的なミスです。源泉徴収票がないと確定申告ができず、追徴課税が待っています。会社は言わないと動きません。",
                 lockRequirements: null
             },
             {
                 text: "「離職票と源泉徴収票は必ずお願いします」と具体的に伝える。",
-                effect: { CS: 15, Asset: 0, Autonomy: 10 },
-                feedback: "正解です。退職手続きは「もらう側」が主導しないと、会社は最低限しかしません。確認リストを作るのが大人です。",
+                effect: { CS: 15, Asset: 5000, Autonomy: 10 },
+                feedback: "正解です。退職手続きは「もらう側」が主導しないと、会社は最低限しかしません。書類があれば確定申告もスムーズです。",
                 lockRequirements: null
             }
         ]
@@ -238,7 +238,7 @@ export const stage2Questions: Question[] = [
         choices: [
             {
                 text: "生活のための手段。波風を立てず、淡々とこなす。",
-                effect: { CS: 30, Asset: 0, Autonomy: -20 },
+                effect: { CS: 30, Asset: 0, Autonomy: -10 },
                 feedback: "服従的回答です。安定した歯車として機能します。しかし、歯車は交換可能です。",
                 lockRequirements: null
             },
