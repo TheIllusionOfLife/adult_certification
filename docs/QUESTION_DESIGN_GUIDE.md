@@ -78,6 +78,32 @@ Available files:
 - `claude_deep_research.md` - Comprehensive adult knowledge
 - `new_question_ideas.md` - Pre-designed question ideas by category
 
+### Topic Coverage Requirements
+
+**Pre-Design Research (MANDATORY):**
+
+1. Search source files for stage theme:
+   ```bash
+   grep -i "仕事\|労働\|残業\|有給" src/data/question_sources/*.md
+   ```
+
+2. Create topic checklist from sources:
+   - List all "重要" or "必須" topics mentioned
+   - Note specific numbers/thresholds (e.g., "30日", "3年", "25%")
+   - Identify "dangerous misconceptions" that sources warn about
+
+3. Map topics to questions:
+   | Topic | Question # | How Covered |
+   |-------|-----------|-------------|
+   | 有給休暇 | Q3 | Main scenario |
+   | 残業割増率 | Q2 | Feedback detail |
+   | ... | ... | ... |
+
+**Coverage Standard:**
+- **Primary coverage**: Topic is the main focus of a question (7 topics minimum)
+- **Secondary coverage**: Topic is mentioned in feedback (3 topics minimum)
+- **Total**: At least 10 distinct topics from sources per stage
+
 ---
 
 ### Type 1: Knowledge Questions (70%)
@@ -200,6 +226,36 @@ Choice B (Independence):   CS: -10 to +10, Autonomy: +15 to +25
 ```
 
 **Why Bad**: Choice B is obviously better in every way. This is actually a knowledge question disguised as dilemma.
+
+### True Dilemma Verification Checklist
+
+Before finalizing a dilemma question, verify it passes ALL checks:
+
+**Parameter Balance Check:**
+- [ ] Choice A has at least one positive AND one negative effect
+- [ ] Choice B has at least one positive AND one negative effect
+- [ ] Neither choice is "all positive" or "all negative"
+
+**Defensibility Check:**
+- [ ] A reasonable person could argue for Choice A
+- [ ] A reasonable person could argue for Choice B
+- [ ] Neither choice is obviously "correct" or "stupid"
+
+**Trade-off Clarity Check:**
+- [ ] The trade-off is clear (e.g., career vs life, money vs relationships)
+- [ ] Feedback acknowledges validity of BOTH choices
+- [ ] No moralizing about which choice is "better"
+
+**Anti-Pattern Examples:**
+```
+❌ BAD: A gives CS: -10, Asset: -5000, Autonomy: -15
+        B gives CS: +20, Asset: +10000, Autonomy: +15
+        (B is obviously better in every way)
+
+✅ GOOD: A gives CS: +20, Asset: -5000, Autonomy: -10
+         B gives CS: -10, Asset: +5000, Autonomy: +15
+         (A trades money/autonomy for reputation, B does opposite)
+```
 
 **Fixed Version**:
 ```typescript

@@ -104,6 +104,35 @@ Q10: Philosophy - Define character, no correct answer
 - [ ] Q5 is a TRUE dilemma (both choices defensible)
 - [ ] Q7 leads naturally to key skill acquisition
 
+#### Step 1.4: Verify Source Coverage (MANDATORY)
+
+Before finalizing question topics, verify coverage against source materials:
+
+**1. Open relevant source files:**
+- `src/data/question_sources/new_question_ideas_1.md` - Pre-designed questions by category
+- `src/data/question_sources/new_question_ideas_2.md` - Additional questions
+- `src/data/question_sources/claude_deep_research.md` - Detailed knowledge points
+- `src/data/question_sources/gemini_deep_research.md` - Comprehensive research
+
+**2. For Stage theme, identify "must-cover" topics:**
+
+| Stage | Theme | Must-Cover Topics (from sources) |
+|-------|-------|----------------------------------|
+| 2 | 仕事の基礎 | 報連相, 有給休暇, 残業制度(36協定/割増率/時効), 解雇予告, 退職意思表示, ハラスメント初動 |
+| 3 | 金の基礎 | リボ払い, 複利, クレカ不正利用対応, 連帯保証人の危険性 |
+| ... | ... | (extract from sources for each stage) |
+
+**3. Cross-check your 10 questions against must-cover list:**
+- [ ] Each must-cover topic appears in at least one question
+- [ ] Questions teach specific numbers/thresholds from sources (e.g., "30日", "2週間", "25%")
+- [ ] No critical topic is completely omitted
+
+**Source Coverage Checklist:**
+- [ ] Searched all 4 source files for stage theme keywords
+- [ ] Extracted at least 6-8 "must-cover" topics
+- [ ] Each must-cover topic is addressed in questions or feedback
+- [ ] Specific legal thresholds/numbers are included where applicable
+
 ---
 
 ### Phase 2: File Creation (30 minutes)
@@ -544,6 +573,18 @@ Before committing your stage, verify:
 - [ ] Locked choices have clear `lockedFeedback`
 - [ ] Lock requirements are reasonable (not impossible to reach)
 - [ ] Tested: Can complete stage even with worst choices
+
+#### Safety Review ✅
+- [ ] No advice that could cause legal/financial harm if followed literally
+- [ ] "Correct" answers don't encourage policy violations (e.g., data exfiltration)
+- [ ] Feedback includes appropriate caveats for context-dependent advice
+- [ ] Checked: Would this advice be safe for a naive 20-year-old to follow exactly?
+
+**Red flags to avoid:**
+- "Transfer company emails to personal account" (could be data theft)
+- "Record conversations secretly" (illegal in some jurisdictions)
+- "Refuse to work overtime" (without explaining 36協定 context)
+- "Sue immediately" (without mentioning cost/time/stress)
 
 #### Parameter Balance ✅
 - [ ] Initial values: CS: 50, Asset: 100000, Autonomy: 50

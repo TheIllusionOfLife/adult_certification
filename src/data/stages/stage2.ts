@@ -44,30 +44,30 @@ export const stage2Questions: Question[] = [
             {
                 text: "個人で記録をつけ、証拠を残す。",
                 effect: { CS: -5, Asset: 0, Autonomy: 15 },
-                feedback: "賢明です。自分のログは自分で守る。いつか必要になる日が来ます。",
+                feedback: "賢明です。自分のログは自分で守る。残業代の割増率は時間外25%、休日35%、深夜25%。請求の時効は3年。36協定なしの残業は違法です。いつか必要になる日が来ます。",
                 lockRequirements: null
             }
         ]
     },
 
-    // Q3: Meeting Minutes (LABOR) - Knowledge [SKILL OFFER 1 AFTER]
+    // Q3: Paid Leave (LABOR) - Knowledge [SKILL OFFER 1 AFTER]
     {
         id: "s2_q03",
         category: "LABOR",
-        text: "会議で口頭の約束が後日「言っていない」と覆された。",
-        imagePrompt: "Scene: a meeting room with empty chairs; a ghostly speech bubble dissolving into air; one person holding their head in frustration; another person shrugging with a smirk. Composition: speech bubble fading center stage, frustrated worker on one side, dismissive colleague on other. Mood: betrayal, gaslight, helplessness.",
+        text: "有給休暇を申請したら「理由は？繁忙期だから無理」と言われた。入社8ヶ月目。",
+        imagePrompt: "Scene: an office with a worker standing before a supervisor's desk holding a vacation request form; supervisor with arms crossed looking stern; a calendar on the wall showing busy season marked in red. Composition: worker in foreground looking small, supervisor looming behind desk, calendar visible in background. Mood: confrontation, rights vs authority, bureaucratic pressure.",
         imagePath: "s2_q03.png",
         choices: [
             {
-                text: "「そうでしたっけ」と引き下がる。",
-                effect: { CS: 0, Asset: -5000, Autonomy: -20 },
-                feedback: "思考停止です。言った言わないの世界で、あなたは常に負けます。",
+                text: "「すみません」と諦める。",
+                effect: { CS: 10, Asset: 0, Autonomy: -20 },
+                feedback: "権利放棄です。有給取得に理由は不要。6ヶ月経過で10日付与は法定の権利です。",
                 lockRequirements: null
             },
             {
-                text: "次回から議事録を取り共有する習慣をつける。",
-                effect: { CS: 20, Asset: 0, Autonomy: 10 },
-                feedback: "正解です。証拠を作る習慣は、あなたを守る盾になります。",
+                text: "「理由は私用です。日程の調整は可能です」と再度申請する。",
+                effect: { CS: -5, Asset: 0, Autonomy: 15 },
+                feedback: "正解です。有給取得に理由説明は不要（労基法39条）。会社には時季変更権がありますが、代替日の提示が必要です。",
                 lockRequirements: null
             }
         ],
@@ -104,46 +104,46 @@ export const stage2Questions: Question[] = [
     {
         id: "s2_q05",
         category: "CAREER",
-        text: "プロジェクトリーダーに推薦されたが「実績が上層部に伝わっていない」と言われた。",
-        imagePrompt: "Scene: a ladder leading to a spotlight above; a worker at the bottom looking up; shadowy executives in the light; a mirror reflecting the worker's achievements unseen. Composition: ladder center, worker below, executives above in haze. Mood: ambition vs invisibility, opportunity blocked.",
+        text: "プロジェクトリーダーに推薦された。引き受ければ残業増、断れば現状維持だが昇進機会は遠のく。",
+        imagePrompt: "Scene: a worker standing at a fork in a corporate hallway; one path leads to a bright but hectic office with overtime clocks; the other leads to a calm but dim corridor. Composition: split scene showing both futures, worker centered at decision point. Mood: ambition vs balance, career crossroads, no easy answer.",
         imagePath: "s2_q05.png",
         choices: [
             {
-                text: "「目立つのは苦手」と辞退する。",
-                effect: { CS: -10, Asset: -5000, Autonomy: -15 },
-                feedback: "謙虚？いいえ、機会損失です。見えない実績は存在しないのと同じです。",
+                text: "引き受ける。成長のためにリスクを取る。",
+                effect: { CS: 20, Asset: -5000, Autonomy: -10 },
+                feedback: "野心的選択です。キャリアは加速しますが、プライベートの時間は犠牲になります。",
                 lockRequirements: null
             },
             {
-                text: "実績をまとめ、プレゼンする機会を求める。",
-                effect: { CS: 20, Asset: 10000, Autonomy: 15 },
-                feedback: "自己アピールは生存戦略です。謙遜は美徳ではなく、時に自滅です。",
+                text: "断る。今のワークライフバランスを守る。",
+                effect: { CS: -10, Asset: 5000, Autonomy: 15 },
+                feedback: "慎重な選択です。自律性は保たれますが、「やる気がない」と見られるリスクがあります。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "キャリアの分岐点です。あなたの行動を見ています。"
+            intro: "キャリアの分岐点です。どちらも正解はありません。"
         }
     },
 
-    // Q6: Resignation Documents (LABOR) - Knowledge
+    // Q6: Resignation Notice Period (LABOR) - Knowledge
     {
         id: "s2_q06",
         category: "LABOR",
-        text: "退職を決意。会社メールに重要な約束事項がある。退職後アカウントは削除される。",
-        imagePrompt: "Scene: a computer screen with important emails highlighted; a clock counting down to deletion; a worker frantically forwarding messages; an IT admin in shadow ready to pull the plug. Composition: screen dominant, worker small and panicked, admin ominous. Mood: urgency, data loss, last chance.",
+        text: "退職を決意。就業規則には「退職は3ヶ月前に申し出ること」とある。法律上の最短は？",
+        imagePrompt: "Scene: a worker holding a resignation letter; on one side a company rulebook showing '3 months'; on the other side a law book glowing showing '2 weeks'. Composition: worker centered between two contrasting documents, scale of justice metaphor. Mood: tension between rules and rights, legal knowledge empowerment.",
         imagePath: "s2_q06.png",
         choices: [
             {
-                text: "特に何もしない。記憶に頼る。",
-                effect: { CS: -20, Asset: 0, Autonomy: -10 },
-                feedback: "愚策です。記憶は証拠になりません。退職金や約束事項で揉めたとき、あなたは丸腰です。",
+                text: "就業規則通り3ヶ月前でないと辞められない。",
+                effect: { CS: 0, Asset: 0, Autonomy: -15 },
+                feedback: "誤解です。民法627条により、期間の定めのない雇用契約は2週間前の意思表示で解約可能。就業規則より法律が優先されます。",
                 lockRequirements: null
             },
             {
-                text: "重要なメールを個人アドレスに転送・保存する。",
-                effect: { CS: 20, Asset: 0, Autonomy: 10 },
-                feedback: "正解です。デジタル証拠は消える前に確保。これが証拠連鎖の第一歩です。",
+                text: "法律上は2週間前の意思表示で有効。ただし円満退職のため調整は必要。",
+                effect: { CS: 15, Asset: 0, Autonomy: 10 },
+                feedback: "正解です。法的には2週間前で有効ですが、引継ぎや人間関係を考慮して早めに伝えるのが大人の対応です。",
                 lockRequirements: null
             }
         ]
@@ -205,22 +205,22 @@ export const stage2Questions: Question[] = [
     {
         id: "s2_q09",
         category: "LABOR",
-        text: "同僚がパワハラを受けているのを目撃。「証人になって」と頼まれた。",
+        text: "同僚がパワハラを受けている。「相談に乗って」と言われた。まず何をすべき？",
         imagePrompt: "Scene: an office corridor; a colleague being berated by a supervisor in a glass room; another worker watching from the shadows; a choice between stepping forward or shrinking back. Composition: glass room center with confrontation, observer at threshold, two paths visible. Mood: moral crossroads, fear, solidarity vs self-preservation.",
         imagePath: "s2_q09.png",
         choices: [
             {
-                text: "関わらない。自分の立場が危うくなる。",
+                text: "「大変だね」と話を聞くだけにする。巻き込まれたくない。",
                 effect: { CS: 20, Asset: 0, Autonomy: -25 },
-                feedback: "保身です。安全ですが、同僚を見捨てました。次はあなたの番かもしれません。",
+                feedback: "保身です。ただし、見て見ぬふりは加害者を助長します。次はあなたの番かもしれません。",
                 lockRequirements: null
             },
             {
-                text: "状況を記録し、必要なら証言すると伝える。",
+                text: "日時・場所・発言内容の記録を勧め、社内窓口・労基署・法テラスの存在を伝える。",
                 effect: { CS: -10, Asset: 0, Autonomy: 20 },
-                feedback: "勇気ある選択です。証拠と証言は、組織の不正を正す武器になります。",
+                feedback: "正解です。ハラスメント対応の初動は「記録」と「相談先の把握」。証拠があれば解決が早まります。",
                 lockRequirements: { CS: 60 },
-                lockedFeedback: "LOCKED: 信用度が60以上必要 - 職場での評判が低く、証言者として信用されません。"
+                lockedFeedback: "LOCKED: 信用度が60以上必要 - 職場での評判が低く、アドバイスが信用されません。"
             }
         ],
         adamDialogue: {
