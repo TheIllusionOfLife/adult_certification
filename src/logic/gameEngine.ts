@@ -11,7 +11,7 @@ export class GameEngine {
 
     constructor(questions: Question[], stageId: number = 1) {
         const stageMetadata = getStageMetadata(stageId);
-        const initialParams = stageMetadata?.initialParams || { CS: 50, Asset: 100000, Autonomy: 50 };
+        const initialParams = stageMetadata?.initialParams || CONFIG.DEFAULT_INITIAL_PARAMS;
 
         this.state = {
             CS: initialParams.CS,
@@ -72,8 +72,9 @@ export class GameEngine {
         this.state.Asset += Asset;
         this.state.Autonomy += Autonomy;
 
-        // Check Game Over Condition - ANY parameter <= 0
-        const isTerminated = this.state.CS <= 0 || this.state.Asset <= 0 || this.state.Autonomy <= 0;
+        // Check Game Over Condition - ANY parameter at or below danger threshold
+        const { CS: csThreshold, Asset: assetThreshold, Autonomy: autonomyThreshold } = CONFIG.DANGER_THRESHOLDS;
+        const isTerminated = this.state.CS <= csThreshold || this.state.Asset <= assetThreshold || this.state.Autonomy <= autonomyThreshold;
         if (isTerminated) {
             this.state.isGameOver = true;
         }

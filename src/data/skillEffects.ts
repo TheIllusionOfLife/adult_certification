@@ -332,43 +332,70 @@ export interface SkillActivation {
 /**
  * Get a list of skill activations for UI display.
  * Returns skills that actually modified the effect.
+ * Tracks per-skill deltas to accurately attribute changes.
  */
 export function getSkillActivations(
     originalEffect: Effect,
-    modifiedEffect: Effect,
+    _modifiedEffect: Effect,
     question: Question,
     activeSkills: Skill[]
 ): SkillActivation[] {
     const activations: SkillActivation[] = [];
 
+    // Track cumulative state to compute per-skill deltas
+    let currentState = { ...originalEffect };
+
     activeSkills.forEach((skill) => {
-        const effect = skill.effect;
-        const handler = EFFECT_HANDLERS[effect.type];
+        // Collect all effects for this skill (supports both single and multi-effect skills)
+        const skillEffects: SkillEffect[] = [];
+        if (skill.effect) {
+            skillEffects.push(skill.effect);
+        }
+        if (skill.effects) {
+            skillEffects.push(...skill.effects);
+        }
 
-        if (!handler) return;
+        // Skip skills with no effects
+        if (skillEffects.length === 0) return;
 
-        // Flat bonuses always show activation
-        const isFlatBonus = effect.type.startsWith('flat_');
-        const values = handler.getValues(effect, originalEffect, modifiedEffect);
-        const didModify = values.originalValue !== values.modifiedValue;
+        // Calculate state before and after this skill's effects
+        const stateBeforeSkill = { ...currentState };
+        skillEffects.forEach((eff) => {
+            currentState = applySingleEffect(eff, currentState, question);
+        });
+        const stateAfterSkill = currentState;
 
-        // Show activation if: flat bonus (always) OR if values were actually modified
-        if (isFlatBonus || didModify) {
-            // For category-specific effects, only show if the category matches
-            if (effect.type.startsWith('category_')) {
-                if (question.category !== effect.category) return;
-            }
+        // Check if this skill actually changed anything
+        const csChanged = stateBeforeSkill.CS !== stateAfterSkill.CS;
+        const assetChanged = stateBeforeSkill.Asset !== stateAfterSkill.Asset;
+        const autonomyChanged = stateBeforeSkill.Autonomy !== stateAfterSkill.Autonomy;
 
-            // For non-flat effects, check if the handler's condition was met
-            if (!isFlatBonus && !handler.shouldApply(effect, originalEffect, question)) {
-                return;
+        if (csChanged || assetChanged || autonomyChanged) {
+            // Determine which stat changed most significantly for description
+            const primaryEffect = skillEffects[0];
+            const handler = EFFECT_HANDLERS[primaryEffect.type];
+            const description = handler?.description ?? 'スキル効果';
+
+            // Report the most significant change
+            let originalValue: number;
+            let modifiedValue: number;
+
+            if (csChanged) {
+                originalValue = stateBeforeSkill.CS;
+                modifiedValue = stateAfterSkill.CS;
+            } else if (assetChanged) {
+                originalValue = stateBeforeSkill.Asset;
+                modifiedValue = stateAfterSkill.Asset;
+            } else {
+                originalValue = stateBeforeSkill.Autonomy;
+                modifiedValue = stateAfterSkill.Autonomy;
             }
 
             activations.push({
                 skillName: skill.name,
-                description: handler.description,
-                originalValue: values.originalValue,
-                modifiedValue: values.modifiedValue,
+                description,
+                originalValue,
+                modifiedValue,
             });
         }
     });

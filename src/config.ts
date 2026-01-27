@@ -18,15 +18,15 @@ export const CONFIG = {
     // Game over thresholds (danger levels)
     DANGER_THRESHOLDS: {
         CS: 0, // Game over at or below
-        ASSET: 0,
-        AUTONOMY: 0,
+        Asset: 0,
+        Autonomy: 0,
     },
 
     // Default initial parameters (used when stage metadata unavailable)
     DEFAULT_INITIAL_PARAMS: {
         CS: 50,
-        ASSET: 100000,
-        AUTONOMY: 50,
+        Asset: 100000,
+        Autonomy: 50,
     },
 
     // LocalStorage keys
