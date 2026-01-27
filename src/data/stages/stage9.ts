@@ -108,31 +108,31 @@ export const stage9Questions: Question[] = [
         ]
     },
 
-    // Q5: Knowledge (FINANCE) - Student loan repayment difficulty
+    // Q5: Knowledge (DISASTER) - Evacuation decision timing (避難判断)
     {
         id: "s9_q05",
-        category: "FINANCE",
-        text: "就職したが給料が低く、奨学金の返済が厳しい。毎月の返済額は約15,000円。どう対応すべき？",
-        imagePrompt: "Scene: pay stub showing low salary; student loan payment notice; JASSO website showing relief options; stressed young worker at desk. Composition: financial squeeze with escape route. Mood: financial pressure, available relief.",
+        category: "DISASTER",
+        text: "大雨警報が発令。自治体から「高齢者等避難」（警戒レベル3）が出た。自分は若いし、まだ大丈夫だと思うが……",
+        imagePrompt: "Scene: rain pouring outside window; smartphone showing evacuation alert level 3; flooded streets in distance; clock showing decision time. Composition: early warning decision point with escalating danger. Mood: complacency vs caution, timing criticality.",
         imagePath: "s9_q05.png",
         choices: [
             {
-                text: "払えないものは払えない。しばらく無視して様子を見る。",
-                effect: { CS: -25, Asset: -50000, Autonomy: -15 },
+                text: "「避難指示」（レベル4）が出るまで様子を見る。まだ大丈夫。",
+                effect: { CS: -20, Asset: -50000, Autonomy: -10 },
                 verdict: "WARNING",
-                feedback: "最悪の選択です。延滞3ヶ月で個人信用情報機関に登録（ブラックリスト）。9ヶ月で一括請求。さらに給与差押えの可能性も。無視は問題を数十倍に膨らませます。",
+                feedback: "危険な判断です。レベル4は「全員避難」ですが、その時点で道路冠水や土砂崩れが始まっている可能性があります。2018年西日本豪雨では「まだ大丈夫」と思った多くの人が逃げ遅れました。避難は「空振り」でも命は守られます。",
                 lockRequirements: null
             },
             {
-                text: "JASSOに連絡し、「減額返還」か「返還期限猶予」を申請する。",
-                effect: { CS: 15, Asset: 0, Autonomy: 15 },
+                text: "レベル3の段階で早めに避難する。「高齢者等」でなくても、危険を感じたら動く。",
+                effect: { CS: 20, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
-                feedback: "正解です。年収300万円以下なら「減額返還」で月額を1/2〜1/3に、「返還期限猶予」で最長10年間返済を止められます。制度を知らないだけで人生が詰む人がいます。困ったら、まず相談です。",
+                feedback: "正解です。警戒レベル3は「危険な場所から高齢者等は避難」ですが、誰でも避難して構いません。早めの避難は渋滞や混乱を避け、安全に移動できます。「てんでんこ」（各自の判断で逃げる）の精神が命を守ります。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "借金は「払えない」で終わりません。制度を知っていますか？"
+            intro: "「まだ大丈夫」と「もう遅い」の境界線は、いつ見えますか？"
         }
     },
 

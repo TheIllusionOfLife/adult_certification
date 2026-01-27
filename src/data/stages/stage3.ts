@@ -93,16 +93,16 @@ export const stage3Questions: Question[] = [
         choices: [
             {
                 text: "今は低金利だから変動一択。固定は損。",
-                effect: { CS: -10, Asset: 0, Autonomy: -5 },
-                verdict: "WARNING",
-                feedback: "短絡的です。変動金利は金利上昇リスクを負います。35年ローンで金利が2%上がれば数百万円の差。「今」だけで判断するのは危険です。",
+                effect: { CS: 10, Asset: 0, Autonomy: 5 },
+                verdict: "NEUTRAL",
+                feedback: "正解は人それぞれ。重要なのは「リスクを理解した上で選ぶ」こと。思考停止で選んだ人は、後悔します。",
                 lockRequirements: null
             },
             {
                 text: "将来の金利変動リスク、自分の収入安定性、返済期間を総合的に判断する。",
-                effect: { CS: 20, Asset: 0, Autonomy: 15 },
-                verdict: "APPROVED",
-                feedback: "正解です。正解は人それぞれ。重要なのは「リスクを理解した上で選ぶ」こと。思考停止で選んだ人は、後悔します。",
+                effect: { CS: 10, Asset: 0, Autonomy: 5 },
+                verdict: "NEUTRAL",
+                feedback: "正解は人それぞれ。重要なのは「リスクを理解した上で選ぶ」こと。思考停止で選んだ人は、後悔します。",
                 lockRequirements: null
             }
         ]
@@ -136,26 +136,26 @@ export const stage3Questions: Question[] = [
         }
     },
 
-    // Q6: Knowledge (FINANCE) - Emergency fund importance
+    // Q6: Knowledge (FINANCE) - Student loan repayment relief (奨学金返済)
     {
         id: "s3_q06",
         category: "FINANCE",
-        text: "投資を始めたい。「まず生活防衛資金を確保してから」と言われた。どのくらい必要？",
-        imagePrompt: "Scene: a safety net made of coins below a tightrope walker; emergency scenarios (job loss, illness) shown as storms; calm savings account as shelter. Composition: protection layer between life and disaster. Mood: preparedness, security foundation.",
+        text: "就職したが給料が低く、奨学金の返済が厳しい。毎月の返済額は約15,000円。どう対応すべき？",
+        imagePrompt: "Scene: pay stub showing low salary; student loan payment notice; JASSO website showing relief options; stressed young worker at desk. Composition: financial squeeze with escape route. Mood: financial pressure, available relief.",
         imagePath: "s3_q06.png",
         choices: [
             {
-                text: "投資で増やせばいいので、生活防衛資金は不要。",
-                effect: { CS: -25, Asset: 0, Autonomy: -10 },
+                text: "払えないものは払えない。しばらく無視して様子を見る。",
+                effect: { CS: -25, Asset: -50000, Autonomy: -15 },
                 verdict: "WARNING",
-                feedback: "致命的な誤りです。失業や病気で収入が止まった時、投資資産を底値で売却する羽目になります。生活費3〜6ヶ月分は現金で確保が鉄則。",
+                feedback: "最悪の選択です。延滞3ヶ月で個人信用情報機関に登録（ブラックリスト）。9ヶ月で一括請求。さらに給与差押えの可能性も。無視は問題を数十倍に膨らませます。",
                 lockRequirements: null
             },
             {
-                text: "生活費の3〜6ヶ月分を現金で確保してから投資を始める。",
-                effect: { CS: 20, Asset: 0, Autonomy: 10 },
+                text: "JASSOに連絡し、「減額返還」か「返還期限猶予」を申請する。",
+                effect: { CS: 20, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
-                feedback: "正解です。生活防衛資金は「投資のための保険」。これがないと、緊急時に資産を最悪のタイミングで手放すことになります。",
+                feedback: "正解です。年収300万円以下なら「減額返還」で月額を1/2〜1/3に、「返還期限猶予」で最長10年間返済を止められます。制度を知らないだけで人生が詰む人がいます。困ったら、まず相談です。",
                 lockRequirements: null
             }
         ]

@@ -56,6 +56,17 @@ Q10: Independence (Philosophy)
 
 **Purpose**: Test ability to connect knowledge across domains learned in Stages 1-9.
 
+### Assigned Topics
+
+| Q# | Topic | Domains Combined | Key Knowledge |
+|----|-------|------------------|---------------|
+| Q1 | **マイナンバーカード実益** | Admin + Digital + Health | 保険証利用、コンビニ交付、各種オンライン手続き |
+| Q2 | **副業20万円ルール/インボイス** | Tax + Labor + Freelance | 確定申告要否、インボイス登録判断 |
+| Q3 | **国民年金の免除/猶予** | Admin + Finance + Social Security | 未納リスク、申請導線、将来の年金額への影響 |
+| Q4 | **生活防衛資金** | Finance + Crisis Management | 3-6ヶ月分確保、投資開始の前提条件 |
+
+> **Note**: Q4「生活防衛資金」is promoted from Stage 3. It combines basic financial knowledge with crisis preparedness mindset, making it suitable for Integration.
+
 ### Multi-Domain Combinations
 
 Each question should span 2-3 domains:
@@ -74,24 +85,113 @@ Correct:  CS: +25 to +35, Asset: variable, Autonomy: +10 to +15
 Wrong:    CS: -15 to -25, Asset: negative, Autonomy: -5 to -10
 ```
 
-### Example
+### Q1: マイナンバーカード実益
+
+**Scenario**: マイナンバーカードを作るべきか迷っている。「面倒」「個人情報が心配」という声も聞くが……
+
+**Domains**: Admin (手続き) + Digital (オンライン化) + Health (保険証)
+
 ```typescript
 {
-    id: "s10_q02",
-    text: "転職を機に引っ越しを検討中。住宅ローン減税を受けている物件を売却し、新居を購入したい。最も有利な進め方は？",
+    id: "s10_q01",
+    text: "マイナンバーカードを作るか迷っている。「面倒」「個人情報が心配」と聞くが、作らないとどうなる？",
     category: "INTEGRATION",
     choices: [
         {
-            text: "すぐに売却して新居を購入。減税は諦める",
-            effect: { CS: -20, Asset: -500000, Autonomy: 0 },
+            text: "作らなくても困らない。通知カードと保険証があれば十分。",
+            effect: { CS: -20, Asset: -10000, Autonomy: -10 },
             verdict: "WARNING",
-            feedback: "..."
+            feedback: "機会損失です。2024年12月から健康保険証は新規発行停止、マイナ保険証へ移行。コンビニ交付（住民票等）、確定申告のe-Tax、各種給付金申請……カードがないと手続きが煩雑化し、時間とコストがかかります。"
         },
         {
-            text: "売却時期と新居購入のタイミングを調整し、減税継続の可能性を税理士に相談",
-            effect: { CS: +30, Asset: -30000, Autonomy: +10 },
+            text: "メリット・デメリットを調べ、保険証利用登録やコンビニ交付など実益を理解した上で判断する。",
+            effect: { CS: +25, Asset: 0, Autonomy: +15 },
             verdict: "APPROVED",
-            feedback: "..."
+            feedback: "正解です。マイナポイント、コンビニ交付（手数料節約）、e-Tax連携、保険証利用……実益は多い。個人情報リスクは「カードを持つこと」ではなく「管理の仕方」の問題。情報を集めて判断するのが大人です。"
+        }
+    ]
+}
+```
+
+### Q2: 副業20万円ルール/インボイス
+
+**Scenario**: 会社員が副業を始めた。「20万円以下なら申告不要」と聞いたが……
+
+**Domains**: Tax (確定申告) + Labor (副業) + Freelance (インボイス)
+
+```typescript
+{
+    id: "s10_q02",
+    text: "会社員で副業を始めた。年間の副業収入は25万円。「20万円以下なら確定申告不要」と聞いたが、何をすべき？",
+    category: "INTEGRATION",
+    choices: [
+        {
+            text: "25万円は少額だし、会社にバレたくないので申告しない。",
+            effect: { CS: -25, Asset: -50000, Autonomy: -15 },
+            verdict: "WARNING",
+            feedback: "脱税です。「20万円ルール」は所得税の確定申告のみ。住民税は1円から申告義務があります。無申告は追徴課税（最大40%）のリスク。さらに、マイナンバーで副業収入は把握されています。"
+        },
+        {
+            text: "所得税は確定申告、住民税は別途申告。経費を正しく計上し、将来のインボイス登録も検討する。",
+            effect: { CS: +30, Asset: -5000, Autonomy: +15 },
+            verdict: "APPROVED",
+            feedback: "正解です。副業収入20万円超は確定申告必須。20万円以下でも住民税申告は必要。経費（通信費、機材等）を適切に計上すれば税負担は減ります。年商1000万円超ならインボイス登録の検討も。"
+        }
+    ]
+}
+```
+
+### Q3: 国民年金の免除/猶予
+
+**Scenario**: 失業中で国民年金を払えない。「払わなくていい」と聞いたが……
+
+**Domains**: Admin (申請手続き) + Finance (将来設計) + Social Security (年金制度)
+
+```typescript
+{
+    id: "s10_q03",
+    text: "失業して国民年金の保険料（月約17,000円）が払えない。「届出すれば払わなくていい」と聞いたが……",
+    category: "INTEGRATION",
+    choices: [
+        {
+            text: "届出なしで払わない。どうせ将来もらえるか分からない。",
+            effect: { CS: -25, Asset: -100000, Autonomy: -15 },
+            verdict: "WARNING",
+            feedback: "致命的なミスです。未納は「受給資格期間」にカウントされず、将来の年金が減額または受給不可に。さらに障害年金・遺族年金も受けられなくなります。2年の時効を過ぎると追納もできません。"
+        },
+        {
+            text: "「免除」か「猶予」を申請する。届出すれば受給資格期間にカウントされ、追納も可能になる。",
+            effect: { CS: +30, Asset: 0, Autonomy: +15 },
+            verdict: "APPROVED",
+            feedback: "正解です。免除は所得に応じて全額〜1/4免除があり、免除期間も受給資格にカウント（1/2〜7/8計算）。猶予は後から追納可能。届出なしの未納とは天と地の差。制度を使うことが自己防衛です。"
+        }
+    ]
+}
+```
+
+### Q4: 生活防衛資金 (Promoted from Stage 3)
+
+**Scenario**: 投資を始めたいが、生活防衛資金の重要性を理解しているか
+
+**Domains**: Finance (資産運用) + Crisis Management (緊急時対応)
+
+```typescript
+{
+    id: "s10_q04",
+    text: "「投資を始めたい」と思い立った。手元に50万円。全額投資に回して早く資産を増やしたい。",
+    category: "INTEGRATION",
+    choices: [
+        {
+            text: "投資は早く始めるほど有利。50万円全額を投資信託に回す。",
+            effect: { CS: -20, Asset: -30000, Autonomy: -10 },
+            verdict: "WARNING",
+            feedback: "危険な判断です。失業や病気で収入が止まった時、投資資産を「底値」で売却する羽目になります。暴落時に生活費のために損切りするのは最悪のシナリオ。「生活防衛資金」という概念を知らないと、投資で逆に貧しくなります。"
+        },
+        {
+            text: "まず生活費3〜6ヶ月分を現金で確保。残りを投資に回す。",
+            effect: { CS: +25, Asset: 0, Autonomy: +15 },
+            verdict: "APPROVED",
+            feedback: "正解です。生活防衛資金は「投資のための保険」。月20万円の生活費なら60〜120万円を現金で確保してから投資開始。これがないと、緊急時に資産を最悪のタイミングで手放すことになります。"
         }
     ]
 }
