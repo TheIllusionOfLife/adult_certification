@@ -8,7 +8,7 @@
 
 Each question needs **one image** (1024x1024 PNG) that:
 - Conveys the scenario visually
-- Has Dark Cartoon style, thick ink outlines, distorted perspective, limited color palette (black, white, red, yellow)
+- Has Dark Cartoon style, thick ink outlines, distorted perspective, dirty paper texture, no decorative frame borders, limited color palette (black, white, red, yellow)
 
 ---
 
@@ -16,7 +16,7 @@ Each question needs **one image** (1024x1024 PNG) that:
 
 **Always prepend this to prompts:**
 ```
-Dark Cartoon style, thick ink outlines, distorted perspective, limited color palette (black, white, red, yellow), 1024x1024 PNG
+Dark Cartoon style, thick ink outlines, distorted perspective, dirty paper texture, no decorative frame borders, limited color palette (black, white, red, yellow), 1024x1024 PNG
 ```
 
 ### Global Rules
