@@ -4,6 +4,7 @@ import type { SkillActivation } from '../data/skillEffects';
 import { CONFIG } from '../config';
 import { getOverlayPresentation } from './overlayVerdict';
 import { DOM_IDS } from './domIds';
+import { RecordStorage } from '../storage/RecordStorage';
 
 // Vite glob import for assets
 const images = import.meta.glob('../assets/*.{png,jpg,jpeg,webp}', { eager: true });
@@ -37,9 +38,11 @@ interface DOMElements {
 export class UIManager {
     engine: GameEngine;
     private dom: DOMElements;
+    private recordStorage: RecordStorage;
 
     constructor(engine: GameEngine) {
         this.engine = engine;
+        this.recordStorage = new RecordStorage();
         const getEl = <T extends HTMLElement>(id: string): T => {
             const el = document.getElementById(id);
             if (!el) throw new Error(`Required element #${id} not found`);
@@ -70,28 +73,10 @@ export class UIManager {
             mascotImg: getEl<HTMLImageElement>(DOM_IDS.MASCOT_IMG),
             titleLogo: getEl<HTMLImageElement>(DOM_IDS.TITLE_LOGO)
         };
-        this.loadRecords();
-    }
-
-    private records: Record<string, { rank: string; score: number; date: string }> = {};
-
-    loadRecords() {
-        try {
-            const stored = localStorage.getItem(CONFIG.STORAGE_KEYS.RECORDS);
-            if (stored) this.records = JSON.parse(stored);
-        } catch {
-            console.warn('Failed to load records, resetting');
-            this.records = {};
-        }
     }
 
     saveRecord(difficulty: string, rank: string, score: number) {
-        this.records[difficulty] = { rank, score, date: new Date().toLocaleDateString() };
-        try {
-            localStorage.setItem(CONFIG.STORAGE_KEYS.RECORDS, JSON.stringify(this.records));
-        } catch {
-            console.warn('Failed to save record (private browsing?)');
-        }
+        this.recordStorage.save(difficulty, rank, score);
     }
 
     setEngine(engine: GameEngine) {
@@ -122,13 +107,12 @@ export class UIManager {
 
         // Only show stages that are unlocked (Stage 1 always visible, others require previous stage beaten)
         allStages.forEach((stage, index) => {
-            const isUnlocked = index === 0 || this.records[`Stage${index}`]; // Previous stage beaten
-            if (!isUnlocked) return; // Don't render locked stages
+            if (!this.recordStorage.isStageUnlocked(index)) return; // Don't render locked stages
 
             const btn = document.createElement('div');
             btn.className = 'diff-btn';
 
-            const record = this.records[stage.key];
+            const record = this.recordStorage.get(stage.key);
             const validRanks: readonly string[] = CONFIG.VALID_RANKS;
             const safeRank = record && validRanks.includes(record.rank) ? record.rank : '';
             const rankClass = safeRank ? `rank-${safeRank}` : '';
