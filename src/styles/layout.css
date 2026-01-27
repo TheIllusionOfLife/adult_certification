@@ -1,0 +1,245 @@
+/**
+ * Layout - Grid, Containers, HUD
+ */
+
+/* Top HUD */
+#hud {
+    padding: var(--space-md) var(--space-lg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    height: auto;
+    gap: var(--space-lg);
+    background: transparent;
+}
+
+.stat-group {
+    display: flex;
+    gap: 10px;
+}
+
+.stat-badge {
+    background: rgba(20, 20, 20, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 2px solid var(--accent-color);
+    padding: var(--space-sm) 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 75px;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-badge::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
+    pointer-events: none;
+}
+
+.stat-label {
+    font-size: var(--text-xs);
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    opacity: 0.9;
+}
+
+.stat-value {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: #fff;
+    font-family: var(--font-numbers);
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    line-height: 1.1;
+}
+
+/* Mascot */
+#mascot-container {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: drop-shadow(4px 4px 0 var(--ink-black));
+    transition: transform var(--transition-medium) cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#mascot-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Bottom Interaction Area */
+#interaction-area {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    background: linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0.95) 40%, rgba(0, 0, 0, 0.8) 70%, transparent 100%);
+    padding: var(--space-md) var(--space-lg) var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 12px;
+    box-sizing: border-box;
+    min-height: 48%;
+}
+
+#dialogue-box {
+    background: transparent;
+    border: none;
+    padding: 0 0 12px 0;
+    box-shadow: none;
+    flex-grow: 0;
+    overflow-y: auto;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+#question-header {
+    font-size: 0.9rem;
+    color: var(--accent-color);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    margin-bottom: var(--space-sm);
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-numbers);
+}
+
+#question-text {
+    font-size: var(--text-lg);
+    line-height: 1.5;
+    font-weight: 600;
+    color: white;
+}
+
+/* Choices Grid */
+#choices-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: auto;
+}
+
+/* Skills Footer */
+#skills-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    z-index: 50;
+    font-weight: normal;
+    background: black;
+    padding: var(--space-xs) 10px;
+    border: none;
+    box-shadow: none;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* Overlay */
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(13, 13, 13, 0.96);
+    z-index: 100;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: var(--space-xl);
+    text-align: center;
+    box-sizing: border-box;
+}
+
+#overlay-title {
+    font-size: var(--text-3xl);
+    color: var(--primary-color);
+    text-shadow: 4px 4px 0 black;
+    margin-bottom: var(--space-lg);
+    animation: chromatic-aberration 2s ease-in-out infinite;
+}
+
+#overlay-body {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    max-width: 600px;
+}
+
+#overlay-stats {
+    font-size: 1.1rem;
+    margin: var(--space-lg) 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-xl);
+}
+
+.stat-result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Skill Select Box */
+#skill-select-box {
+    display: none;
+    width: 100%;
+    justify-content: center;
+}
+
+.skill-offer-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+    width: 100%;
+    max-width: 500px;
+}
+
+.skill-offer-title {
+    width: 100%;
+    text-align: center;
+}
+
+.skill-offer-title h3 {
+    margin: 0;
+    color: var(--accent-color);
+    font-size: 1.3em;
+}
+
+.skill-buttons-container {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-md);
+    width: 100%;
+}
+
+.skill-buttons-container .skill-btn {
+    flex: 1;
+    min-width: 0;
+}

@@ -1,0 +1,185 @@
+/**
+ * Animations - Keyframes and Animation Definitions
+ */
+
+/* Mascot Bounce */
+@keyframes mascot-bounce {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-5px);
+    }
+}
+
+/* Mascot Shake */
+@keyframes mascot-shake {
+    0% {
+        transform: translate(1px, 1px) rotate(0deg);
+    }
+
+    10% {
+        transform: translate(-1px, -2px) rotate(-1deg);
+    }
+
+    20% {
+        transform: translate(-3px, 0px) rotate(1deg);
+    }
+
+    30% {
+        transform: translate(3px, 2px) rotate(0deg);
+    }
+
+    40% {
+        transform: translate(1px, -1px) rotate(1deg);
+    }
+
+    50% {
+        transform: translate(-1px, 2px) rotate(-1deg);
+    }
+
+    60% {
+        transform: translate(-3px, 1px) rotate(0deg);
+    }
+
+    70% {
+        transform: translate(3px, 1px) rotate(-1deg);
+    }
+
+    80% {
+        transform: translate(-1px, -1px) rotate(1deg);
+    }
+
+    90% {
+        transform: translate(1px, 2px) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(1px, -2px) rotate(-1deg);
+    }
+}
+
+/* Score Pop Animations */
+@keyframes score-pop-green {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.5);
+        color: var(--color-positive);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes score-pop-red {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.5);
+        color: var(--color-negative);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Image Scroll - Continuous */
+@keyframes scroll-continuous {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Image Scroll - Back and Forth (unused but kept for reference) */
+@keyframes scroll-back-and-forth {
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(-10%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Title Float */
+@keyframes title-float {
+    0%,
+    100% {
+        transform: translateY(0) rotate(-2deg);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(-2deg);
+    }
+}
+
+/* Chromatic Aberration Effect */
+@keyframes chromatic-aberration {
+    0% {
+        text-shadow:
+            -2px 0 0 rgba(255, 0, 0, 0.5),
+            2px 0 0 rgba(0, 255, 255, 0.5);
+    }
+
+    50% {
+        text-shadow:
+            2px 0 0 rgba(255, 0, 0, 0.5),
+            -2px 0 0 rgba(0, 255, 255, 0.5);
+    }
+
+    100% {
+        text-shadow:
+            -2px 0 0 rgba(255, 0, 0, 0.5),
+            2px 0 0 rgba(0, 255, 255, 0.5);
+    }
+}
+
+/* Key Skill Shimmer */
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+/* Key Skill Badge Pulse */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* Key Skill Shimmer Before Pseudo-element */
+.key-skill-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+    animation: shimmer 3s infinite;
+}
