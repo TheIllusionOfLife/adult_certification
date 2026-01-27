@@ -125,9 +125,9 @@ export const stage3Questions: Question[] = [
             },
             {
                 text: "NISAを優先。いつでも引き出せる柔軟性を確保する。",
-                effect: { CS: 5, Asset: 0, Autonomy: 15 },
+                effect: { CS: 5, Asset: -5000, Autonomy: 15 },
                 verdict: "NEUTRAL",
-                feedback: "柔軟な選択です。運用益非課税で、緊急時も引き出し可能。節税効果はiDeCoに劣りますが、人生の変動に対応できます。",
+                feedback: "柔軟な選択です。運用益非課税で、緊急時も引き出し可能。ただしiDeCoの所得控除を受けられず、年間約2.4万円の節税機会を逃しています。",
                 lockRequirements: null
             }
         ],
@@ -227,16 +227,16 @@ export const stage3Questions: Question[] = [
         choices: [
             {
                 text: "繰り上げ返済。確実に利息を減らせる安心感を取る。",
-                effect: { CS: 15, Asset: 0, Autonomy: 5 },
+                effect: { CS: 20, Asset: 0, Autonomy: -10 },
                 verdict: "NEUTRAL",
-                feedback: "堅実な選択です。「確実な1%の利益」を選びました。精神的な安心感と、リスクゼロの利益。保守的だが合理的な判断です。",
+                feedback: "堅実な選択です。「確実な1%の利益」を選びました。精神的な安心感は得られますが、機会損失を恐れて「攻め」の選択ができなくなっています。",
                 lockRequirements: null
             },
             {
                 text: "投資に回す。長期で見れば期待リターンが高い。",
-                effect: { CS: 10, Asset: 20000, Autonomy: 10 },
+                effect: { CS: -5, Asset: 25000, Autonomy: 15 },
                 verdict: "NEUTRAL",
-                feedback: "積極的な選択です。数学的には正しい可能性が高いですが、投資は「期待値」であり「確実」ではありません。リスクを取る判断をしました。",
+                feedback: "積極的な選択です。期待リターンは高いですが、「借金を抱えたまま投資」は社会的には無責任と見なされることも。リスクを取る自立した判断です。",
                 lockRequirements: { Asset: 80000 },
                 lockedFeedback: "LOCKED: 資産が80,000円以上必要。生活に余裕がなく、リスクを取る精神的余裕がありません。"
             }

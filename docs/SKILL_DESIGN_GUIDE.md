@@ -9,7 +9,7 @@
 | Type | Count/Stage | Persistence | Purpose |
 |------|-------------|-------------|---------|
 | Normal | 3 | Stage-only | Tactical advantages |
-| Key | 1 | Collectible | True Ending unlock (need 9/9) |
+| Key | 1 | Collectible | True Ending unlock (need 10/10) |
 
 ### Skill Offers
 - **Offer 1** (after Q3): 2 normal skills → choose 1
@@ -60,6 +60,9 @@
 | 7 | CONTRACT_LITERACY | 契約読解 | Reading before signing |
 | 8 | IDENTITY_HYGIENE | 本人性衛生 | Protecting digital identity |
 | 9 | DAMAGE_CONTROL | 被害最小化 | Minimizing crisis damage |
+| 10 | AWAKENING | 覚醒 | Transcending the evaluation system |
+
+> **Stage 10 Note**: AWAKENING has a unique effect (`all_damage_reduction`) unlike other key skills. See [QUESTION_DESIGN_GUIDE_FOR_FINAL_STAGE.md](./QUESTION_DESIGN_GUIDE_FOR_FINAL_STAGE.md) for full details.
 
 ### Structure
 ```typescript

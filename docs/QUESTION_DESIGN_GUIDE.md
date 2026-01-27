@@ -29,6 +29,27 @@ Q10: Philosophy
 
 ---
 
+## Stage Themes
+
+Each stage has a core theme defined by its Key Skill. All questions must align with the stage theme.
+
+| Stage | Theme | Key Skill | Core Learning |
+|-------|-------|-----------|---------------|
+| 1 | Social Basics | 仲介術 (MEDIATION) | Using systems to avoid conflict |
+| 2 | Labor/Work | 証拠連鎖 (EVIDENCE_CHAIN) | Recording prevents disputes |
+| 3 | Finance/Money | 複利感覚 (COMPOUND_SENSE) | Understanding compound interest |
+| 4 | Administration | 手続き主義 (DUE_PROCESS) | Navigating bureaucracy |
+| 5 | Social Safety Net | セーフティネット航法 (SAFETY_NET_NAVIGATION) | Accessing safety nets |
+| 6 | Housing | 交渉プロトコル (NEGOTIATION_PROTOCOL) | Third-party negotiation |
+| 7 | Contracts/Legal | 契約読解 (CONTRACT_LITERACY) | Reading before signing |
+| 8 | Digital Identity | 本人性衛生 (IDENTITY_HYGIENE) | Protecting digital identity |
+| 9 | Crisis/Disaster | 被害最小化 (DAMAGE_CONTROL) | Minimizing crisis damage |
+| 10 | Final Certification | 覚醒 (AWAKENING) | Transcending the evaluation system |
+
+> **Stage 10 Note**: Stage 10 is a synthesis finale with unique structure. See [QUESTION_DESIGN_GUIDE_FOR_FINAL_STAGE.md](./QUESTION_DESIGN_GUIDE_FOR_FINAL_STAGE.md) for Stage 10 specific guidelines. That document takes priority over this one for Stage 10 design.
+
+---
+
 ## Source Coverage (MANDATORY)
 
 1. Search sources for theme: `grep -i "仕事\|労働" src/data/question_sources/*.md`
