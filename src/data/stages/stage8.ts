@@ -217,32 +217,31 @@ export const stage8Questions: Question[] = [
         ]
     },
 
-    // Q9: Dilemma + Lock (SEC) - Report data breach vs ignore
+    // Q9: Knowledge (SEC) - Responding to data breach
     {
         id: "s8_q09",
         category: "SEC",
-        text: "利用しているサービスで情報漏洩が発生。自分のメールアドレスも含まれているが、今のところ被害はない。",
-        imagePrompt: "Scene: data breach notification; exposed personal data floating; choice between active response vs passive waiting. Composition: breach aftermath decision. Mood: aftermath, proactive vs reactive.",
+        text: "利用しているサービスで情報漏洩が発生。自分のメールアドレスも含まれているが、今のところ被害はない。正しい対応は？",
+        imagePrompt: "Scene: data breach notification; exposed personal data floating; password change urgency visualized. Composition: security response timeline. Mood: urgency, proactive defense.",
         imagePath: "s8_q09.png",
         choices: [
             {
                 text: "被害がないなら様子を見る。パスワード変更は面倒。",
-                effect: { CS: 5, Asset: 0, Autonomy: -10 },
-                verdict: "NEUTRAL",
-                feedback: "リスクを放置しました。漏洩した情報は闇市場で売買されます。今は大丈夫でも、数ヶ月後に攻撃を受ける可能性があります。",
+                effect: { CS: -20, Asset: -30000, Autonomy: -10 },
+                verdict: "WARNING",
+                feedback: "危険な判断です。漏洩した認証情報は闇市場で即座に売買されます。攻撃者は「クレデンシャルスタッフィング」で他サービスへの侵入を試みます。数ヶ月後に金銭被害が発生するパターンが多発しています。",
                 lockRequirements: null
             },
             {
                 text: "すぐにパスワードを変更し、同じパスワードを使っている他サービスも全て変更する。",
-                effect: { CS: 10, Asset: 0, Autonomy: 15 },
-                verdict: "NEUTRAL",
-                feedback: "予防的行動です。手間はかかりますが、被害を未然に防ぐ最善の方法。漏洩情報は永遠に消えないので、先手を打つしかありません。",
-                lockRequirements: { Asset: 80000 },
-                lockedFeedback: "LOCKED: 資産が80,000円以上必要。パスワードマネージャー等のツールを導入する余裕がありません。"
+                effect: { CS: 15, Asset: 0, Autonomy: 15 },
+                verdict: "APPROVED",
+                feedback: "正解です。情報漏洩後の72時間が最も危険。パスワードの使い回しがあれば、芋づる式に被害が拡大します。面倒でも即座に変更し、今後はパスワードマネージャーで一意のパスワードを管理すべきです。",
+                lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "予防と対処、どちらを選びますか？"
+            intro: "情報漏洩後、何をすべきですか？"
         }
     },
 

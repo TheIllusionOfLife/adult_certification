@@ -108,31 +108,31 @@ export const stage9Questions: Question[] = [
         ]
     },
 
-    // Q5: Dilemma (DISASTER) - Evacuate vs stay during warning
+    // Q5: Knowledge (FINANCE) - Student loan repayment difficulty
     {
         id: "s9_q05",
-        category: "DISASTER",
-        text: "大雨警報が発令。自治体から「高齢者等避難」が出た。自分は若いし、まだ大丈夫だと思うが……",
-        imagePrompt: "Scene: rain pouring outside window; evacuation advisory on phone; flooded streets in distance; protagonist hesitating at door. Composition: early warning decision point. Mood: complacency vs caution.",
+        category: "FINANCE",
+        text: "就職したが給料が低く、奨学金の返済が厳しい。毎月の返済額は約15,000円。どう対応すべき？",
+        imagePrompt: "Scene: pay stub showing low salary; student loan payment notice; JASSO website showing relief options; stressed young worker at desk. Composition: financial squeeze with escape route. Mood: financial pressure, available relief.",
         imagePath: "s9_q05.png",
         choices: [
             {
-                text: "まだ「避難指示」ではない。もう少し様子を見る。",
-                effect: { CS: 5, Asset: 0, Autonomy: -15 },
-                verdict: "NEUTRAL",
-                feedback: "リスクを取った選択です。今回は無事でしたが、水害は「気づいた時には遅い」が多いです。「まだ大丈夫」が最後の判断になる人もいます。",
+                text: "払えないものは払えない。しばらく無視して様子を見る。",
+                effect: { CS: -25, Asset: -50000, Autonomy: -15 },
+                verdict: "WARNING",
+                feedback: "最悪の選択です。延滞3ヶ月で個人信用情報機関に登録（ブラックリスト）。9ヶ月で一括請求。さらに給与差押えの可能性も。無視は問題を数十倍に膨らませます。",
                 lockRequirements: null
             },
             {
-                text: "「高齢者等避難」の段階で早めに避難する。状況が悪化してからでは遅い。",
-                effect: { CS: 15, Asset: -5000, Autonomy: 10 },
-                verdict: "NEUTRAL",
-                feedback: "慎重な選択です。「空振り」でも命は守られます。2019年の東日本台風では、「まだ大丈夫」と思った多くの人が逃げ遅れました。",
+                text: "JASSOに連絡し、「減額返還」か「返還期限猶予」を申請する。",
+                effect: { CS: 15, Asset: 0, Autonomy: 15 },
+                verdict: "APPROVED",
+                feedback: "正解です。年収300万円以下なら「減額返還」で月額を1/2〜1/3に、「返還期限猶予」で最長10年間返済を止められます。制度を知らないだけで人生が詰む人がいます。困ったら、まず相談です。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "「まだ大丈夫」と「もう遅い」、その境界線はどこですか？"
+            intro: "借金は「払えない」で終わりません。制度を知っていますか？"
         }
     },
 
@@ -161,28 +161,28 @@ export const stage9Questions: Question[] = [
         ]
     },
 
-    // Q7: Key Skill Pathway (DISASTER) - Minimizing damage during crisis
+    // Q7: Key Skill Pathway (TAX) - Medical expense deduction
     {
         id: "s9_q07",
-        category: "DISASTER",
-        text: "勤務中に震度6の地震。揺れが収まった後、同僚がパニックを起こしている。あなたはどうする？",
-        imagePrompt: "Scene: office post-earthquake with fallen items; panicking colleagues; calm exit route visible; protagonist at decision point. Composition: chaos with leadership opportunity. Mood: crisis, calm vs panic.",
+        category: "TAX",
+        text: "今年、歯の治療で20万円かかった。会社員で年末調整は済んでいるが、何かできることはある？",
+        imagePrompt: "Scene: dental clinic receipt showing 200,000 yen; tax return form with medical expense section; calculator showing potential refund; organized medical receipts. Composition: expense to refund transformation. Mood: hidden opportunity, financial literacy.",
         imagePath: "s9_q07.png",
         choices: [
             {
-                text: "自分も怖いので、一緒にパニックになる。",
-                effect: { CS: 0, Asset: 0, Autonomy: -30 },
+                text: "年末調整で終わったから、もう何もできない。",
+                effect: { CS: -15, Asset: -20000, Autonomy: -10 },
                 verdict: "WARNING",
-                feedback: "思考停止です。パニックは伝染します。冷静さを失った集団は、二次災害（転倒、将棋倒し）を引き起こします。",
+                feedback: "損をしています。医療費控除は年末調整では処理されません。年間医療費が10万円（または総所得の5%）を超えた分は、確定申告で所得控除が受けられます。知らないだけで税金を多く払っています。",
                 lockRequirements: null
             },
             {
-                text: "「まず安全確保」と声をかけ、避難経路を確認。落ち着いて行動し、周囲を導く。",
-                effect: { CS: 15, Asset: 0, Autonomy: 25 },
+                text: "確定申告で医療費控除を申請する。領収書を集め、還付を受ける。",
+                effect: { CS: 20, Asset: 20000, Autonomy: 20 },
                 verdict: "APPROVED",
-                feedback: "正解です。危機的状況で冷静に行動できる人は、周囲の命も救います。日頃からの訓練と知識が、いざという時の「冷静さ」を生み出します。",
-                lockRequirements: { Autonomy: 80 },
-                lockedFeedback: "LOCKED: 自律性が80以上必要。自分自身がパニック状態で、他者を導く余裕がありません。"
+                feedback: "正解です。20万円の医療費なら、約1〜2万円の還付が期待できます。交通費も対象。セルフメディケーション税制との選択も可能。「会社員だから確定申告は関係ない」は大きな誤解です。",
+                lockRequirements: { Autonomy: 70 },
+                lockedFeedback: "LOCKED: 自律性が70以上必要。「確定申告は面倒」という先入観で行動できません。"
             }
         ],
         adamDialogue: {

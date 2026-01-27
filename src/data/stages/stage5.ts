@@ -108,54 +108,54 @@ export const stage5Questions: Question[] = [
         ]
     },
 
-    // Q5: Dilemma (HEALTH) - Use sick leave vs push through
+    // Q5: Knowledge (HEALTH) - Infectious disease and work
     {
         id: "s5_q05",
         category: "HEALTH",
-        text: "体調が悪いが、プロジェクトの山場。医師からは「1週間の休養が必要」と言われた。",
-        imagePrompt: "Scene: a worker at desk looking ill; doctor's note on one side; urgent project deadline on other. Composition: health vs work responsibility split. Mood: trade-off, no perfect answer.",
+        text: "インフルエンザと診断された。医師から「5日間は出勤停止」と言われたが、明日は重要な会議がある。",
+        imagePrompt: "Scene: a person with fever and flu symptoms; doctor's certificate showing 'no work' order; office building with colleagues. Composition: contagion risk visualization. Mood: responsibility conflict, clear medical guidance.",
         imagePath: "s5_q05.png",
         choices: [
             {
-                text: "チームに迷惑をかけられない。薬を飲みながら出勤を続ける。",
-                effect: { CS: 15, Asset: 0, Autonomy: -20 },
-                verdict: "NEUTRAL",
-                feedback: "責任感の表れですが、代償を払いました。無理を続けて症状が悪化し、結局2週間休む羽目に。「短期の評価」を「長期の健康」と引き換えにしました。",
+                text: "マスクをすれば大丈夫。会議だけ出席して、すぐ帰る。",
+                effect: { CS: -30, Asset: -20000, Autonomy: -15 },
+                verdict: "WARNING",
+                feedback: "最悪の判断です。インフルエンザは発症後5日間、解熱後2日間は感染力があります。出勤して同僚10人に感染させ、チーム全体が機能停止。あなたの「責任感」が組織に大損害を与えました。",
                 lockRequirements: null
             },
             {
-                text: "医師の指示に従い、1週間休む。チームには状況を説明し、引継ぎを行う。",
-                effect: { CS: -10, Asset: 0, Autonomy: 15 },
-                verdict: "NEUTRAL",
-                feedback: "長期的に正しい判断です。短期的には評価が下がりますが、健康を守ることで長期的な生産性を維持。自分を守る勇気を持ちました。",
+                text: "医師の指示に従い休む。会議はオンライン参加か、資料を送って代理を立てる。",
+                effect: { CS: 20, Asset: 0, Autonomy: 15 },
+                verdict: "APPROVED",
+                feedback: "正解です。感染症の出勤は「迷惑」ではなく「加害」。リモート対応や引継ぎで最低限の責任を果たしつつ、他者を守る判断ができました。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "健康と仕事、どちらを優先しますか？正解はありません。"
+            intro: "あなたの「責任感」は、本当に責任ある行動ですか？"
         }
     },
 
-    // Q6: Knowledge (ADMIN) - Pension exemption/postponement
+    // Q6: Knowledge (LABOR) - Education and training benefits (教育訓練給付金)
     {
         id: "s5_q06",
-        category: "ADMIN",
-        text: "フリーランスになったが、収入が不安定。国民年金の保険料（月約17,000円）が重い。",
-        imagePrompt: "Scene: a freelancer looking at pension payment slip; budget showing tight margins; exemption form glowing as option. Composition: financial pressure with escape route. Mood: burden, legitimate relief option.",
+        category: "LABOR",
+        text: "スキルアップのため資格学校に通いたいが、費用が50万円かかる。会社員で雇用保険に加入中。",
+        imagePrompt: "Scene: a professional school brochure with price tag; employment insurance card glowing; subsidy calculation showing 70% coverage. Composition: expensive education with hidden support. Mood: career investment, government support discovery.",
         imagePath: "s5_q06.png",
         choices: [
             {
-                text: "払えないので無視する。老後のことは後で考える。",
-                effect: { CS: -25, Asset: 0, Autonomy: -10 },
+                text: "50万円は高すぎる。諦めて独学でやる。",
+                effect: { CS: -10, Asset: 0, Autonomy: -10 },
                 verdict: "WARNING",
-                feedback: "最悪の選択です。滞納すると将来の年金が減るだけでなく、財産差し押さえの対象に。免除・猶予制度を使えば、滞納扱いを避けられます。",
+                feedback: "機会損失です。教育訓練給付金を使えば、受講費用の最大70%（専門実践教育訓練）が支給されます。50万円のコースが実質15万円に。制度を知らないと、キャリアアップの機会を逃します。",
                 lockRequirements: null
             },
             {
-                text: "免除・猶予制度を申請する。収入に応じて保険料が軽減または猶予される。",
-                effect: { CS: 15, Asset: 5000, Autonomy: 15 },
+                text: "教育訓練給付金の対象講座か確認し、給付金を申請して受講する。",
+                effect: { CS: 20, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
-                feedback: "正解です。免除期間も年金受給資格期間に算入されます。制度を使って「払えない」を「払わなくていい期間」に変換することで、将来を守れます。",
+                feedback: "正解です。雇用保険加入1年以上（初回）で利用可能。一般は20%、特定一般は40%、専門実践は最大70%給付。ハローワークで事前に相談すれば、対象講座と手続きがわかります。",
                 lockRequirements: null
             }
         ]

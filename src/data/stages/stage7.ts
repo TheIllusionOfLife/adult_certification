@@ -108,31 +108,31 @@ export const stage7Questions: Question[] = [
         ]
     },
 
-    // Q5: Dilemma (LEGAL) - Sign unclear contract vs walk away
+    // Q5: Knowledge (LEGAL) - Contract review essentials
     {
         id: "s7_q05",
         category: "LEGAL",
-        text: "フリーランスの仕事で契約書を渡された。「業界の標準だから」と言われたが、不利な条項がいくつかある。",
-        imagePrompt: "Scene: a contract with concerning clauses highlighted; client waiting impatiently; scale balancing work opportunity vs protection. Composition: pressure to sign vs caution. Mood: opportunity cost vs risk.",
+        text: "フリーランスの仕事で契約書を渡された。「業界標準だから」と急かされているが、どう対応すべき？",
+        imagePrompt: "Scene: a contract with key clauses highlighted (payment, IP, revisions, termination); magnifying glass over fine print; checklist of must-check items. Composition: contract anatomy revealed. Mood: informed caution, professional self-defense.",
         imagePath: "s7_q05.png",
         choices: [
             {
-                text: "仕事を逃したくないので、そのままサインする。",
-                effect: { CS: 10, Asset: 30000, Autonomy: -20 },
-                verdict: "NEUTRAL",
-                feedback: "リスクを取った選択です。仕事は得られましたが、不利な条項（著作権譲渡、無制限の修正対応等）に縛られます。後でトラブルになるかもしれません。",
+                text: "「業界標準」と言われたら信じてサインする。読む時間がもったいない。",
+                effect: { CS: -25, Asset: -100000, Autonomy: -20 },
+                verdict: "WARNING",
+                feedback: "危険です。「著作権の全面譲渡」「無制限の修正義務」「一方的な解約条項」が含まれていました。後から「契約書に書いてある」と言われ、対抗できません。読まないサインは自殺行為です。",
                 lockRequirements: null
             },
             {
-                text: "修正を提案し、合意できなければ断る。不利な契約は将来の問題の種。",
-                effect: { CS: 0, Asset: 0, Autonomy: 15 },
-                verdict: "NEUTRAL",
-                feedback: "慎重な選択です。この仕事は逃しましたが、不当な条件に縛られることも避けられました。「契約交渉する価値がある仕事か」という視点も大切です。",
+                text: "報酬・期限・著作権・修正回数・解約条項を確認し、不明点は質問してから判断する。",
+                effect: { CS: 20, Asset: 0, Autonomy: 15 },
+                verdict: "APPROVED",
+                feedback: "正解です。最低限チェックすべきは「報酬と支払時期」「成果物の権利帰属」「修正回数の上限」「解約・損害賠償条項」。読んで交渉するのがプロです。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "仕事と条件、どちらを優先しますか？"
+            intro: "契約書を読まずにサインする人を、社会は「カモ」と呼びます。"
         }
     },
 
@@ -217,32 +217,31 @@ export const stage7Questions: Question[] = [
         ]
     },
 
-    // Q9: Dilemma + Lock (LEGAL) - Report friend's illegal activity vs loyalty
+    // Q9: Knowledge (LEGAL) - Responding to friend's illegal activity
     {
         id: "s7_q09",
         category: "LEGAL",
-        text: "親友が「経費を水増ししている」と打ち明けてきた。犯罪だと知っているが、通報すれば友情は終わる。",
-        imagePrompt: "Scene: friend confessing wrongdoing; protagonist torn between phone (reporting) and silence; shadow of consequences for both choices. Composition: moral crossroads. Mood: loyalty vs integrity.",
+        text: "親友が「経費を水増ししている」と打ち明けてきた。法的に、あなたはどう対応すべきか？",
+        imagePrompt: "Scene: friend confessing wrongdoing; protagonist considering legal consequences; shadow showing chain of complicity. Composition: legal awareness moment. Mood: understanding consequences.",
         imagePath: "s7_q09.png",
         choices: [
             {
                 text: "黙っている。友人を売るようなことはできない。",
-                effect: { CS: 5, Asset: 0, Autonomy: -10 },
-                verdict: "NEUTRAL",
-                feedback: "友情を選びました。しかし、あなたも「共犯」になるリスクを負いました。知っていて黙認したことが発覚すれば、あなたの信用も失われます。",
+                effect: { CS: -20, Asset: 0, Autonomy: -15 },
+                verdict: "WARNING",
+                feedback: "危険な判断です。経費の水増しは詐欺罪や業務上横領罪に該当し得ます。知っていて黙認すると、発覚時に「共犯」や「犯人隠避」とみなされるリスクがあります。友情のつもりが、あなた自身を犯罪者にする可能性があります。",
                 lockRequirements: null
             },
             {
-                text: "まず友人に「やめるべきだ」と伝える。聞かなければ距離を置く。",
-                effect: { CS: 10, Asset: 0, Autonomy: 15 },
-                verdict: "NEUTRAL",
-                feedback: "バランスを取る選択です。直接通報はしませんでしたが、違法行為への加担は拒否しました。友情と正義の間で、できる限りの線を引きました。",
-                lockRequirements: { Autonomy: 60 },
-                lockedFeedback: "LOCKED: 自律性が60以上必要。「友人に意見する」勇気が持てません。"
+                text: "「それは犯罪だからやめるべきだ」と明確に伝え、加担しない姿勢を示す。",
+                effect: { CS: 15, Asset: 0, Autonomy: 20 },
+                verdict: "APPROVED",
+                feedback: "正解です。違法行為を知った時、黙認は共犯リスクを生みます。友人に「やめるべき」と伝えることは、友人を守ることでもあります。本当の友情は、違法行為を止めることです。",
+                lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "友情と正義、どちらを選びますか？"
+            intro: "他者の違法行為を知った時、法的にどう行動すべきですか？"
         }
     },
 

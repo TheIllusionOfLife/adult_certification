@@ -54,26 +54,26 @@ export const stage3Questions: Question[] = [
         ]
     },
 
-    // Q3: Knowledge (FINANCE) - Credit card safety [SKILL OFFER 1 AFTER]
+    // Q3: Knowledge (FINANCE) - Credit information (CIC/信用情報) [SKILL OFFER 1 AFTER]
     {
         id: "s3_q03",
         category: "FINANCE",
-        text: "ネットショッピングでクレジットカード情報を入力する際、安全性を確認する方法は？",
-        imagePrompt: "Scene: a laptop screen showing online shopping; a padlock icon glowing vs broken padlock; credit card floating between safety and danger. Composition: security indicators highlighted, user at crossroads. Mood: vigilance, digital trust, hidden threats.",
+        text: "クレジットカードの審査に落ちた。理由を知りたいが、自分の「信用情報」はどこで確認できる？",
+        imagePrompt: "Scene: a rejected credit card application; CIC/JICC logos glowing; a person's credit history visualized as a report card. Composition: credit score concept with accessible information path. Mood: rejection turning to empowerment through knowledge.",
         imagePath: "s3_q03.png",
         choices: [
             {
-                text: "URLが「https://」で始まり、鍵マークがあることを確認する。",
-                effect: { CS: 15, Asset: 0, Autonomy: 10 },
-                verdict: "APPROVED",
-                feedback: "基本は正解です。SSL/TLS暗号化の確認は最低限。ただし、フィッシングサイトもhttpsを使うことがあるため、URLのドメイン自体も確認が必要です。",
+                text: "信用情報は企業秘密だから、本人でも見られないはず。",
+                effect: { CS: -20, Asset: 0, Autonomy: -10 },
+                verdict: "WARNING",
+                feedback: "誤りです。CIC、JICC、全国銀行協会に開示請求すれば、自分の信用情報を確認できます。延滞や債務整理の記録は5〜10年残り、審査に影響します。知らないと対策できません。",
                 lockRequirements: null
             },
             {
-                text: "「有名なサイトなら大丈夫」と気にせず入力する。",
-                effect: { CS: -25, Asset: -20000, Autonomy: 0 },
-                verdict: "WARNING",
-                feedback: "危険です。偽サイト（フィッシング）に引っかかり、カード情報を抜かれました。「見た目が本物」は安全を意味しません。",
+                text: "CICなどの信用情報機関に開示請求し、自分の信用履歴を確認する。",
+                effect: { CS: 20, Asset: -1000, Autonomy: 15 },
+                verdict: "APPROVED",
+                feedback: "正解です。開示手数料は約1,000円。過去の延滞や強制解約が記録されていれば原因が判明します。情報を知ることが、信用回復の第一歩です。",
                 lockRequirements: null
             }
         ],
@@ -118,16 +118,16 @@ export const stage3Questions: Question[] = [
         choices: [
             {
                 text: "iDeCoを優先。所得控除で節税しながら老後に備える。",
-                effect: { CS: 10, Asset: 5000, Autonomy: -10 },
+                effect: { CS: 15, Asset: 0, Autonomy: -15 },
                 verdict: "NEUTRAL",
-                feedback: "堅実な選択です。年収400万円なら年間約2.4万円の節税効果。ただし60歳まで引き出せないため、流動性を犠牲にしています。",
+                feedback: "堅実な選択です。年収400万円なら年間約2.4万円の節税効果。ただし60歳まで引き出せないため、流動性を犠牲にしています。人生の選択肢が狭まりました。",
                 lockRequirements: null
             },
             {
                 text: "NISAを優先。いつでも引き出せる柔軟性を確保する。",
-                effect: { CS: 5, Asset: -5000, Autonomy: 15 },
+                effect: { CS: 5, Asset: 0, Autonomy: 15 },
                 verdict: "NEUTRAL",
-                feedback: "柔軟な選択です。運用益非課税で、緊急時も引き出し可能。ただしiDeCoの所得控除を受けられず、年間約2.4万円の節税機会を逃しています。",
+                feedback: "柔軟な選択です。運用益非課税で、緊急時も引き出し可能。節税効果はiDeCoに劣りますが、人生の変化に対応できる自由を確保しました。",
                 lockRequirements: null
             }
         ],

@@ -29,26 +29,26 @@ export const stage4Questions: Question[] = [
         }
     },
 
-    // Q2: Knowledge (ADMIN) - MyNumber card benefits
+    // Q2: Knowledge (TAX) - Furusato tax donation (ふるさと納税)
     {
         id: "s4_q02",
-        category: "ADMIN",
-        text: "マイナンバーカードを作るべきか迷っている。「面倒だし、なくても困らない」と思っているが……",
-        imagePrompt: "Scene: a MyNumber card glowing with various services connected (tax filing, health insurance, ID); alternative showing long queues at different offices. Composition: convenience vs inconvenience comparison. Mood: modern efficiency, integration benefits.",
+        category: "TAX",
+        text: "「ふるさと納税」を勧められた。「実質2,000円で返礼品がもらえる」と聞いたが、注意点は？",
+        imagePrompt: "Scene: hometown tax donation website with regional products; calculation showing deduction limit; calendar with deadline. Composition: benefit visualization with hidden requirements. Mood: opportunity with conditions.",
         imagePath: "s4_q02.png",
         choices: [
             {
-                text: "作らない。通知カードで十分。",
-                effect: { CS: -10, Asset: -5000, Autonomy: -10 },
+                text: "お得なら上限なく寄附する。たくさん寄附すればたくさん返礼品がもらえる。",
+                effect: { CS: -20, Asset: -50000, Autonomy: -5 },
                 verdict: "WARNING",
-                feedback: "機会損失です。確定申告のオンライン完結、コンビニでの住民票取得、健康保険証としての利用……カードがないと「窓口に並ぶ時間」が増え続けます。",
+                feedback: "大損です。控除上限額を超えた分は「ただの寄附」。年収500万円なら上限は約6万円。さらにワンストップ特例は5自治体まで、申請書は翌年1月10日必着。知らないと損をします。",
                 lockRequirements: null
             },
             {
-                text: "作る。行政サービスのオンライン化が進む中、持っていないと不利になる。",
-                effect: { CS: 15, Asset: 0, Autonomy: 10 },
+                text: "自分の控除上限額を確認し、5自治体以内でワンストップ特例を活用する。",
+                effect: { CS: 20, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
-                feedback: "正解です。今後、マイナンバーカードは「社会インフラ」になります。早めに作っておくと、手続きコストが大幅に下がります。",
+                feedback: "正解です。控除上限額は年収・家族構成で異なります。上限内なら実質2,000円で返礼品（寄附額の30%相当）を受け取れます。制度を理解して使うのが大人です。",
                 lockRequirements: null
             }
         ]
@@ -136,26 +136,26 @@ export const stage4Questions: Question[] = [
         }
     },
 
-    // Q6: Knowledge (ADMIN) - Tax office consultation timing
+    // Q6: Knowledge (ADMIN) - Tax filing preparation timing
     {
         id: "s4_q06",
         category: "ADMIN",
-        text: "確定申告の時期。税務署に相談に行きたいが、いつ行くのがベスト？",
-        imagePrompt: "Scene: a tax office with long queues in March; empty consultation room in November; calendar showing peak vs off-peak. Composition: crowded vs quiet comparison. Mood: strategic timing, avoiding the rush.",
+        text: "初めての確定申告。「3月15日が期限」と知っているが、いつから準備を始めるべき？",
+        imagePrompt: "Scene: a calendar showing tax deadline in March; one path shows last-minute panic with errors; other shows calm early preparation. Composition: timeline with preparation stages. Mood: procrastination vs proactive planning.",
         imagePath: "s4_q06.png",
         choices: [
             {
-                text: "申告期限直前の3月に行く。他の人もその時期に行くはず。",
-                effect: { CS: -10, Asset: 0, Autonomy: -10 },
+                text: "期限に間に合えばいい。2月後半から始める。",
+                effect: { CS: -15, Asset: -10000, Autonomy: -10 },
                 verdict: "WARNING",
-                feedback: "非効率です。3月は大混雑で何時間も待ち、質問も十分にできません。繁忙期を避ける知恵がないと、時間を無駄にします。",
+                feedback: "危険です。書類不足や計算ミスに気づいても修正する時間がありません。税務署も混雑し、相談もできず、延滞税や加算税のリスクも。「間に合えばいい」は甘い考えです。",
                 lockRequirements: null
             },
             {
-                text: "11月〜1月の閑散期に事前相談に行く。じっくり質問できる。",
-                effect: { CS: 15, Asset: 0, Autonomy: 15 },
+                text: "年明けすぐに書類を揃え、1月中に下書きを完成させる。",
+                effect: { CS: 20, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
-                feedback: "正解です。税務署は申告期限前でなくても相談を受け付けています。オフピークを狙う戦略が、質の高い情報を得る鍵です。",
+                feedback: "正解です。源泉徴収票は1月末までに届きます。早めに準備すれば、不明点を税務署に相談する余裕もあり、控除の漏れも防げます。",
                 lockRequirements: null
             }
         ]
@@ -217,32 +217,31 @@ export const stage4Questions: Question[] = [
         ]
     },
 
-    // Q9: Dilemma + Lock (ADMIN) - Report vs ignore minor issue
+    // Q9: Knowledge (ADMIN) - Tax correction (修正申告)
     {
         id: "s4_q09",
         category: "ADMIN",
-        text: "確定申告で、計算ミスに気づいた。数千円の過少申告。修正申告すべき？",
-        imagePrompt: "Scene: a tax return with small error highlighted; two paths - correction form vs ignore; magnifying glass on the discrepancy. Composition: minor error with disproportionate consequences. Mood: integrity vs convenience trade-off.",
+        text: "確定申告後、計算ミスで税金を少なく申告していたことに気づいた。どう対応すべき？",
+        imagePrompt: "Scene: a tax return with error discovered; correction form glowing; tax office counter. Composition: mistake discovery with proper correction path. Mood: error found, responsible action.",
         imagePath: "s4_q09.png",
         choices: [
             {
-                text: "数千円なら誤差の範囲。そのままにしておく。",
-                effect: { CS: 10, Asset: 3000, Autonomy: -5 },
-                verdict: "NEUTRAL",
-                feedback: "実利的判断です。発覚しない可能性は高いですが、「小さな嘘」を許容する姿勢が、将来大きな問題を招くかもしれません。",
+                text: "少額だし、バレなければ問題ない。放置する。",
+                effect: { CS: -25, Asset: -50000, Autonomy: -10 },
+                verdict: "WARNING",
+                feedback: "危険です。税務署の調査で発覚すると、過少申告加算税（10〜15%）と延滞税が課されます。悪質と判断されれば重加算税（35%）も。自主的に修正すれば加算税は軽減されます。",
                 lockRequirements: null
             },
             {
-                text: "修正申告する。金額に関わらず、正確な申告は義務。",
-                effect: { CS: 5, Asset: -3000, Autonomy: 15 },
-                verdict: "NEUTRAL",
-                feedback: "原則的判断です。時間と手間がかかりますが、「正しいことをする」習慣が、長期的な信用を築きます。",
-                lockRequirements: { CS: 60 },
-                lockedFeedback: "LOCKED: 社会的信用が60以上必要。社会的信用が低いと、「正直に申告しても得しない」と思ってしまいます。"
+                text: "速やかに修正申告を行い、差額を納付する。",
+                effect: { CS: 20, Asset: -5000, Autonomy: 15 },
+                verdict: "APPROVED",
+                feedback: "正解です。自主的な修正申告なら、過少申告加算税は課されないか軽減されます。「正直者が損をする」のではなく、「正直者がリスクを回避できる」のが税の仕組みです。",
+                lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "小さな嘘と、大きな手間。どちらを選びますか？"
+            intro: "税の申告に誠実さは必要ですか？"
         }
     },
 

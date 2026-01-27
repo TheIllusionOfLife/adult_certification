@@ -83,26 +83,26 @@ export const stage1Questions: Question[] = [
     },
     // [SKILL OFFER 1 HAPPENS AFTER Q3]
 
-    // Q4: Knowledge (TAX) - Residence tax trap - teaches "hidden rules that break people"
+    // Q4: Knowledge (SOCIAL) - Funeral etiquette (香典/袱紗)
     {
         id: "s1_q04",
-        category: "TAX",
-        text: "転職して収入が激減。しかし翌年、見覚えのない高額の請求書が届いた。「住民税」と書いてある。",
-        imagePrompt: "Scene: protagonist shocked at a bill; calendar showing 'last year' crossed out and 'this year' with the bill; empty wallet on table. Mood: confusion, delayed consequence, system catching up.",
+        category: "SOCIAL",
+        text: "同僚の親の葬儀に参列することになった。香典を用意するが、正しいマナーは？",
+        imagePrompt: "Scene: a funeral envelope (不祝儀袋) with money; a 袱紗 (fukusa) cloth; two paths showing proper vs improper etiquette. Composition: ceremonial items with cultural weight. Mood: solemnity, social responsibility.",
         imagePath: "s1_q04.png",
         choices: [
             {
-                text: "「間違いだ」と無視する。",
-                effect: { CS: -30, Asset: -20000, Autonomy: 0 },
+                text: "「御霊前」と書いた新札を、袱紗なしでそのまま渡す。",
+                effect: { CS: -25, Asset: 0, Autonomy: 0 },
                 verdict: "WARNING",
-                feedback: "致命傷です。住民税は「前年の所得に基づく翌年課税」。無視すると延滞金が膨らみ、財産差し押さえの対象になります。知識がないと、お金は奪われます。",
+                feedback: "マナー違反です。新札は「不幸を準備していた」印象を与え、袱紗なしは礼を欠きます。同僚との関係に傷がつきました。",
                 lockRequirements: null
             },
             {
-                text: "「住民税は翌年課税」を思い出し、分割払いを交渉する。",
-                effect: { CS: 20, Asset: -5000, Autonomy: 10 },
+                text: "旧札（または新札を折ってから）を袱紗に包み、宗派を確認してから表書きを選ぶ。",
+                effect: { CS: 20, Asset: -10000, Autonomy: 10 },
                 verdict: "APPROVED",
-                feedback: "適応です。制度を知っていれば「想定内」にできます。役所との分割相談で手数料は発生しますが、破滅は回避できます。",
+                feedback: "正解です。仏式なら四十九日前は「御霊前」、後は「御仏前」。神式は「御玉串料」。宗派不明なら「御霊前」が無難。大人の常識が信頼を築きます。",
                 lockRequirements: null
             }
         ]
@@ -136,26 +136,26 @@ export const stage1Questions: Question[] = [
         }
     },
 
-    // Q6: Knowledge (ADMIN) - Emergency Contact - Plain knowledge (no lock)
+    // Q6: Knowledge (MANNER) - Business card exchange and seating etiquette
     {
         id: "s1_q06",
-        category: "ADMIN",
-        text: "緊急連絡先の記入。親と疎遠だが、書かないわけにはいかない。どうする？",
-        imagePrompt: "Scene: an official form on a desk with an empty emergency contact field emphasized; a phone beside it showing an almost-empty contact list; the protagonist hunched over. Composition: tight desk close-up with the figure in the same frame. Mood: isolation, helplessness, pressure.",
+        category: "MANNER",
+        text: "取引先との初めての打ち合わせ。会議室に通されたが、席順と名刺交換のマナーがわからない。",
+        imagePrompt: "Scene: a meeting room with a table; seats arranged with door visible; business cards being exchanged between two people. Composition: seating diagram overlay with proper positions marked. Mood: professional tension, first impression stakes.",
         imagePath: "s1_q06.png",
         choices: [
             {
-                text: "適当な番号を書いておく。",
-                effect: { CS: -30, Asset: 0, Autonomy: 0 },
+                text: "入口近くの席に座り、名刺は片手で素早く交換する。",
+                effect: { CS: -25, Asset: 0, Autonomy: 0 },
                 verdict: "WARNING",
-                feedback: "虚偽申告です。職場で倒れた時、誰にも連絡がいかず、そのまま孤独死ルートです。嘘は社会的死を招きます。",
+                feedback: "マナー違反です。入口近くは「下座」で自分の席ですが、先に座るのは失礼。名刺は両手で受け取り、すぐにしまわないのが礼儀。第一印象で「この人はダメだ」と判断されました。",
                 lockRequirements: null
             },
             {
-                text: "事情を説明し、信頼できる友人に頼む。",
-                effect: { CS: 10, Asset: 0, Autonomy: 10 },
+                text: "相手を上座（入口から遠い席）に案内し、名刺は両手で受け取ってテーブルに置く。",
+                effect: { CS: 20, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
-                feedback: "解決策です。人間関係を構築する能力は、あなたの生存戦略です。助けを求めることも自律の一形態です。",
+                feedback: "正解です。名刺は相手より低い位置で差し出し、受け取ったら「頂戴します」。会議中はテーブルに並べ、終わったら丁寧にしまう。基本を押さえた人は信頼されます。",
                 lockRequirements: null
             }
         ]
@@ -192,31 +192,31 @@ export const stage1Questions: Question[] = [
     },
     // [SKILL OFFER 2 HAPPENS AFTER Q7]
 
-    // Q8: Knowledge (SOCIAL) - Co-signer request - teaches "連帯保証人 = danger"
+    // Q8: Knowledge (ADMIN) - Vehicle inspection (車検) and compulsory insurance (自賠責)
     {
         id: "s1_q08",
-        category: "SOCIAL",
-        text: "親友から「起業資金の連帯保証人になって」と頼まれた。信頼はあるが、連帯保証人は「本人と同等の返済義務」を負う。",
-        imagePrompt: "Scene: protagonist at crossroads; one path shows friend succeeding, other shows debt collectors; a contract paper floats between them with ominous shadow. Mood: loyalty vs self-preservation.",
+        category: "ADMIN",
+        text: "中古車を購入して3年。「車検」の案内が届いたが、費用が高い。少し延ばしても大丈夫？",
+        imagePrompt: "Scene: a car with inspection sticker on windshield; calendar showing expiration date; two paths - one with legal compliance, other with police stop. Composition: vehicle maintenance decision point. Mood: cost vs legal risk.",
         imagePath: "s1_q08.png",
         choices: [
             {
-                text: "「連帯保証は無理だけど、別の形で応援する」と断る。",
-                effect: { CS: 10, Asset: 0, Autonomy: 20 },
-                verdict: "APPROVED",
-                feedback: "正解です。連帯保証は「自分の借金」と同義。断る勇気があなたの人生を守りました。別の形で応援すれば友情も保てます。",
+                text: "お金がないので、車検が切れてもしばらく乗り続ける。",
+                effect: { CS: -30, Asset: -300000, Autonomy: -15 },
+                verdict: "WARNING",
+                feedback: "犯罪です。車検切れの運転は道路運送車両法違反（6点減点、30万円以下の罰金）。自賠責も切れていれば1年以下の懲役または50万円以下の罰金。「節約」のつもりが人生を壊します。",
                 lockRequirements: null
             },
             {
-                text: "友人を信じて、連帯保証人になる。",
-                effect: { CS: -20, Asset: -50000, Autonomy: -20 },
-                verdict: "WARNING",
-                feedback: "危険な選択です。事業が失敗すれば、あなたが数百万円の債務を背負います。情に流されて自分の人生を危険に晒しました。",
+                text: "期限前に車検を受ける。費用が厳しければ、車を手放すことも検討する。",
+                effect: { CS: 20, Asset: -100000, Autonomy: 15 },
+                verdict: "APPROVED",
+                feedback: "正解です。車検は新車登録から3年、以降2年ごと。自賠責保険は車検と同時更新が基本。維持できないなら手放す判断も大人の選択です。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "連帯保証人。この言葉の重さを、あなたは理解していますか？"
+            intro: "車は便利ですが、維持には責任が伴います。"
         }
     },
 
