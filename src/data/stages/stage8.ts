@@ -18,7 +18,7 @@ export const stage8Questions: Question[] = [
             },
             {
                 text: "SMSではなくアプリベースの認証（Google Authenticator等）を優先的に使う。",
-                effect: { CS: 0, Asset: 0, Autonomy: 15 },
+                effect: { CS: 5, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。SMS認証はSIMスワップに脆弱。認証アプリやハードウェアキーを使えば、電話番号を乗っ取られても認証は守られます。",
                 lockRequirements: null
@@ -46,7 +46,7 @@ export const stage8Questions: Question[] = [
             },
             {
                 text: "3-2-1ルール（3つのコピー、2種類の媒体、1つは遠隔地）でバックアップ体制を構築する。",
-                effect: { CS: 10, Asset: -10000, Autonomy: 15 },
+                effect: { CS: 10, Asset: -10000, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。クラウドと外付けHDDの併用で、ほとんどのデータ消失リスクに対応できます。バックアップは「保険」。事故が起きてからでは遅いです。",
                 lockRequirements: null
@@ -71,7 +71,7 @@ export const stage8Questions: Question[] = [
             },
             {
                 text: "パスワードマネージャーを使い、サービスごとに強力なパスワードを自動生成・管理する。",
-                effect: { CS: 0, Asset: 0, Autonomy: 15 },
+                effect: { CS: 5, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。マスターパスワード1つを覚えれば、何百ものサイトを安全に管理できます。初期設定の手間は、将来の被害と比べれば微々たるものです。",
                 lockRequirements: null
@@ -100,7 +100,7 @@ export const stage8Questions: Question[] = [
             },
             {
                 text: "すぐに設定する。パスワードだけでは防げない攻撃がある。",
-                effect: { CS: 0, Asset: 0, Autonomy: 15 },
+                effect: { CS: 5, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。パスワードは漏洩する前提で考えるべき。二段階認証があれば、パスワードが盗まれても口座は守られます。",
                 lockRequirements: null
@@ -108,31 +108,31 @@ export const stage8Questions: Question[] = [
         ]
     },
 
-    // Q5: Dilemma (SEC) - Convenience vs security settings
+    // Q5: Dilemma (SEC) - 古いスマホの処分方法
     {
         id: "s8_q05",
         category: "SEC",
-        text: "スマホの設定。「生体認証のみ」（便利）か「生体認証＋パスコード」（より安全）か。",
-        imagePrompt: "Scene: Phone settings screen close-up showing face unlock only and face unlock plus passcode options, finger shadow hovering over selection, lock icon graphics. Composition: Settings UI fills frame, choice moment frozen. Mood: Convenience vs security, daily decision.",
+        text: "新しいスマホに機種変更した。古いスマホには写真、メール、アプリのログイン情報が残っている。売却すれば数千円になるが……",
+        imagePrompt: "Scene: Old smartphone on desk next to buyback price tag, screen showing photo gallery preview, shredder in background, money bills fanned out nearby. Composition: Phone centered, destruction vs profit paths visible. Mood: Data vs money, irreversible choice.",
         imagePath: "s8_q05.png",
         choices: [
             {
-                text: "生体認証のみ。毎回パスコードを入力するのは面倒。",
-                effect: { CS: 5, Asset: 0, Autonomy: 10 },
+                text: "初期化して売却する。工場出荷状態にすれば大丈夫だろう。",
+                effect: { CS: -5, Asset: 5000, Autonomy: 0 },
                 verdict: "NEUTRAL",
-                feedback: "利便性を選びました。日常の摩擦は減りますが、指紋や顔認証が突破された場合のバックアップがありません。リスクを受け入れた選択です。",
+                feedback: "経済性を優先した選択です。数千円を回収できましたが、初期化だけではデータ復元ツールで情報を取り出せる可能性があります。リスクを受け入れて利益を取りました。",
                 lockRequirements: null
             },
             {
-                text: "生体認証＋パスコード。利便性より安全性を優先する。",
-                effect: { CS: 10, Asset: 0, Autonomy: 5 },
+                text: "売却せず物理的に破壊して廃棄する。データ復元のリスクを完全に排除。",
+                effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "NEUTRAL",
-                feedback: "安全性を選びました。毎日の手間は増えますが、万が一の時の被害を最小化できます。「面倒」を「保険」と捉える姿勢です。",
+                feedback: "安全性を優先した選択です。売却益は得られませんでしたが、写真、メール、決済情報の流出リスクをゼロにしました。数千円より個人情報を重く見た判断です。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "便利さと安全性、どちらを優先しますか？"
+            intro: "利益とリスク、どちらを優先しますか？"
         }
     },
 
@@ -153,7 +153,7 @@ export const stage8Questions: Question[] = [
             },
             {
                 text: "公共Wi-Fiでは機密情報を扱わない。必要ならVPNを使うか、モバイル回線を使う。",
-                effect: { CS: 0, Asset: 0, Autonomy: 15 },
+                effect: { CS: 5, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。公共Wi-Fiは「盗聴される前提」で使うべき。銀行、クレジットカード、重要なログインは避けるか、VPNで通信を暗号化してください。",
                 lockRequirements: null
@@ -178,11 +178,11 @@ export const stage8Questions: Question[] = [
             },
             {
                 text: "サービスの信頼性を確認。不審なら送らない。必要なら公式サイトから直接アクセスして確認。",
-                effect: { CS: 0, Asset: 0, Autonomy: 20 },
+                effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。本人確認書類は「最重要個人情報」。送る前に、そのサービスが本物か、本当に必要かを確認。一度流出した身分証情報は取り消せません。",
-                lockRequirements: { Autonomy: 100 },
-                lockedFeedback: "LOCKED: 自律性が100以上必要。「言われたから送る」という思考停止状態です。"
+                lockRequirements: { Autonomy: 80 },
+                lockedFeedback: "LOCKED: 自律性が80以上必要。「言われたから送る」という思考停止状態です。"
             }
         ],
         adamDialogue: {
@@ -202,14 +202,14 @@ export const stage8Questions: Question[] = [
         choices: [
             {
                 text: "急いでリンクをクリックし、口座を確認する。",
-                effect: { CS: -25, Asset: -200000, Autonomy: -15 },
+                effect: { CS: -25, Asset: -100000, Autonomy: -15 },
                 verdict: "WARNING",
                 feedback: "フィッシング詐欺にかかりました。偽サイトにIDとパスワードを入力し、口座情報を盗まれました。「緊急」「今すぐ」という煽りは詐欺の常套手段です。",
                 lockRequirements: null
             },
             {
                 text: "メールのリンクは使わず、公式アプリか、自分でURLを入力して確認する。",
-                effect: { CS: 0, Asset: 0, Autonomy: 15 },
+                effect: { CS: 5, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。正規の連絡ならアプリや公式サイトでも確認できます。「メールのリンクは信じない」が鉄則。不安なら電話で直接確認を。",
                 lockRequirements: null
@@ -217,32 +217,32 @@ export const stage8Questions: Question[] = [
         ]
     },
 
-    // Q9: Dilemma (SEC) - Data breach: full security overhaul vs targeted response
+    // Q9: Dilemma (SEC) - AIチャットボットへの個人情報入力
     {
         id: "s8_q09",
         category: "SEC",
-        text: "利用しているサービスで情報漏洩が発生。メールアドレスとハッシュ化されたパスワードが流出。パスワードは50以上のサービスで使い回していた。",
-        imagePrompt: "Scene: data breach notification; 50+ service icons; overwhelmed user facing password change marathon. Composition: security debt visualization. Mood: overwhelming task, prioritization needed.",
+        text: "業務効率化のためAIチャットボットを使い始めた。契約書のレビューや顧客データの分析を依頼したいが、機密情報を入力することになる。",
+        imagePrompt: "Scene: Office desk with AI chat interface on monitor, cursor hovering over send button, confidential document with company watermark being typed into chat input field, warning icon subtle in corner. Composition: Monitor fills frame, sensitive data exposed in text field. Mood: Efficiency temptation, invisible risk.",
         imagePath: "s8_q09.png",
         choices: [
             {
-                text: "全サービスのパスワードを一斉に変更する。週末を潰してでも完璧に対応。",
-                effect: { CS: 10, Asset: 0, Autonomy: 5 },
+                text: "効率を優先して機密情報も入力する。AIの方が正確だし、業務が早く終わる。",
+                effect: { CS: -10, Asset: 0, Autonomy: 0 },
                 verdict: "NEUTRAL",
-                feedback: "完璧主義の選択です。全サービスを保護できましたが、膨大な時間を費やしました。今後も「使い回し」を続ければ、同じ作業が繰り返されます。",
+                feedback: "効率を取った選択です。業務速度は上がりましたが、AIサービスは入力データを学習に使用する可能性があります。情報漏洩が起きた場合、責任はあなたに。便利さの代償を受け入れました。",
                 lockRequirements: null
             },
             {
-                text: "金融・重要サービスだけ優先変更。残りは段階的に対応し、パスワードマネージャーを導入。",
-                effect: { CS: 10, Asset: -5000, Autonomy: 10 },
+                text: "機密情報は一切入力しない。AIには一般的な質問だけにする。",
+                effect: { CS: 10, Asset: 0, Autonomy: 0 },
                 verdict: "NEUTRAL",
-                feedback: "現実的な選択です。重要度で優先順位をつけ、システム的な解決策を導入しました。「完璧」と「実行可能」の間で折り合いをつけました。",
-                lockRequirements: { Autonomy: 80 },
-                lockedFeedback: "LOCKED: 自律性が80以上必要。パニック状態では優先順位をつける冷静さがありません。"
+                feedback: "安全を取った選択です。効率は落ちますが、機密情報の流出リスクをゼロにしました。AIツールの利便性と情報管理の境界線を引く判断力があります。",
+                lockRequirements: { Autonomy: 100 },
+                lockedFeedback: "LOCKED: 自律性が100以上必要。『便利だから』という思考に流され、リスク評価ができていません。"
             }
         ],
         adamDialogue: {
-            intro: "完璧な対応と現実的な対応、どちらを選びますか？"
+            intro: "便利さの裏にあるリスク、見えていますか？"
         }
     },
 
@@ -256,7 +256,7 @@ export const stage8Questions: Question[] = [
         choices: [
             {
                 text: "守るべき人格の一部。売買されること自体が間違っている。",
-                effect: { CS: 10, Asset: 0, Autonomy: 20 },
+                effect: { CS: 10, Asset: 0, Autonomy: 15 },
                 verdict: "NEUTRAL",
                 feedback: "プライバシー重視の回答です。原理的には正しいですが、現実のデジタル経済から離脱するコストは高く、機会損失も生じます。",
                 lockRequirements: null

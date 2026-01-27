@@ -244,6 +244,19 @@ console.log('STAGE COMPARISON REPORT');
 console.log('='.repeat(60));
 console.log('');
 
+// Show initial parameters for each stage
+console.log('# Initial Parameters');
+for (let stageId = 1; stageId <= 10; stageId++) {
+    const meta = getStageMetadata(stageId);
+    if (meta) {
+        const p = meta.initialParams;
+        console.log(`Stage ${stageId}: CS=${p.CS}, Asset=${p.Asset}, Autonomy=${p.Autonomy}`);
+    } else {
+        console.log(`Stage ${stageId}: (N/A)`);
+    }
+}
+console.log('');
+
 const allResults = {};
 for (let stageId = 1; stageId <= 10; stageId++) {
     allResults[stageId] = simulateStage(stageId);
