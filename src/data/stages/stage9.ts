@@ -18,7 +18,7 @@ export const stage9Questions: Question[] = [
             },
             {
                 text: "災害用伝言ダイヤル（171）や災害用伝言板を使う。事前に家族と集合場所を決めておく。",
-                effect: { CS: 20, Asset: 0, Autonomy: 15 },
+                effect: { CS: 5, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。「171」は毎月1日と15日に体験利用可能。家族との事前の取り決め（集合場所、連絡方法）が、混乱時の命綱になります。",
                 lockRequirements: null
@@ -46,7 +46,7 @@ export const stage9Questions: Question[] = [
             },
             {
                 text: "水・食料・照明・情報（ラジオ）・衛生用品を「最低3日分」揃え、定期的に点検する。",
-                effect: { CS: 20, Asset: -10000, Autonomy: 15 },
+                effect: { CS: 5, Asset: -10000, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。災害後72時間は自助が基本。備蓄は買って終わりではなく、賞味期限チェックと入れ替え（ローリングストック）が必要です。",
                 lockRequirements: null
@@ -71,7 +71,7 @@ export const stage9Questions: Question[] = [
             },
             {
                 text: "ハザードマップで浸水・土砂災害リスクを確認し、リスクと利便性を天秤にかけて判断する。",
-                effect: { CS: 15, Asset: 0, Autonomy: 15 },
+                effect: { CS: 5, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。ハザードマップは自治体のウェブサイトで無料閲覧可能。リスクを知った上で住むのと、知らずに住むのでは、備えの質が違います。",
                 lockRequirements: null
@@ -100,7 +100,7 @@ export const stage9Questions: Question[] = [
             },
             {
                 text: "片付け前に被害状況を写真・動画で記録。購入記録や修理見積もりを集めてから請求する。",
-                effect: { CS: 20, Asset: 0, Autonomy: 15 },
+                effect: { CS: 5, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。「片付けてしまった後」では証拠がなくなります。日頃から高額家財の写真と購入記録を保存しておくと、いざという時に役立ちます。",
                 lockRequirements: null
@@ -108,31 +108,31 @@ export const stage9Questions: Question[] = [
         ]
     },
 
-    // Q5: Knowledge (DISASTER) - Evacuation decision timing (避難判断)
+    // Q5: Dilemma (DISASTER) - Evacuate early vs stay and protect
     {
         id: "s9_q05",
         category: "DISASTER",
-        text: "大雨警報が発令。自治体から「高齢者等避難」（警戒レベル3）が出た。自分は若いし、まだ大丈夫だと思うが……",
-        imagePrompt: "Scene: rain pouring outside window; smartphone showing evacuation alert level 3; flooded streets in distance; clock showing decision time. Composition: early warning decision point with escalating danger. Mood: complacency vs caution, timing criticality.",
+        text: "台風が接近中。自治体から「避難準備」が出た。しかし一人暮らしの高齢の隣人が「避難所は嫌だ」と言って動こうとしない。あなたは避難すべきか、隣人を説得し続けるべきか。",
+        imagePrompt: "Scene: approaching typhoon; elderly neighbor refusing to leave; evacuation shelter in distance. Composition: personal safety vs helping others dilemma. Mood: urgent choice, community responsibility.",
         imagePath: "s9_q05.png",
         choices: [
             {
-                text: "「避難指示」（レベル4）が出るまで様子を見る。まだ大丈夫。",
-                effect: { CS: -20, Asset: -50000, Autonomy: -10 },
-                verdict: "WARNING",
-                feedback: "危険な判断です。レベル4は「全員避難」ですが、その時点で道路冠水や土砂崩れが始まっている可能性があります。2018年西日本豪雨では「まだ大丈夫」と思った多くの人が逃げ遅れました。避難は「空振り」でも命は守られます。",
+                text: "自分だけ先に避難する。自分の安全を確保してから、救助に連絡する。",
+                effect: { CS: -5, Asset: 0, Autonomy: 15 },
+                verdict: "NEUTRAL",
+                feedback: "自己保存を優先しました。「てんでんこ」の精神では正解ですが、隣人が被災すれば「見捨てた」という後悔が残ります。救助に連絡しても、間に合わない可能性もあります。",
                 lockRequirements: null
             },
             {
-                text: "レベル3の段階で早めに避難する。「高齢者等」でなくても、危険を感じたら動く。",
-                effect: { CS: 20, Asset: 0, Autonomy: 15 },
-                verdict: "APPROVED",
-                feedback: "正解です。警戒レベル3は「危険な場所から高齢者等は避難」ですが、誰でも避難して構いません。早めの避難は渋滞や混乱を避け、安全に移動できます。「てんでんこ」（各自の判断で逃げる）の精神が命を守ります。",
+                text: "ギリギリまで説得を続ける。何とか一緒に避難したい。",
+                effect: { CS: 10, Asset: -20000, Autonomy: -10 },
+                verdict: "NEUTRAL",
+                feedback: "他者を見捨てない選択です。説得に成功すれば隣人を救えますが、時間を費やして自分も逃げ遅れるリスクがあります。「共倒れ」を防ぐには、説得に期限を設けるべきでした。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "「まだ大丈夫」と「もう遅い」の境界線は、いつ見えますか？"
+            intro: "自分の安全と他者の命、どう天秤にかけますか？"
         }
     },
 
@@ -153,7 +153,7 @@ export const stage9Questions: Question[] = [
             },
             {
                 text: "地震保険に加入する。火災保険だけでは地震による被害は補償されない。",
-                effect: { CS: 20, Asset: -30000, Autonomy: 15 },
+                effect: { CS: 5, Asset: -30000, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。地震保険は火災保険の特約として加入が必要。保険料は高いですが、「家を失うリスク」と比較すれば合理的な投資です。",
                 lockRequirements: null
@@ -178,7 +178,7 @@ export const stage9Questions: Question[] = [
             },
             {
                 text: "確定申告で医療費控除を申請する。領収書を集め、還付を受ける。",
-                effect: { CS: 20, Asset: 20000, Autonomy: 20 },
+                effect: { CS: 5, Asset: 20000, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。20万円の医療費なら、約1〜2万円の還付が期待できます。交通費も対象。セルフメディケーション税制との選択も可能。「会社員だから確定申告は関係ない」は大きな誤解です。",
                 lockRequirements: { Autonomy: 70 },
@@ -209,7 +209,7 @@ export const stage9Questions: Question[] = [
             },
             {
                 text: "自治体の窓口に相談し、被災者生活再建支援金や各種支援制度を申請する。",
-                effect: { CS: 20, Asset: 50000, Autonomy: 15 },
+                effect: { CS: 5, Asset: 50000, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。罹災証明書の取得が支援の入口。被害認定によって支援額が変わるので、正確な被害報告と写真記録が重要です。支援金の一部を受給できました。",
                 lockRequirements: null
@@ -234,7 +234,7 @@ export const stage9Questions: Question[] = [
             },
             {
                 text: "一緒に逃げる。手を貸して、できる限り速く高台を目指す。",
-                effect: { CS: 20, Asset: 0, Autonomy: -10 },
+                effect: { CS: 10, Asset: 0, Autonomy: -10 },
                 verdict: "NEUTRAL",
                 feedback: "人道的な選択です。しかし、助けようとして共倒れになるケースも少なくありません。「てんでんこ」（各自バラバラに逃げる）の教訓は、共倒れを防ぐ知恵でもあります。",
                 lockRequirements: { CS: 70 },
@@ -256,14 +256,14 @@ export const stage9Questions: Question[] = [
         choices: [
             {
                 text: "後悔しないために、できる限りの準備をする。コストをかけてでも備える。",
-                effect: { CS: 20, Asset: -20000, Autonomy: 15 },
+                effect: { CS: 10, Asset: -20000, Autonomy: 15 },
                 verdict: "NEUTRAL",
                 feedback: "予防投資型の回答です。防災グッズ、保険、訓練……準備にはコストがかかります。ただし、災害が来なければ「無駄」に見える投資でもあります。",
                 lockRequirements: null
             },
             {
                 text: "完璧な準備は諦め、適応力を鍛える。その分の資源を今の生活に使う。",
-                effect: { CS: 15, Asset: 0, Autonomy: 20 },
+                effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "NEUTRAL",
                 feedback: "適応力重視の回答です。基本的な備えは持ちつつ、過剰な準備は避ける。資源を「今」に振り向ける選択。ただし、想定外の規模の災害には脆弱です。",
                 lockRequirements: null

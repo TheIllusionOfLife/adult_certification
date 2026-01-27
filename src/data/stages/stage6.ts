@@ -5,20 +5,20 @@ export const stage6Questions: Question[] = [
     {
         id: "s6_q01",
         category: "HOUSING",
-        text: "初めての一人暮らし。賃貸契約で「敷金2ヶ月・礼金1ヶ月・仲介手数料1ヶ月」と言われた。交渉の余地は？",
+        text: "初めての一人暮らし。賃貸契約で「敷金1ヶ月・礼金1ヶ月・仲介手数料1ヶ月」と言われた。交渉の余地は？",
         imagePrompt: "Scene: a rental contract with multiple fee items highlighted; young tenant facing real estate agent; money flowing out. Composition: initial costs breakdown, negotiation opportunity hints. Mood: first-time vulnerability, hidden flexibility.",
         imagePath: "s6_q01.png",
         choices: [
             {
                 text: "「相場だから仕方ない」と全額払う。",
-                effect: { CS: 0, Asset: -50000, Autonomy: -10 },
+                effect: { CS: 0, Asset: -80000, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "機会損失です。礼金は交渉で減額できることが多く、仲介手数料は法的上限（賃料1ヶ月分）を超えている場合も。言い値で払うと損をします。",
                 lockRequirements: null
             },
             {
                 text: "礼金の減額と仲介手数料の根拠を確認し、交渉を試みる。",
-                effect: { CS: 15, Asset: 0, Autonomy: 15 },
+                effect: { CS: 5, Asset: -50000, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。礼金は慣習であり法的義務ではなく、仲介手数料は原則「貸主・借主で折半」（宅建業法46条）。知識があれば交渉できます。",
                 lockRequirements: null
@@ -46,7 +46,7 @@ export const stage6Questions: Question[] = [
             },
             {
                 text: "金利、手数料、保証料、団信条件、繰上返済条件を総合的に比較し、総支払額で判断する。",
-                effect: { CS: 20, Asset: 0, Autonomy: 10 },
+                effect: { CS: 5, Asset: 200000, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。35年ローンでは0.1%の金利差が数十万円になります。複数要素を比較し、本当の「安さ」を見極める力が必要です。",
                 lockRequirements: null
@@ -71,7 +71,7 @@ export const stage6Questions: Question[] = [
             },
             {
                 text: "保証会社を利用する。費用はかかるが、人間関係のリスクを避けられる。",
-                effect: { CS: 15, Asset: -30000, Autonomy: 15 },
+                effect: { CS: 5, Asset: -30000, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。保証会社費用（賃料の0.5〜1ヶ月分）は「人間関係保険」。金銭トラブルで親戚関係を壊すよりはるかに安い投資です。",
                 lockRequirements: null
@@ -83,26 +83,26 @@ export const stage6Questions: Question[] = [
     },
     // [SKILL OFFER 1 HAPPENS AFTER Q3]
 
-    // Q4: Knowledge (HOUSING) - Real estate agent commissions
+    // Q4: Knowledge (HOUSING) - Fixed-term vs regular lease (定期借家)
     {
         id: "s6_q04",
         category: "HOUSING",
-        text: "物件を紹介してくれた不動産屋から「仲介手数料は賃料の1.1ヶ月分（税込）です」と言われた。",
-        imagePrompt: "Scene: real estate agent presenting fee structure; legal limit information floating; calculator showing different scenarios. Composition: claimed vs legal fees. Mood: hidden overcharge, knowledge empowerment.",
+        text: "気に入った物件が「定期借家契約」だと説明された。「普通借家」との違いを聞かれたが、よくわからない。",
+        imagePrompt: "Scene: two lease contracts side by side; one labeled 'regular' with renewal arrows, one labeled 'fixed-term' with end date; confused tenant. Composition: contract comparison with renewal implications. Mood: hidden trap, critical difference.",
         imagePath: "s6_q04.png",
         choices: [
             {
-                text: "「そういうものだ」と払う。",
-                effect: { CS: 0, Asset: -50000, Autonomy: -5 },
+                text: "「借家」は同じだから大差ないと思い、そのまま契約する。",
+                effect: { CS: -15, Asset: -80000, Autonomy: -10 },
                 verdict: "WARNING",
-                feedback: "法的知識の欠如です。宅建業法では仲介手数料の上限は「賃料1ヶ月分（税込1.1ヶ月分）を貸主・借主で分担」が原則。借主だけに1ヶ月分請求は、承諾があれば可能ですが、交渉の余地があります。",
+                feedback: "重大な見落としです。定期借家は「契約期間満了で終了」が原則。更新がなく、期間満了時に退去を求められます。再契約を拒否されれば引越し費用が発生します。長く住みたいなら普通借家を選ぶべきでした。",
                 lockRequirements: null
             },
             {
-                text: "「原則は折半では？」と確認し、減額交渉を試みる。",
-                effect: { CS: 10, Asset: 0, Autonomy: 15 },
+                text: "定期借家は「更新なし」を確認し、長期居住なら普通借家を探す。",
+                effect: { CS: 5, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
-                feedback: "正解です。法的には「依頼者の承諾」があれば1ヶ月分請求可能ですが、交渉で0.5ヶ月になることも。知識は交渉力です。",
+                feedback: "正解です。定期借家は家賃が安いことが多いですが、契約終了時に更新請求権がありません。転勤予定など短期なら定期借家、長期居住なら普通借家と使い分けるのが賢明です。",
                 lockRequirements: null
             }
         ]
@@ -125,7 +125,7 @@ export const stage6Questions: Question[] = [
             },
             {
                 text: "「予算は○万円まで」と伝え、家賃交渉を試みる。ダメなら諦める。",
-                effect: { CS: 15, Asset: 0, Autonomy: -5 },
+                effect: { CS: 10, Asset: 0, Autonomy: -5 },
                 verdict: "NEUTRAL",
                 feedback: "合理的な選択です。交渉で家賃が下がれば最善、断られても予算内で別物件を探せます。ただし、理想の物件を逃すリスクを受け入れました。",
                 lockRequirements: null
@@ -153,7 +153,7 @@ export const stage6Questions: Question[] = [
             },
             {
                 text: "諸費用（物件価格の5〜10%）を含めた総予算を計算し、資金計画を立て直す。",
-                effect: { CS: 20, Asset: 0, Autonomy: 10 },
+                effect: { CS: 5, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。「買える」と「払える」は違います。諸費用、引越し費用、家具購入、緊急予備費まで含めた計画が必要です。",
                 lockRequirements: null
@@ -209,7 +209,7 @@ export const stage6Questions: Question[] = [
             },
             {
                 text: "「通常損耗は貸主負担」とガイドラインを根拠に反論し、明細の説明を求める。",
-                effect: { CS: 20, Asset: 0, Autonomy: 15 },
+                effect: { CS: 5, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。原状回復ガイドラインを知っているだけで数万円〜数十万円の差。「言われるがまま」は最も損な選択です。",
                 lockRequirements: null
@@ -227,7 +227,7 @@ export const stage6Questions: Question[] = [
         choices: [
             {
                 text: "契約書に書いてあるなら払うしかない。",
-                effect: { CS: 15, Asset: -80000, Autonomy: -5 },
+                effect: { CS: 10, Asset: -50000, Autonomy: -5 },
                 verdict: "NEUTRAL",
                 feedback: "順応的な選択です。契約は守られ、大家との関係も維持されます。ただし、最高裁判例では「高額すぎる更新料は無効」とされた例もあります。",
                 lockRequirements: null
@@ -256,14 +256,14 @@ export const stage6Questions: Question[] = [
         choices: [
             {
                 text: "安定の基盤。今のうちに根を下ろし、将来の住居不安を解消する。",
-                effect: { CS: 25, Asset: 0, Autonomy: -15 },
+                effect: { CS: 5, Asset: 0, Autonomy: 10 },
                 verdict: "NEUTRAL",
                 feedback: "長期安定志向の回答です。持ち家は老後の住居不安を解消します。しかし、ライフステージの変化に対応しづらく、売却時に想定外の損失が出ることも。",
                 lockRequirements: null
             },
             {
                 text: "移動の自由。人生の変化に合わせて、住まいも変えていく。",
-                effect: { CS: 10, Asset: -5000, Autonomy: 20 },
+                effect: { CS: 5, Asset: 0, Autonomy: 10 },
                 verdict: "NEUTRAL",
                 feedback: "柔軟適応型の回答です。賃貸は転職・家族構成の変化に対応しやすいです。ただし、引越しコストと高齢時の賃貸難民リスクを背負います。",
                 lockRequirements: null

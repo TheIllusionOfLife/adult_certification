@@ -5,7 +5,7 @@ export const STAGE_1_METADATA: StageMetadata = {
     theme: "Social Basics",
     themeJP: "社会の基本",
     keySkillId: "MEDIATION",
-    initialParams: { CS: 50, Asset: 100000, Autonomy: 50 },
+    initialParams: { CS: 50, Asset: 200000, Autonomy: 50 },
     rankThresholds: {
         S: { CS: 80 },
         A: { CS: 50 },
@@ -317,9 +317,9 @@ export const STAGE_6_METADATA: StageMetadata = {
             },
             {
                 id: "s6_normal_02",
-                name: "交渉準備力",
-                desc: "HOUSING系質問での社会的信用増加を25%強化します。準備された交渉は信頼を勝ち取ります。",
-                effect: { type: "category_cs_gain_amplification", value: 0.25, category: "HOUSING" },
+                name: "契約防衛術",
+                desc: "HOUSING系質問での資産減少を25%軽減します。契約の落とし穴を見抜く目を持ちます。",
+                effect: { type: "category_asset_damage_reduction", value: 0.25, category: "HOUSING" },
                 category: "normal",
                 isRecommended: true
             }

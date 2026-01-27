@@ -18,7 +18,7 @@ export const stage8Questions: Question[] = [
             },
             {
                 text: "SMSではなくアプリベースの認証（Google Authenticator等）を優先的に使う。",
-                effect: { CS: 15, Asset: 0, Autonomy: 15 },
+                effect: { CS: 0, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。SMS認証はSIMスワップに脆弱。認証アプリやハードウェアキーを使えば、電話番号を乗っ取られても認証は守られます。",
                 lockRequirements: null
@@ -46,7 +46,7 @@ export const stage8Questions: Question[] = [
             },
             {
                 text: "3-2-1ルール（3つのコピー、2種類の媒体、1つは遠隔地）でバックアップ体制を構築する。",
-                effect: { CS: 15, Asset: -10000, Autonomy: 15 },
+                effect: { CS: 10, Asset: -10000, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。クラウドと外付けHDDの併用で、ほとんどのデータ消失リスクに対応できます。バックアップは「保険」。事故が起きてからでは遅いです。",
                 lockRequirements: null
@@ -71,7 +71,7 @@ export const stage8Questions: Question[] = [
             },
             {
                 text: "パスワードマネージャーを使い、サービスごとに強力なパスワードを自動生成・管理する。",
-                effect: { CS: 20, Asset: 0, Autonomy: 15 },
+                effect: { CS: 0, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。マスターパスワード1つを覚えれば、何百ものサイトを安全に管理できます。初期設定の手間は、将来の被害と比べれば微々たるものです。",
                 lockRequirements: null
@@ -100,7 +100,7 @@ export const stage8Questions: Question[] = [
             },
             {
                 text: "すぐに設定する。パスワードだけでは防げない攻撃がある。",
-                effect: { CS: 20, Asset: 0, Autonomy: 15 },
+                effect: { CS: 0, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。パスワードは漏洩する前提で考えるべき。二段階認証があれば、パスワードが盗まれても口座は守られます。",
                 lockRequirements: null
@@ -125,7 +125,7 @@ export const stage8Questions: Question[] = [
             },
             {
                 text: "生体認証＋パスコード。利便性より安全性を優先する。",
-                effect: { CS: 15, Asset: 0, Autonomy: -5 },
+                effect: { CS: 10, Asset: 0, Autonomy: -5 },
                 verdict: "NEUTRAL",
                 feedback: "安全性を選びました。毎日の手間は増えますが、万が一の時の被害を最小化できます。「面倒」を「保険」と捉える姿勢です。",
                 lockRequirements: null
@@ -153,7 +153,7 @@ export const stage8Questions: Question[] = [
             },
             {
                 text: "公共Wi-Fiでは機密情報を扱わない。必要ならVPNを使うか、モバイル回線を使う。",
-                effect: { CS: 15, Asset: 0, Autonomy: 15 },
+                effect: { CS: 0, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。公共Wi-Fiは「盗聴される前提」で使うべき。銀行、クレジットカード、重要なログインは避けるか、VPNで通信を暗号化してください。",
                 lockRequirements: null
@@ -178,11 +178,11 @@ export const stage8Questions: Question[] = [
             },
             {
                 text: "サービスの信頼性を確認。不審なら送らない。必要なら公式サイトから直接アクセスして確認。",
-                effect: { CS: 10, Asset: 0, Autonomy: 20 },
+                effect: { CS: 0, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。本人確認書類は「最重要個人情報」。送る前に、そのサービスが本物か、本当に必要かを確認。一度流出した身分証情報は取り消せません。",
-                lockRequirements: { Autonomy: 80 },
-                lockedFeedback: "LOCKED: 自律性が80以上必要。「言われたから送る」という思考停止状態です。"
+                lockRequirements: { Autonomy: 100 },
+                lockedFeedback: "LOCKED: 自律性が100以上必要。「言われたから送る」という思考停止状態です。"
             }
         ],
         adamDialogue: {
@@ -209,7 +209,7 @@ export const stage8Questions: Question[] = [
             },
             {
                 text: "メールのリンクは使わず、公式アプリか、自分でURLを入力して確認する。",
-                effect: { CS: 20, Asset: 0, Autonomy: 15 },
+                effect: { CS: 0, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。正規の連絡ならアプリや公式サイトでも確認できます。「メールのリンクは信じない」が鉄則。不安なら電話で直接確認を。",
                 lockRequirements: null
@@ -217,31 +217,32 @@ export const stage8Questions: Question[] = [
         ]
     },
 
-    // Q9: Knowledge (SEC) - Responding to data breach
+    // Q9: Dilemma (SEC) - Data breach: full security overhaul vs targeted response
     {
         id: "s8_q09",
         category: "SEC",
-        text: "利用しているサービスで情報漏洩が発生。自分のメールアドレスも含まれているが、今のところ被害はない。正しい対応は？",
-        imagePrompt: "Scene: data breach notification; exposed personal data floating; password change urgency visualized. Composition: security response timeline. Mood: urgency, proactive defense.",
+        text: "利用しているサービスで情報漏洩が発生。メールアドレスとハッシュ化されたパスワードが流出。パスワードは50以上のサービスで使い回していた。",
+        imagePrompt: "Scene: data breach notification; 50+ service icons; overwhelmed user facing password change marathon. Composition: security debt visualization. Mood: overwhelming task, prioritization needed.",
         imagePath: "s8_q09.png",
         choices: [
             {
-                text: "被害がないなら様子を見る。パスワード変更は面倒。",
-                effect: { CS: -20, Asset: -30000, Autonomy: -10 },
-                verdict: "WARNING",
-                feedback: "危険な判断です。漏洩した認証情報は闇市場で即座に売買されます。攻撃者は「クレデンシャルスタッフィング」で他サービスへの侵入を試みます。数ヶ月後に金銭被害が発生するパターンが多発しています。",
+                text: "全サービスのパスワードを一斉に変更する。週末を潰してでも完璧に対応。",
+                effect: { CS: 10, Asset: 0, Autonomy: 5 },
+                verdict: "NEUTRAL",
+                feedback: "完璧主義の選択です。全サービスを保護できましたが、膨大な時間を費やしました。今後も「使い回し」を続ければ、同じ作業が繰り返されます。",
                 lockRequirements: null
             },
             {
-                text: "すぐにパスワードを変更し、同じパスワードを使っている他サービスも全て変更する。",
-                effect: { CS: 15, Asset: 0, Autonomy: 15 },
-                verdict: "APPROVED",
-                feedback: "正解です。情報漏洩後の72時間が最も危険。パスワードの使い回しがあれば、芋づる式に被害が拡大します。面倒でも即座に変更し、今後はパスワードマネージャーで一意のパスワードを管理すべきです。",
-                lockRequirements: null
+                text: "金融・重要サービスだけ優先変更。残りは段階的に対応し、パスワードマネージャーを導入。",
+                effect: { CS: 10, Asset: -5000, Autonomy: 10 },
+                verdict: "NEUTRAL",
+                feedback: "現実的な選択です。重要度で優先順位をつけ、システム的な解決策を導入しました。「完璧」と「実行可能」の間で折り合いをつけました。",
+                lockRequirements: { Autonomy: 80 },
+                lockedFeedback: "LOCKED: 自律性が80以上必要。パニック状態では優先順位をつける冷静さがありません。"
             }
         ],
         adamDialogue: {
-            intro: "情報漏洩後、何をすべきですか？"
+            intro: "完璧な対応と現実的な対応、どちらを選びますか？"
         }
     },
 
@@ -255,14 +256,14 @@ export const stage8Questions: Question[] = [
         choices: [
             {
                 text: "守るべき人格の一部。売買されること自体が間違っている。",
-                effect: { CS: 10, Asset: 0, Autonomy: 20 },
+                effect: { CS: 0, Asset: 0, Autonomy: 20 },
                 verdict: "NEUTRAL",
                 feedback: "プライバシー重視の回答です。原理的には正しいですが、現実のデジタル経済から離脱するコストは高く、機会損失も生じます。",
                 lockRequirements: null
             },
             {
                 text: "売買される商品。どうせ取られるなら、自分にも利益を還元させる。",
-                effect: { CS: 20, Asset: 5000, Autonomy: -10 },
+                effect: { CS: 10, Asset: 5000, Autonomy: -10 },
                 verdict: "NEUTRAL",
                 feedback: "実利的回答です。ポイント還元、無料サービス……データ提供の見返りを最大化する姿勢。ただし、一度渡した情報は取り戻せません。",
                 lockRequirements: null

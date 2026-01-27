@@ -18,7 +18,7 @@ export const stage4Questions: Question[] = [
             },
             {
                 text: "チェックリストを作り、住民票→マイナンバー→免許→銀行の順で一気に処理する。",
-                effect: { CS: 20, Asset: 0, Autonomy: 15 },
+                effect: { CS: 10, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。住民票を先に移すと、他の手続きがスムーズに進みます。行政手続きには「正しい順序」があります。",
                 lockRequirements: null
@@ -46,7 +46,7 @@ export const stage4Questions: Question[] = [
             },
             {
                 text: "友人や同僚に頼む。成人であれば誰でも証人になれる。",
-                effect: { CS: 15, Asset: 0, Autonomy: 10 },
+                effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。法律は「成年の証人2名」としか定めていません。制度を正しく理解すれば、選択肢が広がります。",
                 lockRequirements: null
@@ -71,7 +71,7 @@ export const stage4Questions: Question[] = [
             },
             {
                 text: "自分の控除上限額を確認し、5自治体以内でワンストップ特例を活用する。",
-                effect: { CS: 20, Asset: 0, Autonomy: 10 },
+                effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。控除上限額は年収・家族構成で異なります。上限内なら実質2,000円で返礼品（寄附額の30%相当）を受け取れます。制度を理解して使うのが大人です。",
                 lockRequirements: null
@@ -100,7 +100,7 @@ export const stage4Questions: Question[] = [
             },
             {
                 text: "すぐに更新する。渡航先の残存有効期限要件を確認し、余裕を持って準備。",
-                effect: { CS: 20, Asset: 0, Autonomy: 10 },
+                effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。行政手続きは「期限ギリギリ」が最も危険。余裕を持った準備が、トラブルを未然に防ぎます。",
                 lockRequirements: null
@@ -153,7 +153,7 @@ export const stage4Questions: Question[] = [
             },
             {
                 text: "年明けすぐに書類を揃え、1月中に下書きを完成させる。",
-                effect: { CS: 20, Asset: 0, Autonomy: 15 },
+                effect: { CS: 10, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。源泉徴収票は1月末までに届きます。早めに準備すれば、不明点を税務署に相談する余裕もあり、控除の漏れも防げます。",
                 lockRequirements: null
@@ -209,7 +209,7 @@ export const stage4Questions: Question[] = [
             },
             {
                 text: "まず負債の有無を調査し、必要なら相続放棄を検討する。期限は3ヶ月。",
-                effect: { CS: 20, Asset: 0, Autonomy: 10 },
+                effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。相続は「資産」だけでなく「負債」も含みます。調査してから判断することで、隠れた借金を回避できます。",
                 lockRequirements: null
@@ -217,31 +217,32 @@ export const stage4Questions: Question[] = [
         ]
     },
 
-    // Q9: Knowledge (ADMIN) - Tax correction (修正申告)
+    // Q9: Dilemma (ADMIN) - Tax error: immediate correction vs wait and see
     {
         id: "s4_q09",
         category: "ADMIN",
-        text: "確定申告後、計算ミスで税金を少なく申告していたことに気づいた。どう対応すべき？",
+        text: "確定申告後、計算ミスで税金を少なく申告していたことに気づいた。差額は約5万円。すぐに修正申告すべきか？",
         imagePrompt: "Scene: a tax return with error discovered; correction form glowing; tax office counter. Composition: mistake discovery with proper correction path. Mood: error found, responsible action.",
         imagePath: "s4_q09.png",
         choices: [
             {
-                text: "少額だし、バレなければ問題ない。放置する。",
-                effect: { CS: -25, Asset: -50000, Autonomy: -10 },
-                verdict: "WARNING",
-                feedback: "危険です。税務署の調査で発覚すると、過少申告加算税（10〜15%）と延滞税が課されます。悪質と判断されれば重加算税（35%）も。自主的に修正すれば加算税は軽減されます。",
-                lockRequirements: null
+                text: "すぐに修正申告する。リスクを最小化し、誠実さを示す。",
+                effect: { CS: 10, Asset: 0, Autonomy: 10 },
+                verdict: "NEUTRAL",
+                feedback: "誠実な選択です。自主的な修正申告なら加算税は軽減されます。「見つからない可能性」を捨て、確実に解決する判断です。",
+                lockRequirements: { Autonomy: 80 },
+                lockedFeedback: "LOCKED: 自律性が80以上必要。不安に支配されていると、自発的に行動を起こす決断ができません。"
             },
             {
-                text: "速やかに修正申告を行い、差額を納付する。",
-                effect: { CS: 20, Asset: -5000, Autonomy: 15 },
-                verdict: "APPROVED",
-                feedback: "正解です。自主的な修正申告なら、過少申告加算税は課されないか軽減されます。「正直者が損をする」のではなく、「正直者がリスクを回避できる」のが税の仕組みです。",
+                text: "様子を見る。税務調査が来なければ問題ない可能性もある。",
+                effect: { CS: -10, Asset: 0, Autonomy: -10 },
+                verdict: "NEUTRAL",
+                feedback: "リスクを取る選択です。調査が来なければ支出ゼロですが、発覚すれば加算税と延滞税で負担増。数年間「いつか来るかも」という不安を抱えることになります。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "税の申告に誠実さは必要ですか？"
+            intro: "誠実さとリスク、どちらを優先しますか？"
         }
     },
 
@@ -255,7 +256,7 @@ export const stage4Questions: Question[] = [
         choices: [
             {
                 text: "従った。ルールを守ることで、最終的には解決した。",
-                effect: { CS: 30, Asset: 0, Autonomy: -15 },
+                effect: { CS: 10, Asset: 0, Autonomy: -15 },
                 verdict: "NEUTRAL",
                 feedback: "順応的回答です。ルールに従う姿勢は確実な結果をもたらします。ただし、ルールが不合理な時も従い続けますか？",
                 lockRequirements: null

@@ -26,7 +26,7 @@ The game uses three parameters, each with a distinct role in gameplay and narrat
 **Exception - Rights Assertion Pattern**:
 In labor/rights questions where the correct action is to assert legal rights against authority (e.g., demanding paid leave, citing 2-week resignation rule), the APPROVED choice may have negative CS impact. This reflects reality: asserting rights creates social friction even when legally correct. Pattern:
 - WARNING (comply): CS +10, Autonomy -15 to -30
-- APPROVED (assert rights): CS -5, Autonomy +15 to +25
+- APPROVED (assert rights): CS -5, Autonomy +10 to +15
 
 This teaches: "Society doesn't always reward doing the right thing. Autonomy has costs."
 
@@ -74,7 +74,7 @@ This teaches: "Society doesn't always reward doing the right thing. Autonomy has
 
 **Teaching Method**:
 - Stage 1: Show Autonomy gates choices (Q7 lock)
-- Demonstrate trade-offs (Q5: CS+30/-15 Autonomy vs Autonomy+20)
+- Demonstrate trade-offs (Q5: CS+20/-15 Autonomy vs Autonomy+10)
 - Reveal importance gradually across stages
 - True purpose revealed at Stage 10
 

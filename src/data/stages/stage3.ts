@@ -18,7 +18,7 @@ export const stage3Questions: Question[] = [
             },
             {
                 text: "複利が増える。「利息に利息がつく」から時間とともに差が開く。",
-                effect: { CS: 15, Asset: 0, Autonomy: 10 },
+                effect: { CS: 5, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。10年で4万円差、30年で約40万円差。複利は「時間を味方につける」技術です。",
                 lockRequirements: null
@@ -46,7 +46,7 @@ export const stage3Questions: Question[] = [
             },
             {
                 text: "「住民税は翌年課税」を思い出し、2年目は手取りが減ることを予算に組み込む。",
-                effect: { CS: 20, Asset: 0, Autonomy: 10 },
+                effect: { CS: 5, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。2年目の「手取り減少ショック」を回避。税の仕組みを知る者だけが備えられます。",
                 lockRequirements: null
@@ -71,7 +71,7 @@ export const stage3Questions: Question[] = [
             },
             {
                 text: "CICなどの信用情報機関に開示請求し、自分の信用履歴を確認する。",
-                effect: { CS: 20, Asset: -1000, Autonomy: 15 },
+                effect: { CS: 5, Asset: -1000, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。開示手数料は約1,000円。過去の延滞や強制解約が記録されていれば原因が判明します。情報を知ることが、信用回復の第一歩です。",
                 lockRequirements: null
@@ -153,7 +153,7 @@ export const stage3Questions: Question[] = [
             },
             {
                 text: "公的保険（高額療養費制度等）を確認し、本当に必要な保障だけを選ぶ。",
-                effect: { CS: 15, Asset: 0, Autonomy: 15 },
+                effect: { CS: 5, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。公的保険を理解した上で「足りない部分だけ」民間保険で補う。保険は「安心」ではなく「確率とコストの計算」です。",
                 lockRequirements: null
@@ -178,7 +178,7 @@ export const stage3Questions: Question[] = [
             },
             {
                 text: "まず「なぜ30万円必要か」を再検討し、他の手段（分割払い交渉、家族相談）を探る。",
-                effect: { CS: 10, Asset: 0, Autonomy: 25 },
+                effect: { CS: 5, Asset: 0, Autonomy: 25 },
                 verdict: "APPROVED",
                 feedback: "正解です。高金利借入は「最後の手段」。借りる前に「本当に必要か」「他に方法はないか」を考える習慣が、破滅を防ぎます。",
                 lockRequirements: { Autonomy: 80 },
@@ -209,7 +209,7 @@ export const stage3Questions: Question[] = [
             },
             {
                 text: "JASSOに連絡し、「減額返還」か「返還期限猶予」を申請する。",
-                effect: { CS: 20, Asset: 0, Autonomy: 15 },
+                effect: { CS: 5, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。年収300万円以下なら「減額返還」で月額を1/2〜1/3に、「返還期限猶予」で最長10年間返済を止められます。制度を知らないだけで人生が詰む人がいます。困ったら、まず相談です。",
                 lockRequirements: null
@@ -227,7 +227,7 @@ export const stage3Questions: Question[] = [
         choices: [
             {
                 text: "繰り上げ返済。確実に利息を減らせる安心感を取る。",
-                effect: { CS: 20, Asset: 0, Autonomy: -10 },
+                effect: { CS: 10, Asset: 0, Autonomy: -10 },
                 verdict: "NEUTRAL",
                 feedback: "堅実な選択です。「確実な1%の利益」を選びました。精神的な安心感は得られますが、機会損失を恐れて「攻め」の選択ができなくなっています。",
                 lockRequirements: null
@@ -256,7 +256,7 @@ export const stage3Questions: Question[] = [
         choices: [
             {
                 text: "年収1000万。ストレスは代償として受け入れ、経済的安定を取る。",
-                effect: { CS: 20, Asset: 0, Autonomy: -15 },
+                effect: { CS: 10, Asset: 0, Autonomy: -15 },
                 verdict: "NEUTRAL",
                 feedback: "経済優先の回答です。高収入は選択肢を広げます。しかし、ストレスで心身を壊せば、稼いだお金は治療費に消えます。",
                 lockRequirements: null

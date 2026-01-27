@@ -18,7 +18,7 @@ export const stage5Questions: Question[] = [
             },
             {
                 text: "「高額療養費制度」を使い、自己負担を上限額に抑える。事前に限度額適用認定証を取得。",
-                effect: { CS: 20, Asset: 0, Autonomy: 15 },
+                effect: { CS: 10, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。公的制度を知っているだけで数十万円の差。限度額適用認定証があれば、窓口での支払いも上限額で済みます。",
                 lockRequirements: null
@@ -46,7 +46,7 @@ export const stage5Questions: Question[] = [
             },
             {
                 text: "傷病手当金を申請する。給与の約2/3が最長1年6ヶ月支給される。",
-                effect: { CS: 20, Asset: 0, Autonomy: 10 },
+                effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。会社員の特権である健康保険の傷病手当金。申請主義なので、自分から動かないと受け取れません。",
                 lockRequirements: null
@@ -71,7 +71,7 @@ export const stage5Questions: Question[] = [
             },
             {
                 text: "教育訓練給付金の対象講座か確認し、給付金を申請して受講する。",
-                effect: { CS: 20, Asset: -150000, Autonomy: 15 },
+                effect: { CS: 10, Asset: -150000, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。雇用保険加入1年以上（初回）で利用可能。一般は20%、特定一般は40%、専門実践は最大70%給付。ハローワークで事前に相談すれば、対象講座と手続きがわかります。",
                 lockRequirements: null
@@ -100,7 +100,7 @@ export const stage5Questions: Question[] = [
             },
             {
                 text: "育児休業給付金（67%→50%）を確認し、生活設計に組み込んで育休を取得する。",
-                effect: { CS: 15, Asset: 0, Autonomy: 15 },
+                effect: { CS: 10, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。社会保険料も免除されるため、実質的な手取り差は縮まります。制度を理解すれば、育児と仕事の両立が可能になります。",
                 lockRequirements: null
@@ -108,31 +108,31 @@ export const stage5Questions: Question[] = [
         ]
     },
 
-    // Q5: Knowledge (HEALTH) - Infectious disease and work
+    // Q5: Dilemma (HEALTH) - Sick leave vs critical deadline
     {
         id: "s5_q05",
         category: "HEALTH",
-        text: "インフルエンザと診断された。医師から「5日間は出勤停止」と言われたが、明日は重要な会議がある。",
-        imagePrompt: "Scene: a person with fever and flu symptoms; doctor's certificate showing 'no work' order; office building with colleagues. Composition: contagion risk visualization. Mood: responsibility conflict, clear medical guidance.",
+        text: "体調不良で病院へ。医師から「過労による免疫低下。1週間の安静が必要」と言われた。しかし今週は昇進がかかったプロジェクトの締切がある。",
+        imagePrompt: "Scene: exhausted worker with doctor's note; calendar showing deadline; promotion document floating. Composition: health vs career crossroads. Mood: difficult trade-off, no easy answer.",
         imagePath: "s5_q05.png",
         choices: [
             {
-                text: "マスクをすれば大丈夫。会議だけ出席して、すぐ帰る。",
-                effect: { CS: -30, Asset: 0, Autonomy: -15 },
-                verdict: "WARNING",
-                feedback: "最悪の判断です。インフルエンザは発症後5日間、解熱後2日間は感染力があります。出勤して同僚10人に感染させ、チーム全体が機能停止。あなたの「責任感」が組織に大損害を与えました。",
+                text: "無理をしてでも出勤する。このチャンスを逃せば昇進は数年遅れる。",
+                effect: { CS: 10, Asset: 10000, Autonomy: -20 },
+                verdict: "NEUTRAL",
+                feedback: "キャリア優先の選択です。締切を守れば昇進に近づきますが、体を壊せば長期休職のリスクも。「今回だけ」が習慣化すると、燃え尽きへの道を歩むことになります。",
                 lockRequirements: null
             },
             {
-                text: "医師の指示に従い休む。会議はオンライン参加か、資料を送って代理を立てる。",
-                effect: { CS: 20, Asset: 0, Autonomy: 15 },
-                verdict: "APPROVED",
-                feedback: "正解です。感染症の出勤は「迷惑」ではなく「加害」。リモート対応や引継ぎで最低限の責任を果たしつつ、他者を守る判断ができました。",
+                text: "休む。健康を失えばキャリアも終わる。上司に状況を説明し、締切延長を交渉する。",
+                effect: { CS: -10, Asset: -5000, Autonomy: 15 },
+                verdict: "NEUTRAL",
+                feedback: "健康優先の選択です。締切に間に合わなければ評価に影響しますが、長期的な働く力を守りました。ただし「休むべき時に休める職場か」という問いも残ります。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "あなたの「責任感」は、本当に責任ある行動ですか？"
+            intro: "キャリアと健康、どちらを犠牲にしますか？"
         }
     },
 
@@ -153,7 +153,7 @@ export const stage5Questions: Question[] = [
             },
             {
                 text: "申請する。自己都合でも給付制限期間後に受給できる。待機中は就職活動を進める。",
-                effect: { CS: 15, Asset: 0, Autonomy: 10 },
+                effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。給付制限期間は転職準備に充て、制限明けから受給。制度を理解して計画的に動くことが大切です。",
                 lockRequirements: null
@@ -209,7 +209,7 @@ export const stage5Questions: Question[] = [
             },
             {
                 text: "出産育児一時金（50万円）の直接支払制度を使い、自己負担を最小化する。",
-                effect: { CS: 20, Asset: 0, Autonomy: 10 },
+                effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。出産は「病気ではない」ため保険適用外ですが、一時金で実質カバーされます。制度を知れば、出産のハードルは下がります。",
                 lockRequirements: null
@@ -256,7 +256,7 @@ export const stage5Questions: Question[] = [
         choices: [
             {
                 text: "申請しない。自力で何とかする。自立こそが人間の尊厳。",
-                effect: { CS: 25, Asset: -10000, Autonomy: -5 },
+                effect: { CS: 10, Asset: -10000, Autonomy: -5 },
                 verdict: "NEUTRAL",
                 feedback: "自尊心優先の回答です。自力で乗り越えようとしますが、収入がない期間の生活費を切り詰めるため、資産が減ります。限界を超えると回復不能なダメージを負います。",
                 lockRequirements: null

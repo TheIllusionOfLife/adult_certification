@@ -18,7 +18,7 @@ export const stage7Questions: Question[] = [
             },
             {
                 text: "解約手順を徹底的に調べ、必要ならカスタマーサポートに連絡して解約する。",
-                effect: { CS: 15, Asset: 0, Autonomy: 15 },
+                effect: { CS: 5, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。2022年の改正特商法で解約手順の明示が義務化されました。わかりにくい場合は消費者センターに相談も有効です。",
                 lockRequirements: null
@@ -46,7 +46,7 @@ export const stage7Questions: Question[] = [
             },
             {
                 text: "消費者センター（188）に相談する。第三者の介入で状況が変わることも多い。",
-                effect: { CS: 15, Asset: 0, Autonomy: 15 },
+                effect: { CS: 5, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。消費者センターは無料で相談でき、あっせん（仲裁）もしてくれます。「相談先を知っている」ことが、不当な扱いへの最大の武器です。",
                 lockRequirements: null
@@ -71,7 +71,7 @@ export const stage7Questions: Question[] = [
             },
             {
                 text: "クーリングオフを使う。書面で通知すれば8日以内は無条件解約できる。",
-                effect: { CS: 20, Asset: 0, Autonomy: 15 },
+                effect: { CS: 5, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。クーリングオフは消費者の強力な武器。書面（内容証明郵便が確実）で通知すれば、理由不要で解約できます。",
                 lockRequirements: null
@@ -100,7 +100,7 @@ export const stage7Questions: Question[] = [
             },
             {
                 text: "まず病院で検査を受け、症状が固定するまで示談しない。必要なら弁護士に相談。",
-                effect: { CS: 15, Asset: 0, Autonomy: 15 },
+                effect: { CS: 5, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。交通事故の示談は「症状固定後」が原則。弁護士特約があれば費用負担なく相談可能。焦って示談すると、本来受け取れる額の半分以下になることも。",
                 lockRequirements: null
@@ -108,31 +108,31 @@ export const stage7Questions: Question[] = [
         ]
     },
 
-    // Q5: Knowledge (LEGAL) - Contract review essentials
+    // Q5: Dilemma (LEGAL) - Take bad contract or lose opportunity
     {
         id: "s7_q05",
         category: "LEGAL",
-        text: "フリーランスの仕事で契約書を渡された。「業界標準だから」と急かされているが、どう対応すべき？",
-        imagePrompt: "Scene: a contract with key clauses highlighted (payment, IP, revisions, termination); magnifying glass over fine print; checklist of must-check items. Composition: contract anatomy revealed. Mood: informed caution, professional self-defense.",
+        text: "フリーランスで大手企業から初の大型案件。しかし契約書を見ると「著作権全面譲渡」「修正回数無制限」の条項が。交渉したら「この条件でなければ発注しない」と言われた。",
+        imagePrompt: "Scene: a contract with harsh clauses highlighted; big company logo; freelancer weighing opportunity vs terms. Composition: unfair contract vs career opportunity. Mood: power imbalance, difficult choice.",
         imagePath: "s7_q05.png",
         choices: [
             {
-                text: "「業界標準」と言われたら信じてサインする。読む時間がもったいない。",
-                effect: { CS: -25, Asset: -100000, Autonomy: -20 },
-                verdict: "WARNING",
-                feedback: "危険です。「著作権の全面譲渡」「無制限の修正義務」「一方的な解約条項」が含まれていました。後から「契約書に書いてある」と言われ、対抗できません。読まないサインは自殺行為です。",
+                text: "条件を飲んでサインする。実績を作れば次は交渉できるかもしれない。",
+                effect: { CS: 10, Asset: 50000, Autonomy: -25 },
+                verdict: "NEUTRAL",
+                feedback: "実績優先の選択です。大手との取引実績は価値がありますが、不利な条件で働く前例を作りました。「次こそ」と思っても、同じ条件を突きつけられる可能性が高いです。",
                 lockRequirements: null
             },
             {
-                text: "報酬・期限・著作権・修正回数・解約条項を確認し、不明点は質問してから判断する。",
-                effect: { CS: 20, Asset: 0, Autonomy: 15 },
-                verdict: "APPROVED",
-                feedback: "正解です。最低限チェックすべきは「報酬と支払時期」「成果物の権利帰属」「修正回数の上限」「解約・損害賠償条項」。読んで交渉するのがプロです。",
+                text: "断る。不当な条件で仕事をしても、搾取の連鎖が続くだけ。",
+                effect: { CS: -5, Asset: -10000, Autonomy: 20 },
+                verdict: "NEUTRAL",
+                feedback: "原則重視の選択です。自分の価値を守りましたが、この案件と大手との繋がりを失いました。フリーランスの立場の弱さと、「断る勇気」のコストを実感しました。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "契約書を読まずにサインする人を、社会は「カモ」と呼びます。"
+            intro: "チャンスと尊厳、どちらを選びますか？"
         }
     },
 
@@ -153,7 +153,7 @@ export const stage7Questions: Question[] = [
             },
             {
                 text: "「商品販売より紹介報酬がメイン」は危険信号。断って距離を置く。",
-                effect: { CS: 20, Asset: 0, Autonomy: 15 },
+                effect: { CS: 5, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。連鎖販売取引（マルチ商法）は違法ではありませんが、「上の人だけが儲かる構造」。断る勇気が財産と友人関係を守ります。",
                 lockRequirements: null
@@ -217,31 +217,32 @@ export const stage7Questions: Question[] = [
         ]
     },
 
-    // Q9: Knowledge (LEGAL) - Responding to friend's illegal activity
+    // Q9: Dilemma + Lock (LEGAL) - Friend's wrongdoing: loyalty vs integrity
     {
         id: "s7_q09",
         category: "LEGAL",
-        text: "親友が「経費を水増ししている」と打ち明けてきた。法的に、あなたはどう対応すべきか？",
-        imagePrompt: "Scene: friend confessing wrongdoing; protagonist considering legal consequences; shadow showing chain of complicity. Composition: legal awareness moment. Mood: understanding consequences.",
+        text: "親友が「会社の備品を私用で持ち帰っている」と打ち明けてきた。金額は大きくないが、厳密には横領。友人は「みんなやっている」と笑っている。",
+        imagePrompt: "Scene: friend confessing minor theft; office supplies in bag; protagonist torn between loyalty and ethics. Composition: friendship vs integrity crossroads. Mood: uncomfortable truth, difficult choice.",
         imagePath: "s7_q09.png",
         choices: [
             {
-                text: "黙っている。友人を売るようなことはできない。",
-                effect: { CS: -20, Asset: 0, Autonomy: -15 },
-                verdict: "WARNING",
-                feedback: "危険な判断です。経費の水増しは詐欺罪や業務上横領罪に該当し得ます。知っていて黙認すると、発覚時に「共犯」や「犯人隠避」とみなされるリスクがあります。友情のつもりが、あなた自身を犯罪者にする可能性があります。",
+                text: "「まあ、その程度なら」と流す。友人関係を壊したくない。",
+                effect: { CS: 5, Asset: 0, Autonomy: -20 },
+                verdict: "NEUTRAL",
+                feedback: "関係維持を優先しました。友人との関係は保たれますが、あなたは「黙認する人」になりました。友人がエスカレートした時、あなたも共犯意識を持つことになります。",
                 lockRequirements: null
             },
             {
-                text: "「それは犯罪だからやめるべきだ」と明確に伝え、加担しない姿勢を示す。",
-                effect: { CS: 15, Asset: 0, Autonomy: 20 },
-                verdict: "APPROVED",
-                feedback: "正解です。違法行為を知った時、黙認は共犯リスクを生みます。友人に「やめるべき」と伝えることは、友人を守ることでもあります。本当の友情は、違法行為を止めることです。",
-                lockRequirements: null
+                text: "「やめた方がいい」と伝える。たとえ嫌われても、間違いは指摘すべき。",
+                effect: { CS: -10, Asset: 0, Autonomy: 15 },
+                verdict: "NEUTRAL",
+                feedback: "誠実さを優先しました。友人は気分を害するかもしれませんが、本当の友人なら忠告を受け入れるはず。もし関係が壊れるなら、それはその程度の関係だったということです。",
+                lockRequirements: { CS: 60 },
+                lockedFeedback: "LOCKED: 社会的信用が60以上必要。自分に自信がないと、友人に意見することができません。"
             }
         ],
         adamDialogue: {
-            intro: "他者の違法行為を知った時、法的にどう行動すべきですか？"
+            intro: "友情と誠実さ、どちらを選びますか？"
         }
     },
 
@@ -255,7 +256,7 @@ export const stage7Questions: Question[] = [
         choices: [
             {
                 text: "秩序の道具。法を守り、社会の安定に貢献する側でいたい。",
-                effect: { CS: 30, Asset: 10000, Autonomy: -20 },
+                effect: { CS: 10, Asset: 10000, Autonomy: -20 },
                 verdict: "NEUTRAL",
                 feedback: "体制順応型の回答です。法を守る姿勢は信用と安定をもたらします。しかし、不当な法や運用に直面した時、従い続けることが正義ですか？",
                 lockRequirements: null

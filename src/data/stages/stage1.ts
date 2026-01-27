@@ -202,7 +202,7 @@ export const stage1Questions: Question[] = [
         choices: [
             {
                 text: "お金がないので、車検が切れてもしばらく乗り続ける。",
-                effect: { CS: -30, Asset: -300000, Autonomy: -15 },
+                effect: { CS: -30, Asset: -150000, Autonomy: -15 },
                 verdict: "WARNING",
                 feedback: "犯罪です。車検切れの運転は道路運送車両法違反（6点減点、30万円以下の罰金）。自賠責も切れていれば1年以下の懲役または50万円以下の罰金。「節約」のつもりが人生を壊します。",
                 lockRequirements: null
