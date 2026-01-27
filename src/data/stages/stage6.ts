@@ -64,7 +64,7 @@ export const stage6Questions: Question[] = [
         choices: [
             {
                 text: "保証会社は高いので、疎遠な親戚に無理を言って保証人を頼む。",
-                effect: { CS: 5, Asset: 0, Autonomy: -20 },
+                effect: { CS: -5, Asset: 0, Autonomy: -20 },
                 verdict: "WARNING",
                 feedback: "リスクの転嫁です。連帯保証人は「あなたの借金を全額肩代わりする義務」を負います。親戚関係を壊すリスクと、金銭トラブルの種を撒いています。",
                 lockRequirements: null

@@ -93,9 +93,9 @@ export const stage5Questions: Question[] = [
         choices: [
             {
                 text: "50万円を貯めるか、借りるしかない。",
-                effect: { CS: -10, Asset: -42000, Autonomy: -5 },
+                effect: { CS: -10, Asset: -500000, Autonomy: -5 },
                 verdict: "WARNING",
-                feedback: "制度の見落としです。出産育児一時金（50万円）が健康保険から支給されます。直接支払制度を使えば、窓口負担はほぼゼロにできます。知らなかったために42万円以上を自己負担しました。",
+                feedback: "制度の見落としです。出産育児一時金（50万円）が健康保険から支給されます。直接支払制度を使えば、窓口負担はほぼゼロにできます。知らなかったために50万円を自己負担しました。",
                 lockRequirements: null
             },
             {
@@ -153,7 +153,7 @@ export const stage5Questions: Question[] = [
             },
             {
                 text: "教育訓練給付金の対象講座か確認し、給付金を申請して受講する。",
-                effect: { CS: 20, Asset: 0, Autonomy: 15 },
+                effect: { CS: 20, Asset: -150000, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。雇用保険加入1年以上（初回）で利用可能。一般は20%、特定一般は40%、専門実践は最大70%給付。ハローワークで事前に相談すれば、対象講座と手続きがわかります。",
                 lockRequirements: null

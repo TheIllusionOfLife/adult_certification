@@ -23,6 +23,13 @@ The game uses three parameters, each with a distinct role in gameplay and narrat
 
 **Teaching Method**: Direct feedback ("correct answer" gives +CS, "wrong answer" gives -CS)
 
+**Exception - Rights Assertion Pattern**:
+In labor/rights questions where the correct action is to assert legal rights against authority (e.g., demanding paid leave, citing 2-week resignation rule), the APPROVED choice may have negative CS impact. This reflects reality: asserting rights creates social friction even when legally correct. Pattern:
+- WARNING (comply): CS +10, Autonomy -15 to -30
+- APPROVED (assert rights): CS -5, Autonomy +15 to +25
+
+This teaches: "Society doesn't always reward doing the right thing. Autonomy has costs."
+
 ---
 
 ### Asset - Supportive Resource
