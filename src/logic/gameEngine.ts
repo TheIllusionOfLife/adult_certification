@@ -65,7 +65,7 @@ export class GameEngine {
         // Apply skill effects (deterministic, auto-calculated)
         const modifiedEffect = applySkillEffects(originalEffect, question, this.activeSkills);
 
-        let { CS, Asset, Autonomy } = modifiedEffect;
+        const { CS, Asset, Autonomy } = modifiedEffect;
 
         // Update State
         this.state.CS += CS;
