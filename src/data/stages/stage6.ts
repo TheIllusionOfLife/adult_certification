@@ -29,26 +29,26 @@ export const stage6Questions: Question[] = [
         }
     },
 
-    // Q2: Knowledge (HOUSING) - Move-out damage assessment rules
+    // Q2: Knowledge (FINANCE) - Mortgage loan comparison (smaller effect, before skills)
     {
         id: "s6_q02",
-        category: "HOUSING",
-        text: "退去時、管理会社から「壁の日焼け跡とクロスの汚れで10万円請求」と言われた。",
-        imagePrompt: "Scene: an apartment wall with normal wear; aggressive property manager pointing at minor marks; tenant looking shocked at bill. Composition: normal aging vs excessive claims. Mood: exit trap, knowledge as defense.",
+        category: "FINANCE",
+        text: "住宅ローンを検討中。複数の銀行から見積もりを取ったが、金利以外に何を比較すべき？",
+        imagePrompt: "Scene: multiple loan documents from different banks; hidden fees revealed under magnifying glass; comparison checklist. Composition: surface rate vs total cost analysis. Mood: careful evaluation.",
         imagePath: "s6_q02.png",
         choices: [
             {
-                text: "「敷金から引かれるなら仕方ない」と払う。",
-                effect: { CS: 0, Asset: -100000, Autonomy: -10 },
+                text: "金利が一番低い銀行を選ぶ。金利がすべて。",
+                effect: { CS: -10, Asset: -30000, Autonomy: 0 },
                 verdict: "WARNING",
-                feedback: "無知による損失です。国土交通省のガイドラインでは、通常の使用による損耗（日焼け、家具跡等）は貸主負担。「原状回復」の意味を誤解しています。",
+                feedback: "視野狭窄です。事務手数料、保証料、団信保険料、繰上返済手数料……金利以外のコストで数十万円の差が出ます。総支払額で比較しないと損をします。",
                 lockRequirements: null
             },
             {
-                text: "「通常損耗は貸主負担」とガイドラインを根拠に反論し、明細の説明を求める。",
-                effect: { CS: 20, Asset: 0, Autonomy: 15 },
+                text: "金利、手数料、保証料、団信条件、繰上返済条件を総合的に比較し、総支払額で判断する。",
+                effect: { CS: 20, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
-                feedback: "正解です。原状回復ガイドラインを知っているだけで数万円〜数十万円の差。「言われるがまま」は最も損な選択です。",
+                feedback: "正解です。35年ローンでは0.1%の金利差が数十万円になります。複数要素を比較し、本当の「安さ」を見極める力が必要です。",
                 lockRequirements: null
             }
         ]
@@ -192,26 +192,26 @@ export const stage6Questions: Question[] = [
     },
     // [SKILL OFFER 2 HAPPENS AFTER Q7]
 
-    // Q8: Knowledge (FINANCE) - Mortgage loan comparison
+    // Q8: Knowledge (HOUSING) - Move-out damage assessment rules (bigger damage, 2 skills help)
     {
         id: "s6_q08",
-        category: "FINANCE",
-        text: "住宅ローンを検討中。複数の銀行から見積もりを取ったが、金利以外に何を比較すべき？",
-        imagePrompt: "Scene: multiple loan documents from different banks; hidden fees revealed under magnifying glass; comparison checklist. Composition: surface rate vs total cost analysis. Mood: careful evaluation.",
+        category: "HOUSING",
+        text: "退去時、管理会社から「壁の日焼け跡とクロスの汚れで10万円請求」と言われた。",
+        imagePrompt: "Scene: an apartment wall with normal wear; aggressive property manager pointing at minor marks; tenant looking shocked at bill. Composition: normal aging vs excessive claims. Mood: exit trap, knowledge as defense.",
         imagePath: "s6_q08.png",
         choices: [
             {
-                text: "金利が一番低い銀行を選ぶ。金利がすべて。",
-                effect: { CS: -10, Asset: -30000, Autonomy: 0 },
+                text: "「敷金から引かれるなら仕方ない」と払う。",
+                effect: { CS: 0, Asset: -100000, Autonomy: -10 },
                 verdict: "WARNING",
-                feedback: "視野狭窄です。事務手数料、保証料、団信保険料、繰上返済手数料……金利以外のコストで数十万円の差が出ます。総支払額で比較しないと損をします。",
+                feedback: "無知による損失です。国土交通省のガイドラインでは、通常の使用による損耗（日焼け、家具跡等）は貸主負担。「原状回復」の意味を誤解しています。",
                 lockRequirements: null
             },
             {
-                text: "金利、手数料、保証料、団信条件、繰上返済条件を総合的に比較し、総支払額で判断する。",
-                effect: { CS: 20, Asset: 0, Autonomy: 10 },
+                text: "「通常損耗は貸主負担」とガイドラインを根拠に反論し、明細の説明を求める。",
+                effect: { CS: 20, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
-                feedback: "正解です。35年ローンでは0.1%の金利差が数十万円になります。複数要素を比較し、本当の「安さ」を見極める力が必要です。",
+                feedback: "正解です。原状回復ガイドラインを知っているだけで数万円〜数十万円の差。「言われるがまま」は最も損な選択です。",
                 lockRequirements: null
             }
         ]

@@ -1,26 +1,26 @@
 import type { Question } from '../../types';
 
 export const stage9Questions: Question[] = [
-    // Q1: Knowledge (DISASTER) - Earthquake/fire insurance separation
+    // Q1: Knowledge (DISASTER) - Emergency contact systems (smallest effect, before skills)
     {
         id: "s9_q01",
         category: "DISASTER",
-        text: "新居の火災保険に加入。「地震保険もセットで」と勧められたが、地震保険料は高い。",
-        imagePrompt: "Scene: a house with fire on one side, earthquake damage on other; insurance policies separated; Japan map showing fault lines. Composition: coverage gap visualization. Mood: hidden risk, false sense of security.",
+        text: "大地震発生。家族と連絡が取れない。電話は繋がらない状況。",
+        imagePrompt: "Scene: earthquake aftermath with damaged buildings; phone showing 'no connection'; alternative contact methods (disaster message board, LINE). Composition: communication breakdown with alternatives. Mood: panic, alternative paths.",
         imagePath: "s9_q01.png",
         choices: [
             {
-                text: "火災保険で地震も補償されると思う。地震保険は不要。",
-                effect: { CS: -25, Asset: -500000, Autonomy: -10 },
+                text: "電話が繋がるまでかけ続ける。",
+                effect: { CS: -10, Asset: 0, Autonomy: -10 },
                 verdict: "WARNING",
-                feedback: "致命的な誤解です。火災保険では地震・津波・噴火による損害は免責。地震大国日本で、地震保険なしは「家を失っても補償ゼロ」を意味します。",
+                feedback: "非効率です。災害時は回線がパンクし、電話は繋がりません。災害用伝言ダイヤル（171）や災害用伝言板（web171）を使えば、安否確認ができます。",
                 lockRequirements: null
             },
             {
-                text: "地震保険に加入する。火災保険だけでは地震による被害は補償されない。",
-                effect: { CS: 20, Asset: -30000, Autonomy: 15 },
+                text: "災害用伝言ダイヤル（171）や災害用伝言板を使う。事前に家族と集合場所を決めておく。",
+                effect: { CS: 20, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
-                feedback: "正解です。地震保険は火災保険の特約として加入が必要。保険料は高いですが、「家を失うリスク」と比較すれば合理的な投資です。",
+                feedback: "正解です。「171」は毎月1日と15日に体験利用可能。家族との事前の取り決め（集合場所、連絡方法）が、混乱時の命綱になります。",
                 lockRequirements: null
             }
         ],
@@ -136,26 +136,26 @@ export const stage9Questions: Question[] = [
         }
     },
 
-    // Q6: Knowledge (DISASTER) - Emergency contact systems
+    // Q6: Knowledge (DISASTER) - Earthquake/fire insurance separation (biggest effect, 1 skill helps)
     {
         id: "s9_q06",
         category: "DISASTER",
-        text: "大地震発生。家族と連絡が取れない。電話は繋がらない状況。",
-        imagePrompt: "Scene: earthquake aftermath with damaged buildings; phone showing 'no connection'; alternative contact methods (disaster message board, LINE). Composition: communication breakdown with alternatives. Mood: panic, alternative paths.",
+        text: "新居の火災保険に加入。「地震保険もセットで」と勧められたが、地震保険料は高い。",
+        imagePrompt: "Scene: a house with fire on one side, earthquake damage on other; insurance policies separated; Japan map showing fault lines. Composition: coverage gap visualization. Mood: hidden risk, false sense of security.",
         imagePath: "s9_q06.png",
         choices: [
             {
-                text: "電話が繋がるまでかけ続ける。",
-                effect: { CS: -10, Asset: 0, Autonomy: -10 },
+                text: "火災保険で地震も補償されると思う。地震保険は不要。",
+                effect: { CS: -25, Asset: -500000, Autonomy: -10 },
                 verdict: "WARNING",
-                feedback: "非効率です。災害時は回線がパンクし、電話は繋がりません。災害用伝言ダイヤル（171）や災害用伝言板（web171）を使えば、安否確認ができます。",
+                feedback: "致命的な誤解です。火災保険では地震・津波・噴火による損害は免責。地震大国日本で、地震保険なしは「家を失っても補償ゼロ」を意味します。",
                 lockRequirements: null
             },
             {
-                text: "災害用伝言ダイヤル（171）や災害用伝言板を使う。事前に家族と集合場所を決めておく。",
-                effect: { CS: 20, Asset: 0, Autonomy: 15 },
+                text: "地震保険に加入する。火災保険だけでは地震による被害は補償されない。",
+                effect: { CS: 20, Asset: -30000, Autonomy: 15 },
                 verdict: "APPROVED",
-                feedback: "正解です。「171」は毎月1日と15日に体験利用可能。家族との事前の取り決め（集合場所、連絡方法）が、混乱時の命綱になります。",
+                feedback: "正解です。地震保険は火災保険の特約として加入が必要。保険料は高いですが、「家を失うリスク」と比較すれば合理的な投資です。",
                 lockRequirements: null
             }
         ]

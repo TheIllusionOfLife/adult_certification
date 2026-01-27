@@ -136,26 +136,26 @@ export const stage3Questions: Question[] = [
         }
     },
 
-    // Q6: Knowledge (FINANCE) - Student loan repayment relief (奨学金返済)
+    // Q6: Knowledge (FINANCE) - Insurance over-buying trap
     {
         id: "s3_q06",
         category: "FINANCE",
-        text: "就職したが給料が低く、奨学金の返済が厳しい。毎月の返済額は約15,000円。どう対応すべき？",
-        imagePrompt: "Scene: pay stub showing low salary; student loan payment notice; JASSO website showing relief options; stressed young worker at desk. Composition: financial squeeze with escape route. Mood: financial pressure, available relief.",
+        text: "保険の営業から「万が一に備えて」と医療保険、がん保険、生命保険のセット加入を勧められた。月額2万円。",
+        imagePrompt: "Scene: an insurance salesperson with charts showing worst-case scenarios; a young person overwhelmed by multiple policy documents; public health insurance card glowing in corner. Composition: fear-based selling vs rational assessment. Mood: pressure, overprotection trap.",
         imagePath: "s3_q06.png",
         choices: [
             {
-                text: "払えないものは払えない。しばらく無視して様子を見る。",
-                effect: { CS: -25, Asset: -50000, Autonomy: -15 },
+                text: "「万が一」が怖いので、勧められるまま全部加入する。",
+                effect: { CS: 0, Asset: -240000, Autonomy: -15 },
                 verdict: "WARNING",
-                feedback: "最悪の選択です。延滞3ヶ月で個人信用情報機関に登録（ブラックリスト）。9ヶ月で一括請求。さらに給与差押えの可能性も。無視は問題を数十倍に膨らませます。",
+                feedback: "過剰防衛です。日本には高額療養費制度があり、医療費の自己負担には上限があります。恐怖で売り込まれると、不要な保険料を払い続けることになります。",
                 lockRequirements: null
             },
             {
-                text: "JASSOに連絡し、「減額返還」か「返還期限猶予」を申請する。",
-                effect: { CS: 20, Asset: 0, Autonomy: 15 },
+                text: "公的保険（高額療養費制度等）を確認し、本当に必要な保障だけを選ぶ。",
+                effect: { CS: 15, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
-                feedback: "正解です。年収300万円以下なら「減額返還」で月額を1/2〜1/3に、「返還期限猶予」で最長10年間返済を止められます。制度を知らないだけで人生が詰む人がいます。困ったら、まず相談です。",
+                feedback: "正解です。公的保険を理解した上で「足りない部分だけ」民間保険で補う。保険は「安心」ではなく「確率とコストの計算」です。",
                 lockRequirements: null
             }
         ]
@@ -192,26 +192,26 @@ export const stage3Questions: Question[] = [
     },
     // [SKILL OFFER 2 HAPPENS AFTER Q7]
 
-    // Q8: Knowledge (FINANCE) - Insurance over-buying trap
+    // Q8: Knowledge (FINANCE) - Student loan repayment relief (奨学金返済)
     {
         id: "s3_q08",
         category: "FINANCE",
-        text: "保険の営業から「万が一に備えて」と医療保険、がん保険、生命保険のセット加入を勧められた。月額2万円。",
-        imagePrompt: "Scene: an insurance salesperson with charts showing worst-case scenarios; a young person overwhelmed by multiple policy documents; public health insurance card glowing in corner. Composition: fear-based selling vs rational assessment. Mood: pressure, overprotection trap.",
+        text: "就職したが給料が低く、奨学金の返済が厳しい。毎月の返済額は約15,000円。どう対応すべき？",
+        imagePrompt: "Scene: pay stub showing low salary; student loan payment notice; JASSO website showing relief options; stressed young worker at desk. Composition: financial squeeze with escape route. Mood: financial pressure, available relief.",
         imagePath: "s3_q08.png",
         choices: [
             {
-                text: "「万が一」が怖いので、勧められるまま全部加入する。",
-                effect: { CS: 0, Asset: -240000, Autonomy: -15 },
+                text: "払えないものは払えない。しばらく無視して様子を見る。",
+                effect: { CS: -25, Asset: -50000, Autonomy: -15 },
                 verdict: "WARNING",
-                feedback: "過剰防衛です。日本には高額療養費制度があり、医療費の自己負担には上限があります。恐怖で売り込まれると、不要な保険料を払い続けることになります。",
+                feedback: "最悪の選択です。延滞3ヶ月で個人信用情報機関に登録（ブラックリスト）。9ヶ月で一括請求。さらに給与差押えの可能性も。無視は問題を数十倍に膨らませます。",
                 lockRequirements: null
             },
             {
-                text: "公的保険（高額療養費制度等）を確認し、本当に必要な保障だけを選ぶ。",
-                effect: { CS: 15, Asset: 0, Autonomy: 15 },
+                text: "JASSOに連絡し、「減額返還」か「返還期限猶予」を申請する。",
+                effect: { CS: 20, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
-                feedback: "正解です。公的保険を理解した上で「足りない部分だけ」民間保険で補う。保険は「安心」ではなく「確率とコストの計算」です。",
+                feedback: "正解です。年収300万円以下なら「減額返還」で月額を1/2〜1/3に、「返還期限猶予」で最長10年間返済を止められます。制度を知らないだけで人生が詰む人がいます。困ったら、まず相談です。",
                 lockRequirements: null
             }
         ]

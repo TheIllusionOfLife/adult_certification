@@ -29,38 +29,13 @@ export const stage4Questions: Question[] = [
         }
     },
 
-    // Q2: Knowledge (TAX) - Furusato tax donation (ふるさと納税)
+    // Q2: Knowledge (ADMIN) - Marriage registration requirements (simpler effect, before skills)
     {
         id: "s4_q02",
-        category: "TAX",
-        text: "「ふるさと納税」を勧められた。「実質2,000円で返礼品がもらえる」と聞いたが、注意点は？",
-        imagePrompt: "Scene: hometown tax donation website with regional products; calculation showing deduction limit; calendar with deadline. Composition: benefit visualization with hidden requirements. Mood: opportunity with conditions.",
-        imagePath: "s4_q02.png",
-        choices: [
-            {
-                text: "お得なら上限なく寄附する。たくさん寄附すればたくさん返礼品がもらえる。",
-                effect: { CS: -20, Asset: -50000, Autonomy: -5 },
-                verdict: "WARNING",
-                feedback: "大損です。控除上限額を超えた分は「ただの寄附」。年収500万円なら上限は約6万円。さらにワンストップ特例は5自治体まで、申請書は翌年1月10日必着。知らないと損をします。",
-                lockRequirements: null
-            },
-            {
-                text: "自分の控除上限額を確認し、5自治体以内でワンストップ特例を活用する。",
-                effect: { CS: 20, Asset: 0, Autonomy: 10 },
-                verdict: "APPROVED",
-                feedback: "正解です。控除上限額は年収・家族構成で異なります。上限内なら実質2,000円で返礼品（寄附額の30%相当）を受け取れます。制度を理解して使うのが大人です。",
-                lockRequirements: null
-            }
-        ]
-    },
-
-    // Q3: Knowledge (ADMIN) - Marriage registration requirements [SKILL OFFER 1 AFTER]
-    {
-        id: "s4_q03",
         category: "ADMIN",
         text: "婚姻届を提出しようとしたら、「証人2名の署名が必要」と言われた。親に頼むべき？",
         imagePrompt: "Scene: a marriage registration form with empty witness sections; two paths showing parents vs friends as witnesses; a clock showing deadline. Composition: document close-up with signature areas highlighted. Mood: milestone moment, procedural requirement.",
-        imagePath: "s4_q03.png",
+        imagePath: "s4_q02.png",
         choices: [
             {
                 text: "証人は親でなければならないと思い、疎遠な親に連絡して頼む。",
@@ -74,6 +49,31 @@ export const stage4Questions: Question[] = [
                 effect: { CS: 15, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。法律は「成年の証人2名」としか定めていません。制度を正しく理解すれば、選択肢が広がります。",
+                lockRequirements: null
+            }
+        ]
+    },
+
+    // Q3: Knowledge (TAX) - Furusato tax donation (bigger effect, after skill offer 1) [SKILL OFFER 1 AFTER]
+    {
+        id: "s4_q03",
+        category: "TAX",
+        text: "「ふるさと納税」を勧められた。「実質2,000円で返礼品がもらえる」と聞いたが、注意点は？",
+        imagePrompt: "Scene: hometown tax donation website with regional products; calculation showing deduction limit; calendar with deadline. Composition: benefit visualization with hidden requirements. Mood: opportunity with conditions.",
+        imagePath: "s4_q03.png",
+        choices: [
+            {
+                text: "お得なら上限なく寄附する。たくさん寄附すればたくさん返礼品がもらえる。",
+                effect: { CS: -20, Asset: -50000, Autonomy: -5 },
+                verdict: "WARNING",
+                feedback: "大損です。控除上限額を超えた分は「ただの寄附」。年収500万円なら上限は約6万円。さらにワンストップ特例は5自治体まで、申請書は翌年1月10日必着。知らないと損をします。",
+                lockRequirements: null
+            },
+            {
+                text: "自分の控除上限額を確認し、5自治体以内でワンストップ特例を活用する。",
+                effect: { CS: 20, Asset: 0, Autonomy: 10 },
+                verdict: "APPROVED",
+                feedback: "正解です。控除上限額は年収・家族構成で異なります。上限内なら実質2,000円で返礼品（寄附額の30%相当）を受け取れます。制度を理解して使うのが大人です。",
                 lockRequirements: null
             }
         ],

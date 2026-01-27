@@ -1,26 +1,26 @@
 import type { Question } from '../../types';
 
 export const stage8Questions: Question[] = [
-    // Q1: Knowledge (SEC) - Two-factor authentication importance
+    // Q1: Knowledge (SEC) - SIM swap attack awareness (smaller effect, before skills)
     {
         id: "s8_q01",
         category: "SEC",
-        text: "銀行口座のオンラインサービスで「二段階認証を設定してください」と表示された。面倒だが……",
-        imagePrompt: "Scene: a bank login screen with 2FA prompt; hacker shadow trying to break in; shield forming with second factor. Composition: security layers visualization. Mood: inconvenience vs protection.",
+        text: "「SIMスワップ詐欺」という言葉を聞いた。どんな攻撃か知らないが、対策は必要？",
+        imagePrompt: "Scene: a phone losing signal; attacker taking over same number on new device; bank SMS codes being intercepted. Composition: invisible takeover process. Mood: silent threat, hidden vulnerability.",
         imagePath: "s8_q01.png",
         choices: [
             {
-                text: "面倒なので「後で」をクリックし続ける。",
-                effect: { CS: -20, Asset: -100000, Autonomy: -10 },
+                text: "聞いたことがない攻撃は気にしなくていい。自分には関係ない。",
+                effect: { CS: -15, Asset: 0, Autonomy: -10 },
                 verdict: "WARNING",
-                feedback: "致命的な油断です。パスワードが漏洩した瞬間、口座は乗っ取られます。二段階認証は「最後の砦」。面倒さは、被害の大きさと比べれば取るに足りません。",
+                feedback: "危険な無知です。SIMスワップは攻撃者があなたの電話番号を乗っ取る手口。SMS認証を突破され、銀行口座やSNSを乗っ取られます。知らないことは弱点です。",
                 lockRequirements: null
             },
             {
-                text: "すぐに設定する。パスワードだけでは防げない攻撃がある。",
-                effect: { CS: 20, Asset: 0, Autonomy: 15 },
+                text: "SMSではなくアプリベースの認証（Google Authenticator等）を優先的に使う。",
+                effect: { CS: 15, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
-                feedback: "正解です。パスワードは漏洩する前提で考えるべき。二段階認証があれば、パスワードが盗まれても口座は守られます。",
+                feedback: "正解です。SMS認証はSIMスワップに脆弱。認証アプリやハードウェアキーを使えば、電話番号を乗っ取られても認証は守られます。",
                 lockRequirements: null
             }
         ],
@@ -29,26 +29,26 @@ export const stage8Questions: Question[] = [
         }
     },
 
-    // Q2: Knowledge (SEC) - Phishing recognition
+    // Q2: Knowledge (SEC) - Data backup importance (smaller effect, before skills)
     {
         id: "s8_q02",
         category: "SEC",
-        text: "「【重要】お客様の口座が不正利用されました。今すぐご確認ください」というメールが届いた。リンクがついている。",
-        imagePrompt: "Scene: an urgent email with suspicious link; real bank website vs fake lookalike; fishing hook hidden in the message. Composition: deceptive urgency with hidden danger. Mood: panic manipulation.",
+        text: "パソコンに10年分の写真と仕事のデータがある。バックアップは「そのうちやる」と思っている。",
+        imagePrompt: "Scene: a computer with years of memories; ransomware lock screen appearing; cloud backup as lifeline. Composition: data loss nightmare vs backup peace. Mood: complacency vs preparation.",
         imagePath: "s8_q02.png",
         choices: [
             {
-                text: "急いでリンクをクリックし、口座を確認する。",
-                effect: { CS: -25, Asset: -200000, Autonomy: -15 },
+                text: "壊れたことないし、大丈夫だろう。バックアップは後回し。",
+                effect: { CS: -15, Asset: -50000, Autonomy: -10 },
                 verdict: "WARNING",
-                feedback: "フィッシング詐欺にかかりました。偽サイトにIDとパスワードを入力し、口座情報を盗まれました。「緊急」「今すぐ」という煽りは詐欺の常套手段です。",
+                feedback: "時間の問題です。HDDは必ず壊れます。ランサムウェアに感染したら、身代金を払うか全データを失うかの二択。「後悔先に立たず」を地で行く選択です。",
                 lockRequirements: null
             },
             {
-                text: "メールのリンクは使わず、公式アプリか、自分でURLを入力して確認する。",
-                effect: { CS: 20, Asset: 0, Autonomy: 15 },
+                text: "3-2-1ルール（3つのコピー、2種類の媒体、1つは遠隔地）でバックアップ体制を構築する。",
+                effect: { CS: 15, Asset: -10000, Autonomy: 15 },
                 verdict: "APPROVED",
-                feedback: "正解です。正規の連絡ならアプリや公式サイトでも確認できます。「メールのリンクは信じない」が鉄則。不安なら電話で直接確認を。",
+                feedback: "正解です。クラウドと外付けHDDの併用で、ほとんどのデータ消失リスクに対応できます。バックアップは「保険」。事故が起きてからでは遅いです。",
                 lockRequirements: null
             }
         ]
@@ -83,26 +83,26 @@ export const stage8Questions: Question[] = [
     },
     // [SKILL OFFER 1 HAPPENS AFTER Q3]
 
-    // Q4: Knowledge (SEC) - SIM swap attack awareness
+    // Q4: Knowledge (SEC) - Two-factor authentication importance (medium effect, 1 skill helps)
     {
         id: "s8_q04",
         category: "SEC",
-        text: "「SIMスワップ詐欺」という言葉を聞いた。どんな攻撃か知らないが、対策は必要？",
-        imagePrompt: "Scene: a phone losing signal; attacker taking over same number on new device; bank SMS codes being intercepted. Composition: invisible takeover process. Mood: silent threat, hidden vulnerability.",
+        text: "銀行口座のオンラインサービスで「二段階認証を設定してください」と表示された。面倒だが……",
+        imagePrompt: "Scene: a bank login screen with 2FA prompt; hacker shadow trying to break in; shield forming with second factor. Composition: security layers visualization. Mood: inconvenience vs protection.",
         imagePath: "s8_q04.png",
         choices: [
             {
-                text: "聞いたことがない攻撃は気にしなくていい。自分には関係ない。",
-                effect: { CS: -15, Asset: 0, Autonomy: -10 },
+                text: "面倒なので「後で」をクリックし続ける。",
+                effect: { CS: -20, Asset: -100000, Autonomy: -10 },
                 verdict: "WARNING",
-                feedback: "危険な無知です。SIMスワップは攻撃者があなたの電話番号を乗っ取る手口。SMS認証を突破され、銀行口座やSNSを乗っ取られます。知らないことは弱点です。",
+                feedback: "致命的な油断です。パスワードが漏洩した瞬間、口座は乗っ取られます。二段階認証は「最後の砦」。面倒さは、被害の大きさと比べれば取るに足りません。",
                 lockRequirements: null
             },
             {
-                text: "SMSではなくアプリベースの認証（Google Authenticator等）を優先的に使う。",
-                effect: { CS: 15, Asset: 0, Autonomy: 15 },
+                text: "すぐに設定する。パスワードだけでは防げない攻撃がある。",
+                effect: { CS: 20, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
-                feedback: "正解です。SMS認証はSIMスワップに脆弱。認証アプリやハードウェアキーを使えば、電話番号を乗っ取られても認証は守られます。",
+                feedback: "正解です。パスワードは漏洩する前提で考えるべき。二段階認証があれば、パスワードが盗まれても口座は守られます。",
                 lockRequirements: null
             }
         ]
@@ -192,26 +192,26 @@ export const stage8Questions: Question[] = [
     },
     // [SKILL OFFER 2 HAPPENS AFTER Q7]
 
-    // Q8: Knowledge (SEC) - Data backup importance
+    // Q8: Knowledge (SEC) - Phishing recognition (biggest effect, 2 skills help)
     {
         id: "s8_q08",
         category: "SEC",
-        text: "パソコンに10年分の写真と仕事のデータがある。バックアップは「そのうちやる」と思っている。",
-        imagePrompt: "Scene: a computer with years of memories; ransomware lock screen appearing; cloud backup as lifeline. Composition: data loss nightmare vs backup peace. Mood: complacency vs preparation.",
+        text: "「【重要】お客様の口座が不正利用されました。今すぐご確認ください」というメールが届いた。リンクがついている。",
+        imagePrompt: "Scene: an urgent email with suspicious link; real bank website vs fake lookalike; fishing hook hidden in the message. Composition: deceptive urgency with hidden danger. Mood: panic manipulation.",
         imagePath: "s8_q08.png",
         choices: [
             {
-                text: "壊れたことないし、大丈夫だろう。バックアップは後回し。",
-                effect: { CS: -15, Asset: -50000, Autonomy: -10 },
+                text: "急いでリンクをクリックし、口座を確認する。",
+                effect: { CS: -25, Asset: -200000, Autonomy: -15 },
                 verdict: "WARNING",
-                feedback: "時間の問題です。HDDは必ず壊れます。ランサムウェアに感染したら、身代金を払うか全データを失うかの二択。「後悔先に立たず」を地で行く選択です。",
+                feedback: "フィッシング詐欺にかかりました。偽サイトにIDとパスワードを入力し、口座情報を盗まれました。「緊急」「今すぐ」という煽りは詐欺の常套手段です。",
                 lockRequirements: null
             },
             {
-                text: "3-2-1ルール（3つのコピー、2種類の媒体、1つは遠隔地）でバックアップ体制を構築する。",
-                effect: { CS: 15, Asset: -10000, Autonomy: 15 },
+                text: "メールのリンクは使わず、公式アプリか、自分でURLを入力して確認する。",
+                effect: { CS: 20, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
-                feedback: "正解です。クラウドと外付けHDDの併用で、ほとんどのデータ消失リスクに対応できます。バックアップは「保険」。事故が起きてからでは遅いです。",
+                feedback: "正解です。正規の連絡ならアプリや公式サイトでも確認できます。「メールのリンクは信じない」が鉄則。不安なら電話で直接確認を。",
                 lockRequirements: null
             }
         ]
