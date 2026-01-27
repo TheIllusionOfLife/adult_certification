@@ -6,157 +6,294 @@ interface Effect {
     Autonomy: number;
 }
 
-// Helper function to apply a single skill effect
-function applySingleEffect(
-    effect: SkillEffect,
-    current: Effect,
-    question: Question
-): Effect {
-    let { CS, Asset, Autonomy } = current;
+// ============================================================
+// Effect Handler Registry
+// ============================================================
 
-    switch (effect.type) {
-            case "autonomy_damage_reduction":
-                // Reduce all Autonomy damage by value%
-                // Math.ceil rounds toward zero for negative values (reduces damage magnitude)
-                if (Autonomy < 0) {
-                    const reduced = Autonomy * (1 - effect.value);
-                    Autonomy = Math.ceil(reduced);
-                }
-                break;
-
-            case "admin_cost_reduction":
-                // Reduce Asset cost for ADMIN category by value yen
-                if (question.category === "ADMIN" && Asset < 0) {
-                    Asset = Math.min(0, Asset + effect.value);
-                }
-                break;
-
-            case "category_cs_damage_reduction":
-                // Reduce CS damage for specific category by value%
-                // Math.ceil rounds toward zero for negative values (reduces damage magnitude)
-                if (question.category === effect.category && CS < 0) {
-                    const reduced = CS * (1 - effect.value);
-                    CS = Math.ceil(reduced);
-                }
-                break;
-
-            case "autonomy_small_damage_reduction":
-                // Reduce Autonomy damage under threshold by value%
-                // Only applies to "small" damage (e.g., >= -20)
-                // Math.ceil rounds toward zero for negative values (reduces damage magnitude)
-                if (Autonomy < 0 && Autonomy >= (effect.threshold ?? -20)) {
-                    const reduced = Autonomy * (1 - effect.value);
-                    Autonomy = Math.ceil(reduced);
-                }
-                break;
-
-            case "category_autonomy_damage_reduction":
-                // Reduce Autonomy damage for specific category by value%
-                // Math.ceil rounds toward zero for negative values (reduces damage magnitude)
-                if (question.category === effect.category && Autonomy < 0) {
-                    const reduced = Autonomy * (1 - effect.value);
-                    Autonomy = Math.ceil(reduced);
-                }
-                break;
-
-            case "asset_damage_reduction":
-                // Reduce all Asset damage by value%
-                // Math.ceil rounds toward zero for negative values (reduces damage magnitude)
-                if (Asset < 0) {
-                    const reduced = Asset * (1 - effect.value);
-                    Asset = Math.ceil(reduced);
-                }
-                break;
-
-            case "category_asset_damage_reduction":
-                // Reduce Asset damage for specific category by value%
-                // Math.ceil rounds toward zero for negative values (reduces damage magnitude)
-                if (question.category === effect.category && Asset < 0) {
-                    const reduced = Asset * (1 - effect.value);
-                    Asset = Math.ceil(reduced);
-                }
-                break;
-
-            case "cs_damage_reduction":
-                // Reduce all CS damage by value%
-                // Math.ceil rounds toward zero for negative values (reduces damage magnitude)
-                if (CS < 0) {
-                    const reduced = CS * (1 - effect.value);
-                    CS = Math.ceil(reduced);
-                }
-                break;
-
-            // === NEW: Gain Amplification Types ===
-            case "cs_gain_amplification":
-                // Increase CS gains by value%
-                if (CS > 0) {
-                    const amplified = CS * (1 + effect.value);
-                    CS = Math.floor(amplified);
-                }
-                break;
-
-            case "asset_gain_amplification":
-                // Increase Asset gains by value%
-                if (Asset > 0) {
-                    const amplified = Asset * (1 + effect.value);
-                    Asset = Math.floor(amplified);
-                }
-                break;
-
-            case "autonomy_gain_amplification":
-                // Increase Autonomy gains by value%
-                if (Autonomy > 0) {
-                    const amplified = Autonomy * (1 + effect.value);
-                    Autonomy = Math.floor(amplified);
-                }
-                break;
-
-            // === NEW: Flat Bonus Types ===
-            case "flat_cs_bonus":
-                // Add flat CS bonus to every question
-                CS += effect.value;
-                break;
-
-            case "flat_asset_bonus":
-                // Add flat Asset bonus to every question
-                Asset += effect.value;
-                break;
-
-            case "flat_autonomy_bonus":
-                // Add flat Autonomy bonus to every question
-                Autonomy += effect.value;
-                break;
-
-            // === NEW: Category-Specific Gain Boost Types ===
-            case "category_cs_gain_boost":
-                // Increase CS gains for specific category by value%
-                if (question.category === effect.category && CS > 0) {
-                    const amplified = CS * (1 + effect.value);
-                    CS = Math.floor(amplified);
-                }
-                break;
-
-            case "category_asset_gain_boost":
-                // Increase Asset gains for specific category by value%
-                if (question.category === effect.category && Asset > 0) {
-                    const amplified = Asset * (1 + effect.value);
-                    Asset = Math.floor(amplified);
-                }
-                break;
-
-            case "category_autonomy_gain_boost":
-                // Increase Autonomy gains for specific category by value%
-                if (question.category === effect.category && Autonomy > 0) {
-                    const amplified = Autonomy * (1 + effect.value);
-                    Autonomy = Math.floor(amplified);
-                }
-                break;
-    }
-
-    return { CS, Asset, Autonomy };
+interface EffectHandler {
+    /** Check if this effect should activate given context */
+    shouldApply: (effect: SkillEffect, current: Effect, question: Question) => boolean;
+    /** Apply the effect and return modified values */
+    apply: (effect: SkillEffect, current: Effect) => Effect;
+    /** Get activation description for UI display */
+    description: string;
+    /** Get the relevant values for activation display */
+    getValues: (effect: SkillEffect, original: Effect, modified: Effect) => {
+        originalValue: number;
+        modifiedValue: number;
+    };
 }
 
-// Main function to apply all skill effects (supports multi-effect skills)
+// Helper: reduce damage by percentage (rounds toward zero)
+const reduceDamage = (value: number, reduction: number): number => {
+    return Math.ceil(value * (1 - reduction));
+};
+
+// Helper: amplify gain by percentage (rounds down)
+const amplifyGain = (value: number, amplification: number): number => {
+    return Math.floor(value * (1 + amplification));
+};
+
+const EFFECT_HANDLERS: Record<string, EffectHandler> = {
+    // === Damage Reduction Effects ===
+    autonomy_damage_reduction: {
+        shouldApply: (_, current) => current.Autonomy < 0,
+        apply: (effect, current) => ({
+            ...current,
+            Autonomy: reduceDamage(current.Autonomy, effect.value),
+        }),
+        description: '自律性減少軽減',
+        getValues: (_, original, modified) => ({
+            originalValue: original.Autonomy,
+            modifiedValue: modified.Autonomy,
+        }),
+    },
+
+    cs_damage_reduction: {
+        shouldApply: (_, current) => current.CS < 0,
+        apply: (effect, current) => ({
+            ...current,
+            CS: reduceDamage(current.CS, effect.value),
+        }),
+        description: '社会的信用低下軽減',
+        getValues: (_, original, modified) => ({
+            originalValue: original.CS,
+            modifiedValue: modified.CS,
+        }),
+    },
+
+    asset_damage_reduction: {
+        shouldApply: (_, current) => current.Asset < 0,
+        apply: (effect, current) => ({
+            ...current,
+            Asset: reduceDamage(current.Asset, effect.value),
+        }),
+        description: '資産減少軽減',
+        getValues: (_, original, modified) => ({
+            originalValue: original.Asset,
+            modifiedValue: modified.Asset,
+        }),
+    },
+
+    autonomy_small_damage_reduction: {
+        shouldApply: (effect, current) =>
+            current.Autonomy < 0 && current.Autonomy >= (effect.threshold ?? -20),
+        apply: (effect, current) => ({
+            ...current,
+            Autonomy: reduceDamage(current.Autonomy, effect.value),
+        }),
+        description: '自律性減少軽減',
+        getValues: (_, original, modified) => ({
+            originalValue: original.Autonomy,
+            modifiedValue: modified.Autonomy,
+        }),
+    },
+
+    // === Category-Specific Damage Reduction ===
+    category_cs_damage_reduction: {
+        shouldApply: (effect, current, question) =>
+            question.category === effect.category && current.CS < 0,
+        apply: (effect, current) => ({
+            ...current,
+            CS: reduceDamage(current.CS, effect.value),
+        }),
+        description: '社会的信用低下軽減',
+        getValues: (_, original, modified) => ({
+            originalValue: original.CS,
+            modifiedValue: modified.CS,
+        }),
+    },
+
+    category_autonomy_damage_reduction: {
+        shouldApply: (effect, current, question) =>
+            question.category === effect.category && current.Autonomy < 0,
+        apply: (effect, current) => ({
+            ...current,
+            Autonomy: reduceDamage(current.Autonomy, effect.value),
+        }),
+        description: '自律性減少軽減',
+        getValues: (_, original, modified) => ({
+            originalValue: original.Autonomy,
+            modifiedValue: modified.Autonomy,
+        }),
+    },
+
+    category_asset_damage_reduction: {
+        shouldApply: (effect, current, question) =>
+            question.category === effect.category && current.Asset < 0,
+        apply: (effect, current) => ({
+            ...current,
+            Asset: reduceDamage(current.Asset, effect.value),
+        }),
+        description: '資産減少軽減',
+        getValues: (_, original, modified) => ({
+            originalValue: original.Asset,
+            modifiedValue: modified.Asset,
+        }),
+    },
+
+    admin_cost_reduction: {
+        shouldApply: (_, current, question) => question.category === 'ADMIN' && current.Asset < 0,
+        apply: (effect, current) => ({
+            ...current,
+            Asset: Math.min(0, current.Asset + effect.value),
+        }),
+        description: '資産減少軽減',
+        getValues: (_, original, modified) => ({
+            originalValue: original.Asset,
+            modifiedValue: modified.Asset,
+        }),
+    },
+
+    // === Gain Amplification Effects ===
+    cs_gain_amplification: {
+        shouldApply: (_, current) => current.CS > 0,
+        apply: (effect, current) => ({
+            ...current,
+            CS: amplifyGain(current.CS, effect.value),
+        }),
+        description: '社会的信用獲得増幅',
+        getValues: (_, original, modified) => ({
+            originalValue: original.CS,
+            modifiedValue: modified.CS,
+        }),
+    },
+
+    asset_gain_amplification: {
+        shouldApply: (_, current) => current.Asset > 0,
+        apply: (effect, current) => ({
+            ...current,
+            Asset: amplifyGain(current.Asset, effect.value),
+        }),
+        description: '資産獲得増幅',
+        getValues: (_, original, modified) => ({
+            originalValue: original.Asset,
+            modifiedValue: modified.Asset,
+        }),
+    },
+
+    autonomy_gain_amplification: {
+        shouldApply: (_, current) => current.Autonomy > 0,
+        apply: (effect, current) => ({
+            ...current,
+            Autonomy: amplifyGain(current.Autonomy, effect.value),
+        }),
+        description: '自律性獲得増幅',
+        getValues: (_, original, modified) => ({
+            originalValue: original.Autonomy,
+            modifiedValue: modified.Autonomy,
+        }),
+    },
+
+    // === Category-Specific Gain Boosts ===
+    category_cs_gain_boost: {
+        shouldApply: (effect, current, question) =>
+            question.category === effect.category && current.CS > 0,
+        apply: (effect, current) => ({
+            ...current,
+            CS: amplifyGain(current.CS, effect.value),
+        }),
+        description: '社会的信用獲得増幅',
+        getValues: (_effect, original, modified) => ({
+            originalValue: original.CS,
+            modifiedValue: modified.CS,
+        }),
+    },
+
+    category_asset_gain_boost: {
+        shouldApply: (effect, current, question) =>
+            question.category === effect.category && current.Asset > 0,
+        apply: (effect, current) => ({
+            ...current,
+            Asset: amplifyGain(current.Asset, effect.value),
+        }),
+        description: '資産獲得増幅',
+        getValues: (_effect, original, modified) => ({
+            originalValue: original.Asset,
+            modifiedValue: modified.Asset,
+        }),
+    },
+
+    category_autonomy_gain_boost: {
+        shouldApply: (effect, current, question) =>
+            question.category === effect.category && current.Autonomy > 0,
+        apply: (effect, current) => ({
+            ...current,
+            Autonomy: amplifyGain(current.Autonomy, effect.value),
+        }),
+        description: '自律性獲得増幅',
+        getValues: (_effect, original, modified) => ({
+            originalValue: original.Autonomy,
+            modifiedValue: modified.Autonomy,
+        }),
+    },
+
+    // === Flat Bonus Effects ===
+    flat_cs_bonus: {
+        shouldApply: () => true, // Always applies
+        apply: (effect, current) => ({
+            ...current,
+            CS: current.CS + effect.value,
+        }),
+        description: '社会的信用固定ボーナス',
+        getValues: (_, original, modified) => ({
+            originalValue: original.CS,
+            modifiedValue: modified.CS,
+        }),
+    },
+
+    flat_asset_bonus: {
+        shouldApply: () => true,
+        apply: (effect, current) => ({
+            ...current,
+            Asset: current.Asset + effect.value,
+        }),
+        description: '資産固定ボーナス',
+        getValues: (_, original, modified) => ({
+            originalValue: original.Asset,
+            modifiedValue: modified.Asset,
+        }),
+    },
+
+    flat_autonomy_bonus: {
+        shouldApply: () => true,
+        apply: (effect, current) => ({
+            ...current,
+            Autonomy: current.Autonomy + effect.value,
+        }),
+        description: '自律性固定ボーナス',
+        getValues: (_, original, modified) => ({
+            originalValue: original.Autonomy,
+            modifiedValue: modified.Autonomy,
+        }),
+    },
+};
+
+// ============================================================
+// Public API
+// ============================================================
+
+/**
+ * Apply a single skill effect using the handler registry.
+ */
+function applySingleEffect(effect: SkillEffect, current: Effect, question: Question): Effect {
+    const handler = EFFECT_HANDLERS[effect.type];
+    if (!handler) {
+        // Unknown effect type - return unchanged
+        return current;
+    }
+
+    if (handler.shouldApply(effect, current, question)) {
+        return handler.apply(effect, current);
+    }
+
+    return current;
+}
+
+/**
+ * Apply all skill effects to a base effect.
+ * Supports multi-effect skills (main effect + additional effects array).
+ */
 export function applySkillEffects(
     baseEffect: Effect,
     question: Question,
@@ -164,7 +301,7 @@ export function applySkillEffects(
 ): Effect {
     let current = { ...baseEffect };
 
-    activeSkills.forEach(skill => {
+    activeSkills.forEach((skill) => {
         // Apply main effect
         if (skill.effect) {
             current = applySingleEffect(skill.effect, current, question);
@@ -172,7 +309,7 @@ export function applySkillEffects(
 
         // Apply additional effects (for multi-effect skills)
         if (skill.effects) {
-            skill.effects.forEach(eff => {
+            skill.effects.forEach((eff) => {
                 current = applySingleEffect(eff, current, question);
             });
         }
@@ -181,6 +318,10 @@ export function applySkillEffects(
     return current;
 }
 
+// ============================================================
+// Skill Activation Tracking (for UI display)
+// ============================================================
+
 export interface SkillActivation {
     skillName: string;
     description: string;
@@ -188,6 +329,10 @@ export interface SkillActivation {
     modifiedValue: number;
 }
 
+/**
+ * Get a list of skill activations for UI display.
+ * Returns skills that actually modified the effect.
+ */
 export function getSkillActivations(
     originalEffect: Effect,
     modifiedEffect: Effect,
@@ -196,180 +341,34 @@ export function getSkillActivations(
 ): SkillActivation[] {
     const activations: SkillActivation[] = [];
 
-    activeSkills.forEach(skill => {
-        const effect = skill.effect; // Alias for cleaner code
-        let activated = false;
-        let description = "";
-        let originalValue = 0;
-        let modifiedValue = 0;
+    activeSkills.forEach((skill) => {
+        const effect = skill.effect;
+        const handler = EFFECT_HANDLERS[effect.type];
 
-        switch (effect.type) {
-            case "autonomy_damage_reduction":
-                // Only show if Autonomy damage was actually reduced
-                if (originalEffect.Autonomy < 0 && modifiedEffect.Autonomy !== originalEffect.Autonomy) {
-                    activated = true;
-                    description = "自律性減少軽減";
-                    originalValue = originalEffect.Autonomy;
-                    modifiedValue = modifiedEffect.Autonomy;
-                }
-                break;
+        if (!handler) return;
 
-            case "admin_cost_reduction":
-                // Only show if this is an ADMIN question with Asset cost
-                if (question.category === "ADMIN" && originalEffect.Asset < 0 && modifiedEffect.Asset !== originalEffect.Asset) {
-                    activated = true;
-                    description = "資産減少軽減";
-                    originalValue = originalEffect.Asset;
-                    modifiedValue = modifiedEffect.Asset;
-                }
-                break;
+        // Flat bonuses always show activation
+        const isFlatBonus = effect.type.startsWith('flat_');
+        const values = handler.getValues(effect, originalEffect, modifiedEffect);
+        const didModify = values.originalValue !== values.modifiedValue;
 
-            case "category_cs_damage_reduction":
-                // Only show if question category matches and CS was reduced
-                if (question.category === effect.category && originalEffect.CS < 0 && modifiedEffect.CS !== originalEffect.CS) {
-                    activated = true;
-                    description = "社会的信用低下軽減";
-                    originalValue = originalEffect.CS;
-                    modifiedValue = modifiedEffect.CS;
-                }
-                break;
+        // Show activation if: flat bonus (always) OR if values were actually modified
+        if (isFlatBonus || didModify) {
+            // For category-specific effects, only show if the category matches
+            if (effect.type.startsWith('category_')) {
+                if (question.category !== effect.category) return;
+            }
 
-            case "autonomy_small_damage_reduction":
-                // Only show if damage meets threshold and was reduced
-                if (originalEffect.Autonomy < 0 && originalEffect.Autonomy >= (effect.threshold ?? -20) && modifiedEffect.Autonomy !== originalEffect.Autonomy) {
-                    activated = true;
-                    description = "自律性減少軽減";
-                    originalValue = originalEffect.Autonomy;
-                    modifiedValue = modifiedEffect.Autonomy;
-                }
-                break;
+            // For non-flat effects, check if the handler's condition was met
+            if (!isFlatBonus && !handler.shouldApply(effect, originalEffect, question)) {
+                return;
+            }
 
-            case "category_autonomy_damage_reduction":
-                // Only show if question category matches and Autonomy was reduced
-                if (question.category === effect.category && originalEffect.Autonomy < 0 && modifiedEffect.Autonomy !== originalEffect.Autonomy) {
-                    activated = true;
-                    description = "自律性減少軽減";
-                    originalValue = originalEffect.Autonomy;
-                    modifiedValue = modifiedEffect.Autonomy;
-                }
-                break;
-
-            case "asset_damage_reduction":
-                // Only show if Asset damage was actually reduced
-                if (originalEffect.Asset < 0 && modifiedEffect.Asset !== originalEffect.Asset) {
-                    activated = true;
-                    description = "資産減少軽減";
-                    originalValue = originalEffect.Asset;
-                    modifiedValue = modifiedEffect.Asset;
-                }
-                break;
-
-            case "category_asset_damage_reduction":
-                // Only show if question category matches and Asset was reduced
-                if (question.category === effect.category && originalEffect.Asset < 0 && modifiedEffect.Asset !== originalEffect.Asset) {
-                    activated = true;
-                    description = "資産減少軽減";
-                    originalValue = originalEffect.Asset;
-                    modifiedValue = modifiedEffect.Asset;
-                }
-                break;
-
-            case "cs_damage_reduction":
-                // Only show if CS damage was actually reduced
-                if (originalEffect.CS < 0 && modifiedEffect.CS !== originalEffect.CS) {
-                    activated = true;
-                    description = "社会的信用低下軽減";
-                    originalValue = originalEffect.CS;
-                    modifiedValue = modifiedEffect.CS;
-                }
-                break;
-
-            // === NEW: Gain Amplification Types ===
-            case "cs_gain_amplification":
-                if (originalEffect.CS > 0 && modifiedEffect.CS !== originalEffect.CS) {
-                    activated = true;
-                    description = "社会的信用獲得増幅";
-                    originalValue = originalEffect.CS;
-                    modifiedValue = modifiedEffect.CS;
-                }
-                break;
-
-            case "asset_gain_amplification":
-                if (originalEffect.Asset > 0 && modifiedEffect.Asset !== originalEffect.Asset) {
-                    activated = true;
-                    description = "資産獲得増幅";
-                    originalValue = originalEffect.Asset;
-                    modifiedValue = modifiedEffect.Asset;
-                }
-                break;
-
-            case "autonomy_gain_amplification":
-                if (originalEffect.Autonomy > 0 && modifiedEffect.Autonomy !== originalEffect.Autonomy) {
-                    activated = true;
-                    description = "自律性獲得増幅";
-                    originalValue = originalEffect.Autonomy;
-                    modifiedValue = modifiedEffect.Autonomy;
-                }
-                break;
-
-            // === NEW: Flat Bonus Types ===
-            case "flat_cs_bonus":
-                // Always activates (flat bonus every question)
-                activated = true;
-                description = "社会的信用固定ボーナス";
-                originalValue = originalEffect.CS;
-                modifiedValue = modifiedEffect.CS;
-                break;
-
-            case "flat_asset_bonus":
-                activated = true;
-                description = "資産固定ボーナス";
-                originalValue = originalEffect.Asset;
-                modifiedValue = modifiedEffect.Asset;
-                break;
-
-            case "flat_autonomy_bonus":
-                activated = true;
-                description = "自律性固定ボーナス";
-                originalValue = originalEffect.Autonomy;
-                modifiedValue = modifiedEffect.Autonomy;
-                break;
-
-            // === NEW: Category-Specific Gain Boost Types ===
-            case "category_cs_gain_boost":
-                if (question.category === effect.category && originalEffect.CS > 0 && modifiedEffect.CS !== originalEffect.CS) {
-                    activated = true;
-                    description = `${effect.category}社会的信用獲得増幅`;
-                    originalValue = originalEffect.CS;
-                    modifiedValue = modifiedEffect.CS;
-                }
-                break;
-
-            case "category_asset_gain_boost":
-                if (question.category === effect.category && originalEffect.Asset > 0 && modifiedEffect.Asset !== originalEffect.Asset) {
-                    activated = true;
-                    description = `${effect.category}資産獲得増幅`;
-                    originalValue = originalEffect.Asset;
-                    modifiedValue = modifiedEffect.Asset;
-                }
-                break;
-
-            case "category_autonomy_gain_boost":
-                if (question.category === effect.category && originalEffect.Autonomy > 0 && modifiedEffect.Autonomy !== originalEffect.Autonomy) {
-                    activated = true;
-                    description = `${effect.category}自律性獲得増幅`;
-                    originalValue = originalEffect.Autonomy;
-                    modifiedValue = modifiedEffect.Autonomy;
-                }
-                break;
-        }
-
-        if (activated) {
             activations.push({
                 skillName: skill.name,
-                description,
-                originalValue,
-                modifiedValue
+                description: handler.description,
+                originalValue: values.originalValue,
+                modifiedValue: values.modifiedValue,
             });
         }
     });
