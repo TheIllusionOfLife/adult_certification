@@ -108,31 +108,31 @@ export const stage4Questions: Question[] = [
         ]
     },
 
-    // Q5: Dilemma (ADMIN) - Fight bureaucratic error vs accept
+    // Q5: Dilemma (ADMIN) - 戸籍謄本の取得方法
     {
         id: "s4_q05",
         category: "ADMIN",
-        text: "市役所で手続き中、職員のミスで書類が紛失された。「再提出してください」と言われたが、こちらに非はない。",
-        imagePrompt: "Scene: Government service counter window view, clerk's hands in apologetic gesture, apology note for lost documents on counter, blank re-submission form being pushed forward. Composition: Counter window frames the scene, bureaucratic indifference. Mood: Injustice, time about to be wasted.",
+        text: "相続手続きで本籍地の戸籍謄本が必要になった。しかし本籍地は実家のある遠方の自治体。平日は仕事で役所に行けない。",
+        imagePrompt: "Scene: Kitchen table with family registry request form partially filled, map showing distant hometown marked, calendar with work days blocked, envelope and stamps ready. Composition: Documents spread on table, distance visualized. Mood: Administrative puzzle, multiple paths.",
         imagePath: "s4_q05.png",
         choices: [
             {
-                text: "「そちらのミスなのに」と抗議し、責任者を呼んでもらう。",
-                effect: { CS: -15, Asset: 0, Autonomy: 20 },
+                text: "郵送請求する。時間はかかるが、平日に休まなくて済む。",
+                effect: { CS: 5, Asset: -1000, Autonomy: -5 },
                 verdict: "NEUTRAL",
-                feedback: "原則的行動です。正義を主張しましたが、時間を大幅に失いました。役所の「たらい回し」は精神を削ります。勝っても得るものは少ないかもしれません。",
+                feedback: "堅実な選択です。郵送請求は往復1〜2週間かかりますが、定額小為替の準備と返信用封筒を同封すれば確実。時間を犠牲にして手間を減らしました。",
                 lockRequirements: null
             },
             {
-                text: "「仕方ない」と諦めて再提出する。時間の方が大事。",
-                effect: { CS: 10, Asset: -5000, Autonomy: -10 },
+                text: "コンビニ交付を試す。マイナンバーカードがあれば、一部の戸籍は全国のコンビニで取得可能。",
+                effect: { CS: 10, Asset: -450, Autonomy: 10 },
                 verdict: "NEUTRAL",
-                feedback: "実利的行動です。時間を節約しましたが、「泣き寝入り」を選びました。同じミスが他の誰かに繰り返されるかもしれません。",
+                feedback: "効率的な選択です。2024年3月から広域交付が開始。ただし対応していない自治体もあり、事前確認が必要。制度を知っている人だけが使える近道です。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "原則か、実利か。正解のない問題です。"
+            intro: "時間か、知識か。行政手続きには『近道』が存在します。"
         }
     },
 
@@ -173,7 +173,7 @@ export const stage4Questions: Question[] = [
                 text: "「大丈夫だろう」と原本だけ提出する。",
                 effect: { CS: 0, Asset: 0, Autonomy: -25 },
                 verdict: "WARNING",
-                feedback: "危険です。書類が紛失した場合、「提出した証拠」がありません。行政との「言った言わない」は、証拠がない方が負けます。",
+                feedback: "危険です。書類が紛失した場合、「提出した証拠」がありません。「言った言わない」は、証拠がない方が負けます。",
                 lockRequirements: null
             },
             {
@@ -182,7 +182,7 @@ export const stage4Questions: Question[] = [
                 verdict: "APPROVED",
                 feedback: "正解です。二度手間に見えますが、「証拠を残す」習慣が将来のトラブルを防ぎます。手続き主義は自己防衛です。",
                 lockRequirements: { Autonomy: 80 },
-                lockedFeedback: "LOCKED: 自律性が80以上必要。面倒くさがって「まあいいか」と流されました。"
+                lockedFeedback: "LOCKED: 自律性が80以上必要。面倒くさがって「まあいいか」と流しました。"
             }
         ],
         adamDialogue: {

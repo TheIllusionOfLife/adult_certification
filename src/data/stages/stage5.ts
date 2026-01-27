@@ -11,7 +11,7 @@ export const stage5Questions: Question[] = [
         choices: [
             {
                 text: "貯金を全て使い、足りない分は借金するしかない。",
-                effect: { CS: -20, Asset: -50000, Autonomy: -10 },
+                effect: { CS: -30, Asset: -80000, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "無知による損失です。高額療養費制度により、一般所得者の自己負担上限は月約8〜9万円。100万円払う必要はありません。制度を知らないと、不要な借金を背負います。",
                 lockRequirements: null
@@ -39,7 +39,7 @@ export const stage5Questions: Question[] = [
         choices: [
             {
                 text: "休職したら給料ゼロ。貯金を切り崩すしかない。",
-                effect: { CS: -15, Asset: -30000, Autonomy: -5 },
+                effect: { CS: -15, Asset: -50000, Autonomy: -5 },
                 verdict: "WARNING",
                 feedback: "制度の見落としです。健康保険の傷病手当金は、給与の約2/3を最長1年6ヶ月支給。申請しないと受け取れませんが、知っていれば収入を確保できます。",
                 lockRequirements: null
@@ -71,7 +71,7 @@ export const stage5Questions: Question[] = [
             },
             {
                 text: "教育訓練給付金の対象講座か確認し、給付金を申請して受講する。",
-                effect: { CS: 10, Asset: -150000, Autonomy: 15 },
+                effect: { CS: 15, Asset: -50000, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。雇用保険加入1年以上（初回）で利用可能。一般は20%、特定一般は40%、専門実践は最大70%給付。ハローワークで事前に相談すれば、対象講座と手続きがわかります。",
                 lockRequirements: null
@@ -93,14 +93,14 @@ export const stage5Questions: Question[] = [
         choices: [
             {
                 text: "給料が出ないなら育休は取れない。すぐ復帰するしかない。",
-                effect: { CS: -10, Asset: 0, Autonomy: -15 },
+                effect: { CS: 10, Asset: 0, Autonomy: -15 },
                 verdict: "WARNING",
                 feedback: "制度の誤解です。育児休業給付金は、最初の6ヶ月は給与の67%、以降50%が雇用保険から支給されます。「無収入」ではありません。",
                 lockRequirements: null
             },
             {
                 text: "育児休業給付金（67%→50%）を確認し、生活設計に組み込んで育休を取得する。",
-                effect: { CS: 10, Asset: 0, Autonomy: 15 },
+                effect: { CS: 10, Asset: 100000, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。社会保険料も免除されるため、実質的な手取り差は縮まります。制度を理解すれば、育児と仕事の両立が可能になります。",
                 lockRequirements: null
@@ -125,7 +125,7 @@ export const stage5Questions: Question[] = [
             },
             {
                 text: "休む。健康を失えばキャリアも終わる。上司に状況を説明し、締切延長を交渉する。",
-                effect: { CS: 0, Asset: 0, Autonomy: 15 },
+                effect: { CS: -5, Asset: 0, Autonomy: 15 },
                 verdict: "NEUTRAL",
                 feedback: "健康優先の選択です。締切に間に合わなければ評価に影響しますが、長期的な働く力を守りました。ただし「休むべき時に休める職場か」という問いも残ります。",
                 lockRequirements: null
@@ -202,7 +202,7 @@ export const stage5Questions: Question[] = [
         choices: [
             {
                 text: "50万円を貯めるか、借りるしかない。",
-                effect: { CS: -10, Asset: 0, Autonomy: -5 },
+                effect: { CS: -10, Asset: -100000, Autonomy: -5 },
                 verdict: "WARNING",
                 feedback: "制度の見落としです。出産育児一時金（50万円）が健康保険から支給されます。直接支払制度を使えば、窓口負担はほぼゼロにできます。知らなかったために50万円を自己負担しました。",
                 lockRequirements: null
@@ -227,7 +227,7 @@ export const stage5Questions: Question[] = [
         choices: [
             {
                 text: "生活保護は最後の手段。親戚に頭を下げて借金する。",
-                effect: { CS: -5, Asset: 30000, Autonomy: -10 },
+                effect: { CS: -15, Asset: 30000, Autonomy: -10 },
                 verdict: "NEUTRAL",
                 feedback: "プライドを守る選択です。しかし、借金は返済義務が発生し、親戚関係も複雑になります。「援助」ではなく「負債」を選びました。",
                 lockRequirements: null
@@ -246,31 +246,31 @@ export const stage5Questions: Question[] = [
         }
     },
 
-    // Q10: Philosophy (HEALTH) - Dependency vs self-reliance [CRISIS NARRATIVE + ASSET COST]
+    // Q10: Philosophy (HEALTH) - 退職後の健康保険選択
     {
         id: "s5_q10",
         category: "HEALTH",
-        text: "失業中、生活保護の申請書を前にしている。これは権利か、施しか、敗北か。その瞬間、『社会保障』の本質が見えた。",
-        imagePrompt: "Scene: Dawn light streaming through office window, application form half-filled on table, pen resting mid-sentence, city waking up in silhouette outside. Composition: Window dominant with golden hour light, form small in foreground. Mood: Threshold moment, neither defeat nor victory, new day.",
+        text: "退職して無職になった。健康保険の選択肢は『任意継続（2年限定、保険料は退職時の約2倍）』か『国民健康保険（前年所得ベース、減免制度あり）』。どちらを選ぶべきか？",
+        imagePrompt: "Scene: Kitchen table with two insurance documents side by side, calculator showing different premium amounts, calendar marking 20-day deadline, coffee cup half empty. Composition: Documents dominate, numbers visible on both. Mood: Critical decision window, money at stake.",
         imagePath: "s5_q10.png",
         choices: [
             {
-                text: "申請しない。自力で何とかする。自立こそが人間の尊厳。",
-                effect: { CS: 10, Asset: -100000, Autonomy: 10 },
+                text: "任意継続を選ぶ。退職前と同じ保険証が使え、扶養家族がいれば追加保険料なしでカバーできる。",
+                effect: { CS: 10, Asset: -50000, Autonomy: -10 },
                 verdict: "NEUTRAL",
-                feedback: "自尊心優先の回答です。自力で乗り越えようとしますが、収入がない期間の生活費を切り詰めるため、資産が減ります。限界を超えると回復不能なダメージを負います。",
+                feedback: "継続性を重視した回答です。任意継続は最大2年間、会社負担分も自己負担になるため保険料は約2倍。扶養家族がいれば有利ですが、『前と同じ』という安心感で選んでいませんか。",
                 lockRequirements: null
             },
             {
-                text: "申請する。社会保障は「施し」ではなく、再起のための橋。",
-                effect: { CS: 0, Asset: 100000, Autonomy: 0 },
+                text: "国民健康保険を選ぶ。失業中なら減免申請で保険料が下がる可能性がある。",
+                effect: { CS: 5, Asset: -30000, Autonomy: 10 },
                 verdict: "NEUTRAL",
-                feedback: "合理的回答です。生活保護を受けることで、当面の生活費が確保され、再就職活動に集中できます。制度を使うことは権利の行使です。",
+                feedback: "状況に応じた回答です。国保には『扶養』がなく家族分の保険料が発生しますが、失業減免を使えば大幅に安くなることも。両方を試算して比較すれば、年間数十万円の差が出ます。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "最終問題です。危機の瞬間に、あなたはどう動きますか？",
+            intro: "最終問題です。『知っているか』だけで数十万円の差がつく領域があります。",
             after: "Stage 5を終了します。審査結果を算出中..."
         }
     }

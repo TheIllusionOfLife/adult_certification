@@ -237,8 +237,8 @@ export const stage6Questions: Question[] = [
                 effect: { CS: -5, Asset: 0, Autonomy: 20 },
                 verdict: "NEUTRAL",
                 feedback: "挑戦的な選択です。交渉は決裂するリスクがありますが、更新料が減額される可能性もあります。契約上の力関係に挑む姿勢を見せました。",
-                lockRequirements: { CS: 50 },
-                lockedFeedback: "LOCKED: 社会的信用が50以上必要。社会的信用が低いと、大家との交渉で不利になります。"
+                lockRequirements: { Autonomy: 100 },
+                lockedFeedback: "LOCKED: 自律性が100以上必要。『契約書に書いてあるから従う』という思考から抜け出せていません。"
             }
         ],
         adamDialogue: {

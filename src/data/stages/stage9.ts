@@ -108,31 +108,31 @@ export const stage9Questions: Question[] = [
         ]
     },
 
-    // Q5: Dilemma (DISASTER) - Evacuate early vs stay and protect
+    // Q5: Dilemma (DISASTER) - 災害時のSNS情報拡散
     {
         id: "s9_q05",
         category: "DISASTER",
-        text: "台風が接近中。自治体から「避難準備」が出た。しかし一人暮らしの高齢の隣人が「避難所は嫌だ」と言って動こうとしない。あなたは避難すべきか、隣人を説得し続けるべきか。",
-        imagePrompt: "Scene: Rain-lashed window view from inside, elderly neighbor outside struggling with walker in the storm, evacuation route sign visible down the street, TV reflection showing typhoon warning. Composition: Window frames the moral dilemma, safety inside vs need outside. Mood: Urgency, compassion vs self-preservation.",
+        text: "大地震直後、SNSで『〇〇地区で火災発生、逃げろ』という投稿が流れてきた。家族がその地区にいる。公式発表はまだない。",
+        imagePrompt: "Scene: Phone screen showing viral disaster post with alarming headline and retweet count, official news app showing no updates yet, family photo visible in background, finger hovering over share button. Composition: Phone dominates, share/ignore decision moment. Mood: Information fog, speed vs accuracy.",
         imagePath: "s9_q05.png",
         choices: [
             {
-                text: "自分だけ先に避難する。自分の安全を確保してから、救助に連絡する。",
-                effect: { CS: 5, Asset: 0, Autonomy: 10 },
+                text: "家族や知人に早く知らせるため、そのまま拡散する。誰かの役に立つかもしれない。",
+                effect: { CS: -5, Asset: 0, Autonomy: 10 },
                 verdict: "NEUTRAL",
-                feedback: "自己保存を優先しました。「てんでんこ」の精神では正解ですが、隣人が被災すれば「見捨てた」という後悔が残ります。救助に連絡しても、間に合わない可能性もあります。",
+                feedback: "速度を優先した選択です。本当の情報なら人を救えますが、デマなら混乱を拡大させます。善意の拡散がデマ拡大に加担する可能性を受け入れました。",
                 lockRequirements: null
             },
             {
-                text: "ギリギリまで説得を続ける。何とか一緒に避難したい。",
+                text: "公式情報が出るまで拡散しない。デマかもしれない。",
                 effect: { CS: 10, Asset: 0, Autonomy: 5 },
                 verdict: "NEUTRAL",
-                feedback: "他者を見捨てない選択です。説得に成功すれば隣人を救えますが、時間を費やして自分も逃げ遅れるリスクがあります。「共倒れ」を防ぐには、説得に期限を設けるべきでした。",
+                feedback: "正確性を優先した選択です。デマの拡散は防げますが、本当の情報だった場合、伝達の遅れが命取りになる可能性も。慎重さは美徳ですが、代償もあります。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "自分の安全と他者の命、どう天秤にかけますか？"
+            intro: "情報の速度と正確性、どちらを優先しますか？"
         }
     },
 
@@ -246,31 +246,31 @@ export const stage9Questions: Question[] = [
         }
     },
 
-    // Q10: Philosophy (DISASTER) - Preparation vs acceptance of fate [PAST/FUTURE FRAMING]
+    // Q10: Philosophy (DISASTER) - 「想定外」に対する姿勢
     {
         id: "s9_q10",
         category: "DISASTER",
-        text: "過去の災害を前に『あの時こうしていれば』と後悔した。しかし完璧な準備は人生を無駄にする。その間で、危機管理とは何ですか？",
-        imagePrompt: "Scene: Emergency exit sign glowing green in empty quiet hallway, fire extinguisher mounted on wall gathering dust, everything calm and unused, exit door slightly ajar showing darkness beyond. Composition: Corridor perspective, exit sign as focal beacon. Mood: Perpetual readiness in peaceful silence.",
+        text: "ハザードマップの浸水想定を超える被害が発生した。『想定外だった』という声が上がる。そもそも『想定』とは何か？",
+        imagePrompt: "Scene: Flooded street with water line clearly above hazard map prediction marker on wall, map itself partially submerged, rescue boat in distance, 'unexpected' headline on floating newspaper. Composition: Water level vs prediction marker creates visual irony. Mood: Assumptions shattered, reality exceeds models.",
         imagePath: "s9_q10.png",
         choices: [
             {
-                text: "後悔しないために、できる限りの準備をする。コストをかけてでも備える。",
-                effect: { CS: 15, Asset: -20000, Autonomy: 15 },
+                text: "想定は常に更新し続けるべき。過去最大を超える災害は必ず起こる。",
+                effect: { CS: 15, Asset: -10000, Autonomy: 5 },
                 verdict: "NEUTRAL",
-                feedback: "予防投資型の回答です。防災グッズ、保険、訓練...準備にはコストがかかります。ただし、災害が来なければ「無駄」に見える投資でもあります。",
+                feedback: "予防重視の回答です。想定を引き上げ続ければ被害は減らせます。ただし『最悪の最悪』に備え続けるコストは無限に膨らみます。どこかで線を引く判断も必要です。",
                 lockRequirements: null
             },
             {
-                text: "完璧な準備は諦め、適応力を鍛える。その分の資源を今の生活に使う。",
-                effect: { CS: 10, Asset: 0, Autonomy: 10 },
+                text: "想定を超えた時の『逃げ方』を決めておく。想定外を想定する。",
+                effect: { CS: 10, Asset: 0, Autonomy: 5 },
                 verdict: "NEUTRAL",
-                feedback: "適応力重視の回答です。基本的な備えは持ちつつ、過剰な準備は避ける。資源を「今」に振り向ける選択。ただし、想定外の規模の災害には脆弱です。",
+                feedback: "適応重視の回答です。『想定内は守り、想定外は適応する』という二段構え。完璧な準備は不可能でも、『想定が崩れた時にどう動くか』を決めておけば、混乱の中でも判断できます。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "最終問題です。後悔と準備の間で、どう生きますか？",
+            intro: "最終問題です。『想定外』は言い訳か、それとも準備の限界か？",
             after: "Stage 9を終了します。審査結果を算出中..."
         }
     }
