@@ -140,25 +140,25 @@ export const STAGE_3_METADATA: StageMetadata = {
             {
                 id: "s3_normal_01",
                 name: "金利センサー",
-                desc: "FINANCE系質問での資産減少を40%軽減します。金利の罠を見抜く目を持ちます。",
-                effect: { type: "category_asset_damage_reduction", value: 0.4, category: "FINANCE" },
-                category: "normal"
+                desc: "FINANCE系質問での資産減少を25%軽減します。金利の罠を見抜く目を持ちます。",
+                effect: { type: "category_asset_damage_reduction", value: 0.25, category: "FINANCE" },
+                category: "normal",
+                isRecommended: true
             },
             {
                 id: "s3_normal_02",
-                name: "予算意識",
-                desc: "全ての社会的信用増加を25%強化します。計画的な金銭感覚が評価されます。",
-                effect: { type: "cs_gain_amplification", value: 0.25 },
-                category: "normal",
-                isRecommended: true
+                name: "自己投資意識",
+                desc: "FINANCE系質問での自律性減少を25%軽減します。お金に振り回されない心構えです。",
+                effect: { type: "category_autonomy_damage_reduction", value: 0.25, category: "FINANCE" },
+                category: "normal"
             }
         ],
         offer2: [
             {
                 id: "s3_normal_03",
                 name: "節税マインド",
-                desc: "全ての資産増加を30%強化します。合法的な節税は権利です。",
-                effect: { type: "asset_gain_amplification", value: 0.3 },
+                desc: "全ての資産増加を45%強化します。合法的な節税は権利です。",
+                effect: { type: "asset_gain_amplification", value: 0.45 },
                 category: "normal",
                 isRecommended: true
             },
@@ -166,8 +166,8 @@ export const STAGE_3_METADATA: StageMetadata = {
                 id: "COMPOUND_SENSE",
                 name: "複利感覚",
                 nameEN: "COMPOUND_SENSE",
-                desc: "時間を味方につける知恵。利息が利息を生む仕組みを理解し、長期的視点で資産を守る。FINANCE系質問での自律性減少を25%軽減します。",
-                effect: { type: "category_autonomy_damage_reduction", value: 0.25, category: "FINANCE" },
+                desc: "時間を味方につける知恵。利息が利息を生む仕組みを理解し、長期的視点で資産を守る。FINANCE系質問での自律性減少を50%軽減します。",
+                effect: { type: "category_autonomy_damage_reduction", value: 0.5, category: "FINANCE" },
                 category: "key",
                 isCollectible: true,
                 acquiredStage: 3,
@@ -196,16 +196,16 @@ export const STAGE_4_METADATA: StageMetadata = {
         offer1: [
             {
                 id: "s4_normal_01",
-                name: "書類整理術",
-                desc: "ADMIN系質問での資産減少を15,000円軽減します。手続き漏れを防ぎます。",
-                effect: { type: "category_asset_cost_reduction", value: 15000, category: "ADMIN" },
+                name: "手続き自主性",
+                desc: "ADMIN系質問での自律性減少を20%軽減します。行政に依存せず自分で調べる姿勢です。",
+                effect: { type: "category_autonomy_damage_reduction", value: 0.2, category: "ADMIN" },
                 category: "normal"
             },
             {
                 id: "s4_normal_02",
                 name: "窓口対応力",
-                desc: "ADMIN系質問での社会的信用減少を35%軽減します。官僚制との付き合い方を心得ています。",
-                effect: { type: "category_cs_damage_reduction", value: 0.35, category: "ADMIN" },
+                desc: "ADMIN系質問での社会的信用減少を25%軽減します。官僚制との付き合い方を心得ています。",
+                effect: { type: "category_cs_damage_reduction", value: 0.25, category: "ADMIN" },
                 category: "normal",
                 isRecommended: true
             }
@@ -214,8 +214,8 @@ export const STAGE_4_METADATA: StageMetadata = {
             {
                 id: "s4_normal_03",
                 name: "期限管理",
-                desc: "全ての社会的信用減少を30%軽減します。締め切りを守る習慣が信用を守ります。",
-                effect: { type: "cs_damage_reduction", value: 0.3 },
+                desc: "全ての社会的信用減少を45%軽減します。締め切りを守る習慣が信用を守ります。",
+                effect: { type: "cs_damage_reduction", value: 0.45 },
                 category: "normal",
                 isRecommended: true
             },
@@ -223,8 +223,8 @@ export const STAGE_4_METADATA: StageMetadata = {
                 id: "DUE_PROCESS",
                 name: "手続き主義",
                 nameEN: "DUE_PROCESS",
-                desc: "正しい手順を踏むことで身を守る。記録と証拠を残し、官僚制を味方につける技術。ADMIN系質問での自律性減少を25%軽減します。",
-                effect: { type: "category_autonomy_damage_reduction", value: 0.25, category: "ADMIN" },
+                desc: "正しい手順を踏むことで身を守る。記録と証拠を残し、官僚制を味方につける技術。ADMIN系質問での自律性減少を50%軽減します。",
+                effect: { type: "category_autonomy_damage_reduction", value: 0.5, category: "ADMIN" },
                 category: "key",
                 isCollectible: true,
                 acquiredStage: 4,
@@ -254,16 +254,16 @@ export const STAGE_5_METADATA: StageMetadata = {
             {
                 id: "s5_normal_01",
                 name: "制度活用術",
-                desc: "HEALTH系質問での資産減少を40%軽減します。公的制度を知って損失を防ぎます。",
-                effect: { type: "category_asset_damage_reduction", value: 0.4, category: "HEALTH" },
+                desc: "HEALTH系質問での資産減少を30%軽減します。公的制度を知って損失を防ぎます。",
+                effect: { type: "category_asset_damage_reduction", value: 0.3, category: "HEALTH" },
                 category: "normal",
                 isRecommended: true
             },
             {
                 id: "s5_normal_02",
                 name: "相談力",
-                desc: "全ての自律性減少を25%軽減します。助けを求める力も自律の一部です。",
-                effect: { type: "autonomy_damage_reduction", value: 0.25 },
+                desc: "全ての自律性減少を20%軽減します。助けを求める力も自律の一部です。",
+                effect: { type: "autonomy_damage_reduction", value: 0.2 },
                 category: "normal"
             }
         ],
@@ -271,8 +271,8 @@ export const STAGE_5_METADATA: StageMetadata = {
             {
                 id: "s5_normal_03",
                 name: "社会保障知識",
-                desc: "HEALTH系質問での社会的信用減少を40%軽減します。制度を知る者は賢明と評価されます。",
-                effect: { type: "category_cs_damage_reduction", value: 0.4, category: "HEALTH" },
+                desc: "HEALTH系質問での社会的信用減少を50%軽減します。制度を知る者は賢明と評価されます。",
+                effect: { type: "category_cs_damage_reduction", value: 0.5, category: "HEALTH" },
                 category: "normal",
                 isRecommended: true
             },
@@ -280,8 +280,8 @@ export const STAGE_5_METADATA: StageMetadata = {
                 id: "SAFETY_NET_NAVIGATION",
                 name: "セーフティネット航法",
                 nameEN: "SAFETY_NET_NAVIGATION",
-                desc: "社会保障という航路図を読み、危機を乗り越える技術。助けを求めることは弱さではなく、生存戦略。HEALTH系質問での自律性減少を25%軽減します。",
-                effect: { type: "category_autonomy_damage_reduction", value: 0.25, category: "HEALTH" },
+                desc: "社会保障という航路図を読み、危機を乗り越える技術。助けを求めることは弱さではなく、生存戦略。HEALTH系質問での自律性減少を55%軽減します。",
+                effect: { type: "category_autonomy_damage_reduction", value: 0.55, category: "HEALTH" },
                 category: "key",
                 isCollectible: true,
                 acquiredStage: 5,
@@ -310,16 +310,16 @@ export const STAGE_6_METADATA: StageMetadata = {
         offer1: [
             {
                 id: "s6_normal_01",
-                name: "不動産リテラシー",
-                desc: "HOUSING系質問での資産減少を35%軽減します。賃貸・売買の罠を見抜きます。",
-                effect: { type: "category_asset_damage_reduction", value: 0.35, category: "HOUSING" },
+                name: "住まい自立意識",
+                desc: "HOUSING系質問での自律性減少を20%軽減します。住環境を自分で選ぶ力です。",
+                effect: { type: "category_autonomy_damage_reduction", value: 0.2, category: "HOUSING" },
                 category: "normal"
             },
             {
                 id: "s6_normal_02",
                 name: "交渉準備力",
-                desc: "HOUSING系質問での社会的信用増加を30%強化します。準備された交渉は信頼を勝ち取ります。",
-                effect: { type: "category_cs_gain_amplification", value: 0.3, category: "HOUSING" },
+                desc: "HOUSING系質問での社会的信用増加を25%強化します。準備された交渉は信頼を勝ち取ります。",
+                effect: { type: "category_cs_gain_amplification", value: 0.25, category: "HOUSING" },
                 category: "normal",
                 isRecommended: true
             }
@@ -328,8 +328,8 @@ export const STAGE_6_METADATA: StageMetadata = {
             {
                 id: "s6_normal_03",
                 name: "契約確認習慣",
-                desc: "全ての資産減少を30%軽減します。契約書を読む習慣が財産を守ります。",
-                effect: { type: "asset_damage_reduction", value: 0.3 },
+                desc: "全ての資産減少を45%軽減します。契約書を読む習慣が財産を守ります。",
+                effect: { type: "asset_damage_reduction", value: 0.45 },
                 category: "normal",
                 isRecommended: true
             },
@@ -337,8 +337,8 @@ export const STAGE_6_METADATA: StageMetadata = {
                 id: "NEGOTIATION_PROTOCOL",
                 name: "交渉プロトコル",
                 nameEN: "NEGOTIATION_PROTOCOL",
-                desc: "第三者や制度を介して交渉する技術。直接対決を避け、有利な条件を引き出す知恵。HOUSING系質問での自律性減少を25%軽減します。",
-                effect: { type: "category_autonomy_damage_reduction", value: 0.25, category: "HOUSING" },
+                desc: "第三者や制度を介して交渉する技術。直接対決を避け、有利な条件を引き出す知恵。HOUSING系質問での自律性減少を50%軽減します。",
+                effect: { type: "category_autonomy_damage_reduction", value: 0.5, category: "HOUSING" },
                 category: "key",
                 isCollectible: true,
                 acquiredStage: 6,
@@ -368,16 +368,16 @@ export const STAGE_7_METADATA: StageMetadata = {
             {
                 id: "s7_normal_01",
                 name: "消費者権利知識",
-                desc: "LEGAL系質問での社会的信用減少を40%軽減します。権利を知る消費者は守られます。",
-                effect: { type: "category_cs_damage_reduction", value: 0.4, category: "LEGAL" },
+                desc: "LEGAL系質問での社会的信用減少を30%軽減します。権利を知る消費者は守られます。",
+                effect: { type: "category_cs_damage_reduction", value: 0.3, category: "LEGAL" },
                 category: "normal",
                 isRecommended: true
             },
             {
                 id: "s7_normal_02",
                 name: "詐欺察知力",
-                desc: "LEGAL系質問での自律性減少を30%軽減します。怪しさを嗅ぎ分ける嗅覚があります。",
-                effect: { type: "category_autonomy_damage_reduction", value: 0.3, category: "LEGAL" },
+                desc: "LEGAL系質問での自律性減少を20%軽減します。怪しさを嗅ぎ分ける嗅覚があります。",
+                effect: { type: "category_autonomy_damage_reduction", value: 0.2, category: "LEGAL" },
                 category: "normal"
             }
         ],
@@ -385,8 +385,8 @@ export const STAGE_7_METADATA: StageMetadata = {
             {
                 id: "s7_normal_03",
                 name: "法テラス活用",
-                desc: "LEGAL系質問での資産減少を40%軽減します。無料法律相談を活用する知恵があります。",
-                effect: { type: "category_asset_damage_reduction", value: 0.4, category: "LEGAL" },
+                desc: "LEGAL系質問での資産減少を50%軽減します。無料法律相談を活用する知恵があります。",
+                effect: { type: "category_asset_damage_reduction", value: 0.5, category: "LEGAL" },
                 category: "normal",
                 isRecommended: true
             },
@@ -394,8 +394,8 @@ export const STAGE_7_METADATA: StageMetadata = {
                 id: "CONTRACT_LITERACY",
                 name: "契約読解",
                 nameEN: "CONTRACT_LITERACY",
-                desc: "契約書を読み解き、不利な条項を見抜く目。サインする前に考える習慣。LEGAL系質問での自律性減少を25%軽減します。",
-                effect: { type: "category_autonomy_damage_reduction", value: 0.25, category: "LEGAL" },
+                desc: "契約書を読み解き、不利な条項を見抜く目。サインする前に考える習慣。LEGAL系質問での自律性減少を55%軽減します。",
+                effect: { type: "category_autonomy_damage_reduction", value: 0.55, category: "LEGAL" },
                 category: "key",
                 isCollectible: true,
                 acquiredStage: 7,
@@ -425,25 +425,25 @@ export const STAGE_8_METADATA: StageMetadata = {
             {
                 id: "s8_normal_01",
                 name: "セキュリティ意識",
-                desc: "SEC系質問での社会的信用減少を35%軽減します。デジタル衛生を保つ意識があります。",
-                effect: { type: "category_cs_damage_reduction", value: 0.35, category: "SEC" },
+                desc: "SEC系質問での社会的信用減少を25%軽減します。デジタル衛生を保つ意識があります。",
+                effect: { type: "category_cs_damage_reduction", value: 0.25, category: "SEC" },
                 category: "normal",
                 isRecommended: true
             },
             {
                 id: "s8_normal_02",
-                name: "バックアップ習慣",
-                desc: "SEC系質問での資産減少を35%軽減します。データを守る習慣が損失を防ぎます。",
-                effect: { type: "category_asset_damage_reduction", value: 0.35, category: "SEC" },
+                name: "デジタル自衛意識",
+                desc: "SEC系質問での自律性減少を20%軽減します。自分のデータは自分で守る姿勢です。",
+                effect: { type: "category_autonomy_damage_reduction", value: 0.2, category: "SEC" },
                 category: "normal"
             }
         ],
         offer2: [
             {
                 id: "s8_normal_03",
-                name: "二段階認証徹底",
-                desc: "全ての自律性増加を25%強化します。アカウントを守る姿勢が自律を高めます。",
-                effect: { type: "autonomy_gain_amplification", value: 0.25 },
+                name: "データ復旧力",
+                desc: "SEC系質問での資産減少を45%軽減します。バックアップと保険で損失を最小化します。",
+                effect: { type: "category_asset_damage_reduction", value: 0.45, category: "SEC" },
                 category: "normal",
                 isRecommended: true
             },
@@ -451,8 +451,8 @@ export const STAGE_8_METADATA: StageMetadata = {
                 id: "IDENTITY_HYGIENE",
                 name: "本人性衛生",
                 nameEN: "IDENTITY_HYGIENE",
-                desc: "デジタル空間で自分の身元を守る衛生習慣。個人情報は一度流出したら取り戻せない。SEC系質問での自律性減少を25%軽減します。",
-                effect: { type: "category_autonomy_damage_reduction", value: 0.25, category: "SEC" },
+                desc: "デジタル空間で自分の身元を守る衛生習慣。個人情報は一度流出したら取り戻せない。SEC系質問での自律性減少を50%軽減します。",
+                effect: { type: "category_autonomy_damage_reduction", value: 0.5, category: "SEC" },
                 category: "key",
                 isCollectible: true,
                 acquiredStage: 8,
@@ -482,16 +482,16 @@ export const STAGE_9_METADATA: StageMetadata = {
             {
                 id: "s9_normal_01",
                 name: "防災備蓄力",
-                desc: "DISASTER系質問での資産減少を40%軽減します。備えが損失を最小化します。",
-                effect: { type: "category_asset_damage_reduction", value: 0.4, category: "DISASTER" },
+                desc: "DISASTER系質問での資産減少を30%軽減します。備えが損失を最小化します。",
+                effect: { type: "category_asset_damage_reduction", value: 0.3, category: "DISASTER" },
                 category: "normal",
                 isRecommended: true
             },
             {
                 id: "s9_normal_02",
                 name: "冷静判断力",
-                desc: "全ての自律性減少を30%軽減します。パニックに流されない心の強さです。",
-                effect: { type: "autonomy_damage_reduction", value: 0.3 },
+                desc: "全ての自律性減少を20%軽減します。パニックに流されない心の強さです。",
+                effect: { type: "autonomy_damage_reduction", value: 0.2 },
                 category: "normal"
             }
         ],
@@ -499,8 +499,8 @@ export const STAGE_9_METADATA: StageMetadata = {
             {
                 id: "s9_normal_03",
                 name: "保険請求術",
-                desc: "全ての資産増加を35%強化します。正当な請求で損失を回復する知識です。",
-                effect: { type: "asset_gain_amplification", value: 0.35 },
+                desc: "全ての資産増加を50%強化します。正当な請求で損失を回復する知識です。",
+                effect: { type: "asset_gain_amplification", value: 0.5 },
                 category: "normal",
                 isRecommended: true
             },
@@ -508,8 +508,8 @@ export const STAGE_9_METADATA: StageMetadata = {
                 id: "DAMAGE_CONTROL",
                 name: "被害最小化",
                 nameEN: "DAMAGE_CONTROL",
-                desc: "危機的状況で冷静に行動し、被害を最小限に抑える能力。最悪を想定し、最善を尽くす。DISASTER系質問での自律性減少を25%軽減します。",
-                effect: { type: "category_autonomy_damage_reduction", value: 0.25, category: "DISASTER" },
+                desc: "危機的状況で冷静に行動し、被害を最小限に抑える能力。最悪を想定し、最善を尽くす。DISASTER系質問での自律性減少を55%軽減します。",
+                effect: { type: "category_autonomy_damage_reduction", value: 0.55, category: "DISASTER" },
                 category: "key",
                 isCollectible: true,
                 acquiredStage: 9,

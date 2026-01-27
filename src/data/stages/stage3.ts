@@ -125,7 +125,7 @@ export const stage3Questions: Question[] = [
             },
             {
                 text: "NISAを優先。いつでも引き出せる柔軟性を確保する。",
-                effect: { CS: 5, Asset: 0, Autonomy: 15 },
+                effect: { CS: 5, Asset: -5000, Autonomy: 15 },
                 verdict: "NEUTRAL",
                 feedback: "柔軟な選択です。運用益非課税で、緊急時も引き出し可能。節税効果はiDeCoに劣りますが、人生の変化に対応できる自由を確保しました。",
                 lockRequirements: null

@@ -118,7 +118,7 @@ export const stage8Questions: Question[] = [
         choices: [
             {
                 text: "生体認証のみ。毎回パスコードを入力するのは面倒。",
-                effect: { CS: 5, Asset: 0, Autonomy: 10 },
+                effect: { CS: 5, Asset: -5000, Autonomy: 10 },
                 verdict: "NEUTRAL",
                 feedback: "利便性を選びました。日常の摩擦は減りますが、指紋や顔認証が突破された場合のバックアップがありません。リスクを受け入れた選択です。",
                 lockRequirements: null
