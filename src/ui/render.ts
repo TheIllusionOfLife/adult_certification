@@ -3,6 +3,7 @@ import type { Choice, Question } from '../types';
 import type { SkillActivation } from '../data/skillEffects';
 import { CONFIG } from '../config';
 import { getOverlayPresentation } from './overlayVerdict';
+import { DOM_IDS } from './domIds';
 
 // Vite glob import for assets
 const images = import.meta.glob('../assets/*.{png,jpg,jpeg,webp}', { eager: true });
@@ -45,38 +46,38 @@ export class UIManager {
             return el as T;
         };
         this.dom = {
-            mainImage: getEl<HTMLImageElement>('main-image'),
-            qCat: getEl<HTMLElement>('q-category'),
-            qNum: getEl<HTMLElement>('q-number'),
-            qText: getEl<HTMLElement>('question-text'),
-            choices: getEl<HTMLElement>('choices-grid'),
-            cs: getEl<HTMLElement>('score-cs'),
-            asset: getEl<HTMLElement>('score-asset'),
-            autonomy: getEl<HTMLElement>('score-autonomy'),
-            bar: getEl<HTMLElement>('progress-bar'),
-            container: getEl<HTMLElement>('game-container'),
-            sceneDesc: getEl<HTMLElement>('scene-desc-overlay'),
-            overlay: getEl<HTMLElement>('overlay'),
-            ovTitle: getEl<HTMLElement>('overlay-title'),
-            ovBody: getEl<HTMLElement>('overlay-body'),
-            ovStats: getEl<HTMLElement>('overlay-stats'),
-            btnNext: getEl<HTMLButtonElement>('btn-next'),
-            skillBox: getEl<HTMLElement>('skill-select-box'),
-            skillList: getEl<HTMLElement>('skill-list'),
-            startScreen: getEl<HTMLElement>('start-screen'),
-            diffList: getEl<HTMLElement>('difficulty-list'),
-            mascotContainer: getEl<HTMLElement>('mascot-container'),
-            mascotImg: getEl<HTMLImageElement>('mascot-img'),
-            titleLogo: getEl<HTMLImageElement>('title-logo-img')
+            mainImage: getEl<HTMLImageElement>(DOM_IDS.MAIN_IMAGE),
+            qCat: getEl<HTMLElement>(DOM_IDS.QUESTION_CATEGORY),
+            qNum: getEl<HTMLElement>(DOM_IDS.QUESTION_NUMBER),
+            qText: getEl<HTMLElement>(DOM_IDS.QUESTION_TEXT),
+            choices: getEl<HTMLElement>(DOM_IDS.CHOICES_GRID),
+            cs: getEl<HTMLElement>(DOM_IDS.SCORE_CS),
+            asset: getEl<HTMLElement>(DOM_IDS.SCORE_ASSET),
+            autonomy: getEl<HTMLElement>(DOM_IDS.SCORE_AUTONOMY),
+            bar: getEl<HTMLElement>(DOM_IDS.PROGRESS_BAR),
+            container: getEl<HTMLElement>(DOM_IDS.GAME_CONTAINER),
+            sceneDesc: getEl<HTMLElement>(DOM_IDS.SCENE_DESC_OVERLAY),
+            overlay: getEl<HTMLElement>(DOM_IDS.OVERLAY),
+            ovTitle: getEl<HTMLElement>(DOM_IDS.OVERLAY_TITLE),
+            ovBody: getEl<HTMLElement>(DOM_IDS.OVERLAY_BODY),
+            ovStats: getEl<HTMLElement>(DOM_IDS.OVERLAY_STATS),
+            btnNext: getEl<HTMLButtonElement>(DOM_IDS.BTN_NEXT),
+            skillBox: getEl<HTMLElement>(DOM_IDS.SKILL_SELECT_BOX),
+            skillList: getEl<HTMLElement>(DOM_IDS.SKILL_LIST),
+            startScreen: getEl<HTMLElement>(DOM_IDS.START_SCREEN),
+            diffList: getEl<HTMLElement>(DOM_IDS.DIFFICULTY_LIST),
+            mascotContainer: getEl<HTMLElement>(DOM_IDS.MASCOT_CONTAINER),
+            mascotImg: getEl<HTMLImageElement>(DOM_IDS.MASCOT_IMG),
+            titleLogo: getEl<HTMLImageElement>(DOM_IDS.TITLE_LOGO)
         };
         this.loadRecords();
     }
 
-    private records: Record<string, { rank: string, score: number, date: string }> = {};
+    private records: Record<string, { rank: string; score: number; date: string }> = {};
 
     loadRecords() {
         try {
-            const stored = localStorage.getItem('ac_records');
+            const stored = localStorage.getItem(CONFIG.STORAGE_KEYS.RECORDS);
             if (stored) this.records = JSON.parse(stored);
         } catch {
             console.warn('Failed to load records, resetting');
@@ -87,7 +88,7 @@ export class UIManager {
     saveRecord(difficulty: string, rank: string, score: number) {
         this.records[difficulty] = { rank, score, date: new Date().toLocaleDateString() };
         try {
-            localStorage.setItem('ac_records', JSON.stringify(this.records));
+            localStorage.setItem(CONFIG.STORAGE_KEYS.RECORDS, JSON.stringify(this.records));
         } catch {
             console.warn('Failed to save record (private browsing?)');
         }
@@ -119,8 +120,6 @@ export class UIManager {
             { key: 'Stage10', name: 'STAGE 10', desc: '最終審判' }
         ];
 
-        const allowedRanks = ['S', 'A', 'B', 'C'];
-
         // Only show stages that are unlocked (Stage 1 always visible, others require previous stage beaten)
         allStages.forEach((stage, index) => {
             const isUnlocked = index === 0 || this.records[`Stage${index}`]; // Previous stage beaten
@@ -130,7 +129,8 @@ export class UIManager {
             btn.className = 'diff-btn';
 
             const record = this.records[stage.key];
-            const safeRank = record && allowedRanks.includes(record.rank) ? record.rank : '';
+            const validRanks: readonly string[] = CONFIG.VALID_RANKS;
+            const safeRank = record && validRanks.includes(record.rank) ? record.rank : '';
             const rankClass = safeRank ? `rank-${safeRank}` : '';
 
             btn.innerHTML = `
