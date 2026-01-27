@@ -21,7 +21,7 @@ graph TD
         UI -->|Method| renderCurrentQuestion()
         UI -->|Method| updateHUD()
         UI -->|Method| showFeedback()
-        UI -->|Styles| CSS[style.css]
+        UI -->|Styles| CSS[styles/]
     end
 ```
 
@@ -81,16 +81,40 @@ The project follows a "Feature-by-Layer" organization:
 
 ```text
 src/
-├── assets/          # Static Assets (Images, Icons)
-│   └── [category]_q[id].png  # Naming: category_qid.png
-├── data/            # Static Data Definitions
-│   ├── questions.ts # The immutable database of questions
-│   └── skills.ts    # Skill definitions
-├── logic/           # Pure Business Logic (No side effects, No DOM)
+├── assets/           # Static Assets (Images, Icons)
+│   └── s[stage]_q[id].png  # Naming: s1_q01.png
+├── data/             # Static Data Definitions
+│   ├── stages/       # Per-stage question definitions
+│   │   ├── stageTemplate.ts  # Factory functions for stage creation
+│   │   └── stage[1-9].ts     # Stage-specific questions
+│   ├── stageMetadata.ts      # Stage metadata (themes, skills, thresholds)
+│   ├── skillEffects.ts       # Skill effect handler registry
+│   └── adamDialogue.ts       # A.D.A.M. commentary system
+├── logic/            # Pure Business Logic (No side effects, No DOM)
 │   └── gameEngine.ts
-├── ui/              # Presentation Layer (Side effects allowed)
-│   └── render.ts
-└── main.ts          # Composition Root
+├── storage/          # Persistence Layer
+│   └── RecordStorage.ts      # localStorage wrapper for game records
+├── styles/           # Modular CSS (imported by style.css)
+│   ├── variables.css         # Design tokens (colors, spacing, typography)
+│   ├── base.css              # Body, container, progress bar
+│   ├── layout.css            # HUD, interaction area, overlay
+│   ├── components.css        # Buttons, skill UI, rank stamps
+│   ├── animations.css        # Keyframes (mascot, score, shimmer)
+│   └── responsive.css        # PC/mobile media queries
+├── ui/               # Presentation Layer (Side effects allowed)
+│   ├── render.ts             # UIManager class
+│   └── domIds.ts             # DOM element ID registry
+├── config.ts         # Centralized configuration constants
+├── types.ts          # TypeScript type definitions
+├── style.css         # CSS entry point (imports all modules)
+└── main.ts           # Composition Root
+
+tests/
+├── logic/
+│   └── gameEngine.test.ts    # GameEngine unit tests
+└── data/
+    ├── skillEffects.test.ts  # Skill effect tests
+    └── stageValidation.test.ts # Stage structure validation
 ```
 
 ### Naming Conventions

@@ -27,15 +27,31 @@ We follow standard TypeScript best practices with a focus on functional clarity.
 
 ## 🧪 Testing Strategy
 
-Currently, the project relies on **manual verification**.
+The project uses **bun test** for unit testing with 88+ tests covering core logic.
 
-### Key Test Scenarios
+### Running Tests
+```bash
+bun test              # Run all tests
+bun test --watch      # Watch mode
+bun test --coverage   # With coverage report
+```
+
+### Running Linter
+```bash
+npm run lint          # Run ESLint on src and tests
+npm run lint:fix      # Auto-fix linting issues
+```
+
+### Test Coverage
+-   **GameEngine** (`tests/logic/gameEngine.test.ts`): processChoice, isChoiceLocked, calculateEnding, skill management
+-   **SkillEffects** (`tests/data/skillEffects.test.ts`): All 18 effect types, damage reduction, gain amplification
+-   **Stage Validation** (`tests/data/stageValidation.test.ts`): Structure validation for all 9 stages
+
+### Manual Test Scenarios
 1.  **Game Over Check**: Deliberately reduce CS or Sanity to 0. Verify "TERMINATED" screen.
 2.  **Victory Check**: Complete all questions. Verify "COMPLETE" screen and Rank calculation.
-3.  **Skill Activation**: Acquire "Iron Stomach" and take Sanity damage. Verify damage reduction log.
+3.  **Skill Activation**: Acquire a damage reduction skill and take damage. Verify damage reduction log.
 4.  **Persistence**: Reload the page after finishing a game. Verify the Stamp appears on the Title Screen.
-
-*Future Plan: Integration of Vitest for unit testing `GameEngine` logic.*
 
 ## 📦 Pull Request Process
 
