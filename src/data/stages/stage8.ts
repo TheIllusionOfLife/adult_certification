@@ -118,14 +118,14 @@ export const stage8Questions: Question[] = [
         choices: [
             {
                 text: "生体認証のみ。毎回パスコードを入力するのは面倒。",
-                effect: { CS: 5, Asset: -5000, Autonomy: 10 },
+                effect: { CS: 5, Asset: 0, Autonomy: 10 },
                 verdict: "NEUTRAL",
                 feedback: "利便性を選びました。日常の摩擦は減りますが、指紋や顔認証が突破された場合のバックアップがありません。リスクを受け入れた選択です。",
                 lockRequirements: null
             },
             {
                 text: "生体認証＋パスコード。利便性より安全性を優先する。",
-                effect: { CS: 10, Asset: 0, Autonomy: -5 },
+                effect: { CS: 10, Asset: 0, Autonomy: 5 },
                 verdict: "NEUTRAL",
                 feedback: "安全性を選びました。毎日の手間は増えますが、万が一の時の被害を最小化できます。「面倒」を「保険」と捉える姿勢です。",
                 lockRequirements: null
@@ -171,7 +171,7 @@ export const stage8Questions: Question[] = [
         choices: [
             {
                 text: "本人確認のためなら仕方ない。免許証の表裏を撮影して送信する。",
-                effect: { CS: 0, Asset: -100000, Autonomy: -25 },
+                effect: { CS: -10, Asset: -100000, Autonomy: -25 },
                 verdict: "WARNING",
                 feedback: "身元情報の流出です。詐欺サイトに免許証画像を渡したら、あなた名義で借金や契約が行われる可能性があります。「本人確認」を装った詐欺は多発しています。",
                 lockRequirements: null
@@ -256,16 +256,16 @@ export const stage8Questions: Question[] = [
         choices: [
             {
                 text: "守るべき人格の一部。売買されること自体が間違っている。",
-                effect: { CS: 0, Asset: 0, Autonomy: 20 },
+                effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "NEUTRAL",
                 feedback: "プライバシー重視の回答です。原理的には正しいですが、現実のデジタル経済から離脱するコストは高く、機会損失も生じます。",
                 lockRequirements: null
             },
             {
                 text: "売買される商品。どうせ取られるなら、自分にも利益を還元させる。",
-                effect: { CS: 10, Asset: 5000, Autonomy: -10 },
+                effect: { CS: 0, Asset: 5000, Autonomy: -10 },
                 verdict: "NEUTRAL",
-                feedback: "実利的回答です。ポイント還元、無料サービス……データ提供の見返りを最大化する姿勢。ただし、一度渡した情報は取り戻せません。",
+                feedback: "実利的回答です。ポイント還元、無料サービス...データ提供の見返りを最大化する姿勢。ただし、一度渡した情報は取り戻せません。",
                 lockRequirements: null
             }
         ],

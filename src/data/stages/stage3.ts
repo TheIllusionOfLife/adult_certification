@@ -256,14 +256,14 @@ export const stage3Questions: Question[] = [
         choices: [
             {
                 text: "年収1000万。ストレスは代償として受け入れ、経済的安定を取る。",
-                effect: { CS: 10, Asset: 0, Autonomy: -15 },
+                effect: { CS: 10, Asset: 100000, Autonomy: -15 },
                 verdict: "NEUTRAL",
                 feedback: "経済優先の回答です。高収入は選択肢を広げます。しかし、ストレスで心身を壊せば、稼いだお金は治療費に消えます。",
                 lockRequirements: null
             },
             {
                 text: "年収500万で自由。お金より時間と健康を優先する。",
-                effect: { CS: 10, Asset: 10000, Autonomy: 20 },
+                effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "NEUTRAL",
                 feedback: "自由優先の回答です。自律した時間は創造性を生み、副収入の可能性も開きます。ただし、緊急時の余裕は少なくなります。",
                 lockRequirements: null

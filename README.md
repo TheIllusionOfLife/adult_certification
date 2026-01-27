@@ -67,6 +67,13 @@ Detailed documentation is available in the `docs/` directory:
 
 4.  Open `http://localhost:5173` in your browser.
 
+### Testing & Linting
+
+```bash
+bun test          # Run unit tests (88+ tests)
+npm run lint      # Run ESLint
+```
+
 ## 🏗️ Build
 
 To create a production build:

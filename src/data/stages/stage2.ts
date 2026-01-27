@@ -118,14 +118,14 @@ export const stage2Questions: Question[] = [
         choices: [
             {
                 text: "引き受ける。成長のためにリスクを取る。",
-                effect: { CS: 20, Asset: -5000, Autonomy: -10 },
+                effect: { CS: 20, Asset: 10000, Autonomy: -10 },
                 feedback: "野心的選択です。キャリアは加速しますが、プライベートの時間は犠牲になります。",
                 verdict: "NEUTRAL",
                 lockRequirements: null
             },
             {
                 text: "断る。今のワークライフバランスを守る。",
-                effect: { CS: -10, Asset: 5000, Autonomy: 15 },
+                effect: { CS: -10, Asset: 0, Autonomy: 15 },
                 feedback: "慎重な選択です。自律性は保たれますが、「やる気がない」と見られるリスクがあります。",
                 verdict: "NEUTRAL",
                 lockRequirements: null

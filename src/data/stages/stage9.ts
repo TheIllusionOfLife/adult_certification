@@ -118,14 +118,14 @@ export const stage9Questions: Question[] = [
         choices: [
             {
                 text: "自分だけ先に避難する。自分の安全を確保してから、救助に連絡する。",
-                effect: { CS: -5, Asset: 0, Autonomy: 15 },
+                effect: { CS: 5, Asset: 0, Autonomy: 10 },
                 verdict: "NEUTRAL",
                 feedback: "自己保存を優先しました。「てんでんこ」の精神では正解ですが、隣人が被災すれば「見捨てた」という後悔が残ります。救助に連絡しても、間に合わない可能性もあります。",
                 lockRequirements: null
             },
             {
                 text: "ギリギリまで説得を続ける。何とか一緒に避難したい。",
-                effect: { CS: 10, Asset: -20000, Autonomy: -10 },
+                effect: { CS: 10, Asset: 0, Autonomy: 5 },
                 verdict: "NEUTRAL",
                 feedback: "他者を見捨てない選択です。説得に成功すれば隣人を救えますが、時間を費やして自分も逃げ遅れるリスクがあります。「共倒れ」を防ぐには、説得に期限を設けるべきでした。",
                 lockRequirements: null
@@ -256,14 +256,14 @@ export const stage9Questions: Question[] = [
         choices: [
             {
                 text: "後悔しないために、できる限りの準備をする。コストをかけてでも備える。",
-                effect: { CS: 10, Asset: -20000, Autonomy: 15 },
+                effect: { CS: 15, Asset: -20000, Autonomy: 15 },
                 verdict: "NEUTRAL",
-                feedback: "予防投資型の回答です。防災グッズ、保険、訓練……準備にはコストがかかります。ただし、災害が来なければ「無駄」に見える投資でもあります。",
+                feedback: "予防投資型の回答です。防災グッズ、保険、訓練...準備にはコストがかかります。ただし、災害が来なければ「無駄」に見える投資でもあります。",
                 lockRequirements: null
             },
             {
                 text: "完璧な準備は諦め、適応力を鍛える。その分の資源を今の生活に使う。",
-                effect: { CS: 10, Asset: 0, Autonomy: 20 },
+                effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "NEUTRAL",
                 feedback: "適応力重視の回答です。基本的な備えは持ちつつ、過剰な準備は避ける。資源を「今」に振り向ける選択。ただし、想定外の規模の災害には脆弱です。",
                 lockRequirements: null
