@@ -146,7 +146,7 @@ export const stage3Questions: Question[] = [
         choices: [
             {
                 text: "投資で増やせばいいので、生活防衛資金は不要。",
-                effect: { CS: -25, Asset: -30000, Autonomy: -10 },
+                effect: { CS: -25, Asset: 0, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "致命的な誤りです。失業や病気で収入が止まった時、投資資産を底値で売却する羽目になります。生活費3〜6ヶ月分は現金で確保が鉄則。",
                 lockRequirements: null

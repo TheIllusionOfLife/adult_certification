@@ -63,7 +63,7 @@ The game uses three parameters, each with a distinct role in gameplay and narrat
 - Actually **the key resource** for True Ending
 - Game over if ≤ 0 (teaches consequences of passivity)
 - Often inversely related to CS (dilemmas: high CS vs high Autonomy)
-- Required for key skill collection (need 9/9 key skills for True Ending)
+- Required for key skill collection (need 10/10 key skills for True Ending)
 
 **Teaching Method**:
 - Stage 1: Show Autonomy gates choices (Q7 lock)
@@ -208,7 +208,7 @@ The game uses three parameters, each with a distinct role in gameplay and narrat
 ### True Ending Philosophy
 
 The True Ending requires:
-- Collecting 9/9 key skills (demonstrating high Autonomy across all stages)
+- Collecting 10/10 key skills (demonstrating high Autonomy across all stages)
 - Understanding that conformity (high CS) isn't the only path
 - Recognizing Autonomy as the "hidden" critical resource
 

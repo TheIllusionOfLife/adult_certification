@@ -118,7 +118,7 @@ export const stage5Questions: Question[] = [
         choices: [
             {
                 text: "マスクをすれば大丈夫。会議だけ出席して、すぐ帰る。",
-                effect: { CS: -30, Asset: -20000, Autonomy: -15 },
+                effect: { CS: -30, Asset: 0, Autonomy: -15 },
                 verdict: "WARNING",
                 feedback: "最悪の判断です。インフルエンザは発症後5日間、解熱後2日間は感染力があります。出勤して同僚10人に感染させ、チーム全体が機能停止。あなたの「責任感」が組織に大損害を与えました。",
                 lockRequirements: null
@@ -256,16 +256,16 @@ export const stage5Questions: Question[] = [
         choices: [
             {
                 text: "申請しない。自力で何とかする。自立こそが人間の尊厳。",
-                effect: { CS: 25, Asset: 5000, Autonomy: -5 },
+                effect: { CS: 25, Asset: -10000, Autonomy: -5 },
                 verdict: "NEUTRAL",
-                feedback: "自尊心優先の回答です。自力で乗り越えれば、達成感と貯蓄（節約分）が残ります。ただし、限界を超えると回復不能なダメージを負います。",
+                feedback: "自尊心優先の回答です。自力で乗り越えようとしますが、収入がない期間の生活費を切り詰めるため、資産が減ります。限界を超えると回復不能なダメージを負います。",
                 lockRequirements: null
             },
             {
                 text: "申請する。社会保障は「施し」ではなく、再起のための橋。",
-                effect: { CS: 5, Asset: -10000, Autonomy: 20 },
+                effect: { CS: 5, Asset: 5000, Autonomy: 20 },
                 verdict: "NEUTRAL",
-                feedback: "合理的回答です。制度を使うことで時間と余裕を買い、再就職の質を上げられます。ただし、制度利用中は資産形成が遅れます。",
+                feedback: "合理的回答です。生活保護を受けることで、当面の生活費が確保され、再就職活動に集中できます。制度を使うことは権利の行使です。",
                 lockRequirements: null
             }
         ],

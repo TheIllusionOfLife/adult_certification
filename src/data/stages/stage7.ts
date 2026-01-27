@@ -171,7 +171,7 @@ export const stage7Questions: Question[] = [
         choices: [
             {
                 text: "店員を待たせるのは悪いので、読まずにサインする。",
-                effect: { CS: 10, Asset: -30000, Autonomy: -25 },
+                effect: { CS: 0, Asset: -30000, Autonomy: -25 },
                 verdict: "WARNING",
                 feedback: "思考停止です。2年縛り、自動更新、高額オプション……読まずにサインした契約のすべてがあなたを縛ります。「時間がない」は言い訳です。",
                 lockRequirements: null
