@@ -8,7 +8,7 @@
 
 Each question needs **one image** (1024x1024 PNG) that:
 - Conveys the scenario visually
-- Has Dark Cartoon style, thick ink outlines, distorted perspective, dirty paper texture, limited color palette (black, white, red, yellow)
+- Has Dark Cartoon style, thick ink outlines, distorted perspective, limited color palette (black, white, red, yellow)
 
 ---
 
@@ -16,7 +16,7 @@ Each question needs **one image** (1024x1024 PNG) that:
 
 **Always prepend this to prompts:**
 ```
-Dark Cartoon style, thick ink outlines, distorted perspective, dirty paper texture, limited color palette (black, white, red, yellow), 1024x1024 PNG
+Dark Cartoon style, thick ink outlines, distorted perspective, limited color palette (black, white, red, yellow), 1024x1024 PNG
 ```
 
 ### Global Rules
@@ -99,16 +99,3 @@ Composition: monitor in foreground, watchers in mid-ground. Mood: oppressive sur
 - Filename: `s{N}_q{YY}.png` (e.g., `s2_q05.png`)
 - Location: `src/assets/`
 - Update `imagePath` field in question
-
----
-
-## Troubleshooting
-
-| Problem | Solution |
-|---------|----------|
-| Too realistic | Add: "hand-drawn, NOT realistic" |
-| Unclear composition | Use explicit layout: "left shows X, right shows Y, protagonist in center" |
-| Looks like poster | Reframe as narrative scene with characters, remove text labels |
-| Gibberish text | Avoid text-heavy elements, or specify exact short text |
-| Inconsistent with Stage 1 | Copy exact base style from existing images |
-| Too complex | For comparison scenes, show protagonist experiencing the choice, not a diagram explaining it |

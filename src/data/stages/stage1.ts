@@ -268,7 +268,7 @@ export const stage1Questions: Question[] = [
                 text: "ルールを理解し、必要なら使いこなすこと。",
                 effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "NEUTRAL",
-                feedback: "自律的回答です。システムを道具として見る視点。危険ですが、正しいです。True Endingへの鍵は、ここにあります。",
+                feedback: "自律的回答です。システムを道具として見る視点。危険ですが、正しいです。",
                 lockRequirements: null
             }
         ],
