@@ -331,8 +331,8 @@ export interface SkillActivation {
 
 /**
  * Get a list of skill activations for UI display.
- * Returns skills that actually modified the effect.
- * Tracks per-skill deltas to accurately attribute changes.
+ * Returns one activation per effect that actually modified a stat.
+ * Each activation shows the correct description and stat values for that effect.
  */
 export function getSkillActivations(
     originalEffect: Effect,
@@ -342,7 +342,7 @@ export function getSkillActivations(
 ): SkillActivation[] {
     const activations: SkillActivation[] = [];
 
-    // Track cumulative state to compute per-skill deltas
+    // Track cumulative state to compute per-effect deltas
     let currentState = { ...originalEffect };
 
     activeSkills.forEach((skill) => {
@@ -358,46 +358,45 @@ export function getSkillActivations(
         // Skip skills with no effects
         if (skillEffects.length === 0) return;
 
-        // Calculate state before and after this skill's effects
-        const stateBeforeSkill = { ...currentState };
+        // Apply each effect individually and report activations
         skillEffects.forEach((eff) => {
+            const stateBeforeEffect = { ...currentState };
             currentState = applySingleEffect(eff, currentState, question);
-        });
-        const stateAfterSkill = currentState;
+            const stateAfterEffect = currentState;
 
-        // Check if this skill actually changed anything
-        const csChanged = stateBeforeSkill.CS !== stateAfterSkill.CS;
-        const assetChanged = stateBeforeSkill.Asset !== stateAfterSkill.Asset;
-        const autonomyChanged = stateBeforeSkill.Autonomy !== stateAfterSkill.Autonomy;
+            // Check which stat this effect changed
+            const csChanged = stateBeforeEffect.CS !== stateAfterEffect.CS;
+            const assetChanged = stateBeforeEffect.Asset !== stateAfterEffect.Asset;
+            const autonomyChanged = stateBeforeEffect.Autonomy !== stateAfterEffect.Autonomy;
 
-        if (csChanged || assetChanged || autonomyChanged) {
-            // Determine which stat changed most significantly for description
-            const primaryEffect = skillEffects[0];
-            const handler = EFFECT_HANDLERS[primaryEffect.type];
-            const description = handler?.description ?? 'スキル効果';
+            // Only report if this specific effect caused a change
+            if (csChanged || assetChanged || autonomyChanged) {
+                const handler = EFFECT_HANDLERS[eff.type];
+                const description = handler?.description ?? 'スキル効果';
 
-            // Report the most significant change
-            let originalValue: number;
-            let modifiedValue: number;
+                // Report the stat that actually changed
+                let originalValue: number;
+                let modifiedValue: number;
 
-            if (csChanged) {
-                originalValue = stateBeforeSkill.CS;
-                modifiedValue = stateAfterSkill.CS;
-            } else if (assetChanged) {
-                originalValue = stateBeforeSkill.Asset;
-                modifiedValue = stateAfterSkill.Asset;
-            } else {
-                originalValue = stateBeforeSkill.Autonomy;
-                modifiedValue = stateAfterSkill.Autonomy;
+                if (csChanged) {
+                    originalValue = stateBeforeEffect.CS;
+                    modifiedValue = stateAfterEffect.CS;
+                } else if (assetChanged) {
+                    originalValue = stateBeforeEffect.Asset;
+                    modifiedValue = stateAfterEffect.Asset;
+                } else {
+                    originalValue = stateBeforeEffect.Autonomy;
+                    modifiedValue = stateAfterEffect.Autonomy;
+                }
+
+                activations.push({
+                    skillName: skill.name,
+                    description,
+                    originalValue,
+                    modifiedValue,
+                });
             }
-
-            activations.push({
-                skillName: skill.name,
-                description,
-                originalValue,
-                modifiedValue,
-            });
-        }
+        });
     });
 
     return activations;
