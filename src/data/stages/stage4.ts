@@ -5,7 +5,7 @@ export const stage4Questions: Question[] = [
     {
         id: "s4_q01",
         category: "ADMIN",
-        text: "引越し後の手続き。住民票、マイナンバーカード、運転免許証、銀行……全部やる必要がある？",
+        text: "引越し後の手続き。住民票、マイナンバーカード、運転免許証、銀行...全部やる必要がある？",
         imagePrompt: "Scene: a maze of government buildings with different counters; a checklist floating with many items; confused citizen holding moving boxes. Composition: bureaucratic labyrinth with multiple paths. Mood: overwhelm, procedural complexity.",
         imagePath: "s4_q01.png",
         choices: [
@@ -209,7 +209,7 @@ export const stage4Questions: Question[] = [
             },
             {
                 text: "まず負債の有無を調査し、必要なら相続放棄を検討する。期限は3ヶ月。",
-                effect: { CS: 10, Asset: 0, Autonomy: 10 },
+                effect: { CS: 10, Asset: 100000, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。相続は「資産」だけでなく「負債」も含みます。調査してから判断することで、隠れた借金を回避できます。",
                 lockRequirements: null
@@ -235,7 +235,7 @@ export const stage4Questions: Question[] = [
             },
             {
                 text: "様子を見る。税務調査が来なければ問題ない可能性もある。",
-                effect: { CS: -10, Asset: 0, Autonomy: -10 },
+                effect: { CS: -10, Asset: -50000, Autonomy: -10 },
                 verdict: "NEUTRAL",
                 feedback: "リスクを取る選択です。調査が来なければ支出ゼロですが、発覚すれば加算税と延滞税で負担増。数年間「いつか来るかも」という不安を抱えることになります。",
                 lockRequirements: null
@@ -258,7 +258,7 @@ export const stage4Questions: Question[] = [
                 text: "従った。ルールを守ることで、最終的には解決した。",
                 effect: { CS: 10, Asset: 0, Autonomy: -15 },
                 verdict: "NEUTRAL",
-                feedback: "順応的回答です。ルールに従う姿勢は確実な結果をもたらします。ただし、ルールが不合理な時も従い続けますか？",
+                feedback: "順応的回答です。ルールに従う姿勢は確実な結果をもたらします。",
                 lockRequirements: null
             },
             {

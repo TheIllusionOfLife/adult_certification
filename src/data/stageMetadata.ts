@@ -12,7 +12,7 @@ const stage1Definition: StageDefinition = {
     theme: 'Social Basics',
     themeJP: '社会の基本',
     keySkillId: 'MEDIATION',
-    initialParams: { CS: 50, Asset: 200000, Autonomy: 50 }, // Higher Asset for Stage 1
+    initialParams: { CS: 50, Asset: 200000, Autonomy: 50 }, // Higher Asset
     skills: {
         offer1: [
             createNormalSkill(
@@ -233,6 +233,7 @@ const stage6Definition: StageDefinition = {
     theme: 'Life Contracts',
     themeJP: '契約の攻防',
     keySkillId: 'NEGOTIATION_PROTOCOL',
+    initialParams: { CS: 50, Asset: 250000, Autonomy: 50 }, // Higher Asset
     skills: {
         offer1: [
             createNormalSkill(
@@ -277,6 +278,7 @@ const stage7Definition: StageDefinition = {
     theme: 'Legal Protection',
     themeJP: '法の盾',
     keySkillId: 'CONTRACT_LITERACY',
+    initialParams: { CS: 50, Asset: 500000, Autonomy: 50 }, // Higher Asset
     skills: {
         offer1: [
             createNormalSkill(

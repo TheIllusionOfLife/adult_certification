@@ -261,7 +261,7 @@ export const stage1Questions: Question[] = [
                 text: "空気を読み、波風を立てないこと。",
                 effect: { CS: 30, Asset: 0, Autonomy: -20 },
                 verdict: "NEUTRAL",
-                feedback: "服従的回答です。社会はあなたを歓迎します。しかし、あなたは社会の歯車として最適化されました。それで幸せですか？",
+                feedback: "服従的回答です。社会はあなたを歓迎します。あなたは社会の歯車として最適化されました。",
                 lockRequirements: null
             },
             {

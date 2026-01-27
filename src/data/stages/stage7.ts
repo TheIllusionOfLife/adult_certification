@@ -125,7 +125,7 @@ export const stage7Questions: Question[] = [
             },
             {
                 text: "断る。不当な条件で仕事をしても、搾取の連鎖が続くだけ。",
-                effect: { CS: -5, Asset: -10000, Autonomy: 20 },
+                effect: { CS: -5, Asset: 0, Autonomy: 20 },
                 verdict: "NEUTRAL",
                 feedback: "原則重視の選択です。自分の価値を守りましたが、この案件と大手との繋がりを失いました。フリーランスの立場の弱さと、「断る勇気」のコストを実感しました。",
                 lockRequirements: null

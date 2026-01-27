@@ -18,7 +18,7 @@ export const stage5Questions: Question[] = [
             },
             {
                 text: "「高額療養費制度」を使い、自己負担を上限額に抑える。事前に限度額適用認定証を取得。",
-                effect: { CS: 10, Asset: 0, Autonomy: 15 },
+                effect: { CS: 10, Asset: 100000, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。公的制度を知っているだけで数十万円の差。限度額適用認定証があれば、窓口での支払いも上限額で済みます。",
                 lockRequirements: null
@@ -46,7 +46,7 @@ export const stage5Questions: Question[] = [
             },
             {
                 text: "傷病手当金を申請する。給与の約2/3が最長1年6ヶ月支給される。",
-                effect: { CS: 10, Asset: 0, Autonomy: 10 },
+                effect: { CS: 10, Asset: 150000, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。会社員の特権である健康保険の傷病手当金。申請主義なので、自分から動かないと受け取れません。",
                 lockRequirements: null
@@ -125,7 +125,7 @@ export const stage5Questions: Question[] = [
             },
             {
                 text: "休む。健康を失えばキャリアも終わる。上司に状況を説明し、締切延長を交渉する。",
-                effect: { CS: -10, Asset: -5000, Autonomy: 15 },
+                effect: { CS: 0, Asset: 0, Autonomy: 15 },
                 verdict: "NEUTRAL",
                 feedback: "健康優先の選択です。締切に間に合わなければ評価に影響しますが、長期的な働く力を守りました。ただし「休むべき時に休める職場か」という問いも残ります。",
                 lockRequirements: null
@@ -146,14 +146,14 @@ export const stage5Questions: Question[] = [
         choices: [
             {
                 text: "自己都合だと失業保険はもらえないと思い、申請しない。",
-                effect: { CS: -20, Asset: -50000, Autonomy: -10 },
+                effect: { CS: -20, Asset: 0, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "大損です。自己都合退職でも給付制限（2〜3ヶ月待機）後に受給可能。申請しないのは権利の放棄です。",
                 lockRequirements: null
             },
             {
                 text: "申請する。自己都合でも給付制限期間後に受給できる。待機中は就職活動を進める。",
-                effect: { CS: 10, Asset: 0, Autonomy: 10 },
+                effect: { CS: 10, Asset: 100000, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。給付制限期間は転職準備に充て、制限明けから受給。制度を理解して計画的に動くことが大切です。",
                 lockRequirements: null
@@ -202,14 +202,14 @@ export const stage5Questions: Question[] = [
         choices: [
             {
                 text: "50万円を貯めるか、借りるしかない。",
-                effect: { CS: -10, Asset: -500000, Autonomy: -5 },
+                effect: { CS: -10, Asset: 0, Autonomy: -5 },
                 verdict: "WARNING",
                 feedback: "制度の見落としです。出産育児一時金（50万円）が健康保険から支給されます。直接支払制度を使えば、窓口負担はほぼゼロにできます。知らなかったために50万円を自己負担しました。",
                 lockRequirements: null
             },
             {
                 text: "出産育児一時金（50万円）の直接支払制度を使い、自己負担を最小化する。",
-                effect: { CS: 10, Asset: 0, Autonomy: 10 },
+                effect: { CS: 10, Asset: 500000, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。出産は「病気ではない」ため保険適用外ですが、一時金で実質カバーされます。制度を知れば、出産のハードルは下がります。",
                 lockRequirements: null
@@ -227,14 +227,14 @@ export const stage5Questions: Question[] = [
         choices: [
             {
                 text: "生活保護は最後の手段。親戚に頭を下げて借金する。",
-                effect: { CS: 5, Asset: 30000, Autonomy: -20 },
+                effect: { CS: -5, Asset: 30000, Autonomy: -10 },
                 verdict: "NEUTRAL",
                 feedback: "プライドを守る選択です。しかし、借金は返済義務が発生し、親戚関係も複雑になります。「援助」ではなく「負債」を選びました。",
                 lockRequirements: null
             },
             {
                 text: "生活保護を申請する。困窮時の公的支援は権利であり、恥ではない。",
-                effect: { CS: -10, Asset: 0, Autonomy: 15 },
+                effect: { CS: 0, Asset: 100000, Autonomy: 0 },
                 verdict: "NEUTRAL",
                 feedback: "合理的な選択です。生活保護は「税金で生きる」のではなく「再起するための一時的支援」。制度を使って立て直すことは、自立への第一歩です。",
                 lockRequirements: { Autonomy: 70 },
@@ -256,14 +256,14 @@ export const stage5Questions: Question[] = [
         choices: [
             {
                 text: "申請しない。自力で何とかする。自立こそが人間の尊厳。",
-                effect: { CS: 10, Asset: -10000, Autonomy: -5 },
+                effect: { CS: 10, Asset: -100000, Autonomy: 10 },
                 verdict: "NEUTRAL",
                 feedback: "自尊心優先の回答です。自力で乗り越えようとしますが、収入がない期間の生活費を切り詰めるため、資産が減ります。限界を超えると回復不能なダメージを負います。",
                 lockRequirements: null
             },
             {
                 text: "申請する。社会保障は「施し」ではなく、再起のための橋。",
-                effect: { CS: 5, Asset: 5000, Autonomy: 20 },
+                effect: { CS: 0, Asset: 100000, Autonomy: 0 },
                 verdict: "NEUTRAL",
                 feedback: "合理的回答です。生活保護を受けることで、当面の生活費が確保され、再就職活動に集中できます。制度を使うことは権利の行使です。",
                 lockRequirements: null

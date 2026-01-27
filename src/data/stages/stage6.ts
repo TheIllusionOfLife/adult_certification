@@ -5,20 +5,20 @@ export const stage6Questions: Question[] = [
     {
         id: "s6_q01",
         category: "HOUSING",
-        text: "初めての一人暮らし。賃貸契約で「敷金1ヶ月・礼金1ヶ月・仲介手数料1ヶ月」と言われた。交渉の余地は？",
+        text: "初めての一人暮らし。賃貸契約で「礼金1ヶ月・仲介手数料1ヶ月」と言われた。交渉の余地は？",
         imagePrompt: "Scene: a rental contract with multiple fee items highlighted; young tenant facing real estate agent; money flowing out. Composition: initial costs breakdown, negotiation opportunity hints. Mood: first-time vulnerability, hidden flexibility.",
         imagePath: "s6_q01.png",
         choices: [
             {
                 text: "「相場だから仕方ない」と全額払う。",
-                effect: { CS: 0, Asset: -80000, Autonomy: -10 },
+                effect: { CS: 0, Asset: -100000, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "機会損失です。礼金は交渉で減額できることが多く、仲介手数料は法的上限（賃料1ヶ月分）を超えている場合も。言い値で払うと損をします。",
                 lockRequirements: null
             },
             {
                 text: "礼金の減額と仲介手数料の根拠を確認し、交渉を試みる。",
-                effect: { CS: 5, Asset: -50000, Autonomy: 15 },
+                effect: { CS: 0, Asset: -25000, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。礼金は慣習であり法的義務ではなく、仲介手数料は原則「貸主・借主で折半」（宅建業法46条）。知識があれば交渉できます。",
                 lockRequirements: null
@@ -39,14 +39,14 @@ export const stage6Questions: Question[] = [
         choices: [
             {
                 text: "金利が一番低い銀行を選ぶ。金利がすべて。",
-                effect: { CS: -10, Asset: -30000, Autonomy: 0 },
+                effect: { CS: -10, Asset: -100000, Autonomy: 0 },
                 verdict: "WARNING",
                 feedback: "視野狭窄です。事務手数料、保証料、団信保険料、繰上返済手数料……金利以外のコストで数十万円の差が出ます。総支払額で比較しないと損をします。",
                 lockRequirements: null
             },
             {
                 text: "金利、手数料、保証料、団信条件、繰上返済条件を総合的に比較し、総支払額で判断する。",
-                effect: { CS: 5, Asset: 200000, Autonomy: 10 },
+                effect: { CS: 5, Asset: -40000, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。35年ローンでは0.1%の金利差が数十万円になります。複数要素を比較し、本当の「安さ」を見極める力が必要です。",
                 lockRequirements: null
@@ -100,7 +100,7 @@ export const stage6Questions: Question[] = [
             },
             {
                 text: "定期借家は「更新なし」を確認し、長期居住なら普通借家を探す。",
-                effect: { CS: 5, Asset: 0, Autonomy: 15 },
+                effect: { CS: 5, Asset: -50000, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。定期借家は家賃が安いことが多いですが、契約終了時に更新請求権がありません。転勤予定など短期なら定期借家、長期居住なら普通借家と使い分けるのが賢明です。",
                 lockRequirements: null
@@ -112,15 +112,15 @@ export const stage6Questions: Question[] = [
     {
         id: "s6_q05",
         category: "HOUSING",
-        text: "理想の物件を見つけたが、予算より2万円高い。他に良い物件はなさそう。",
+        text: "理想の物件を見つけたが、予算より1万円高い。他に良い物件はなさそう。",
         imagePrompt: "Scene: Perfect apartment listing printout showing dream unit, laptop screen displaying monthly budget spreadsheet with negative balance in red, calculator showing yearly total. Composition: Dream listing vs harsh numbers side by side. Mood: Desire meeting reality.",
         imagePath: "s6_q05.png",
         choices: [
             {
                 text: "予算オーバーだが、この物件を逃したくない。契約する。",
-                effect: { CS: 5, Asset: -240000, Autonomy: 10 },
+                effect: { CS: 5, Asset: -120000, Autonomy: 10 },
                 verdict: "NEUTRAL",
-                feedback: "決断の選択です。年間24万円の追加出費。理想を叶えましたが、他の出費を切り詰める必要があります。「住居の満足」と「金銭的余裕」のトレードオフを選びました。",
+                feedback: "決断の選択です。年間12万円の追加出費。理想を叶えましたが、他の出費を切り詰める必要があります。「住居の満足」と「金銭的余裕」のトレードオフを選びました。",
                 lockRequirements: null
             },
             {
@@ -250,20 +250,20 @@ export const stage6Questions: Question[] = [
     {
         id: "s6_q10",
         category: "HOUSING",
-        text: "30歳、40歳、70歳……人生の各段階で『住まい』の意味は変わる。今のあなたにとって住まいとは何ですか？",
+        text: "30歳、40歳、70歳...人生の各段階で『住まい』の意味は変わる。今のあなたにとって住まいとは何ですか？",
         imagePrompt: "Scene: Cardboard boxes half-packed frozen mid-move, some sealed with old address labels, collection of keys from different apartments hanging together on single ring. Composition: Moving chaos snapshot, keys as focal point. Mood: Impermanence as constant, every home a chapter.",
         imagePath: "s6_q10.png",
         choices: [
             {
                 text: "安定の基盤。今のうちに根を下ろし、将来の住居不安を解消する。",
-                effect: { CS: 5, Asset: 0, Autonomy: 10 },
+                effect: { CS: 15, Asset: 0, Autonomy: 5 },
                 verdict: "NEUTRAL",
                 feedback: "長期安定志向の回答です。持ち家は老後の住居不安を解消します。しかし、ライフステージの変化に対応しづらく、売却時に想定外の損失が出ることも。",
                 lockRequirements: null
             },
             {
                 text: "移動の自由。人生の変化に合わせて、住まいも変えていく。",
-                effect: { CS: 5, Asset: 0, Autonomy: 10 },
+                effect: { CS: 5, Asset: 0, Autonomy: 15 },
                 verdict: "NEUTRAL",
                 feedback: "柔軟適応型の回答です。賃貸は転職・家族構成の変化に対応しやすいです。ただし、引越しコストと高齢時の賃貸難民リスクを背負います。",
                 lockRequirements: null
