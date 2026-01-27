@@ -246,31 +246,31 @@ export const stage7Questions: Question[] = [
         }
     },
 
-    // Q10: Philosophy (LEGAL) - Law as protection vs restriction
+    // Q10: Philosophy (LEGAL) - Law as protection vs restriction [POWER ANALYSIS]
     {
         id: "s7_q10",
         category: "LEGAL",
-        text: "Stage 7の最終問題。あなたにとって「法律」とは何ですか？",
-        imagePrompt: "Scene: protagonist facing a massive legal code book; one path shows law as shield protecting; other shows law as chains restricting. Composition: protection vs constraint duality. Mood: philosophical reflection on rules.",
+        text: "力ある者は法を『秩序の道具』と見なし、力なき者は『身を守る武器』と見なす。あなたはどちらの視点で法律を見ていますか？",
+        imagePrompt: "Scene: protagonist at crossroads; one path shows powerful figures using law as order tool; other shows vulnerable using law as shield. Composition: power asymmetry with law at center. Mood: meta-reflection on legal systems.",
         imagePath: "s7_q10.png",
         choices: [
             {
-                text: "社会秩序を守るルール。従うことで安全と信用が得られる。",
-                effect: { CS: 30, Asset: 0, Autonomy: -15 },
+                text: "秩序の道具。法を守り、社会の安定に貢献する側でいたい。",
+                effect: { CS: 30, Asset: 10000, Autonomy: -20 },
                 verdict: "NEUTRAL",
-                feedback: "順法的回答です。法を守る姿勢は社会からの信頼を得ます。しかし、法は「最低限のライン」。法を守るだけでは、自分を守れないこともあります。",
+                feedback: "体制順応型の回答です。法を守る姿勢は信用と安定をもたらします。しかし、不当な法や運用に直面した時、従い続けることが正義ですか？",
                 lockRequirements: null
             },
             {
-                text: "自分を守るための武器。知って使いこなせば、不当な力から身を守れる。",
-                effect: { CS: 5, Asset: 0, Autonomy: 20 },
+                text: "身を守る武器。弱い立場だからこそ、法を知り、使いこなす。",
+                effect: { CS: 10, Asset: 0, Autonomy: 25 },
                 verdict: "NEUTRAL",
-                feedback: "戦略的回答です。法は「弱者の武器」にもなりえます。クーリングオフ、消費者保護、労働法……知識があれば、力のある相手とも対等に戦えます。",
+                feedback: "自己防衛型の回答です。法を武器にする発想は、力の非対称を補います。消費者保護法、労働基準法……知識は力なき者の盾です。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "最終問題です。法律との関係を定義してください。",
+            intro: "最終問題です。あなたは法をどの立場から見ていますか？",
             after: "Stage 7を終了します。審査結果を算出中..."
         }
     }

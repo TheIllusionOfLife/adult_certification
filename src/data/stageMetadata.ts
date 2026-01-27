@@ -36,7 +36,7 @@ export const STAGE_1_METADATA: StageMetadata = {
             {
                 id: "s1_normal_03",
                 name: "印象操作",
-                desc: "全ての信用度低下を50%軽減します。",
+                desc: "全ての社会的信用低下を50%軽減します。",
                 effect: { type: "cs_damage_reduction", value: 0.5 },
                 category: "normal",
                 isRecommended: true
@@ -98,7 +98,7 @@ export const STAGE_2_METADATA: StageMetadata = {
             {
                 id: "s2_normal_03",
                 name: "労働法知識",
-                desc: "LABOR系質問での信用度低下を40%軽減します。法的知識は盾になります。",
+                desc: "LABOR系質問での社会的信用低下を40%軽減します。法的知識は盾になります。",
                 effect: { type: "category_cs_damage_reduction", value: 0.4, category: "LABOR" },
                 category: "normal",
                 isRecommended: true
@@ -147,7 +147,7 @@ export const STAGE_3_METADATA: StageMetadata = {
             {
                 id: "s3_normal_02",
                 name: "予算意識",
-                desc: "全ての信用度増加を25%強化します。計画的な金銭感覚が評価されます。",
+                desc: "全ての社会的信用増加を25%強化します。計画的な金銭感覚が評価されます。",
                 effect: { type: "cs_gain_amplification", value: 0.25 },
                 category: "normal",
                 isRecommended: true
@@ -204,7 +204,7 @@ export const STAGE_4_METADATA: StageMetadata = {
             {
                 id: "s4_normal_02",
                 name: "窓口対応力",
-                desc: "ADMIN系質問での信用度減少を35%軽減します。官僚制との付き合い方を心得ています。",
+                desc: "ADMIN系質問での社会的信用減少を35%軽減します。官僚制との付き合い方を心得ています。",
                 effect: { type: "category_cs_damage_reduction", value: 0.35, category: "ADMIN" },
                 category: "normal",
                 isRecommended: true
@@ -214,7 +214,7 @@ export const STAGE_4_METADATA: StageMetadata = {
             {
                 id: "s4_normal_03",
                 name: "期限管理",
-                desc: "全ての信用度減少を30%軽減します。締め切りを守る習慣が信用を守ります。",
+                desc: "全ての社会的信用減少を30%軽減します。締め切りを守る習慣が信用を守ります。",
                 effect: { type: "cs_damage_reduction", value: 0.3 },
                 category: "normal",
                 isRecommended: true
@@ -271,7 +271,7 @@ export const STAGE_5_METADATA: StageMetadata = {
             {
                 id: "s5_normal_03",
                 name: "社会保障知識",
-                desc: "HEALTH系質問での信用度減少を40%軽減します。制度を知る者は賢明と評価されます。",
+                desc: "HEALTH系質問での社会的信用減少を40%軽減します。制度を知る者は賢明と評価されます。",
                 effect: { type: "category_cs_damage_reduction", value: 0.4, category: "HEALTH" },
                 category: "normal",
                 isRecommended: true
@@ -318,7 +318,7 @@ export const STAGE_6_METADATA: StageMetadata = {
             {
                 id: "s6_normal_02",
                 name: "交渉準備力",
-                desc: "HOUSING系質問での信用度増加を30%強化します。準備された交渉は信頼を勝ち取ります。",
+                desc: "HOUSING系質問での社会的信用増加を30%強化します。準備された交渉は信頼を勝ち取ります。",
                 effect: { type: "category_cs_gain_amplification", value: 0.3, category: "HOUSING" },
                 category: "normal",
                 isRecommended: true
@@ -368,7 +368,7 @@ export const STAGE_7_METADATA: StageMetadata = {
             {
                 id: "s7_normal_01",
                 name: "消費者権利知識",
-                desc: "LEGAL系質問での信用度減少を40%軽減します。権利を知る消費者は守られます。",
+                desc: "LEGAL系質問での社会的信用減少を40%軽減します。権利を知る消費者は守られます。",
                 effect: { type: "category_cs_damage_reduction", value: 0.4, category: "LEGAL" },
                 category: "normal",
                 isRecommended: true
@@ -425,7 +425,7 @@ export const STAGE_8_METADATA: StageMetadata = {
             {
                 id: "s8_normal_01",
                 name: "セキュリティ意識",
-                desc: "SEC系質問での信用度減少を35%軽減します。デジタル衛生を保つ意識があります。",
+                desc: "SEC系質問での社会的信用減少を35%軽減します。デジタル衛生を保つ意識があります。",
                 effect: { type: "category_cs_damage_reduction", value: 0.35, category: "SEC" },
                 category: "normal",
                 isRecommended: true

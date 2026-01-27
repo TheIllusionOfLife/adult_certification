@@ -240,7 +240,7 @@ export class UIManager {
                 // Generate simple lock reason text
                 const req = c.lockRequirements;
                 const parts: string[] = [];
-                if (req.CS !== undefined) parts.push(`信用度が${req.CS}以上必要`);
+                if (req.CS !== undefined) parts.push(`社会的信用が${req.CS}以上必要`);
                 if (req.Asset !== undefined) parts.push(`資産が${req.Asset.toLocaleString()}円以上必要`);
                 if (req.Autonomy !== undefined) parts.push(`自律性が${req.Autonomy}以上必要`);
                 content += `<div class="lock-reason">${parts.join('、')}</div>`;
@@ -308,7 +308,7 @@ export class UIManager {
         this.dom.ovBody.innerHTML = mainFeedback + skillMessagesHTML;
         this.dom.ovStats.innerHTML = `
             <div class="stat-result ${getAnimClass(CS)}">
-                <span style="font-size:0.8em">信用度</span><br>
+                <span style="font-size:0.8em">社会的信用</span><br>
                 <span style="font-size:1.2em; font-weight:bold">${CS > 0 ? '+' : ''}${CS}</span>
             </div>
             <div class="stat-result ${getAnimClass(Asset)}">
@@ -480,7 +480,7 @@ export class UIManager {
             <strong style="font-size:2.5rem; color:var(--accent-color)">${ending.rank}</strong><br>
             <span style="font-size:1.2rem; color:var(--accent-color)">${ending.title}</span><br><br>
             <div style="font-size:0.9rem; color:#888; margin-bottom: 15px;">
-                信用度: ${s.CS} / 資産: ${s.Asset.toLocaleString()}円 / 自律性: ${s.Autonomy}
+                社会的信用: ${s.CS} / 資産: ${s.Asset.toLocaleString()}円 / 自律性: ${s.Autonomy}
             </div>
             <div class="adam-comment-section">
                 <img src="${this.dom.mascotImg.src}" alt="A.D.A.M." class="adam-comment-img" />

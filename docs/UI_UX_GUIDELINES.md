@@ -26,7 +26,7 @@ Always use Japanese display names in the UI:
 
 | Internal Name | Display Name | Location |
 |--------------|--------------|----------|
-| CS | 信用度 | HUD, feedback, stats |
+| CS | 社会的信用 | HUD, feedback, stats |
 | Asset | 資産 | HUD, feedback, stats |
 | Autonomy | 自律性 | HUD, feedback, stats |
 
@@ -90,7 +90,7 @@ Use simple Japanese, NOT technical format:
 ```
 自律性が30以上必要
 資産が100,000円以上必要
-信用度が50以上必要
+社会的信用が50以上必要
 ```
 
 **❌ Wrong**:
@@ -229,7 +229,7 @@ Use "減少" not "ダメージ":
 ```
 全ての自律性減少を30%軽減します。
 全ての資産減少を30%軽減します。
-全ての信用度低下を50%軽減します。
+全ての社会的信用低下を50%軽減します。
 ```
 
 **❌ Wrong**:

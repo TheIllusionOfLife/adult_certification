@@ -231,7 +231,7 @@ export const stage2Questions: Question[] = [
                 feedback: "連帯の選択です。同僚は救われる可能性が上がりました。しかし、あなたも「要注意人物」としてマークされます。報復人事のリスクを背負いました。",
                 verdict: "NEUTRAL",
                 lockRequirements: { CS: 60 },
-                lockedFeedback: "LOCKED: 信用度が60以上必要 - 職場での評判が低く、証言者として信用されません。"
+                lockedFeedback: "LOCKED: 社会的信用が60以上必要 - 職場での評判が低く、証言者として信用されません。"
             },
             {
                 text: "断る。「証拠集めと労基署への相談を勧めるけど、巻き込まれたくない」と正直に伝える。",
@@ -246,31 +246,31 @@ export const stage2Questions: Question[] = [
         }
     },
 
-    // Q10: Work Philosophy (CAREER) - Philosophy
+    // Q10: Work Philosophy (CAREER) - Philosophy [SCENARIO FRAMING]
     {
         id: "s2_q10",
         category: "CAREER",
-        text: "Stage 2の最終問題。あなたにとって「仕事」とは何ですか？",
-        imagePrompt: "Scene: a worker standing at a crossroads; one path leads to a golden cage (comfortable but confined); another to an open road with storms but freedom; A.D.A.M.'s eye watching from above. Composition: figure center at fork, paths diverging dramatically, omniscient eye overhead. Mood: existential choice, definition of self, judgment.",
+        text: "5年後、キャリアの選択肢が出た。昇進コース（安定）かスペシャリスト（自由）か。あなたにとって『仕事』の本質は？",
+        imagePrompt: "Scene: a worker standing at a crossroads; one path leads to a corporate ladder (promotion, stability); another to a solo workshop (specialist, freedom); A.D.A.M.'s eye watching from above. Composition: figure center at fork, paths diverging dramatically, omniscient eye overhead. Mood: career crossroads, self-definition.",
         imagePath: "s2_q10.png",
         choices: [
             {
-                text: "生活のための手段。波風を立てず、淡々とこなす。",
+                text: "昇進を選ぶ。組織の中で評価され、安定を得る。",
                 effect: { CS: 30, Asset: 0, Autonomy: -20 },
-                feedback: "服従的回答です。安定した歯車として機能します。しかし、歯車は交換可能です。",
+                feedback: "組織適応型の回答です。昇進は安定と信用をもたらします。しかし、組織の都合に人生が左右されます。",
                 verdict: "NEUTRAL",
                 lockRequirements: null
             },
             {
-                text: "対等な契約関係。権利を守りながら、価値を提供する。",
+                text: "スペシャリストを選ぶ。自分の価値で勝負し、自由を得る。",
                 effect: { CS: 5, Asset: 0, Autonomy: 25 },
-                feedback: "自律的回答です。契約は双方向のもの。搾取されない姿勢は、長期的な生存戦略です。",
+                feedback: "自立志向型の回答です。専門性は自由をもたらします。ただし、自分を売り込む力がないと生き残れません。",
                 verdict: "NEUTRAL",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "最終問題です。あなたの仕事観を見せてください。",
+            intro: "最終問題です。5年後のあなたを定義してください。",
             after: "Stage 2を終了します。審査結果を算出中..."
         }
     }

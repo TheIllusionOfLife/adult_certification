@@ -238,7 +238,7 @@ export const stage6Questions: Question[] = [
                 verdict: "NEUTRAL",
                 feedback: "挑戦的な選択です。交渉は決裂するリスクがありますが、更新料が減額される可能性もあります。契約上の力関係に挑む姿勢を見せました。",
                 lockRequirements: { CS: 50 },
-                lockedFeedback: "LOCKED: 信用度が50以上必要。社会的信用が低いと、大家との交渉で不利になります。"
+                lockedFeedback: "LOCKED: 社会的信用が50以上必要。社会的信用が低いと、大家との交渉で不利になります。"
             }
         ],
         adamDialogue: {
@@ -246,31 +246,31 @@ export const stage6Questions: Question[] = [
         }
     },
 
-    // Q10: Philosophy (HOUSING) - Stability vs flexibility in housing
+    // Q10: Philosophy (HOUSING) - Stability vs flexibility in housing [LIFECYCLE FRAMING]
     {
         id: "s6_q10",
         category: "HOUSING",
-        text: "Stage 6の最終問題。あなたにとって「住まい」とは何ですか？",
-        imagePrompt: "Scene: protagonist between two visions; one shows rooted tree (ownership/stability); other shows bird flying (renting/mobility). Composition: permanence vs freedom. Mood: life philosophy divide.",
+        text: "30歳、40歳、70歳……人生の各段階で『住まい』の意味は変わる。今のあなたにとって住まいとは何ですか？",
+        imagePrompt: "Scene: protagonist seeing three versions of self at different ages; each with different housing needs; lifecycle timeline with changing priorities. Composition: age progression with housing evolution. Mood: life stage reflection, long-term planning.",
         imagePath: "s6_q10.png",
         choices: [
             {
-                text: "安定の基盤。持ち家を持ち、一箇所に根を下ろして生きていく。",
-                effect: { CS: 20, Asset: 0, Autonomy: -10 },
+                text: "安定の基盤。今のうちに根を下ろし、将来の住居不安を解消する。",
+                effect: { CS: 25, Asset: 0, Autonomy: -15 },
                 verdict: "NEUTRAL",
-                feedback: "定着的回答です。持ち家は資産になり、安定をもたらします。しかし、35年ローンはあなたの人生を土地に縛り付けます。それで満足ですか？",
+                feedback: "長期安定志向の回答です。持ち家は老後の住居不安を解消します。しかし、ライフステージの変化に対応しづらく、売却時に想定外の損失が出ることも。",
                 lockRequirements: null
             },
             {
-                text: "移動の自由。賃貸で身軽に、必要に応じて場所を変えながら生きていく。",
-                effect: { CS: 5, Asset: 0, Autonomy: 20 },
+                text: "移動の自由。人生の変化に合わせて、住まいも変えていく。",
+                effect: { CS: 10, Asset: -5000, Autonomy: 20 },
                 verdict: "NEUTRAL",
-                feedback: "流動的回答です。賃貸は柔軟性を保ち、変化に対応できます。しかし、老後の住居確保は自己責任。保証人問題や高齢者差別というリスクもあります。",
+                feedback: "柔軟適応型の回答です。賃貸は転職・家族構成の変化に対応しやすいです。ただし、引越しコストと高齢時の賃貸難民リスクを背負います。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "最終問題です。住まいとの関係を定義してください。",
+            intro: "最終問題です。人生のどの段階を見据えて、住まいを定義しますか？",
             after: "Stage 6を終了します。審査結果を算出中..."
         }
     }

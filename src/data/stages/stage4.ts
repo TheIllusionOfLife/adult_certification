@@ -238,7 +238,7 @@ export const stage4Questions: Question[] = [
                 verdict: "NEUTRAL",
                 feedback: "原則的判断です。時間と手間がかかりますが、「正しいことをする」習慣が、長期的な信用を築きます。",
                 lockRequirements: { CS: 60 },
-                lockedFeedback: "LOCKED: 信用度が60以上必要。社会的信用が低いと、「正直に申告しても得しない」と思ってしまいます。"
+                lockedFeedback: "LOCKED: 社会的信用が60以上必要。社会的信用が低いと、「正直に申告しても得しない」と思ってしまいます。"
             }
         ],
         adamDialogue: {
@@ -246,31 +246,31 @@ export const stage4Questions: Question[] = [
         }
     },
 
-    // Q10: Philosophy (ADMIN) - Trust in systems vs self-reliance
+    // Q10: Philosophy (ADMIN) - Trust in systems vs self-reliance [RETROSPECTIVE FRAMING]
     {
         id: "s4_q10",
         category: "ADMIN",
-        text: "Stage 4の最終問題。あなたにとって「行政システム」とは何ですか？",
-        imagePrompt: "Scene: protagonist facing a massive bureaucratic machine; one path shows integration with the system; other shows building parallel structures. Composition: individual vs institutional scale. Mood: systemic dependence vs independence.",
+        text: "行政で困った経験を思い出してください。『システムに従った』か『システムを使った』か？その経験から、行政をどう見ますか？",
+        imagePrompt: "Scene: protagonist recalling past bureaucratic experiences; one path shows obedient citizen following signs; other shows strategic navigator finding shortcuts. Composition: memory flashback with two interpretations. Mood: retrospective reflection, learned wisdom.",
         imagePath: "s4_q10.png",
         choices: [
             {
-                text: "従うべきルール。手続きを守り、システムの中で生きていく。",
+                text: "従った。ルールを守ることで、最終的には解決した。",
                 effect: { CS: 30, Asset: 0, Autonomy: -15 },
                 verdict: "NEUTRAL",
-                feedback: "順応的回答です。システムに従えば安定した生活が送れます。ただし、システムが壊れた時、あなたも一緒に壊れます。",
+                feedback: "順応的回答です。ルールに従う姿勢は確実な結果をもたらします。ただし、ルールが不合理な時も従い続けますか？",
                 lockRequirements: null
             },
             {
-                text: "利用すべき道具。システムを理解し、自分の利益のために使いこなす。",
+                text: "使った。制度を調べ、自分に有利な方法を見つけた。",
                 effect: { CS: 5, Asset: 0, Autonomy: 20 },
                 verdict: "NEUTRAL",
-                feedback: "戦略的回答です。行政を「道具」と見なす視点は、制度の隙間を見つける能力につながります。ただし、道具に頼りすぎると、道具が消えた時に困ります。",
+                feedback: "戦略的回答です。制度の「使い方」を知る者は、同じルールでも違う結果を得ます。ただし、その知識を得るには時間と労力が必要です。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "最終問題です。システムとの関係を定義してください。",
+            intro: "最終問題です。過去の経験から、システムとの関係を定義してください。",
             after: "Stage 4を終了します。審査結果を算出中..."
         }
     }

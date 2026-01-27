@@ -93,9 +93,9 @@ export const stage5Questions: Question[] = [
         choices: [
             {
                 text: "50万円を貯めるか、借りるしかない。",
-                effect: { CS: -10, Asset: 0, Autonomy: -5 },
+                effect: { CS: -10, Asset: -42000, Autonomy: -5 },
                 verdict: "WARNING",
-                feedback: "制度の見落としです。出産育児一時金（50万円）が健康保険から支給されます。直接支払制度を使えば、窓口負担はほぼゼロにできます。",
+                feedback: "制度の見落としです。出産育児一時金（50万円）が健康保険から支給されます。直接支払制度を使えば、窓口負担はほぼゼロにできます。知らなかったために42万円以上を自己負担しました。",
                 lockRequirements: null
             },
             {
@@ -246,31 +246,31 @@ export const stage5Questions: Question[] = [
         }
     },
 
-    // Q10: Philosophy (HEALTH) - Dependency vs self-reliance
+    // Q10: Philosophy (HEALTH) - Dependency vs self-reliance [CRISIS NARRATIVE + ASSET COST]
     {
         id: "s5_q10",
         category: "HEALTH",
-        text: "Stage 5の最終問題。あなたにとって「社会保障」とは何ですか？",
-        imagePrompt: "Scene: protagonist between two visions; one shows safety net catching people; other shows people standing alone. Composition: collective support vs individual responsibility. Mood: philosophical divide.",
+        text: "失業中、生活保護の申請書を前にしている。これは権利か、施しか、敗北か。その瞬間、『社会保障』の本質が見えた。",
+        imagePrompt: "Scene: protagonist at welfare office, application form in hand; one path shows pride preserved but struggling; other shows assistance accepted. Composition: moment of decision at institutional threshold. Mood: crisis crossroads, dignity vs survival.",
         imagePath: "s5_q10.png",
         choices: [
             {
-                text: "最後のセーフティネット。自分でできる限りのことをしてから、初めて頼るもの。",
-                effect: { CS: 20, Asset: 0, Autonomy: 5 },
+                text: "申請しない。自力で何とかする。自立こそが人間の尊厳。",
+                effect: { CS: 25, Asset: 5000, Autonomy: -5 },
                 verdict: "NEUTRAL",
-                feedback: "自立的回答です。「まず自助」という姿勢は尊重されます。ただし、「助けを求めるのが遅すぎる」リスクもあります。",
+                feedback: "自尊心優先の回答です。自力で乗り越えれば、達成感と貯蓄（節約分）が残ります。ただし、限界を超えると回復不能なダメージを負います。",
                 lockRequirements: null
             },
             {
-                text: "当然の権利。保険料を払っているのだから、必要な時に使うのは当たり前。",
-                effect: { CS: 10, Asset: 0, Autonomy: 15 },
+                text: "申請する。社会保障は「施し」ではなく、再起のための橋。",
+                effect: { CS: 5, Asset: -10000, Autonomy: 20 },
                 verdict: "NEUTRAL",
-                feedback: "合理的回答です。社会保障は「施し」ではなく「保険」。必要な時に使うのは、制度の正しい活用です。ただし、制度への依存が強すぎると、自律性が損なわれます。",
+                feedback: "合理的回答です。制度を使うことで時間と余裕を買い、再就職の質を上げられます。ただし、制度利用中は資産形成が遅れます。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "最終問題です。セーフティネットとの関係を定義してください。",
+            intro: "最終問題です。危機の瞬間に、あなたはどう動きますか？",
             after: "Stage 5を終了します。審査結果を算出中..."
         }
     }

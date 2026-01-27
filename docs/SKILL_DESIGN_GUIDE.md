@@ -159,6 +159,29 @@ Already used:
 node scripts/simulate_stage.mjs --stage {N}
 ```
 
+### Skill Activation Validation Checklist
+
+Before finalizing a stage, verify each skill can trigger:
+
+1. **Identify skill effect type** (e.g., `category_asset_damage_reduction`)
+2. **Check trigger conditions**:
+   - For `category_asset_damage_reduction`: Questions in that category with Asset < 0
+   - For `category_cs_damage_reduction`: Questions in that category with CS < 0
+   - For `category_autonomy_damage_reduction`: Questions in that category with Autonomy < 0
+   - For `asset_gain_amplification`: Questions with Asset > 0
+   - For `cs_gain_amplification`: Questions with CS > 0
+   - For `autonomy_gain_amplification`: Questions with Autonomy > 0
+3. **Count trigger opportunities after acquisition**:
+   - Offer 1 skills: Count triggers in Q4-Q10
+   - Offer 2 skills: Count triggers in Q8-Q10
+4. **Minimum**: Each skill must have ≥1 trigger opportunity
+5. **Run simulation**: Verify activation > 0%
+
+**Example**: Stage 5's s5_normal_01 (`category_asset_damage_reduction` for HEALTH)
+- Q4 (HEALTH): Wrong choice has Asset: -42000 ✓
+- Q7 (HEALTH): Correct locked choice has Asset: -5000 ✓
+- Result: Skill can trigger → Simulation shows 2.5% activation
+
 ### Pairing Strategy
 
 **Offer 1**: Different parameter protection (Autonomy vs Asset vs CS)

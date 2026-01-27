@@ -246,31 +246,31 @@ export const stage8Questions: Question[] = [
         }
     },
 
-    // Q10: Philosophy (SEC) - Privacy vs connectivity
+    // Q10: Philosophy (SEC) - Privacy vs connectivity [DATA REALITY CHECK]
     {
         id: "s8_q10",
         category: "SEC",
-        text: "Stage 8の最終問題。あなたにとって「デジタル社会での個人情報」とは何ですか？",
-        imagePrompt: "Scene: protagonist in digital world; one path shows complete privacy (isolated); other shows full connectivity (exposed). Composition: privacy-connectivity spectrum. Mood: digital identity philosophy.",
+        text: "あなたの検索履歴、位置情報、購買記録は企業に売買されている。その時、『個人情報』は何ですか？",
+        imagePrompt: "Scene: protagonist's data floating as currency between corporations; one path shows data as protected treasure; other shows data as tradable commodity. Composition: data marketplace reality. Mood: uncomfortable truth, pragmatic choice.",
         imagePath: "s8_q10.png",
         choices: [
             {
-                text: "守るべき資産。できる限り公開せず、プライバシーを最優先する。",
+                text: "守るべき人格の一部。売買されること自体が間違っている。",
                 effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "NEUTRAL",
-                feedback: "防衛的回答です。個人情報を守る姿勢は正しいですが、便利なサービスの多くは個人情報と引き換え。「使わない」選択は、機会損失にもなりえます。",
+                feedback: "プライバシー重視の回答です。原理的には正しいですが、現実のデジタル経済から離脱するコストは高く、機会損失も生じます。",
                 lockRequirements: null
             },
             {
-                text: "交換材料。便利なサービスの対価として、ある程度の提供は許容する。",
-                effect: { CS: 15, Asset: 0, Autonomy: -5 },
+                text: "売買される商品。どうせ取られるなら、自分にも利益を還元させる。",
+                effect: { CS: 20, Asset: 5000, Autonomy: -10 },
                 verdict: "NEUTRAL",
-                feedback: "実利的回答です。「便利さと引き換えにデータを提供する」ビジネスモデルを受け入れています。ただし、どこまで許容するかの線引きが重要です。",
+                feedback: "実利的回答です。ポイント還元、無料サービス……データ提供の見返りを最大化する姿勢。ただし、一度渡した情報は取り戻せません。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "最終問題です。デジタル社会での自分の情報との関係を定義してください。",
+            intro: "最終問題です。あなたのデータは誰のものですか？",
             after: "Stage 8を終了します。審査結果を算出中..."
         }
     }

@@ -68,6 +68,15 @@ function applySingleEffect(
                 }
                 break;
 
+            case "category_asset_damage_reduction":
+                // Reduce Asset damage for specific category by value%
+                // Math.ceil rounds toward zero for negative values (reduces damage magnitude)
+                if (question.category === effect.category && Asset < 0) {
+                    const reduced = Asset * (1 - effect.value);
+                    Asset = Math.ceil(reduced);
+                }
+                break;
+
             case "cs_damage_reduction":
                 // Reduce all CS damage by value%
                 // Math.ceil rounds toward zero for negative values (reduces damage magnitude)
@@ -219,7 +228,7 @@ export function getSkillActivations(
                 // Only show if question category matches and CS was reduced
                 if (question.category === effect.category && originalEffect.CS < 0 && modifiedEffect.CS !== originalEffect.CS) {
                     activated = true;
-                    description = "信用度低下軽減";
+                    description = "社会的信用低下軽減";
                     originalValue = originalEffect.CS;
                     modifiedValue = modifiedEffect.CS;
                 }
@@ -255,11 +264,21 @@ export function getSkillActivations(
                 }
                 break;
 
+            case "category_asset_damage_reduction":
+                // Only show if question category matches and Asset was reduced
+                if (question.category === effect.category && originalEffect.Asset < 0 && modifiedEffect.Asset !== originalEffect.Asset) {
+                    activated = true;
+                    description = "資産減少軽減";
+                    originalValue = originalEffect.Asset;
+                    modifiedValue = modifiedEffect.Asset;
+                }
+                break;
+
             case "cs_damage_reduction":
                 // Only show if CS damage was actually reduced
                 if (originalEffect.CS < 0 && modifiedEffect.CS !== originalEffect.CS) {
                     activated = true;
-                    description = "信用度低下軽減";
+                    description = "社会的信用低下軽減";
                     originalValue = originalEffect.CS;
                     modifiedValue = modifiedEffect.CS;
                 }
@@ -269,7 +288,7 @@ export function getSkillActivations(
             case "cs_gain_amplification":
                 if (originalEffect.CS > 0 && modifiedEffect.CS !== originalEffect.CS) {
                     activated = true;
-                    description = "信用度獲得増幅";
+                    description = "社会的信用獲得増幅";
                     originalValue = originalEffect.CS;
                     modifiedValue = modifiedEffect.CS;
                 }
@@ -297,7 +316,7 @@ export function getSkillActivations(
             case "flat_cs_bonus":
                 // Always activates (flat bonus every question)
                 activated = true;
-                description = "信用度固定ボーナス";
+                description = "社会的信用固定ボーナス";
                 originalValue = originalEffect.CS;
                 modifiedValue = modifiedEffect.CS;
                 break;
@@ -320,7 +339,7 @@ export function getSkillActivations(
             case "category_cs_gain_boost":
                 if (question.category === effect.category && originalEffect.CS > 0 && modifiedEffect.CS !== originalEffect.CS) {
                     activated = true;
-                    description = `${effect.category}信用度獲得増幅`;
+                    description = `${effect.category}社会的信用獲得増幅`;
                     originalValue = originalEffect.CS;
                     modifiedValue = modifiedEffect.CS;
                 }

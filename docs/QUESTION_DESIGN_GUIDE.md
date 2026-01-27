@@ -153,6 +153,35 @@ Independent: CS: +5 to +15, Autonomy: +15 to +25
 }
 ```
 
+### Q10 Philosophy Question Variation
+
+To avoid repetition fatigue across 9 stages, Q10 questions vary in framing styles and effect patterns:
+
+#### Framing Styles
+| Stage | Framing Style | Example Phrasing |
+|-------|---------------|------------------|
+| 1 | Direct | "あなたにとって「X」とは何ですか？" |
+| 2 | Scenario | Career fork narrative ("5年後、キャリアの選択肢が出た...") |
+| 3 | Hypothetical | Future projection ("10年後どちらに？") |
+| 4 | Retrospective | Past experience reflection ("経験を思い出してください") |
+| 5 | Crisis narrative | Specific decision moment ("申請書を前に...") |
+| 6 | Lifecycle | Multiple life stages perspective ("30歳、40歳、70歳...") |
+| 7 | Power analysis | Metacognitive interrogation ("力ある者は...力なき者は...") |
+| 8 | Data reality | Concrete data facts ("あなたの検索履歴は売買されている") |
+| 9 | Past/Future | Regret vs opportunity cost ("後悔した。しかし完璧な準備は...") |
+
+#### Effect Patterns
+Not all Q10s use the standard CS vs Autonomy trade-off:
+
+- **Standard**: CS gain vs Autonomy gain (Stage 1, 2, 4)
+- **Asset included**: Some choices include Asset costs/gains to show real-world consequences (Stage 3, 5, 6, 7, 8, 9)
+- **Flipped expectations**: Independence choice can include Asset gain (Stage 3: 自由選択 → Asset+10000)
+
+#### Key Rules
+- Both choices MUST have `verdict: "NEUTRAL"`
+- Feedback should acknowledge validity of both choices
+- Never use "正解です" in philosophy question feedback
+
 ---
 
 ## Parameter Guidelines
@@ -273,7 +302,7 @@ Independent: CS: +5 to +15, Autonomy: +15 to +25
 ### Feedback
 **Format**: `[Judgment] [Explanation] [Implication]`
 
-**Do NOT include parameter change descriptions** in the feedback text (e.g., 「信用度+10」「資産-50,000」). These are displayed in a separate UI section.
+**Do NOT include parameter change descriptions** in the feedback text (e.g., 「社会的信用+10」「資産-50,000」). These are displayed in a separate UI section.
 
 Guidelines by question type:
 - Knowledge: Explain why + teach concept
@@ -286,7 +315,7 @@ Guidelines by question type:
 
 ❌ Bad: `"もっと頑張りましょう。"` (too encouraging)
 
-❌ Bad: `"「信用度-30」「資産-20,000」—無知は罪です。住民税は翌年課税。"` (redundant param display)
+❌ Bad: `"「社会的信用-30」「資産-20,000」—無知は罪です。住民税は翌年課税。"` (redundant param display)
 
 ---
 

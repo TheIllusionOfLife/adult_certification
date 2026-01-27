@@ -246,31 +246,31 @@ export const stage3Questions: Question[] = [
         }
     },
 
-    // Q10: Philosophy (FINANCE) - Money as tool vs master
+    // Q10: Philosophy (FINANCE) - Money as tool vs master [HYPOTHETICAL + EFFECT FLIP]
     {
         id: "s3_q10",
         category: "FINANCE",
-        text: "Stage 3の最終問題。あなたにとって「お金」とは何ですか？",
-        imagePrompt: "Scene: protagonist at crossroads; one path shows money as chains binding a person; other path shows money as wings enabling flight; A.D.A.M.'s eye watching. Composition: philosophical duality, money as oppressor vs liberator. Mood: existential reflection, value definition.",
+        text: "年収1000万でストレス vs 年収500万で自由。10年後どちらにいたいですか？その選択が『お金』の本質を暴露します。",
+        imagePrompt: "Scene: protagonist at crossroads; one path shows high salary with chains and stress clouds; other path shows modest income with wings and open sky; A.D.A.M.'s eye watching. Composition: philosophical duality, money as trap vs freedom enabler. Mood: existential reflection, value definition.",
         imagePath: "s3_q10.png",
         choices: [
             {
-                text: "生活を守るための手段。堅実に貯めて、無駄遣いを避ける。",
-                effect: { CS: 25, Asset: 10000, Autonomy: -10 },
+                text: "年収1000万。ストレスは代償として受け入れ、経済的安定を取る。",
+                effect: { CS: 20, Asset: 0, Autonomy: -15 },
                 verdict: "NEUTRAL",
-                feedback: "防衛的回答です。お金を「守る」姿勢は安定をもたらします。しかし、守りに徹すると機会も逃します。それで満足ですか？",
+                feedback: "経済優先の回答です。高収入は選択肢を広げます。しかし、ストレスで心身を壊せば、稼いだお金は治療費に消えます。",
                 lockRequirements: null
             },
             {
-                text: "自由を拡張するための道具。リスクを取ってでも増やし、選択肢を広げる。",
-                effect: { CS: 5, Asset: 0, Autonomy: 20 },
+                text: "年収500万で自由。お金より時間と健康を優先する。",
+                effect: { CS: 10, Asset: 10000, Autonomy: 20 },
                 verdict: "NEUTRAL",
-                feedback: "攻撃的回答です。お金を「使う」姿勢は可能性を広げます。ただし、失敗すれば自由すら失います。その覚悟はありますか？",
+                feedback: "自由優先の回答です。自律した時間は創造性を生み、副収入の可能性も開きます。ただし、緊急時の余裕は少なくなります。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "最終問題です。お金との関係を定義してください。",
+            intro: "最終問題です。10年後の自分を定義してください。",
             after: "Stage 3を終了します。審査結果を算出中..."
         }
     }

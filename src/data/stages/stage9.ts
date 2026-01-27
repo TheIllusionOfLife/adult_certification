@@ -209,9 +209,9 @@ export const stage9Questions: Question[] = [
             },
             {
                 text: "自治体の窓口に相談し、被災者生活再建支援金や各種支援制度を申請する。",
-                effect: { CS: 20, Asset: 0, Autonomy: 15 },
+                effect: { CS: 20, Asset: 50000, Autonomy: 15 },
                 verdict: "APPROVED",
-                feedback: "正解です。罹災証明書の取得が支援の入口。被害認定によって支援額が変わるので、正確な被害報告と写真記録が重要です。",
+                feedback: "正解です。罹災証明書の取得が支援の入口。被害認定によって支援額が変わるので、正確な被害報告と写真記録が重要です。支援金の一部を受給できました。",
                 lockRequirements: null
             }
         ]
@@ -238,7 +238,7 @@ export const stage9Questions: Question[] = [
                 verdict: "NEUTRAL",
                 feedback: "人道的な選択です。しかし、助けようとして共倒れになるケースも少なくありません。「てんでんこ」（各自バラバラに逃げる）の教訓は、共倒れを防ぐ知恵でもあります。",
                 lockRequirements: { CS: 70 },
-                lockedFeedback: "LOCKED: 信用度が70以上必要。社会からの信頼が低いと、「他者を助ける」という発想が浮かびにくくなります。"
+                lockedFeedback: "LOCKED: 社会的信用が70以上必要。社会からの信頼が低いと、「他者を助ける」という発想が浮かびにくくなります。"
             }
         ],
         adamDialogue: {
@@ -246,31 +246,31 @@ export const stage9Questions: Question[] = [
         }
     },
 
-    // Q10: Philosophy (DISASTER) - Preparation vs acceptance of fate
+    // Q10: Philosophy (DISASTER) - Preparation vs acceptance of fate [PAST/FUTURE FRAMING]
     {
         id: "s9_q10",
         category: "DISASTER",
-        text: "Stage 9の最終問題。あなたにとって「危機管理」とは何ですか？",
-        imagePrompt: "Scene: protagonist between two visions; one shows fortress of preparation; other shows acceptance of fate and adaptability. Composition: control vs acceptance philosophy. Mood: existential preparedness.",
+        text: "過去の災害を前に『あの時こうしていれば』と後悔した。しかし完璧な準備は人生を無駄にする。その間で、危機管理とは何ですか？",
+        imagePrompt: "Scene: protagonist between past regret and future uncertainty; one path shows elaborate preparation; other shows adaptable mindset. Composition: temporal reflection with resource allocation. Mood: balancing preparedness vs living.",
         imagePath: "s9_q10.png",
         choices: [
             {
-                text: "最悪を想定し、備えること。準備があれば被害は最小化できる。",
-                effect: { CS: 20, Asset: 0, Autonomy: 10 },
+                text: "後悔しないために、できる限りの準備をする。コストをかけてでも備える。",
+                effect: { CS: 20, Asset: -20000, Autonomy: 15 },
                 verdict: "NEUTRAL",
-                feedback: "予防的回答です。「備えあれば憂いなし」。しかし、すべてのリスクに備えることは不可能。どこかで「許容できるリスク」を選ぶ必要があります。",
+                feedback: "予防投資型の回答です。防災グッズ、保険、訓練……準備にはコストがかかります。ただし、災害が来なければ「無駄」に見える投資でもあります。",
                 lockRequirements: null
             },
             {
-                text: "何が起きても対応できる柔軟性を持つこと。完璧な準備より、適応力が大事。",
-                effect: { CS: 10, Asset: 0, Autonomy: 20 },
+                text: "完璧な準備は諦め、適応力を鍛える。その分の資源を今の生活に使う。",
+                effect: { CS: 15, Asset: 0, Autonomy: 20 },
                 verdict: "NEUTRAL",
-                feedback: "適応的回答です。想定外の事態は必ず起きます。「準備」より「即興力」を重視する姿勢。ただし、基本的な備えなしの適応力は、ただの無計画です。",
+                feedback: "適応力重視の回答です。基本的な備えは持ちつつ、過剰な準備は避ける。資源を「今」に振り向ける選択。ただし、想定外の規模の災害には脆弱です。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "最終問題です。危機との向き合い方を定義してください。",
+            intro: "最終問題です。後悔と準備の間で、どう生きますか？",
             after: "Stage 9を終了します。審査結果を算出中..."
         }
     }
