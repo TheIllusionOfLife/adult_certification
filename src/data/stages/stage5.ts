@@ -113,7 +113,7 @@ export const stage5Questions: Question[] = [
         id: "s5_q05",
         category: "HEALTH",
         text: "体調不良で病院へ。医師から「過労による免疫低下。1週間の安静が必要」と言われた。しかし今週は昇進がかかったプロジェクトの締切がある。",
-        imagePrompt: "Scene: exhausted worker with doctor's note; calendar showing deadline; promotion document floating. Composition: health vs career crossroads. Mood: difficult trade-off, no easy answer.",
+        imagePrompt: "Scene: Doctor's diagnosis note stating exhaustion and one week rest required on desk, calendar on wall with presentation deadline circled in red, laptop showing half-finished slides. Composition: Medical note and calendar create tension, laptop caught between. Mood: Body vs career, impossible choice.",
         imagePath: "s5_q05.png",
         choices: [
             {
@@ -141,7 +141,7 @@ export const stage5Questions: Question[] = [
         id: "s5_q06",
         category: "LABOR",
         text: "会社を辞めた。ハローワークで「失業保険」の手続きを聞かれた。自己都合退職だと不利？",
-        imagePrompt: "Scene: a job seeker at unemployment office; two paths showing resignation vs layoff; waiting period calendar. Composition: bureaucratic process with timing implications. Mood: transition, system navigation.",
+        imagePrompt: "Scene: Unemployment office waiting room ticket in hand, number display showing current serving, application forms on clipboard, other job seekers visible as silhouettes. Composition: Ticket number close-up, waiting room atmosphere. Mood: Bureaucratic limbo, transition state.",
         imagePath: "s5_q06.png",
         choices: [
             {
@@ -166,7 +166,7 @@ export const stage5Questions: Question[] = [
         id: "s5_q07",
         category: "HEALTH",
         text: "最近、眠れない日が続き、仕事に集中できない。「自分は弱いだけ」と思っているが……",
-        imagePrompt: "Scene: a person sitting alone in dark room; one path shows struggling alone; other shows mental health clinic with warm light. Composition: isolation vs seeking help. Mood: stigma vs self-care.",
+        imagePrompt: "Scene: Dark bedroom at 3 AM, phone screen illuminating the space showing mental health clinic search results, untouched sleeping pills on nightstand, rumpled sheets. Composition: Phone glow is only light source, isolation palpable. Mood: Exhaustion, small step toward help.",
         imagePath: "s5_q07.png",
         choices: [
             {
@@ -222,7 +222,7 @@ export const stage5Questions: Question[] = [
         id: "s5_q09",
         category: "HEALTH",
         text: "失業が長引き、貯金も底をついた。生活保護の申請を勧められたが、「恥ずかしい」と感じる。",
-        imagePrompt: "Scene: an empty refrigerator and unpaid bills; welfare office entrance; internal struggle between need and pride. Composition: desperation vs stigma. Mood: survival vs dignity trade-off.",
+        imagePrompt: "Scene: Open refrigerator showing nearly empty shelves, stack of unpaid utility bills on counter, welfare application form partially visible, last few coins in open wallet. Composition: Empty fridge dominates, desperation visible in details. Mood: Rock bottom, pride vs survival.",
         imagePath: "s5_q09.png",
         choices: [
             {
@@ -251,7 +251,7 @@ export const stage5Questions: Question[] = [
         id: "s5_q10",
         category: "HEALTH",
         text: "失業中、生活保護の申請書を前にしている。これは権利か、施しか、敗北か。その瞬間、『社会保障』の本質が見えた。",
-        imagePrompt: "Scene: protagonist at welfare office, application form in hand; one path shows pride preserved but struggling; other shows assistance accepted. Composition: moment of decision at institutional threshold. Mood: crisis crossroads, dignity vs survival.",
+        imagePrompt: "Scene: Dawn light streaming through office window, application form half-filled on table, pen resting mid-sentence, city waking up in silhouette outside. Composition: Window dominant with golden hour light, form small in foreground. Mood: Threshold moment, neither defeat nor victory, new day.",
         imagePath: "s5_q10.png",
         choices: [
             {

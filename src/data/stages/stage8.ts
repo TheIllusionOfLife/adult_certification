@@ -59,7 +59,7 @@ export const stage8Questions: Question[] = [
         id: "s8_q03",
         category: "SEC",
         text: "パスワードを覚えきれない。「同じパスワードを使い回す」か「メモに書く」か「パスワードマネージャーを使う」か。",
-        imagePrompt: "Scene: multiple login screens with same password (dangerous); sticky notes with passwords (risky); password manager vault (secure). Composition: three paths of password management. Mood: convenience vs security trade-off.",
+        imagePrompt: "Scene: Computer monitor showing multiple login screens with password fields, sticky notes on monitor edge with simple passwords visible, password manager notification popup in corner. Composition: Screen fills frame, bad habits exposed. Mood: Vulnerability on display.",
         imagePath: "s8_q03.png",
         choices: [
             {
@@ -113,7 +113,7 @@ export const stage8Questions: Question[] = [
         id: "s8_q05",
         category: "SEC",
         text: "スマホの設定。「生体認証のみ」（便利）か「生体認証＋パスコード」（より安全）か。",
-        imagePrompt: "Scene: phone settings screen with security options; convenience icon vs security icon; scales balancing daily use vs protection. Composition: security level choice. Mood: daily friction vs protection level.",
+        imagePrompt: "Scene: Phone settings screen close-up showing face unlock only and face unlock plus passcode options, finger shadow hovering over selection, lock icon graphics. Composition: Settings UI fills frame, choice moment frozen. Mood: Convenience vs security, daily decision.",
         imagePath: "s8_q05.png",
         choices: [
             {
@@ -197,7 +197,7 @@ export const stage8Questions: Question[] = [
         id: "s8_q08",
         category: "SEC",
         text: "「【重要】お客様の口座が不正利用されました。今すぐご確認ください」というメールが届いた。リンクがついている。",
-        imagePrompt: "Scene: an urgent email with suspicious link; real bank website vs fake lookalike; fishing hook hidden in the message. Composition: deceptive urgency with hidden danger. Mood: panic manipulation.",
+        imagePrompt: "Scene: Email notification on phone lock screen showing urgent bank warning, finger hovering over notification, real bank app icon visible in background. Composition: Phone screen fills frame, notification overlay. Mood: Panic trigger, split-second decision.",
         imagePath: "s8_q08.png",
         choices: [
             {
@@ -251,7 +251,7 @@ export const stage8Questions: Question[] = [
         id: "s8_q10",
         category: "SEC",
         text: "あなたの検索履歴、位置情報、購買記録は企業に売買されている。その時、『個人情報』は何ですか？",
-        imagePrompt: "Scene: protagonist's data floating as currency between corporations; one path shows data as protected treasure; other shows data as tradable commodity. Composition: data marketplace reality. Mood: uncomfortable truth, pragmatic choice.",
+        imagePrompt: "Scene: Vending machine displaying personal data packets as products behind glass, browsing history, location logs, purchase records each with price tags, coin slot glowing. Composition: Machine fills frame, data products on shelves. Mood: Surreal marketplace, your life for sale.",
         imagePath: "s8_q10.png",
         choices: [
             {

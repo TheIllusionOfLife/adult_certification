@@ -113,7 +113,7 @@ export const stage2Questions: Question[] = [
         id: "s2_q05",
         category: "CAREER",
         text: "プロジェクトリーダーに推薦された。引き受ければ残業増、断れば現状維持だが昇進機会は遠のく。",
-        imagePrompt: "Scene: a worker standing at a fork in a corporate hallway; one path leads to a bright but hectic office with overtime clocks; the other leads to a calm but dim corridor. Composition: split scene showing both futures, worker centered at decision point. Mood: ambition vs balance, career crossroads, no easy answer.",
+        imagePrompt: "Scene: Promotion offer document on desk, project leader assignment header visible, overtime schedule attached showing late hours, small family photo frame in corner. Composition: Document dominates, personal life glimpsed at edge. Mood: Opportunity with hidden cost.",
         imagePath: "s2_q05.png",
         choices: [
             {
@@ -141,7 +141,7 @@ export const stage2Questions: Question[] = [
         id: "s2_q06",
         category: "LABOR",
         text: "転職先が決まった。上司に退職を伝えたら「就業規則は3ヶ月前申告だ。来月からなんて認めない」と言われた。",
-        imagePrompt: "Scene: a worker holding a resignation letter; on one side a company rulebook showing '3 months'; on the other side a law book glowing showing '2 weeks'. Composition: worker centered between two contrasting documents, scale of justice metaphor. Mood: tension between rules and rights, legal knowledge empowerment.",
+        imagePrompt: "Scene: Resignation letter on desk, company rulebook open to 3-month notice rule page, civil code book beside it with 2-week legal minimum highlighted. Composition: Two books flanking the letter, legal truth vs company rule. Mood: Knowledge as power, tension between documents.",
         imagePath: "s2_q06.png",
         choices: [
             {
@@ -251,7 +251,7 @@ export const stage2Questions: Question[] = [
         id: "s2_q10",
         category: "CAREER",
         text: "5年後、キャリアの選択肢が出た。昇進コース（安定）かスペシャリスト（自由）か。あなたにとって『仕事』の本質は？",
-        imagePrompt: "Scene: a worker standing at a crossroads; one path leads to a corporate ladder (promotion, stability); another to a solo workshop (specialist, freedom); A.D.A.M.'s eye watching from above. Composition: figure center at fork, paths diverging dramatically, omniscient eye overhead. Mood: career crossroads, self-definition.",
+        imagePrompt: "Scene: Retirement desk being cleared, photo frame with career memories face-down, congratulations card half-read, empty nameplate being wrapped in newspaper. Composition: Desk surface close-up, bittersweet objects. Mood: End of an era, retrospective questioning.",
         imagePath: "s2_q10.png",
         choices: [
             {

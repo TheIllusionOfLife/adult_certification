@@ -6,7 +6,7 @@ export const stage9Questions: Question[] = [
         id: "s9_q01",
         category: "DISASTER",
         text: "大地震発生。家族と連絡が取れない。電話は繋がらない状況。",
-        imagePrompt: "Scene: earthquake aftermath with damaged buildings; phone showing 'no connection'; alternative contact methods (disaster message board, LINE). Composition: communication breakdown with alternatives. Mood: panic, alternative paths.",
+        imagePrompt: "Scene: Phone screen showing no signal bars, emergency broadcast text notification partially visible, hand-written family contact card tucked in phone case, cracked ceiling visible above. Composition: Phone fills frame, analog backup visible. Mood: Digital failure, prepared alternatives.",
         imagePath: "s9_q01.png",
         choices: [
             {
@@ -113,7 +113,7 @@ export const stage9Questions: Question[] = [
         id: "s9_q05",
         category: "DISASTER",
         text: "台風が接近中。自治体から「避難準備」が出た。しかし一人暮らしの高齢の隣人が「避難所は嫌だ」と言って動こうとしない。あなたは避難すべきか、隣人を説得し続けるべきか。",
-        imagePrompt: "Scene: approaching typhoon; elderly neighbor refusing to leave; evacuation shelter in distance. Composition: personal safety vs helping others dilemma. Mood: urgent choice, community responsibility.",
+        imagePrompt: "Scene: Rain-lashed window view from inside, elderly neighbor outside struggling with walker in the storm, evacuation route sign visible down the street, TV reflection showing typhoon warning. Composition: Window frames the moral dilemma, safety inside vs need outside. Mood: Urgency, compassion vs self-preservation.",
         imagePath: "s9_q05.png",
         choices: [
             {
@@ -141,7 +141,7 @@ export const stage9Questions: Question[] = [
         id: "s9_q06",
         category: "DISASTER",
         text: "新居の火災保険に加入。「地震保険もセットで」と勧められたが、地震保険料は高い。",
-        imagePrompt: "Scene: a house with fire on one side, earthquake damage on other; insurance policies separated; Japan map showing fault lines. Composition: coverage gap visualization. Mood: hidden risk, false sense of security.",
+        imagePrompt: "Scene: Kitchen table with insurance documents spread out, fire insurance policy open, separate earthquake insurance rider with premium circled, TV showing earthquake damage in background. Composition: Documents dominate, TV provides context. Mood: Coverage gap revealed.",
         imagePath: "s9_q06.png",
         choices: [
             {
@@ -166,7 +166,7 @@ export const stage9Questions: Question[] = [
         id: "s9_q07",
         category: "TAX",
         text: "今年、歯の治療で20万円かかった。会社員で年末調整は済んでいるが、何かできることはある？",
-        imagePrompt: "Scene: dental clinic receipt showing 200,000 yen; tax return form with medical expense section; calculator showing potential refund; organized medical receipts. Composition: expense to refund transformation. Mood: hidden opportunity, financial literacy.",
+        imagePrompt: "Scene: Shoebox overflowing with medical receipts from the year, tax return guide booklet dog-eared, sticky note with refund estimate calculation. Composition: Receipt collection chaos, organization attempt. Mood: Annual reckoning, hidden money to reclaim.",
         imagePath: "s9_q07.png",
         choices: [
             {
@@ -197,7 +197,7 @@ export const stage9Questions: Question[] = [
         id: "s9_q08",
         category: "DISASTER",
         text: "災害で家が半壊した。どんな公的支援が受けられる？",
-        imagePrompt: "Scene: a half-destroyed house; support documents floating (disaster relief fund, housing assistance); government office with support counter. Composition: destruction with recovery paths. Mood: devastation with hope.",
+        imagePrompt: "Scene: Half-destroyed house viewed through broken window frame, support application documents spread on makeshift table (plywood on crates), pen and flashlight beside them. Composition: Destruction framed by window, documents as focus of action. Mood: Devastation meeting bureaucracy, rebuilding begins with paperwork.",
         imagePath: "s9_q08.png",
         choices: [
             {
@@ -222,7 +222,7 @@ export const stage9Questions: Question[] = [
         id: "s9_q09",
         category: "DISASTER",
         text: "津波警報発令。高台に逃げる途中、足の不自由な高齢者が助けを求めている。",
-        imagePrompt: "Scene: coastal evacuation with tsunami approaching; elderly person struggling; protagonist torn between helping and running. Composition: moral crisis under time pressure. Mood: survival vs humanity.",
+        imagePrompt: "Scene: Coastal evacuation road view while running uphill, elderly person ahead struggling to climb, tsunami warning siren tower blaring, high ground directional sign pointing forward. Composition: Road perspective, person blocking path to safety. Mood: Seconds matter, humanity vs survival.",
         imagePath: "s9_q09.png",
         choices: [
             {
@@ -251,7 +251,7 @@ export const stage9Questions: Question[] = [
         id: "s9_q10",
         category: "DISASTER",
         text: "過去の災害を前に『あの時こうしていれば』と後悔した。しかし完璧な準備は人生を無駄にする。その間で、危機管理とは何ですか？",
-        imagePrompt: "Scene: protagonist between past regret and future uncertainty; one path shows elaborate preparation; other shows adaptable mindset. Composition: temporal reflection with resource allocation. Mood: balancing preparedness vs living.",
+        imagePrompt: "Scene: Emergency exit sign glowing green in empty quiet hallway, fire extinguisher mounted on wall gathering dust, everything calm and unused, exit door slightly ajar showing darkness beyond. Composition: Corridor perspective, exit sign as focal beacon. Mood: Perpetual readiness in peaceful silence.",
         imagePath: "s9_q10.png",
         choices: [
             {

@@ -34,7 +34,7 @@ export const stage7Questions: Question[] = [
         id: "s7_q02",
         category: "LEGAL",
         text: "ネット通販で届いた商品が破損。販売店に連絡しても「返品不可」の一点張り。",
-        imagePrompt: "Scene: a broken product with dismissive customer service chat; consumer center hotline number glowing; path to resolution. Composition: stonewalled complaint with escape route. Mood: frustration with solution.",
+        imagePrompt: "Scene: Broken product on desk with visible damage, phone showing customer service chat with dismissive refusal response, sticky note with consumer hotline number circled. Composition: Damaged goods and dismissive response, solution hint at edge. Mood: Stonewalled, but exit exists.",
         imagePath: "s7_q02.png",
         choices: [
             {
@@ -113,7 +113,7 @@ export const stage7Questions: Question[] = [
         id: "s7_q05",
         category: "LEGAL",
         text: "フリーランスで大手企業から初の大型案件。しかし契約書を見ると「著作権全面譲渡」「修正回数無制限」の条項が。交渉したら「この条件でなければ発注しない」と言われた。",
-        imagePrompt: "Scene: a contract with harsh clauses highlighted; big company logo; freelancer weighing opportunity vs terms. Composition: unfair contract vs career opportunity. Mood: power imbalance, difficult choice.",
+        imagePrompt: "Scene: Late-night home office, contract PDF glowing on monitor, cursor hovering over signature field, rejection email draft open in another tab. Composition: Monitor glow in dark room, two tabs visible. Mood: Midnight decision, finger on trigger.",
         imagePath: "s7_q05.png",
         choices: [
             {
@@ -222,7 +222,7 @@ export const stage7Questions: Question[] = [
         id: "s7_q09",
         category: "LEGAL",
         text: "親友が「会社の備品を私用で持ち帰っている」と打ち明けてきた。金額は大きくないが、厳密には横領。友人は「みんなやっている」と笑っている。",
-        imagePrompt: "Scene: friend confessing minor theft; office supplies in bag; protagonist torn between loyalty and ethics. Composition: friendship vs integrity crossroads. Mood: uncomfortable truth, difficult choice.",
+        imagePrompt: "Scene: Cafe table view, friend's bag across the table partially unzipped showing office supplies (staplers, pens, sticky notes) inside, two coffee cups, casual atmosphere. Composition: Bag contents accidentally visible, friend's presence implied. Mood: Uncomfortable discovery, loyalty tested.",
         imagePath: "s7_q09.png",
         choices: [
             {
@@ -251,7 +251,7 @@ export const stage7Questions: Question[] = [
         id: "s7_q10",
         category: "LEGAL",
         text: "力ある者は法を『秩序の道具』と見なし、力なき者は『身を守る武器』と見なす。あなたはどちらの視点で法律を見ていますか？",
-        imagePrompt: "Scene: protagonist at crossroads; one path shows powerful figures using law as order tool; other shows vulnerable using law as shield. Composition: power asymmetry with law at center. Mood: meta-reflection on legal systems.",
+        imagePrompt: "Scene: Courthouse justice scales in dramatic shadow, one side holds a gavel, other holds a shield, perfectly balanced despite holding different objects. Composition: Classical symbol reinterpreted, chiaroscuro lighting. Mood: Same equilibrium, different purposes entirely.",
         imagePath: "s7_q10.png",
         choices: [
             {

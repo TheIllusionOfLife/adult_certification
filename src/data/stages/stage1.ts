@@ -6,7 +6,7 @@ export const stage1Questions: Question[] = [
         id: "s1_q01",
         category: "FINANCE",
         text: "新社会人になり、クレジットカードを初めて作った。「リボ払い」を勧められたが、どうする？",
-        imagePrompt: "Scene: a shiny new credit card glowing; one path shows 'easy payments' with smiling face; another shows shadow of mounting debt with chains; a calculator showing interest rates. Mood: temptation vs hidden danger.",
+        imagePrompt: "Scene: Credit card application form on counter, revolving payment checkbox prominently displayed, salesperson's finger pointing at it, fine print showing high interest rate partially visible. Composition: Form fills frame, finger draws attention to checkbox. Mood: Pressure, hidden trap in plain sight.",
         imagePath: "s1_q01.png",
         choices: [
             {
@@ -88,7 +88,7 @@ export const stage1Questions: Question[] = [
         id: "s1_q04",
         category: "SOCIAL",
         text: "同僚の親の葬儀に参列することになった。香典を用意するが、正しいマナーは？",
-        imagePrompt: "Scene: a funeral envelope (不祝儀袋) with money; a 袱紗 (fukusa) cloth; two paths showing proper vs improper etiquette. Composition: ceremonial items with cultural weight. Mood: solemnity, social responsibility.",
+        imagePrompt: "Scene: Funeral envelope on table being prepared, crisp new bills beside it, fukusa cloth waiting nearby, brush pen for writing. Composition: Close-up on ceremonial items, hands preparing the offering. Mood: Solemnity, ritual precision required.",
         imagePath: "s1_q04.png",
         choices: [
             {
@@ -113,7 +113,7 @@ export const stage1Questions: Question[] = [
         id: "s1_q05",
         category: "SOCIAL",
         text: "大学時代の親友から久々の連絡。「みんなで集まる！来週の金曜日、絶対来てね」。しかし翌日は重要なプレゼン。準備は終わっていない。",
-        imagePrompt: "Scene: friends laughing in a warm gathering on one side; the protagonist alone at a desk with papers on the other; a ticking clock between them. Composition: split scene with warm vs cold lighting contrast. Mood: torn between belonging and responsibility.",
+        imagePrompt: "Scene: Office desk late at night, unfinished presentation on laptop, phone showing group chat message with friends' smiling photo, wall clock showing 11 PM. Composition: Desk fills frame, phone and laptop compete for attention. Mood: Torn, warm memory vs cold deadline.",
         imagePath: "s1_q05.png",
         choices: [
             {
@@ -197,7 +197,7 @@ export const stage1Questions: Question[] = [
         id: "s1_q08",
         category: "ADMIN",
         text: "中古車を購入して3年。「車検」の案内が届いたが、費用が高い。少し延ばしても大丈夫？",
-        imagePrompt: "Scene: a car with inspection sticker on windshield; calendar showing expiration date; two paths - one with legal compliance, other with police stop. Composition: vehicle maintenance decision point. Mood: cost vs legal risk.",
+        imagePrompt: "Scene: Car dashboard view, inspection sticker on windshield with expiration date circled, calendar notification on phone showing deadline passed, rearview mirror reflecting police lights in distance. Composition: Dashboard POV, sticker and mirror create tension. Mood: Deadline ignored, consequence approaching.",
         imagePath: "s1_q08.png",
         choices: [
             {
@@ -254,7 +254,7 @@ export const stage1Questions: Question[] = [
         id: "s1_q10",
         category: "SOCIAL",
         text: "Stage 1の最終問題。あなたにとって「社会の基本」とは何ですか？",
-        imagePrompt: "Scene: an ornate mirror reflecting the protagonist split into two selves (conformity vs agency); A.D.A.M.'s shadow behind them pulling puppet strings. Composition: mirror centered, shadow looming from above. Mood: existential judgement and duality.",
+        imagePrompt: "Scene: Retro terminal screen filling the frame, cryptic evaluation metrics scrolling, input field with blinking cursor awaiting response, green phosphor glow on black. Composition: Full-screen CRT aesthetic, scan lines visible. Mood: Final judgment, system awaiting human input.",
         imagePath: "s1_q10.png",
         choices: [
             {

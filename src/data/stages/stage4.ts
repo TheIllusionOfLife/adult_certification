@@ -34,7 +34,7 @@ export const stage4Questions: Question[] = [
         id: "s4_q02",
         category: "ADMIN",
         text: "婚姻届を提出しようとしたら、「証人2名の署名が必要」と言われた。親に頼むべき？",
-        imagePrompt: "Scene: a marriage registration form with empty witness sections; two paths showing parents vs friends as witnesses; a clock showing deadline. Composition: document close-up with signature areas highlighted. Mood: milestone moment, procedural requirement.",
+        imagePrompt: "Scene: Marriage registration form close-up, witness signature sections empty, phone contact list scrolled to various names, pen waiting. Composition: Form dominates, phone shows options without judgment. Mood: Milestone paperwork, flexible requirements.",
         imagePath: "s4_q02.png",
         choices: [
             {
@@ -59,7 +59,7 @@ export const stage4Questions: Question[] = [
         id: "s4_q03",
         category: "TAX",
         text: "「ふるさと納税」を勧められた。「実質2,000円で返礼品がもらえる」と聞いたが、注意点は？",
-        imagePrompt: "Scene: hometown tax donation website with regional products; calculation showing deduction limit; calendar with deadline. Composition: benefit visualization with hidden requirements. Mood: opportunity with conditions.",
+        imagePrompt: "Scene: Living room couch evening browsing, tablet showing regional specialty products grid, gift box from previous donation sitting opened nearby, calculator app on phone. Composition: Casual home shopping moment, past reward visible. Mood: Savvy consumer, benefit within reach.",
         imagePath: "s4_q03.png",
         choices: [
             {
@@ -113,7 +113,7 @@ export const stage4Questions: Question[] = [
         id: "s4_q05",
         category: "ADMIN",
         text: "市役所で手続き中、職員のミスで書類が紛失された。「再提出してください」と言われたが、こちらに非はない。",
-        imagePrompt: "Scene: a government counter with frustrated citizen; lost documents visualized as floating papers; two paths - fighting vs accepting. Composition: confrontation scene at bureaucratic desk. Mood: injustice, time vs principle trade-off.",
+        imagePrompt: "Scene: Government service counter window view, clerk's hands in apologetic gesture, apology note for lost documents on counter, blank re-submission form being pushed forward. Composition: Counter window frames the scene, bureaucratic indifference. Mood: Injustice, time about to be wasted.",
         imagePath: "s4_q05.png",
         choices: [
             {
@@ -141,7 +141,7 @@ export const stage4Questions: Question[] = [
         id: "s4_q06",
         category: "ADMIN",
         text: "初めての確定申告。「3月15日が期限」と知っているが、いつから準備を始めるべき？",
-        imagePrompt: "Scene: a calendar showing tax deadline in March; one path shows last-minute panic with errors; other shows calm early preparation. Composition: timeline with preparation stages. Mood: procrastination vs proactive planning.",
+        imagePrompt: "Scene: Calendar showing March with 15th deadline looming, stack of unsorted receipts, tax software login screen timing out, coffee gone cold. Composition: Calendar dominates wall, chaos on desk below. Mood: Procrastination catching up, deadline pressure.",
         imagePath: "s4_q06.png",
         choices: [
             {
@@ -251,7 +251,7 @@ export const stage4Questions: Question[] = [
         id: "s4_q10",
         category: "ADMIN",
         text: "行政で困った経験を思い出してください。『システムに従った』か『システムを使った』か？その経験から、行政をどう見ますか？",
-        imagePrompt: "Scene: protagonist recalling past bureaucratic experiences; one path shows obedient citizen following signs; other shows strategic navigator finding shortcuts. Composition: memory flashback with two interpretations. Mood: retrospective reflection, learned wisdom.",
+        imagePrompt: "Scene: Old drawer pulled open revealing years of accumulated documents, stamps, receipts, some pristine some crumpled, layers of personal bureaucratic history. Composition: Overhead view into drawer, archaeological layers. Mood: Years of navigation crystallized, patterns in paper.",
         imagePath: "s4_q10.png",
         choices: [
             {

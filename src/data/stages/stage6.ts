@@ -34,7 +34,7 @@ export const stage6Questions: Question[] = [
         id: "s6_q02",
         category: "FINANCE",
         text: "住宅ローンを検討中。複数の銀行から見積もりを取ったが、金利以外に何を比較すべき？",
-        imagePrompt: "Scene: multiple loan documents from different banks; hidden fees revealed under magnifying glass; comparison checklist. Composition: surface rate vs total cost analysis. Mood: careful evaluation.",
+        imagePrompt: "Scene: Kitchen counter with laptop showing bank comparison website, multiple browser tabs visible, coffee mug with bank logo received as promotional gift. Composition: Laptop screen dominant, casual home research setting. Mood: DIY research, information overload.",
         imagePath: "s6_q02.png",
         choices: [
             {
@@ -59,7 +59,7 @@ export const stage6Questions: Question[] = [
         id: "s6_q03",
         category: "HOUSING",
         text: "賃貸契約で「連帯保証人が必要」と言われた。親に頼めないが、保証会社を使うと費用がかかる。",
-        imagePrompt: "Scene: rental application form with guarantor section; two paths - family member vs guarantee company; cost comparison. Composition: personal dependency vs financial solution. Mood: independence trade-off.",
+        imagePrompt: "Scene: Rental application form on table, guarantor section highlighted with blank fields, phone showing estranged relative's contact, guarantee company pamphlet with fee schedule nearby. Composition: Form centered, two options at edges. Mood: Independence costs money, relationships cost more.",
         imagePath: "s6_q03.png",
         choices: [
             {
@@ -88,7 +88,7 @@ export const stage6Questions: Question[] = [
         id: "s6_q04",
         category: "HOUSING",
         text: "気に入った物件が「定期借家契約」だと説明された。「普通借家」との違いを聞かれたが、よくわからない。",
-        imagePrompt: "Scene: two lease contracts side by side; one labeled 'regular' with renewal arrows, one labeled 'fixed-term' with end date; confused tenant. Composition: contract comparison with renewal implications. Mood: hidden trap, critical difference.",
+        imagePrompt: "Scene: Two lease contracts on real estate agent's desk, one stamped with fixed-term label and end date visible, agent's hand pointing at signature line, apartment keys waiting. Composition: Contracts fill frame, critical difference in stamps. Mood: Hidden trap in routine paperwork.",
         imagePath: "s6_q04.png",
         choices: [
             {
@@ -113,7 +113,7 @@ export const stage6Questions: Question[] = [
         id: "s6_q05",
         category: "HOUSING",
         text: "理想の物件を見つけたが、予算より2万円高い。他に良い物件はなさそう。",
-        imagePrompt: "Scene: a perfect apartment vs budget spreadsheet; scale balancing dream vs reality. Composition: desire vs financial prudence. Mood: compromise decision.",
+        imagePrompt: "Scene: Perfect apartment listing printout showing dream unit, laptop screen displaying monthly budget spreadsheet with negative balance in red, calculator showing yearly total. Composition: Dream listing vs harsh numbers side by side. Mood: Desire meeting reality.",
         imagePath: "s6_q05.png",
         choices: [
             {
@@ -166,7 +166,7 @@ export const stage6Questions: Question[] = [
         id: "s6_q07",
         category: "HOUSING",
         text: "大家との敷金返還トラブル。話し合いでは解決せず、「裁判するしかない」と言われた。",
-        imagePrompt: "Scene: tenant vs landlord standoff; courthouse looming; alternative path showing mediation center. Composition: conflict escalation vs peaceful resolution. Mood: impasse with hidden exit.",
+        imagePrompt: "Scene: Standoff at apartment doorway, landlord's hand holding inflated bill, tenant's hand holding smartphone showing legal rights article, keys on hook between them. Composition: Doorway frames confrontation, hands and documents central. Mood: Dispute at threshold, knowledge as leverage.",
         imagePath: "s6_q07.png",
         choices: [
             {
@@ -251,7 +251,7 @@ export const stage6Questions: Question[] = [
         id: "s6_q10",
         category: "HOUSING",
         text: "30歳、40歳、70歳……人生の各段階で『住まい』の意味は変わる。今のあなたにとって住まいとは何ですか？",
-        imagePrompt: "Scene: protagonist seeing three versions of self at different ages; each with different housing needs; lifecycle timeline with changing priorities. Composition: age progression with housing evolution. Mood: life stage reflection, long-term planning.",
+        imagePrompt: "Scene: Cardboard boxes half-packed frozen mid-move, some sealed with old address labels, collection of keys from different apartments hanging together on single ring. Composition: Moving chaos snapshot, keys as focal point. Mood: Impermanence as constant, every home a chapter.",
         imagePath: "s6_q10.png",
         choices: [
             {

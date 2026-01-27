@@ -6,7 +6,7 @@ export const stage3Questions: Question[] = [
         id: "s3_q01",
         category: "FINANCE",
         text: "「100万円を年利3%で10年運用すると、単利と複利でどちらが増える？」と聞かれた。",
-        imagePrompt: "Scene: two diverging paths of coins; one straight line (simple interest) vs exponential curve (compound); a calculator showing numbers; time passing represented by calendar pages. Composition: split visualization showing growth difference. Mood: mathematical revelation, hidden power of time.",
+        imagePrompt: "Scene: Calculator on desk showing computation, notebook with hand-drawn graph showing diverging lines (straight vs curved upward), 10-year timeline written with arrows. Composition: Calculator and notebook fill frame, mathematical revelation. Mood: Hidden power of numbers revealed.",
         imagePath: "s3_q01.png",
         choices: [
             {
@@ -88,7 +88,7 @@ export const stage3Questions: Question[] = [
         id: "s3_q04",
         category: "FINANCE",
         text: "住宅ローンを検討中。「固定金利」と「変動金利」、どちらを選ぶべきか？",
-        imagePrompt: "Scene: two paths diverging; one flat and stable (fixed), one wavy with ups and downs (variable); a house at the end of both paths; interest rate graphs. Composition: comparison visualization with uncertainty clouds. Mood: long-term decision, risk vs stability.",
+        imagePrompt: "Scene: Real estate office consultation room, bank pamphlets spread across glass table, loan officer's hands gesturing at rate comparison chart on tablet screen. Composition: Glass table reflection, tablet glow, professional setting. Mood: Guidance sought, numbers on display.",
         imagePath: "s3_q04.png",
         choices: [
             {
@@ -113,7 +113,7 @@ export const stage3Questions: Question[] = [
         id: "s3_q05",
         category: "FINANCE",
         text: "老後資金を準備したい。iDeCoとNISA、どちらを優先すべき？月の投資可能額は2万円。",
-        imagePrompt: "Scene: two treasure chests labeled iDeCo and NISA; one locked until 60 (iDeCo), one accessible anytime (NISA); retirement vision in distance. Composition: player choosing between two valid paths. Mood: trade-off, no wrong answer, future planning.",
+        imagePrompt: "Scene: Financial seminar room after hours, whiteboard with retirement calculations still visible, two different brochures left on attendee chair, notebook with personal notes. Composition: Empty seminar room, learning remnants. Mood: Education absorbed, decision pending.",
         imagePath: "s3_q05.png",
         choices: [
             {
@@ -197,7 +197,7 @@ export const stage3Questions: Question[] = [
         id: "s3_q08",
         category: "FINANCE",
         text: "就職したが給料が低く、奨学金の返済が厳しい。毎月の返済額は約15,000円。どう対応すべき？",
-        imagePrompt: "Scene: pay stub showing low salary; student loan payment notice; JASSO website showing relief options; stressed young worker at desk. Composition: financial squeeze with escape route. Mood: financial pressure, available relief.",
+        imagePrompt: "Scene: Cramped apartment room, pay stub pinned to corkboard alongside student loan notice, laptop showing JASSO relief application page, instant noodles on desk. Composition: Lived-in small space, financial squeeze visible in details. Mood: Tight budget lifestyle, help available online.",
         imagePath: "s3_q08.png",
         choices: [
             {
@@ -222,7 +222,7 @@ export const stage3Questions: Question[] = [
         id: "s3_q09",
         category: "FINANCE",
         text: "ボーナス50万円。住宅ローン（年利1%）の繰り上げ返済か、投資（期待リターン5%）か？",
-        imagePrompt: "Scene: a scale balancing debt reduction vs investment growth; house with shrinking loan on one side, growing portfolio on other; calculator showing numbers. Composition: mathematical trade-off visualization. Mood: optimization puzzle, no clear winner.",
+        imagePrompt: "Scene: Bonus pay slip showing large amount on desk, housing loan statement beside it, smartphone showing investment app with upward graph, calculator between them. Composition: Financial documents surrounding calculator, decision point. Mood: Optimization puzzle, competing priorities.",
         imagePath: "s3_q09.png",
         choices: [
             {
@@ -251,7 +251,7 @@ export const stage3Questions: Question[] = [
         id: "s3_q10",
         category: "FINANCE",
         text: "年収1000万でストレス vs 年収500万で自由。10年後どちらにいたいですか？その選択が『お金』の本質を暴露します。",
-        imagePrompt: "Scene: protagonist at crossroads; one path shows high salary with chains and stress clouds; other path shows modest income with wings and open sky; A.D.A.M.'s eye watching. Composition: philosophical duality, money as trap vs freedom enabler. Mood: existential reflection, value definition.",
+        imagePrompt: "Scene: Two coffee cups on cafe table, one expensive chain branded cup, one simple thermos lid, steam rising equally from both, morning light through window. Composition: Tabletop minimalist, symmetric presentation. Mood: Different vessels, same warmth inside.",
         imagePath: "s3_q10.png",
         choices: [
             {
