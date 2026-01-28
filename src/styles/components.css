@@ -584,6 +584,26 @@
     border-left: 8px solid var(--stage-5-color);
 }
 
+.diff-btn:nth-child(6) {
+    border-left: 8px solid var(--stage-6-color);
+}
+
+.diff-btn:nth-child(7) {
+    border-left: 8px solid var(--stage-7-color);
+}
+
+.diff-btn:nth-child(8) {
+    border-left: 8px solid var(--stage-8-color);
+}
+
+.diff-btn:nth-child(9) {
+    border-left: 8px solid var(--stage-9-color);
+}
+
+.diff-btn:nth-child(10) {
+    border-left: 8px solid var(--stage-10-color);
+}
+
 .diff-btn .arrow {
     display: block;
     font-size: 1.5rem;

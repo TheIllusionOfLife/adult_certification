@@ -172,7 +172,7 @@ export const stage10Questions: Question[] = [
             {
                 text: "「私の人生は私が決めます。データは参考にしますが、提案内容を検証します。」と答える。",
                 effect: { CS: -15, Asset: 0, Autonomy: +25 },
-                verdict: "WARNING",
+                verdict: "NEUTRAL",
                 feedback: "自律的選択です。システムの「善意」を疑い、主体性を守りました。",
                 lockRequirements: { Autonomy: 60 },
                 lockedFeedback: "自律性が60以上必要。システムに依存しすぎると、この選択肢すら見えなくなります。"
@@ -180,7 +180,7 @@ export const stage10Questions: Question[] = [
             {
                 text: "「ありがとうございます。提案に従います。」と受け入れる。",
                 effect: { CS: +20, Asset: 0, Autonomy: -20 },
-                verdict: "APPROVED",
+                verdict: "NEUTRAL",
                 feedback: "従順な選択です。A.D.A.M.はあなたの選択を記録しました。",
                 lockRequirements: null
             }
@@ -255,14 +255,14 @@ export const stage10Questions: Question[] = [
         imagePath: "s10_q10.png",
         choices: [
             {
-                text: "「社会は守るべきルールの集合体。私はその中で最適化された市民です」",
+                text: "社会は守るべきルールの集合体。私はその中で最適化された市民です。",
                 effect: { CS: +25, Asset: 0, Autonomy: -20 },
                 verdict: "NEUTRAL",
                 feedback: "模範的回答です。A.D.A.M.は満足しています。",
                 lockRequirements: null
             },
             {
-                text: "「社会は社会。理解し、活用し、必要なら共に変えていく。私は自分で考え、自分の意志で社会に貢献する」",
+                text: "社会は社会。理解し、活用し、必要なら共に変えていく。私は自分で考え、自分の意志で社会に貢献する。",
                 effect: { CS: +5, Asset: 0, Autonomy: +25 },
                 verdict: "NEUTRAL",
                 feedback: "覚醒の回答です。A.D.A.M.はあなたを「危険」と分類しました。システムを理解し、利用し、しかし支配されない・・・それが真の「大人」です。",

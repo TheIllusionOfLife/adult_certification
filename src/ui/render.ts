@@ -5,6 +5,7 @@ import { CONFIG } from '../config';
 import { getOverlayPresentation } from './overlayVerdict';
 import { DOM_IDS } from './domIds';
 import { RecordStorage } from '../storage/RecordStorage';
+import { STAGE_METADATA } from '../data/stageMetadata';
 
 // Vite glob import for assets
 const images = import.meta.glob('../assets/*.{png,jpg,jpeg,webp}', { eager: true });
@@ -91,19 +92,12 @@ export class UIManager {
 
 
         // All 10 stages - only show unlocked stages (previous stage beaten)
-        // Themes aligned with improvement_plan_2026-01-24_integrated.md section 3.1
-        const allStages: { key: string, name: string, desc: string }[] = [
-            { key: 'Stage1', name: 'STAGE 1', desc: '社会の基本' },
-            { key: 'Stage2', name: 'STAGE 2', desc: '仕事の基礎' },
-            { key: 'Stage3', name: 'STAGE 3', desc: '金の基礎' },
-            { key: 'Stage4', name: 'STAGE 4', desc: '税金' },
-            { key: 'Stage5', name: 'STAGE 5', desc: '社会保険' },
-            { key: 'Stage6', name: 'STAGE 6', desc: '住まい' },
-            { key: 'Stage7', name: 'STAGE 7', desc: '契約・法律' },
-            { key: 'Stage8', name: 'STAGE 8', desc: 'デジタル安全' },
-            { key: 'Stage9', name: 'STAGE 9', desc: '危機対応' },
-            { key: 'Stage10', name: 'STAGE 10', desc: '最終審判' }
-        ];
+        // themeJP comes from stageMetadata.ts
+        const allStages: { key: string, name: string, desc: string }[] = STAGE_METADATA.map((stage) => ({
+            key: `Stage${stage.id}`,
+            name: `STAGE ${stage.id}`,
+            desc: stage.themeJP
+        }));
 
         // Only show stages that are unlocked (Stage 1 always visible, others require previous stage beaten)
         allStages.forEach((stage, index) => {
@@ -372,11 +366,13 @@ export class UIManager {
         if (recommendedSkill) {
             const adamSection = document.createElement('div');
             adamSection.className = 'adam-recommendation';
+            const defaultComment = `「${recommendedSkill.skill.name}」を推奨します。実利的な選択です。`;
+            const comment = recommendedSkill.skill.recommendComment || defaultComment;
             adamSection.innerHTML = `
                 <img src="${this.dom.mascotImg.src}" alt="A.D.A.M." class="adam-recommend-img" />
                 <div class="adam-recommend-speech">
                     <span class="adam-label">[A.D.A.M.]:</span>
-                    「${recommendedSkill.skill.name}」を推奨します。実利的な選択です。
+                    ${comment}
                 </div>
             `;
             wrapper.appendChild(adamSection);
