@@ -25,7 +25,7 @@ export const stage6Questions: Question[] = [
             }
         ],
         adamDialogue: {
-            intro: "Stage 6を開始します。テーマは『契約の攻防』。賃貸、売買、交渉・・・契約は力関係で決まります。"
+            intro: "Stage 6を開始します。テーマは「契約の攻防」。賃貸、売買、交渉・・・契約は力関係で決まります。"
         }
     },
 
@@ -238,7 +238,7 @@ export const stage6Questions: Question[] = [
                 verdict: "NEUTRAL",
                 feedback: "挑戦的な選択です。交渉は決裂するリスクがありますが、更新料が減額される可能性もあります。契約上の力関係に挑む姿勢を見せました。",
                 lockRequirements: { Autonomy: 100 },
-                lockedFeedback: "LOCKED: 自律性が100以上必要。『契約書に書いてあるから従う』という思考から抜け出せていません。"
+                lockedFeedback: "LOCKED: 自律性が100以上必要。「契約書に書いてあるから従う」という思考から抜け出せていません。"
             }
         ],
         adamDialogue: {
@@ -250,7 +250,7 @@ export const stage6Questions: Question[] = [
     {
         id: "s6_q10",
         category: "HOUSING",
-        text: "30歳、40歳、70歳・・・人生の各段階で『住まい』の意味は変わる。今のあなたにとって住まいとは何ですか？",
+        text: "30歳、40歳、70歳・・・人生の各段階で「住まい」の意味は変わる。今のあなたにとって住まいとは何ですか？",
         imagePrompt: "Scene: Cardboard boxes half-packed frozen mid-move, some sealed with old address labels, collection of keys from different apartments hanging together on single ring. Composition: Moving chaos snapshot, keys as focal point. Mood: Impermanence as constant, every home a chapter.",
         imagePath: "s6_q10.png",
         choices: [

@@ -25,7 +25,7 @@ export const stage3Questions: Question[] = [
             }
         ],
         adamDialogue: {
-            intro: "Stage 3を開始します。テーマは『金の基礎』。複利、税金、借金の罠・・・お金のリテラシーを試します。"
+            intro: "Stage 3を開始します。テーマは「金の基礎」。複利、税金、借金の罠・・・お金のリテラシーを試します。"
         }
     },
 
@@ -250,7 +250,7 @@ export const stage3Questions: Question[] = [
     {
         id: "s3_q10",
         category: "FINANCE",
-        text: "年収1000万でストレス vs 年収500万で自由。10年後どちらにいたいですか？その選択が『お金』の本質を暴露します。",
+        text: "年収1000万でストレス vs 年収500万で自由。10年後どちらにいたいですか？その選択が「お金」の本質を暴露します。",
         imagePrompt: "Scene: Two coffee cups on cafe table, one expensive chain branded cup, one simple thermos lid, steam rising equally from both, morning light through window. Composition: Tabletop minimalist, symmetric presentation. Mood: Different vessels, same warmth inside.",
         imagePath: "s3_q10.png",
         choices: [

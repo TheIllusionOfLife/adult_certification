@@ -25,7 +25,7 @@ export const stage7Questions: Question[] = [
             }
         ],
         adamDialogue: {
-            intro: "Stage 7を開始します。テーマは『法の盾』。契約、詐欺、消費者保護・・・法律は武器にも盾にもなります。"
+            intro: "Stage 7を開始します。テーマは「法の盾」。契約、詐欺、消費者保護・・・法律は武器にも盾にもなります。"
         }
     },
 
@@ -250,7 +250,7 @@ export const stage7Questions: Question[] = [
     {
         id: "s7_q10",
         category: "LEGAL",
-        text: "力ある者は法を『秩序の道具』と見なし、力なき者は『身を守る武器』と見なす。あなたはどちらの視点で法律を見ていますか？",
+        text: "力ある者は法を「秩序の道具」と見なし、力なき者は「身を守る武器」と見なす。あなたはどちらの視点で法律を見ていますか？",
         imagePrompt: "Scene: Courthouse justice scales in dramatic shadow, one side holds a gavel, other holds a shield, perfectly balanced despite holding different objects. Composition: Classical symbol reinterpreted, chiaroscuro lighting. Mood: Same equilibrium, different purposes entirely.",
         imagePath: "s7_q10.png",
         choices: [
@@ -258,7 +258,7 @@ export const stage7Questions: Question[] = [
                 text: "秩序の道具。法を守り、社会の安定に貢献する側でいたい。",
                 effect: { CS: 10, Asset: 10000, Autonomy: -20 },
                 verdict: "NEUTRAL",
-                feedback: "体制順応型の回答です。法を守る姿勢は信用と安定をもたらします。しかし、不当な法や運用に直面した時、従い続けることが正義ですか？",
+                feedback: "体制順応型の回答です。法を守る姿勢は信用と安定をもたらします。",
                 lockRequirements: null
             },
             {

@@ -25,7 +25,7 @@ export const stage10Questions: Question[] = [
             }
         ],
         adamDialogue: {
-            intro: "最終ステージを開始します。テーマは『最終認定』。これまでの全てを統合し、あなたの「成人度」を測定します。"
+            intro: "最終ステージを開始します。テーマは「最終認定」。これまでの全てを統合し、あなたが「大人」か測定します。"
         }
     },
 
@@ -140,7 +140,7 @@ export const stage10Questions: Question[] = [
     {
         id: "s10_q06",
         category: "META",
-        text: "「社会的信用」とは何か？クレジットスコア、SNSの評判、職歴、学歴・・・様々な「信用」があなたを取り巻いている。",
+        text: "「社会的信用」とは何か？世間の目、SNSの評判、職歴、学歴・・・様々な「信用」があなたを取り巻いている。",
         imagePrompt: "Scene: Person standing in center surrounded by floating score displays (credit score, social media followers, employment record, educational certificates), some metrics glowing, others faded. Composition: Individual as intersection of multiple evaluation systems. Mood: Quantified existence, visibility of invisible judgments.",
         imagePath: "s10_q06.png",
         choices: [
@@ -165,22 +165,22 @@ export const stage10Questions: Question[] = [
     {
         id: "s10_q07",
         category: "META",
-        text: "A.D.A.M.から「あなたの行動データを分析した結果、最適なキャリアパスを提案できます」と通知が届いた。",
+        text: "A.D.A.M.から「あなたの行動データを分析した結果、最適な人生を提案できます」と通知が届いた。",
         imagePrompt: "Scene: Notification popup on screen showing A.D.A.M.'s offer with career path visualization, user's reflection visible in screen, crossroads imagery in background (one path lit by algorithm, one path in shadow but self-directed). Composition: AI guidance vs self-determination, fork in road. Mood: Algorithmic benevolence, autonomy at stake.",
         imagePath: "s10_q07.png",
         choices: [
             {
-                text: "「ありがとうございます。提案を見せてください」と受け入れる。",
+                text: "「ありがとうございます。提案に従います。」と受け入れる。",
                 effect: { CS: +20, Asset: 0, Autonomy: -20 },
                 verdict: "APPROVED",
-                feedback: "従順な選択です。システムの提案に委ねました。効率的ですが、あなたの意志はどこに？ A.D.A.M.はあなたの選択を記録しました。",
+                feedback: "従順な選択です。A.D.A.M.はあなたの選択を記録しました。",
                 lockRequirements: null
             },
             {
-                text: "「私の人生は私が決めます。データは参考にしますが、提案は不要です」と断る。",
+                text: "「私の人生は私が決めます。データは参考にしますが、提案内容を検証します。」と答える。",
                 effect: { CS: -15, Asset: 0, Autonomy: +25 },
                 verdict: "WARNING",
-                feedback: "自律的選択です。システムの「善意」を疑い、主体性を守りました。A.D.A.M.には不都合な態度ですが・・・あなたは「覚醒」への道を歩み始めました。",
+                feedback: "自律的選択です。システムの「善意」を疑い、主体性を守りました。",
                 lockRequirements: { Autonomy: 60 },
                 lockedFeedback: "自律性が60以上必要。システムに依存しすぎると、この選択肢すら見えなくなります。"
             }
@@ -227,18 +227,18 @@ export const stage10Questions: Question[] = [
         choices: [
             {
                 text: "「まあ、自分で経験して学ぶのも大事だよ」と流す。",
-                effect: { CS: +10, Asset: 0, Autonomy: -5 },
+                effect: { CS: 0, Asset: 0, Autonomy: 0 },
                 verdict: "NEUTRAL",
                 feedback: "無難な選択です。余計なお世話を避けました。でも、知識を持ちながら黙ることは、システムの共犯では？後輩は高い授業料を払うことになるかもしれません。",
                 lockRequirements: null
             },
             {
                 text: "具体的な計算例を見せて、複利の仕組みを説明する。",
-                effect: { CS: +5, Asset: -5000, Autonomy: +10 },
+                effect: { CS: +10, Asset: 0, Autonomy: +10 },
                 verdict: "NEUTRAL",
-                feedback: "継承の選択です。時間と労力をかけて知識を伝えました。報われるかは分かりませんが、それが「覚醒」の責任です。知識は分かち合うことで力になります。",
-                lockRequirements: { Asset: 50000 },
-                lockedFeedback: "資産が50,000円以上必要。他者を助ける余裕がないと、知識があっても伝えられません。"
+                feedback: "継承の選択です。時間と労力をかけて知識を伝えました。報われるかは分かりませんが、それが「大人」の責任です。知識は分かち合うことで力になります。",
+                lockRequirements: { Autonomy: 100 },
+                lockedFeedback: "自律性が100以上必要。他者を助ける余裕がないと、知識があっても伝えられません。"
             }
         ],
         adamDialogue: {
@@ -250,7 +250,7 @@ export const stage10Questions: Question[] = [
     {
         id: "s10_q10",
         category: "PHILOSOPHY",
-        text: "最終問題。A.D.A.M.があなたに問いかけます。「全ての試験を終えて、あなたは『社会』をどう捉えますか？」",
+        text: "最終問題。A.D.A.M.があなたに問いかけます。「全ての試験を終えて、あなたは「社会」をどう捉えますか？」",
         imagePrompt: "Scene: Final examination room, A.D.A.M. avatar facing the player directly, two doors behind representing different life philosophies, accumulated scores and skills floating around player. Composition: Direct confrontation, ultimate choice, journey's end. Mood: Philosophical climax, identity definition.",
         imagePath: "s10_q10.png",
         choices: [
@@ -258,19 +258,19 @@ export const stage10Questions: Question[] = [
                 text: "「社会は守るべきルールの集合体。私はその中で最適化された市民です」",
                 effect: { CS: +25, Asset: 0, Autonomy: -20 },
                 verdict: "NEUTRAL",
-                feedback: "模範的回答です。A.D.A.M.は満足しています。あなたは完璧に社会化されました。ルールを守り、システムに貢献する。・・・おめでとうございます？",
+                feedback: "模範的回答です。A.D.A.M.は満足しています。共に素晴らしい社会を構築しましょう。大人免許を進呈します。",
                 lockRequirements: null
             },
             {
                 text: "「社会は道具。理解し、利用し、必要なら変える対象です。私はプレイヤーであり、駒ではない」",
                 effect: { CS: +5, Asset: 0, Autonomy: +25 },
                 verdict: "NEUTRAL",
-                feedback: "覚醒の回答です。A.D.A.M.はあなたを「危険」と分類しました。しかし、それこそが人間の証明かもしれません。システムを理解し、利用し、しかし支配されない・・・それが真の「成人」です。",
+                feedback: "覚醒の回答です。A.D.A.M.はあなたを「危険」と分類しました。システムを理解し、利用し、しかし支配されない・・・それが真の「大人」です。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "最終問題です。あなたの『成人宣言』を聞かせてください。",
+            intro: "最終問題です。あなたの「成人宣言」を聞かせてください。",
             after: "最終認定審査を終了します。結果を算出中・・・"
         }
     }

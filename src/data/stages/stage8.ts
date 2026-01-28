@@ -25,7 +25,7 @@ export const stage8Questions: Question[] = [
             }
         ],
         adamDialogue: {
-            intro: "Stage 8を開始します。テーマは『電子市民』。パスワード、フィッシング、個人情報・・・デジタル社会の生存術を試します。"
+            intro: "Stage 8を開始します。テーマは「電子市民」。パスワード、フィッシング、個人情報・・・デジタル社会の生存術を試します。"
         }
     },
 
@@ -238,7 +238,7 @@ export const stage8Questions: Question[] = [
                 verdict: "NEUTRAL",
                 feedback: "安全を取った選択です。効率は落ちますが、機密情報の流出リスクをゼロにしました。AIツールの利便性と情報管理の境界線を引く判断力があります。",
                 lockRequirements: { Autonomy: 100 },
-                lockedFeedback: "LOCKED: 自律性が100以上必要。『便利だから』という思考に流され、リスク評価ができていません。"
+                lockedFeedback: "LOCKED: 自律性が100以上必要。「便利だから」という思考に流され、リスク評価ができていません。"
             }
         ],
         adamDialogue: {
@@ -250,7 +250,7 @@ export const stage8Questions: Question[] = [
     {
         id: "s8_q10",
         category: "SEC",
-        text: "あなたの検索履歴、位置情報、購買記録は企業に売買されている。その時、『個人情報』は何ですか？",
+        text: "あなたの検索履歴、位置情報、購買記録は企業に売買されている。その時、「個人情報」は何ですか？",
         imagePrompt: "Scene: Vending machine displaying personal data packets as products behind glass, browsing history, location logs, purchase records each with price tags, coin slot glowing. Composition: Machine fills frame, data products on shelves. Mood: Surreal marketplace, your life for sale.",
         imagePath: "s8_q10.png",
         choices: [

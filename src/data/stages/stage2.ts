@@ -250,7 +250,7 @@ export const stage2Questions: Question[] = [
     {
         id: "s2_q10",
         category: "CAREER",
-        text: "5年後、キャリアの選択肢が出た。昇進コース（安定）かスペシャリスト（自由）か。あなたにとって『仕事』の本質は？",
+        text: "5年後、キャリアの選択肢が出た。昇進コース（安定）かスペシャリスト（自由）か。あなたにとって「仕事」の本質は？",
         imagePrompt: "Scene: Retirement desk being cleared, photo frame with career memories face-down, congratulations card half-read, empty nameplate being wrapped in newspaper. Composition: Desk surface close-up, bittersweet objects. Mood: End of an era, retrospective questioning.",
         imagePath: "s2_q10.png",
         choices: [

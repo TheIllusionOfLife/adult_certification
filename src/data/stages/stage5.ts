@@ -25,7 +25,7 @@ export const stage5Questions: Question[] = [
             }
         ],
         adamDialogue: {
-            intro: "Stage 5を開始します。テーマは『社会保障の羅針盤』。病気、失業、出産・・・公的制度を知らないと詰みます。"
+            intro: "Stage 5を開始します。テーマは「社会保障の羅針盤」。病気、失業、出産・・・公的制度を知らないと詰みます。"
         }
     },
 
@@ -250,7 +250,7 @@ export const stage5Questions: Question[] = [
     {
         id: "s5_q10",
         category: "HEALTH",
-        text: "退職して無職になった。健康保険の選択肢は『任意継続（2年限定、保険料は退職時の約2倍）』か『国民健康保険（前年所得ベース、減免制度あり）』。どちらを選ぶべきか？",
+        text: "退職して無職になった。健康保険の選択肢は「任意継続（2年限定、保険料は退職時の約2倍）」か「国民健康保険（前年所得ベース、減免制度あり）」。どちらを選ぶべきか？",
         imagePrompt: "Scene: Kitchen table with two insurance documents side by side, calculator showing different premium amounts, calendar marking 20-day deadline, coffee cup half empty. Composition: Documents dominate, numbers visible on both. Mood: Critical decision window, money at stake.",
         imagePath: "s5_q10.png",
         choices: [
@@ -258,19 +258,19 @@ export const stage5Questions: Question[] = [
                 text: "任意継続を選ぶ。退職前と同じ保険証が使え、扶養家族がいれば追加保険料なしでカバーできる。",
                 effect: { CS: 10, Asset: -50000, Autonomy: -10 },
                 verdict: "NEUTRAL",
-                feedback: "継続性を重視した回答です。任意継続は最大2年間、会社負担分も自己負担になるため保険料は約2倍。扶養家族がいれば有利ですが、『前と同じ』という安心感で選んでいませんか。",
+                feedback: "継続性を重視した回答です。任意継続は最大2年間、会社負担分も自己負担になるため保険料は約2倍。扶養家族がいれば有利ですが、「前と同じ」という安心感で選んでいるならば・・・。",
                 lockRequirements: null
             },
             {
                 text: "国民健康保険を選ぶ。失業中なら減免申請で保険料が下がる可能性がある。",
                 effect: { CS: 5, Asset: -30000, Autonomy: 10 },
                 verdict: "NEUTRAL",
-                feedback: "状況に応じた回答です。国保には『扶養』がなく家族分の保険料が発生しますが、失業減免を使えば大幅に安くなることも。両方を試算して比較すれば、年間数十万円の差が出ます。",
+                feedback: "状況に応じた回答です。国保には「扶養」がなく家族分の保険料が発生しますが、失業減免を使えば大幅に安くなることも。両方を試算して比較すれば、年間数十万円の差が出ます。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "最終問題です。『知っているか』だけで数十万円の差がつく領域があります。",
+            intro: "最終問題です。「知っているか」だけで数十万円の差がつく領域があります。",
             after: "Stage 5を終了します。審査結果を算出中・・・"
         }
     }

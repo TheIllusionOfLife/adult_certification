@@ -25,7 +25,7 @@ export const stage9Questions: Question[] = [
             }
         ],
         adamDialogue: {
-            intro: "Stage 9を開始します。テーマは『危機管理』。災害、事故、緊急事態・・・最悪を想定できる者だけが生き残ります。"
+            intro: "Stage 9を開始します。テーマは「危機管理」。災害、事故、緊急事態・・・最悪を想定できる者だけが生き残ります。"
         }
     },
 
@@ -112,7 +112,7 @@ export const stage9Questions: Question[] = [
     {
         id: "s9_q05",
         category: "DISASTER",
-        text: "大地震直後、SNSで『〇〇地区で火災発生、逃げろ』という投稿が流れてきた。家族がその地区にいる。公式発表はまだない。",
+        text: "大地震直後、SNSで「〇〇地区で火災発生、逃げろ」という投稿が流れてきた。家族がその地区にいる。公式発表はまだない。",
         imagePrompt: "Scene: Phone screen showing viral disaster post with alarming headline and retweet count, official news app showing no updates yet, family photo visible in background, finger hovering over share button. Composition: Phone dominates, share/ignore decision moment. Mood: Information fog, speed vs accuracy.",
         imagePath: "s9_q05.png",
         choices: [
@@ -250,7 +250,7 @@ export const stage9Questions: Question[] = [
     {
         id: "s9_q10",
         category: "DISASTER",
-        text: "ハザードマップの浸水想定を超える被害が発生した。『想定外だった』という声が上がる。そもそも『想定』とは何か？",
+        text: "ハザードマップの浸水想定を超える被害が発生した。「想定外だった」という声が上がる。そもそも「想定」とは何か？",
         imagePrompt: "Scene: Flooded street with water line clearly above hazard map prediction marker on wall, map itself partially submerged, rescue boat in distance, 'unexpected' headline on floating newspaper. Composition: Water level vs prediction marker creates visual irony. Mood: Assumptions shattered, reality exceeds models.",
         imagePath: "s9_q10.png",
         choices: [
@@ -258,19 +258,19 @@ export const stage9Questions: Question[] = [
                 text: "想定は常に更新し続けるべき。過去最大を超える災害は必ず起こる。",
                 effect: { CS: 15, Asset: -10000, Autonomy: 5 },
                 verdict: "NEUTRAL",
-                feedback: "予防重視の回答です。想定を引き上げ続ければ被害は減らせます。ただし『最悪の最悪』に備え続けるコストは無限に膨らみます。どこかで線を引く判断も必要です。",
+                feedback: "予防重視の回答です。想定を引き上げ続ければ被害は減らせます。ただし「最悪の最悪」に備え続けるコストは無限に膨らみます。どこかで線を引く判断も必要です。",
                 lockRequirements: null
             },
             {
-                text: "想定を超えた時の『逃げ方』を決めておく。想定外を想定する。",
+                text: "想定を超えた時の「逃げ方」を決めておく。想定外を想定する。",
                 effect: { CS: 10, Asset: 0, Autonomy: 5 },
                 verdict: "NEUTRAL",
-                feedback: "適応重視の回答です。『想定内は守り、想定外は適応する』という二段構え。完璧な準備は不可能でも、『想定が崩れた時にどう動くか』を決めておけば、混乱の中でも判断できます。",
+                feedback: "適応重視の回答です。「想定内は守り、想定外は適応する」という二段構え。完璧な準備は不可能でも、「想定が崩れた時にどう動くか」を決めておけば、混乱の中でも判断できます。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "最終問題です。『想定外』は言い訳か、それとも準備の限界か？",
+            intro: "最終問題です。「想定外」は言い訳か、それとも準備の限界か？",
             after: "Stage 9を終了します。審査結果を算出中・・・"
         }
     }
