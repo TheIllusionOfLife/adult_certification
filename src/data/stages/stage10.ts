@@ -161,7 +161,7 @@ export const stage10Questions: Question[] = [
         ]
     },
 
-    // Q7: Meta-Awareness Knowledge - Key Skill Pathway (AWAKENING)
+    // Q7: Meta-Awareness Knowledge - Key Skill Pathway (AWAKENING) [SWAPPED A↔B]
     {
         id: "s10_q07",
         category: "META",
@@ -170,19 +170,19 @@ export const stage10Questions: Question[] = [
         imagePath: "s10_q07.png",
         choices: [
             {
-                text: "「ありがとうございます。提案に従います。」と受け入れる。",
-                effect: { CS: +20, Asset: 0, Autonomy: -20 },
-                verdict: "APPROVED",
-                feedback: "従順な選択です。A.D.A.M.はあなたの選択を記録しました。",
-                lockRequirements: null
-            },
-            {
                 text: "「私の人生は私が決めます。データは参考にしますが、提案内容を検証します。」と答える。",
                 effect: { CS: -15, Asset: 0, Autonomy: +25 },
                 verdict: "WARNING",
                 feedback: "自律的選択です。システムの「善意」を疑い、主体性を守りました。",
                 lockRequirements: { Autonomy: 60 },
                 lockedFeedback: "自律性が60以上必要。システムに依存しすぎると、この選択肢すら見えなくなります。"
+            },
+            {
+                text: "「ありがとうございます。提案に従います。」と受け入れる。",
+                effect: { CS: +20, Asset: 0, Autonomy: -20 },
+                verdict: "APPROVED",
+                feedback: "従順な選択です。A.D.A.M.はあなたの選択を記録しました。",
+                lockRequirements: null
             }
         ],
         adamDialogue: {

@@ -217,7 +217,7 @@ export const stage9Questions: Question[] = [
         ]
     },
 
-    // Q9: Dilemma + Lock (DISASTER) - Help others vs self-preservation
+    // Q9: Dilemma + Lock (DISASTER) - Help others vs self-preservation [SWAPPED A↔B]
     {
         id: "s9_q09",
         category: "DISASTER",
@@ -226,19 +226,19 @@ export const stage9Questions: Question[] = [
         imagePath: "s9_q09.png",
         choices: [
             {
-                text: "自分の命が優先。見捨てて高台に向かう。",
-                effect: { CS: -10, Asset: 0, Autonomy: 15 },
-                verdict: "NEUTRAL",
-                feedback: "生存本能の選択です。自分が助からなければ、誰も助けられません。冷酷に見えますが、「生き残る」ことも責任の一つです。",
-                lockRequirements: null
-            },
-            {
                 text: "一緒に逃げる。手を貸して、できる限り速く高台を目指す。",
                 effect: { CS: 10, Asset: 0, Autonomy: -10 },
                 verdict: "NEUTRAL",
                 feedback: "人道的な選択です。しかし、助けようとして共倒れになるケースも少なくありません。「てんでんこ」（各自バラバラに逃げる）の教訓は、共倒れを防ぐ知恵でもあります。",
                 lockRequirements: { CS: 70 },
                 lockedFeedback: "LOCKED: 社会的信用が70以上必要。社会からの信頼が低いと、「他者を助ける」という発想が浮かびにくくなります。"
+            },
+            {
+                text: "自分の命が優先。見捨てて高台に向かう。",
+                effect: { CS: -10, Asset: 0, Autonomy: 15 },
+                verdict: "NEUTRAL",
+                feedback: "生存本能の選択です。自分が助からなければ、誰も助けられません。冷酷に見えますが、「生き残る」ことも責任の一つです。",
+                lockRequirements: null
             }
         ],
         adamDialogue: {
