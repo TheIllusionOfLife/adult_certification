@@ -265,7 +265,7 @@ export const stage10Questions: Question[] = [
                 text: "社会は社会。理解し、活用し、必要なら共に変えていく。私は自分で考え、自分の意志で社会に貢献する。",
                 effect: { CS: +5, Asset: 0, Autonomy: +25 },
                 verdict: "NEUTRAL",
-                feedback: "覚醒の回答です。A.D.A.M.はあなたを「危険」と分類しました。システムを理解し、利用し、しかし支配されない・・・それが真の「大人」です。",
+                feedback: "システムを理解し、活用し、しかし支配されない・・・それが真の「大人」です。",
                 lockRequirements: null
             }
         ],
