@@ -25,7 +25,7 @@ export const stage8Questions: Question[] = [
             }
         ],
         adamDialogue: {
-            intro: "Stage 8を開始します。テーマは『電子市民』。パスワード、フィッシング、個人情報……デジタル社会の生存術を試します。"
+            intro: "Stage 8を開始します。テーマは「電子市民」。パスワード、フィッシング、個人情報・・・デジタル社会の生存術を試します。"
         }
     },
 
@@ -87,7 +87,7 @@ export const stage8Questions: Question[] = [
     {
         id: "s8_q04",
         category: "SEC",
-        text: "銀行口座のオンラインサービスで「二段階認証を設定してください」と表示された。面倒だが……",
+        text: "銀行口座のオンラインサービスで「二段階認証を設定してください」と表示された。面倒だが・・・",
         imagePrompt: "Scene: a bank login screen with 2FA prompt; hacker shadow trying to break in; shield forming with second factor. Composition: security layers visualization. Mood: inconvenience vs protection.",
         imagePath: "s8_q04.png",
         choices: [
@@ -112,7 +112,7 @@ export const stage8Questions: Question[] = [
     {
         id: "s8_q05",
         category: "SEC",
-        text: "新しいスマホに機種変更した。古いスマホには写真、メール、アプリのログイン情報が残っている。売却すれば数千円になるが……",
+        text: "新しいスマホに機種変更した。古いスマホには写真、メール、アプリのログイン情報が残っている。売却すれば数千円になるが・・・",
         imagePrompt: "Scene: Old smartphone on desk next to buyback price tag, screen showing photo gallery preview, shredder in background, money bills fanned out nearby. Composition: Phone centered, destruction vs profit paths visible. Mood: Data vs money, irreversible choice.",
         imagePath: "s8_q05.png",
         choices: [
@@ -165,7 +165,7 @@ export const stage8Questions: Question[] = [
     {
         id: "s8_q07",
         category: "SEC",
-        text: "オンラインサービスの本人確認で「免許証の写真を送ってください」と言われた。知らないサービスだが……",
+        text: "オンラインサービスの本人確認で「免許証の写真を送ってください」と言われた。知らないサービスだが・・・",
         imagePrompt: "Scene: a phone camera pointing at ID card; unknown app requesting verification; identity theft scenarios playing out. Composition: identity exposure risk. Mood: verification necessity vs identity theft.",
         imagePath: "s8_q07.png",
         choices: [
@@ -238,7 +238,7 @@ export const stage8Questions: Question[] = [
                 verdict: "NEUTRAL",
                 feedback: "安全を取った選択です。効率は落ちますが、機密情報の流出リスクをゼロにしました。AIツールの利便性と情報管理の境界線を引く判断力があります。",
                 lockRequirements: { Autonomy: 100 },
-                lockedFeedback: "LOCKED: 自律性が100以上必要。『便利だから』という思考に流され、リスク評価ができていません。"
+                lockedFeedback: "LOCKED: 自律性が100以上必要。「便利だから」という思考に流され、リスク評価ができていません。"
             }
         ],
         adamDialogue: {
@@ -250,7 +250,7 @@ export const stage8Questions: Question[] = [
     {
         id: "s8_q10",
         category: "SEC",
-        text: "あなたの検索履歴、位置情報、購買記録は企業に売買されている。その時、『個人情報』は何ですか？",
+        text: "あなたの検索履歴、位置情報、購買記録は企業に売買されている。その時、「個人情報」は何ですか？",
         imagePrompt: "Scene: Vending machine displaying personal data packets as products behind glass, browsing history, location logs, purchase records each with price tags, coin slot glowing. Composition: Machine fills frame, data products on shelves. Mood: Surreal marketplace, your life for sale.",
         imagePath: "s8_q10.png",
         choices: [
@@ -265,13 +265,13 @@ export const stage8Questions: Question[] = [
                 text: "売買される商品。どうせ取られるなら、自分にも利益を還元させる。",
                 effect: { CS: 0, Asset: 5000, Autonomy: -10 },
                 verdict: "NEUTRAL",
-                feedback: "実利的回答です。ポイント還元、無料サービス...データ提供の見返りを最大化する姿勢。ただし、一度渡した情報は取り戻せません。",
+                feedback: "実利的回答です。ポイント還元、無料サービス・・・データ提供の見返りを最大化する姿勢。ただし、一度渡した情報は取り戻せません。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
             intro: "最終問題です。あなたのデータは誰のものですか？",
-            after: "Stage 8を終了します。審査結果を算出中..."
+            after: "Stage 8を終了します。審査結果を算出中・・・"
         }
     }
 ];

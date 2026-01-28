@@ -3,13 +3,16 @@ import { getStageMetadata } from '../data/stageMetadata';
 import { applySkillEffects, getSkillActivations, type SkillActivation } from '../data/skillEffects';
 import { getADAMCommentForEffect } from '../data/adamDialogue';
 import { CONFIG } from '../config';
+import { GlobalProgressStorage } from '../storage/GlobalProgressStorage';
 
 export class GameEngine {
     state: GameState;
     difficulty: string = ""; // Kept for backwards compatibility
     activeSkills: Skill[] = []; // Currently active skills for this stage
+    private globalProgress: GlobalProgressStorage;
 
     constructor(questions: Question[], stageId: number = 1) {
+        this.globalProgress = new GlobalProgressStorage();
         const stageMetadata = getStageMetadata(stageId);
         const initialParams = stageMetadata?.initialParams || CONFIG.DEFAULT_INITIAL_PARAMS;
 
@@ -137,7 +140,7 @@ export class GameEngine {
             this.state.skills.push(skill.id);
             this.activeSkills.push(skill);
 
-            // Track key skills separately
+            // Track key skills separately (recorded to global progress at stage end)
             if (skill.category === 'key') {
                 if (!this.state.keySkills.includes(skill.id)) {
                     this.state.keySkills.push(skill.id);
@@ -215,5 +218,31 @@ export class GameEngine {
                 lockedReason: `Q${questionNum}で選択肢${choiceLetter}を選ぶ必要があります`
             };
         });
+    }
+
+    /**
+     * Record stage completion to global progress.
+     * Should be called when the stage ends.
+     */
+    recordStageCompletion(rank: 'S' | 'A' | 'B' | 'C'): void {
+        // Get the key skill ID earned in this stage (if any)
+        const stageMetadata = getStageMetadata(this.state.currentStage);
+        const keySkillId = stageMetadata?.keySkillId;
+        const earnedKeySkill = this.state.keySkills.includes(keySkillId || '')
+            ? keySkillId
+            : undefined;
+
+        this.globalProgress.recordStageCompletion(
+            this.state.currentStage,
+            rank,
+            earnedKeySkill
+        );
+    }
+
+    /**
+     * Get the global progress storage instance for UI access.
+     */
+    getGlobalProgress(): GlobalProgressStorage {
+        return this.globalProgress;
     }
 }

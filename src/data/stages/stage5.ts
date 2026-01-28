@@ -25,7 +25,7 @@ export const stage5Questions: Question[] = [
             }
         ],
         adamDialogue: {
-            intro: "Stage 5を開始します。テーマは『社会保障の羅針盤』。病気、失業、出産……公的制度を知らないと詰みます。"
+            intro: "Stage 5を開始します。テーマは「社会保障の羅針盤」。病気、失業、出産・・・公的制度を知らないと詰みます。"
         }
     },
 
@@ -54,7 +54,7 @@ export const stage5Questions: Question[] = [
         ]
     },
 
-    // Q3: Knowledge (LABOR) - Education and training benefits (simpler cost, before skills) [SKILL OFFER 1 AFTER]
+    // Q3: Knowledge (LABOR) - Education and training benefits (simpler cost, before skills) [SKILL OFFER 1 AFTER] [SWAPPED A↔B]
     {
         id: "s5_q03",
         category: "LABOR",
@@ -63,17 +63,17 @@ export const stage5Questions: Question[] = [
         imagePath: "s5_q03.png",
         choices: [
             {
-                text: "50万円は高すぎる。諦めて独学でやる。",
-                effect: { CS: -10, Asset: 0, Autonomy: -10 },
-                verdict: "WARNING",
-                feedback: "機会損失です。教育訓練給付金を使えば、受講費用の最大70%（専門実践教育訓練）が支給されます。50万円のコースが実質15万円に。制度を知らないと、キャリアアップの機会を逃します。",
-                lockRequirements: null
-            },
-            {
                 text: "教育訓練給付金の対象講座か確認し、給付金を申請して受講する。",
                 effect: { CS: 15, Asset: -50000, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。雇用保険加入1年以上（初回）で利用可能。一般は20%、特定一般は40%、専門実践は最大70%給付。ハローワークで事前に相談すれば、対象講座と手続きがわかります。",
+                lockRequirements: null
+            },
+            {
+                text: "50万円は高すぎる。諦めて独学でやる。",
+                effect: { CS: -10, Asset: 0, Autonomy: -10 },
+                verdict: "WARNING",
+                feedback: "機会損失です。教育訓練給付金を使えば、受講費用の最大70%（専門実践教育訓練）が支給されます。50万円のコースが実質15万円に。制度を知らないと、キャリアアップの機会を逃します。",
                 lockRequirements: null
             }
         ],
@@ -83,7 +83,7 @@ export const stage5Questions: Question[] = [
     },
     // [SKILL OFFER 1 HAPPENS AFTER Q3]
 
-    // Q4: Knowledge (HEALTH) - Maternity/paternity leave benefits (simpler, 1 skill)
+    // Q4: Knowledge (HEALTH) - Maternity/paternity leave benefits (simpler, 1 skill) [SWAPPED A↔B]
     {
         id: "s5_q04",
         category: "HEALTH",
@@ -92,17 +92,17 @@ export const stage5Questions: Question[] = [
         imagePath: "s5_q04.png",
         choices: [
             {
-                text: "給料が出ないなら育休は取れない。すぐ復帰するしかない。",
-                effect: { CS: 10, Asset: 0, Autonomy: -15 },
-                verdict: "WARNING",
-                feedback: "制度の誤解です。育児休業給付金は、最初の6ヶ月は給与の67%、以降50%が雇用保険から支給されます。「無収入」ではありません。",
-                lockRequirements: null
-            },
-            {
                 text: "育児休業給付金（67%→50%）を確認し、生活設計に組み込んで育休を取得する。",
                 effect: { CS: 10, Asset: 100000, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。社会保険料も免除されるため、実質的な手取り差は縮まります。制度を理解すれば、育児と仕事の両立が可能になります。",
+                lockRequirements: null
+            },
+            {
+                text: "給料が出ないなら育休は取れない。すぐ復帰するしかない。",
+                effect: { CS: 10, Asset: 0, Autonomy: -15 },
+                verdict: "WARNING",
+                feedback: "制度の誤解です。育児休業給付金は、最初の6ヶ月は給与の67%、以降50%が雇用保険から支給されます。「無収入」ではありません。",
                 lockRequirements: null
             }
         ]
@@ -136,7 +136,7 @@ export const stage5Questions: Question[] = [
         }
     },
 
-    // Q6: Knowledge (LABOR) - Unemployment insurance (medium damage, 1 skill helps)
+    // Q6: Knowledge (LABOR) - Unemployment insurance (medium damage, 1 skill helps) [SWAPPED A↔B]
     {
         id: "s5_q06",
         category: "LABOR",
@@ -145,17 +145,17 @@ export const stage5Questions: Question[] = [
         imagePath: "s5_q06.png",
         choices: [
             {
-                text: "自己都合だと失業保険はもらえないと思い、申請しない。",
-                effect: { CS: -20, Asset: 0, Autonomy: -10 },
-                verdict: "WARNING",
-                feedback: "大損です。自己都合退職でも給付制限（2〜3ヶ月待機）後に受給可能。申請しないのは権利の放棄です。",
-                lockRequirements: null
-            },
-            {
                 text: "申請する。自己都合でも給付制限期間後に受給できる。待機中は就職活動を進める。",
                 effect: { CS: 10, Asset: 100000, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。給付制限期間は転職準備に充て、制限明けから受給。制度を理解して計画的に動くことが大切です。",
+                lockRequirements: null
+            },
+            {
+                text: "自己都合だと失業保険はもらえないと思い、申請しない。",
+                effect: { CS: -20, Asset: 0, Autonomy: -10 },
+                verdict: "WARNING",
+                feedback: "大損です。自己都合退職でも給付制限（2〜3ヶ月待機）後に受給可能。申請しないのは権利の放棄です。",
                 lockRequirements: null
             }
         ]
@@ -165,7 +165,7 @@ export const stage5Questions: Question[] = [
     {
         id: "s5_q07",
         category: "HEALTH",
-        text: "最近、眠れない日が続き、仕事に集中できない。「自分は弱いだけ」と思っているが……",
+        text: "最近、眠れない日が続き、仕事に集中できない。「自分は弱いだけ」と思っているが・・・",
         imagePrompt: "Scene: Dark bedroom at 3 AM, phone screen illuminating the space showing mental health clinic search results, untouched sleeping pills on nightstand, rumpled sheets. Composition: Phone glow is only light source, isolation palpable. Mood: Exhaustion, small step toward help.",
         imagePath: "s5_q07.png",
         choices: [
@@ -250,7 +250,7 @@ export const stage5Questions: Question[] = [
     {
         id: "s5_q10",
         category: "HEALTH",
-        text: "退職して無職になった。健康保険の選択肢は『任意継続（2年限定、保険料は退職時の約2倍）』か『国民健康保険（前年所得ベース、減免制度あり）』。どちらを選ぶべきか？",
+        text: "退職して無職になった。健康保険の選択肢は「任意継続（2年限定、保険料は退職時の約2倍）」か「国民健康保険（前年所得ベース、減免制度あり）」。どちらを選ぶべきか？",
         imagePrompt: "Scene: Kitchen table with two insurance documents side by side, calculator showing different premium amounts, calendar marking 20-day deadline, coffee cup half empty. Composition: Documents dominate, numbers visible on both. Mood: Critical decision window, money at stake.",
         imagePath: "s5_q10.png",
         choices: [
@@ -258,20 +258,20 @@ export const stage5Questions: Question[] = [
                 text: "任意継続を選ぶ。退職前と同じ保険証が使え、扶養家族がいれば追加保険料なしでカバーできる。",
                 effect: { CS: 10, Asset: -50000, Autonomy: -10 },
                 verdict: "NEUTRAL",
-                feedback: "継続性を重視した回答です。任意継続は最大2年間、会社負担分も自己負担になるため保険料は約2倍。扶養家族がいれば有利ですが、『前と同じ』という安心感で選んでいませんか。",
+                feedback: "継続性を重視した回答です。任意継続は最大2年間、会社負担分も自己負担になるため保険料は約2倍。扶養家族がいれば有利ですが、「前と同じ」という安心感で選んでいるならば・・・。",
                 lockRequirements: null
             },
             {
                 text: "国民健康保険を選ぶ。失業中なら減免申請で保険料が下がる可能性がある。",
                 effect: { CS: 5, Asset: -30000, Autonomy: 10 },
                 verdict: "NEUTRAL",
-                feedback: "状況に応じた回答です。国保には『扶養』がなく家族分の保険料が発生しますが、失業減免を使えば大幅に安くなることも。両方を試算して比較すれば、年間数十万円の差が出ます。",
+                feedback: "状況に応じた回答です。国保には「扶養」がなく家族分の保険料が発生しますが、失業減免を使えば大幅に安くなることも。両方を試算して比較すれば、年間数十万円の差が出ます。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "最終問題です。『知っているか』だけで数十万円の差がつく領域があります。",
-            after: "Stage 5を終了します。審査結果を算出中..."
+            intro: "最終問題です。「知っているか」だけで数十万円の差がつく領域があります。",
+            after: "Stage 5を終了します。審査結果を算出中・・・"
         }
     }
 ];

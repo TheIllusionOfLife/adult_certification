@@ -5,7 +5,7 @@ export const stage4Questions: Question[] = [
     {
         id: "s4_q01",
         category: "ADMIN",
-        text: "引越し後の手続き。住民票、マイナンバーカード、運転免許証、銀行...全部やる必要がある？",
+        text: "引越し後の手続き。住民票、マイナンバーカード、運転免許証、銀行・・・全部やる必要がある？",
         imagePrompt: "Scene: a maze of government buildings with different counters; a checklist floating with many items; confused citizen holding moving boxes. Composition: bureaucratic labyrinth with multiple paths. Mood: overwhelm, procedural complexity.",
         imagePath: "s4_q01.png",
         choices: [
@@ -25,7 +25,7 @@ export const stage4Questions: Question[] = [
             }
         ],
         adamDialogue: {
-            intro: "Stage 4を開始します。テーマは『行政の迷宮』。書類、期限、窓口……官僚制の攻略法を試します。"
+            intro: "Stage 4を開始します。テーマは「行政の迷宮」。書類、期限、窓口・・・官僚制の攻略法を試します。"
         }
     },
 
@@ -132,7 +132,7 @@ export const stage4Questions: Question[] = [
             }
         ],
         adamDialogue: {
-            intro: "時間か、知識か。行政手続きには『近道』が存在します。"
+            intro: "時間か、知識か。行政手続きには「近道」が存在します。"
         }
     },
 
@@ -250,7 +250,7 @@ export const stage4Questions: Question[] = [
     {
         id: "s4_q10",
         category: "ADMIN",
-        text: "行政で困った経験を思い出してください。『システムに従った』か『システムを使った』か？その経験から、行政をどう見ますか？",
+        text: "行政で困った経験を思い出してください。「システムに従った」か「システムを使った」か？その経験から、行政をどう見ますか？",
         imagePrompt: "Scene: Old drawer pulled open revealing years of accumulated documents, stamps, receipts, some pristine some crumpled, layers of personal bureaucratic history. Composition: Overhead view into drawer, archaeological layers. Mood: Years of navigation crystallized, patterns in paper.",
         imagePath: "s4_q10.png",
         choices: [
@@ -271,7 +271,7 @@ export const stage4Questions: Question[] = [
         ],
         adamDialogue: {
             intro: "最終問題です。過去の経験から、システムとの関係を定義してください。",
-            after: "Stage 4を終了します。審査結果を算出中..."
+            after: "Stage 4を終了します。審査結果を算出中・・・"
         }
     }
 ];

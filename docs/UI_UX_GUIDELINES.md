@@ -286,6 +286,7 @@ Use "減少" not "ダメージ":
 | Version | Date | Changes |
 |---------|------|---------|
 | 1.0 | 2026-01-26 | Initial guidelines from session learnings |
+| 1.1 | 2026-01-28 | terminology updates |
 
 ---
 

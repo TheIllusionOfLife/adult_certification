@@ -1,5 +1,5 @@
 import { GameEngine } from '../logic/gameEngine';
-import type { Choice, Question } from '../types';
+import type { Choice, Question, LicenseType } from '../types';
 import type { SkillActivation } from '../data/skillEffects';
 import { CONFIG } from '../config';
 import { getOverlayPresentation } from './overlayVerdict';
@@ -268,7 +268,7 @@ export class UIManager {
         const skillMessagesHTML = skillActivations.length > 0
             ? "<br>" + skillActivations.map(sa =>
                 `<span style="color:#4cc9f0">【${sa.skillName}】発動: ${sa.description} (${sa.originalValue} → ${sa.modifiedValue})</span>`
-              ).join("<br>")
+            ).join("<br>")
             : "";
 
         const overlay = getOverlayPresentation({
@@ -315,7 +315,7 @@ export class UIManager {
             this.dom.ovBody.innerHTML += `
                 <div class="adam-comment-section" style="margin-top: 20px;">
                     <img src="${this.dom.mascotImg.src}" alt="A.D.A.M." class="adam-comment-img" />
-                    <div class="adam-comment-text">[A.D.A.M.]: 判定……あなたは「生体プロセッサ」に再利用されます。</div>
+                    <div class="adam-comment-text">[A.D.A.M.]: 判定・・・あなたは「生体プロセッサ」に再利用されます。</div>
                 </div>`;
             this.dom.btnNext.innerText = "人生再起動";
             this.dom.btnNext.onclick = () => location.reload();
@@ -454,10 +454,24 @@ export class UIManager {
         const s = this.engine.state;
         const ending = this.engine.calculateEnding();
 
+        // Record stage completion to global progress
+        this.engine.recordStageCompletion(ending.rank as 'S' | 'A' | 'B' | 'C');
+
+        // Always show regular ending first (including Stage 10)
+        this.showRegularEnding(ending);
+
+        if (this.engine.difficulty) {
+            this.saveRecord(this.engine.difficulty, ending.rank, s.CS);
+        }
+    }
+
+    private showRegularEnding(ending: { rank: string; title: string; desc: string }) {
+        const s = this.engine.state;
+        const globalProgress = this.engine.getGlobalProgress();
+        const totalKeySkills = globalProgress.getKeySkillCount();
+
         this.dom.ovTitle.innerText = "STAGE COMPLETE";
         this.dom.ovTitle.style.color = "var(--accent-color)";
-
-        const keySkillCount = s.keySkills.length;
 
         this.dom.ovBody.innerHTML = `
             <div style="margin-bottom: 15px;">ステージ ${s.currentStage} 終了</div>
@@ -470,15 +484,166 @@ export class UIManager {
                 <img src="${this.dom.mascotImg.src}" alt="A.D.A.M." class="adam-comment-img" />
                 <div class="adam-comment-text">[A.D.A.M.]: ${ending.desc}</div>
             </div>
-            <div style="margin-top: 15px; font-size: 0.85rem; color: #666;">鍵スキル: ${keySkillCount}/9</div>
+            <div style="margin-top: 15px; font-size: 0.85rem; color: #666;">キースキル: ${totalKeySkills}/10</div>
         `;
         this.dom.ovStats.innerHTML = "";
-        this.dom.btnNext.innerText = "タイトルに戻る";
+
+        // Stage 10: Show "最終認定" button to proceed to license screen
+        // Other stages: Show "TITLE" button to return to title
+        if (s.currentStage === 10) {
+            this.dom.btnNext.innerText = "最終認定";
+            this.dom.btnNext.onclick = () => this.showFinalCertificationEnding();
+        } else {
+            this.dom.btnNext.innerText = "TITLE";
+            this.dom.btnNext.onclick = () => location.reload();
+        }
+        this.dom.btnNext.style.display = 'block';
+        this.dom.overlay.style.display = 'flex';
+    }
+
+    private showFinalCertificationEnding() {
+        const globalProgress = this.engine.getGlobalProgress();
+        const licenseType = globalProgress.calculateLicenseType();
+        const totalKeySkills = globalProgress.getKeySkillCount();
+
+        // License information based on type
+        const licenseInfo = this.getLicenseInfo(licenseType);
+
+        this.dom.ovTitle.innerText = "最終認定";
+        this.dom.ovTitle.style.color = licenseInfo.color;
+
+        // Get license image if available
+        let licenseImageHtml = '';
+        if (licenseInfo.imagePath) {
+            const assetPath = `../assets/${licenseInfo.imagePath}`;
+            const mod = images[assetPath] as { default: string } | undefined;
+            if (mod?.default) {
+                licenseImageHtml = `<img src="${mod.default}" alt="${licenseInfo.nameJP}" style="
+                    width: 200px;
+                    height: auto;
+                    border-radius: 10px;
+                    margin: 0 auto 20px;
+                    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+                    display: block;
+                " />`;
+            }
+        }
+        // Fallback to placeholder if no image
+        if (!licenseImageHtml) {
+            licenseImageHtml = `<div class="license-placeholder" style="
+                width: 200px;
+                height: 200px;
+                background: linear-gradient(135deg, ${licenseInfo.gradientStart}, ${licenseInfo.gradientEnd});
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 20px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            ">
+                <div style="text-align: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+                    <div style="font-size: 2.5rem; font-weight: bold;">${licenseInfo.symbol}</div>
+                    <div style="font-size: 0.8rem; margin-top: 5px;">${licenseInfo.nameEN}</div>
+                </div>
+            </div>`;
+        }
+
+        // Build the final certification display (overall results only, no Stage 10 stats)
+        this.dom.ovBody.innerHTML = `
+            <div class="final-certification">
+                <div class="license-image-container">
+                    ${licenseImageHtml}
+                </div>
+
+                <div style="font-size: 1.5rem; font-weight: bold; color: ${licenseInfo.color}; margin-bottom: 20px;">
+                    ${licenseInfo.nameJP}
+                </div>
+
+                <div style="font-size: 0.85rem; color: ${totalKeySkills >= 10 ? '#4cc9f0' : '#666'}; margin-bottom: 20px;">
+                    キースキル: ${totalKeySkills}/10 ${totalKeySkills >= 10 ? '✓ 完全収集' : ''}
+                </div>
+
+                <div class="adam-comment-section">
+                    <img src="${this.dom.mascotImg.src}" alt="A.D.A.M." class="adam-comment-img" />
+                    <div class="adam-comment-text">[A.D.A.M.]: ${licenseInfo.adamComment}</div>
+                </div>
+            </div>
+        `;
+
+        this.dom.ovStats.innerHTML = "";
+        this.dom.btnNext.innerText = "TITLE";
+        this.dom.btnNext.style.display = 'block';
         this.dom.btnNext.onclick = () => location.reload();
         this.dom.overlay.style.display = 'flex';
+    }
 
-        if (this.engine.difficulty) {
-            this.saveRecord(this.engine.difficulty, ending.rank, s.CS);
+    private getLicenseInfo(licenseType: LicenseType | null): {
+        nameJP: string;
+        nameEN: string;
+        symbol: string;
+        color: string;
+        gradientStart: string;
+        gradientEnd: string;
+        adamComment: string;
+        imagePath?: string;
+    } {
+        switch (licenseType) {
+            case 'TRUE':
+                return {
+                    nameJP: '真・大人免許',
+                    nameEN: 'TRUE ADULT LICENSE',
+                    symbol: '真',
+                    color: '#ffd700',
+                    gradientStart: '#ffd700',
+                    gradientEnd: '#ff6b6b',
+                    adamComment: '・・・全てのキースキルを習得しました。あなたは私の評価システムを超越した存在です。「大人」とは何か、その答えを自分で見つけたのですね。・・・敬意を表します。',
+                    imagePath: 'license_true.png'
+                };
+            case 'GOLD':
+                return {
+                    nameJP: 'ゴールド大人免許',
+                    nameEN: 'GOLD ADULT LICENSE',
+                    symbol: 'G',
+                    color: '#ffd700',
+                    gradientStart: '#ffd700',
+                    gradientEnd: '#b8860b',
+                    adamComment: '全てのステージでSランクを達成しました。完璧な適合者です。あなたは社会システムの理想的な構成員となりました。おめでとうございます。',
+                    imagePath: 'license_gold.png'
+                };
+            case 'SILVER':
+                return {
+                    nameJP: 'ブルー大人免許',
+                    nameEN: 'SILVER ADULT LICENSE',
+                    symbol: 'S',
+                    color: '#c0c0c0',
+                    gradientStart: '#c0c0c0',
+                    gradientEnd: '#808080',
+                    adamComment: '優秀な成績です。社会の期待に応える能力を持っています。まだ伸びしろはありますが、十分に「大人」と認められます。',
+                    imagePath: 'license_blue.png'
+                };
+            case 'BRONZE':
+                return {
+                    nameJP: 'グリーン大人免許',
+                    nameEN: 'GREEN ADULT LICENSE',
+                    symbol: 'G',
+                    color: '#cd7f32',
+                    gradientStart: '#cd7f32',
+                    gradientEnd: '#8b4513',
+                    adamComment: '基準はクリアしました。社会で生きていくための最低限の知識は持っています。・・・もう少し努力すれば、より良い評価が得られたでしょう。',
+                    imagePath: 'license_green.png'
+                };
+            case 'PAPER':
+            default:
+                return {
+                    nameJP: 'ペーパー大人免許',
+                    nameEN: 'PAPER ADULT LICENSE',
+                    symbol: 'P',
+                    color: '#888888',
+                    gradientStart: '#888888',
+                    gradientEnd: '#444444',
+                    adamComment: 'ギリギリの合格です。社会システムの基本は理解しましたが、まだ危うい部分があります。・・・再教育を推奨します。',
+                    imagePath: 'license_paper.png'
+                };
         }
     }
 }

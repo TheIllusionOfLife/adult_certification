@@ -4,13 +4,13 @@ import { CONFIG } from '../../src/config';
 
 describe('Stage Metadata Validation', () => {
     describe('STAGE_METADATA array', () => {
-        it('contains 9 stages', () => {
-            expect(STAGE_METADATA).toHaveLength(9);
+        it('contains 10 stages', () => {
+            expect(STAGE_METADATA).toHaveLength(10);
         });
 
-        it('has sequential stage IDs from 1 to 9', () => {
+        it('has sequential stage IDs from 1 to 10', () => {
             const ids = STAGE_METADATA.map((s) => s.id);
-            expect(ids).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+            expect(ids).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
         });
 
         it('all stages have unique IDs', () => {
@@ -30,7 +30,7 @@ describe('Stage Metadata Validation', () => {
 
         it('returns undefined for invalid ID', () => {
             expect(getStageMetadata(0)).toBeUndefined();
-            expect(getStageMetadata(10)).toBeUndefined();
+            expect(getStageMetadata(11)).toBeUndefined();
             expect(getStageMetadata(-1)).toBeUndefined();
         });
     });
@@ -198,6 +198,7 @@ describe('Stage Metadata Validation', () => {
                 'category_cs_gain_boost',
                 'admin_cost_reduction',
                 'autonomy_small_damage_reduction',
+                'all_damage_reduction', // Stage 10 AWAKENING effect
             ];
 
             STAGE_METADATA.forEach((stage) => {

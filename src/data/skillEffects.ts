@@ -267,6 +267,30 @@ const EFFECT_HANDLERS: Record<string, EffectHandler> = {
             modifiedValue: modified.Autonomy,
         }),
     },
+
+    // === All Damage Reduction (Stage 10 Key Skill: AWAKENING) ===
+    all_damage_reduction: {
+        shouldApply: (_, current) =>
+            current.CS < 0 || current.Asset < 0 || current.Autonomy < 0,
+        apply: (effect, current) => ({
+            CS: current.CS < 0 ? reduceDamage(current.CS, effect.value) : current.CS,
+            Asset: current.Asset < 0 ? reduceDamage(current.Asset, effect.value) : current.Asset,
+            Autonomy: current.Autonomy < 0 ? reduceDamage(current.Autonomy, effect.value) : current.Autonomy,
+        }),
+        description: '全ダメージ軽減',
+        getValues: (_, original, modified) => {
+            // Return the stat with the most significant change for display
+            const changes = [
+                { orig: original.CS, mod: modified.CS },
+                { orig: original.Asset, mod: modified.Asset },
+                { orig: original.Autonomy, mod: modified.Autonomy },
+            ];
+            const biggest = changes.reduce((a, b) =>
+                Math.abs(a.mod - a.orig) > Math.abs(b.mod - b.orig) ? a : b
+            );
+            return { originalValue: biggest.orig, modifiedValue: biggest.mod };
+        },
+    },
 };
 
 // ============================================================

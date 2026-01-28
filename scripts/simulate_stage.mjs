@@ -373,7 +373,7 @@ function simulateStage({
     }
   }
 
-  function recordClear(stateFinal, steps, selectedSkillIds) {
+  function recordClear(stateFinal, steps, selectedSkillIds, forcedSteps) {
     stats.totalTerminalPaths++;
     stats.clears++;
     const rank = rankForCS(stateFinal.CS);
@@ -385,6 +385,7 @@ function simulateStage({
       path: formatPathSteps(steps),
       selectedSkillIds: [...selectedSkillIds],
       selectedSkills: [...selectedSkillIds].join(" + "),
+      forcedSteps: [...forcedSteps], // question indices (0-based) where only one choice was available
     });
   }
 
@@ -503,9 +504,10 @@ function simulateStage({
     selectedSkillIds,
     steps,
     choiceHistory,
+    forcedSteps,
   }) {
     if (qIndex >= questions.length) {
-      recordClear(state, steps, selectedSkillIds);
+      recordClear(state, steps, selectedSkillIds, forcedSteps);
       const le = getLoadoutEntry(selectedSkillIds);
       le.terminalPaths++;
       le.clears++;
@@ -538,6 +540,10 @@ function simulateStage({
       le.gameOvers++;
       return;
     }
+
+    // Track if this question is forced (only one choice available)
+    const isForced = availableChoiceIndices.length === 1;
+    const nextForcedSteps = isForced ? [...forcedSteps, qIndex] : forcedSteps;
 
     for (const ci of availableChoiceIndices) {
       const choice = q.choices[ci];
@@ -618,6 +624,7 @@ function simulateStage({
             selectedSkillIds: [...selectedSkillIds, s.id],
             steps: [...nextSteps, `SK1:${s.id}`],
             choiceHistory: nextChoiceHistory,
+            forcedSteps: nextForcedSteps,
           });
         }
         continue;
@@ -646,6 +653,7 @@ function simulateStage({
             selectedSkillIds: [...selectedSkillIds, s.id],
             steps: [...nextSteps, `SK2:${s.id}`],
             choiceHistory: nextChoiceHistory,
+            forcedSteps: nextForcedSteps,
           });
         }
         continue;
@@ -660,6 +668,7 @@ function simulateStage({
         selectedSkillIds,
         steps: nextSteps,
         choiceHistory: nextChoiceHistory,
+        forcedSteps: nextForcedSteps,
       });
     }
   }
@@ -673,6 +682,7 @@ function simulateStage({
     selectedSkillIds: [],
     steps: [],
     choiceHistory: {},
+    forcedSteps: [],
   });
 
   // Player intent modes = pick representative clears using objective functions.
@@ -688,6 +698,26 @@ function simulateStage({
   }
 
   const keySkillId = stageMetadata.keySkillId;
+
+  // Helper to check if player prefers a specific choice (A or B) when not forced
+  // Forced steps (where only one choice was available) are ignored
+  function isPrefersChoice(c, preferredLetter) {
+    const questionSteps = c.steps.filter((s) => s.startsWith("Q"));
+    const forcedSet = new Set(c.forcedSteps ?? []);
+
+    for (let i = 0; i < questionSteps.length; i++) {
+      const step = questionSteps[i];
+      const qIndex = i; // 0-based question index
+
+      // Skip forced steps - player had no choice
+      if (forcedSet.has(qIndex)) continue;
+
+      // For non-forced steps, check if preferred choice was made
+      if (!step.endsWith(preferredLetter)) return false;
+    }
+    return true;
+  }
+
   const intents = {
     maximize_CS: pickBest(null, (c) => c.CS),
     maximize_Autonomy: pickBest(null, (c) => c.Autonomy),
@@ -709,6 +739,14 @@ function simulateStage({
     autonomy_forward_but_S: pickBest(
       (c) => c.rank === "S",
       (c) => c.Autonomy
+    ),
+    prefer_A_choice: pickBest(
+      (c) => isPrefersChoice(c, "A"),
+      (c) => c.CS
+    ),
+    prefer_B_choice: pickBest(
+      (c) => isPrefersChoice(c, "B"),
+      (c) => c.CS
     ),
   };
 
@@ -1020,6 +1058,8 @@ function printReport(report) {
     "keySkill_maximize_Autonomy",
     "minimize_CS_clear",
     "minimize_Autonomy_clear",
+    "prefer_A_choice",
+    "prefer_B_choice",
   ];
   for (const key of intentOrder) {
     const c = report.intents[key];

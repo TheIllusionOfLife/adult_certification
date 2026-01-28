@@ -25,7 +25,7 @@ export const stage9Questions: Question[] = [
             }
         ],
         adamDialogue: {
-            intro: "Stage 9を開始します。テーマは『危機管理』。災害、事故、緊急事態……最悪を想定できる者だけが生き残ります。"
+            intro: "Stage 9を開始します。テーマは「危機管理」。災害、事故、緊急事態・・・最悪を想定できる者だけが生き残ります。"
         }
     },
 
@@ -54,26 +54,26 @@ export const stage9Questions: Question[] = [
         ]
     },
 
-    // Q3: Knowledge (DISASTER) - Hazard map usage [SKILL OFFER 1 AFTER]
+    // Q3: Knowledge (DISASTER) - Hazard map usage [SKILL OFFER 1 AFTER] [SWAPPED A↔B]
     {
         id: "s9_q03",
         category: "DISASTER",
-        text: "引越し先を検討中。「ハザードマップを確認した方がいい」と言われたが……",
+        text: "引越し先を検討中。「ハザードマップを確認した方がいい」と言われたが・・・",
         imagePrompt: "Scene: a map showing flood zones, landslide areas, and safe zones; apartment buildings in different risk areas; color-coded danger levels. Composition: geographic risk visualization. Mood: informed decision vs blind choice.",
         imagePath: "s9_q03.png",
         choices: [
-            {
-                text: "駅近で便利な場所を優先。ハザードマップは気にしない。",
-                effect: { CS: -15, Asset: 0, Autonomy: -10 },
-                verdict: "WARNING",
-                feedback: "リスクの見落としです。洪水浸水想定区域や土砂災害警戒区域に住むと、災害時の被害が甚大に。「便利」の代償が「命」になりえます。",
-                lockRequirements: null
-            },
             {
                 text: "ハザードマップで浸水・土砂災害リスクを確認し、リスクと利便性を天秤にかけて判断する。",
                 effect: { CS: 5, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。ハザードマップは自治体のウェブサイトで無料閲覧可能。リスクを知った上で住むのと、知らずに住むのでは、備えの質が違います。",
+                lockRequirements: null
+            },
+            {
+                text: "駅近で便利な場所を優先。ハザードマップは気にしない。",
+                effect: { CS: -15, Asset: 0, Autonomy: -10 },
+                verdict: "WARNING",
+                feedback: "リスクの見落としです。洪水浸水想定区域や土砂災害警戒区域に住むと、災害時の被害が甚大に。「便利」の代償が「命」になりえます。",
                 lockRequirements: null
             }
         ],
@@ -83,7 +83,7 @@ export const stage9Questions: Question[] = [
     },
     // [SKILL OFFER 1 HAPPENS AFTER Q3]
 
-    // Q4: Knowledge (DISASTER) - Insurance claim documentation
+    // Q4: Knowledge (DISASTER) - Insurance claim documentation [SWAPPED A↔B]
     {
         id: "s9_q04",
         category: "DISASTER",
@@ -92,17 +92,17 @@ export const stage9Questions: Question[] = [
         imagePath: "s9_q04.png",
         choices: [
             {
-                text: "保険会社に電話すれば、あとは向こうがやってくれるはず。",
-                effect: { CS: -15, Asset: -100000, Autonomy: -5 },
-                verdict: "WARNING",
-                feedback: "受け身すぎます。被害状況の写真、購入時の領収書、修理見積もりがないと、保険金は満額出ません。「証拠がない被害」は認められません。",
-                lockRequirements: null
-            },
-            {
                 text: "片付け前に被害状況を写真・動画で記録。購入記録や修理見積もりを集めてから請求する。",
                 effect: { CS: 5, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。「片付けてしまった後」では証拠がなくなります。日頃から高額家財の写真と購入記録を保存しておくと、いざという時に役立ちます。",
+                lockRequirements: null
+            },
+            {
+                text: "保険会社に電話すれば、あとは向こうがやってくれるはず。",
+                effect: { CS: -15, Asset: -100000, Autonomy: -5 },
+                verdict: "WARNING",
+                feedback: "受け身すぎます。被害状況の写真、購入時の領収書、修理見積もりがないと、保険金は満額出ません。「証拠がない被害」は認められません。",
                 lockRequirements: null
             }
         ]
@@ -112,7 +112,7 @@ export const stage9Questions: Question[] = [
     {
         id: "s9_q05",
         category: "DISASTER",
-        text: "大地震直後、SNSで『〇〇地区で火災発生、逃げろ』という投稿が流れてきた。家族がその地区にいる。公式発表はまだない。",
+        text: "大地震直後、SNSで「〇〇地区で火災発生、逃げろ」という投稿が流れてきた。家族がその地区にいる。公式発表はまだない。",
         imagePrompt: "Scene: Phone screen showing viral disaster post with alarming headline and retweet count, official news app showing no updates yet, family photo visible in background, finger hovering over share button. Composition: Phone dominates, share/ignore decision moment. Mood: Information fog, speed vs accuracy.",
         imagePath: "s9_q05.png",
         choices: [
@@ -217,7 +217,7 @@ export const stage9Questions: Question[] = [
         ]
     },
 
-    // Q9: Dilemma + Lock (DISASTER) - Help others vs self-preservation
+    // Q9: Dilemma + Lock (DISASTER) - Help others vs self-preservation [SWAPPED A↔B]
     {
         id: "s9_q09",
         category: "DISASTER",
@@ -226,19 +226,19 @@ export const stage9Questions: Question[] = [
         imagePath: "s9_q09.png",
         choices: [
             {
-                text: "自分の命が優先。見捨てて高台に向かう。",
-                effect: { CS: -10, Asset: 0, Autonomy: 15 },
-                verdict: "NEUTRAL",
-                feedback: "生存本能の選択です。自分が助からなければ、誰も助けられません。冷酷に見えますが、「生き残る」ことも責任の一つです。",
-                lockRequirements: null
-            },
-            {
                 text: "一緒に逃げる。手を貸して、できる限り速く高台を目指す。",
                 effect: { CS: 10, Asset: 0, Autonomy: -10 },
                 verdict: "NEUTRAL",
                 feedback: "人道的な選択です。しかし、助けようとして共倒れになるケースも少なくありません。「てんでんこ」（各自バラバラに逃げる）の教訓は、共倒れを防ぐ知恵でもあります。",
                 lockRequirements: { CS: 70 },
                 lockedFeedback: "LOCKED: 社会的信用が70以上必要。社会からの信頼が低いと、「他者を助ける」という発想が浮かびにくくなります。"
+            },
+            {
+                text: "自分の命が優先。見捨てて高台に向かう。",
+                effect: { CS: -10, Asset: 0, Autonomy: 15 },
+                verdict: "NEUTRAL",
+                feedback: "生存本能の選択です。自分が助からなければ、誰も助けられません。冷酷に見えますが、「生き残る」ことも責任の一つです。",
+                lockRequirements: null
             }
         ],
         adamDialogue: {
@@ -250,7 +250,7 @@ export const stage9Questions: Question[] = [
     {
         id: "s9_q10",
         category: "DISASTER",
-        text: "ハザードマップの浸水想定を超える被害が発生した。『想定外だった』という声が上がる。そもそも『想定』とは何か？",
+        text: "ハザードマップの浸水想定を超える被害が発生した。「想定外だった」という声が上がる。そもそも「想定」とは何か？",
         imagePrompt: "Scene: Flooded street with water line clearly above hazard map prediction marker on wall, map itself partially submerged, rescue boat in distance, 'unexpected' headline on floating newspaper. Composition: Water level vs prediction marker creates visual irony. Mood: Assumptions shattered, reality exceeds models.",
         imagePath: "s9_q10.png",
         choices: [
@@ -258,20 +258,20 @@ export const stage9Questions: Question[] = [
                 text: "想定は常に更新し続けるべき。過去最大を超える災害は必ず起こる。",
                 effect: { CS: 15, Asset: -10000, Autonomy: 5 },
                 verdict: "NEUTRAL",
-                feedback: "予防重視の回答です。想定を引き上げ続ければ被害は減らせます。ただし『最悪の最悪』に備え続けるコストは無限に膨らみます。どこかで線を引く判断も必要です。",
+                feedback: "予防重視の回答です。想定を引き上げ続ければ被害は減らせます。ただし「最悪の最悪」に備え続けるコストは無限に膨らみます。どこかで線を引く判断も必要です。",
                 lockRequirements: null
             },
             {
-                text: "想定を超えた時の『逃げ方』を決めておく。想定外を想定する。",
+                text: "想定を超えた時の「逃げ方」を決めておく。想定外を想定する。",
                 effect: { CS: 10, Asset: 0, Autonomy: 5 },
                 verdict: "NEUTRAL",
-                feedback: "適応重視の回答です。『想定内は守り、想定外は適応する』という二段構え。完璧な準備は不可能でも、『想定が崩れた時にどう動くか』を決めておけば、混乱の中でも判断できます。",
+                feedback: "適応重視の回答です。「想定内は守り、想定外は適応する」という二段構え。完璧な準備は不可能でも、「想定が崩れた時にどう動くか」を決めておけば、混乱の中でも判断できます。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "最終問題です。『想定外』は言い訳か、それとも準備の限界か？",
-            after: "Stage 9を終了します。審査結果を算出中..."
+            intro: "最終問題です。「想定外」は言い訳か、それとも準備の限界か？",
+            after: "Stage 9を終了します。審査結果を算出中・・・"
         }
     }
 ];

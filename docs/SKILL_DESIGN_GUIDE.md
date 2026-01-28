@@ -91,9 +91,9 @@
 
 ### A.D.A.M. Comment Pattern
 ```
-"……{skill concept}。{A.D.A.M.'s judgment}。"
+"・・・{skill concept}。{A.D.A.M.'s judgment}。"
 
-Example: "……あなたは『システムを理解しながら、自我を保つ』術を習得しました。厄介ですね。"
+Example: "・・・あなたは『システムを理解しながら、自我を保つ』術を習得しました。厄介ですね。"
 ```
 
 ---

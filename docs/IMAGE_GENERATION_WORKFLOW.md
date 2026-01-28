@@ -98,4 +98,3 @@ Composition: monitor in foreground, watchers in mid-ground. Mood: oppressive sur
 ### Step 4: Save
 - Filename: `s{N}_q{YY}.png` (e.g., `s2_q05.png`)
 - Location: `src/assets/`
-- Update `imagePath` field in question

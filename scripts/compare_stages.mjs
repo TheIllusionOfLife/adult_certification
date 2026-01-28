@@ -1,28 +1,29 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * Stage Comparison Script
  * Runs simulation on all stages and outputs comparison statistics
  * Matches the logic of simulate_stage.mjs exactly
  *
- * Usage: node scripts/compare_stages.mjs
+ * Usage: bun scripts/compare_stages.mjs
  */
 
-import { STAGE_METADATA } from '../src/data/stageMetadata.ts';
-import { CONFIG } from '../src/config.ts';
-import { applySkillEffects } from '../src/data/skillEffects.ts';
+import { STAGE_METADATA } from '../src/data/stageMetadata';
+import { CONFIG } from '../src/config';
+import { applySkillEffects } from '../src/data/skillEffects';
 
 // Dynamic imports for stage questions
 const stageQuestions = {
-    1: (await import('../src/data/stages/stage1.ts')).stage1Questions,
-    2: (await import('../src/data/stages/stage2.ts')).stage2Questions,
-    3: (await import('../src/data/stages/stage3.ts')).stage3Questions,
-    4: (await import('../src/data/stages/stage4.ts')).stage4Questions,
-    5: (await import('../src/data/stages/stage5.ts')).stage5Questions,
-    6: (await import('../src/data/stages/stage6.ts')).stage6Questions,
-    7: (await import('../src/data/stages/stage7.ts')).stage7Questions,
-    8: (await import('../src/data/stages/stage8.ts')).stage8Questions,
-    9: (await import('../src/data/stages/stage9.ts')).stage9Questions,
+    1: (await import('../src/data/stages/stage1')).stage1Questions,
+    2: (await import('../src/data/stages/stage2')).stage2Questions,
+    3: (await import('../src/data/stages/stage3')).stage3Questions,
+    4: (await import('../src/data/stages/stage4')).stage4Questions,
+    5: (await import('../src/data/stages/stage5')).stage5Questions,
+    6: (await import('../src/data/stages/stage6')).stage6Questions,
+    7: (await import('../src/data/stages/stage7')).stage7Questions,
+    8: (await import('../src/data/stages/stage8')).stage8Questions,
+    9: (await import('../src/data/stages/stage9')).stage9Questions,
+    10: (await import('../src/data/stages/stage10')).stage10Questions,
 };
 
 // Build offer position map (same as simulate_stage.mjs)
