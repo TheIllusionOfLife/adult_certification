@@ -5,7 +5,7 @@ import { CONFIG } from '../config';
 import { getOverlayPresentation } from './overlayVerdict';
 import { DOM_IDS } from './domIds';
 import { RecordStorage } from '../storage/RecordStorage';
-import { STAGE_METADATA } from '../data/stageMetadata';
+import { STAGE_METADATA, getStageMetadata } from '../data/stageMetadata';
 
 // Vite glob import for assets
 const images = import.meta.glob('../assets/*.{png,jpg,jpeg,webp}', { eager: true });
@@ -463,8 +463,12 @@ export class UIManager {
 
     private showRegularEnding(ending: { rank: string; title: string; desc: string }) {
         const s = this.engine.state;
-        const globalProgress = this.engine.getGlobalProgress();
-        const totalKeySkills = globalProgress.getKeySkillCount();
+        const stageMetadata = getStageMetadata(s.currentStage);
+        const stageKeySkillId = stageMetadata?.keySkillId;
+        const keySkillObtained = stageKeySkillId && s.keySkills.includes(stageKeySkillId);
+        const keySkillStatus = keySkillObtained
+            ? '<span style="color: #4cc9f0;">獲得済</span>'
+            : '<span style="color: #888;">未獲得</span>';
 
         this.dom.ovTitle.innerText = "STAGE COMPLETE";
         this.dom.ovTitle.style.color = "var(--accent-color)";
@@ -480,7 +484,7 @@ export class UIManager {
                 <img src="${this.dom.mascotImg.src}" alt="A.D.A.M." class="adam-comment-img" />
                 <div class="adam-comment-text">[A.D.A.M.]: ${ending.desc}</div>
             </div>
-            <div style="margin-top: 15px; font-size: 0.85rem; color: #666;">キースキル: ${totalKeySkills}/10</div>
+            <div style="margin-top: 15px; font-size: 0.85rem; color: #666;">Key Skill: ${keySkillStatus}</div>
         `;
         this.dom.ovStats.innerHTML = "";
 
