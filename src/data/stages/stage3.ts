@@ -7,7 +7,7 @@ export const stage3Questions: Question[] = [
         category: "FINANCE",
         text: "「100万円を年利3%で10年運用すると、単利と複利でどちらが増える？」と聞かれた。",
         imagePrompt: "Scene: Calculator on desk showing computation, notebook with hand-drawn graph showing diverging lines (straight vs curved upward), 10-year timeline written with arrows. Composition: Calculator and notebook fill frame, mathematical revelation. Mood: Hidden power of numbers revealed.",
-        imagePath: "s3_q01.png",
+        imagePath: "src/assets/s3_q01.png",
         choices: [
             {
                 text: "単利も複利も同じ。年利3%なら毎年3万円増えるだけ。",
@@ -35,7 +35,7 @@ export const stage3Questions: Question[] = [
         category: "TAX",
         text: "4月に新卒入社。12月の給与明細を見ると「住民税」が引かれていない。翌年6月、突然「住民税の請求」が届いた。",
         imagePrompt: "Scene: a payslip with missing tax line highlighted; calendar showing April to June next year; a shocked worker receiving a bill. Composition: time progression with delayed consequence revealed. Mood: confusion, system ambush, hidden rules.",
-        imagePath: "s3_q02.png",
+        imagePath: "src/assets/s3_q02.png",
         choices: [
             {
                 text: "会社のミスだと思い、経理に抗議する。",
@@ -60,7 +60,7 @@ export const stage3Questions: Question[] = [
         category: "FINANCE",
         text: "クレジットカードの審査に落ちた。理由を知りたいが、自分の「信用情報」はどこで確認できる？",
         imagePrompt: "Scene: a rejected credit card application; CIC/JICC logos glowing; a person's credit history visualized as a report card. Composition: credit score concept with accessible information path. Mood: rejection turning to empowerment through knowledge.",
-        imagePath: "s3_q03.png",
+        imagePath: "src/assets/s3_q03.png",
         choices: [
             {
                 text: "信用情報は企業秘密だから、本人でも見られないはず。",
@@ -89,7 +89,7 @@ export const stage3Questions: Question[] = [
         category: "FINANCE",
         text: "住宅ローンを検討中。「固定金利」と「変動金利」、どちらを選ぶべきか？",
         imagePrompt: "Scene: Real estate office consultation room, bank pamphlets spread across glass table, loan officer's hands gesturing at rate comparison chart on tablet screen. Composition: Glass table reflection, tablet glow, professional setting. Mood: Guidance sought, numbers on display.",
-        imagePath: "s3_q04.png",
+        imagePath: "src/assets/s3_q04.png",
         choices: [
             {
                 text: "今は低金利だから変動一択。固定は損。",
@@ -114,7 +114,7 @@ export const stage3Questions: Question[] = [
         category: "FINANCE",
         text: "老後資金を準備したい。iDeCoとNISA、どちらを優先すべき？月の投資可能額は2万円。",
         imagePrompt: "Scene: Financial seminar room after hours, whiteboard with retirement calculations still visible, two different brochures left on attendee chair, notebook with personal notes. Composition: Empty seminar room, learning remnants. Mood: Education absorbed, decision pending.",
-        imagePath: "s3_q05.png",
+        imagePath: "src/assets/s3_q05.png",
         choices: [
             {
                 text: "iDeCoを優先。所得控除で節税しながら老後に備える。",
@@ -142,7 +142,7 @@ export const stage3Questions: Question[] = [
         category: "FINANCE",
         text: "保険の営業から「万が一に備えて」と医療保険、がん保険、生命保険のセット加入を勧められた。月額2万円。",
         imagePrompt: "Scene: an insurance salesperson with charts showing worst-case scenarios; a young person overwhelmed by multiple policy documents; public health insurance card glowing in corner. Composition: fear-based selling vs rational assessment. Mood: pressure, overprotection trap.",
-        imagePath: "s3_q06.png",
+        imagePath: "src/assets/s3_q06.png",
         choices: [
             {
                 text: "「万が一」が怖いので、勧められるまま全部加入する。",
@@ -167,7 +167,7 @@ export const stage3Questions: Question[] = [
         category: "FINANCE",
         text: "「今すぐ30万円必要」。消費者金融のCMが目に入る。「30日間無利息」「審査は最短30分」。",
         imagePrompt: "Scene: a glowing ATM with 'EASY CASH' sign; fine print forming chains; a clock showing '30 days free' turning into debt spiral; protagonist at crossroads. Composition: temptation vs hidden consequence. Mood: desperation, trap disguised as help.",
-        imagePath: "s3_q07.png",
+        imagePath: "src/assets/s3_q07.png",
         choices: [
             {
                 text: "「30日無利息なら大丈夫」と借りる。",
@@ -198,7 +198,7 @@ export const stage3Questions: Question[] = [
         category: "FINANCE",
         text: "就職したが給料が低く、奨学金の返済が厳しい。毎月の返済額は約15,000円。どう対応すべき？",
         imagePrompt: "Scene: Cramped apartment room, pay stub pinned to corkboard alongside student loan notice, laptop showing JASSO relief application page, instant noodles on desk. Composition: Lived-in small space, financial squeeze visible in details. Mood: Tight budget lifestyle, help available online.",
-        imagePath: "s3_q08.png",
+        imagePath: "src/assets/s3_q08.png",
         choices: [
             {
                 text: "払えないものは払えない。しばらく無視して様子を見る。",
@@ -223,7 +223,7 @@ export const stage3Questions: Question[] = [
         category: "FINANCE",
         text: "ボーナス50万円。住宅ローン（年利1%）の繰り上げ返済か、投資（期待リターン5%）か？",
         imagePrompt: "Scene: Bonus pay slip showing large amount on desk, housing loan statement beside it, smartphone showing investment app with upward graph, calculator between them. Composition: Financial documents surrounding calculator, decision point. Mood: Optimization puzzle, competing priorities.",
-        imagePath: "s3_q09.png",
+        imagePath: "src/assets/s3_q09.png",
         choices: [
             {
                 text: "繰り上げ返済。確実に利息を減らせる安心感を取る。",
@@ -252,7 +252,7 @@ export const stage3Questions: Question[] = [
         category: "FINANCE",
         text: "年収1000万でストレス vs 年収500万で自由。10年後どちらにいたいですか？その選択が『お金』の本質を暴露します。",
         imagePrompt: "Scene: Two coffee cups on cafe table, one expensive chain branded cup, one simple thermos lid, steam rising equally from both, morning light through window. Composition: Tabletop minimalist, symmetric presentation. Mood: Different vessels, same warmth inside.",
-        imagePath: "s3_q10.png",
+        imagePath: "src/assets/s3_q10.png",
         choices: [
             {
                 text: "年収1000万。ストレスは代償として受け入れ、経済的安定を取る。",
