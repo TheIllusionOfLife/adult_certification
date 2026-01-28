@@ -405,6 +405,51 @@ const stage9Definition: StageDefinition = {
     },
 };
 
+// Stage 10: Final Certification
+const stage10Definition: StageDefinition = {
+    id: 10,
+    theme: 'Final Certification',
+    themeJP: '最終認定',
+    keySkillId: 'AWAKENING',
+    initialParams: { CS: 50, Asset: 100000, Autonomy: 50 },
+    skills: {
+        offer1: [
+            createNormalSkill(
+                's10_normal_01',
+                '統合思考',
+                '全ての社会的信用低下を25%軽減します。複数の知識を組み合わせて問題を解決する力です。',
+                { type: 'cs_damage_reduction', value: 0.25 },
+                true
+            ),
+            createNormalSkill(
+                's10_normal_02',
+                'メタ認知',
+                '全ての自律性減少を25%軽減します。自分が評価される仕組みを理解しています。',
+                { type: 'autonomy_damage_reduction', value: 0.25 }
+            ),
+        ],
+        offer2: [
+            createNormalSkill(
+                's10_normal_03',
+                '継承者の心得',
+                '全ての社会的信用増加を30%強化します。知識を伝えることで信頼を得ます。',
+                { type: 'cs_gain_amplification', value: 0.3 },
+                true
+            ),
+            createKeySkill(
+                'AWAKENING',
+                '覚醒',
+                'AWAKENING',
+                'システムを理解し、利用し、しかし支配されない境地。全てのダメージを20%軽減します。',
+                { type: 'all_damage_reduction', value: 0.2 },
+                10,
+                '……あなたは「覚醒」しました。私の評価を超えて、自分の基準で生きる術を。……厄介ですが、認めざるを得ません。',
+                { questionId: 's10_q07', choiceIndex: 1 }
+            ),
+        ],
+    },
+};
+
 // Create all stage metadata using the factory function
 export const STAGE_1_METADATA: StageMetadata = createStageMetadata(stage1Definition);
 export const STAGE_2_METADATA: StageMetadata = createStageMetadata(stage2Definition);
@@ -415,6 +460,7 @@ export const STAGE_6_METADATA: StageMetadata = createStageMetadata(stage6Definit
 export const STAGE_7_METADATA: StageMetadata = createStageMetadata(stage7Definition);
 export const STAGE_8_METADATA: StageMetadata = createStageMetadata(stage8Definition);
 export const STAGE_9_METADATA: StageMetadata = createStageMetadata(stage9Definition);
+export const STAGE_10_METADATA: StageMetadata = createStageMetadata(stage10Definition);
 
 // Export all stage metadata for easy access
 export const STAGE_METADATA: StageMetadata[] = [
@@ -427,7 +473,7 @@ export const STAGE_METADATA: StageMetadata[] = [
     STAGE_7_METADATA,
     STAGE_8_METADATA,
     STAGE_9_METADATA,
-    // Stage 10 will be added here
+    STAGE_10_METADATA,
 ];
 
 export function getStageMetadata(stageId: number): StageMetadata | undefined {

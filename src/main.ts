@@ -13,6 +13,7 @@ import { stage6Questions } from './data/stages/stage6';
 import { stage7Questions } from './data/stages/stage7';
 import { stage8Questions } from './data/stages/stage8';
 import { stage9Questions } from './data/stages/stage9';
+import { stage10Questions } from './data/stages/stage10';
 
 // Stage question registry - add more stages as they are implemented
 const stageQuestions: Record<number, Question[]> = {
@@ -25,7 +26,7 @@ const stageQuestions: Record<number, Question[]> = {
   7: stage7Questions,
   8: stage8Questions,
   9: stage9Questions,
-  // 10: stage10Questions,
+  10: stage10Questions,
 };
 
 document.addEventListener('DOMContentLoaded', () => {

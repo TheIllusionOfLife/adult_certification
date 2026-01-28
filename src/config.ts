@@ -32,6 +32,7 @@ export const CONFIG = {
     // LocalStorage keys
     STORAGE_KEYS: {
         RECORDS: 'ac_records',
+        GLOBAL_PROGRESS: 'ac_global_progress',
     },
 
     // Valid ranks for display
