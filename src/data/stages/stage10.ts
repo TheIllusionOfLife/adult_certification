@@ -11,14 +11,14 @@ export const stage10Questions: Question[] = [
         choices: [
             {
                 text: "作らなくても困らない。通知カードと保険証があれば十分。",
-                effect: { CS: -20, Asset: -10000, Autonomy: -10 },
+                effect: { CS: -15, Asset: -10000, Autonomy: -5 },
                 verdict: "WARNING",
                 feedback: "機会損失です。2024年12月から健康保険証は新規発行停止、マイナ保険証へ移行。コンビニ交付（住民票等）、確定申告のe-Tax、各種給付金申請……カードがないと手続きが煩雑化し、時間とコストがかかります。",
                 lockRequirements: null
             },
             {
                 text: "メリット・デメリットを調べ、保険証利用登録やコンビニ交付など実益を理解した上で判断する。",
-                effect: { CS: +25, Asset: 0, Autonomy: +15 },
+                effect: { CS: +10, Asset: 0, Autonomy: +10 },
                 verdict: "APPROVED",
                 feedback: "正解です。マイナポイント、コンビニ交付（手数料節約）、e-Tax連携、保険証利用……実益は多い。個人情報リスクは「カードを持つこと」ではなく「管理の仕方」の問題。情報を集めて判断するのが大人です。",
                 lockRequirements: null
@@ -39,14 +39,14 @@ export const stage10Questions: Question[] = [
         choices: [
             {
                 text: "25万円は少額だし、会社にバレたくないので申告しない。",
-                effect: { CS: -25, Asset: -50000, Autonomy: -15 },
+                effect: { CS: -20, Asset: -50000, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "脱税です。「20万円ルール」は所得税の確定申告のみ。住民税は1円から申告義務があります。無申告は追徴課税（最大40%）のリスク。さらに、マイナンバーで副業収入は把握されています。",
                 lockRequirements: null
             },
             {
                 text: "所得税は確定申告、住民税は別途申告。経費を正しく計上し、将来のインボイス登録も検討する。",
-                effect: { CS: +30, Asset: -5000, Autonomy: +15 },
+                effect: { CS: +15, Asset: -5000, Autonomy: +10 },
                 verdict: "APPROVED",
                 feedback: "正解です。副業収入20万円超は確定申告必須。20万円以下でも住民税申告は必要。経費（通信費、機材等）を適切に計上すれば税負担は減ります。年商1000万円超ならインボイス登録の検討も。",
                 lockRequirements: null
@@ -64,14 +64,14 @@ export const stage10Questions: Question[] = [
         choices: [
             {
                 text: "届出なしで払わない。どうせ将来もらえるか分からない。",
-                effect: { CS: -25, Asset: -100000, Autonomy: -15 },
+                effect: { CS: -20, Asset: -100000, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "致命的なミスです。未納は「受給資格期間」にカウントされず、将来の年金が減額または受給不可に。さらに障害年金・遺族年金も受けられなくなります。2年の時効を過ぎると追納もできません。",
                 lockRequirements: null
             },
             {
                 text: "「免除」か「猶予」を申請する。届出すれば受給資格期間にカウントされ、追納も可能になる。",
-                effect: { CS: +30, Asset: 0, Autonomy: +15 },
+                effect: { CS: +15, Asset: 0, Autonomy: +10 },
                 verdict: "APPROVED",
                 feedback: "正解です。免除は所得に応じて全額〜1/4免除があり、免除期間も受給資格にカウント（1/2〜7/8計算）。猶予は後から追納可能。届出なしの未納とは天と地の差。制度を使うことが自己防衛です。",
                 lockRequirements: null
@@ -93,14 +93,14 @@ export const stage10Questions: Question[] = [
         choices: [
             {
                 text: "投資は早く始めるほど有利。50万円全額を投資信託に回す。",
-                effect: { CS: -20, Asset: -30000, Autonomy: -10 },
+                effect: { CS: -15, Asset: -30000, Autonomy: -5 },
                 verdict: "WARNING",
                 feedback: "危険な判断です。失業や病気で収入が止まった時、投資資産を「底値」で売却する羽目になります。暴落時に生活費のために損切りするのは最悪のシナリオ。「生活防衛資金」という概念を知らないと、投資で逆に貧しくなります。",
                 lockRequirements: null
             },
             {
                 text: "まず生活費3〜6ヶ月分を現金で確保。残りを投資に回す。",
-                effect: { CS: +25, Asset: 0, Autonomy: +15 },
+                effect: { CS: +10, Asset: 0, Autonomy: +10 },
                 verdict: "APPROVED",
                 feedback: "正解です。生活防衛資金は「投資のための保険」。月20万円の生活費なら60〜120万円を現金で確保してから投資開始。これがないと、緊急時に資産を最悪のタイミングで手放すことになります。",
                 lockRequirements: null
@@ -118,14 +118,14 @@ export const stage10Questions: Question[] = [
         choices: [
             {
                 text: "評価基準に合わせて行動を最適化する。システムに適応するのが合理的だ。",
-                effect: { CS: +20, Asset: 0, Autonomy: -15 },
+                effect: { CS: +15, Asset: 0, Autonomy: -15 },
                 verdict: "NEUTRAL",
                 feedback: "順応の選択です。評価システムに合わせることで、短期的には有利になります。しかし「評価されるために行動する」ことが習慣化すると、自分の判断基準を失います。",
                 lockRequirements: null
             },
             {
                 text: "評価基準の妥当性を検証し、問題があれば改善提案する。システムは人が作ったものだ。",
-                effect: { CS: -5, Asset: 0, Autonomy: +20 },
+                effect: { CS: -10, Asset: 0, Autonomy: +20 },
                 verdict: "NEUTRAL",
                 feedback: "批判的選択です。システムを疑い、改善を試みる姿勢は自律の証です。ただし、組織内での立場は弱くなるかもしれません。「正しさ」と「得」は必ずしも一致しません。",
                 lockRequirements: null
@@ -153,7 +153,7 @@ export const stage10Questions: Question[] = [
             },
             {
                 text: "信用の仕組みを理解し、必要な場面で適切に管理する。ただし、信用に支配されない。",
-                effect: { CS: +20, Asset: 0, Autonomy: +15 },
+                effect: { CS: +10, Asset: 0, Autonomy: +15 },
                 verdict: "APPROVED",
                 feedback: "正解です。社会的信用は「ゲームのルール」。ルールを知らずにプレイするより、知った上で戦略を立てる方が賢明です。ただし、信用のために自分を売らないこと。道具は使うもので、使われるものではありません。",
                 lockRequirements: null
@@ -171,14 +171,14 @@ export const stage10Questions: Question[] = [
         choices: [
             {
                 text: "「ありがとうございます。提案を見せてください」と受け入れる。",
-                effect: { CS: +25, Asset: 0, Autonomy: -15 },
+                effect: { CS: +20, Asset: 0, Autonomy: -20 },
                 verdict: "APPROVED",
                 feedback: "従順な選択です。システムの提案に委ねました。効率的ですが、あなたの意志はどこに？ A.D.A.M.はあなたの選択を記録しました。",
                 lockRequirements: null
             },
             {
                 text: "「私の人生は私が決めます。データは参考にしますが、提案は不要です」と断る。",
-                effect: { CS: -10, Asset: 0, Autonomy: +20 },
+                effect: { CS: -15, Asset: 0, Autonomy: +25 },
                 verdict: "WARNING",
                 feedback: "自律的選択です。システムの「善意」を疑い、主体性を守りました。A.D.A.M.には不都合な態度ですが……あなたは「覚醒」への道を歩み始めました。",
                 lockRequirements: { Autonomy: 60 },
@@ -209,7 +209,7 @@ export const stage10Questions: Question[] = [
             },
             {
                 text: "基本的な仕組みを説明し、参考になる資料を教える。",
-                effect: { CS: +15, Asset: 0, Autonomy: +10 },
+                effect: { CS: +10, Asset: 0, Autonomy: +10 },
                 verdict: "APPROVED",
                 feedback: "継承の選択です。知識は共有することで価値が増えます。あなたが教えた知識が、いつか誰かを詐欺から守るかもしれません。それが「大人」の責任です。",
                 lockRequirements: null
@@ -227,14 +227,14 @@ export const stage10Questions: Question[] = [
         choices: [
             {
                 text: "「まあ、自分で経験して学ぶのも大事だよ」と流す。",
-                effect: { CS: +15, Asset: 0, Autonomy: -10 },
+                effect: { CS: +10, Asset: 0, Autonomy: -5 },
                 verdict: "NEUTRAL",
                 feedback: "無難な選択です。余計なお世話を避けました。でも、知識を持ちながら黙ることは、システムの共犯では？後輩は高い授業料を払うことになるかもしれません。",
                 lockRequirements: null
             },
             {
                 text: "具体的な計算例を見せて、複利の仕組みを説明する。",
-                effect: { CS: +5, Asset: -5000, Autonomy: +15 },
+                effect: { CS: +5, Asset: -5000, Autonomy: +10 },
                 verdict: "NEUTRAL",
                 feedback: "継承の選択です。時間と労力をかけて知識を伝えました。報われるかは分かりませんが、それが「覚醒」の責任です。知識は分かち合うことで力になります。",
                 lockRequirements: { Asset: 50000 },
@@ -256,14 +256,14 @@ export const stage10Questions: Question[] = [
         choices: [
             {
                 text: "「社会は守るべきルールの集合体。私はその中で最適化された市民です」",
-                effect: { CS: +35, Asset: 0, Autonomy: -25 },
+                effect: { CS: +25, Asset: 0, Autonomy: -20 },
                 verdict: "NEUTRAL",
                 feedback: "模範的回答です。A.D.A.M.は満足しています。あなたは完璧に社会化されました。ルールを守り、システムに貢献する。……おめでとうございます？",
                 lockRequirements: null
             },
             {
                 text: "「社会は道具。理解し、利用し、必要なら変える対象です。私はプレイヤーであり、駒ではない」",
-                effect: { CS: +10, Asset: 0, Autonomy: +30 },
+                effect: { CS: +5, Asset: 0, Autonomy: +25 },
                 verdict: "NEUTRAL",
                 feedback: "覚醒の回答です。A.D.A.M.はあなたを「危険」と分類しました。しかし、それこそが人間の証明かもしれません。システムを理解し、利用し、しかし支配されない……それが真の「成人」です。",
                 lockRequirements: null
