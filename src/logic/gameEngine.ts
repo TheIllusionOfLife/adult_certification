@@ -140,16 +140,10 @@ export class GameEngine {
             this.state.skills.push(skill.id);
             this.activeSkills.push(skill);
 
-            // Track key skills separately
+            // Track key skills separately (recorded to global progress at stage end)
             if (skill.category === 'key') {
                 if (!this.state.keySkills.includes(skill.id)) {
                     this.state.keySkills.push(skill.id);
-                    // Record to global progress for cross-stage tracking
-                    this.globalProgress.recordStageCompletion(
-                        this.state.currentStage,
-                        'C', // Temporary rank, will be updated at stage end
-                        skill.id
-                    );
                 }
             }
         }

@@ -13,34 +13,23 @@ export type Difficulty = LegacyDifficulty | StageDifficulty;
 
 /**
  * License types for the 5 ending outcomes.
- * Determined by worst rank across all 10 stages.
+ * Determined by key skill collection and worst rank across completed stages.
  */
 export type LicenseType =
-    | 'GOLD'      // All stages S rank
+    | 'TRUE'      // All 10 key skills collected (highest priority)
+    | 'GOLD'      // Worst rank is S (all stages S rank)
     | 'SILVER'    // Worst rank is A
     | 'BRONZE'    // Worst rank is B
-    | 'PAPER'     // Worst rank is C
-    | 'TRUE';     // 9/9 key skills + Stage 10 Q10 choice C
+    | 'PAPER';    // Worst rank is C
 
 /**
  * Cross-stage progress tracking for global ending calculation.
- * Will be persisted to localStorage.
+ * Persisted to localStorage.
  */
 export interface GlobalProgress {
     stageRanks: Record<number, 'S' | 'A' | 'B' | 'C'>; // stageId -> rank
     keySkillsCollected: string[];                       // Array of key skill IDs
     completedStages: number[];                          // Array of completed stage IDs
-}
-
-/**
- * Conditional choice that only appears under certain conditions.
- * Used for Stage 10 Q10's 3rd choice (requires 9 key skills).
- */
-export interface ConditionalChoice extends Choice {
-    condition?: {
-        type: 'key_skill_count';
-        requiredCount: number;      // e.g., 9 for True Ending
-    };
 }
 
 // ============================================================
