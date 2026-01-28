@@ -54,7 +54,7 @@ export const stage9Questions: Question[] = [
         ]
     },
 
-    // Q3: Knowledge (DISASTER) - Hazard map usage [SKILL OFFER 1 AFTER]
+    // Q3: Knowledge (DISASTER) - Hazard map usage [SKILL OFFER 1 AFTER] [SWAPPED A↔B]
     {
         id: "s9_q03",
         category: "DISASTER",
@@ -63,17 +63,17 @@ export const stage9Questions: Question[] = [
         imagePath: "s9_q03.png",
         choices: [
             {
-                text: "駅近で便利な場所を優先。ハザードマップは気にしない。",
-                effect: { CS: -15, Asset: 0, Autonomy: -10 },
-                verdict: "WARNING",
-                feedback: "リスクの見落としです。洪水浸水想定区域や土砂災害警戒区域に住むと、災害時の被害が甚大に。「便利」の代償が「命」になりえます。",
-                lockRequirements: null
-            },
-            {
                 text: "ハザードマップで浸水・土砂災害リスクを確認し、リスクと利便性を天秤にかけて判断する。",
                 effect: { CS: 5, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。ハザードマップは自治体のウェブサイトで無料閲覧可能。リスクを知った上で住むのと、知らずに住むのでは、備えの質が違います。",
+                lockRequirements: null
+            },
+            {
+                text: "駅近で便利な場所を優先。ハザードマップは気にしない。",
+                effect: { CS: -15, Asset: 0, Autonomy: -10 },
+                verdict: "WARNING",
+                feedback: "リスクの見落としです。洪水浸水想定区域や土砂災害警戒区域に住むと、災害時の被害が甚大に。「便利」の代償が「命」になりえます。",
                 lockRequirements: null
             }
         ],
@@ -83,7 +83,7 @@ export const stage9Questions: Question[] = [
     },
     // [SKILL OFFER 1 HAPPENS AFTER Q3]
 
-    // Q4: Knowledge (DISASTER) - Insurance claim documentation
+    // Q4: Knowledge (DISASTER) - Insurance claim documentation [SWAPPED A↔B]
     {
         id: "s9_q04",
         category: "DISASTER",
@@ -92,17 +92,17 @@ export const stage9Questions: Question[] = [
         imagePath: "s9_q04.png",
         choices: [
             {
-                text: "保険会社に電話すれば、あとは向こうがやってくれるはず。",
-                effect: { CS: -15, Asset: -100000, Autonomy: -5 },
-                verdict: "WARNING",
-                feedback: "受け身すぎます。被害状況の写真、購入時の領収書、修理見積もりがないと、保険金は満額出ません。「証拠がない被害」は認められません。",
-                lockRequirements: null
-            },
-            {
                 text: "片付け前に被害状況を写真・動画で記録。購入記録や修理見積もりを集めてから請求する。",
                 effect: { CS: 5, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。「片付けてしまった後」では証拠がなくなります。日頃から高額家財の写真と購入記録を保存しておくと、いざという時に役立ちます。",
+                lockRequirements: null
+            },
+            {
+                text: "保険会社に電話すれば、あとは向こうがやってくれるはず。",
+                effect: { CS: -15, Asset: -100000, Autonomy: -5 },
+                verdict: "WARNING",
+                feedback: "受け身すぎます。被害状況の写真、購入時の領収書、修理見積もりがないと、保険金は満額出ません。「証拠がない被害」は認められません。",
                 lockRequirements: null
             }
         ]

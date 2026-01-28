@@ -54,7 +54,7 @@ export const stage5Questions: Question[] = [
         ]
     },
 
-    // Q3: Knowledge (LABOR) - Education and training benefits (simpler cost, before skills) [SKILL OFFER 1 AFTER]
+    // Q3: Knowledge (LABOR) - Education and training benefits (simpler cost, before skills) [SKILL OFFER 1 AFTER] [SWAPPED A↔B]
     {
         id: "s5_q03",
         category: "LABOR",
@@ -63,17 +63,17 @@ export const stage5Questions: Question[] = [
         imagePath: "s5_q03.png",
         choices: [
             {
-                text: "50万円は高すぎる。諦めて独学でやる。",
-                effect: { CS: -10, Asset: 0, Autonomy: -10 },
-                verdict: "WARNING",
-                feedback: "機会損失です。教育訓練給付金を使えば、受講費用の最大70%（専門実践教育訓練）が支給されます。50万円のコースが実質15万円に。制度を知らないと、キャリアアップの機会を逃します。",
-                lockRequirements: null
-            },
-            {
                 text: "教育訓練給付金の対象講座か確認し、給付金を申請して受講する。",
                 effect: { CS: 15, Asset: -50000, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。雇用保険加入1年以上（初回）で利用可能。一般は20%、特定一般は40%、専門実践は最大70%給付。ハローワークで事前に相談すれば、対象講座と手続きがわかります。",
+                lockRequirements: null
+            },
+            {
+                text: "50万円は高すぎる。諦めて独学でやる。",
+                effect: { CS: -10, Asset: 0, Autonomy: -10 },
+                verdict: "WARNING",
+                feedback: "機会損失です。教育訓練給付金を使えば、受講費用の最大70%（専門実践教育訓練）が支給されます。50万円のコースが実質15万円に。制度を知らないと、キャリアアップの機会を逃します。",
                 lockRequirements: null
             }
         ],
@@ -83,7 +83,7 @@ export const stage5Questions: Question[] = [
     },
     // [SKILL OFFER 1 HAPPENS AFTER Q3]
 
-    // Q4: Knowledge (HEALTH) - Maternity/paternity leave benefits (simpler, 1 skill)
+    // Q4: Knowledge (HEALTH) - Maternity/paternity leave benefits (simpler, 1 skill) [SWAPPED A↔B]
     {
         id: "s5_q04",
         category: "HEALTH",
@@ -92,17 +92,17 @@ export const stage5Questions: Question[] = [
         imagePath: "s5_q04.png",
         choices: [
             {
-                text: "給料が出ないなら育休は取れない。すぐ復帰するしかない。",
-                effect: { CS: 10, Asset: 0, Autonomy: -15 },
-                verdict: "WARNING",
-                feedback: "制度の誤解です。育児休業給付金は、最初の6ヶ月は給与の67%、以降50%が雇用保険から支給されます。「無収入」ではありません。",
-                lockRequirements: null
-            },
-            {
                 text: "育児休業給付金（67%→50%）を確認し、生活設計に組み込んで育休を取得する。",
                 effect: { CS: 10, Asset: 100000, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。社会保険料も免除されるため、実質的な手取り差は縮まります。制度を理解すれば、育児と仕事の両立が可能になります。",
+                lockRequirements: null
+            },
+            {
+                text: "給料が出ないなら育休は取れない。すぐ復帰するしかない。",
+                effect: { CS: 10, Asset: 0, Autonomy: -15 },
+                verdict: "WARNING",
+                feedback: "制度の誤解です。育児休業給付金は、最初の6ヶ月は給与の67%、以降50%が雇用保険から支給されます。「無収入」ではありません。",
                 lockRequirements: null
             }
         ]
@@ -136,7 +136,7 @@ export const stage5Questions: Question[] = [
         }
     },
 
-    // Q6: Knowledge (LABOR) - Unemployment insurance (medium damage, 1 skill helps)
+    // Q6: Knowledge (LABOR) - Unemployment insurance (medium damage, 1 skill helps) [SWAPPED A↔B]
     {
         id: "s5_q06",
         category: "LABOR",
@@ -145,17 +145,17 @@ export const stage5Questions: Question[] = [
         imagePath: "s5_q06.png",
         choices: [
             {
-                text: "自己都合だと失業保険はもらえないと思い、申請しない。",
-                effect: { CS: -20, Asset: 0, Autonomy: -10 },
-                verdict: "WARNING",
-                feedback: "大損です。自己都合退職でも給付制限（2〜3ヶ月待機）後に受給可能。申請しないのは権利の放棄です。",
-                lockRequirements: null
-            },
-            {
                 text: "申請する。自己都合でも給付制限期間後に受給できる。待機中は就職活動を進める。",
                 effect: { CS: 10, Asset: 100000, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。給付制限期間は転職準備に充て、制限明けから受給。制度を理解して計画的に動くことが大切です。",
+                lockRequirements: null
+            },
+            {
+                text: "自己都合だと失業保険はもらえないと思い、申請しない。",
+                effect: { CS: -20, Asset: 0, Autonomy: -10 },
+                verdict: "WARNING",
+                feedback: "大損です。自己都合退職でも給付制限（2〜3ヶ月待機）後に受給可能。申請しないのは権利の放棄です。",
                 lockRequirements: null
             }
         ]

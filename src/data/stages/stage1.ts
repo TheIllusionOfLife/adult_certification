@@ -54,7 +54,7 @@ export const stage1Questions: Question[] = [
         ]
     },
 
-    // Q3: 小分岐 - Reuse q_intro_14 (Modified for choice demonstration)
+    // Q3: 小分岐 - Reuse q_intro_14 (Modified for choice demonstration) [SWAPPED A↔B]
     {
         id: "s1_q03",
         category: "ADMIN",
@@ -63,17 +63,17 @@ export const stage1Questions: Question[] = [
         imagePath: "s1_q03.png",
         choices: [
             {
-                text: "面倒だから出さない。",
-                effect: { CS: -30, Asset: 0, Autonomy: 0 },
-                verdict: "WARNING",
-                feedback: "ミスです。クレジットカードの更新カードや重要書類が旧住所に届き、見知らぬ誰かの手に渡ります。個人情報管理ができない人と見なされます。",
-                lockRequirements: null
-            },
-            {
                 text: "ネットやハガキで転送を申し込む。",
                 effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "安全策です。1年間無料で転送してくれるシステムを使わない手はありません。自ら行動してリスクを回避しました。",
+                lockRequirements: null
+            },
+            {
+                text: "面倒だから出さない。",
+                effect: { CS: -30, Asset: 0, Autonomy: 0 },
+                verdict: "WARNING",
+                feedback: "ミスです。クレジットカードの更新カードや重要書類が旧住所に届き、見知らぬ誰かの手に渡ります。個人情報管理ができない人と見なされます。",
                 lockRequirements: null
             }
         ],
@@ -192,7 +192,7 @@ export const stage1Questions: Question[] = [
     },
     // [SKILL OFFER 2 HAPPENS AFTER Q7]
 
-    // Q8: Knowledge (ADMIN) - Vehicle inspection (車検) and compulsory insurance (自賠責)
+    // Q8: Knowledge (ADMIN) - Vehicle inspection (車検) and compulsory insurance (自賠責) [SWAPPED A↔B]
     {
         id: "s1_q08",
         category: "ADMIN",
@@ -201,17 +201,17 @@ export const stage1Questions: Question[] = [
         imagePath: "s1_q08.png",
         choices: [
             {
-                text: "お金がないので、車検が切れてもしばらく乗り続ける。",
-                effect: { CS: -30, Asset: -150000, Autonomy: -15 },
-                verdict: "WARNING",
-                feedback: "犯罪です。車検切れの運転は道路運送車両法違反（6点減点、30万円以下の罰金）。自賠責も切れていれば1年以下の懲役または50万円以下の罰金。「節約」のつもりが人生を壊します。",
-                lockRequirements: null
-            },
-            {
                 text: "期限前に車検を受ける。費用が厳しければ、車を手放すことも検討する。",
                 effect: { CS: 20, Asset: -100000, Autonomy: 15 },
                 verdict: "APPROVED",
                 feedback: "正解です。車検は新車登録から3年、以降2年ごと。自賠責保険は車検と同時更新が基本。維持できないなら手放す判断も大人の選択です。",
+                lockRequirements: null
+            },
+            {
+                text: "お金がないので、車検が切れてもしばらく乗り続ける。",
+                effect: { CS: -30, Asset: -150000, Autonomy: -15 },
+                verdict: "WARNING",
+                feedback: "犯罪です。車検切れの運転は道路運送車両法違反（6点減点、30万円以下の罰金）。自賠責も切れていれば1年以下の懲役または50万円以下の罰金。「節約」のつもりが人生を壊します。",
                 lockRequirements: null
             }
         ],

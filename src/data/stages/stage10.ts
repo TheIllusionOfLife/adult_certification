@@ -11,14 +11,14 @@ export const stage10Questions: Question[] = [
         choices: [
             {
                 text: "作らなくても困らない。通知カードと保険証があれば十分。",
-                effect: { CS: -15, Asset: -10000, Autonomy: -5 },
+                effect: { CS: 0, Asset: 0, Autonomy: -5 },
                 verdict: "WARNING",
                 feedback: "機会損失です。2024年12月から健康保険証は新規発行停止、マイナ保険証へ移行。コンビニ交付（住民票等）、確定申告のe-Tax、各種給付金申請・・・カードがないと手続きが煩雑化し、時間とコストがかかります。",
                 lockRequirements: null
             },
             {
                 text: "メリット・デメリットを調べ、保険証利用登録やコンビニ交付など実益を理解した上で判断する。",
-                effect: { CS: +10, Asset: 0, Autonomy: +10 },
+                effect: { CS: +10, Asset: 100000, Autonomy: +10 },
                 verdict: "APPROVED",
                 feedback: "正解です。マイナポイント、コンビニ交付（手数料節約）、e-Tax連携、保険証利用・・・実益は多い。個人情報リスクは「カードを持つこと」ではなく「管理の仕方」の問題。情報を集めて判断するのが大人です。",
                 lockRequirements: null
@@ -71,7 +71,7 @@ export const stage10Questions: Question[] = [
             },
             {
                 text: "「免除」か「猶予」を申請する。届出すれば受給資格期間にカウントされ、追納も可能になる。",
-                effect: { CS: +15, Asset: 0, Autonomy: +10 },
+                effect: { CS: +15, Asset: 100000, Autonomy: +10 },
                 verdict: "APPROVED",
                 feedback: "正解です。免除は所得に応じて全額〜1/4免除があり、免除期間も受給資格にカウント（1/2〜7/8計算）。猶予は後から追納可能。届出なしの未納とは天と地の差。制度を使うことが自己防衛です。",
                 lockRequirements: null
@@ -93,14 +93,14 @@ export const stage10Questions: Question[] = [
         choices: [
             {
                 text: "投資は早く始めるほど有利。50万円全額を投資信託に回す。",
-                effect: { CS: -15, Asset: -30000, Autonomy: -5 },
+                effect: { CS: -15, Asset: -100000, Autonomy: -5 },
                 verdict: "WARNING",
                 feedback: "危険な判断です。失業や病気で収入が止まった時、投資資産を「底値」で売却する羽目になります。暴落時に生活費のために損切りするのは最悪のシナリオ。「生活防衛資金」という概念を知らないと、投資で逆に貧しくなります。",
                 lockRequirements: null
             },
             {
                 text: "まず生活費3〜6ヶ月分を現金で確保。残りを投資に回す。",
-                effect: { CS: +10, Asset: 0, Autonomy: +10 },
+                effect: { CS: +10, Asset: 50000, Autonomy: +10 },
                 verdict: "APPROVED",
                 feedback: "正解です。生活防衛資金は「投資のための保険」。月20万円の生活費なら60〜120万円を現金で確保してから投資開始。これがないと、緊急時に資産を最悪のタイミングで手放すことになります。",
                 lockRequirements: null
