@@ -25,7 +25,7 @@ export const stage6Questions: Question[] = [
             }
         ],
         adamDialogue: {
-            intro: "Stage 6を開始します。テーマは「契約の攻防」。賃貸、売買、交渉・・・契約は力関係で決まります。"
+            intro: "ステージ6を開始します。テーマは「契約の攻防」。賃貸、売買、交渉・・・契約は力関係で決まります。"
         }
     },
 
@@ -271,7 +271,7 @@ export const stage6Questions: Question[] = [
         ],
         adamDialogue: {
             intro: "最終問題です。人生のどの段階を見据えて、住まいを定義しますか？",
-            after: "Stage 6を終了します。審査結果を算出中・・・"
+            after: "ステージ6を終了します。審査結果を算出中・・・"
         }
     }
 ];

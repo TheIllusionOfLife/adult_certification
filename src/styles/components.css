@@ -322,16 +322,18 @@
 }
 
 .adam-recommend-img {
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
     object-fit: contain;
     flex-shrink: 0;
+    margin: -15px;
 }
 
 .adam-recommend-speech {
     font-size: 0.9em;
     color: var(--color-text-light);
     line-height: 1.4;
+    text-align: left;
 }
 
 .adam-label {
@@ -357,10 +359,11 @@
 }
 
 .adam-comment-img {
-    width: 48px;
-    height: 48px;
+    width: 80px;
+    height: 80px;
     object-fit: contain;
     flex-shrink: 0;
+    margin: -16px;
 }
 
 .adam-comment-text {

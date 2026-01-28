@@ -488,17 +488,19 @@ export class UIManager {
         this.dom.ovTitle.style.color = "var(--accent-color)";
 
         this.dom.ovBody.innerHTML = `
-            <div style="margin-bottom: 15px;">ステージ ${s.currentStage} 終了</div>
-            <strong style="font-size:2.5rem; color:var(--accent-color)">${ending.rank}</strong><br>
-            <span style="font-size:1.2rem; color:var(--accent-color)">${ending.title}</span><br><br>
-            <div style="font-size:0.9rem; color:#888; margin-bottom: 15px;">
-                社会的信用: ${s.CS} / 資産: ${s.Asset.toLocaleString()}円 / 自律性: ${s.Autonomy}
+            <div style="text-align: center;">
+                <div style="margin-bottom: 15px;">ステージ ${s.currentStage} 終了</div>
+                <strong style="font-size:2.5rem; color:var(--accent-color)">${ending.rank}</strong><br>
+                <span style="font-size:1.2rem; color:var(--accent-color)">${ending.title}</span><br><br>
+                <div style="font-size:0.9rem; color:#888; margin-bottom: 15px;">
+                    社会的信用: ${s.CS} / 資産: ${s.Asset.toLocaleString()}円 / 自律性: ${s.Autonomy}
+                </div>
+                <div class="adam-comment-section">
+                    <img src="${this.dom.mascotImg.src}" alt="A.D.A.M." class="adam-comment-img" />
+                    <div class="adam-comment-text">[A.D.A.M.]: ${ending.desc}</div>
+                </div>
+                <div style="margin-top: 15px; font-size: 0.85rem; color: #666;">Key Skill: ${keySkillStatus}</div>
             </div>
-            <div class="adam-comment-section">
-                <img src="${this.dom.mascotImg.src}" alt="A.D.A.M." class="adam-comment-img" />
-                <div class="adam-comment-text">[A.D.A.M.]: ${ending.desc}</div>
-            </div>
-            <div style="margin-top: 15px; font-size: 0.85rem; color: #666;">Key Skill: ${keySkillStatus}</div>
         `;
         this.dom.ovStats.innerHTML = "";
 
@@ -564,7 +566,7 @@ export class UIManager {
 
         // Build the final certification display (overall results only, no Stage 10 stats)
         this.dom.ovBody.innerHTML = `
-            <div class="final-certification">
+            <div class="final-certification" style="text-align: center;">
                 <div class="license-image-container">
                     ${licenseImageHtml}
                 </div>

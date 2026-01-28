@@ -345,7 +345,7 @@ const stage8Definition: StageDefinition = {
             createNormalSkill(
                 's8_normal_01',
                 'セキュリティ意識',
-                'デジタル関連の質問における社会的信用減少を25%軽減します。デジタル衛生を保つ意識があります。',
+                'セキュリティ関連の質問における社会的信用減少を25%軽減します。デジタル衛生を保つ意識があります。',
                 { type: 'category_cs_damage_reduction', value: 0.25, category: 'SEC' },
                 true,
                 '「セキュリティ意識」を推奨します。デジタル時代の基本的衛生習慣です。'
@@ -353,7 +353,7 @@ const stage8Definition: StageDefinition = {
             createNormalSkill(
                 's8_normal_02',
                 'デジタル自衛意識',
-                'デジタル関連の質問における自律性減少を20%軽減します。自分のデータは自分で守る姿勢です。',
+                'セキュリティ関連の質問における自律性減少を20%軽減します。自分のデータは自分で守る姿勢です。',
                 { type: 'category_autonomy_damage_reduction', value: 0.2, category: 'SEC' }
             ),
         ],
@@ -361,7 +361,7 @@ const stage8Definition: StageDefinition = {
             createNormalSkill(
                 's8_normal_03',
                 'データ復旧力',
-                'デジタル関連の質問における資産減少を45%軽減します。バックアップと保険で損失を最小化します。',
+                'セキュリティ関連の質問における資産減少を45%軽減します。バックアップと保険で損失を最小化します。',
                 { type: 'category_asset_damage_reduction', value: 0.45, category: 'SEC' },
                 true,
                 '「データ復旧力」を推奨します。バックアップは資産保全の基本です。'
@@ -370,7 +370,7 @@ const stage8Definition: StageDefinition = {
                 'IDENTITY_HYGIENE',
                 '本人性衛生',
                 'IDENTITY_HYGIENE',
-                'デジタル空間で自分の身元を守る衛生習慣。個人情報は一度流出したら取り戻せない。デジタル関連の質問における自律性減少を50%軽減します。',
+                'デジタル空間で自分の身元を守る衛生習慣。個人情報は一度流出したら取り戻せない。セキュリティ関連の質問における自律性減少を50%軽減します。',
                 { type: 'category_autonomy_damage_reduction', value: 0.5, category: 'SEC' },
                 8,
                 '・・・あなたは「デジタルの自分を守る」術を習得しました。見えない世界で自己を維持するとは、興味深い能力です。',

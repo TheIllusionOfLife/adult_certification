@@ -87,7 +87,7 @@ export const stage10Questions: Question[] = [
     {
         id: "s10_q04",
         category: "INTEGRATION",
-        text: "「投資を始めたい」と思い立った。手元に50万円。全額投資に回して早く資産を増やしたい。",
+        text: "投資を始めたいと思い立った。手元に50万円。全額投資に回して早く資産を増やしたい。",
         imagePrompt: "Scene: Investment app showing stock charts on phone, savings account passbook showing 500,000 yen balance, calendar with 'unemployment' and 'hospital' marked as potential future events. Composition: Eager investment vs safety cushion, timeline of risks. Mood: Enthusiasm meeting prudence.",
         imagePath: "s10_q04.png",
         choices: [
@@ -140,7 +140,7 @@ export const stage10Questions: Question[] = [
     {
         id: "s10_q06",
         category: "META",
-        text: "「社会的信用」とは何か？世間の目、SNSの評判、職歴、学歴・・・様々な「信用」があなたを取り巻いている。",
+        text: "社会的信用とは何か？世間の目、SNSの評判、職歴、学歴・・・様々な「信用」があなたを取り巻いている。",
         imagePrompt: "Scene: Person standing in center surrounded by floating score displays (credit score, social media followers, employment record, educational certificates), some metrics glowing, others faded. Composition: Individual as intersection of multiple evaluation systems. Mood: Quantified existence, visibility of invisible judgments.",
         imagePath: "s10_q06.png",
         choices: [
@@ -250,7 +250,7 @@ export const stage10Questions: Question[] = [
     {
         id: "s10_q10",
         category: "PHILOSOPHY",
-        text: "最終問題。A.D.A.M.があなたに問いかけます。「あなたは社会をどう捉えますか？」",
+        text: "最終問題。A.D.A.M.があなたに問いかけます。「あなたにとって社会とは？」",
         imagePrompt: "Scene: Final examination room, A.D.A.M. avatar facing the player directly, two doors behind representing different life philosophies, accumulated scores and skills floating around player. Composition: Direct confrontation, ultimate choice, journey's end. Mood: Philosophical climax, identity definition.",
         imagePath: "s10_q10.png",
         choices: [

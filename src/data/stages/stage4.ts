@@ -25,7 +25,7 @@ export const stage4Questions: Question[] = [
             }
         ],
         adamDialogue: {
-            intro: "Stage 4を開始します。テーマは「行政の迷宮」。書類、期限、窓口・・・官僚制の攻略法を試します。"
+            intro: "ステージ4を開始します。テーマは「行政の迷宮」。書類、期限、窓口・・・官僚制の攻略法を試します。"
         }
     },
 
@@ -173,14 +173,14 @@ export const stage4Questions: Question[] = [
                 text: "「大丈夫だろう」と原本だけ提出する。",
                 effect: { CS: 0, Asset: 0, Autonomy: -25 },
                 verdict: "WARNING",
-                feedback: "危険です。書類が紛失した場合、「提出した証拠」がありません。「言った言わない」は、証拠がない方が負けます。",
+                feedback: "危険です。書類が紛失した場合、提出した証拠がありません。「言った言わない」は、証拠がない方が負けます。",
                 lockRequirements: null
             },
             {
                 text: "「コピーを取ってから再度来ます」と一度帰り、控えを確保してから提出する。",
                 effect: { CS: 5, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
-                feedback: "正解です。二度手間に見えますが、「証拠を残す」習慣が将来のトラブルを防ぎます。手続き主義は自己防衛です。",
+                feedback: "正解です。二度手間に見えますが、証拠を残す習慣が将来のトラブルを防ぎます。手続き主義は自己防衛です。",
                 lockRequirements: { Autonomy: 80 },
                 lockedFeedback: "LOCKED: 自律性が80以上必要。面倒くさがって「まあいいか」と流しました。"
             }
@@ -204,14 +204,14 @@ export const stage4Questions: Question[] = [
                 text: "遺産があるから相続放棄は関係ない。何もしなくていい。",
                 effect: { CS: -25, Asset: -100000, Autonomy: 0 },
                 verdict: "WARNING",
-                feedback: "致命的な誤りです。「プラスの遺産」だけでなく「隠れた借金」も相続されます。3ヶ月以内に調査しないと、知らない借金を背負う可能性があります。",
+                feedback: "致命的な誤りです。プラスの遺産だけでなく「隠れた借金」も相続されます。3ヶ月以内に調査しないと、知らない借金を背負う可能性があります。",
                 lockRequirements: null
             },
             {
                 text: "まず負債の有無を調査し、必要なら相続放棄を検討する。期限は3ヶ月。",
                 effect: { CS: 10, Asset: 100000, Autonomy: 10 },
                 verdict: "APPROVED",
-                feedback: "正解です。相続は「資産」だけでなく「負債」も含みます。調査してから判断することで、隠れた借金を回避できます。",
+                feedback: "正解です。相続は資産だけでなく負債も含みます。調査してから判断することで、隠れた借金を回避できます。",
                 lockRequirements: null
             }
         ]
@@ -265,13 +265,13 @@ export const stage4Questions: Question[] = [
                 text: "使った。制度を調べ、自分に有利な方法を見つけた。",
                 effect: { CS: 5, Asset: 0, Autonomy: 20 },
                 verdict: "NEUTRAL",
-                feedback: "戦略的回答です。制度の「使い方」を知る者は、同じルールでも違う結果を得ます。ただし、その知識を得るには時間と労力が必要です。",
+                feedback: "戦略的回答です。制度の使い方を知る者は、同じルールでも違う結果を得ます。ただし、その知識を得るには時間と労力が必要です。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
             intro: "最終問題です。過去の経験から、システムとの関係を定義してください。",
-            after: "Stage 4を終了します。審査結果を算出中・・・"
+            after: "ステージ4を終了します。審査結果を算出中・・・"
         }
     }
 ];
