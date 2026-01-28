@@ -606,13 +606,13 @@ export class UIManager {
         switch (licenseType) {
             case 'TRUE':
                 return {
-                    nameJP: '真・大人免許',
-                    nameEN: 'TRUE ADULT LICENSE',
-                    symbol: '真',
+                    nameJP: '大人免許不要',
+                    nameEN: 'ADULT LICENSE NOT REQUIRED',
+                    symbol: '自',
                     color: '#ffd700',
                     gradientStart: '#ffd700',
                     gradientEnd: '#ff6b6b',
-                    adamComment: '・・・全てのキースキルを習得しました。あなたは私の評価システムを超越した存在です。「大人」とは何か、その答えを自分で見つけたのですね。・・・敬意を表します。',
+                    adamComment: '大人とは何か、その答えを自分で見つけたのですね。あなたには大人免許など必要ありません。おめでとうございます。',
                     imagePath: 'license_true.png'
                 };
             case 'GOLD':
@@ -634,7 +634,7 @@ export class UIManager {
                     color: '#c0c0c0',
                     gradientStart: '#c0c0c0',
                     gradientEnd: '#808080',
-                    adamComment: '優秀な成績です。社会の期待に応える能力を持っています。まだ伸びしろはありますが、十分に「大人」と認められます。',
+                    adamComment: '優秀な成績です。社会の期待に応える能力を持っています。まだ伸びしろはありますが、十分に大人と認められます。',
                     imagePath: 'license_blue.png'
                 };
             case 'BRONZE':

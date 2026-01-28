@@ -250,19 +250,19 @@ export const stage10Questions: Question[] = [
     {
         id: "s10_q10",
         category: "PHILOSOPHY",
-        text: "最終問題。A.D.A.M.があなたに問いかけます。「あなたにとって社会とは？」",
-        imagePrompt: "Scene: Final examination room, A.D.A.M. avatar facing the player directly, two doors behind representing different life philosophies, accumulated scores and skills floating around player. Composition: Direct confrontation, ultimate choice, journey's end. Mood: Philosophical climax, identity definition.",
+        text: "最終問題。A.D.A.M.があなたに問いかけます。「あなたにとって大人とは？」",
+        imagePrompt: "Scene: Final examination room, two doors behind representing different life philosophies, accumulated scores and skills floating around player. Composition: Direct confrontation, ultimate choice, journey's end. Mood: Philosophical climax, identity definition.",
         imagePath: "s10_q10.png",
         choices: [
             {
-                text: "社会は守るべきルールの集合体。私はその中で最適化された市民です。",
+                text: "大人とは、社会のルールを従順に守る存在のこと。私は社会に最適化された人間です。",
                 effect: { CS: +25, Asset: 0, Autonomy: -20 },
                 verdict: "NEUTRAL",
                 feedback: "模範的回答です。A.D.A.M.は満足しています。",
                 lockRequirements: null
             },
             {
-                text: "社会は社会。理解し、活用し、必要なら共に変えていく。私は自分で考え、自分の意志で社会に貢献する。",
+                text: "大人とは、社会を理解し、活用し、共に成長していく存在のこと。私は自分で考え、自分の意志で社会に貢献する人間です。",
                 effect: { CS: +5, Asset: 0, Autonomy: +25 },
                 verdict: "NEUTRAL",
                 feedback: "システムを理解し、活用し、しかし支配されない・・・それが真の「大人」です。",
