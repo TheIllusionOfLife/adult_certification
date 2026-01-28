@@ -265,13 +265,13 @@ export const stage8Questions: Question[] = [
                 text: "売買される商品。どうせ取られるなら、自分にも利益を還元させる。",
                 effect: { CS: 0, Asset: 5000, Autonomy: -10 },
                 verdict: "NEUTRAL",
-                feedback: "実利的回答です。ポイント還元、無料サービス...データ提供の見返りを最大化する姿勢。ただし、一度渡した情報は取り戻せません。",
+                feedback: "実利的回答です。ポイント還元、無料サービス・・・データ提供の見返りを最大化する姿勢。ただし、一度渡した情報は取り戻せません。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
             intro: "最終問題です。あなたのデータは誰のものですか？",
-            after: "Stage 8を終了します。審査結果を算出中..."
+            after: "Stage 8を終了します。審査結果を算出中・・・"
         }
     }
 ];

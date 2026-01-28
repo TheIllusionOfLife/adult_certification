@@ -5,7 +5,7 @@ export const stage4Questions: Question[] = [
     {
         id: "s4_q01",
         category: "ADMIN",
-        text: "引越し後の手続き。住民票、マイナンバーカード、運転免許証、銀行...全部やる必要がある？",
+        text: "引越し後の手続き。住民票、マイナンバーカード、運転免許証、銀行・・・全部やる必要がある？",
         imagePrompt: "Scene: a maze of government buildings with different counters; a checklist floating with many items; confused citizen holding moving boxes. Composition: bureaucratic labyrinth with multiple paths. Mood: overwhelm, procedural complexity.",
         imagePath: "s4_q01.png",
         choices: [
@@ -271,7 +271,7 @@ export const stage4Questions: Question[] = [
         ],
         adamDialogue: {
             intro: "最終問題です。過去の経験から、システムとの関係を定義してください。",
-            after: "Stage 4を終了します。審査結果を算出中..."
+            after: "Stage 4を終了します。審査結果を算出中・・・"
         }
     }
 ];

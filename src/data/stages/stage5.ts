@@ -271,7 +271,7 @@ export const stage5Questions: Question[] = [
         ],
         adamDialogue: {
             intro: "最終問題です。『知っているか』だけで数十万円の差がつく領域があります。",
-            after: "Stage 5を終了します。審査結果を算出中..."
+            after: "Stage 5を終了します。審査結果を算出中・・・"
         }
     }
 ];

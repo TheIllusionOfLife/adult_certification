@@ -271,7 +271,7 @@ export const stage2Questions: Question[] = [
         ],
         adamDialogue: {
             intro: "最終問題です。5年後のあなたを定義してください。",
-            after: "Stage 2を終了します。審査結果を算出中..."
+            after: "Stage 2を終了します。審査結果を算出中・・・"
         }
     }
 ];

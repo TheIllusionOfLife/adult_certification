@@ -271,7 +271,7 @@ export const stage7Questions: Question[] = [
         ],
         adamDialogue: {
             intro: "最終問題です。あなたは法をどの立場から見ていますか？",
-            after: "Stage 7を終了します。審査結果を算出中..."
+            after: "Stage 7を終了します。審査結果を算出中・・・"
         }
     }
 ];

@@ -250,7 +250,7 @@ export const stage6Questions: Question[] = [
     {
         id: "s6_q10",
         category: "HOUSING",
-        text: "30歳、40歳、70歳...人生の各段階で『住まい』の意味は変わる。今のあなたにとって住まいとは何ですか？",
+        text: "30歳、40歳、70歳・・・人生の各段階で『住まい』の意味は変わる。今のあなたにとって住まいとは何ですか？",
         imagePrompt: "Scene: Cardboard boxes half-packed frozen mid-move, some sealed with old address labels, collection of keys from different apartments hanging together on single ring. Composition: Moving chaos snapshot, keys as focal point. Mood: Impermanence as constant, every home a chapter.",
         imagePath: "s6_q10.png",
         choices: [
@@ -271,7 +271,7 @@ export const stage6Questions: Question[] = [
         ],
         adamDialogue: {
             intro: "最終問題です。人生のどの段階を見据えて、住まいを定義しますか？",
-            after: "Stage 6を終了します。審査結果を算出中..."
+            after: "Stage 6を終了します。審査結果を算出中・・・"
         }
     }
 ];
