@@ -411,9 +411,10 @@ export class UIManager {
                 : '';
 
             sBtn.innerHTML = `
+                ${recommendedBadge}
                 <div class="skill-letter-circle">${String.fromCharCode(65 + i)}</div>
                 <div class="skill-content">
-                    <span class="skill-name">${s.name}${recommendedBadge}</span>
+                    <span class="skill-name">${s.name}</span>
                     <span class="skill-desc">${s.desc}</span>
                     ${lockedReasonHtml}
                 </div>

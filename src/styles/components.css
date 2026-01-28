@@ -113,63 +113,69 @@
     height: auto !important;
     min-height: 100px;
     text-align: left;
-    gap: var(--space-sm);
+    gap: 4px;
+    position: relative;
+    transition: all var(--transition-fast);
+}
+
+.skill-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.skill-btn:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-small) var(--shadow-small) 0 var(--ink-black);
 }
 
 .skill-letter-circle {
     background: var(--accent-color);
     color: var(--ink-black);
-    width: 32px;
-    height: 32px;
-    min-width: 32px;
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    font-size: 1em;
+    font-size: 0.9em;
     flex-shrink: 0;
-    margin-bottom: var(--space-sm);
+    margin-bottom: var(--space-xs);
 }
 
 .skill-content {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
     width: 100%;
+    flex: 1;
 }
 
 .skill-name {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 900;
     color: var(--ink-black);
+    line-height: 1.3;
+    word-break: keep-all;
 }
 
 .skill-desc {
-    font-size: var(--text-md);
-    font-weight: normal;
-    color: #444;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: #333;
     white-space: normal;
-    line-height: 1.3;
+    line-height: 1.5;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed #ccc;
 }
 
 .skill-btn:hover .skill-name {
-    color: var(--primary-color);
+    color: var(--ink-black);
 }
 
-.skill-letter {
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    background: var(--accent-color);
-    color: var(--ink-black);
-    border-radius: 50%;
-    font-weight: bold;
-    margin-right: var(--space-md);
-    flex-shrink: 0;
-}
+/* .skill-letter removed - using colored left borders instead */
 
 /* Key Skill Styles */
 .key-skill-btn {
@@ -249,13 +255,19 @@
 /* A.D.A.M. Recommended Skill Styles */
 .skill-recommended {
     border: 2px solid var(--color-positive) !important;
-    box-shadow: 0 0 10px rgba(76, 201, 240, 0.3);
+    border-left: 6px solid var(--color-positive) !important;
+    box-shadow: 0 0 15px rgba(76, 201, 240, 0.25);
+}
+
+.skill-recommended:hover {
+    box-shadow: 0 8px 25px rgba(76, 201, 240, 0.35);
 }
 
 .recommended-badge {
-    display: inline-block;
-    margin-left: 10px;
-    padding: 2px 8px;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 3px 10px;
     background: var(--color-positive);
     color: var(--ink-black);
     font-size: 0.7em;
