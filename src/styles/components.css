@@ -609,3 +609,19 @@
     font-size: 1.5rem;
     color: var(--ink-black);
 }
+
+/* Key Skill Indicator on Stage Button */
+.key-indicator {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    margin-right: -10px;
+    background-image: url('../assets/key_icon.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: rotate(-25deg);
+    vertical-align: middle;
+}

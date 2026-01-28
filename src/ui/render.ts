@@ -5,6 +5,7 @@ import { CONFIG } from '../config';
 import { getOverlayPresentation } from './overlayVerdict';
 import { DOM_IDS } from './domIds';
 import { RecordStorage } from '../storage/RecordStorage';
+import { GlobalProgressStorage } from '../storage/GlobalProgressStorage';
 import { STAGE_METADATA, getStageMetadata } from '../data/stageMetadata';
 
 // Vite glob import for assets
@@ -93,11 +94,16 @@ export class UIManager {
 
         // All 10 stages - only show unlocked stages (previous stage beaten)
         // themeJP comes from stageMetadata.ts
-        const allStages: { key: string, name: string, desc: string }[] = STAGE_METADATA.map((stage) => ({
+        const allStages: { key: string, name: string, desc: string, keySkillId: string }[] = STAGE_METADATA.map((stage) => ({
             key: `Stage${stage.id}`,
             name: `STAGE ${stage.id}`,
-            desc: stage.themeJP
+            desc: stage.themeJP,
+            keySkillId: stage.keySkillId
         }));
+
+        // Get collected key skills from global progress
+        const globalProgress = new GlobalProgressStorage();
+        const collectedKeySkills = globalProgress.getKeySkillsCollected();
 
         // Only show stages that are unlocked (Stage 1 always visible, others require previous stage beaten)
         allStages.forEach((stage, index) => {
@@ -110,6 +116,7 @@ export class UIManager {
             const validRanks: readonly string[] = CONFIG.VALID_RANKS;
             const safeRank = record && validRanks.includes(record.rank) ? record.rank : '';
             const rankClass = safeRank ? `rank-${safeRank}` : '';
+            const hasKeySkill = collectedKeySkills.includes(stage.keySkillId);
 
             btn.innerHTML = `
                 <div class="diff-info">
@@ -117,6 +124,7 @@ export class UIManager {
                     <span class="diff-desc">${stage.desc}</span>
                 </div>
                 <div class="btn-right-col">
+                    ${hasKeySkill ? '<span class="key-indicator" title="Key Skill 獲得済"></span>' : ''}
                     ${safeRank ? `<span class="rank-stamp ${rankClass}">${safeRank}</span>` : ''}
                     <span class="arrow">▶</span>
                 </div>
