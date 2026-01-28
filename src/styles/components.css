@@ -620,11 +620,15 @@
 
 .diff-btn:nth-child(10) {
     border-left: 8px solid var(--stage-10-color);
+}
+
+/* Shimmer effect for stages with S rank AND key skill collected */
+.diff-btn.stage-perfected {
     position: relative;
     overflow: hidden;
 }
 
-.diff-btn:nth-child(10)::before {
+.diff-btn.stage-perfected::before {
     content: '';
     position: absolute;
     top: 0;

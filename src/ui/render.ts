@@ -118,6 +118,11 @@ export class UIManager {
             const rankClass = safeRank ? `rank-${safeRank}` : '';
             const hasKeySkill = collectedKeySkills.includes(stage.keySkillId);
 
+            // Add shimmer effect for stages with both S rank and key skill
+            if (safeRank === 'S' && hasKeySkill) {
+                btn.classList.add('stage-perfected');
+            }
+
             btn.innerHTML = `
                 <div class="diff-info">
                     <span class="diff-name">${stage.name}</span>
