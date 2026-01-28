@@ -250,7 +250,7 @@ export const stage10Questions: Question[] = [
     {
         id: "s10_q10",
         category: "PHILOSOPHY",
-        text: "最終問題。A.D.A.M.があなたに問いかけます。「全ての試験を終えて、あなたは「社会」をどう捉えますか？」",
+        text: "最終問題。A.D.A.M.があなたに問いかけます。「あなたは社会をどう捉えますか？」",
         imagePrompt: "Scene: Final examination room, A.D.A.M. avatar facing the player directly, two doors behind representing different life philosophies, accumulated scores and skills floating around player. Composition: Direct confrontation, ultimate choice, journey's end. Mood: Philosophical climax, identity definition.",
         imagePath: "s10_q10.png",
         choices: [
@@ -258,11 +258,11 @@ export const stage10Questions: Question[] = [
                 text: "「社会は守るべきルールの集合体。私はその中で最適化された市民です」",
                 effect: { CS: +25, Asset: 0, Autonomy: -20 },
                 verdict: "NEUTRAL",
-                feedback: "模範的回答です。A.D.A.M.は満足しています。共に素晴らしい社会を構築しましょう。大人免許を進呈します。",
+                feedback: "模範的回答です。A.D.A.M.は満足しています。",
                 lockRequirements: null
             },
             {
-                text: "「社会は道具。理解し、利用し、必要なら変える対象です。私はプレイヤーであり、駒ではない」",
+                text: "「社会は社会。理解し、活用し、必要なら共に変えていく。私は自分で考え、自分の意志で社会に貢献する」",
                 effect: { CS: +5, Asset: 0, Autonomy: +25 },
                 verdict: "NEUTRAL",
                 feedback: "覚醒の回答です。A.D.A.M.はあなたを「危険」と分類しました。システムを理解し、利用し、しかし支配されない・・・それが真の「大人」です。",
@@ -270,7 +270,7 @@ export const stage10Questions: Question[] = [
             }
         ],
         adamDialogue: {
-            intro: "最終問題です。あなたの「成人宣言」を聞かせてください。",
+            intro: "最終問題です。あなたにとって「大人」とは何かを聞かせてください。",
             after: "最終認定審査を終了します。結果を算出中・・・"
         }
     }
