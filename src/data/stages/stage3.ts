@@ -25,7 +25,7 @@ export const stage3Questions: Question[] = [
             }
         ],
         adamDialogue: {
-            intro: "Stage 3を開始します。テーマは『金の基礎』。複利、税金、借金の罠……お金のリテラシーを試します。"
+            intro: "Stage 3を開始します。テーマは『金の基礎』。複利、税金、借金の罠・・・お金のリテラシーを試します。"
         }
     },
 

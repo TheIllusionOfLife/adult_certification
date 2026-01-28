@@ -25,7 +25,7 @@ export const stage5Questions: Question[] = [
             }
         ],
         adamDialogue: {
-            intro: "Stage 5を開始します。テーマは『社会保障の羅針盤』。病気、失業、出産……公的制度を知らないと詰みます。"
+            intro: "Stage 5を開始します。テーマは『社会保障の羅針盤』。病気、失業、出産・・・公的制度を知らないと詰みます。"
         }
     },
 
@@ -165,7 +165,7 @@ export const stage5Questions: Question[] = [
     {
         id: "s5_q07",
         category: "HEALTH",
-        text: "最近、眠れない日が続き、仕事に集中できない。「自分は弱いだけ」と思っているが……",
+        text: "最近、眠れない日が続き、仕事に集中できない。「自分は弱いだけ」と思っているが・・・",
         imagePrompt: "Scene: Dark bedroom at 3 AM, phone screen illuminating the space showing mental health clinic search results, untouched sleeping pills on nightstand, rumpled sheets. Composition: Phone glow is only light source, isolation palpable. Mood: Exhaustion, small step toward help.",
         imagePath: "s5_q07.png",
         choices: [

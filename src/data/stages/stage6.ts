@@ -25,7 +25,7 @@ export const stage6Questions: Question[] = [
             }
         ],
         adamDialogue: {
-            intro: "Stage 6を開始します。テーマは『契約の攻防』。賃貸、売買、交渉……契約は力関係で決まります。"
+            intro: "Stage 6を開始します。テーマは『契約の攻防』。賃貸、売買、交渉・・・契約は力関係で決まります。"
         }
     },
 
@@ -41,7 +41,7 @@ export const stage6Questions: Question[] = [
                 text: "金利が一番低い銀行を選ぶ。金利がすべて。",
                 effect: { CS: -10, Asset: -100000, Autonomy: 0 },
                 verdict: "WARNING",
-                feedback: "視野狭窄です。事務手数料、保証料、団信保険料、繰上返済手数料……金利以外のコストで数十万円の差が出ます。総支払額で比較しないと損をします。",
+                feedback: "視野狭窄です。事務手数料、保証料、団信保険料、繰上返済手数料・・・金利以外のコストで数十万円の差が出ます。総支払額で比較しないと損をします。",
                 lockRequirements: null
             },
             {
@@ -140,7 +140,7 @@ export const stage6Questions: Question[] = [
     {
         id: "s6_q06",
         category: "HOUSING",
-        text: "3,000万円の中古マンションを購入予定。「頭金300万円があれば買える」と思っているが……",
+        text: "3,000万円の中古マンションを購入予定。「頭金300万円があれば買える」と思っているが・・・",
         imagePrompt: "Scene: a home purchase calculation; visible price tag vs hidden costs (taxes, fees, renovation); iceberg metaphor. Composition: surface price vs total cost. Mood: hidden expense revelation.",
         imagePath: "s6_q06.png",
         choices: [

@@ -25,7 +25,7 @@ export const stage7Questions: Question[] = [
             }
         ],
         adamDialogue: {
-            intro: "Stage 7を開始します。テーマは『法の盾』。契約、詐欺、消費者保護……法律は武器にも盾にもなります。"
+            intro: "Stage 7を開始します。テーマは『法の盾』。契約、詐欺、消費者保護・・・法律は武器にも盾にもなります。"
         }
     },
 
@@ -173,7 +173,7 @@ export const stage7Questions: Question[] = [
                 text: "店員を待たせるのは悪いので、読まずにサインする。",
                 effect: { CS: 0, Asset: -30000, Autonomy: -25 },
                 verdict: "WARNING",
-                feedback: "思考停止です。2年縛り、自動更新、高額オプション……読まずにサインした契約のすべてがあなたを縛ります。「時間がない」は言い訳です。",
+                feedback: "思考停止です。2年縛り、自動更新、高額オプション・・・読まずにサインした契約のすべてがあなたを縛ります。「時間がない」は言い訳です。",
                 lockRequirements: null
             },
             {
@@ -265,7 +265,7 @@ export const stage7Questions: Question[] = [
                 text: "身を守る武器。弱い立場だからこそ、法を知り、使いこなす。",
                 effect: { CS: 10, Asset: 0, Autonomy: 25 },
                 verdict: "NEUTRAL",
-                feedback: "自己防衛型の回答です。法を武器にする発想は、力の非対称を補います。消費者保護法、労働基準法……知識は力なき者の盾です。",
+                feedback: "自己防衛型の回答です。法を武器にする発想は、力の非対称を補います。消費者保護法、労働基準法・・・知識は力なき者の盾です。",
                 lockRequirements: null
             }
         ],

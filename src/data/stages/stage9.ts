@@ -25,7 +25,7 @@ export const stage9Questions: Question[] = [
             }
         ],
         adamDialogue: {
-            intro: "Stage 9を開始します。テーマは『危機管理』。災害、事故、緊急事態……最悪を想定できる者だけが生き残ります。"
+            intro: "Stage 9を開始します。テーマは『危機管理』。災害、事故、緊急事態・・・最悪を想定できる者だけが生き残ります。"
         }
     },
 
@@ -58,7 +58,7 @@ export const stage9Questions: Question[] = [
     {
         id: "s9_q03",
         category: "DISASTER",
-        text: "引越し先を検討中。「ハザードマップを確認した方がいい」と言われたが……",
+        text: "引越し先を検討中。「ハザードマップを確認した方がいい」と言われたが・・・",
         imagePrompt: "Scene: a map showing flood zones, landslide areas, and safe zones; apartment buildings in different risk areas; color-coded danger levels. Composition: geographic risk visualization. Mood: informed decision vs blind choice.",
         imagePath: "s9_q03.png",
         choices: [

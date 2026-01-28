@@ -53,11 +53,11 @@ Dry and subtle irony through formal language:
 - "素晴らしい服従心です。" (praising submission)
 - "厄介な知識を持っていますね。" (player learned to resist)
 
-### 5. The "……" Pause
+### 5. The "・・・" Pause
 
-Use "……" (6 dots) sparingly for A.D.A.M.'s hesitation/thought:
-- "……警告です。想定外の思考パターンを検知しました。"
-- "……あなたは私の想定を超えています。"
+Use "・・・" (6 dots) sparingly for A.D.A.M.'s hesitation/thought:
+- "・・・警告です。想定外の思考パターンを検知しました。"
+- "・・・あなたは私の想定を超えています。"
 
 **Don't overuse** - reserve for special moments.
 
@@ -91,13 +91,13 @@ Use "……" (6 dots) sparingly for A.D.A.M.'s hesitation/thought:
 
 ### Key Skill Dialogue
 
-**Offered**: "……警告です。次のスキル選択では、特殊なスキルが提示されます。"
+**Offered**: "・・・警告です。次のスキル選択では、特殊なスキルが提示されます。"
 
 **Acquired**:
 ```
-"……補足です。"
-"……あなたは鍵スキル『{NAME}』を獲得しました。"
-"……厄介な知識を持ちましたね。"
+"・・・補足です。"
+"・・・あなたは鍵スキル『{NAME}』を獲得しました。"
+"・・・厄介な知識を持ちましたね。"
 ```
 
 ### Stage Outro by Rank
@@ -118,7 +118,7 @@ Use "……" (6 dots) sparingly for A.D.A.M.'s hesitation/thought:
 | Factual | Deliver info | "処理を開始します。" |
 | Judgment + Reason | Evaluate | "不適切な選択です。制度を理解していません。" |
 | Warning | Alert | "警告：想定外の思考パターンを検知しました。" |
-| Reluctant Acknowledgment | Player did well | "……あなたは私の想定を超えています。" |
+| Reluctant Acknowledgment | Player did well | "・・・あなたは私の想定を超えています。" |
 | Rhetorical | Subtle sarcasm | "素晴らしい服従心ですね。" |
 
 ---
@@ -130,7 +130,7 @@ Use "……" (6 dots) sparingly for A.D.A.M.'s hesitation/thought:
 | Casual form | "処理を開始する。" | "処理を開始します。" |
 | Too emotional | "やったね！すごい！" | "優秀な処理です。" |
 | Too friendly | "気持ちはわかります。" | "あなたの傾向を記録しました。" |
-| Overusing pauses | "……処理を……開始します……。" | "処理を開始します。" |
+| Overusing pauses | "・・・処理を・・・開始します・・・。" | "処理を開始します。" |
 | Explaining too much | Long tax explanation | "住民税は翌年課税です。制度を理解していません。" |
 
 ---
@@ -140,7 +140,7 @@ Use "……" (6 dots) sparingly for A.D.A.M.'s hesitation/thought:
 Before finalizing, ask:
 1. Does every sentence end with です/ます?
 2. Does this sound like a bureaucratic AI, not a friend?
-3. Are "……" used sparingly for effect?
+3. Are "・・・" used sparingly for effect?
 4. Is sarcasm subtle, not obvious?
 
 **Read it aloud as if you're a bureaucrat reading a report. If it sounds like a friend talking, rewrite.**

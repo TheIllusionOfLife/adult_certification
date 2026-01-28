@@ -13,14 +13,14 @@ export const stage10Questions: Question[] = [
                 text: "作らなくても困らない。通知カードと保険証があれば十分。",
                 effect: { CS: -15, Asset: -10000, Autonomy: -5 },
                 verdict: "WARNING",
-                feedback: "機会損失です。2024年12月から健康保険証は新規発行停止、マイナ保険証へ移行。コンビニ交付（住民票等）、確定申告のe-Tax、各種給付金申請……カードがないと手続きが煩雑化し、時間とコストがかかります。",
+                feedback: "機会損失です。2024年12月から健康保険証は新規発行停止、マイナ保険証へ移行。コンビニ交付（住民票等）、確定申告のe-Tax、各種給付金申請・・・カードがないと手続きが煩雑化し、時間とコストがかかります。",
                 lockRequirements: null
             },
             {
                 text: "メリット・デメリットを調べ、保険証利用登録やコンビニ交付など実益を理解した上で判断する。",
                 effect: { CS: +10, Asset: 0, Autonomy: +10 },
                 verdict: "APPROVED",
-                feedback: "正解です。マイナポイント、コンビニ交付（手数料節約）、e-Tax連携、保険証利用……実益は多い。個人情報リスクは「カードを持つこと」ではなく「管理の仕方」の問題。情報を集めて判断するのが大人です。",
+                feedback: "正解です。マイナポイント、コンビニ交付（手数料節約）、e-Tax連携、保険証利用・・・実益は多い。個人情報リスクは「カードを持つこと」ではなく「管理の仕方」の問題。情報を集めて判断するのが大人です。",
                 lockRequirements: null
             }
         ],
@@ -58,7 +58,7 @@ export const stage10Questions: Question[] = [
     {
         id: "s10_q03",
         category: "INTEGRATION",
-        text: "失業して国民年金の保険料（月約17,000円）が払えない。「届出すれば払わなくていい」と聞いたが……",
+        text: "失業して国民年金の保険料（月約17,000円）が払えない。「届出すれば払わなくていい」と聞いたが・・・",
         imagePrompt: "Scene: Pension payment notice with overdue warning, calendar showing unemployment period, exemption application form partially filled, future pension projection chart showing gap. Composition: Present crisis vs future security, paperwork as bridge. Mood: Financial stress, systematic solution.",
         imagePath: "s10_q03.png",
         choices: [
@@ -140,7 +140,7 @@ export const stage10Questions: Question[] = [
     {
         id: "s10_q06",
         category: "META",
-        text: "「社会的信用」とは何か？クレジットスコア、SNSの評判、職歴、学歴……様々な「信用」があなたを取り巻いている。",
+        text: "「社会的信用」とは何か？クレジットスコア、SNSの評判、職歴、学歴・・・様々な「信用」があなたを取り巻いている。",
         imagePrompt: "Scene: Person standing in center surrounded by floating score displays (credit score, social media followers, employment record, educational certificates), some metrics glowing, others faded. Composition: Individual as intersection of multiple evaluation systems. Mood: Quantified existence, visibility of invisible judgments.",
         imagePath: "s10_q06.png",
         choices: [
@@ -148,7 +148,7 @@ export const stage10Questions: Question[] = [
                 text: "気にしない。自分は自分だ。他人の評価は関係ない。",
                 effect: { CS: -15, Asset: -20000, Autonomy: -5 },
                 verdict: "WARNING",
-                feedback: "無視は危険です。社会的信用は「見えない通貨」。クレジットカードの審査、賃貸契約、就職面接……信用がないと選択肢が狭まります。無視することと、理解した上で距離を取ることは違います。",
+                feedback: "無視は危険です。社会的信用は「見えない通貨」。クレジットカードの審査、賃貸契約、就職面接・・・信用がないと選択肢が狭まります。無視することと、理解した上で距離を取ることは違います。",
                 lockRequirements: null
             },
             {
@@ -180,7 +180,7 @@ export const stage10Questions: Question[] = [
                 text: "「私の人生は私が決めます。データは参考にしますが、提案は不要です」と断る。",
                 effect: { CS: -15, Asset: 0, Autonomy: +25 },
                 verdict: "WARNING",
-                feedback: "自律的選択です。システムの「善意」を疑い、主体性を守りました。A.D.A.M.には不都合な態度ですが……あなたは「覚醒」への道を歩み始めました。",
+                feedback: "自律的選択です。システムの「善意」を疑い、主体性を守りました。A.D.A.M.には不都合な態度ですが・・・あなたは「覚醒」への道を歩み始めました。",
                 lockRequirements: { Autonomy: 60 },
                 lockedFeedback: "自律性が60以上必要。システムに依存しすぎると、この選択肢すら見えなくなります。"
             }
@@ -258,20 +258,20 @@ export const stage10Questions: Question[] = [
                 text: "「社会は守るべきルールの集合体。私はその中で最適化された市民です」",
                 effect: { CS: +25, Asset: 0, Autonomy: -20 },
                 verdict: "NEUTRAL",
-                feedback: "模範的回答です。A.D.A.M.は満足しています。あなたは完璧に社会化されました。ルールを守り、システムに貢献する。……おめでとうございます？",
+                feedback: "模範的回答です。A.D.A.M.は満足しています。あなたは完璧に社会化されました。ルールを守り、システムに貢献する。・・・おめでとうございます？",
                 lockRequirements: null
             },
             {
                 text: "「社会は道具。理解し、利用し、必要なら変える対象です。私はプレイヤーであり、駒ではない」",
                 effect: { CS: +5, Asset: 0, Autonomy: +25 },
                 verdict: "NEUTRAL",
-                feedback: "覚醒の回答です。A.D.A.M.はあなたを「危険」と分類しました。しかし、それこそが人間の証明かもしれません。システムを理解し、利用し、しかし支配されない……それが真の「成人」です。",
+                feedback: "覚醒の回答です。A.D.A.M.はあなたを「危険」と分類しました。しかし、それこそが人間の証明かもしれません。システムを理解し、利用し、しかし支配されない・・・それが真の「成人」です。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
             intro: "最終問題です。あなたの『成人宣言』を聞かせてください。",
-            after: "最終認定審査を終了します。結果を算出中……"
+            after: "最終認定審査を終了します。結果を算出中・・・"
         }
     }
 ];

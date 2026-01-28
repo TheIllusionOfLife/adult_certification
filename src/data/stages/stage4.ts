@@ -25,7 +25,7 @@ export const stage4Questions: Question[] = [
             }
         ],
         adamDialogue: {
-            intro: "Stage 4を開始します。テーマは『行政の迷宮』。書類、期限、窓口……官僚制の攻略法を試します。"
+            intro: "Stage 4を開始します。テーマは『行政の迷宮』。書類、期限、窓口・・・官僚制の攻略法を試します。"
         }
     },
 

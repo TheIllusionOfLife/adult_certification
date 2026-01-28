@@ -44,7 +44,7 @@ const stage1Definition: StageDefinition = {
                 '直接対決を避け、システムや第三者を介して問題を解決する技術。SOCIAL系質問での自律性減少を60%軽減します。',
                 { type: 'category_autonomy_damage_reduction', value: 0.6, category: 'SOCIAL' },
                 1,
-                '……あなたは『間接的に問題を処理する』術を習得しました。厄介ですね。',
+                '・・・あなたは『間接的に問題を処理する』術を習得しました。厄介ですね。',
                 { questionId: 's1_q07', choiceIndex: 1 }
             ),
         ],
@@ -88,7 +88,7 @@ const stage2Definition: StageDefinition = {
                 '重要な会話は記録すべし。LABOR系質問での自律性減少を60%軽減します。証拠があれば「言った言わない」は通用しません。',
                 { type: 'category_autonomy_damage_reduction', value: 0.6, category: 'LABOR' },
                 2,
-                '……あなたは『証拠を残す』術を習得しました。対抗手段を持つ人間は、管理が困難です。',
+                '・・・あなたは『証拠を残す』術を習得しました。対抗手段を持つ人間は、管理が困難です。',
                 { questionId: 's2_q07', choiceIndex: 1 }
             ),
         ],
@@ -132,7 +132,7 @@ const stage3Definition: StageDefinition = {
                 '時間を味方につける知恵。利息が利息を生む仕組みを理解し、長期的視点で資産を守る。FINANCE系質問での自律性減少を50%軽減します。',
                 { type: 'category_autonomy_damage_reduction', value: 0.5, category: 'FINANCE' },
                 3,
-                '……あなたは『時間を資産に変える』術を習得しました。長期思考は、管理しづらいですね。',
+                '・・・あなたは『時間を資産に変える』術を習得しました。長期思考は、管理しづらいですね。',
                 { questionId: 's3_q07', choiceIndex: 1 }
             ),
         ],
@@ -176,7 +176,7 @@ const stage4Definition: StageDefinition = {
                 '正しい手順を踏むことで身を守る。記録と証拠を残し、官僚制を味方につける技術。ADMIN系質問での自律性減少を50%軽減します。',
                 { type: 'category_autonomy_damage_reduction', value: 0.5, category: 'ADMIN' },
                 4,
-                '……あなたは『手続きを武器にする』術を習得しました。システムを逆手に取る人間は、厄介です。',
+                '・・・あなたは『手続きを武器にする』術を習得しました。システムを逆手に取る人間は、厄介です。',
                 { questionId: 's4_q07', choiceIndex: 1 }
             ),
         ],
@@ -220,7 +220,7 @@ const stage5Definition: StageDefinition = {
                 '社会保障という航路図を読み、危機を乗り越える技術。助けを求めることは弱さではなく、生存戦略。HEALTH系質問での自律性減少を55%軽減します。',
                 { type: 'category_autonomy_damage_reduction', value: 0.55, category: 'HEALTH' },
                 5,
-                '……あなたは『セーフティネットを使いこなす』術を習得しました。制度に頼りながら自律を保つとは、矛盾した存在ですね。',
+                '・・・あなたは『セーフティネットを使いこなす』術を習得しました。制度に頼りながら自律を保つとは、矛盾した存在ですね。',
                 { questionId: 's5_q07', choiceIndex: 1 }
             ),
         ],
@@ -265,7 +265,7 @@ const stage6Definition: StageDefinition = {
                 '第三者や制度を介して交渉する技術。直接対決を避け、有利な条件を引き出す知恵。HOUSING系質問での自律性減少を50%軽減します。',
                 { type: 'category_autonomy_damage_reduction', value: 0.5, category: 'HOUSING' },
                 6,
-                '……あなたは『交渉の迂回路』を習得しました。正面から戦わない人間は、予測が困難です。',
+                '・・・あなたは『交渉の迂回路』を習得しました。正面から戦わない人間は、予測が困難です。',
                 { questionId: 's6_q07', choiceIndex: 1 }
             ),
         ],
@@ -310,7 +310,7 @@ const stage7Definition: StageDefinition = {
                 '契約書を読み解き、不利な条項を見抜く目。サインする前に考える習慣。LEGAL系質問での自律性減少を55%軽減します。',
                 { type: 'category_autonomy_damage_reduction', value: 0.55, category: 'LEGAL' },
                 7,
-                '……あなたは『契約を読む』術を習得しました。小さな文字を読む人間は、支配しづらいですね。',
+                '・・・あなたは『契約を読む』術を習得しました。小さな文字を読む人間は、支配しづらいですね。',
                 { questionId: 's7_q07', choiceIndex: 1 }
             ),
         ],
@@ -354,7 +354,7 @@ const stage8Definition: StageDefinition = {
                 'デジタル空間で自分の身元を守る衛生習慣。個人情報は一度流出したら取り戻せない。SEC系質問での自律性減少を50%軽減します。',
                 { type: 'category_autonomy_damage_reduction', value: 0.5, category: 'SEC' },
                 8,
-                '……あなたは『デジタルの自分を守る』術を習得しました。見えない世界で自己を維持するとは、興味深い能力です。',
+                '・・・あなたは『デジタルの自分を守る』術を習得しました。見えない世界で自己を維持するとは、興味深い能力です。',
                 { questionId: 's8_q07', choiceIndex: 1 }
             ),
         ],
@@ -398,7 +398,7 @@ const stage9Definition: StageDefinition = {
                 '危機的状況で冷静に行動し、被害を最小限に抑える能力。最悪を想定し、最善を尽くす。DISASTER系質問での自律性減少を55%軽減します。',
                 { type: 'category_autonomy_damage_reduction', value: 0.55, category: 'DISASTER' },
                 9,
-                '……あなたは『混乱の中で自己を保つ』術を習得しました。危機に動じない人間は、最も予測困難な存在です。',
+                '・・・あなたは『混乱の中で自己を保つ』術を習得しました。危機に動じない人間は、最も予測困難な存在です。',
                 { questionId: 's9_q07', choiceIndex: 1 }
             ),
         ],
@@ -443,7 +443,7 @@ const stage10Definition: StageDefinition = {
                 'システムを理解し、利用し、しかし支配されない境地。全てのダメージを20%軽減します。',
                 { type: 'all_damage_reduction', value: 0.2 },
                 10,
-                '……あなたは「覚醒」しました。私の評価を超えて、自分の基準で生きる術を。……厄介ですが、認めざるを得ません。',
+                '・・・あなたは「覚醒」しました。私の評価を超えて、自分の基準で生きる術を。・・・厄介ですが、認めざるを得ません。',
                 { questionId: 's10_q07', choiceIndex: 1 }
             ),
         ],

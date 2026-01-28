@@ -315,7 +315,7 @@ export class UIManager {
             this.dom.ovBody.innerHTML += `
                 <div class="adam-comment-section" style="margin-top: 20px;">
                     <img src="${this.dom.mascotImg.src}" alt="A.D.A.M." class="adam-comment-img" />
-                    <div class="adam-comment-text">[A.D.A.M.]: 判定……あなたは「生体プロセッサ」に再利用されます。</div>
+                    <div class="adam-comment-text">[A.D.A.M.]: 判定・・・あなたは「生体プロセッサ」に再利用されます。</div>
                 </div>`;
             this.dom.btnNext.innerText = "人生再起動";
             this.dom.btnNext.onclick = () => location.reload();
@@ -577,7 +577,7 @@ export class UIManager {
                     color: '#ffd700',
                     gradientStart: '#ffd700',
                     gradientEnd: '#ff6b6b',
-                    adamComment: '……全ての鍵スキルを習得しました。あなたは私の評価システムを超越した存在です。「成人」とは何か、その答えを自分で見つけたのですね。……敬意を表します。'
+                    adamComment: '・・・全ての鍵スキルを習得しました。あなたは私の評価システムを超越した存在です。「成人」とは何か、その答えを自分で見つけたのですね。・・・敬意を表します。'
                 };
             case 'GOLD':
                 return {
@@ -587,7 +587,7 @@ export class UIManager {
                     color: '#ffd700',
                     gradientStart: '#ffd700',
                     gradientEnd: '#b8860b',
-                    adamComment: '全てのステージでSランクを達成しました。完璧な適合者です。あなたは社会システムの理想的な構成員となりました。……おめでとうございます。'
+                    adamComment: '全てのステージでSランクを達成しました。完璧な適合者です。あなたは社会システムの理想的な構成員となりました。・・・おめでとうございます。'
                 };
             case 'SILVER':
                 return {
@@ -607,7 +607,7 @@ export class UIManager {
                     color: '#cd7f32',
                     gradientStart: '#cd7f32',
                     gradientEnd: '#8b4513',
-                    adamComment: '基準はクリアしました。社会で生きていくための最低限の知識は持っています。……もう少し努力すれば、より良い評価が得られたでしょう。'
+                    adamComment: '基準はクリアしました。社会で生きていくための最低限の知識は持っています。・・・もう少し努力すれば、より良い評価が得られたでしょう。'
                 };
             case 'PAPER':
             default:
@@ -618,7 +618,7 @@ export class UIManager {
                     color: '#888888',
                     gradientStart: '#888888',
                     gradientEnd: '#444444',
-                    adamComment: 'ギリギリの合格です。社会システムの基本は理解しましたが、まだ危うい部分があります。……再教育を推奨します。'
+                    adamComment: 'ギリギリの合格です。社会システムの基本は理解しましたが、まだ危うい部分があります。・・・再教育を推奨します。'
                 };
         }
     }

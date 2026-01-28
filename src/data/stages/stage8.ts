@@ -25,7 +25,7 @@ export const stage8Questions: Question[] = [
             }
         ],
         adamDialogue: {
-            intro: "Stage 8を開始します。テーマは『電子市民』。パスワード、フィッシング、個人情報……デジタル社会の生存術を試します。"
+            intro: "Stage 8を開始します。テーマは『電子市民』。パスワード、フィッシング、個人情報・・・デジタル社会の生存術を試します。"
         }
     },
 
@@ -87,7 +87,7 @@ export const stage8Questions: Question[] = [
     {
         id: "s8_q04",
         category: "SEC",
-        text: "銀行口座のオンラインサービスで「二段階認証を設定してください」と表示された。面倒だが……",
+        text: "銀行口座のオンラインサービスで「二段階認証を設定してください」と表示された。面倒だが・・・",
         imagePrompt: "Scene: a bank login screen with 2FA prompt; hacker shadow trying to break in; shield forming with second factor. Composition: security layers visualization. Mood: inconvenience vs protection.",
         imagePath: "s8_q04.png",
         choices: [
@@ -112,7 +112,7 @@ export const stage8Questions: Question[] = [
     {
         id: "s8_q05",
         category: "SEC",
-        text: "新しいスマホに機種変更した。古いスマホには写真、メール、アプリのログイン情報が残っている。売却すれば数千円になるが……",
+        text: "新しいスマホに機種変更した。古いスマホには写真、メール、アプリのログイン情報が残っている。売却すれば数千円になるが・・・",
         imagePrompt: "Scene: Old smartphone on desk next to buyback price tag, screen showing photo gallery preview, shredder in background, money bills fanned out nearby. Composition: Phone centered, destruction vs profit paths visible. Mood: Data vs money, irreversible choice.",
         imagePath: "s8_q05.png",
         choices: [
@@ -165,7 +165,7 @@ export const stage8Questions: Question[] = [
     {
         id: "s8_q07",
         category: "SEC",
-        text: "オンラインサービスの本人確認で「免許証の写真を送ってください」と言われた。知らないサービスだが……",
+        text: "オンラインサービスの本人確認で「免許証の写真を送ってください」と言われた。知らないサービスだが・・・",
         imagePrompt: "Scene: a phone camera pointing at ID card; unknown app requesting verification; identity theft scenarios playing out. Composition: identity exposure risk. Mood: verification necessity vs identity theft.",
         imagePath: "s8_q07.png",
         choices: [
