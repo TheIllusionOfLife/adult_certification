@@ -63,45 +63,43 @@
 }
 
 .choice-btn:hover .choice-letter {
-    background: none;
-    color: var(--primary-color);
+    background: var(--ink-black);
+    color: white;
 }
 
 /* Locked Choice Styles */
 .choice-locked {
-    opacity: 0.6;
+    opacity: 0.7;
     cursor: not-allowed !important;
-    background: linear-gradient(135deg, #2a1a1a 0%, #1a1a1a 100%) !important;
-    border: 2px solid var(--color-warning) !important;
-    color: var(--color-text-dark-muted) !important;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%) !important;
+    border: 3px solid #555 !important;
+    color: var(--color-text-light) !important;
     position: relative;
     flex-direction: column !important;
     align-items: flex-start !important;
-    padding: 12px 15px 12px 65px !important;
+    padding: 12px 15px 12px 60px !important;
 }
 
 .choice-locked .choice-text {
-    color: var(--color-text-dark-muted);
-    text-decoration: line-through;
+    color: var(--color-text-light);
+    margin-bottom: 8px;
 }
 
-.choice-locked::before {
-    content: '🔒';
-    position: absolute;
-    top: 8px;
-    right: 12px;
-    background: var(--color-warning);
-    color: #000;
-    padding: 2px 8px;
-    border-radius: 3px;
-    font-size: 0.8em;
-    font-weight: bold;
+.choice-locked .choice-letter {
+    background: #555;
+    color: #ddd;
+}
+
+.choice-locked:hover .choice-letter {
+    background: #555;
+    color: #ddd;
 }
 
 .choice-locked:hover {
-    transform: none !important;
-    box-shadow: var(--shadow-small) var(--shadow-small) 0 var(--ink-black) !important;
-    background: linear-gradient(135deg, #2a1a1a 0%, #1a1a1a 100%) !important;
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-medium) var(--shadow-medium) 0 var(--ink-black) !important;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%) !important;
+    border-color: #555 !important;
 }
 
 /* Skill Buttons */
@@ -121,6 +119,8 @@
 .skill-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    background: #f8f8f8;
+    border-color: var(--ink-black);
 }
 
 .skill-btn:active {
@@ -191,6 +191,13 @@
 
 .key-skill-btn .skill-desc {
     color: var(--color-text-light) !important;
+    border-top-color: #444 !important;
+}
+
+.key-skill-btn:hover {
+    background: linear-gradient(135deg, #252525 0%, #353535 100%);
+    border-color: var(--color-gold) !important;
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.2);
 }
 
 .key-skill-badge {
@@ -277,16 +284,15 @@
 
 /* Lock Reason Visible Feedback */
 .lock-reason {
-    margin-top: var(--space-sm);
-    padding: 6px 10px;
-    background: rgba(255, 50, 50, 0.15);
+    display: block;
+    margin-top: 6px;
+    padding: 4px 8px;
     font-size: 0.8em;
     color: #ff6666;
-    text-align: left;
-    border-radius: 4px;
-    font-weight: 500;
-    width: 100%;
-    box-sizing: border-box;
+    font-weight: 600;
+    background: rgba(255, 50, 50, 0.1);
+    border-left: 2px solid var(--color-warning);
+    border-radius: 2px;
 }
 
 /* Proceed Button */
