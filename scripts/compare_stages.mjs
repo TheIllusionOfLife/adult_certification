@@ -66,7 +66,12 @@ function simulateStage(stageId) {
         gameOvers: 0,
         ranks: { S: 0, A: 0, B: 0, C: 0 },
         gameOverByParam: { CS: 0, Asset: 0, Autonomy: 0 },
-        lockAvailability: {}
+        lockAvailability: {},
+        // Weighted (probability-based) metrics
+        weightedClears: 0,
+        weightedGameOvers: 0,
+        weightedRanks: { S: 0, A: 0, B: 0, C: 0 },
+        weightedGameOverByParam: { CS: 0, Asset: 0, Autonomy: 0 }
     };
 
     // Initialize lock tracking
@@ -74,19 +79,22 @@ function simulateStage(stageId) {
         q.choices.forEach((c, cIdx) => {
             if (c.lockRequirements) {
                 const key = `${q.id}:${cIdx}`;
-                results.lockAvailability[key] = { reached: 0, unlocked: 0, req: c.lockRequirements };
+                results.lockAvailability[key] = { reached: 0, unlocked: 0, weightedReached: 0, weightedUnlocked: 0, req: c.lockRequirements };
             }
         });
     });
 
     // DFS to enumerate all valid paths (matching simulate_stage.mjs logic)
-    function dfs({ qIndex, state, activeSkills, offerPicked1, offerPicked2, selectedSkillIds, choiceHistory }) {
+    // probability: the probability of reaching this state with random choices
+    function dfs({ qIndex, state, activeSkills, offerPicked1, offerPicked2, selectedSkillIds, choiceHistory, probability }) {
         // Completed all questions - clear!
         if (qIndex >= questions.length) {
             results.totalPaths++;
             results.clears++;
+            results.weightedClears += probability;
             const rank = getRank(state.CS, thresholds);
             results.ranks[rank]++;
+            results.weightedRanks[rank] += probability;
             return;
         }
 
@@ -97,8 +105,10 @@ function simulateStage(stageId) {
             if (c.lockRequirements) {
                 const key = `${question.id}:${cIdx}`;
                 results.lockAvailability[key].reached++;
+                results.lockAvailability[key].weightedReached += probability;
                 if (!isLocked(state, c.lockRequirements)) {
                     results.lockAvailability[key].unlocked++;
+                    results.lockAvailability[key].weightedUnlocked += probability;
                 }
             }
         });
@@ -115,8 +125,12 @@ function simulateStage(stageId) {
         if (availableIndices.length === 0) {
             results.totalPaths++;
             results.gameOvers++;
+            results.weightedGameOvers += probability;
             return;
         }
+
+        // Calculate probability for each choice (equal probability among available choices)
+        const choiceProb = probability / availableIndices.length;
 
         // Branch on each available choice
         for (const ci of availableIndices) {
@@ -136,9 +150,10 @@ function simulateStage(stageId) {
             if (next.CS <= 0 || next.Asset <= 0 || next.Autonomy <= 0) {
                 results.totalPaths++;
                 results.gameOvers++;
-                if (next.CS <= 0) results.gameOverByParam.CS++;
-                else if (next.Asset <= 0) results.gameOverByParam.Asset++;
-                else results.gameOverByParam.Autonomy++;
+                results.weightedGameOvers += choiceProb;
+                if (next.CS <= 0) { results.gameOverByParam.CS++; results.weightedGameOverByParam.CS += choiceProb; }
+                else if (next.Asset <= 0) { results.gameOverByParam.Asset++; results.weightedGameOverByParam.Asset += choiceProb; }
+                else { results.gameOverByParam.Autonomy++; results.weightedGameOverByParam.Autonomy += choiceProb; }
                 continue;
             }
 
@@ -147,6 +162,7 @@ function simulateStage(stageId) {
 
             if (offerNumber === 1 && !offerPicked1) {
                 // Skill offer 1 - branch on each skill
+                const skillProb = choiceProb / stageMetadata.skills.offer1.length;
                 for (const s of stageMetadata.skills.offer1) {
                     dfs({
                         qIndex: qIndex + 1,
@@ -156,6 +172,7 @@ function simulateStage(stageId) {
                         offerPicked2,
                         selectedSkillIds: [...selectedSkillIds, s.id],
                         choiceHistory: nextChoiceHistory,
+                        probability: skillProb,
                     });
                 }
                 continue;
@@ -181,6 +198,7 @@ function simulateStage(stageId) {
                     }
                 }
 
+                const skillProb2 = pickable.length > 0 ? choiceProb / pickable.length : choiceProb;
                 for (const s of pickable) {
                     dfs({
                         qIndex: qIndex + 1,
@@ -190,6 +208,7 @@ function simulateStage(stageId) {
                         offerPicked2: true,
                         selectedSkillIds: [...selectedSkillIds, s.id],
                         choiceHistory: nextChoiceHistory,
+                        probability: skillProb2,
                     });
                 }
                 continue;
@@ -204,11 +223,12 @@ function simulateStage(stageId) {
                 offerPicked2,
                 selectedSkillIds,
                 choiceHistory: nextChoiceHistory,
+                probability: choiceProb,
             });
         }
     }
 
-    // Start DFS
+    // Start DFS with probability 1.0
     dfs({
         qIndex: 0,
         state: initial,
@@ -217,6 +237,7 @@ function simulateStage(stageId) {
         offerPicked2: false,
         selectedSkillIds: [],
         choiceHistory: {},
+        probability: 1.0,
     });
 
     return results;
@@ -227,13 +248,15 @@ function formatPercent(value, total) {
     return (value / total * 100).toFixed(1) + '%';
 }
 
-function formatLockAvailability(lockData) {
+function formatLockAvailability(lockData, weighted = false) {
     const entries = Object.entries(lockData);
     if (entries.length === 0) return 'None';
 
     return entries.map(([key, data]) => {
         const qNum = key.match(/q(\d+)/)?.[1] || '?';
-        const percent = formatPercent(data.unlocked, data.reached);
+        const percent = weighted
+            ? (data.weightedReached > 0 ? (data.weightedUnlocked / data.weightedReached * 100).toFixed(1) + '%' : '0.0%')
+            : formatPercent(data.unlocked, data.reached);
         const reqStr = Object.entries(data.req).map(([k, v]) => `${k}≥${v}`).join(', ');
         return `Q${qNum}: ${percent} (${reqStr})`;
     }).join(', ');
@@ -263,8 +286,8 @@ for (let stageId = 1; stageId <= 10; stageId++) {
     allResults[stageId] = simulateStage(stageId);
 }
 
-// Clear Rate
-console.log('# Clear Rate');
+// Clear Rate (path count)
+console.log('# Clear Rate (path count)');
 for (let stageId = 1; stageId <= 10; stageId++) {
     const r = allResults[stageId];
     if (r) {
@@ -275,8 +298,22 @@ for (let stageId = 1; stageId <= 10; stageId++) {
 }
 console.log('');
 
-// Rank Rate (among clears)
-console.log('# Rank Rate (among clears)');
+// Weighted Clear Rate (random play probability)
+console.log('# Weighted Clear Rate (random play)');
+for (let stageId = 1; stageId <= 10; stageId++) {
+    const r = allResults[stageId];
+    if (r) {
+        const clearPct = (r.weightedClears * 100).toFixed(1) + '%';
+        const gameOverPct = (r.weightedGameOvers * 100).toFixed(1) + '%';
+        console.log(`Stage ${stageId}: Clear ${clearPct}, Game Over ${gameOverPct}`);
+    } else {
+        console.log(`Stage ${stageId}: (N/A)`);
+    }
+}
+console.log('');
+
+// Rank Rate (path count, among clears)
+console.log('# Rank Rate (path count, among clears)');
 for (let stageId = 1; stageId <= 10; stageId++) {
     const r = allResults[stageId];
     if (r && r.clears > 0) {
@@ -293,8 +330,26 @@ for (let stageId = 1; stageId <= 10; stageId++) {
 }
 console.log('');
 
-// Game Over by Param
-console.log('# Game Over by Parameter');
+// Weighted Rank Rate (random play probability, among clears)
+console.log('# Weighted Rank Rate (random play, among clears)');
+for (let stageId = 1; stageId <= 10; stageId++) {
+    const r = allResults[stageId];
+    if (r && r.weightedClears > 0) {
+        const s = (r.weightedRanks.S / r.weightedClears * 100).toFixed(1) + '%';
+        const a = (r.weightedRanks.A / r.weightedClears * 100).toFixed(1) + '%';
+        const b = (r.weightedRanks.B / r.weightedClears * 100).toFixed(1) + '%';
+        const c = (r.weightedRanks.C / r.weightedClears * 100).toFixed(1) + '%';
+        console.log(`Stage ${stageId}: S(${s}), A(${a}), B(${b}), C(${c})`);
+    } else if (r) {
+        console.log(`Stage ${stageId}: No clears`);
+    } else {
+        console.log(`Stage ${stageId}: (N/A)`);
+    }
+}
+console.log('');
+
+// Game Over by Param (path count)
+console.log('# Game Over by Parameter (path count)');
 for (let stageId = 1; stageId <= 10; stageId++) {
     const r = allResults[stageId];
     if (r && r.gameOvers > 0) {
@@ -310,8 +365,26 @@ for (let stageId = 1; stageId <= 10; stageId++) {
 }
 console.log('');
 
-// Lock Availability
-console.log('# Lock Availability');
+// Weighted Game Over by Param
+console.log('# Game Over by Parameter (weighted)');
+for (let stageId = 1; stageId <= 10; stageId++) {
+    const r = allResults[stageId];
+    if (r && r.weightedGameOvers > 0) {
+        const cs = (r.weightedGameOverByParam.CS * 100).toFixed(1) + '%';
+        const asset = (r.weightedGameOverByParam.Asset * 100).toFixed(1) + '%';
+        const autonomy = (r.weightedGameOverByParam.Autonomy * 100).toFixed(1) + '%';
+        const total = (r.weightedGameOvers * 100).toFixed(1) + '%';
+        console.log(`Stage ${stageId}: CS(${cs}), Asset(${asset}), Autonomy(${autonomy}) — Total: ${total}`);
+    } else if (r) {
+        console.log(`Stage ${stageId}: No game overs`);
+    } else {
+        console.log(`Stage ${stageId}: (N/A)`);
+    }
+}
+console.log('');
+
+// Lock Availability (path count)
+console.log('# Lock Availability (path count)');
 for (let stageId = 1; stageId <= 10; stageId++) {
     const r = allResults[stageId];
     if (r) {
@@ -322,22 +395,35 @@ for (let stageId = 1; stageId <= 10; stageId++) {
 }
 console.log('');
 
+// Lock Availability (weighted)
+console.log('# Lock Availability (weighted)');
+for (let stageId = 1; stageId <= 10; stageId++) {
+    const r = allResults[stageId];
+    if (r) {
+        console.log(`Stage ${stageId}: ${formatLockAvailability(r.lockAvailability, true)}`);
+    } else {
+        console.log(`Stage ${stageId}: (N/A)`);
+    }
+}
+console.log('');
+
 // Summary Table
 console.log('# Summary Table');
-console.log('| Stage | Clear | S-Rank | Primary Killer |');
-console.log('|-------|-------|--------|----------------|');
+console.log('| Stage | Clear (paths) | Clear (weighted) | S-Rank | Primary Killer |');
+console.log('|-------|---------------|------------------|--------|----------------|');
 for (let stageId = 1; stageId <= 10; stageId++) {
     const r = allResults[stageId];
     if (r) {
         const clearRate = formatPercent(r.clears, r.totalPaths);
+        const weightedClear = (r.weightedClears * 100).toFixed(1) + '%';
         const sRate = formatPercent(r.ranks.S, r.clears);
-        const killers = Object.entries(r.gameOverByParam)
+        const killers = Object.entries(r.weightedGameOverByParam)
             .filter(([_, v]) => v > 0)
             .sort((a, b) => b[1] - a[1])
-            .map(([k, v]) => `${k}(${v})`)
+            .map(([k, v]) => `${k}(${(v * 100).toFixed(1)}%)`)
             .join(', ') || 'None';
-        console.log(`| ${stageId} | ${clearRate} | ${sRate} | ${killers} |`);
+        console.log(`| ${stageId} | ${clearRate} | ${weightedClear} | ${sRate} | ${killers} |`);
     } else {
-        console.log(`| ${stageId} | N/A | N/A | N/A |`);
+        console.log(`| ${stageId} | N/A | N/A | N/A | N/A |`);
     }
 }

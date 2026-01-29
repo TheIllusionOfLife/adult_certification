@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+  <!-- Key head -->
+  <circle cx="7" cy="12" r="5" fill="#4cc9f0"/>
+
+  <!-- Key shaft -->
+  <rect x="11" y="10.5" width="11" height="3" fill="#4cc9f0"/>
+
+  <!-- Single key tooth -->
+  <rect x="17" y="13.5" width="3" height="4" fill="#4cc9f0"/>
+</svg>

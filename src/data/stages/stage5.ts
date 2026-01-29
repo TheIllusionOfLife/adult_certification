@@ -25,7 +25,7 @@ export const stage5Questions: Question[] = [
             }
         ],
         adamDialogue: {
-            intro: "Stage 5を開始します。テーマは「社会保障の羅針盤」。病気、失業、出産・・・公的制度を知らないと詰みます。"
+            intro: "ステージ5を開始します。テーマは「社会保障の羅針盤」。病気、失業、出産・・・公的制度を知らないと詰みます。"
         }
     },
 
@@ -271,7 +271,7 @@ export const stage5Questions: Question[] = [
         ],
         adamDialogue: {
             intro: "最終問題です。「知っているか」だけで数十万円の差がつく領域があります。",
-            after: "Stage 5を終了します。審査結果を算出中・・・"
+            after: "ステージ5を終了します。審査結果を算出中・・・"
         }
     }
 ];

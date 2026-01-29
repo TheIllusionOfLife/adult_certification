@@ -70,7 +70,8 @@ export function createNormalSkill(
     name: string,
     desc: string,
     effect: Skill['effect'],
-    isRecommended: boolean = false
+    isRecommended: boolean = false,
+    recommendComment?: string
 ): Skill {
     const skill: Skill = {
         id,
@@ -81,6 +82,9 @@ export function createNormalSkill(
     };
     if (isRecommended) {
         skill.isRecommended = true;
+        if (recommendComment) {
+            skill.recommendComment = recommendComment;
+        }
     }
     return skill;
 }

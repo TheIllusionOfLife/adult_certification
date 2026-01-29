@@ -25,7 +25,7 @@ export const stage3Questions: Question[] = [
             }
         ],
         adamDialogue: {
-            intro: "Stage 3を開始します。テーマは「金の基礎」。複利、税金、借金の罠・・・お金のリテラシーを試します。"
+            intro: "ステージ3を開始します。テーマは「金の基礎」。複利、税金、借金の罠・・・お金のリテラシーを試します。"
         }
     },
 
@@ -271,7 +271,7 @@ export const stage3Questions: Question[] = [
         ],
         adamDialogue: {
             intro: "最終問題です。10年後の自分を定義してください。",
-            after: "Stage 3を終了します。審査結果を算出中・・・"
+            after: "ステージ3を終了します。審査結果を算出中・・・"
         }
     }
 ];

@@ -25,7 +25,7 @@ export const stage7Questions: Question[] = [
             }
         ],
         adamDialogue: {
-            intro: "Stage 7を開始します。テーマは「法の盾」。契約、詐欺、消費者保護・・・法律は武器にも盾にもなります。"
+            intro: "ステージ7を開始します。テーマは「法の盾」。契約、詐欺、消費者保護・・・法律は武器にも盾にもなります。"
         }
     },
 
@@ -271,7 +271,7 @@ export const stage7Questions: Question[] = [
         ],
         adamDialogue: {
             intro: "最終問題です。あなたは法をどの立場から見ていますか？",
-            after: "Stage 7を終了します。審査結果を算出中・・・"
+            after: "ステージ7を終了します。審査結果を算出中・・・"
         }
     }
 ];

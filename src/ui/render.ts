@@ -5,6 +5,8 @@ import { CONFIG } from '../config';
 import { getOverlayPresentation } from './overlayVerdict';
 import { DOM_IDS } from './domIds';
 import { RecordStorage } from '../storage/RecordStorage';
+import { GlobalProgressStorage } from '../storage/GlobalProgressStorage';
+import { STAGE_METADATA, getStageMetadata } from '../data/stageMetadata';
 
 // Vite glob import for assets
 const images = import.meta.glob('../assets/*.{png,jpg,jpeg,webp}', { eager: true });
@@ -91,19 +93,17 @@ export class UIManager {
 
 
         // All 10 stages - only show unlocked stages (previous stage beaten)
-        // Themes aligned with improvement_plan_2026-01-24_integrated.md section 3.1
-        const allStages: { key: string, name: string, desc: string }[] = [
-            { key: 'Stage1', name: 'STAGE 1', desc: '社会の基本' },
-            { key: 'Stage2', name: 'STAGE 2', desc: '仕事の基礎' },
-            { key: 'Stage3', name: 'STAGE 3', desc: '金の基礎' },
-            { key: 'Stage4', name: 'STAGE 4', desc: '税金' },
-            { key: 'Stage5', name: 'STAGE 5', desc: '社会保険' },
-            { key: 'Stage6', name: 'STAGE 6', desc: '住まい' },
-            { key: 'Stage7', name: 'STAGE 7', desc: '契約・法律' },
-            { key: 'Stage8', name: 'STAGE 8', desc: 'デジタル安全' },
-            { key: 'Stage9', name: 'STAGE 9', desc: '危機対応' },
-            { key: 'Stage10', name: 'STAGE 10', desc: '最終審判' }
-        ];
+        // themeJP comes from stageMetadata.ts
+        const allStages: { key: string, name: string, desc: string, keySkillId: string }[] = STAGE_METADATA.map((stage) => ({
+            key: `Stage${stage.id}`,
+            name: `STAGE ${stage.id}`,
+            desc: stage.themeJP,
+            keySkillId: stage.keySkillId
+        }));
+
+        // Get collected key skills from global progress
+        const globalProgress = new GlobalProgressStorage();
+        const collectedKeySkills = globalProgress.getKeySkillsCollected();
 
         // Only show stages that are unlocked (Stage 1 always visible, others require previous stage beaten)
         allStages.forEach((stage, index) => {
@@ -116,6 +116,12 @@ export class UIManager {
             const validRanks: readonly string[] = CONFIG.VALID_RANKS;
             const safeRank = record && validRanks.includes(record.rank) ? record.rank : '';
             const rankClass = safeRank ? `rank-${safeRank}` : '';
+            const hasKeySkill = collectedKeySkills.includes(stage.keySkillId);
+
+            // Add shimmer effect for stages with both S rank and key skill
+            if (safeRank === 'S' && hasKeySkill) {
+                btn.classList.add('stage-perfected');
+            }
 
             btn.innerHTML = `
                 <div class="diff-info">
@@ -123,6 +129,7 @@ export class UIManager {
                     <span class="diff-desc">${stage.desc}</span>
                 </div>
                 <div class="btn-right-col">
+                    ${hasKeySkill ? '<span class="key-indicator" title="Key Skill 獲得済"></span>' : ''}
                     ${safeRank ? `<span class="rank-stamp ${rankClass}">${safeRank}</span>` : ''}
                     <span class="arrow">▶</span>
                 </div>
@@ -372,11 +379,13 @@ export class UIManager {
         if (recommendedSkill) {
             const adamSection = document.createElement('div');
             adamSection.className = 'adam-recommendation';
+            const defaultComment = `「${recommendedSkill.skill.name}」を推奨します。実利的な選択です。`;
+            const comment = recommendedSkill.skill.recommendComment || defaultComment;
             adamSection.innerHTML = `
                 <img src="${this.dom.mascotImg.src}" alt="A.D.A.M." class="adam-recommend-img" />
                 <div class="adam-recommend-speech">
                     <span class="adam-label">[A.D.A.M.]:</span>
-                    「${recommendedSkill.skill.name}」を推奨します。実利的な選択です。
+                    ${comment}
                 </div>
             `;
             wrapper.appendChild(adamSection);
@@ -407,9 +416,10 @@ export class UIManager {
                 : '';
 
             sBtn.innerHTML = `
+                ${recommendedBadge}
                 <div class="skill-letter-circle">${String.fromCharCode(65 + i)}</div>
                 <div class="skill-content">
-                    <span class="skill-name">${s.name}${recommendedBadge}</span>
+                    <span class="skill-name">${s.name}</span>
                     <span class="skill-desc">${s.desc}</span>
                     ${lockedReasonHtml}
                 </div>
@@ -467,26 +477,33 @@ export class UIManager {
 
     private showRegularEnding(ending: { rank: string; title: string; desc: string }) {
         const s = this.engine.state;
-        const globalProgress = this.engine.getGlobalProgress();
-        const totalKeySkills = globalProgress.getKeySkillCount();
+        const stageMetadata = getStageMetadata(s.currentStage);
+        const stageKeySkillId = stageMetadata?.keySkillId;
+        const keySkillObtained = stageKeySkillId && s.keySkills.includes(stageKeySkillId);
+        const keySkillStatus = keySkillObtained
+            ? '<span style="color: #4cc9f0;">獲得済</span>'
+            : '<span style="color: #888;">未獲得</span>';
 
         this.dom.ovTitle.innerText = "STAGE COMPLETE";
         this.dom.ovTitle.style.color = "var(--accent-color)";
 
         this.dom.ovBody.innerHTML = `
-            <div style="margin-bottom: 15px;">ステージ ${s.currentStage} 終了</div>
-            <strong style="font-size:2.5rem; color:var(--accent-color)">${ending.rank}</strong><br>
-            <span style="font-size:1.2rem; color:var(--accent-color)">${ending.title}</span><br><br>
-            <div style="font-size:0.9rem; color:#888; margin-bottom: 15px;">
-                社会的信用: ${s.CS} / 資産: ${s.Asset.toLocaleString()}円 / 自律性: ${s.Autonomy}
+            <div style="text-align: center;">
+                <div style="margin-bottom: 15px;">ステージ ${s.currentStage} 終了</div>
+                <strong style="font-size:2.5rem; color:var(--accent-color)">${ending.rank}</strong><br>
+                <span style="font-size:1.2rem; color:var(--accent-color)">${ending.title}</span><br><br>
+                <div style="font-size:0.9rem; color:#888; margin-bottom: 15px;">
+                    社会的信用: ${s.CS} / 資産: ${s.Asset.toLocaleString()}円 / 自律性: ${s.Autonomy}
+                </div>
+                <div class="adam-comment-section">
+                    <img src="${this.dom.mascotImg.src}" alt="A.D.A.M." class="adam-comment-img" />
+                    <div class="adam-comment-text">[A.D.A.M.]: ${ending.desc}</div>
+                </div>
+                <div style="margin-top: 15px; font-size: 0.85rem; color: #666;">Key Skill: ${keySkillStatus}</div>
             </div>
-            <div class="adam-comment-section">
-                <img src="${this.dom.mascotImg.src}" alt="A.D.A.M." class="adam-comment-img" />
-                <div class="adam-comment-text">[A.D.A.M.]: ${ending.desc}</div>
-            </div>
-            <div style="margin-top: 15px; font-size: 0.85rem; color: #666;">キースキル: ${totalKeySkills}/10</div>
         `;
         this.dom.ovStats.innerHTML = "";
+        this.dom.skillBox.style.display = 'none';
 
         // Stage 10: Show "最終認定" button to proceed to license screen
         // Other stages: Show "TITLE" button to return to title
@@ -498,6 +515,9 @@ export class UIManager {
             this.dom.btnNext.onclick = () => location.reload();
         }
         this.dom.btnNext.style.display = 'block';
+        this.dom.btnNext.disabled = false;
+        this.dom.btnNext.style.opacity = '1';
+        this.dom.btnNext.style.cursor = 'pointer';
         this.dom.overlay.style.display = 'flex';
     }
 
@@ -550,7 +570,7 @@ export class UIManager {
 
         // Build the final certification display (overall results only, no Stage 10 stats)
         this.dom.ovBody.innerHTML = `
-            <div class="final-certification">
+            <div class="final-certification" style="text-align: center;">
                 <div class="license-image-container">
                     ${licenseImageHtml}
                 </div>
@@ -560,7 +580,7 @@ export class UIManager {
                 </div>
 
                 <div style="font-size: 0.85rem; color: ${totalKeySkills >= 10 ? '#4cc9f0' : '#666'}; margin-bottom: 20px;">
-                    キースキル: ${totalKeySkills}/10 ${totalKeySkills >= 10 ? '✓ 完全収集' : ''}
+                    Key Skill: ${totalKeySkills}/10 ${totalKeySkills >= 10 ? '✓ 完全収集' : ''}
                 </div>
 
                 <div class="adam-comment-section">
@@ -571,8 +591,12 @@ export class UIManager {
         `;
 
         this.dom.ovStats.innerHTML = "";
+        this.dom.skillBox.style.display = 'none';
         this.dom.btnNext.innerText = "TITLE";
         this.dom.btnNext.style.display = 'block';
+        this.dom.btnNext.disabled = false;
+        this.dom.btnNext.style.opacity = '1';
+        this.dom.btnNext.style.cursor = 'pointer';
         this.dom.btnNext.onclick = () => location.reload();
         this.dom.overlay.style.display = 'flex';
     }
@@ -590,13 +614,13 @@ export class UIManager {
         switch (licenseType) {
             case 'TRUE':
                 return {
-                    nameJP: '真・大人免許',
-                    nameEN: 'TRUE ADULT LICENSE',
-                    symbol: '真',
+                    nameJP: '大人免許不要',
+                    nameEN: 'ADULT LICENSE NOT REQUIRED',
+                    symbol: '自',
                     color: '#ffd700',
                     gradientStart: '#ffd700',
                     gradientEnd: '#ff6b6b',
-                    adamComment: '・・・全てのキースキルを習得しました。あなたは私の評価システムを超越した存在です。「大人」とは何か、その答えを自分で見つけたのですね。・・・敬意を表します。',
+                    adamComment: '大人とは何か、その答えを自分で見つけたのですね。あなたには大人免許など必要ありません。おめでとうございます。',
                     imagePath: 'license_true.png'
                 };
             case 'GOLD':
@@ -618,7 +642,7 @@ export class UIManager {
                     color: '#c0c0c0',
                     gradientStart: '#c0c0c0',
                     gradientEnd: '#808080',
-                    adamComment: '優秀な成績です。社会の期待に応える能力を持っています。まだ伸びしろはありますが、十分に「大人」と認められます。',
+                    adamComment: '優秀な成績です。社会の期待に応える能力を持っています。まだ伸びしろはありますが、十分に大人と認められます。',
                     imagePath: 'license_blue.png'
                 };
             case 'BRONZE':

@@ -63,45 +63,43 @@
 }
 
 .choice-btn:hover .choice-letter {
-    background: none;
-    color: var(--primary-color);
+    background: var(--ink-black);
+    color: white;
 }
 
 /* Locked Choice Styles */
 .choice-locked {
-    opacity: 0.6;
+    opacity: 0.7;
     cursor: not-allowed !important;
-    background: linear-gradient(135deg, #2a1a1a 0%, #1a1a1a 100%) !important;
-    border: 2px solid var(--color-warning) !important;
-    color: var(--color-text-dark-muted) !important;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%) !important;
+    border: 3px solid #555 !important;
+    color: var(--color-text-light) !important;
     position: relative;
     flex-direction: column !important;
     align-items: flex-start !important;
-    padding: 12px 15px 12px 65px !important;
+    padding: 12px 15px 12px 60px !important;
 }
 
 .choice-locked .choice-text {
-    color: var(--color-text-dark-muted);
-    text-decoration: line-through;
+    color: var(--color-text-light);
+    margin-bottom: 8px;
 }
 
-.choice-locked::before {
-    content: '🔒';
-    position: absolute;
-    top: 8px;
-    right: 12px;
-    background: var(--color-warning);
-    color: #000;
-    padding: 2px 8px;
-    border-radius: 3px;
-    font-size: 0.8em;
-    font-weight: bold;
+.choice-locked .choice-letter {
+    background: #555;
+    color: #ddd;
+}
+
+.choice-locked:hover .choice-letter {
+    background: #555;
+    color: #ddd;
 }
 
 .choice-locked:hover {
-    transform: none !important;
-    box-shadow: var(--shadow-small) var(--shadow-small) 0 var(--ink-black) !important;
-    background: linear-gradient(135deg, #2a1a1a 0%, #1a1a1a 100%) !important;
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-medium) var(--shadow-medium) 0 var(--ink-black) !important;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%) !important;
+    border-color: #555 !important;
 }
 
 /* Skill Buttons */
@@ -113,63 +111,71 @@
     height: auto !important;
     min-height: 100px;
     text-align: left;
-    gap: var(--space-sm);
+    gap: 4px;
+    position: relative;
+    transition: all var(--transition-fast);
+}
+
+.skill-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    background: #f8f8f8;
+    border-color: var(--ink-black);
+}
+
+.skill-btn:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-small) var(--shadow-small) 0 var(--ink-black);
 }
 
 .skill-letter-circle {
     background: var(--accent-color);
     color: var(--ink-black);
-    width: 32px;
-    height: 32px;
-    min-width: 32px;
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    font-size: 1em;
+    font-size: 0.9em;
     flex-shrink: 0;
-    margin-bottom: var(--space-sm);
+    margin-bottom: var(--space-xs);
 }
 
 .skill-content {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
     width: 100%;
+    flex: 1;
 }
 
 .skill-name {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 900;
     color: var(--ink-black);
+    line-height: 1.3;
+    word-break: keep-all;
 }
 
 .skill-desc {
-    font-size: var(--text-md);
-    font-weight: normal;
-    color: #444;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: #333;
     white-space: normal;
-    line-height: 1.3;
+    line-height: 1.5;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed #ccc;
 }
 
 .skill-btn:hover .skill-name {
-    color: var(--primary-color);
+    color: var(--ink-black);
 }
 
-.skill-letter {
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    background: var(--accent-color);
-    color: var(--ink-black);
-    border-radius: 50%;
-    font-weight: bold;
-    margin-right: var(--space-md);
-    flex-shrink: 0;
-}
+/* .skill-letter removed - using colored left borders instead */
 
 /* Key Skill Styles */
 .key-skill-btn {
@@ -185,6 +191,13 @@
 
 .key-skill-btn .skill-desc {
     color: var(--color-text-light) !important;
+    border-top-color: #444 !important;
+}
+
+.key-skill-btn:hover {
+    background: linear-gradient(135deg, #252525 0%, #353535 100%);
+    border-color: var(--color-gold) !important;
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.2);
 }
 
 .key-skill-badge {
@@ -249,13 +262,19 @@
 /* A.D.A.M. Recommended Skill Styles */
 .skill-recommended {
     border: 2px solid var(--color-positive) !important;
-    box-shadow: 0 0 10px rgba(76, 201, 240, 0.3);
+    border-left: 6px solid var(--color-positive) !important;
+    box-shadow: 0 0 15px rgba(76, 201, 240, 0.25);
+}
+
+.skill-recommended:hover {
+    box-shadow: 0 8px 25px rgba(76, 201, 240, 0.35);
 }
 
 .recommended-badge {
-    display: inline-block;
-    margin-left: 10px;
-    padding: 2px 8px;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 3px 10px;
     background: var(--color-positive);
     color: var(--ink-black);
     font-size: 0.7em;
@@ -265,16 +284,15 @@
 
 /* Lock Reason Visible Feedback */
 .lock-reason {
-    margin-top: var(--space-sm);
-    padding: 6px 10px;
-    background: rgba(255, 50, 50, 0.15);
+    display: block;
+    margin-top: 6px;
+    padding: 4px 8px;
     font-size: 0.8em;
     color: #ff6666;
-    text-align: left;
-    border-radius: 4px;
-    font-weight: 500;
-    width: 100%;
-    box-sizing: border-box;
+    font-weight: 600;
+    background: rgba(255, 50, 50, 0.1);
+    border-left: 2px solid var(--color-warning);
+    border-radius: 2px;
 }
 
 /* Proceed Button */
@@ -304,16 +322,18 @@
 }
 
 .adam-recommend-img {
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
     object-fit: contain;
     flex-shrink: 0;
+    margin: -15px;
 }
 
 .adam-recommend-speech {
     font-size: 0.9em;
     color: var(--color-text-light);
     line-height: 1.4;
+    text-align: left;
 }
 
 .adam-label {
@@ -339,10 +359,11 @@
 }
 
 .adam-comment-img {
-    width: 48px;
-    height: 48px;
+    width: 80px;
+    height: 80px;
     object-fit: contain;
     flex-shrink: 0;
+    margin: -16px;
 }
 
 .adam-comment-text {
@@ -584,8 +605,75 @@
     border-left: 8px solid var(--stage-5-color);
 }
 
+.diff-btn:nth-child(6) {
+    border-left: 8px solid var(--stage-6-color);
+}
+
+.diff-btn:nth-child(7) {
+    border-left: 8px solid var(--stage-7-color);
+}
+
+.diff-btn:nth-child(8) {
+    border-left: 8px solid var(--stage-8-color);
+}
+
+.diff-btn:nth-child(9) {
+    border-left: 8px solid var(--stage-9-color);
+}
+
+.diff-btn:nth-child(10) {
+    border-left: 8px solid var(--stage-10-color);
+}
+
+/* Shimmer effect for stages with S rank AND key skill collected */
+.diff-btn.stage-perfected {
+    position: relative;
+    overflow: hidden;
+}
+
+.diff-btn.stage-perfected::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+    50%, 100% {
+        left: 150%;
+    }
+}
+
 .diff-btn .arrow {
     display: block;
     font-size: 1.5rem;
     color: var(--ink-black);
+}
+
+/* Key Skill Indicator on Stage Button */
+.key-indicator {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    margin-right: -10px;
+    background-image: url('../assets/key_icon.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: rotate(-25deg);
+    vertical-align: middle;
 }

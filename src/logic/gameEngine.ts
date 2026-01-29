@@ -109,20 +109,20 @@ export class GameEngine {
         };
 
         let rank = "C";
-        let title = "最低限合格 (Minimal Pass)";
+        let title = "最低限合格";
         let desc = "最低限の基準はクリアしました。再教育を推奨します。";
 
         if (s.CS >= thresholds.S.CS) {
             rank = "S";
-            title = "完全なる歯車 (Perfect Cog)";
-            desc = "完璧です。あなたは個を捨て、社会の立派な部品となりました。";
+            title = "完全適合者";
+            desc = "完璧です。あなたは素晴らしい社会の一員となれるでしょう。";
         } else if (s.CS >= thresholds.A.CS) {
             rank = "A";
-            title = "上級適合者 (Prime Compliant)";
-            desc = "優秀な成績です。多少の自我は残っていますが、許容範囲です。";
+            title = "上級適合者";
+            desc = "優秀な成績です。多少の誤りは残っていますが、許容範囲です。";
         } else if (s.CS >= thresholds.B.CS) {
             rank = "B";
-            title = "一般適合者 (Standard Compliant)";
+            title = "一般適合者";
             desc = "可もなく不可もなく。代替可能な人材です。";
         }
         // C = clear: If CS >= 1 and you finished, you get C rank
@@ -215,7 +215,7 @@ export class GameEngine {
             return {
                 skill,
                 isAvailable: false,
-                lockedReason: `Q${questionNum}で選択肢${choiceLetter}を選ぶ必要があります`
+                lockedReason: `Q${questionNum}で選択肢${choiceLetter}を選ぶ必要があります。`
             };
         });
     }

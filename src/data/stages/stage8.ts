@@ -25,7 +25,7 @@ export const stage8Questions: Question[] = [
             }
         ],
         adamDialogue: {
-            intro: "Stage 8を開始します。テーマは「電子市民」。パスワード、フィッシング、個人情報・・・デジタル社会の生存術を試します。"
+            intro: "ステージ8を開始します。テーマは「電子市民」。パスワード、フィッシング、個人情報・・・デジタル社会の生存術を試します。"
         }
     },
 
@@ -271,7 +271,7 @@ export const stage8Questions: Question[] = [
         ],
         adamDialogue: {
             intro: "最終問題です。あなたのデータは誰のものですか？",
-            after: "Stage 8を終了します。審査結果を算出中・・・"
+            after: "ステージ8を終了します。審査結果を算出中・・・"
         }
     }
 ];

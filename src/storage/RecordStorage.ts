@@ -36,19 +36,27 @@ export class RecordStorage {
     }
 
     /**
-     * Save a stage completion record.
+     * Save a stage completion record (only if rank is better than existing).
      */
     save(stageKey: string, rank: string, score: number): void {
-        this.records[stageKey] = {
-            rank,
-            score,
-            date: new Date().toLocaleDateString(),
-        };
-        try {
-            localStorage.setItem(CONFIG.STORAGE_KEYS.RECORDS, JSON.stringify(this.records));
-        } catch {
-            // eslint-disable-next-line no-console
-            console.warn('Failed to save record (private browsing?)');
+        const rankOrder: Record<string, number> = { S: 4, A: 3, B: 2, C: 1 };
+        const existing = this.records[stageKey];
+        const existingRankValue = existing ? (rankOrder[existing.rank] ?? 0) : 0;
+        const newRankValue = rankOrder[rank] ?? 0;
+
+        // Only update if new rank is better or first time
+        if (!existing || newRankValue > existingRankValue) {
+            this.records[stageKey] = {
+                rank,
+                score,
+                date: new Date().toLocaleDateString(),
+            };
+            try {
+                localStorage.setItem(CONFIG.STORAGE_KEYS.RECORDS, JSON.stringify(this.records));
+            } catch {
+                // eslint-disable-next-line no-console
+                console.warn('Failed to save record (private browsing?)');
+            }
         }
     }
 

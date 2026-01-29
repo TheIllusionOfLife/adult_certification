@@ -93,6 +93,7 @@ export interface Skill {
     adamComment?: string;
     keySkillRequirement?: KeySkillRequirement; // For key skills: which Q/choice unlocks it
     isRecommended?: boolean; // A.D.A.M.'s recommendation - helps new players trust the system
+    recommendComment?: string; // A.D.A.M.'s speech when recommending this skill
 }
 
 export interface StageMetadata {

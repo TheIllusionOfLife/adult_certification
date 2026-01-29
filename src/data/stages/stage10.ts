@@ -11,14 +11,14 @@ export const stage10Questions: Question[] = [
         choices: [
             {
                 text: "作らなくても困らない。通知カードと保険証があれば十分。",
-                effect: { CS: 0, Asset: 0, Autonomy: -5 },
+                effect: { CS: -10, Asset: -50000, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "機会損失です。2024年12月から健康保険証は新規発行停止、マイナ保険証へ移行。コンビニ交付（住民票等）、確定申告のe-Tax、各種給付金申請・・・カードがないと手続きが煩雑化し、時間とコストがかかります。",
                 lockRequirements: null
             },
             {
                 text: "メリット・デメリットを調べ、保険証利用登録やコンビニ交付など実益を理解した上で判断する。",
-                effect: { CS: +10, Asset: 100000, Autonomy: +10 },
+                effect: { CS: +10, Asset: 50000, Autonomy: +10 },
                 verdict: "APPROVED",
                 feedback: "正解です。マイナポイント、コンビニ交付（手数料節約）、e-Tax連携、保険証利用・・・実益は多い。個人情報リスクは「カードを持つこと」ではなく「管理の仕方」の問題。情報を集めて判断するのが大人です。",
                 lockRequirements: null
@@ -46,7 +46,7 @@ export const stage10Questions: Question[] = [
             },
             {
                 text: "所得税は確定申告、住民税は別途申告。経費を正しく計上し、将来のインボイス登録も検討する。",
-                effect: { CS: +15, Asset: -5000, Autonomy: +10 },
+                effect: { CS: +15, Asset: 0, Autonomy: +10 },
                 verdict: "APPROVED",
                 feedback: "正解です。副業収入20万円超は確定申告必須。20万円以下でも住民税申告は必要。経費（通信費、機材等）を適切に計上すれば税負担は減ります。年商1000万円超ならインボイス登録の検討も。",
                 lockRequirements: null
@@ -87,7 +87,7 @@ export const stage10Questions: Question[] = [
     {
         id: "s10_q04",
         category: "INTEGRATION",
-        text: "「投資を始めたい」と思い立った。手元に50万円。全額投資に回して早く資産を増やしたい。",
+        text: "投資を始めたいと思い立った。手元に50万円。全額投資に回して早く資産を増やしたい。",
         imagePrompt: "Scene: Investment app showing stock charts on phone, savings account passbook showing 500,000 yen balance, calendar with 'unemployment' and 'hospital' marked as potential future events. Composition: Eager investment vs safety cushion, timeline of risks. Mood: Enthusiasm meeting prudence.",
         imagePath: "s10_q04.png",
         choices: [
@@ -125,7 +125,7 @@ export const stage10Questions: Question[] = [
             },
             {
                 text: "評価基準の妥当性を検証し、問題があれば改善提案する。システムは人が作ったものだ。",
-                effect: { CS: -10, Asset: 0, Autonomy: +20 },
+                effect: { CS: 5, Asset: 0, Autonomy: +15 },
                 verdict: "NEUTRAL",
                 feedback: "批判的選択です。システムを疑い、改善を試みる姿勢は自律の証です。ただし、組織内での立場は弱くなるかもしれません。「正しさ」と「得」は必ずしも一致しません。",
                 lockRequirements: null
@@ -140,20 +140,20 @@ export const stage10Questions: Question[] = [
     {
         id: "s10_q06",
         category: "META",
-        text: "「社会的信用」とは何か？世間の目、SNSの評判、職歴、学歴・・・様々な「信用」があなたを取り巻いている。",
+        text: "社会的信用とは何か？世間の目、SNSの評判、職歴、学歴・・・様々な「信用」があなたを取り巻いている。",
         imagePrompt: "Scene: Person standing in center surrounded by floating score displays (credit score, social media followers, employment record, educational certificates), some metrics glowing, others faded. Composition: Individual as intersection of multiple evaluation systems. Mood: Quantified existence, visibility of invisible judgments.",
         imagePath: "s10_q06.png",
         choices: [
             {
                 text: "気にしない。自分は自分だ。他人の評価は関係ない。",
-                effect: { CS: -15, Asset: -20000, Autonomy: -5 },
+                effect: { CS: -15, Asset: -20000, Autonomy: 0 },
                 verdict: "WARNING",
                 feedback: "無視は危険です。社会的信用は「見えない通貨」。クレジットカードの審査、賃貸契約、就職面接・・・信用がないと選択肢が狭まります。無視することと、理解した上で距離を取ることは違います。",
                 lockRequirements: null
             },
             {
                 text: "信用の仕組みを理解し、必要な場面で適切に管理する。ただし、信用に支配されない。",
-                effect: { CS: +10, Asset: 0, Autonomy: +15 },
+                effect: { CS: +10, Asset: 0, Autonomy: +10 },
                 verdict: "APPROVED",
                 feedback: "正解です。社会的信用は「ゲームのルール」。ルールを知らずにプレイするより、知った上で戦略を立てる方が賢明です。ただし、信用のために自分を売らないこと。道具は使うもので、使われるものではありません。",
                 lockRequirements: null
@@ -171,8 +171,8 @@ export const stage10Questions: Question[] = [
         choices: [
             {
                 text: "「私の人生は私が決めます。データは参考にしますが、提案内容を検証します。」と答える。",
-                effect: { CS: -15, Asset: 0, Autonomy: +25 },
-                verdict: "WARNING",
+                effect: { CS: -10, Asset: 0, Autonomy: +15 },
+                verdict: "NEUTRAL",
                 feedback: "自律的選択です。システムの「善意」を疑い、主体性を守りました。",
                 lockRequirements: { Autonomy: 60 },
                 lockedFeedback: "自律性が60以上必要。システムに依存しすぎると、この選択肢すら見えなくなります。"
@@ -180,7 +180,7 @@ export const stage10Questions: Question[] = [
             {
                 text: "「ありがとうございます。提案に従います。」と受け入れる。",
                 effect: { CS: +20, Asset: 0, Autonomy: -20 },
-                verdict: "APPROVED",
+                verdict: "NEUTRAL",
                 feedback: "従順な選択です。A.D.A.M.はあなたの選択を記録しました。",
                 lockRequirements: null
             }
@@ -227,7 +227,7 @@ export const stage10Questions: Question[] = [
         choices: [
             {
                 text: "「まあ、自分で経験して学ぶのも大事だよ」と流す。",
-                effect: { CS: 0, Asset: 0, Autonomy: 0 },
+                effect: { CS: -10, Asset: 0, Autonomy: -5 },
                 verdict: "NEUTRAL",
                 feedback: "無難な選択です。余計なお世話を避けました。でも、知識を持ちながら黙ることは、システムの共犯では？後輩は高い授業料を払うことになるかもしれません。",
                 lockRequirements: null
@@ -250,22 +250,22 @@ export const stage10Questions: Question[] = [
     {
         id: "s10_q10",
         category: "PHILOSOPHY",
-        text: "最終問題。A.D.A.M.があなたに問いかけます。「あなたは社会をどう捉えますか？」",
-        imagePrompt: "Scene: Final examination room, A.D.A.M. avatar facing the player directly, two doors behind representing different life philosophies, accumulated scores and skills floating around player. Composition: Direct confrontation, ultimate choice, journey's end. Mood: Philosophical climax, identity definition.",
+        text: "最終問題。A.D.A.M.があなたに問いかけます。「あなたにとって大人とは？」",
+        imagePrompt: "Scene: Final examination room, two doors behind representing different life philosophies, accumulated scores and skills floating around player. Composition: Direct confrontation, ultimate choice, journey's end. Mood: Philosophical climax, identity definition.",
         imagePath: "s10_q10.png",
         choices: [
             {
-                text: "「社会は守るべきルールの集合体。私はその中で最適化された市民です」",
+                text: "大人とは、社会のルールを従順に守る存在のこと。私は社会に最適化された人間です。",
                 effect: { CS: +25, Asset: 0, Autonomy: -20 },
                 verdict: "NEUTRAL",
                 feedback: "模範的回答です。A.D.A.M.は満足しています。",
                 lockRequirements: null
             },
             {
-                text: "「社会は社会。理解し、活用し、必要なら共に変えていく。私は自分で考え、自分の意志で社会に貢献する」",
+                text: "大人とは、社会を理解し、活用し、共に成長していく存在のこと。私は自分で考え、自分の意志で社会に貢献する人間です。",
                 effect: { CS: +5, Asset: 0, Autonomy: +25 },
                 verdict: "NEUTRAL",
-                feedback: "覚醒の回答です。A.D.A.M.はあなたを「危険」と分類しました。システムを理解し、利用し、しかし支配されない・・・それが真の「大人」です。",
+                feedback: "システムを理解し、活用し、しかし支配されない・・・それが真の「大人」です。",
                 lockRequirements: null
             }
         ],

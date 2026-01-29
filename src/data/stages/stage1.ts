@@ -5,7 +5,7 @@ export const stage1Questions: Question[] = [
     {
         id: "s1_q01",
         category: "FINANCE",
-        text: "新社会人になり、クレジットカードを初めて作った。「リボ払い」を勧められたが、どうする？",
+        text: "新社会人になり、クレジットカードを初めて作った。リボ払いを勧められたが、どうする？",
         imagePrompt: "Scene: Credit card application form on counter, revolving payment checkbox prominently displayed, salesperson's finger pointing at it, fine print showing high interest rate partially visible. Composition: Form fills frame, finger draws attention to checkbox. Mood: Pressure, hidden trap in plain sight.",
         imagePath: "s1_q01.png",
         choices: [
@@ -148,7 +148,7 @@ export const stage1Questions: Question[] = [
                 text: "入口近くの席に座り、名刺は片手で素早く交換する。",
                 effect: { CS: -25, Asset: 0, Autonomy: 0 },
                 verdict: "WARNING",
-                feedback: "マナー違反です。入口近くは「下座」で自分の席ですが、先に座るのは失礼。名刺は両手で受け取り、すぐにしまわないのが礼儀。第一印象で「この人はダメだ」と判断されました。",
+                feedback: "マナー違反です。入口近くの下座が自分の席ですが、先に座るのは失礼。名刺は両手で受け取り、すぐにしまわないのが礼儀。第一印象で「この人はダメだ」と判断されました。",
                 lockRequirements: null
             },
             {
@@ -177,12 +177,12 @@ export const stage1Questions: Question[] = [
                 lockRequirements: null
             },
             {
-                text: "管理会社に連絡し、「匿名で」注意してもらう。",
+                text: "管理会社に連絡し、注意してもらう。",
                 effect: { CS: 30, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
-                feedback: "仲介術です。システムを間に挟むことで、直接対決を避ける技術です。これが「大人の解決法」です。",
+                feedback: "仲介術です。システムを間に挟むことで、直接対決を避ける技術です。これが大人の解決法です。",
                 lockRequirements: { Autonomy: 80 },
-                lockedFeedback: "LOCKED: 自律性が80以上必要。受動的に耐えてきた結果、「第三者を使う」という発想すら浮かびません。自律性は「選択肢の数」です。"
+                lockedFeedback: "LOCKED: 自律性が80以上必要。受動的に耐えてきた結果、第三者に助けを求めるという発想すら浮かびません。自律性は「選択肢の数」です。"
             }
         ],
         adamDialogue: {
@@ -196,7 +196,7 @@ export const stage1Questions: Question[] = [
     {
         id: "s1_q08",
         category: "ADMIN",
-        text: "中古車を購入して3年。「車検」の案内が届いたが、費用が高い。少し延ばしても大丈夫？",
+        text: "中古車を購入して3年。車検の案内が届いたが、費用が高い。少し延ばしても大丈夫？",
         imagePrompt: "Scene: Car dashboard view, inspection sticker on windshield with expiration date circled, calendar notification on phone showing deadline passed, rearview mirror reflecting police lights in distance. Composition: Dashboard POV, sticker and mirror create tension. Mood: Deadline ignored, consequence approaching.",
         imagePath: "s1_q08.png",
         choices: [
@@ -253,7 +253,7 @@ export const stage1Questions: Question[] = [
     {
         id: "s1_q10",
         category: "SOCIAL",
-        text: "Stage 1の最終問題。あなたにとって「社会の基本」とは何ですか？",
+        text: "ステージ1の最終問題。あなたにとって「社会の基本」とは何ですか？",
         imagePrompt: "Scene: Retro terminal screen filling the frame, cryptic evaluation metrics scrolling, input field with blinking cursor awaiting response, green phosphor glow on black. Composition: Full-screen CRT aesthetic, scan lines visible. Mood: Final judgment, system awaiting human input.",
         imagePath: "s1_q10.png",
         choices: [
@@ -274,7 +274,7 @@ export const stage1Questions: Question[] = [
         ],
         adamDialogue: {
             intro: "最終問題です。あなたの本質を見せてください。",
-            after: "Stage 1を終了します。審査結果を算出中・・・"
+            after: "ステージ1を終了します。審査結果を算出中・・・"
         }
     }
 ];
