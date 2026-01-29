@@ -361,11 +361,14 @@ export class UIManager {
         if (nextIndex >= this.engine.state.questions.length) return;
 
         const nextQ = this.engine.state.questions[nextIndex];
-        if (!nextQ?.imagePath) return;
+        if (!nextQ.imagePath) return;
 
         const assetPath = `../assets/${nextQ.imagePath}`;
         const mod = images[assetPath] as { default: string } | undefined;
-        if (!mod?.default) return;
+        if (!mod?.default) {
+            console.warn(`Image not found for path: ${assetPath}`);
+            return;
+        }
 
         // Hide the image first, then swap the src behind the overlay
         this.dom.mainImage.classList.remove('loaded');
