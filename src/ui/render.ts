@@ -580,7 +580,7 @@ export class UIManager {
                 </div>
 
                 <div style="font-size: 0.85rem; color: ${totalKeySkills >= 10 ? '#4cc9f0' : '#666'}; margin-bottom: 20px;">
-                    キースキル: ${totalKeySkills}/10 ${totalKeySkills >= 10 ? '✓ 完全収集' : ''}
+                    Key Skill: ${totalKeySkills}/10 ${totalKeySkills >= 10 ? '✓ 完全収集' : ''}
                 </div>
 
                 <div class="adam-comment-section">
