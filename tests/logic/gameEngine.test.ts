@@ -311,7 +311,7 @@ describe('GameEngine', () => {
             const ending = engine.calculateEnding();
 
             expect(ending.rank).toBe('S');
-            expect(ending.title).toContain('Perfect Cog');
+            expect(ending.title).toContain('完全適合者');
         });
 
         it('returns A rank for CS >= 50 and < 80', () => {
@@ -322,7 +322,7 @@ describe('GameEngine', () => {
             const ending = engine.calculateEnding();
 
             expect(ending.rank).toBe('A');
-            expect(ending.title).toContain('Prime Compliant');
+            expect(ending.title).toContain('上級適合者');
         });
 
         it('returns B rank for CS >= 20 and < 50', () => {
@@ -333,7 +333,7 @@ describe('GameEngine', () => {
             const ending = engine.calculateEnding();
 
             expect(ending.rank).toBe('B');
-            expect(ending.title).toContain('Standard Compliant');
+            expect(ending.title).toContain('一般適合者');
         });
 
         it('returns C rank for CS >= 1 and < 20', () => {
@@ -344,7 +344,7 @@ describe('GameEngine', () => {
             const ending = engine.calculateEnding();
 
             expect(ending.rank).toBe('C');
-            expect(ending.title).toContain('Minimal Pass');
+            expect(ending.title).toContain('最低限合格');
         });
 
         it('uses stage-specific thresholds', () => {
