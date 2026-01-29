@@ -25,7 +25,7 @@ describe('Stage Metadata Validation', () => {
             const stage1 = getStageMetadata(1);
             expect(stage1).toBeDefined();
             expect(stage1?.id).toBe(1);
-            expect(stage1?.themeJP).toBe('人間関係の初陣');
+            expect(stage1?.themeJP).toBe('社会への出発便');
         });
 
         it('returns undefined for invalid ID', () => {
