@@ -271,7 +271,7 @@ export const stage9Questions: Question[] = [
         ],
         adamDialogue: {
             intro: "最終問題です。想定外は言い訳か、それとも準備の限界か？",
-            after: "ステージを終了します。審査結果を算出中・・・"
+            after: "ステージ9を終了します。審査結果を算出中・・・"
         }
     }
 ];
