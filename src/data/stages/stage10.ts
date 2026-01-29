@@ -11,14 +11,14 @@ export const stage10Questions: Question[] = [
         choices: [
             {
                 text: "作らなくても困らない。通知カードと保険証があれば十分。",
-                effect: { CS: 0, Asset: 0, Autonomy: -5 },
+                effect: { CS: -10, Asset: -50000, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "機会損失です。2024年12月から健康保険証は新規発行停止、マイナ保険証へ移行。コンビニ交付（住民票等）、確定申告のe-Tax、各種給付金申請・・・カードがないと手続きが煩雑化し、時間とコストがかかります。",
                 lockRequirements: null
             },
             {
                 text: "メリット・デメリットを調べ、保険証利用登録やコンビニ交付など実益を理解した上で判断する。",
-                effect: { CS: +10, Asset: 100000, Autonomy: +10 },
+                effect: { CS: +10, Asset: 50000, Autonomy: +10 },
                 verdict: "APPROVED",
                 feedback: "正解です。マイナポイント、コンビニ交付（手数料節約）、e-Tax連携、保険証利用・・・実益は多い。個人情報リスクは「カードを持つこと」ではなく「管理の仕方」の問題。情報を集めて判断するのが大人です。",
                 lockRequirements: null
@@ -46,7 +46,7 @@ export const stage10Questions: Question[] = [
             },
             {
                 text: "所得税は確定申告、住民税は別途申告。経費を正しく計上し、将来のインボイス登録も検討する。",
-                effect: { CS: +15, Asset: -5000, Autonomy: +10 },
+                effect: { CS: +15, Asset: 0, Autonomy: +10 },
                 verdict: "APPROVED",
                 feedback: "正解です。副業収入20万円超は確定申告必須。20万円以下でも住民税申告は必要。経費（通信費、機材等）を適切に計上すれば税負担は減ります。年商1000万円超ならインボイス登録の検討も。",
                 lockRequirements: null
@@ -125,7 +125,7 @@ export const stage10Questions: Question[] = [
             },
             {
                 text: "評価基準の妥当性を検証し、問題があれば改善提案する。システムは人が作ったものだ。",
-                effect: { CS: -10, Asset: 0, Autonomy: +20 },
+                effect: { CS: 5, Asset: 0, Autonomy: +15 },
                 verdict: "NEUTRAL",
                 feedback: "批判的選択です。システムを疑い、改善を試みる姿勢は自律の証です。ただし、組織内での立場は弱くなるかもしれません。「正しさ」と「得」は必ずしも一致しません。",
                 lockRequirements: null
@@ -146,14 +146,14 @@ export const stage10Questions: Question[] = [
         choices: [
             {
                 text: "気にしない。自分は自分だ。他人の評価は関係ない。",
-                effect: { CS: -15, Asset: -20000, Autonomy: -5 },
+                effect: { CS: -15, Asset: -20000, Autonomy: 0 },
                 verdict: "WARNING",
                 feedback: "無視は危険です。社会的信用は「見えない通貨」。クレジットカードの審査、賃貸契約、就職面接・・・信用がないと選択肢が狭まります。無視することと、理解した上で距離を取ることは違います。",
                 lockRequirements: null
             },
             {
                 text: "信用の仕組みを理解し、必要な場面で適切に管理する。ただし、信用に支配されない。",
-                effect: { CS: +10, Asset: 0, Autonomy: +15 },
+                effect: { CS: +10, Asset: 0, Autonomy: +10 },
                 verdict: "APPROVED",
                 feedback: "正解です。社会的信用は「ゲームのルール」。ルールを知らずにプレイするより、知った上で戦略を立てる方が賢明です。ただし、信用のために自分を売らないこと。道具は使うもので、使われるものではありません。",
                 lockRequirements: null
@@ -171,7 +171,7 @@ export const stage10Questions: Question[] = [
         choices: [
             {
                 text: "「私の人生は私が決めます。データは参考にしますが、提案内容を検証します。」と答える。",
-                effect: { CS: -15, Asset: 0, Autonomy: +25 },
+                effect: { CS: -10, Asset: 0, Autonomy: +15 },
                 verdict: "NEUTRAL",
                 feedback: "自律的選択です。システムの「善意」を疑い、主体性を守りました。",
                 lockRequirements: { Autonomy: 60 },
@@ -227,7 +227,7 @@ export const stage10Questions: Question[] = [
         choices: [
             {
                 text: "「まあ、自分で経験して学ぶのも大事だよ」と流す。",
-                effect: { CS: 0, Asset: 0, Autonomy: 0 },
+                effect: { CS: -10, Asset: 0, Autonomy: -5 },
                 verdict: "NEUTRAL",
                 feedback: "無難な選択です。余計なお世話を避けました。でも、知識を持ちながら黙ることは、システムの共犯では？後輩は高い授業料を払うことになるかもしれません。",
                 lockRequirements: null

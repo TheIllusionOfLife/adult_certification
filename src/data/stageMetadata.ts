@@ -433,7 +433,7 @@ const stage10Definition: StageDefinition = {
     theme: 'Final Certification',
     themeJP: '最終認定',
     keySkillId: 'AWAKENING',
-    initialParams: { CS: 50, Asset: 100000, Autonomy: 50 },
+    initialParams: { CS: 25, Asset: 50000, Autonomy: 25 },
     skills: {
         offer1: [
             createNormalSkill(
