@@ -6,7 +6,7 @@ export const stage10Questions: Question[] = [
         id: "s10_q01",
         category: "INTEGRATION",
         text: "マイナンバーカードを作るか迷っている。「面倒」「個人情報が心配」と聞くが、作らないとどうなる？",
-        imagePrompt: "Scene: Smartphone showing マイナポータル app with various service icons (health insurance, tax filing, certificate issuance), physical card beside phone, convenience store terminal in background. Composition: Digital and physical integration, services radiating from card. Mood: Bureaucratic convenience, connected services.",
+        imagePrompt: "Scene: Smartphone showing My Number Portal app with various service icons (health insurance, tax filing, certificate issuance), physical card beside phone, convenience store terminal in background. Composition: Digital and physical integration, services radiating from card. Mood: Bureaucratic convenience, connected services.",
         imagePath: "s10_q01.png",
         choices: [
             {
@@ -166,7 +166,7 @@ export const stage10Questions: Question[] = [
         id: "s10_q07",
         category: "META",
         text: "A.D.A.M.から「あなたの行動データを分析した結果、最適な人生を提案できます」と通知が届いた。",
-        imagePrompt: "Scene: Notification popup on screen showing A.D.A.M.'s offer with career path visualization, user's reflection visible in screen, crossroads imagery in background (one path lit by algorithm, one path in shadow but self-directed). Composition: AI guidance vs self-determination, fork in road. Mood: Algorithmic benevolence, autonomy at stake.",
+        imagePrompt: "Scene: Notification popup on screen showing an offer with life path visualization, user's reflection visible in screen, crossroads imagery in background (one path lit by algorithm, one path in shadow but self-directed). Composition: AI guidance vs self-determination, fork in road. Mood: Algorithmic benevolence, autonomy at stake.",
         imagePath: "s10_q07.png",
         choices: [
             {
