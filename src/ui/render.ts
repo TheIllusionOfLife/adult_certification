@@ -503,6 +503,7 @@ export class UIManager {
             </div>
         `;
         this.dom.ovStats.innerHTML = "";
+        this.dom.skillBox.style.display = 'none';
 
         // Stage 10: Show "最終認定" button to proceed to license screen
         // Other stages: Show "TITLE" button to return to title
@@ -514,6 +515,9 @@ export class UIManager {
             this.dom.btnNext.onclick = () => location.reload();
         }
         this.dom.btnNext.style.display = 'block';
+        this.dom.btnNext.disabled = false;
+        this.dom.btnNext.style.opacity = '1';
+        this.dom.btnNext.style.cursor = 'pointer';
         this.dom.overlay.style.display = 'flex';
     }
 
@@ -587,8 +591,12 @@ export class UIManager {
         `;
 
         this.dom.ovStats.innerHTML = "";
+        this.dom.skillBox.style.display = 'none';
         this.dom.btnNext.innerText = "TITLE";
         this.dom.btnNext.style.display = 'block';
+        this.dom.btnNext.disabled = false;
+        this.dom.btnNext.style.opacity = '1';
+        this.dom.btnNext.style.cursor = 'pointer';
         this.dom.btnNext.onclick = () => location.reload();
         this.dom.overlay.style.display = 'flex';
     }
