@@ -350,6 +350,26 @@ export class UIManager {
             }
         }
         this.dom.overlay.style.display = 'flex';
+
+        // Preload the next question's image behind the overlay so it's
+        // already decoded when the user clicks NEXT.
+        this.preloadNextQuestionImage();
+    }
+
+    private preloadNextQuestionImage() {
+        const nextIndex = this.engine.state.currentQuestionIndex + 1;
+        if (nextIndex >= this.engine.state.questions.length) return;
+
+        const nextQ = this.engine.state.questions[nextIndex];
+        if (!nextQ?.imagePath) return;
+
+        const assetPath = `../assets/${nextQ.imagePath}`;
+        const mod = images[assetPath] as { default: string } | undefined;
+        if (!mod?.default) return;
+
+        // Hide the image first, then swap the src behind the overlay
+        this.dom.mainImage.classList.remove('loaded');
+        this.dom.mainImage.src = mod.default;
     }
 
     offerSkills() {
