@@ -286,7 +286,7 @@ Not all Q10s use the standard CS vs Autonomy trade-off:
 | 2 | Autonomy ≥150 | Standing up to employer requires autonomy |
 | 3 | Asset ≥140 | Investment requires resources |
 | 4 | Asset ≥130 | Tax correction costs money |
-| 5 | Asset ≥180 | Welfare theme + reachable |
+| 5 | Autonomy ≥150 | Overcoming shame to claim rights |
 | 6 | Asset ≥150 | Rental negotiation |
 | 7 | CS ≥150 | Moral courage requires social standing |
 | 8 | Autonomy ≥150 | Security discipline = self-discipline |

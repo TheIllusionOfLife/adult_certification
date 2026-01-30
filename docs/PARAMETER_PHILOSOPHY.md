@@ -47,7 +47,7 @@ This teaches: "Society doesn't always reward doing the right thing. Autonomy has
 **Teaching Method**:
 - Show that Asset gates access to better outcomes
 - Players learn: "Keep Asset healthy or lose opportunities"
-- Q9 locks vary per stage (narratively appropriate, not uniform)
+- Q9 locks vary per stage (narratively appropriate)
 
 **Lock Example (Stage 3 Q9)**:
 ```typescript

@@ -217,10 +217,10 @@ export const stage1Questions: Question[] = [
         }
     },
 
-    // Q9: Knowledge (MANNER) - Proper keigo usage
+    // Q9: Knowledge (SOCIAL) - Proper keigo usage
     {
         id: "s1_q09",
-        category: "MANNER",
+        category: "SOCIAL",
         text: "入社して間もない。上司にメールを送る際、正しい敬語は?",
         imagePrompt: "Scene: Office computer screen showing email draft to supervisor, cursor blinking at greeting line, Japanese business etiquette book open beside keyboard. Composition: Screen fills frame, draft email with formal tone. Mood: Professional communication, first impression at work.",
         imagePath: "s1_q09.png",
