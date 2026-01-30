@@ -230,15 +230,15 @@ export const stage8Questions: Question[] = [
                 effect: { CS: -10, Asset: 0, Autonomy: 0 },
                 verdict: "WARNING",
                 feedback: "危険な選択。AIサービスは入力データを学習に使用する可能性があります。機密情報の漏洩が起きた場合、責任はあなたに。便利さの代償は計り知れない。",
-                lockRequirements: { Autonomy: 100 },
-                lockedFeedback: "LOCKED: 自律性が100以上必要。「便利だから」という思考に流され、リスク評価ができていません。"
+                lockRequirements: null
             },
             {
                 text: "機密情報は一切入力しない。AIには一般的な質問だけにする。",
                 effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解。AIツールの利便性と情報管理の境界線を引く判断力があります。機密情報の流出リスクをゼロにしました。効率は落ちますが、情報セキュリティを守る姿勢は組織への責任。",
-                lockRequirements: null
+                lockRequirements: { Autonomy: 100 },
+                lockedFeedback: "LOCKED: 自律性が100以上必要。「便利だから」という思考に流され、リスク評価ができていません。"
             }
         ],
         adamDialogue: {
