@@ -257,7 +257,7 @@ export const stage3Questions: Question[] = [
             },
             {
                 text: "103万/106万/130万の壁の違いを理解し、世帯全体の収入で判断する。",
-                effect: { CS: 10, Asset: 0, Autonomy: 20 },
+                effect: { CS: 10, Asset: 10, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解。壁の影響は家族構成・勤務先規模で異なる。103万円の壁(所得税)、106万円の壁(従業員51人以上の企業で社会保険加入)、130万円の壁(社会保険の扶養外れ)。150万・201万円は配偶者特別控除の段階的減少。",
                 lockRequirements: null

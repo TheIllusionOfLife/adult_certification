@@ -18,7 +18,7 @@ export const stage5Questions: Question[] = [
             },
             {
                 text: "「高額療養費制度」を使い、自己負担を上限額に抑える。事前に限度額適用認定証を取得。",
-                effect: { CS: 10, Asset: 30, Autonomy: 20 },
+                effect: { CS: 10, Asset: 30, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。公的制度を知っているだけで数十万円の差。限度額適用認定証があれば、窓口での支払いも上限額で済みます。",
                 lockRequirements: null
@@ -46,7 +46,7 @@ export const stage5Questions: Question[] = [
             },
             {
                 text: "傷病手当金を申請する。給与の約2/3が最長1年6ヶ月支給される。",
-                effect: { CS: 10, Asset: 40, Autonomy: 10 },
+                effect: { CS: 10, Asset: 40, Autonomy: 5 },
                 verdict: "APPROVED",
                 feedback: "正解です。会社員の特権である健康保険の傷病手当金。申請主義なので、自分から動かないと受け取れません。退職後も継続受給可能(退職日に労務不能+1年以上の被保険者期間が条件)。",
                 lockRequirements: null
@@ -64,7 +64,7 @@ export const stage5Questions: Question[] = [
         choices: [
             {
                 text: "教育訓練給付金の対象講座か確認し、給付金を申請して受講する。",
-                effect: { CS: 20, Asset: -30, Autonomy: 20 },
+                effect: { CS: 20, Asset: -30, Autonomy: 5 },
                 verdict: "APPROVED",
                 feedback: "正解です。雇用保険加入1年以上（初回）で利用可能。一般は20%、特定一般は40%、専門実践は最大70%給付。ハローワークで事前に相談すれば、対象講座と手続きがわかります。",
                 lockRequirements: null
@@ -93,7 +93,7 @@ export const stage5Questions: Question[] = [
         choices: [
             {
                 text: "育児休業給付金（67%→50%）を確認し、生活設計に組み込んで育休を取得する。",
-                effect: { CS: 10, Asset: 30, Autonomy: 20 },
+                effect: { CS: 10, Asset: 30, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。社会保険料も免除されるため、実質的な手取り差は縮まります。制度を理解すれば、育児と仕事の両立が可能になります。",
                 lockRequirements: null
@@ -118,7 +118,7 @@ export const stage5Questions: Question[] = [
         choices: [
             {
                 text: "テレワークか欠席を提案し、回復に専念する。上司に状況を説明して会議の代理を依頼する。",
-                effect: { CS: 10, Asset: 0, Autonomy: 20 },
+                effect: { CS: 10, Asset: 0, Autonomy: 5 },
                 verdict: "APPROVED",
                 feedback: "正解。インフルエンザは発症後5日かつ解熱後2日の出席停止が目安(学校保健安全法準拠、企業も多くが準用)。テレワークで体調が許す範囲の対応は合理的。同僚への感染防止が社会人としての責任。",
                 lockRequirements: null

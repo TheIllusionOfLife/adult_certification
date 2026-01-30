@@ -46,7 +46,7 @@ export const stage8Questions: Question[] = [
             },
             {
                 text: "3-2-1ルール（3つのコピー、2種類の媒体、1つは遠隔地）でバックアップ体制を構築する。",
-                effect: { CS: 10, Asset: -10, Autonomy: 10 },
+                effect: { CS: 10, Asset: -10, Autonomy: 5 },
                 verdict: "APPROVED",
                 feedback: "正解です。クラウドと外付けHDDの併用で、ほとんどのデータ消失リスクに対応できます。バックアップは「保険」。事故が起きてからでは遅いです。",
                 lockRequirements: null
@@ -71,7 +71,7 @@ export const stage8Questions: Question[] = [
             },
             {
                 text: "パスワードマネージャーを使い、サービスごとに強力なパスワードを自動生成・管理する。",
-                effect: { CS: 10, Asset: 10, Autonomy: 10 },
+                effect: { CS: 10, Asset: 10, Autonomy: 5 },
                 verdict: "APPROVED",
                 feedback: "正解です。マスターパスワード1つを覚えれば、何百ものサイトを安全に管理できます。初期設定の手間は、将来の被害と比べれば微々たるものです。",
                 lockRequirements: null
@@ -125,7 +125,7 @@ export const stage8Questions: Question[] = [
             },
             {
                 text: "データ消去ソフトで上書き処理後、メーカーや通信キャリアの公式回収プログラムを利用する。",
-                effect: { CS: 10, Asset: 10, Autonomy: 10 },
+                effect: { CS: 10, Asset: 10, Autonomy: 5 },
                 verdict: "APPROVED",
                 feedback: "正解。データ消去ソフトで上書き処理すれば復元リスクを大幅に低減。メーカーや通信キャリアの公式回収プログラムなら適切に処分される。物理的破壊も有効だが、レアメタル回収の観点では公式回収が望ましい。",
                 lockRequirements: null
