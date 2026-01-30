@@ -11,7 +11,7 @@ export const stage5Questions: Question[] = [
         choices: [
             {
                 text: "貯金を全て使い、足りない分は借金するしかない。",
-                effect: { CS: -30, Asset: -30, Autonomy: -10 },
+                effect: { CS: -30, Asset: -30, Autonomy: -20 },
                 verdict: "WARNING",
                 feedback: "無知による損失です。高額療養費制度により、一般所得者の自己負担上限は月約8〜9万円。100万円払う必要はありません。制度を知らないと、不要な借金を背負います。",
                 lockRequirements: null
@@ -39,7 +39,7 @@ export const stage5Questions: Question[] = [
         choices: [
             {
                 text: "休職したら給料ゼロ。貯金を切り崩すしかない。",
-                effect: { CS: -20, Asset: -30, Autonomy: -10 },
+                effect: { CS: -20, Asset: -30, Autonomy: -20 },
                 verdict: "WARNING",
                 feedback: "制度の見落としです。健康保険の傷病手当金は、給与の約2/3を最長1年6ヶ月支給。申請しないと受け取れませんが、知っていれば収入を確保できます。",
                 lockRequirements: null
@@ -100,7 +100,7 @@ export const stage5Questions: Question[] = [
             },
             {
                 text: "給料が出ないなら育休は取れない。すぐ復帰するしかない。",
-                effect: { CS: 10, Asset: 0, Autonomy: -20 },
+                effect: { CS: 10, Asset: 0, Autonomy: -30 },
                 verdict: "WARNING",
                 feedback: "制度の誤解です。育児休業給付金は、最初の6ヶ月は給与の67%、以降50%が雇用保険から支給されます。「無収入」ではありません。",
                 lockRequirements: null
@@ -125,7 +125,7 @@ export const stage5Questions: Question[] = [
             },
             {
                 text: "同僚にインフルエンザのことは黙って出社する。マスクをすれば大丈夫。",
-                effect: { CS: -30, Asset: 0, Autonomy: -20 },
+                effect: { CS: -30, Asset: 0, Autonomy: -30 },
                 verdict: "WARNING",
                 feedback: "最悪の選択。職場全体に感染が広がり、プロジェクト全体が停止するリスク。感染症を隠して出社するのは「頑張り」ではなく「迷惑」。報告と休養が社会人の義務。",
                 lockRequirements: null
@@ -150,7 +150,7 @@ export const stage5Questions: Question[] = [
             },
             {
                 text: "自己都合だと失業保険はもらえないと思い、申請しない。",
-                effect: { CS: -20, Asset: 0, Autonomy: -10 },
+                effect: { CS: -20, Asset: 0, Autonomy: -20 },
                 verdict: "WARNING",
                 feedback: "大損です。自己都合退職でも一定期間後に受給可能。申請しないのは権利の放棄です。",
                 lockRequirements: null
@@ -168,7 +168,7 @@ export const stage5Questions: Question[] = [
         choices: [
             {
                 text: "気合で乗り切る。病院に行くほどではない。",
-                effect: { CS: 0, Asset: 0, Autonomy: -30 },
+                effect: { CS: 0, Asset: 0, Autonomy: -40 },
                 verdict: "WARNING",
                 feedback: "危険な思考です。メンタルヘルスの問題を放置すると、悪化して長期休職に追い込まれます。「まだ大丈夫」は「もう限界」のサインかもしれません。",
                 lockRequirements: null
@@ -199,7 +199,7 @@ export const stage5Questions: Question[] = [
         choices: [
             {
                 text: "50万円を貯めるか、借りるしかない。",
-                effect: { CS: -10, Asset: -30, Autonomy: -10 },
+                effect: { CS: -10, Asset: -30, Autonomy: -20 },
                 verdict: "WARNING",
                 feedback: "制度の見落としです。出産育児一時金（50万円）が健康保険から支給されます。直接支払制度を使えば、窓口負担はほぼゼロにできます。知らなかったために50万円を自己負担しました。",
                 lockRequirements: null
@@ -224,7 +224,7 @@ export const stage5Questions: Question[] = [
         choices: [
             {
                 text: "生活保護は最後の手段。親戚に頭を下げて借金する。",
-                effect: { CS: -20, Asset: 20, Autonomy: -10 },
+                effect: { CS: -20, Asset: 20, Autonomy: -20 },
                 verdict: "NEUTRAL",
                 feedback: "プライドを守る選択です。しかし、借金は返済義務が発生し、親戚関係も複雑になります。「援助」ではなく「負債」を選びました。",
                 lockRequirements: null
@@ -253,7 +253,7 @@ export const stage5Questions: Question[] = [
         choices: [
             {
                 text: "任意継続を選ぶ。退職前と同じ保険証が使え、扶養家族がいれば追加保険料なしでカバーできる。",
-                effect: { CS: 10, Asset: -30, Autonomy: -10 },
+                effect: { CS: 10, Asset: -30, Autonomy: -20 },
                 verdict: "NEUTRAL",
                 feedback: "継続性を重視した回答です。任意継続は最大2年間、会社負担分も自己負担になるため保険料は約2倍。扶養家族ありなら任意継続有利(追加保険料なし)。退職後20日以内に手続き必須。",
                 lockRequirements: null
