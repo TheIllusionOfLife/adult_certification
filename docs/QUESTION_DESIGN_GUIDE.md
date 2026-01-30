@@ -276,9 +276,21 @@ Not all Q10s use the standard CS vs Autonomy trade-off:
 | Asset | ≥80 | ≥120 | ≥180 |
 | Autonomy | ≥80 | ≥120 | ≥150 |
 
-**Consistent lock assignments across all stages**:
-- Q7: Autonomy >= 150
-- Q9: Asset >= 180
+**Q7**: Autonomy lock (stages 1-4: ≥130, stages 5-10: ≥150)
+
+**Q9**: Narratively appropriate per stage:
+| Stage | Q9 Lock | Rationale |
+|-------|---------|-----------|
+| 1 | None | Keigo usage unrelated to any resource gate |
+| 2 | Autonomy ≥150 | Standing up to employer requires autonomy |
+| 3 | Asset ≥140 | Investment requires resources |
+| 4 | Asset ≥130 | Tax correction costs money |
+| 5 | Asset ≥180 | Welfare theme + reachable |
+| 6 | Asset ≥150 | Rental negotiation |
+| 7 | CS ≥150 | Moral courage requires social standing |
+| 8 | Autonomy ≥150 | Security discipline = self-discipline |
+| 9 | Asset ≥130 | Evacuation prep needs resources |
+| 10 | CS ≥180 | Teaching others requires credibility |
 
 ### Safety Rules
 1. **ONE choice must have `lockRequirements: null`** - Always available

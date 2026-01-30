@@ -234,8 +234,8 @@ export const stage10Questions: Question[] = [
                 effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "NEUTRAL",
                 feedback: "継承の選択です。時間と労力をかけて知識を伝えました。報われるかは分かりませんが、それが「大人」の責任です。知識は分かち合うことで力になります。",
-                lockRequirements: { Asset: 180 },
-                lockedFeedback: "LOCKED: 資産が180以上必要。資産が不足していると、他者を助ける余裕がありません。"
+                lockRequirements: { CS: 180 },
+                lockedFeedback: "LOCKED: 社会的信用が180以上必要。他者に教えるには社会的信用が必要です。"
             }
         ],
         adamDialogue: {

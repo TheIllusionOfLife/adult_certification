@@ -234,8 +234,8 @@ export const stage3Questions: Question[] = [
                 effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解。表面利回りと実質利回りの差、サブリース契約の解約リスク、築年数による資産価値の下落。投資判断は自分の責任。営業マンは売る側。「不労所得」の甘い言葉の裏にあるリスクを理解してから動く。",
-                lockRequirements: { Asset: 180 },
-                lockedFeedback: "LOCKED: 資産が180以上必要。資産が不足しており、この選択肢を取る余裕がありません。"
+                lockRequirements: { Asset: 140 },
+                lockedFeedback: "LOCKED: 資産が140以上必要。投資判断には十分な資産基盤が必要です。"
             }
         ]
     },

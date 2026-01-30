@@ -237,8 +237,7 @@ export const stage1Questions: Question[] = [
                 effect: { CS: 20, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解。尊敬語(相手の動作: おっしゃる、ご覧になる)と謙譲語(自分の動作: 申す、拝見する)の使い分けが基本。「お読みになられる」は二重敬語でNG。ただし「お召し上がりになる」は許容。",
-                lockRequirements: { Asset: 180 },
-                lockedFeedback: "LOCKED: 資産が180以上必要。資産が不足しており、この選択肢を取る余裕がありません。"
+                lockRequirements: null
             }
         ]
     },

@@ -227,8 +227,8 @@ export const stage6Questions: Question[] = [
                 effect: { CS: -10, Asset: 0, Autonomy: 20 },
                 verdict: "NEUTRAL",
                 feedback: "挑戦的な選択です。交渉は決裂するリスクがありますが、更新料が減額される可能性もあります。契約上の力関係に挑む姿勢を見せました。",
-                lockRequirements: { Asset: 180 },
-                lockedFeedback: "LOCKED: 資産が180以上必要。資産が不足しており、契約条件に挑む余裕がありません。"
+                lockRequirements: { Asset: 150 },
+                lockedFeedback: "LOCKED: 資産が150以上必要。契約条件に挑むには経済的余裕が必要です。"
             },
             {
                 text: "契約書に書いてあるなら払うしかない。",

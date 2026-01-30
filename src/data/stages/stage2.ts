@@ -234,8 +234,8 @@ export const stage2Questions: Question[] = [
                 effect: { CS: -10, Asset: 0, Autonomy: 20 },
                 feedback: "正解。退職は労働者の権利。就業規則が「3ヶ月前」でも民法が優先。内容証明郵便なら受け取り拒否できず、日付の証拠も残る。引継ぎは誠意を持って行うが、退職自体を止める権利は会社にない。",
                 verdict: "APPROVED",
-                lockRequirements: { Asset: 180 },
-                lockedFeedback: "LOCKED: 資産が180以上必要。資産が不足しており、この選択肢を取る余裕がありません。"
+                lockRequirements: { Autonomy: 150 },
+                lockedFeedback: "LOCKED: 自律性が150以上必要。雇用主に立ち向かう自律性が不足しています。"
             }
         ]
     },

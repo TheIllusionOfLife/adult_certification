@@ -230,8 +230,8 @@ export const stage4Questions: Question[] = [
                 effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解。自主的修正申告なら過少申告加算税5%に軽減(税務調査後は10〜15%)。「見つからない可能性」を捨て、確実に解決する判断です。延滞税も日割りで加算されるため、早いほど負担は軽い。",
-                lockRequirements: { Asset: 180 },
-                lockedFeedback: "LOCKED: 資産が180以上必要。資産が不足していると、自発的に修正申告する余裕がありません。"
+                lockRequirements: { Asset: 130 },
+                lockedFeedback: "LOCKED: 資産が130以上必要。修正申告には経済的な余裕が必要です。"
             },
             {
                 text: "様子を見る。税務調査が来なければ問題ない可能性もある。",

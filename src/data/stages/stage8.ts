@@ -237,8 +237,8 @@ export const stage8Questions: Question[] = [
                 effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解。AIツールの利便性と情報管理の境界線を引く判断力があります。機密情報の流出リスクをゼロにしました。効率は落ちますが、情報セキュリティを守る姿勢は組織への責任。",
-                lockRequirements: { Asset: 180 },
-                lockedFeedback: "LOCKED: 資産が180以上必要。資産が不足しており、便利さの誘惑に抗えません。"
+                lockRequirements: { Autonomy: 150 },
+                lockedFeedback: "LOCKED: 自律性が150以上必要。便利さの誘惑に抗うには自律性が必要です。"
             }
         ],
         adamDialogue: {

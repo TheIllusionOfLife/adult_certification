@@ -234,8 +234,8 @@ export const stage9Questions: Question[] = [
                 effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解。警戒レベル: 1(注意)→2(避難行動確認)→3(高齢者等避難)→4(避難指示=全員避難)→5(緊急安全確保=手遅れ)。レベル4が出る前に行動。非常持出袋、モバイルバッテリー、現金、保険証コピーを持って避難。",
-                lockRequirements: { Asset: 180 },
-                lockedFeedback: "LOCKED: 資産が180以上必要。資産が不足しており、早期避難の準備ができていません。"
+                lockRequirements: { Asset: 130 },
+                lockedFeedback: "LOCKED: 資産が130以上必要。早期避難の準備には資産が必要です。"
             }
         ]
     },
