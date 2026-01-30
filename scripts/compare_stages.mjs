@@ -71,7 +71,12 @@ function simulateStage(stageId) {
         weightedClears: 0,
         weightedGameOvers: 0,
         weightedRanks: { S: 0, A: 0, B: 0, C: 0 },
-        weightedGameOverByParam: { CS: 0, Asset: 0, Autonomy: 0 }
+        weightedGameOverByParam: { CS: 0, Asset: 0, Autonomy: 0 },
+        // Key skill availability by offer 1 path
+        keySkillByPath: {
+            autonomy: { reached: 0, available: 0, weightedReached: 0, weightedAvailable: 0 },
+            csAsset: { reached: 0, available: 0, weightedReached: 0, weightedAvailable: 0 },
+        },
     };
 
     // Initialize lock tracking
@@ -86,7 +91,7 @@ function simulateStage(stageId) {
 
     // DFS to enumerate all valid paths (matching simulate_stage.mjs logic)
     // probability: the probability of reaching this state with random choices
-    function dfs({ qIndex, state, activeSkills, offerPicked1, offerPicked2, selectedSkillIds, choiceHistory, probability }) {
+    function dfs({ qIndex, state, activeSkills, offerPicked1, offerPicked2, selectedSkillIds, choiceHistory, probability, offer1Path }) {
         // Completed all questions - clear!
         if (qIndex >= questions.length) {
             results.totalPaths++;
@@ -164,6 +169,7 @@ function simulateStage(stageId) {
                 // Skill offer 1 - branch on each skill
                 const skillProb = choiceProb / stageMetadata.skills.offer1.length;
                 for (const s of stageMetadata.skills.offer1) {
+                    const path = s.effect?.type?.includes('autonomy') ? 'autonomy' : 'csAsset';
                     dfs({
                         qIndex: qIndex + 1,
                         state: next,
@@ -173,6 +179,7 @@ function simulateStage(stageId) {
                         selectedSkillIds: [...selectedSkillIds, s.id],
                         choiceHistory: nextChoiceHistory,
                         probability: skillProb,
+                        offer1Path: path,
                     });
                 }
                 continue;
@@ -181,6 +188,7 @@ function simulateStage(stageId) {
             if (offerNumber === 2 && offerPicked1 && !offerPicked2) {
                 // Skill offer 2 - branch on each pickable skill
                 const pickable = [];
+                let keySkillPickable = false;
                 for (const s of stageMetadata.skills.offer2) {
                     if (s.category !== "key") {
                         pickable.push(s);
@@ -192,9 +200,22 @@ function simulateStage(stageId) {
                         const selected = nextChoiceHistory[req.questionId];
                         if (selected === req.choiceIndex) {
                             pickable.push(s);
+                            keySkillPickable = true;
                         }
                     } else {
                         pickable.push(s);
+                        keySkillPickable = true;
+                    }
+                }
+
+                // Record key skill availability by offer 1 path
+                if (offer1Path) {
+                    const bucket = results.keySkillByPath[offer1Path];
+                    bucket.reached++;
+                    bucket.weightedReached += choiceProb;
+                    if (keySkillPickable) {
+                        bucket.available++;
+                        bucket.weightedAvailable += choiceProb;
                     }
                 }
 
@@ -209,6 +230,7 @@ function simulateStage(stageId) {
                         selectedSkillIds: [...selectedSkillIds, s.id],
                         choiceHistory: nextChoiceHistory,
                         probability: skillProb2,
+                        offer1Path,
                     });
                 }
                 continue;
@@ -224,6 +246,7 @@ function simulateStage(stageId) {
                 selectedSkillIds,
                 choiceHistory: nextChoiceHistory,
                 probability: choiceProb,
+                offer1Path,
             });
         }
     }
@@ -238,6 +261,7 @@ function simulateStage(stageId) {
         selectedSkillIds: [],
         choiceHistory: {},
         probability: 1.0,
+        offer1Path: null,
     });
 
     return results;
@@ -404,6 +428,23 @@ for (let stageId = 1; stageId <= 10; stageId++) {
     } else {
         console.log(`Stage ${stageId}: (N/A)`);
     }
+}
+console.log('');
+
+// Key Skill Availability by Offer 1 Path
+console.log('# Key Skill Availability by Offer 1 Path');
+console.log('| Stage | Autonomy Path (paths) | Autonomy Path (weighted) | CS/Asset Path (paths) | CS/Asset Path (weighted) |');
+console.log('|-------|-----------------------|--------------------------|----------------------|--------------------------|');
+for (let stageId = 1; stageId <= 10; stageId++) {
+    const r = allResults[stageId];
+    if (!r) { console.log(`| ${stageId} | N/A | N/A | N/A | N/A |`); continue; }
+    const auto = r.keySkillByPath.autonomy;
+    const csA = r.keySkillByPath.csAsset;
+    const autoPct = auto.reached > 0 ? `${auto.available}/${auto.reached} (${(auto.available / auto.reached * 100).toFixed(1)}%)` : 'N/A';
+    const autoW = auto.weightedReached > 0 ? `${(auto.weightedAvailable / auto.weightedReached * 100).toFixed(1)}%` : 'N/A';
+    const csAPct = csA.reached > 0 ? `${csA.available}/${csA.reached} (${(csA.available / csA.reached * 100).toFixed(1)}%)` : 'N/A';
+    const csAW = csA.weightedReached > 0 ? `${(csA.weightedAvailable / csA.weightedReached * 100).toFixed(1)}%` : 'N/A';
+    console.log(`| ${stageId} | ${autoPct} | ${autoW} | ${csAPct} | ${csAW} |`);
 }
 console.log('');
 
