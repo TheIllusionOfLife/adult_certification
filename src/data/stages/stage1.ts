@@ -108,26 +108,26 @@ export const stage1Questions: Question[] = [
         ]
     },
 
-    // Q5: Knowledge (SOCIAL) - Wedding etiquette
+    // Q5: Knowledge (SOCIAL) - Proper keigo usage
     {
         id: "s1_q05",
         category: "SOCIAL",
-        text: "同僚の結婚式に招待された。初めてなので不安。服装やご祝儀のマナーは?",
-        imagePrompt: "Scene: Wedding invitation card on table beside wallet and formal outfit options, gift money envelope with mizuhiki visible, mirror reflecting outfit choices. Composition: Invitation centered, preparation items surrounding. Mood: First-time ceremony anxiety, etiquette unknown.",
+        text: "入社して間もない。上司にメールを送る際、正しい敬語は?",
+        imagePrompt: "Scene: Office computer screen showing email draft to supervisor, cursor blinking at greeting line, Japanese business etiquette book open beside keyboard. Composition: Screen fills frame, draft email with formal tone. Mood: Professional communication, first impression at work.",
         imagePath: "s1_q05.png",
         choices: [
             {
-                text: "お祝いの気持ちが大事。服装は手持ちの白いワンピースで、ご祝儀は財布から直接2万円を渡す。",
-                effect: { CS: -30, Asset: 0, Autonomy: 0 },
+                text: "「了解しました」「ご苦労様です」など、日常的に使われている表現を使う。",
+                effect: { CS: -20, Asset: 0, Autonomy: 0 },
                 verdict: "WARNING",
-                feedback: "複数のマナー違反。白は花嫁の色でNG。ご祝儀は奇数が基本(友人なら3万円)、新札を用意し袱紗から出して渡す。水引は結び切り(一度きりの意味)。バッグから直接出すのもNG。",
+                feedback: "「ご苦労様」は目上→目下のねぎらい表現で上司にはNG。「了解しました」もカジュアルすぎる。上司には「お疲れ様です」「承知いたしました」「かしこまりました」を使う。二重敬語(「おっしゃられる」等)にも注意。",
                 lockRequirements: null
             },
             {
-                text: "ご祝儀は新札で3万円(奇数)、袱紗に包む。服装は白以外のフォーマル、ファー・動物柄もNG。水引は結び切り。",
-                effect: { CS: 20, Asset: -10, Autonomy: 10 },
+                text: "「お疲れ様です」「承知いたしました」など、相手の立場に応じた正しい敬語を調べて使う。",
+                effect: { CS: 20, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
-                feedback: "正解。ご祝儀は友人・同僚で3万円、兄弟姉妹で5〜10万円が相場。2万円(ペア)と8万円(末広がり)は例外的にOK。4と9は避ける。受付では袱紗の上に乗せて両手で差し出す。",
+                feedback: "正解。尊敬語(相手の動作: おっしゃる、ご覧になる)と謙譲語(自分の動作: 申す、拝見する)の使い分けが基本。「お読みになられる」は二重敬語でNG。ただし「お召し上がりになる」は許容。",
                 lockRequirements: null
             }
         ]
@@ -199,14 +199,14 @@ export const stage1Questions: Question[] = [
         choices: [
             {
                 text: "期限前に車検を受ける。費用が厳しければ、車を手放すことも検討する。",
-                effect: { CS: 20, Asset: -30, Autonomy: 10 },
+                effect: { CS: 20, Asset: -10, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。車検は新車登録から3年、以降2年ごと。自賠責保険は車検と同時更新が基本。維持できないなら手放す判断も大人の選択です。",
                 lockRequirements: null
             },
             {
                 text: "お金がないので、車検が切れてもしばらく乗り続ける。",
-                effect: { CS: -30, Asset: -40, Autonomy: -20 },
+                effect: { CS: -30, Asset: -20, Autonomy: -20 },
                 verdict: "WARNING",
                 feedback: "犯罪です。車検切れの運転は道路運送車両法違反（6点減点、30万円以下の罰金）。自賠責も切れていれば1年以下の懲役または50万円以下の罰金。「節約」のつもりが人生を壊します。",
                 lockRequirements: null
@@ -217,27 +217,28 @@ export const stage1Questions: Question[] = [
         }
     },
 
-    // Q9: Knowledge (SOCIAL) - Proper keigo usage
+    // Q9: Knowledge (SOCIAL) - Wedding etiquette [Asset lock]
     {
         id: "s1_q09",
         category: "SOCIAL",
-        text: "入社して間もない。上司にメールを送る際、正しい敬語は?",
-        imagePrompt: "Scene: Office computer screen showing email draft to supervisor, cursor blinking at greeting line, Japanese business etiquette book open beside keyboard. Composition: Screen fills frame, draft email with formal tone. Mood: Professional communication, first impression at work.",
+        text: "同僚の結婚式に招待された。初めてなので不安。服装やご祝儀のマナーは?",
+        imagePrompt: "Scene: Wedding invitation card on table beside wallet and formal outfit options, gift money envelope with mizuhiki visible, mirror reflecting outfit choices. Composition: Invitation centered, preparation items surrounding. Mood: First-time ceremony anxiety, etiquette unknown.",
         imagePath: "s1_q09.png",
         choices: [
             {
-                text: "「了解しました」「ご苦労様です」など、日常的に使われている表現を使う。",
-                effect: { CS: -20, Asset: 0, Autonomy: 0 },
+                text: "お祝いの気持ちが大事。服装は手持ちの白いワンピースで、ご祝儀は財布から直接2万円を渡す。",
+                effect: { CS: -30, Asset: 0, Autonomy: 0 },
                 verdict: "WARNING",
-                feedback: "「ご苦労様」は目上→目下のねぎらい表現で上司にはNG。「了解しました」もカジュアルすぎる。上司には「お疲れ様です」「承知いたしました」「かしこまりました」を使う。二重敬語(「おっしゃられる」等)にも注意。",
+                feedback: "複数のマナー違反。白は花嫁の色でNG。ご祝儀は奇数が基本(友人なら3万円)、新札を用意し袱紗から出して渡す。水引は結び切り(一度きりの意味)。バッグから直接出すのもNG。",
                 lockRequirements: null
             },
             {
-                text: "「お疲れ様です」「承知いたしました」など、相手の立場に応じた正しい敬語を調べて使う。",
-                effect: { CS: 20, Asset: 0, Autonomy: 10 },
+                text: "ご祝儀は新札で3万円(奇数)、袱紗に包む。服装は白以外のフォーマル、ファー・動物柄もNG。水引は結び切り。",
+                effect: { CS: 20, Asset: -10, Autonomy: 10 },
                 verdict: "APPROVED",
-                feedback: "正解。尊敬語(相手の動作: おっしゃる、ご覧になる)と謙譲語(自分の動作: 申す、拝見する)の使い分けが基本。「お読みになられる」は二重敬語でNG。ただし「お召し上がりになる」は許容。",
-                lockRequirements: null
+                feedback: "正解。ご祝儀は友人・同僚で3万円、兄弟姉妹で5〜10万円が相場。2万円(ペア)と8万円(末広がり)は例外的にOK。4と9は避ける。受付では袱紗の上に乗せて両手で差し出す。",
+                lockRequirements: { Asset: 80 },
+                lockedFeedback: "LOCKED: 資産が80以上必要。ご祝儀を包む余裕がなく、参列を辞退せざるを得ません。"
             }
         ]
     },
@@ -246,7 +247,7 @@ export const stage1Questions: Question[] = [
     {
         id: "s1_q10",
         category: "ADMIN",
-        text: "初めて飛行機に乗る。空港には何時間前に着けばいい? 荷物の注意点は?",
+        text: "初めて一人で飛行機に乗る。空港には何時間前に着けばいい? 荷物の注意点は?",
         imagePrompt: "Scene: Airport departure terminal, flight information board showing departure times, traveler checking luggage contents against restriction list on phone, security checkpoint visible ahead. Composition: Terminal wide view, traveler small but focused. Mood: First flight nerves, preparation matters.",
         imagePath: "s1_q10.png",
         choices: [

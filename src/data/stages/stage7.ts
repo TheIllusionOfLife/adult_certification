@@ -227,8 +227,8 @@ export const stage7Questions: Question[] = [
                 effect: { CS: -10, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解。業務上横領は刑法253条、10年以下の懲役。友人は気分を害するかもしれないが、本当の友人なら忠告を受け入れるはず。もし関係が壊れるなら、それはその程度の関係だったということ。黙認は共犯意識につながる。",
-                lockRequirements: { CS: 150 },
-                lockedFeedback: "LOCKED: 社会的信用が150以上必要。友人に意見するには社会的信用が必要です。"
+                lockRequirements: { Autonomy: 180 },
+                lockedFeedback: "LOCKED: 自律性が180以上必要。周囲に流されず、間違いを指摘する勇気がありません。"
             },
             {
                 text: "「まあ、その程度なら」と流す。友人関係を壊したくない。",

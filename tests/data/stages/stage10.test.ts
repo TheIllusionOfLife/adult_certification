@@ -25,13 +25,13 @@ describe('Stage 10 Questions', () => {
         expect(choiceA.lockRequirements?.Autonomy).toBe(150);
     });
 
-    it('should have Q9 choice B with CS lock requirement of 180', () => {
+    it('should have Q9 choice B with Autonomy lock requirement of 150', () => {
         const q9 = stage10Questions.find(q => q.id === 's10_q09');
         expect(q9).toBeDefined();
 
         const choiceB = q9!.choices[1];
         expect(choiceB.lockRequirements).toBeDefined();
-        expect(choiceB.lockRequirements?.CS).toBe(180);
+        expect(choiceB.lockRequirements?.Autonomy).toBe(180);
     });
 
     it('should have Q5 with WARNING and APPROVED verdicts', () => {
@@ -132,7 +132,7 @@ describe('Stage 10 Questions', () => {
         expect(q7!.choices[0].lockedFeedback).toContain('自律性');
 
         expect(q9!.choices[1].lockedFeedback).toBeDefined();
-        expect(q9!.choices[1].lockedFeedback).toContain('信用');
+        expect(q9!.choices[1].lockedFeedback).toContain('自律性');
     });
 
     it('all questions should have imagePath', () => {

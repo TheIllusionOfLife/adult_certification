@@ -262,7 +262,7 @@ const stage6Definition: StageDefinition = {
         offer2: [
             createKeySkill(
                 'NEGOTIATION_PROTOCOL',
-                '交渉プロトコル',
+                '交渉の型',
                 'NEGOTIATION_PROTOCOL',
                 '第三者や制度を介して交渉する技術。住居関連の問題における資産の新規獲得値を200%増幅します。',
                 { type: 'category_asset_gain_boost', value: 2.0, category: 'HOUSING' },
@@ -354,7 +354,7 @@ const stage8Definition: StageDefinition = {
         offer2: [
             createKeySkill(
                 'IDENTITY_HYGIENE',
-                '本人性衛生',
+                'デジタル身元管理',
                 'IDENTITY_HYGIENE',
                 'デジタル空間で自分の身元を守る衛生習慣。セキュリティ関連の問題における自律性の新規獲得値を200%増幅します。',
                 { type: 'category_autonomy_gain_boost', value: 2.0, category: 'SEC' },

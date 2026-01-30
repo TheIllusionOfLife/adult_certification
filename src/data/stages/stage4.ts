@@ -18,7 +18,7 @@ export const stage4Questions: Question[] = [
             },
             {
                 text: "チェックリストを作り、住民票→マイナンバー→免許→銀行の順で一気に処理する。",
-                effect: { CS: 20, Asset: 10, Autonomy: 20 },
+                effect: { CS: 20, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。住民票を先に移すと、他の手続きがスムーズに進みます。行政手続きには「正しい順序」があります。",
                 lockRequirements: null
@@ -41,12 +41,12 @@ export const stage4Questions: Question[] = [
                 text: "証人は親でなければならないと思い、疎遠な親に連絡して頼む。",
                 effect: { CS: 0, Asset: 0, Autonomy: -20 },
                 verdict: "WARNING",
-                feedback: "誤解です。証人は20歳以上であれば誰でもOK。親である必要はありません。「常識」と思い込んでいることが、実は法的根拠のない慣習であることは多いです。",
+                feedback: "誤解です。証人は成年（18歳以上）であれば誰でもOK。親である必要はありません。「常識」と思い込んでいることが、実は法的根拠のない慣習であることは多いです。",
                 lockRequirements: null
             },
             {
                 text: "友人や同僚に頼む。成人であれば誰でも証人になれる。",
-                effect: { CS: 15, Asset: 10, Autonomy: 10 },
+                effect: { CS: 15, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。法律は「成年の証人2名」としか定めていません。制度を正しく理解すれば、選択肢が広がります。",
                 lockRequirements: null
@@ -100,7 +100,7 @@ export const stage4Questions: Question[] = [
             },
             {
                 text: "すぐに更新する。渡航先の残存有効期限要件を確認し、余裕を持って準備。",
-                effect: { CS: 10, Asset: 10, Autonomy: 10 },
+                effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。行政手続きは「期限ギリギリ」が最も危険。余裕を持った準備が、トラブルを未然に防ぎます。",
                 lockRequirements: null
@@ -231,7 +231,7 @@ export const stage4Questions: Question[] = [
                 verdict: "APPROVED",
                 feedback: "正解。自主的修正申告なら過少申告加算税5%に軽減(税務調査後は10〜15%)。「見つからない可能性」を捨て、確実に解決する判断です。延滞税も日割りで加算されるため、早いほど負担は軽い。",
                 lockRequirements: { Asset: 130 },
-                lockedFeedback: "LOCKED: 資産が130以上必要。修正申告には経済的な余裕が必要です。"
+                lockedFeedback: "LOCKED: 資産が130以上必要。修正申告には今すぐ支払える経済的な余裕が必要です。"
             },
             {
                 text: "様子を見る。税務調査が来なければ問題ない可能性もある。",

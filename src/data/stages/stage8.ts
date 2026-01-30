@@ -71,7 +71,7 @@ export const stage8Questions: Question[] = [
             },
             {
                 text: "パスワードマネージャーを使い、サービスごとに強力なパスワードを自動生成・管理する。",
-                effect: { CS: 15, Asset: 10, Autonomy: 5 },
+                effect: { CS: 15, Asset: 0, Autonomy: 5 },
                 verdict: "APPROVED",
                 feedback: "正解です。マスターパスワード1つを覚えれば、何百ものサイトを安全に管理できます。初期設定の手間は、将来の被害と比べれば微々たるものです。",
                 lockRequirements: null
@@ -234,11 +234,11 @@ export const stage8Questions: Question[] = [
             },
             {
                 text: "機密情報は一切入力しない。AIには一般的な質問だけにする。",
-                effect: { CS: 10, Asset: 10, Autonomy: 10 },
+                effect: { CS: 15, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解。AIツールの利便性と情報管理の境界線を引く判断力があります。機密情報の流出リスクをゼロにしました。効率は落ちますが、情報セキュリティを守る姿勢は組織への責任。",
-                lockRequirements: { Autonomy: 150 },
-                lockedFeedback: "LOCKED: 自律性が150以上必要。便利さの誘惑に抗うには自律性が必要です。"
+                lockRequirements: { Autonomy: 170 },
+                lockedFeedback: "LOCKED: 自律性が170以上必要。便利さの誘惑に抗うには自律性が必要です。"
             }
         ],
         adamDialogue: {

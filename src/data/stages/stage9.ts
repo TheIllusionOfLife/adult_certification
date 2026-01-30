@@ -18,7 +18,7 @@ export const stage9Questions: Question[] = [
             },
             {
                 text: "災害用伝言ダイヤル（171）や災害用伝言板を使う。事前に家族と集合場所を決めておく。",
-                effect: { CS: 20, Asset: 10, Autonomy: 10 },
+                effect: { CS: 20, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。「171」は毎月1日と15日に体験利用可能。家族との事前の取り決め（集合場所、連絡方法）が、混乱時の命綱になります。",
                 lockRequirements: null
@@ -64,7 +64,7 @@ export const stage9Questions: Question[] = [
         choices: [
             {
                 text: "ハザードマップで浸水・土砂災害リスクを確認し、リスクと利便性を天秤にかけて判断する。",
-                effect: { CS: 20, Asset: 10, Autonomy: 5 },
+                effect: { CS: 20, Asset: 0, Autonomy: 5 },
                 verdict: "APPROVED",
                 feedback: "正解です。ハザードマップは自治体のウェブサイトで無料閲覧可能。リスクを知った上で住むのと、知らずに住むのでは、備えの質が違います。",
                 lockRequirements: null
@@ -125,7 +125,7 @@ export const stage9Questions: Question[] = [
             },
             {
                 text: "公式情報(自治体HP、NHK)を確認してから判断する。未確認情報は拡散しない。",
-                effect: { CS: 20, Asset: 10, Autonomy: 5 },
+                effect: { CS: 20, Asset: 0, Autonomy: 5 },
                 verdict: "APPROVED",
                 feedback: "正解。災害時の情報は「出典を確認」が鉄則。自治体の公式SNSアカウント、NHKのニュース速報、気象庁のサイトが信頼できる情報源。「速さ」より「正確さ」が人命を守る。",
                 lockRequirements: null
@@ -234,8 +234,8 @@ export const stage9Questions: Question[] = [
                 effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解。警戒レベル: 1(注意)→2(避難行動確認)→3(高齢者等避難)→4(避難指示=全員避難)→5(緊急安全確保=手遅れ)。レベル4が出る前に行動。非常持出袋、モバイルバッテリー、現金、保険証コピーを持って避難。",
-                lockRequirements: { Asset: 130 },
-                lockedFeedback: "LOCKED: 資産が130以上必要。早期避難の準備には資産が必要です。"
+                lockRequirements: { Autonomy: 180 },
+                lockedFeedback: "LOCKED: 自律性が180以上必要。指示を待たず自ら判断して行動する力が不足しています。"
             }
         ]
     },

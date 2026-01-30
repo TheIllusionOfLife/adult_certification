@@ -234,8 +234,8 @@ export const stage5Questions: Question[] = [
                 effect: { CS: 0, Asset: 30, Autonomy: 0 },
                 verdict: "NEUTRAL",
                 feedback: "合理的な選択です。生活保護は「税金で生きる」のではなく「再起するための一時的支援」。制度を使って立て直すことは、自立への第一歩です。",
-                lockRequirements: { Autonomy: 150 },
-                lockedFeedback: "LOCKED: 自律性が150以上必要。「恥ずかしい」という感情に支配され、権利を行使する自律性がありません。"
+                lockRequirements: { Autonomy: 180 },
+                lockedFeedback: "LOCKED: 自律性が180以上必要。「恥ずかしい」という感情に支配され、権利を行使する自律性がありません。"
             }
         ],
         adamDialogue: {
