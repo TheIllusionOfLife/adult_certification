@@ -17,7 +17,7 @@ const createTestQuestion = (overrides: Partial<Question> = {}): Question => ({
         },
         {
             text: 'Choice B',
-            effect: { CS: -10, Asset: -5000, Autonomy: -5 },
+            effect: { CS: -10, Asset: -20, Autonomy: -5 },
             feedback: 'Bad choice',
             verdict: 'WARNING',
         },
@@ -33,17 +33,17 @@ const createLockedQuestion = (): Question => ({
     choices: [
         {
             text: 'Requires high CS',
-            effect: { CS: 20, Asset: 10000, Autonomy: 10 },
+            effect: { CS: 20, Asset: 10, Autonomy: 10 },
             feedback: 'Premium choice',
             verdict: 'APPROVED',
             lockRequirements: { CS: 80 },
         },
         {
             text: 'Requires high Asset',
-            effect: { CS: 5, Asset: -5000, Autonomy: 5 },
+            effect: { CS: 5, Asset: -5, Autonomy: 5 },
             feedback: 'Standard choice',
             verdict: 'NEUTRAL',
-            lockRequirements: { Asset: 500000 },
+            lockRequirements: { Asset: 200 },
         },
         {
             text: 'No requirements',
@@ -69,9 +69,9 @@ describe('GameEngine', () => {
             const questions = createTestQuestions();
             const engine = new GameEngine(questions, 1);
 
-            expect(engine.state.CS).toBe(50);
-            expect(engine.state.Asset).toBe(200000);
-            expect(engine.state.Autonomy).toBe(50);
+            expect(engine.state.CS).toBe(100);
+            expect(engine.state.Asset).toBe(100);
+            expect(engine.state.Autonomy).toBe(100);
             expect(engine.state.currentQuestionIndex).toBe(0);
             expect(engine.state.currentStage).toBe(1);
             expect(engine.state.isGameOver).toBe(false);
@@ -79,12 +79,12 @@ describe('GameEngine', () => {
             expect(engine.state.keySkills).toEqual([]);
         });
 
-        it('loads correct initial params for different stages', () => {
+        it('uses default params for all stages', () => {
             const questions = createTestQuestions();
             const engine2 = new GameEngine(questions, 2);
 
-            // Stage 2 has different initial Asset
-            expect(engine2.state.Asset).toBe(100000);
+            // All stages share default initial params
+            expect(engine2.state.Asset).toBe(100);
         });
     });
 
@@ -155,12 +155,12 @@ describe('GameEngine', () => {
         });
 
         it('returns true when Asset is below requirement', () => {
-            engine.state.Asset = 100000;
+            engine.state.Asset = 100;
             const choice: Choice = {
                 text: 'High Asset required',
                 effect: { CS: 0, Asset: 0, Autonomy: 0 },
                 feedback: 'test',
-                lockRequirements: { Asset: 500000 },
+                lockRequirements: { Asset: 200 },
             };
             expect(engine.isChoiceLocked(choice)).toBe(true);
         });
@@ -178,12 +178,12 @@ describe('GameEngine', () => {
 
         it('checks multiple requirements', () => {
             engine.state.CS = 80;
-            engine.state.Asset = 100000;
+            engine.state.Asset = 100;
             const choice: Choice = {
                 text: 'Multiple requirements',
                 effect: { CS: 0, Asset: 0, Autonomy: 0 },
                 feedback: 'test',
-                lockRequirements: { CS: 80, Asset: 500000 },
+                lockRequirements: { CS: 80, Asset: 200 },
             };
             // Asset fails even though CS passes
             expect(engine.isChoiceLocked(choice)).toBe(true);
@@ -216,12 +216,12 @@ describe('GameEngine', () => {
             const initialAsset = engine.state.Asset;
 
             const question = questions[0];
-            const choice = question.choices[1]; // -10 CS, -5000 Asset, -5 Autonomy
+            const choice = question.choices[1]; // -10 CS, -20 Asset, -5 Autonomy
 
             engine.processChoice(choice, question, 1);
 
             expect(engine.state.CS).toBe(initialCS - 10);
-            expect(engine.state.Asset).toBe(initialAsset - 5000);
+            expect(engine.state.Asset).toBe(initialAsset - 20);
         });
 
         it('tracks choice history', () => {
@@ -255,12 +255,12 @@ describe('GameEngine', () => {
         it('triggers game over when Asset reaches 0', () => {
             const questions = createTestQuestions();
             const engine = new GameEngine(questions, 1);
-            engine.state.Asset = 1000;
+            engine.state.Asset = 10;
 
             const question = questions[0];
             const choice: Choice = {
                 text: 'Bankrupt',
-                effect: { CS: 0, Asset: -5000, Autonomy: 0 },
+                effect: { CS: 0, Asset: -50, Autonomy: 0 },
                 feedback: 'Bankrupt',
             };
 
@@ -303,10 +303,10 @@ describe('GameEngine', () => {
     });
 
     describe('calculateEnding', () => {
-        it('returns S rank for CS >= 80', () => {
+        it('returns S rank for CS >= 200', () => {
             const questions = createTestQuestions();
             const engine = new GameEngine(questions, 1);
-            engine.state.CS = 85;
+            engine.state.CS = 205;
 
             const ending = engine.calculateEnding();
 
@@ -314,10 +314,10 @@ describe('GameEngine', () => {
             expect(ending.title).toContain('完全適合者');
         });
 
-        it('returns A rank for CS >= 50 and < 80', () => {
+        it('returns A rank for CS >= 150 and < 200', () => {
             const questions = createTestQuestions();
             const engine = new GameEngine(questions, 1);
-            engine.state.CS = 60;
+            engine.state.CS = 160;
 
             const ending = engine.calculateEnding();
 
@@ -325,10 +325,10 @@ describe('GameEngine', () => {
             expect(ending.title).toContain('上級適合者');
         });
 
-        it('returns B rank for CS >= 20 and < 50', () => {
+        it('returns B rank for CS >= 100 and < 150', () => {
             const questions = createTestQuestions();
             const engine = new GameEngine(questions, 1);
-            engine.state.CS = 35;
+            engine.state.CS = 120;
 
             const ending = engine.calculateEnding();
 
@@ -336,10 +336,10 @@ describe('GameEngine', () => {
             expect(ending.title).toContain('一般適合者');
         });
 
-        it('returns C rank for CS >= 1 and < 20', () => {
+        it('returns C rank for CS >= 1 and < 100', () => {
             const questions = createTestQuestions();
             const engine = new GameEngine(questions, 1);
-            engine.state.CS = 10;
+            engine.state.CS = 50;
 
             const ending = engine.calculateEnding();
 
@@ -350,8 +350,8 @@ describe('GameEngine', () => {
         it('uses stage-specific thresholds', () => {
             const questions = createTestQuestions();
             const engine = new GameEngine(questions, 1);
-            // Stage 1 thresholds: S: 80, A: 50, B: 20
-            engine.state.CS = 80;
+            // Thresholds: S: 200, A: 150, B: 100
+            engine.state.CS = 205;
 
             const ending = engine.calculateEnding();
             expect(ending.rank).toBe('S');

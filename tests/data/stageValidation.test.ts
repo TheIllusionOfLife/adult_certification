@@ -64,10 +64,10 @@ describe('Stage Metadata Validation', () => {
             });
         });
 
-        it('Stage 1 has higher initial Asset (beginner-friendly)', () => {
+        it('all stages share default initial params', () => {
             const stage1 = getStageMetadata(1);
             const stage2 = getStageMetadata(2);
-            expect(stage1?.initialParams.Asset).toBeGreaterThan(stage2?.initialParams.Asset ?? 0);
+            expect(stage1?.initialParams.Asset).toBe(stage2?.initialParams.Asset);
         });
     });
 
@@ -199,6 +199,7 @@ describe('Stage Metadata Validation', () => {
                 'admin_cost_reduction',
                 'autonomy_small_damage_reduction',
                 'all_damage_reduction', // Stage 10 AWAKENING effect
+                'all_gain_amplification', // Stage 10 AWAKENING key skill
             ];
 
             STAGE_METADATA.forEach((stage) => {

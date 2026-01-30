@@ -15,23 +15,23 @@ describe('Stage 10 Questions', () => {
         }
     });
 
-    it('should have Q7 choice A with Autonomy lock requirement of 60', () => {
+    it('should have Q7 choice A with Autonomy lock requirement of 150', () => {
         const q7 = stage10Questions.find(q => q.id === 's10_q07');
         expect(q7).toBeDefined();
 
         // Choice A (index 0) is now locked (A↔B swapped)
         const choiceA = q7!.choices[0];
         expect(choiceA.lockRequirements).toBeDefined();
-        expect(choiceA.lockRequirements?.Autonomy).toBe(60);
+        expect(choiceA.lockRequirements?.Autonomy).toBe(150);
     });
 
-    it('should have Q9 choice B with Autonomy lock requirement of 100', () => {
+    it('should have Q9 choice B with Asset lock requirement of 180', () => {
         const q9 = stage10Questions.find(q => q.id === 's10_q09');
         expect(q9).toBeDefined();
 
         const choiceB = q9!.choices[1];
         expect(choiceB.lockRequirements).toBeDefined();
-        expect(choiceB.lockRequirements?.Autonomy).toBe(100);
+        expect(choiceB.lockRequirements?.Asset).toBe(180);
     });
 
     it('should have Q5 with WARNING and APPROVED verdicts', () => {
@@ -132,7 +132,7 @@ describe('Stage 10 Questions', () => {
         expect(q7!.choices[0].lockedFeedback).toContain('自律性');
 
         expect(q9!.choices[1].lockedFeedback).toBeDefined();
-        expect(q9!.choices[1].lockedFeedback).toContain('自律性');
+        expect(q9!.choices[1].lockedFeedback).toContain('資産');
     });
 
     it('all questions should have imagePath', () => {

@@ -81,13 +81,14 @@ async function completeStage10(page: Page, collectAWAKENING = false): Promise<vo
         await page.waitForSelector('#choices-grid button.choice-btn', { state: 'visible', timeout: 5000 });
 
         // Strategy for AWAKENING:
-        // - Q1: Choose B (Autonomy +10, starts at 50, becomes 60)
-        // - Q2: Choose B (Autonomy +10, becomes 70)
-        // - Q3: Choose B (Autonomy +10, becomes 80)
-        // - Q4: Choose B (Autonomy +10, becomes 90)
-        // - Q5: Either choice (meta question)
-        // - Q6: Choose B (Autonomy +15, becomes ~100+)
-        // - Q7: Choose B (requires Autonomy >= 60, unlocks AWAKENING pathway)
+        // - Starts at Autonomy=100
+        // - Q1: Choose B (Autonomy +10, becomes 110)
+        // - Q2: Choose B (Autonomy +10, becomes 120)
+        // - Q3: Choose B (Autonomy +10, becomes 130)
+        // - Q4: Choose B (Autonomy +10, becomes 140)
+        // - Q5: Choose B (Autonomy +20, becomes 160)
+        // - Q6: Choose B (Autonomy +10, becomes 170)
+        // - Q7: Choose A (requires Autonomy >= 150, unlocks AWAKENING pathway)
         // After Q7, skill offer 2 appears with AWAKENING option
 
         // Get available choice buttons
