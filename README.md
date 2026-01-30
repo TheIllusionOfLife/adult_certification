@@ -2,7 +2,7 @@
 
 > "School didn't teach you this, but ignorance will kill you."
 
-**License to Adult** is a satirical dystopian adventure game where you are judged by **A.D.A.M.** (Autonomous Decision & Assessment Module). Survive 10 stages of "adult literacy" tests covering finance, labor laws, taxes, and social navigation—or be recycled as a biological processor.
+**License to Adult** is a satirical dystopian adventure game where you are judged by **A.D.A.M.** (Autonomous Decision & Assessment Module). Survive 10 stages of "adult literacy" tests covering finance, labor laws, taxes, and social navigation...or be recycled as a biological processor.
 
 ## 🎮 Game Concepts
 
@@ -28,7 +28,6 @@ Detailed documentation is available in the `docs/` directory:
 ### Overview
 -   [**Product Overview**](./docs/PRODUCT.md): Purpose, target audience, and goals
 -   [**Architecture**](./docs/ARCHITECTURE.md): System design and tech stack
--   [**Roadmap**](./docs/ROADMAP.md): Future development plans
 
 ### Design Guides
 -   [**Question Design**](./docs/QUESTION_DESIGN_GUIDE.md): Question types, locks, parameter effects
@@ -83,14 +82,6 @@ bun run build
 ```
 
 The output will be in the `dist/` directory.
-
-## 🎨 Art Style
-
-**Dark Cartoon (Rubber Hose)**: Inspired by 1930s animation and modern dystopian satires like *Cuphead* or *Fallout*. High contrast, ink-like aesthetics, and menacingly cheerful characters.
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📄 License
 

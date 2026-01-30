@@ -147,6 +147,12 @@ This teaches: "Society doesn't always reward doing the right thing. Autonomy has
 
 ---
 
+## Effect Magnitude
+
+Effects generally use the discrete ±10/±20/±30/±40/±50 scale, but values outside this grid (e.g., ±5, ±15) are permitted when balance tuning requires finer granularity — particularly for Autonomy gains in Q1-Q6 of later stages where precise totals control key-skill gating.
+
+---
+
 ## Balance Guidelines
 
 ### Asset Balance (Starting: 100)

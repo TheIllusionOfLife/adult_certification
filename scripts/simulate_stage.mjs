@@ -434,58 +434,6 @@ function simulateStage({
     return available;
   }
 
-  function shouldCheckAsDilemma(qIndex, q) {
-    const t = questionTypeById.get(q.id);
-    if (t) return t === "dilemma";
-    // Default stage template: Q5 and Q9.
-    return qIndex === 4 || qIndex === 8;
-  }
-
-  function evaluateDilemmaWarnings() {
-    const warnings = [];
-
-    function hasPosNeg(effect) {
-      const vals = [effect.CS, effect.Asset, effect.Autonomy];
-      const hasPos = vals.some((v) => v > 0);
-      const hasNeg = vals.some((v) => v < 0);
-      return { hasPos, hasNeg };
-    }
-
-    function dominates(a, b) {
-      const geAll = a.CS >= b.CS && a.Asset >= b.Asset && a.Autonomy >= b.Autonomy;
-      const gtAny = a.CS > b.CS || a.Asset > b.Asset || a.Autonomy > b.Autonomy;
-      return geAll && gtAny;
-    }
-
-    questions.forEach((q, qIndex) => {
-      if (!shouldCheckAsDilemma(qIndex, q)) return;
-      if (!Array.isArray(q.choices) || q.choices.length !== 2) return;
-
-      const a = q.choices[0];
-      const b = q.choices[1];
-      const aPN = hasPosNeg(a.effect);
-      const bPN = hasPosNeg(b.effect);
-
-      if (!(aPN.hasPos && aPN.hasNeg)) {
-        warnings.push(`${q.id}: Choice A lacks trade-off (needs both + and - effects).`);
-      }
-      if (!(bPN.hasPos && bPN.hasNeg)) {
-        warnings.push(`${q.id}: Choice B lacks trade-off (needs both + and - effects).`);
-      }
-      if (dominates(a.effect, b.effect) || dominates(b.effect, a.effect)) {
-        warnings.push(`${q.id}: One choice dominates the other (not a true dilemma).`);
-      }
-
-      const hasCorrectWord =
-        (typeof a.feedback === "string" && a.feedback.includes("正解")) ||
-        (typeof b.feedback === "string" && b.feedback.includes("正解"));
-      if (hasCorrectWord) {
-        warnings.push(`${q.id}: Dilemma feedback contains "正解" (avoid correct-answer framing).`);
-      }
-    });
-
-    return warnings;
-  }
 
   function loadoutKey(selectedSkillIds) {
     // Offer 1 then Offer 2. Keep stable string even if key skill is unavailable in some runs.
@@ -867,7 +815,6 @@ function simulateStage({
     }))
     .sort((a, b) => b.clearRate - a.clearRate);
 
-  const dilemmaWarnings = evaluateDilemmaWarnings();
 
   let coverageSummary = null;
   if (stats.coverage) {
@@ -909,7 +856,6 @@ function simulateStage({
     intents,
     clearDistributions,
     loadouts,
-    dilemmaWarnings,
     coverage: coverageSummary,
   };
 }
@@ -1016,11 +962,6 @@ function printReport(report) {
     console.log("");
   }
 
-  if (report.dilemmaWarnings && report.dilemmaWarnings.length > 0) {
-    console.log("Dilemma warnings");
-    for (const w of report.dilemmaWarnings) console.log(`- ${w}`);
-    console.log("");
-  }
 
   if (report.coverage) {
     console.log("Coverage (meta)");

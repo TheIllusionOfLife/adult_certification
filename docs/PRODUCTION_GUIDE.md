@@ -1,6 +1,6 @@
 # Production Guide: Stages 2-10
 
-**Version**: 2.0 | **Date**: 2026-01-26
+**Version**: 3.0 | **Date**: 2026-01-31
 
 ---
 
@@ -14,6 +14,7 @@
 ### References
 - **Stage themes & key skills**: See `SKILL_DESIGN_GUIDE.md`
 - **Question flow & lock design**: See `QUESTION_DESIGN_GUIDE.md`
+- **Parameter philosophy & balance**: See `PARAMETER_PHILOSOPHY.md`
 
 ---
 
@@ -50,15 +51,13 @@ src/assets/s{N}_q*.png           # 5-10 images
 
 ### Phase 3: Question Writing
 
-See **QUESTION_DESIGN_GUIDE.md** for detailed templates.
+See **QUESTION_DESIGN_GUIDE.md** for templates, effect magnitudes, and verdict rules.
 
 **Key Principles:**
-1. Always 2 choices (except Stage 10 Q10)
+1. Always 2 choices per question
 2. At least one choice always available (lock safety)
 3. Feedback explains WHY consequences occurred
 4. A.D.A.M. dialogue uses 丁寧語 (です/ます)
-
-**Distribution:** 7 knowledge, 2 dilemma, 1 philosophy
 
 ---
 
@@ -82,14 +81,15 @@ See **IMAGE_GENERATION_WORKFLOW.md** for details.
 
 #### Simulation (MANDATORY)
 ```bash
-node scripts/simulate_stage.mjs --stage {N}
+bun scripts/simulate_stage.mjs --stage {N}
 ```
 
 Check:
 - [ ] All skills trigger at least once
-- [ ] No path leads to parameter ≤ 0
-- [ ] S-rank path exists (CS ≥ 80)
+- [ ] Worst path survives (no parameter hits 0)
+- [ ] S-rank path exists (CS ≥ 200)
 - [ ] Locked choices have alternatives
+- [ ] Lock availability is 40-80% (not 0%, not 100%)
 
 #### Manual Testing
 - [ ] Build succeeds (`bun run build`)
@@ -109,15 +109,14 @@ After technical testing, review as a game designer.
 - [ ] At least one question where assertiveness has costs
 - [ ] Variety in emotional tones
 
-#### Dilemma Authenticity (Q5, Q9)
-- [ ] Both choices have pros AND cons
-- [ ] Neither feedback says "正解です"
-- [ ] Trade-off is clear (X vs Y, not good vs bad)
-
 #### Scenario Quality
 - [ ] Text reads as scenario with verb, not topic summary
 - [ ] Stakes are clear
 - [ ] Choices are specific actions, not vague attitudes
+
+#### Choice Position Balance
+- [ ] Correct answers (APPROVED) not heavily skewed to A or B
+- [ ] Run simulation `prefer_A_choice` / `prefer_B_choice` to verify no exploitable bias
 
 ---
 
@@ -125,7 +124,7 @@ After technical testing, review as a game designer.
 
 ### Structure
 - [ ] 10 questions, 4 skills (3 normal + 1 key)
-- [ ] Locks per QUESTION_DESIGN_GUIDE.md (1 Asset + 1 Autonomy/CS, availability 40-80%)
+- [ ] Locks per QUESTION_DESIGN_GUIDE.md
 - [ ] At least one choice always available per question
 
 ### Safety
@@ -136,14 +135,12 @@ After technical testing, review as a game designer.
 **Red flags:** "Transfer emails to personal account", "Record secretly", "Sue immediately"
 
 ### Parameters
-- [ ] CS range: -30 to +40 per choice
-- [ ] Asset range: -50k to +50k per choice
-- [ ] Autonomy range: -30 to +20 per choice
-- [ ] Best path: 50 → 80+ CS (S rank)
+- [ ] See PARAMETER_PHILOSOPHY.md for balance targets
+- [ ] Best path: CS 200+ (S rank)
 - [ ] Worst path: still completable (no parameter hits 0)
 
 ### Skills
-- [ ] Run `node scripts/simulate_stage.mjs --stage {N}` to verify all skills trigger
+- [ ] Run `bun scripts/simulate_stage.mjs --stage {N}` to verify all skills trigger
 - [ ] Effects match actual damage types in questions
 
 ---
@@ -153,19 +150,20 @@ After technical testing, review as a game designer.
 | Mistake | Fix |
 |---------|-----|
 | Both choices locked | One choice must have `lockRequirements: null` |
-| Parameter imbalance | Best path: +30 CS total, worst path: -30 CS but survive |
 | Skill never triggers | Match skill category/type to actual question damage |
-| False dilemma | Both choices must have trade-offs, not one obviously better |
 | A.D.A.M. uses casual form | Always use です/ます |
 | Forgot lockedFeedback | Provide clear reason for lock |
 | Skill ID collision | Use stage number: `s{N}_normal_{XX}` |
+| Correct answers all on same position | Swap A↔B to balance distribution |
 
 ---
 
 ## Resources
 
-- **QUESTION_DESIGN_GUIDE.md** - Question templates and writing
-- **SKILL_DESIGN_GUIDE.md** - Skill balancing
+- **QUESTION_DESIGN_GUIDE.md** - Question templates, effects, locks, and writing
+- **SKILL_DESIGN_GUIDE.md** - Skill balancing and validation
+- **PARAMETER_PHILOSOPHY.md** - Parameter design principles and balance targets
 - **ADAM_STYLE_GUIDE.md** - A.D.A.M. dialogue
 - **IMAGE_GENERATION_WORKFLOW.md** - Image creation
 - **scripts/simulate_stage.mjs** - Stage simulation tool
+- **scripts/compare_stages.mjs** - Cross-stage comparison

@@ -25,7 +25,7 @@ describe('Stage 10 Questions', () => {
         expect(choiceA.lockRequirements?.Autonomy).toBe(200);
     });
 
-    it('should have Q9 choice B with Autonomy lock requirement of 150', () => {
+    it('should have Q9 choice B with Autonomy lock requirement of 220', () => {
         const q9 = stage10Questions.find(q => q.id === 's10_q09');
         expect(q9).toBeDefined();
 
