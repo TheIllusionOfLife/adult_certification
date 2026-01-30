@@ -126,6 +126,13 @@
 .skill-btn:active {
     transform: translateY(0);
     box-shadow: var(--shadow-small) var(--shadow-small) 0 var(--ink-black);
+    transition: transform 0.05s ease-out, box-shadow 0.05s ease-out;
+}
+
+/* Enable :active feedback on touch devices */
+.skill-btn {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .skill-letter-circle {
@@ -306,6 +313,19 @@
     cursor: pointer;
     box-shadow: var(--shadow-medium) var(--shadow-medium) 0 black;
     color: var(--ink-black);
+    transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.btn-proceed:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 10px 10px 0 black;
+}
+
+.btn-proceed:active {
+    transform: translate(3px, 3px);
+    box-shadow: var(--shadow-small) var(--shadow-small) 0 black;
 }
 
 /* A.D.A.M. Recommendation Section */
@@ -551,6 +571,13 @@
 .diff-btn:active {
     transform: translate(4px, 4px);
     box-shadow: var(--shadow-small) var(--shadow-small) 0 #000;
+    transition: transform 0.05s ease-out, box-shadow 0.05s ease-out;
+}
+
+/* Enable :active feedback on touch devices */
+.diff-btn {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .diff-info {
