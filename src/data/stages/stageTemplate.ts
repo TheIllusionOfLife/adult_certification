@@ -71,12 +71,17 @@ export function createNormalSkill(
     desc: string,
     effect: Skill['effect'],
     isRecommended: boolean = false,
-    recommendComment?: string
+    recommendComment?: string,
+    nameEN?: string,
+    descEN?: string,
+    recommendCommentEN?: string
 ): Skill {
     const skill: Skill = {
         id,
         name,
+        nameEN,
         desc,
+        descEN,
         effect,
         category: 'normal',
     };
@@ -84,6 +89,9 @@ export function createNormalSkill(
         skill.isRecommended = true;
         if (recommendComment) {
             skill.recommendComment = recommendComment;
+        }
+        if (recommendCommentEN) {
+            skill.recommendCommentEN = recommendCommentEN;
         }
     }
     return skill;
@@ -100,18 +108,22 @@ export function createKeySkill(
     effect: Skill['effect'],
     acquiredStage: number,
     adamComment: string,
-    keySkillRequirement: { questionId: string; choiceIndex: number }
+    keySkillRequirement: { questionId: string; choiceIndex: number },
+    descEN?: string,
+    adamCommentEN?: string
 ): Skill {
     return {
         id,
         name,
         nameEN,
         desc,
+        descEN,
         effect,
         category: 'key',
         isCollectible: true,
         acquiredStage,
         adamComment,
+        adamCommentEN,
         keySkillRequirement,
     };
 }

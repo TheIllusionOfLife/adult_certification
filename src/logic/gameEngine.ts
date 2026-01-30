@@ -4,7 +4,6 @@ import { applySkillEffects, getSkillActivations, type SkillActivation } from '..
 import { getADAMCommentForEffect } from '../data/adamDialogue';
 import { CONFIG } from '../config';
 import { GlobalProgressStorage } from '../storage/GlobalProgressStorage';
-import { t } from '../i18n/lang';
 import * as UI from '../i18n/uiStrings';
 
 export class GameEngine {
