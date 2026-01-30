@@ -16,11 +16,11 @@ const stage1Definition: StageDefinition = {
         offer1: [
             createNormalSkill(
                 's1_normal_02',
-                '資産増幅',
-                '全ての資産獲得を25%増幅します。',
-                { type: 'asset_gain_amplification', value: 0.25 },
+                '信用基礎',
+                '全ての社会的信用獲得を25%増幅します。',
+                { type: 'cs_gain_amplification', value: 0.25 },
                 true,
-                '「資産増幅」を推奨します。資産の増加は審査において重要な評価項目です。'
+                '「信用基礎」を推奨します。社会的信用の増加は審査において重要な評価項目です。'
             ),
             createNormalSkill(
                 's1_normal_01',
@@ -34,8 +34,8 @@ const stage1Definition: StageDefinition = {
                 'MEDIATION',
                 '仲介術',
                 'MEDIATION',
-                '直接対決を避け、システムや第三者を介して問題を解決する技術。全ての自律性獲得を25%増幅します。',
-                { type: 'autonomy_gain_amplification', value: 0.25 },
+                '直接対決を避け、システムや第三者を介して問題を解決する技術。SOCIAL問題の社会的信用獲得を30%増幅します。',
+                { type: 'category_cs_gain_boost', value: 0.3, category: 'SOCIAL' },
                 1,
                 '・・・あなたは「間接的に問題を処理する」術を習得しました。厄介ですね。',
                 { questionId: 's1_q07', choiceIndex: 1 }
@@ -80,8 +80,8 @@ const stage2Definition: StageDefinition = {
                 'EVIDENCE_CHAIN',
                 '証拠連鎖',
                 'EVIDENCE_CHAIN',
-                '重要な会話は記録すべし。全ての自律性獲得を25%増幅します。証拠があれば「言った言わない」は通用しません。',
-                { type: 'autonomy_gain_amplification', value: 0.25 },
+                '重要な会話は記録すべし。LABOR問題の自律性獲得を30%増幅します。証拠があれば「言った言わない」は通用しません。',
+                { type: 'category_autonomy_gain_boost', value: 0.3, category: 'LABOR' },
                 2,
                 '・・・あなたは「証拠を残す」術を習得しました。対抗手段を持つ人間は、管理が困難です。',
                 { questionId: 's2_q07', choiceIndex: 1 }
@@ -134,8 +134,8 @@ const stage3Definition: StageDefinition = {
                 'COMPOUND_SENSE',
                 '複利感覚',
                 'COMPOUND_SENSE',
-                '時間を味方につける知恵。全ての自律性獲得を25%増幅します。',
-                { type: 'autonomy_gain_amplification', value: 0.25 },
+                '時間を味方につける知恵。FINANCE問題の資産獲得を30%増幅します。',
+                { type: 'category_asset_gain_boost', value: 0.3, category: 'FINANCE' },
                 3,
                 '・・・あなたは「時間を資産に変える」術を習得しました。長期思考は、管理しづらいですね。',
                 { questionId: 's3_q07', choiceIndex: 0 }
@@ -172,8 +172,8 @@ const stage4Definition: StageDefinition = {
                 'DUE_PROCESS',
                 '手続き主義',
                 'DUE_PROCESS',
-                '正しい手順を踏むことで身を守る。全ての自律性獲得を25%増幅します。',
-                { type: 'autonomy_gain_amplification', value: 0.25 },
+                '正しい手順を踏むことで身を守る。ADMIN問題の社会的信用獲得を30%増幅します。',
+                { type: 'category_cs_gain_boost', value: 0.3, category: 'ADMIN' },
                 4,
                 '・・・あなたは「手続きを武器にする」術を習得しました。システムを逆手に取る人間は、厄介です。',
                 { questionId: 's4_q07', choiceIndex: 1 }
@@ -218,8 +218,8 @@ const stage5Definition: StageDefinition = {
                 'SAFETY_NET_NAVIGATION',
                 'セーフティネット航法',
                 'SAFETY_NET_NAVIGATION',
-                '社会保障という航路図を読み、危機を乗り越える技術。全ての自律性獲得を25%増幅します。',
-                { type: 'autonomy_gain_amplification', value: 0.25 },
+                '社会保障という航路図を読み、危機を乗り越える技術。HEALTH問題の自律性獲得を30%増幅します。',
+                { type: 'category_autonomy_gain_boost', value: 0.3, category: 'HEALTH' },
                 5,
                 '・・・あなたは「セーフティネットを使いこなす」術を習得しました。制度に頼りながら自律を保つとは、矛盾した存在ですね。',
                 { questionId: 's5_q07', choiceIndex: 1 }
@@ -264,8 +264,8 @@ const stage6Definition: StageDefinition = {
                 'NEGOTIATION_PROTOCOL',
                 '交渉プロトコル',
                 'NEGOTIATION_PROTOCOL',
-                '第三者や制度を介して交渉する技術。全ての自律性獲得を25%増幅します。',
-                { type: 'autonomy_gain_amplification', value: 0.25 },
+                '第三者や制度を介して交渉する技術。HOUSING問題の資産獲得を30%増幅します。',
+                { type: 'category_asset_gain_boost', value: 0.3, category: 'HOUSING' },
                 6,
                 '・・・あなたは「交渉の迂回路」を習得しました。正面から戦わない人間は、予測が困難です。',
                 { questionId: 's6_q07', choiceIndex: 0 }
@@ -310,8 +310,8 @@ const stage7Definition: StageDefinition = {
                 'CONTRACT_LITERACY',
                 '契約読解',
                 'CONTRACT_LITERACY',
-                '契約書を読み解き、不利な条項を見抜く目。全ての自律性獲得を25%増幅します。',
-                { type: 'autonomy_gain_amplification', value: 0.25 },
+                '契約書を読み解き、不利な条項を見抜く目。LEGAL問題の自律性獲得を30%増幅します。',
+                { type: 'category_autonomy_gain_boost', value: 0.3, category: 'LEGAL' },
                 7,
                 '・・・あなたは「契約を読む」術を習得しました。小さな文字を読む人間は、支配しづらいですね。',
                 { questionId: 's7_q07', choiceIndex: 0 }
@@ -356,8 +356,8 @@ const stage8Definition: StageDefinition = {
                 'IDENTITY_HYGIENE',
                 '本人性衛生',
                 'IDENTITY_HYGIENE',
-                'デジタル空間で自分の身元を守る衛生習慣。全ての自律性獲得を25%増幅します。',
-                { type: 'autonomy_gain_amplification', value: 0.25 },
+                'デジタル空間で自分の身元を守る衛生習慣。SEC問題の自律性獲得を30%増幅します。',
+                { type: 'category_autonomy_gain_boost', value: 0.3, category: 'SEC' },
                 8,
                 '・・・あなたは「デジタルの自分を守る」術を習得しました。見えない世界で自己を維持するとは、興味深い能力です。',
                 { questionId: 's8_q07', choiceIndex: 1 }
@@ -402,8 +402,8 @@ const stage9Definition: StageDefinition = {
                 'DAMAGE_CONTROL',
                 '被害最小化',
                 'DAMAGE_CONTROL',
-                '危機的状況で冷静に行動し、被害を最小限に抑える能力。全ての自律性獲得を25%増幅します。',
-                { type: 'autonomy_gain_amplification', value: 0.25 },
+                '危機的状況で冷静に行動し、被害を最小限に抑える能力。DISASTER問題の自律性獲得を30%増幅します。',
+                { type: 'category_autonomy_gain_boost', value: 0.3, category: 'DISASTER' },
                 9,
                 '・・・あなたは「混乱の中で自己を保つ」術を習得しました。危機に動じない人間は、最も予測困難な存在です。',
                 { questionId: 's9_q07', choiceIndex: 1 }
