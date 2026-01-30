@@ -194,7 +194,7 @@ export const stage10Questions: Question[] = [
         id: "s10_q08",
         category: "LEGACY",
         text: "新入社員が「確定申告って何ですか？」と聞いてきた。あなたはこれまでの経験で、税金の仕組みを理解している。",
-        imagePrompt: "Scene: Office break room, young employee with confused expression asking question, experienced worker with choice to explain or dismiss, tax guide book visible on table, knowledge transfer imagery. Composition: Generational knowledge gap, teaching moment. Mood: Wisdom sharing opportunity, patience required.",
+        imagePrompt: "Scene: Office break room, young employee with confused expression asking question, matured worker with choice to explain or dismiss, tax guide book visible on table, knowledge transfer imagery. Composition: Generational knowledge gap, teaching moment. Mood: Wisdom sharing opportunity, patience required.",
         imagePath: "s10_q08.png",
         choices: [
             {

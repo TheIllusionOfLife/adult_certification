@@ -17,7 +17,7 @@ export const stage5Questions: Question[] = [
                 lockRequirements: null
             },
             {
-                text: "「高額療養費制度」を使い、自己負担を上限額に抑える。事前に限度額適用認定証を取得。",
+                text: "高額療養費制度を使い、自己負担を上限額に抑える。事前に限度額適用認定証を取得。",
                 effect: { CS: 15, Asset: 30, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。公的制度を知っているだけで数十万円の差。限度額適用認定証があれば、窓口での支払いも上限額で済みます。",
@@ -267,7 +267,7 @@ export const stage5Questions: Question[] = [
             }
         ],
         adamDialogue: {
-            intro: "最終問題です。「知っているか」だけで数十万円の差がつく領域があります。",
+            intro: "最終問題です。知っているだけで数十万円の差がつく領域があります。",
             after: "ステージ5を終了します。審査結果を算出中・・・"
         }
     }
