@@ -62,16 +62,16 @@ const stage2Definition: StageDefinition = {
         offer1: [
             createNormalSkill(
                 's2_normal_02',
-                '給与交渉力',
-                '職場での経済的成果を高め、資産の新規獲得値を30%増幅します。',
+                '対価意識',
+                '自分の労働の価値を正しく見積もる力。資産の新規獲得値を30%増幅します。',
                 { type: 'asset_gain_amplification', value: 0.3 },
                 true,
                 '「給与交渉力」を推奨します。利益を最大化する姿勢は、社会適応の証です。'
             ),
             createNormalSkill(
                 's2_normal_01',
-                '職場自律',
-                '職場での主体的行動が自律性の新規獲得値を20%増幅します。',
+                '退路確保',
+                '追い詰められる前に逃げ道を作る知恵。自律性の新規獲得値を20%増幅します。',
                 { type: 'autonomy_gain_amplification', value: 0.2 }
             ),
         ],
@@ -88,8 +88,8 @@ const stage2Definition: StageDefinition = {
             ),
             createNormalSkill(
                 's2_normal_03',
-                '勤勉評価',
-                '職場での信頼構築が社会的信用の新規獲得値を25%増幅します。',
+                '実績証明',
+                '成果を形に残し、正当に評価される術。社会的信用の新規獲得値を25%増幅します。',
                 { type: 'cs_gain_amplification', value: 0.25 },
                 true,
                 '「勤勉評価」を推奨します。信用の向上は職場での評価に直結します。'
@@ -108,24 +108,24 @@ const stage3Definition: StageDefinition = {
         offer1: [
             createNormalSkill(
                 's3_normal_01',
-                '金融信用',
-                '金融リテラシーが社会的信用の新規獲得値を25%増幅します。',
+                '数字の目',
+                '数字の裏を読み取る直感。社会的信用の新規獲得値を25%増幅します。',
                 { type: 'cs_gain_amplification', value: 0.25 },
                 true,
                 '「金融信用」を推奨します。金融リテラシーは現代社会の必須能力です。'
             ),
             createNormalSkill(
                 's3_normal_02',
-                '財務自律',
-                '経済的な自己判断力が自律性の新規獲得値を20%増幅します。',
+                '自制心',
+                '目先の誘惑に流されない冷静さ。自律性の新規獲得値を20%増幅します。',
                 { type: 'autonomy_gain_amplification', value: 0.2 }
             ),
         ],
         offer2: [
             createNormalSkill(
                 's3_normal_03',
-                '資産運用',
-                '堅実な運用方針が資産の新規獲得値を30%増幅します。',
+                '種銭の器',
+                '小さな元手を育てる器量。資産の新規獲得値を30%増幅します。',
                 { type: 'asset_gain_amplification', value: 0.3 },
                 true,
                 '「資産運用」を推奨します。合法的な資産最大化は賢明な選択です。'
@@ -154,16 +154,16 @@ const stage4Definition: StageDefinition = {
         offer1: [
             createNormalSkill(
                 's4_normal_02',
-                '行政信頼',
-                '行政との円滑な関係が社会的信用の新規獲得値を25%増幅します。',
+                '窓口力',
+                '役所の窓口を味方にする対話力。社会的信用の新規獲得値を25%増幅します。',
                 { type: 'cs_gain_amplification', value: 0.25 },
                 true,
                 '「行政信頼」を推奨します。行政との円滑な関係は、信用向上に不可欠です。'
             ),
             createNormalSkill(
                 's4_normal_01',
-                '申請自律',
-                '手続きを自ら進める力が自律性の新規獲得値を20%増幅します。',
+                '書類の型',
+                '正しい書式で伝える力。自律性の新規獲得値を20%増幅します。',
                 { type: 'autonomy_gain_amplification', value: 0.2 }
             ),
         ],
@@ -180,8 +180,8 @@ const stage4Definition: StageDefinition = {
             ),
             createNormalSkill(
                 's4_normal_03',
-                '節税効果',
-                '適切な行政手続きが資産の新規獲得値を30%増幅します。',
+                '控除の知恵',
+                '払わなくていいものは払わない。資産の新規獲得値を30%増幅します。',
                 { type: 'asset_gain_amplification', value: 0.3 },
                 true,
                 '「節税効果」を推奨します。資産の最大化は社会的安定の基盤です。'
@@ -200,16 +200,16 @@ const stage5Definition: StageDefinition = {
         offer1: [
             createNormalSkill(
                 's5_normal_01',
-                '制度理解',
-                '社会保障制度の知識が社会的信用の新規獲得値を30%増幅します。',
+                '制度の地図',
+                '複雑な制度の全体像を見渡す力。社会的信用の新規獲得値を30%増幅します。',
                 { type: 'cs_gain_amplification', value: 0.3 },
                 true,
                 '「制度理解」を推奨します。制度を知る者は、賢明と評価されます。'
             ),
             createNormalSkill(
                 's5_normal_02',
-                '受給自律',
-                '制度を主体的に活用する力が自律性の新規獲得値を30%増幅します。',
+                '申請の勇気',
+                '「助けてほしい」と言える強さ。自律性の新規獲得値を30%増幅します。',
                 { type: 'autonomy_gain_amplification', value: 0.3 }
             ),
         ],
@@ -226,8 +226,8 @@ const stage5Definition: StageDefinition = {
             ),
             createNormalSkill(
                 's5_normal_03',
-                '保障活用',
-                '社会保障の適切な利用が資産の新規獲得値を30%増幅します。',
+                '公助の盾',
+                '使える制度は使い倒す合理性。資産の新規獲得値を30%増幅します。',
                 { type: 'asset_gain_amplification', value: 0.3 },
                 true,
                 '「保障活用」を推奨します。資産の最大化は生活安定の基盤です。'
@@ -246,16 +246,16 @@ const stage6Definition: StageDefinition = {
         offer1: [
             createNormalSkill(
                 's6_normal_02',
-                '契約防衛',
-                '契約リスクの回避力が資産の新規獲得値を30%増幅します。',
+                '敷金防衛',
+                '退去時に搾取されない備え。資産の新規獲得値を30%増幅します。',
                 { type: 'asset_gain_amplification', value: 0.3 },
                 true,
                 '「契約防衛」を推奨します。契約リスクへの備えは合理的判断です。'
             ),
             createNormalSkill(
                 's6_normal_01',
-                '交渉自律',
-                '対等な立場で交渉する力が自律性の新規獲得値を30%増幅します。',
+                '相見積の眼',
+                '比較する習慣が対等な交渉を生む。自律性の新規獲得値を30%増幅します。',
                 { type: 'autonomy_gain_amplification', value: 0.3 }
             ),
         ],
@@ -272,8 +272,8 @@ const stage6Definition: StageDefinition = {
             ),
             createNormalSkill(
                 's6_normal_03',
-                '入居信用',
-                '住居契約の実績が社会的信用の新規獲得値を30%増幅します。',
+                '住まいの目利き',
+                '物件の良し悪しを見抜く経験値。社会的信用の新規獲得値を30%増幅します。',
                 { type: 'cs_gain_amplification', value: 0.3 },
                 true,
                 '「入居信用」を推奨します。信用向上は契約交渉力の基盤です。'
@@ -292,16 +292,16 @@ const stage7Definition: StageDefinition = {
         offer1: [
             createNormalSkill(
                 's7_normal_01',
-                '法的信用',
-                '法的知識の実践が社会的信用の新規獲得値を30%増幅します。',
+                '条文の盾',
+                '法律を知っているだけで身を守れる。社会的信用の新規獲得値を30%増幅します。',
                 { type: 'cs_gain_amplification', value: 0.3 },
                 true,
                 '「法的信用」を推奨します。権利を知ることは、社会的信用の基盤です。'
             ),
             createNormalSkill(
                 's7_normal_02',
-                '権利主張',
-                '正当な権利を行使する力が自律性の新規獲得値を30%増幅します。',
+                '異議申立',
+                '「おかしい」と声を上げる覚悟。自律性の新規獲得値を30%増幅します。',
                 { type: 'autonomy_gain_amplification', value: 0.3 }
             ),
         ],
@@ -318,8 +318,8 @@ const stage7Definition: StageDefinition = {
             ),
             createNormalSkill(
                 's7_normal_03',
-                '損害回避',
-                '法的リスクの回避が資産の新規獲得値を30%増幅します。',
+                '示談の勘',
+                '争いの落とし所を見極める感覚。資産の新規獲得値を30%増幅します。',
                 { type: 'asset_gain_amplification', value: 0.3 },
                 true,
                 '「損害回避」を推奨します。資産保全は法的知識の実践です。'
@@ -338,16 +338,16 @@ const stage8Definition: StageDefinition = {
         offer1: [
             createNormalSkill(
                 's8_normal_01',
-                '電子信用',
-                'デジタル空間での信頼構築が社会的信用の新規獲得値を25%増幅します。',
+                'デジタル鎧',
+                'ネット上の自分を守る防御層。社会的信用の新規獲得値を25%増幅します。',
                 { type: 'cs_gain_amplification', value: 0.25 },
                 true,
                 '「電子信用」を推奨します。デジタル時代の基本的信用構築です。'
             ),
             createNormalSkill(
                 's8_normal_02',
-                '情報自衛',
-                '個人情報を守る習慣が自律性の新規獲得値を30%増幅します。',
+                '痕跡消去',
+                '不要な個人情報を残さない習慣。自律性の新規獲得値を30%増幅します。',
                 { type: 'autonomy_gain_amplification', value: 0.3 }
             ),
         ],
@@ -364,8 +364,8 @@ const stage8Definition: StageDefinition = {
             ),
             createNormalSkill(
                 's8_normal_03',
-                '詐欺耐性',
-                'オンライン詐欺への耐性が資産の新規獲得値を30%増幅します。',
+                '見破りの目',
+                'うまい話の裏を見抜く嗅覚。資産の新規獲得値を30%増幅します。',
                 { type: 'asset_gain_amplification', value: 0.3 },
                 true,
                 '「詐欺耐性」を推奨します。デジタル資産の保全は現代の必須能力です。'
@@ -384,16 +384,16 @@ const stage9Definition: StageDefinition = {
         offer1: [
             createNormalSkill(
                 's9_normal_01',
-                '備蓄管理',
-                '危機への備えが資産の新規獲得値を30%増幅します。',
+                '72時間の備え',
+                '最初の3日を生き延びる準備力。資産の新規獲得値を30%増幅します。',
                 { type: 'asset_gain_amplification', value: 0.3 },
                 true,
                 '「備蓄管理」を推奨します。備えは資産保全の基本です。'
             ),
             createNormalSkill(
                 's9_normal_02',
-                '危機判断',
-                '非常時の冷静な判断力が自律性の新規獲得値を30%増幅します。',
+                '初動対応',
+                '最初の一手が生死を分ける。自律性の新規獲得値を30%増幅します。',
                 { type: 'autonomy_gain_amplification', value: 0.3 }
             ),
         ],
@@ -410,8 +410,8 @@ const stage9Definition: StageDefinition = {
             ),
             createNormalSkill(
                 's9_normal_03',
-                '復興信用',
-                '危機対応の実績が社会的信用の新規獲得値を30%増幅します。',
+                '再建の礎',
+                '壊れた後に立て直す力こそ本物の信用。社会的信用の新規獲得値を30%増幅します。',
                 { type: 'cs_gain_amplification', value: 0.3 },
                 true,
                 '「復興信用」を推奨します。危機対応力は社会的信用に直結します。'
@@ -430,16 +430,16 @@ const stage10Definition: StageDefinition = {
         offer1: [
             createNormalSkill(
                 's10_normal_01',
-                '総合信用',
-                '総合的な判断力が社会的信用の新規獲得値を25%増幅します。',
+                '俯瞰の目',
+                '全体を見渡し、本質を掴む視座。社会的信用の新規獲得値を25%増幅します。',
                 { type: 'cs_gain_amplification', value: 0.25 },
                 true,
                 '「総合信用」を推奨します。総合的な判断力は、最終審査において重要です。'
             ),
             createNormalSkill(
                 's10_normal_02',
-                '統合自律',
-                '全領域を統合する視座が自律性の新規獲得値を25%増幅します。',
+                '不惑の意志',
+                '迷いを超えた先にある静かな確信。自律性の新規獲得値を25%増幅します。',
                 { type: 'autonomy_gain_amplification', value: 0.25 }
             ),
         ],
@@ -456,8 +456,8 @@ const stage10Definition: StageDefinition = {
             ),
             createNormalSkill(
                 's10_normal_03',
-                '継承信用',
-                '知識の継承力が社会的信用の新規獲得値を30%増幅します。',
+                '次世代への鍵',
+                '学んだことを誰かに渡せる器。社会的信用の新規獲得値を30%増幅します。',
                 { type: 'cs_gain_amplification', value: 0.3 },
                 true,
                 '「継承信用」を推奨します。知識の継承は社会的評価を高めます。'

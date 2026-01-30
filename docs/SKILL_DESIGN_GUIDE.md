@@ -152,15 +152,15 @@ effect: { type: "category_cs_gain_amplification", category: "LABOR", value: 0.25
 
 Already used (all names unique per stage theme):
 - Stage 1: 第一印象, 自立心, 社交術, MEDIATION
-- Stage 2: 給与交渉力, 職場自律, 勤勉評価, EVIDENCE_CHAIN
-- Stage 3: 金融信用, 財務自律, 資産運用, COMPOUND_SENSE
-- Stage 4: 行政信頼, 申請自律, 節税効果, DUE_PROCESS
-- Stage 5: 制度理解, 受給自律, 保障活用, SAFETY_NET_NAVIGATION
-- Stage 6: 契約防衛, 交渉自律, 入居信用, NEGOTIATION_PROTOCOL
-- Stage 7: 法的信用, 権利主張, 損害回避, CONTRACT_LITERACY
-- Stage 8: 電子信用, 情報自衛, 詐欺耐性, IDENTITY_HYGIENE
-- Stage 9: 備蓄管理, 危機判断, 復興信用, DAMAGE_CONTROL
-- Stage 10: 総合信用, 統合自律, 継承信用, AWAKENING
+- Stage 2: 対価意識, 退路確保, 実績証明, EVIDENCE_CHAIN
+- Stage 3: 数字の目, 自制心, 種銭の器, COMPOUND_SENSE
+- Stage 4: 窓口力, 書類の型, 控除の知恵, DUE_PROCESS
+- Stage 5: 制度の地図, 申請の勇気, 公助の盾, SAFETY_NET_NAVIGATION
+- Stage 6: 敷金防衛, 相見積の眼, 住まいの目利き, NEGOTIATION_PROTOCOL
+- Stage 7: 条文の盾, 異議申立, 示談の勘, CONTRACT_LITERACY
+- Stage 8: デジタル鎧, 痕跡消去, 見破りの目, IDENTITY_HYGIENE
+- Stage 9: 72時間の備え, 初動対応, 再建の礎, DAMAGE_CONTROL
+- Stage 10: 俯瞰の目, 不惑の意志, 次世代への鍵, AWAKENING
 
 ---
 
