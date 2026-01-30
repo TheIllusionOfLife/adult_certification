@@ -10,17 +10,17 @@ export const stage8Questions: Question[] = [
         imagePath: "s8_q01.png",
         choices: [
             {
-                text: "何が起きているかわからず、とりあえず様子を見る。",
-                effect: { CS: -20, Asset: -50, Autonomy: -10 },
-                verdict: "WARNING",
-                feedback: "SIMスワップ攻撃の可能性。攻撃者があなたの電話番号を別のSIMに移し、SMS認証を突破して銀行口座を操作。すぐに通信キャリアに連絡してSIMを停止し、銀行口座を凍結すべき。時間が経つほど被害が拡大する。",
-                lockRequirements: null
-            },
-            {
                 text: "SIMスワップを疑い、通信キャリアに即連絡+銀行口座凍結。",
                 effect: { CS: 20, Asset: 10, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解。SIMスワップ攻撃は「圏外→不正送金」の流れが典型。通信キャリアへの即時連絡でSIM停止、銀行への連絡で口座凍結が最優先。対策としてSMS認証からアプリベース認証(Google Authenticator等)への切り替えが有効。",
+                lockRequirements: null
+            },
+            {
+                text: "何が起きているかわからず、とりあえず様子を見る。",
+                effect: { CS: -20, Asset: -50, Autonomy: -10 },
+                verdict: "WARNING",
+                feedback: "SIMスワップ攻撃の可能性。攻撃者があなたの電話番号を別のSIMに移し、SMS認証を突破して銀行口座を操作。すぐに通信キャリアに連絡してSIMを停止し、銀行口座を凍結すべき。時間が経つほど被害が拡大する。",
                 lockRequirements: null
             }
         ],
@@ -38,17 +38,17 @@ export const stage8Questions: Question[] = [
         imagePath: "s8_q02.png",
         choices: [
             {
-                text: "壊れたことないし、大丈夫だろう。バックアップは後回し。",
-                effect: { CS: -20, Asset: -30, Autonomy: -10 },
-                verdict: "WARNING",
-                feedback: "時間の問題です。HDDは必ず壊れます。ランサムウェアに感染したら、身代金を払うか全データを失うかの二択。「後悔先に立たず」を地で行く選択です。",
-                lockRequirements: null
-            },
-            {
                 text: "3-2-1ルール（3つのコピー、2種類の媒体、1つは遠隔地）でバックアップ体制を構築する。",
                 effect: { CS: 15, Asset: -10, Autonomy: 5 },
                 verdict: "APPROVED",
                 feedback: "正解です。クラウドと外付けHDDの併用で、ほとんどのデータ消失リスクに対応できます。バックアップは「保険」。事故が起きてからでは遅いです。",
+                lockRequirements: null
+            },
+            {
+                text: "壊れたことないし、大丈夫だろう。バックアップは後回し。",
+                effect: { CS: -20, Asset: -30, Autonomy: -10 },
+                verdict: "WARNING",
+                feedback: "時間の問題です。HDDは必ず壊れます。ランサムウェアに感染したら、身代金を払うか全データを失うかの二択。「後悔先に立たず」を地で行く選択です。",
                 lockRequirements: null
             }
         ]
@@ -71,9 +71,9 @@ export const stage8Questions: Question[] = [
             },
             {
                 text: "パスワードマネージャーを使い、サービスごとに強力なパスワードを自動生成・管理する。",
-                effect: { CS: 15, Asset: 0, Autonomy: 5 },
+                effect: { CS: 15, Asset: -5, Autonomy: 5 },
                 verdict: "APPROVED",
-                feedback: "正解です。マスターパスワード1つを覚えれば、何百ものサイトを安全に管理できます。初期設定の手間は、将来の被害と比べれば微々たるものです。",
+                feedback: "正解です。パスワードマネージャーを使えば、何百ものサイトを安全に管理できます。初期設定の手間は、将来の被害と比べれば微々たるものです。",
                 lockRequirements: null
             }
         ],
@@ -117,17 +117,17 @@ export const stage8Questions: Question[] = [
         imagePath: "s8_q05.png",
         choices: [
             {
-                text: "初期化してフリマアプリで売却する。工場出荷状態にすれば大丈夫だろう。",
-                effect: { CS: -10, Asset: 10, Autonomy: 0 },
-                verdict: "WARNING",
-                feedback: "リスクのある選択。初期化だけではデータ復元ツールで情報を取り出せる可能性があります。写真、メール、決済情報が流出するリスクを受け入れて利益を取りました。",
-                lockRequirements: null
-            },
-            {
                 text: "データ消去ソフトで上書き処理後、メーカーや通信キャリアの公式回収プログラムを利用する。",
                 effect: { CS: 15, Asset: 10, Autonomy: 5 },
                 verdict: "APPROVED",
                 feedback: "正解。データ消去ソフトで上書き処理すれば復元リスクを大幅に低減。メーカーや通信キャリアの公式回収プログラムなら適切に処分される。物理的破壊も有効だが、レアメタル回収の観点では公式回収が望ましい。",
+                lockRequirements: null
+            },
+            {
+                text: "初期化してフリマアプリで売却する。工場出荷状態にすれば大丈夫だろう。",
+                effect: { CS: -10, Asset: 10, Autonomy: 0 },
+                verdict: "WARNING",
+                feedback: "リスクのある選択。初期化だけではデータ復元ツールで情報を取り出せる可能性があります。写真、メール、決済情報が流出するリスクを受け入れて利益を取りました。",
                 lockRequirements: null
             }
         ],
@@ -255,17 +255,17 @@ export const stage8Questions: Question[] = [
         imagePath: "s8_q10.png",
         choices: [
             {
-                text: "保険証と同じ。カードが増えるだけで面倒。",
-                effect: { CS: -20, Asset: -30, Autonomy: -10 },
-                verdict: "WARNING",
-                feedback: "大きな誤解。マイナ保険証なら限度額適用認定証が不要(高額療養費の自己負担限度額が自動適用)。マイナポータルで過去の診療歴・処方薬を確認可能。確定申告の医療費控除も自動入力。2024年12月から従来の保険証は新規発行停止。",
-                lockRequirements: null
-            },
-            {
                 text: "限度額適用認定証が不要になり、高額療養費が自動適用される。医療費控除の自動入力も可能。",
                 effect: { CS: 15, Asset: 30, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解。入院時に限度額適用認定証を事前申請する手間がなくなる。薬の飲み合わせチェック、過去の健診結果確認もできる。救急搬送時にも医療情報が共有される。",
+                lockRequirements: null
+            },
+            {
+                text: "保険証と同じ。カードが増えるだけで面倒。",
+                effect: { CS: -20, Asset: -30, Autonomy: -10 },
+                verdict: "WARNING",
+                feedback: "大きな誤解。マイナ保険証なら限度額適用認定証が不要(高額療養費の自己負担限度額が自動適用)。マイナポータルで過去の診療歴・処方薬を確認可能。確定申告の医療費控除も自動入力。2024年12月から従来の保険証は新規発行停止。",
                 lockRequirements: null
             }
         ],

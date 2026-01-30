@@ -10,17 +10,17 @@ export const stage6Questions: Question[] = [
         imagePath: "s6_q01.png",
         choices: [
             {
-                text: "礼金の減額と仲介手数料の根拠を確認し、交渉を試みる。",
-                effect: { CS: 10, Asset: 10, Autonomy: 10 },
-                verdict: "APPROVED",
-                feedback: "正解です。礼金は慣習であり法的義務ではなく、仲介手数料は原則「貸主・借主で折半」（宅建業法46条）。知識があれば交渉できます。",
-                lockRequirements: null
-            },
-            {
                 text: "「相場だから仕方ない」と全額払う。",
                 effect: { CS: 0, Asset: -30, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "機会損失です。礼金は交渉で減額できることが多く、仲介手数料は法的上限（賃料1ヶ月分）を超えている場合も。言い値で払うと損をします。",
+                lockRequirements: null
+            },
+            {
+                text: "礼金の減額と仲介手数料の根拠を確認し、交渉を試みる。",
+                effect: { CS: 10, Asset: 10, Autonomy: 10 },
+                verdict: "APPROVED",
+                feedback: "正解です。礼金は慣習であり法的義務ではなく、仲介手数料は原則「貸主・借主で折半」（宅建業法46条）。知識があれば交渉できます。",
                 lockRequirements: null
             }
         ],
@@ -63,17 +63,17 @@ export const stage6Questions: Question[] = [
         imagePath: "s6_q03.png",
         choices: [
             {
-                text: "保証会社を利用する。費用はかかるが、人間関係のリスクを避けられる。",
-                effect: { CS: 10, Asset: 0, Autonomy: 5 },
-                verdict: "APPROVED",
-                feedback: "正解です。保証会社費用（賃料の0.5〜1ヶ月分）は「人間関係保険」。金銭トラブルで親戚関係を壊すよりはるかに安い投資です。",
-                lockRequirements: null
-            },
-            {
                 text: "保証会社は高いので、疎遠な親戚に無理を言って保証人を頼む。",
                 effect: { CS: -10, Asset: 0, Autonomy: -20 },
                 verdict: "WARNING",
                 feedback: "リスクの転嫁です。連帯保証人は「あなたの借金を全額肩代わりする義務」を負います。親戚関係を壊すリスクと、金銭トラブルの種を撒いています。",
+                lockRequirements: null
+            },
+            {
+                text: "保証会社を利用する。費用はかかるが、人間関係のリスクを避けられる。",
+                effect: { CS: 10, Asset: 0, Autonomy: 5 },
+                verdict: "APPROVED",
+                feedback: "正解です。保証会社費用（賃料の0.5〜1ヶ月分）は「人間関係保険」。金銭トラブルで親戚関係を壊すよりはるかに安い投資です。",
                 lockRequirements: null
             }
         ],
@@ -142,17 +142,17 @@ export const stage6Questions: Question[] = [
         imagePath: "s6_q06.png",
         choices: [
             {
-                text: "諸費用（物件価格の5〜10%）を含めた総予算を計算し、資金計画を立て直す。",
-                effect: { CS: 10, Asset: 20, Autonomy: 10 },
-                verdict: "APPROVED",
-                feedback: "正解です。「買える」と「払える」は違います。諸費用、引越し費用、家具購入、緊急予備費まで含めた計画が必要です。",
-                lockRequirements: null
-            },
-            {
                 text: "頭金300万円を用意し、残りはローンで問題ない。",
                 effect: { CS: -20, Asset: -30, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "見積もり不足です。諸費用（登記、仲介手数料、税金等）は物件価格の5〜10%（150〜300万円）。頭金だけでは足りず、追加で借入が必要になります。",
+                lockRequirements: null
+            },
+            {
+                text: "諸費用（物件価格の5〜10%）を含めた総予算を計算し、資金計画を立て直す。",
+                effect: { CS: 10, Asset: 20, Autonomy: 10 },
+                verdict: "APPROVED",
+                feedback: "正解です。「買える」と「払える」は違います。諸費用、引越し費用、家具購入、緊急予備費まで含めた計画が必要です。",
                 lockRequirements: null
             }
         ]

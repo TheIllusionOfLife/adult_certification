@@ -10,17 +10,17 @@ export const stage4Questions: Question[] = [
         imagePath: "s4_q01.png",
         choices: [
             {
-                text: "面倒なので住民票だけ移して、他は後回し。",
-                effect: { CS: -20, Asset: -10, Autonomy: -10 },
-                verdict: "WARNING",
-                feedback: "手続き漏れです。運転免許証の住所変更を怠ると身分証明として使えなくなり、銀行手続きが滞ります。後回しにするほど問題が複雑化します。",
-                lockRequirements: null
-            },
-            {
                 text: "チェックリストを作り、住民票→マイナンバー→免許→銀行の順で一気に処理する。",
                 effect: { CS: 20, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。住民票を先に移すと、他の手続きがスムーズに進みます。行政手続きには「正しい順序」があります。",
+                lockRequirements: null
+            },
+            {
+                text: "面倒なので住民票だけ移して、他は後回し。",
+                effect: { CS: -20, Asset: -10, Autonomy: -10 },
+                verdict: "WARNING",
+                feedback: "手続き漏れです。運転免許証の住所変更を怠ると身分証明として使えなくなり、銀行手続きが滞ります。後回しにするほど問題が複雑化します。",
                 lockRequirements: null
             }
         ],
@@ -63,17 +63,17 @@ export const stage4Questions: Question[] = [
         imagePath: "s4_q03.png",
         choices: [
             {
-                text: "お得なら上限なく寄附する。たくさん寄附すればたくさん返礼品がもらえる。",
-                effect: { CS: -20, Asset: -30, Autonomy: -10 },
-                verdict: "WARNING",
-                feedback: "大損です。控除上限額を超えた分は「ただの寄附」。年収500万円なら上限は約6万円。さらにワンストップ特例は5自治体まで、申請書は翌年1月10日必着。知らないと損をします。",
-                lockRequirements: null
-            },
-            {
                 text: "自分の控除上限額を確認し、5自治体以内でワンストップ特例を活用する。",
                 effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。控除上限額は年収・家族構成で異なります。上限内なら実質2,000円で返礼品（寄附額の30%相当）を受け取れます。制度を理解して使うのが大人です。",
+                lockRequirements: null
+            },
+            {
+                text: "お得なら上限なく寄附する。たくさん寄附すればたくさん返礼品がもらえる。",
+                effect: { CS: -20, Asset: -30, Autonomy: -10 },
+                verdict: "WARNING",
+                feedback: "大損です。控除上限額を超えた分は「ただの寄附」。年収500万円なら上限は約6万円。さらにワンストップ特例は5自治体まで、申請書は翌年1月10日必着。知らないと損をします。",
                 lockRequirements: null
             }
         ],
@@ -255,17 +255,17 @@ export const stage4Questions: Question[] = [
         imagePath: "s4_q10.png",
         choices: [
             {
-                text: "確定申告の期限(3月15日)は過ぎているから無理。",
-                effect: { CS: -20, Asset: -30, Autonomy: -10 },
-                verdict: "WARNING",
-                feedback: "還付申告と確定申告は別。還付申告は翌年1月1日から5年後の12月31日まで可能。3年前の治療でもまだ間に合う。",
-                lockRequirements: null
-            },
-            {
                 text: "還付申告は5年間遡れる。今からでも確定申告して還付を受ける。",
                 effect: { CS: 10, Asset: 30, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解。インプラント40万円なら控除額30万円(40万-10万)。税率20%なら約6万円の還付。レーシック、不妊治療、通院交通費(バス・電車)も対象。対象外は美容整形、予防接種、病気が見つからなかった健康診断。",
+                lockRequirements: null
+            },
+            {
+                text: "確定申告の期限(3月15日)は過ぎているから無理。",
+                effect: { CS: -20, Asset: -30, Autonomy: -10 },
+                verdict: "WARNING",
+                feedback: "還付申告と確定申告は別。還付申告は翌年1月1日から5年後の12月31日まで可能。3年前の治療でもまだ間に合う。",
                 lockRequirements: null
             }
         ],

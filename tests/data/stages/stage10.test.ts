@@ -15,14 +15,14 @@ describe('Stage 10 Questions', () => {
         }
     });
 
-    it('should have Q7 choice A with Autonomy lock requirement of 150', () => {
+    it('should have Q7 choice A with Autonomy lock requirement of 200', () => {
         const q7 = stage10Questions.find(q => q.id === 's10_q07');
         expect(q7).toBeDefined();
 
         // Choice A (index 0) is now locked (A↔B swapped)
         const choiceA = q7!.choices[0];
         expect(choiceA.lockRequirements).toBeDefined();
-        expect(choiceA.lockRequirements?.Autonomy).toBe(150);
+        expect(choiceA.lockRequirements?.Autonomy).toBe(200);
     });
 
     it('should have Q9 choice B with Autonomy lock requirement of 150', () => {
@@ -31,7 +31,7 @@ describe('Stage 10 Questions', () => {
 
         const choiceB = q9!.choices[1];
         expect(choiceB.lockRequirements).toBeDefined();
-        expect(choiceB.lockRequirements?.Autonomy).toBe(180);
+        expect(choiceB.lockRequirements?.Autonomy).toBe(220);
     });
 
     it('should have Q5 with WARNING and APPROVED verdicts', () => {
@@ -42,12 +42,12 @@ describe('Stage 10 Questions', () => {
         expect(q5!.choices[1].verdict).toBe('APPROVED');
     });
 
-    it('should have Q9 with both choices as NEUTRAL', () => {
+    it('should have Q9 with WARNING and APPROVED verdicts', () => {
         const q9 = stage10Questions.find(q => q.id === 's10_q09');
         expect(q9).toBeDefined();
         expect(q9!.choices).toHaveLength(2);
-        expect(q9!.choices[0].verdict).toBe('NEUTRAL');
-        expect(q9!.choices[1].verdict).toBe('NEUTRAL');
+        expect(q9!.choices[0].verdict).toBe('WARNING');
+        expect(q9!.choices[1].verdict).toBe('APPROVED');
     });
 
     it('should have Q10 with both choices as NEUTRAL', () => {

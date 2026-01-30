@@ -142,17 +142,17 @@ export const stage1Questions: Question[] = [
         imagePath: "s1_q06.png",
         choices: [
             {
-                text: "入口近くの席に座り、名刺は片手で素早く交換する。",
-                effect: { CS: -20, Asset: 0, Autonomy: 0 },
-                verdict: "WARNING",
-                feedback: "マナー違反です。入口近くの下座が自分の席ですが、先に座るのは失礼。名刺は両手で受け取り、すぐにしまわないのが礼儀。第一印象で「この人はダメだ」と判断されました。",
-                lockRequirements: null
-            },
-            {
                 text: "相手を上座（入口から遠い席）に案内し、名刺は両手で受け取ってテーブルに置く。",
                 effect: { CS: 20, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。名刺は相手より低い位置で差し出し、受け取ったら「頂戴します」。会議中はテーブルに並べ、終わったら丁寧にしまう。基本を押さえた人は信頼されます。",
+                lockRequirements: null
+            },
+            {
+                text: "入口近くの席に座り、名刺は片手で素早く交換する。",
+                effect: { CS: -20, Asset: 0, Autonomy: 0 },
+                verdict: "WARNING",
+                feedback: "マナー違反です。入口近くの下座が自分の席ですが、先に座るのは失礼。名刺は両手で受け取り、すぐにしまわないのが礼儀。第一印象で「この人はダメだ」と判断されました。",
                 lockRequirements: null
             }
         ]
@@ -252,17 +252,17 @@ export const stage1Questions: Question[] = [
         imagePath: "s1_q10.png",
         choices: [
             {
-                text: "出発30分前に着けば十分。モバイルバッテリーとペットボトルの飲み物はスーツケースに入れて預ける。",
-                effect: { CS: -20, Asset: 0, Autonomy: 0 },
-                verdict: "WARNING",
-                feedback: "時間不足。国内線は1時間前、国際線は2〜3時間前が目安。保安検査は出発20分前まで。モバイルバッテリー(160Wh以下)は機内持込のみで預け荷物NG。国際線の液体は100ml以下の容器+1L以下の透明袋。ライターは機内持込1個のみ。",
-                lockRequirements: null
-            },
-            {
                 text: "国内線1時間前、国際線2〜3時間前に到着。バッテリーは機内持込、液体物は制限を確認。",
                 effect: { CS: 20, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解。刃物は預け荷物のみ。ライターは機内持込1個のみ。モバイルバッテリーは預け入れ禁止(発火リスク)。国際線では液体物100ml以下の容器、ジッパー付き透明袋(1L以下)に入れる。",
+                lockRequirements: null
+            },
+            {
+                text: "出発30分前に着けば十分。モバイルバッテリーとペットボトルの飲み物はスーツケースに入れて預ける。",
+                effect: { CS: -20, Asset: 0, Autonomy: 0 },
+                verdict: "WARNING",
+                feedback: "時間不足。国内線は1時間前、国際線は2〜3時間前が目安。保安検査は出発20分前まで。モバイルバッテリー(160Wh以下)は機内持込のみで預け荷物NG。国際線の液体は100ml以下の容器+1L以下の透明袋。ライターは機内持込1個のみ。",
                 lockRequirements: null
             }
         ],

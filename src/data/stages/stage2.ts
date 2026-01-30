@@ -63,17 +63,17 @@ export const stage2Questions: Question[] = [
         imagePath: "s2_q03.png",
         choices: [
             {
-                text: "「すみません」と諦める。",
-                effect: { CS: 10, Asset: 0, Autonomy: -20 },
-                feedback: "権利放棄です。有給取得に理由は不要。6ヶ月経過で10日付与は法定の権利です。",
-                verdict: "WARNING",
-                lockRequirements: null
-            },
-            {
                 text: "「理由は私用です。日程の調整は可能です」と再度申請する。",
                 effect: { CS: -10, Asset: 0, Autonomy: 20 },
                 feedback: "正解です。有給取得に理由説明は不要（労基法39条）。会社には時季変更権がありますが、代替日の提示が必要です。",
                 verdict: "APPROVED",
+                lockRequirements: null
+            },
+            {
+                text: "「すみません」と諦める。",
+                effect: { CS: 10, Asset: 0, Autonomy: -20 },
+                feedback: "権利放棄です。有給取得に理由は不要。6ヶ月経過で10日付与は法定の権利です。",
+                verdict: "WARNING",
                 lockRequirements: null
             }
         ],
@@ -92,17 +92,17 @@ export const stage2Questions: Question[] = [
         imagePath: "s2_q04.png",
         choices: [
             {
-                text: "「仕方ない」と受け入れる。",
-                effect: { CS: 0, Asset: -20, Autonomy: -20 },
-                feedback: "無知は搾取の入口です。30日分の解雇予告手当を放棄しました。",
-                verdict: "WARNING",
-                lockRequirements: null
-            },
-            {
                 text: "解雇予告手当（30日分）の支払いを求める。",
                 effect: { CS: 20, Asset: 20, Autonomy: 10 },
                 feedback: "正解です。労働基準法第20条。知識は金になります。",
                 verdict: "APPROVED",
+                lockRequirements: null
+            },
+            {
+                text: "「仕方ない」と受け入れる。",
+                effect: { CS: 0, Asset: -20, Autonomy: -20 },
+                feedback: "無知は搾取の入口です。30日分の解雇予告手当を放棄しました。",
+                verdict: "WARNING",
                 lockRequirements: null
             }
         ]
@@ -198,17 +198,17 @@ export const stage2Questions: Question[] = [
         imagePath: "s2_q08.png",
         choices: [
             {
-                text: "「お願いします」と任せる。会社がやってくれるはず。",
-                effect: { CS: -20, Asset: -10, Autonomy: -10 },
-                feedback: "致命的なミスです。源泉徴収票がないと確定申告ができず、追徴課税が待っています。会社は言わないと動きません。",
-                verdict: "WARNING",
-                lockRequirements: null
-            },
-            {
                 text: "「離職票と源泉徴収票は必ずお願いします」と具体的に伝える。",
                 effect: { CS: 20, Asset: 0, Autonomy: 10 },
                 feedback: "正解です。退職手続きは「もらう側」が主導しないと、会社は最低限しかしません。確認リストを作るのが大人です。",
                 verdict: "APPROVED",
+                lockRequirements: null
+            },
+            {
+                text: "「お願いします」と任せる。会社がやってくれるはず。",
+                effect: { CS: -20, Asset: -10, Autonomy: -10 },
+                feedback: "致命的なミスです。源泉徴収票がないと確定申告ができず、追徴課税が待っています。会社は言わないと動きません。",
+                verdict: "WARNING",
                 lockRequirements: null
             }
         ]

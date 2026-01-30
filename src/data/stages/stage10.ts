@@ -10,17 +10,17 @@ export const stage10Questions: Question[] = [
         imagePath: "s10_q01.png",
         choices: [
             {
-                text: "特に変わらない。通知カードで十分。",
-                effect: { CS: -20, Asset: -10, Autonomy: -30 },
-                verdict: "WARNING",
-                feedback: "機会損失。e-Tax連携で確定申告が簡素化、コンビニで住民票・印鑑証明取得(手数料も安い)、マイナ保険証で限度額適用認定証不要、各種給付金のオンライン申請。2024年12月から保険証の新規発行停止。",
-                lockRequirements: null
-            },
-            {
                 text: "e-Tax連携、コンビニ交付、マイナ保険証、給付金申請など実益を理解して活用する。",
                 effect: { CS: 5, Asset: 10, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解。個人情報リスクは「カードを持つこと」ではなく「暗証番号の管理」の問題。紛失時は24時間コールセンターで利用停止可能。メリットを理解した上で判断するのが大人。",
+                lockRequirements: null
+            },
+            {
+                text: "特に変わらない。通知カードで十分。",
+                effect: { CS: -20, Asset: -10, Autonomy: -30 },
+                verdict: "WARNING",
+                feedback: "機会損失。e-Tax連携で確定申告が簡素化、コンビニで住民票・印鑑証明取得(手数料も安い)、マイナ保険証で限度額適用認定証不要、各種給付金のオンライン申請。2024年12月から保険証の新規発行停止。",
                 lockRequirements: null
             }
         ],
@@ -38,17 +38,17 @@ export const stage10Questions: Question[] = [
         imagePath: "s10_q02.png",
         choices: [
             {
-                text: "25万円は少額だし、会社にバレたくないので申告しない。",
-                effect: { CS: -50, Asset: -30, Autonomy: -20 },
-                verdict: "WARNING",
-                feedback: "脱税です。「20万円ルール」は所得税の確定申告のみ。住民税は1円から申告義務があります。無申告は追徴課税（最大40%）のリスク。さらに、マイナンバーで副業収入は把握されています。",
-                lockRequirements: null
-            },
-            {
                 text: "所得税は確定申告、住民税は別途申告。経費を正しく計上し、将来のインボイス登録も検討する。",
                 effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。副業収入20万円超は確定申告必須。20万円以下でも住民税申告は必要。経費（通信費、機材等）を適切に計上すれば税負担は減ります。年商1000万円超ならインボイス登録の検討も。",
+                lockRequirements: null
+            },
+            {
+                text: "25万円は少額だし、会社にバレたくないので申告しない。",
+                effect: { CS: -50, Asset: -30, Autonomy: -20 },
+                verdict: "WARNING",
+                feedback: "脱税です。「20万円ルール」は所得税の確定申告のみ。住民税は1円から申告義務があります。無申告は追徴課税（最大40%）のリスク。さらに、マイナンバーで副業収入は把握されています。",
                 lockRequirements: null
             }
         ]
@@ -142,17 +142,17 @@ export const stage10Questions: Question[] = [
         imagePath: "s10_q06.png",
         choices: [
             {
-                text: "スマホの支払いとローンは別。関係ない。",
-                effect: { CS: -50, Asset: -30, Autonomy: -20 },
-                verdict: "WARNING",
-                feedback: "大きな誤解。スマホの分割払いは信用取引。61日以上または3ヶ月以上の延滞でCIC(信用情報機関)に事故情報が登録。住宅ローン、クレカ作成、スマホ分割購入が5〜10年困難に。奨学金も3ヶ月以上延滞で登録。",
-                lockRequirements: null
-            },
-            {
                 text: "大いに関係ある。スマホ分割は信用取引であり、滞納は信用情報に記録される。",
                 effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解。CIC、JICC、全国銀行協会の信用情報は金融機関が共有。スマホ分割、クレカ、奨学金の延滞が全て記録される。自分の信用情報はCIC等に開示請求(約1,000円)で確認可能。信用を守ることが、将来の選択肢を守ること。",
+                lockRequirements: null
+            },
+            {
+                text: "スマホの支払いとローンは別。関係ない。",
+                effect: { CS: -50, Asset: -30, Autonomy: -20 },
+                verdict: "WARNING",
+                feedback: "大きな誤解。スマホの分割払いは信用取引。61日以上または3ヶ月以上の延滞でCIC(信用情報機関)に事故情報が登録。住宅ローン、クレカ作成、スマホ分割購入が5〜10年困難に。奨学金も3ヶ月以上延滞で登録。",
                 lockRequirements: null
             }
         ]

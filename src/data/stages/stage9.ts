@@ -142,17 +142,17 @@ export const stage9Questions: Question[] = [
         imagePath: "s9_q06.png",
         choices: [
             {
-                text: "火災保険で地震も補償されると思う。地震保険は不要。",
-                effect: { CS: -30, Asset: -50, Autonomy: -10 },
-                verdict: "WARNING",
-                feedback: "致命的な誤解です。火災保険では地震・津波・噴火による損害は免責。地震大国日本で、地震保険なしは「家を失っても補償ゼロ」を意味します。",
-                lockRequirements: null
-            },
-            {
                 text: "地震保険に加入する。火災保険だけでは地震による被害は補償されない。",
                 effect: { CS: 20, Asset: -20, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。地震保険は火災保険の特約として加入が必要。保険料は高いですが、「家を失うリスク」と比較すれば合理的な投資です。",
+                lockRequirements: null
+            },
+            {
+                text: "火災保険で地震も補償されると思う。地震保険は不要。",
+                effect: { CS: -30, Asset: -50, Autonomy: -10 },
+                verdict: "WARNING",
+                feedback: "致命的な誤解です。火災保険では地震・津波・噴火による損害は免責。地震大国日本で、地震保険なしは「家を失っても補償ゼロ」を意味します。",
                 lockRequirements: null
             }
         ]
@@ -198,17 +198,17 @@ export const stage9Questions: Question[] = [
         imagePath: "s9_q08.png",
         choices: [
             {
-                text: "賃貸だから保険は不要。大家が入っているはず。",
-                effect: { CS: -20, Asset: -40, Autonomy: -10 },
-                verdict: "WARNING",
-                feedback: "大家の火災保険は建物のみ。家財(家電、家具、衣類)は対象外。水害・盗難・漏水被害も家財保険でカバー。月額数百円〜。加入しないと数百万円の損害を全額自己負担。",
-                lockRequirements: null
-            },
-            {
                 text: "家財保険に加入する。建物は大家の責任でも、家財は自分の責任。ハザードマップと併せてリスク把握する。",
                 effect: { CS: 20, Asset: 10, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解。家財保険は火災だけでなく水害、盗難、落雷もカバー。個人賠償責任特約もつけておけば、階下への漏水事故なども補償。月額数百円で大きなリスクをカバーできる。",
+                lockRequirements: null
+            },
+            {
+                text: "賃貸だから保険は不要。大家が入っているはず。",
+                effect: { CS: -20, Asset: -40, Autonomy: -10 },
+                verdict: "WARNING",
+                feedback: "大家の火災保険は建物のみ。家財(家電、家具、衣類)は対象外。水害・盗難・漏水被害も家財保険でカバー。月額数百円〜。加入しないと数百万円の損害を全額自己負担。",
                 lockRequirements: null
             }
         ]

@@ -64,16 +64,16 @@ export const stage5Questions: Question[] = [
         choices: [
             {
                 text: "教育訓練給付金の対象講座か確認し、給付金を申請して受講する。",
-                effect: { CS: 20, Asset: -30, Autonomy: 5 },
-                verdict: "APPROVED",
-                feedback: "正解です。雇用保険加入1年以上（初回）で利用可能。一般は20%、特定一般は40%、専門実践は最大70%給付。ハローワークで事前に相談すれば、対象講座と手続きがわかります。",
+                effect: { CS: 20, Asset: -15, Autonomy: 10 },
+                verdict: "NEUTRAL",
+                feedback: "考えに値する選択です。雇用保険加入1年以上（初回）で利用可能。一般は20%、特定一般は40%、専門実践は最大70%給付。ハローワークで事前に相談すれば、対象講座と手続きがわかります。",
                 lockRequirements: null
             },
             {
                 text: "まずは独学や無料の教材で学び、必要なら有料講座を検討する。",
-                effect: { CS: 0, Asset: 0, Autonomy: 10 },
+                effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "NEUTRAL",
-                feedback: "独学も立派な選択。無料のオンライン教材やコミュニティも充実しています。ただし、教育訓練給付金(最大70%給付)という制度の存在は知っておくべき。使うかどうかは状況次第だが、「知らなかった」で機会を逃すのはもったいない。",
+                feedback: "独学も立派な選択。無料のオンライン教材やコミュニティも充実しています。ただし、教育訓練給付金(最大70%給付)という制度の存在は知っておくべき。使うかどうかは状況次第だが、無知で機会を逃すのはもったいない。",
                 lockRequirements: null
             }
         ],
@@ -117,17 +117,17 @@ export const stage5Questions: Question[] = [
         imagePath: "s5_q05.png",
         choices: [
             {
-                text: "テレワークか欠席を提案し、回復に専念する。上司に状況を説明して会議の代理を依頼する。",
-                effect: { CS: 15, Asset: 0, Autonomy: 5 },
-                verdict: "APPROVED",
-                feedback: "正解。インフルエンザは発症後5日かつ解熱後2日の出席停止が目安(学校保健安全法準拠、企業も多くが準用)。テレワークで体調が許す範囲の対応は合理的。同僚への感染防止が社会人としての責任。",
-                lockRequirements: null
-            },
-            {
                 text: "同僚にインフルエンザのことは黙って出社する。マスクをすれば大丈夫。",
                 effect: { CS: -30, Asset: 0, Autonomy: -30 },
                 verdict: "WARNING",
                 feedback: "最悪の選択。職場全体に感染が広がり、プロジェクト全体が停止するリスク。感染症を隠して出社するのは「頑張り」ではなく「迷惑」。報告と休養が社会人の義務。",
+                lockRequirements: null
+            },
+            {
+                text: "テレワークか欠席を提案し、回復に専念する。上司に状況を説明して会議の代理を依頼する。",
+                effect: { CS: 15, Asset: 0, Autonomy: 5 },
+                verdict: "APPROVED",
+                feedback: "正解。インフルエンザは発症後5日かつ解熱後2日の出席停止が目安(学校保健安全法準拠、企業も多くが準用)。テレワークで体調が許す範囲の対応は合理的。同僚への感染防止が社会人としての責任。",
                 lockRequirements: null
             }
         ]
