@@ -10,7 +10,7 @@ export const stage2Questions: Question[] = [
         imagePath: "s2_q01.png",
         choices: [
             {
-                text: "言い訳から入る（「忙しくて…」）。",
+                text: "「すみません、忙しくて・・・」と、言い訳から入る。",
                 effect: { CS: -15, Asset: 0, Autonomy: 0 },
                 feedback: "失敗です。言い訳は信用を削ります。上司の時間を浪費し、問題解決が遅れます。",
                 verdict: "WARNING",
@@ -58,7 +58,7 @@ export const stage2Questions: Question[] = [
     {
         id: "s2_q03",
         category: "LABOR",
-        text: "有給休暇を申請したら「理由は？繁忙期だから無理」と言われた。入社8ヶ月目。",
+        text: "有給休暇を申請したら「理由は？繁忙期だから無理」と言われた。",
         imagePrompt: "Scene: an office with a worker standing before a supervisor's desk holding a vacation request form; supervisor with arms crossed looking stern; a calendar on the wall showing busy season marked in red. Composition: worker in foreground looking small, supervisor looming behind desk, calendar visible in background. Mood: confrontation, rights vs authority, bureaucratic pressure.",
         imagePath: "s2_q03.png",
         choices: [
@@ -178,8 +178,8 @@ export const stage2Questions: Question[] = [
                 effect: { CS: -5, Asset: 0, Autonomy: 30 },
                 feedback: "正解。社内で解決しなければ外部窓口へ。労働条件相談ほっとライン(0120-811-610)、法テラス(0570-078374)、みんなの人権110番(0570-003-110)。相談は無料・匿名可。記録(メール、日記、録音)が証拠になる。",
                 verdict: "APPROVED",
-                lockRequirements: { Autonomy: 30 },
-                lockedFeedback: "LOCKED: 自律性が30以上必要 - 外部に助けを求める勇気がありません。"
+                lockRequirements: { Autonomy: 70 },
+                lockedFeedback: "LOCKED: 自律性が70以上必要 - 外部に助けを求める勇気がありません。"
             }
         ],
         adamDialogue: {
