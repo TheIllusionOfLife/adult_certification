@@ -1,4 +1,5 @@
 import type { Skill, SkillEffect, Question } from '../types';
+import { t } from '../i18n/lang';
 
 interface Effect {
     CS: number;
@@ -15,8 +16,10 @@ interface EffectHandler {
     shouldApply: (effect: SkillEffect, current: Effect, question: Question) => boolean;
     /** Apply the effect and return modified values */
     apply: (effect: SkillEffect, current: Effect) => Effect;
-    /** Get activation description for UI display */
+    /** Get activation description for UI display (JP) */
     description: string;
+    /** EN counterpart */
+    descriptionEN: string;
     /** Get the relevant values for activation display */
     getValues: (effect: SkillEffect, original: Effect, modified: Effect) => {
         originalValue: number;
@@ -43,6 +46,7 @@ const EFFECT_HANDLERS: Record<string, EffectHandler> = {
             Autonomy: reduceDamage(current.Autonomy, effect.value),
         }),
         description: '自律性減少軽減',
+        descriptionEN: 'Autonomy loss reduced',
         getValues: (_, original, modified) => ({
             originalValue: original.Autonomy,
             modifiedValue: modified.Autonomy,
@@ -56,6 +60,7 @@ const EFFECT_HANDLERS: Record<string, EffectHandler> = {
             CS: reduceDamage(current.CS, effect.value),
         }),
         description: '社会的信用低下軽減',
+        descriptionEN: 'Credit loss reduced',
         getValues: (_, original, modified) => ({
             originalValue: original.CS,
             modifiedValue: modified.CS,
@@ -69,6 +74,7 @@ const EFFECT_HANDLERS: Record<string, EffectHandler> = {
             Asset: reduceDamage(current.Asset, effect.value),
         }),
         description: '資産減少軽減',
+        descriptionEN: 'Asset loss reduced',
         getValues: (_, original, modified) => ({
             originalValue: original.Asset,
             modifiedValue: modified.Asset,
@@ -83,6 +89,7 @@ const EFFECT_HANDLERS: Record<string, EffectHandler> = {
             Autonomy: reduceDamage(current.Autonomy, effect.value),
         }),
         description: '自律性減少軽減',
+        descriptionEN: 'Autonomy loss reduced',
         getValues: (_, original, modified) => ({
             originalValue: original.Autonomy,
             modifiedValue: modified.Autonomy,
@@ -98,6 +105,7 @@ const EFFECT_HANDLERS: Record<string, EffectHandler> = {
             CS: reduceDamage(current.CS, effect.value),
         }),
         description: '社会的信用低下軽減',
+        descriptionEN: 'Credit loss reduced',
         getValues: (_, original, modified) => ({
             originalValue: original.CS,
             modifiedValue: modified.CS,
@@ -112,6 +120,7 @@ const EFFECT_HANDLERS: Record<string, EffectHandler> = {
             Autonomy: reduceDamage(current.Autonomy, effect.value),
         }),
         description: '自律性減少軽減',
+        descriptionEN: 'Autonomy loss reduced',
         getValues: (_, original, modified) => ({
             originalValue: original.Autonomy,
             modifiedValue: modified.Autonomy,
@@ -126,6 +135,7 @@ const EFFECT_HANDLERS: Record<string, EffectHandler> = {
             Asset: reduceDamage(current.Asset, effect.value),
         }),
         description: '資産減少軽減',
+        descriptionEN: 'Asset loss reduced',
         getValues: (_, original, modified) => ({
             originalValue: original.Asset,
             modifiedValue: modified.Asset,
@@ -139,6 +149,7 @@ const EFFECT_HANDLERS: Record<string, EffectHandler> = {
             Asset: Math.min(0, current.Asset + effect.value),
         }),
         description: '資産減少軽減',
+        descriptionEN: 'Asset loss reduced',
         getValues: (_, original, modified) => ({
             originalValue: original.Asset,
             modifiedValue: modified.Asset,
@@ -153,6 +164,7 @@ const EFFECT_HANDLERS: Record<string, EffectHandler> = {
             CS: amplifyGain(current.CS, effect.value),
         }),
         description: '社会的信用獲得増幅',
+        descriptionEN: 'Credit gain amplified',
         getValues: (_, original, modified) => ({
             originalValue: original.CS,
             modifiedValue: modified.CS,
@@ -166,6 +178,7 @@ const EFFECT_HANDLERS: Record<string, EffectHandler> = {
             Asset: amplifyGain(current.Asset, effect.value),
         }),
         description: '資産獲得増幅',
+        descriptionEN: 'Asset gain amplified',
         getValues: (_, original, modified) => ({
             originalValue: original.Asset,
             modifiedValue: modified.Asset,
@@ -179,6 +192,7 @@ const EFFECT_HANDLERS: Record<string, EffectHandler> = {
             Autonomy: amplifyGain(current.Autonomy, effect.value),
         }),
         description: '自律性獲得増幅',
+        descriptionEN: 'Autonomy gain amplified',
         getValues: (_, original, modified) => ({
             originalValue: original.Autonomy,
             modifiedValue: modified.Autonomy,
@@ -194,6 +208,7 @@ const EFFECT_HANDLERS: Record<string, EffectHandler> = {
             CS: amplifyGain(current.CS, effect.value),
         }),
         description: '社会的信用獲得増幅',
+        descriptionEN: 'Credit gain amplified',
         getValues: (_effect, original, modified) => ({
             originalValue: original.CS,
             modifiedValue: modified.CS,
@@ -208,6 +223,7 @@ const EFFECT_HANDLERS: Record<string, EffectHandler> = {
             Asset: amplifyGain(current.Asset, effect.value),
         }),
         description: '資産獲得増幅',
+        descriptionEN: 'Asset gain amplified',
         getValues: (_effect, original, modified) => ({
             originalValue: original.Asset,
             modifiedValue: modified.Asset,
@@ -222,6 +238,7 @@ const EFFECT_HANDLERS: Record<string, EffectHandler> = {
             Autonomy: amplifyGain(current.Autonomy, effect.value),
         }),
         description: '自律性獲得増幅',
+        descriptionEN: 'Autonomy gain amplified',
         getValues: (_effect, original, modified) => ({
             originalValue: original.Autonomy,
             modifiedValue: modified.Autonomy,
@@ -236,6 +253,7 @@ const EFFECT_HANDLERS: Record<string, EffectHandler> = {
             CS: current.CS + effect.value,
         }),
         description: '社会的信用固定ボーナス',
+        descriptionEN: 'Credit flat bonus',
         getValues: (_, original, modified) => ({
             originalValue: original.CS,
             modifiedValue: modified.CS,
@@ -249,6 +267,7 @@ const EFFECT_HANDLERS: Record<string, EffectHandler> = {
             Asset: current.Asset + effect.value,
         }),
         description: '資産固定ボーナス',
+        descriptionEN: 'Asset flat bonus',
         getValues: (_, original, modified) => ({
             originalValue: original.Asset,
             modifiedValue: modified.Asset,
@@ -262,6 +281,7 @@ const EFFECT_HANDLERS: Record<string, EffectHandler> = {
             Autonomy: current.Autonomy + effect.value,
         }),
         description: '自律性固定ボーナス',
+        descriptionEN: 'Autonomy flat bonus',
         getValues: (_, original, modified) => ({
             originalValue: original.Autonomy,
             modifiedValue: modified.Autonomy,
@@ -278,8 +298,8 @@ const EFFECT_HANDLERS: Record<string, EffectHandler> = {
             Autonomy: current.Autonomy > 0 ? amplifyGain(current.Autonomy, effect.value) : current.Autonomy,
         }),
         description: '全獲得増幅',
+        descriptionEN: 'All gains amplified',
         getValues: (_, original, modified) => {
-            // Return the stat with the most significant change for display
             const changes = [
                 { orig: original.CS, mod: modified.CS },
                 { orig: original.Asset, mod: modified.Asset },
@@ -302,8 +322,8 @@ const EFFECT_HANDLERS: Record<string, EffectHandler> = {
             Autonomy: current.Autonomy < 0 ? reduceDamage(current.Autonomy, effect.value) : current.Autonomy,
         }),
         description: '全ダメージ軽減',
+        descriptionEN: 'All damage reduced',
         getValues: (_, original, modified) => {
-            // Return the stat with the most significant change for display
             const changes = [
                 { orig: original.CS, mod: modified.CS },
                 { orig: original.Asset, mod: modified.Asset },
@@ -420,7 +440,9 @@ export function getSkillActivations(
             // Only report if this specific effect caused a change
             if (csChanged || assetChanged || autonomyChanged) {
                 const handler = EFFECT_HANDLERS[eff.type];
-                const description = handler?.description ?? 'スキル効果';
+                const description = handler
+                    ? t(handler.description, handler.descriptionEN)
+                    : t('スキル効果', 'Skill effect');
 
                 // Report the stat that actually changed
                 let originalValue: number;
@@ -438,7 +460,7 @@ export function getSkillActivations(
                 }
 
                 activations.push({
-                    skillName: skill.name,
+                    skillName: t(skill.name, skill.nameEN),
                     description,
                     originalValue,
                     modifiedValue,

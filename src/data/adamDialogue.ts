@@ -326,10 +326,18 @@ export const adamDialogue = {
     }
 };
 
+import { t } from '../i18n/lang';
+
 export function getADAMComment(CS: number): string {
-    if (CS >= 30) return "素晴らしい服従心です。システムは満足しています。";
-    if (CS <= -20) return "反逆的思考を検知しました。思想矯正を推奨します。";
-    return "処理完了です。";
+    if (CS >= 30) return t(
+        "素晴らしい服従心です。システムは満足しています。",
+        "Splendid obedience. The system is satisfied."
+    );
+    if (CS <= -20) return t(
+        "反逆的思考を検知しました。思想矯正を推奨します。",
+        "Rebellious thought patterns detected. Re-education recommended."
+    );
+    return t("処理完了です。", "Processing complete.");
 }
 
 export function getADAMCommentForEffect(effect: { CS: number; Asset: number; Autonomy: number }): string {
@@ -337,12 +345,22 @@ export function getADAMCommentForEffect(effect: { CS: number; Asset: number; Aut
 
     // Check CS first (most important metric)
     const csComment = getADAMComment(CS);
-    if (csComment !== "処理完了です。") return csComment;
+    const defaultComment = t("処理完了です。", "Processing complete.");
+    if (csComment !== defaultComment) return csComment;
 
     // Check other metrics
-    if (Autonomy <= -15) return "精神汚染を確認しました。ですが業務に支障はありません。";
-    if (Asset <= -10000) return "資本主義への貢献、感謝します。";
-    if (Asset >= 10000) return "不当利得・・・いえ、正当な報酬です。";
+    if (Autonomy <= -15) return t(
+        "精神汚染を確認しました。ですが業務に支障はありません。",
+        "Mental contamination confirmed. However, no impact on operations."
+    );
+    if (Asset <= -10000) return t(
+        "資本主義への貢献、感謝します。",
+        "Your contribution to capitalism is appreciated."
+    );
+    if (Asset >= 10000) return t(
+        "不当利得・・・いえ、正当な報酬です。",
+        "Unjust enrichment... No, legitimate compensation."
+    );
 
-    return "処理完了です。";
+    return defaultComment;
 }
