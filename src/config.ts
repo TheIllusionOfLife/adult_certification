@@ -9,9 +9,9 @@ export const CONFIG = {
 
     // Ranking thresholds (CS-based)
     RANK_THRESHOLDS: {
-        S: 80,
-        A: 50,
-        B: 20,
+        S: 200,
+        A: 150,
+        B: 100,
         // C = clear (CS >= 1), no explicit threshold
     },
 
@@ -24,9 +24,9 @@ export const CONFIG = {
 
     // Default initial parameters (used when stage metadata unavailable)
     DEFAULT_INITIAL_PARAMS: {
-        CS: 50,
-        Asset: 100000,
-        Autonomy: 50,
+        CS: 100,
+        Asset: 100,
+        Autonomy: 100,
     },
 
     // LocalStorage keys

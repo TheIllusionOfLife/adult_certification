@@ -268,7 +268,31 @@ const EFFECT_HANDLERS: Record<string, EffectHandler> = {
         }),
     },
 
-    // === All Damage Reduction (Stage 10 Key Skill: AWAKENING) ===
+    // === All Gain Amplification (Stage 10 Key Skill: AWAKENING) ===
+    all_gain_amplification: {
+        shouldApply: (_, current) =>
+            current.CS > 0 || current.Asset > 0 || current.Autonomy > 0,
+        apply: (effect, current) => ({
+            CS: current.CS > 0 ? amplifyGain(current.CS, effect.value) : current.CS,
+            Asset: current.Asset > 0 ? amplifyGain(current.Asset, effect.value) : current.Asset,
+            Autonomy: current.Autonomy > 0 ? amplifyGain(current.Autonomy, effect.value) : current.Autonomy,
+        }),
+        description: '全獲得増幅',
+        getValues: (_, original, modified) => {
+            // Return the stat with the most significant change for display
+            const changes = [
+                { orig: original.CS, mod: modified.CS },
+                { orig: original.Asset, mod: modified.Asset },
+                { orig: original.Autonomy, mod: modified.Autonomy },
+            ];
+            const biggest = changes.reduce((a, b) =>
+                Math.abs(a.mod - a.orig) > Math.abs(b.mod - b.orig) ? a : b
+            );
+            return { originalValue: biggest.orig, modifiedValue: biggest.mod };
+        },
+    },
+
+    // === All Damage Reduction ===
     all_damage_reduction: {
         shouldApply: (_, current) =>
             current.CS < 0 || current.Asset < 0 || current.Autonomy < 0,

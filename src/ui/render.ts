@@ -142,14 +142,14 @@ export class UIManager {
         });
     }
 
-    private lastScores = { CS: 50, Asset: 100000, Autonomy: 50 };
+    private lastScores = { CS: 100, Asset: 100, Autonomy: 100 };
 
     updateHUD() {
         const s = this.engine.state;
 
         // Helper for animation
         const animate = (el: HTMLElement, newVal: number, oldVal: number) => {
-            el.innerText = newVal.toLocaleString();
+            el.innerText = String(newVal);
             el.classList.remove('score-pop-up', 'score-pop-down');
             void el.offsetWidth; // Trigger reflow
             if (newVal > oldVal) el.classList.add('score-pop-up');
@@ -168,7 +168,7 @@ export class UIManager {
             : 0;
         this.dom.bar.style.width = `${progress}%`;
 
-        if (s.CS < 30 || s.Autonomy < 20 || s.Asset < 20000) {
+        if (s.CS < 30 || s.Autonomy < 20 || s.Asset < 20) {
             this.dom.container.style.boxShadow = "0 0 50px red";
             this.updateMascot('glitch');
         } else {
@@ -232,7 +232,7 @@ export class UIManager {
                 const req = c.lockRequirements;
                 const parts: string[] = [];
                 if (req.CS !== undefined) parts.push(`社会的信用が${req.CS}以上必要`);
-                if (req.Asset !== undefined) parts.push(`資産が${req.Asset.toLocaleString()}円以上必要`);
+                if (req.Asset !== undefined) parts.push(`資産が${req.Asset}以上必要`);
                 if (req.Autonomy !== undefined) parts.push(`自律性が${req.Autonomy}以上必要`);
                 content += `<div class="lock-reason">${parts.join('、')}</div>`;
             }
@@ -304,7 +304,7 @@ export class UIManager {
             </div>
             <div class="stat-result ${getAnimClass(Asset)}">
                 <span style="font-size:0.8em">資産</span><br>
-                <span style="font-size:1.2em; font-weight:bold">${Asset > 0 ? '+' : ''}${Asset.toLocaleString()}</span>
+                <span style="font-size:1.2em; font-weight:bold">${Asset > 0 ? '+' : ''}${Asset}</span>
             </div>
             <div class="stat-result ${getAnimClass(Autonomy)}">
                 <span style="font-size:0.8em">自律性</span><br>
@@ -516,7 +516,7 @@ export class UIManager {
                 <strong style="font-size:2.5rem; color:var(--accent-color)">${ending.rank}</strong><br>
                 <span style="font-size:1.2rem; color:var(--accent-color)">${ending.title}</span><br><br>
                 <div style="font-size:0.9rem; color:#888; margin-bottom: 15px;">
-                    社会的信用: ${s.CS} / 資産: ${s.Asset.toLocaleString()}円 / 自律性: ${s.Autonomy}
+                    社会的信用: ${s.CS} / 資産: ${s.Asset} / 自律性: ${s.Autonomy}
                 </div>
                 <div class="adam-comment-section">
                     <img src="${this.dom.mascotImg.src}" alt="A.D.A.M." class="adam-comment-img" />
