@@ -38,10 +38,11 @@ This teaches: "Society doesn't always reward doing the right thing. Autonomy has
 **Design Intent**: Represents economic capital as gate to opportunities
 
 **Characteristics**:
-- **Unlocks choices** via locks (e.g., "Asset >= 50,000円 required")
+- **Unlocks choices** via locks (e.g., "Asset >= 180 required")
 - Not directly scored, but enables paths to higher CS
 - Game over if ≤ 0 (encourages resource management)
 - **"Money opens doors"** metaphor
+- **Abstract score** (NOT yen — represents economic capital as a dimensionless value)
 
 **Teaching Method**:
 - Stage 1: Introduce Asset lock (Q9 - buying interview suit)
@@ -52,9 +53,9 @@ This teaches: "Society doesn't always reward doing the right thing. Autonomy has
 ```typescript
 {
     text: "新しいスーツと靴を購入して、万全の状態で臨む。",
-    effect: { CS: 20, Asset: -30000, Autonomy: 10 },
-    lockRequirements: { Asset: 50000 },
-    lockedFeedback: "資産が50,000円以上必要"
+    effect: { CS: 20, Asset: -30, Autonomy: 10 },
+    lockRequirements: { Asset: 180 },
+    lockedFeedback: "資産が180以上必要"
 }
 ```
 
@@ -83,8 +84,8 @@ This teaches: "Society doesn't always reward doing the right thing. Autonomy has
 {
     text: "管理会社に連絡し、「匿名で」注意してもらう。",
     effect: { CS: 30, Asset: 0, Autonomy: 15 },
-    lockRequirements: { Autonomy: 80 },
-    lockedFeedback: "自律性が80以上必要"
+    lockRequirements: { Autonomy: 150 },
+    lockedFeedback: "自律性が150以上必要"
 }
 ```
 
@@ -95,12 +96,12 @@ This teaches: "Society doesn't always reward doing the right thing. Autonomy has
 ### Teaching All Three Parameters
 
 **Q9 (Asset Lock)**:
-- Asset lock in Stage 1 (threshold: 50,000)
+- Asset lock in Stage 1 (threshold: 180)
 - Clear cause-effect: "No money → can't buy suit → can't access better choice"
 - Teaches: Asset is a supportive resource that enables opportunities
 
 **Q7 (Autonomy Lock)**:
-- Autonomy lock to emphasize this parameter (threshold: 80)
+- Autonomy lock to emphasize this parameter (threshold: 150)
 - Teaches: Autonomy = breadth of choices
 - Gates key skill pathway (MEDIATION)
 
@@ -147,17 +148,17 @@ This teaches: "Society doesn't always reward doing the right thing. Autonomy has
 
 ## Balance Guidelines
 
-### Asset Balance (Starting: 100,000 yen)
+### Asset Balance (Starting: 100)
 
 **Stage 1 Range**:
-- Best path: ~96,500 yen
-- Worst path: ~1,000 yen (near game over)
-- Q9 lock threshold: 50,000 yen
+- Best path: ~97 Asset
+- Worst path: ~1 Asset (near game over)
+- Q9 lock threshold: 180
 
 **Design Goals**:
-- Q1 リボ払い trap (-50,000) creates major early divergence
-- Q8 co-signer trap (-50,000) is the deadliest question
-- Lock threshold at 50,000 creates meaningful gate (~44% availability)
+- Q1 リボ払い trap (-50) creates major early divergence
+- Q8 co-signer trap (-50) is the deadliest question
+- Lock threshold at 180 creates meaningful gate (~44% availability)
 
 **Future Stages**:
 - Gradually increase costs and stakes
@@ -166,31 +167,36 @@ This teaches: "Society doesn't always reward doing the right thing. Autonomy has
 
 ---
 
-### Autonomy Balance (Starting: 50)
+### Autonomy Balance (Starting: 100)
 
 **Stage 1 Range**:
 - Best path: ~180 Autonomy (all active choices)
 - Worst path: ~5 Autonomy (all passive choices, near game over)
-- Lock threshold: 80 (Q7)
+- Lock threshold: 150 (Q7)
 
 **Design Goals**:
 - Show clear consequences of passivity
-- Q7 lock at 80 requires mostly positive choices to unlock (~49% availability)
+- Q7 lock at 150 requires mostly positive choices to unlock (~49% availability)
 - Demonstrate trade-offs (Q5: work gives -15, friends gives +20)
 
 **Lock Cascade**:
 - Intentional: Sustained passivity leads to lockout
-- Fair: Need good choices in Q1-Q6 to reach threshold 80
+- Fair: Need good choices in Q1-Q6 to reach threshold 150
 - Key skill pathway (MEDIATION) requires unlocking Q7 choice B
 
 ---
 
-### CS Balance (Starting: 50)
+### CS Balance (Starting: 100)
 
 **Stage 1 Range**:
-- Best path: 80+ CS (S rank)
-- Worst path: 20-40 CS (C/B rank)
+- Best path: 200+ CS (S rank)
+- Worst path: 50-100 CS (C/B rank)
 - No locks in Stage 1
+
+**Rank Thresholds**:
+- S rank: CS >= 200
+- A rank: CS >= 150
+- B rank: CS >= 100
 
 **Design Goals**:
 - Players can achieve S rank with good choices
@@ -251,28 +257,28 @@ Before finalizing a stage:
 ### Good Asset Lock (Stage 1 Q9)
 ```typescript
 text: "新しいスーツと靴を購入して、万全の状態で臨む。"
-lockRequirements: { Asset: 50000 }
-lockedFeedback: "資産が50,000円以上必要"
+lockRequirements: { Asset: 180 }
+lockedFeedback: "資産が180以上必要"
 ```
 ✅ Clear economic logic (buying costs money)
-✅ Threshold at 50k creates meaningful gate (~44% availability)
+✅ Threshold at 180 creates meaningful gate (~44% availability)
 ✅ Feedback explains reason clearly
 
 ### Good Autonomy Lock (Stage 1 Q7)
 ```typescript
 text: "管理会社に連絡し、「匿名で」注意してもらう。"
-lockRequirements: { Autonomy: 80 }
-lockedFeedback: "自律性が80以上必要"
+lockRequirements: { Autonomy: 150 }
+lockedFeedback: "自律性が150以上必要"
 ```
 ✅ Clear psychological logic (requires confidence to use systems)
-✅ High threshold (80) requires mostly positive choices (~49% availability)
+✅ High threshold (150) requires mostly positive choices (~49% availability)
 ✅ Gates key skill pathway (MEDIATION)
 
-### Bad Lock Example ❌
+### Bad Lock Example
 ```typescript
 text: "建設的な指摘をする。"
-lockRequirements: { Asset: 100000 }
-lockedFeedback: "資産が100,000円以上必要"
+lockRequirements: { Asset: 200 }
+lockedFeedback: "資産が200以上必要"
 ```
 ❌ No economic logic (why does speaking require money?)
 ❌ Lock doesn't make narrative sense

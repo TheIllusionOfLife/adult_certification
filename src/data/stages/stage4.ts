@@ -11,14 +11,14 @@ export const stage4Questions: Question[] = [
         choices: [
             {
                 text: "面倒なので住民票だけ移して、他は後回し。",
-                effect: { CS: -20, Asset: -10000, Autonomy: -5 },
+                effect: { CS: -20, Asset: -10, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "手続き漏れです。運転免許証の住所変更を怠ると身分証明として使えなくなり、銀行手続きが滞ります。後回しにするほど問題が複雑化します。",
                 lockRequirements: null
             },
             {
                 text: "チェックリストを作り、住民票→マイナンバー→免許→銀行の順で一気に処理する。",
-                effect: { CS: 10, Asset: 0, Autonomy: 15 },
+                effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。住民票を先に移すと、他の手続きがスムーズに進みます。行政手続きには「正しい順序」があります。",
                 lockRequirements: null
@@ -39,7 +39,7 @@ export const stage4Questions: Question[] = [
         choices: [
             {
                 text: "証人は親でなければならないと思い、疎遠な親に連絡して頼む。",
-                effect: { CS: 0, Asset: 0, Autonomy: -15 },
+                effect: { CS: 0, Asset: 0, Autonomy: -20 },
                 verdict: "WARNING",
                 feedback: "誤解です。証人は20歳以上であれば誰でもOK。親である必要はありません。「常識」と思い込んでいることが、実は法的根拠のない慣習であることは多いです。",
                 lockRequirements: null
@@ -64,7 +64,7 @@ export const stage4Questions: Question[] = [
         choices: [
             {
                 text: "お得なら上限なく寄附する。たくさん寄附すればたくさん返礼品がもらえる。",
-                effect: { CS: -20, Asset: -50000, Autonomy: -5 },
+                effect: { CS: -20, Asset: -30, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "大損です。控除上限額を超えた分は「ただの寄附」。年収500万円なら上限は約6万円。さらにワンストップ特例は5自治体まで、申請書は翌年1月10日必着。知らないと損をします。",
                 lockRequirements: null
@@ -93,7 +93,7 @@ export const stage4Questions: Question[] = [
         choices: [
             {
                 text: "有効期限まで3ヶ月あるから、旅行直前に更新すれば間に合う。",
-                effect: { CS: -20, Asset: -30000, Autonomy: 0 },
+                effect: { CS: -20, Asset: -20, Autonomy: 0 },
                 verdict: "WARNING",
                 feedback: "致命的なミスです。多くの国は「入国時に残存有効期限6ヶ月以上」を要求します。ギリギリでは入国拒否される可能性があります。旅行がキャンセルに。",
                 lockRequirements: null
@@ -118,14 +118,14 @@ export const stage4Questions: Question[] = [
         choices: [
             {
                 text: "郵送請求する。時間はかかるが、平日に休まなくて済む。",
-                effect: { CS: 5, Asset: -1000, Autonomy: -5 },
+                effect: { CS: 10, Asset: 0, Autonomy: -10 },
                 verdict: "NEUTRAL",
                 feedback: "堅実な選択です。郵送請求は往復1〜2週間かかりますが、定額小為替の準備と返信用封筒を同封すれば確実。時間を犠牲にして手間を減らしました。",
                 lockRequirements: null
             },
             {
                 text: "コンビニ交付を試す。マイナンバーカードがあれば、一部の戸籍は全国のコンビニで取得可能。",
-                effect: { CS: 10, Asset: -450, Autonomy: 10 },
+                effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "NEUTRAL",
                 feedback: "効率的な選択です。ただし本籍地の自治体がコンビニ交付に対応しているか確認が必要。",
                 lockRequirements: null
@@ -146,14 +146,14 @@ export const stage4Questions: Question[] = [
         choices: [
             {
                 text: "期限に間に合えばいい。2月後半から始める。",
-                effect: { CS: -15, Asset: -10000, Autonomy: -10 },
+                effect: { CS: -20, Asset: -10, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "危険です。書類不足や計算ミスに気づいても修正する時間がありません。税務署も混雑し、相談もできず、延滞税や加算税のリスクも。「間に合えばいい」は甘い考えです。",
                 lockRequirements: null
             },
             {
                 text: "年明けすぐに書類を揃え、1月中に下書きを完成させる。",
-                effect: { CS: 10, Asset: 0, Autonomy: 15 },
+                effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。源泉徴収票は1月末までに届きます。早めに準備すれば、不明点を税務署に相談する余裕もあり、控除の漏れも防げます。",
                 lockRequirements: null
@@ -171,18 +171,18 @@ export const stage4Questions: Question[] = [
         choices: [
             {
                 text: "提出したから大丈夫。受付印なんて必要ない。",
-                effect: { CS: 0, Asset: 0, Autonomy: -25 },
+                effect: { CS: 0, Asset: 0, Autonomy: -30 },
                 verdict: "WARNING",
                 feedback: "書類紛失時に提出の証拠がない。住宅ローン審査や各種申請で「申告書の控え(受付印付き)」を求められることがある。電子申告(e-Tax)なら受信通知が証拠になる。",
                 lockRequirements: null
             },
             {
                 text: "控えに受付印を押してもらい、提出の証拠を確保する。",
-                effect: { CS: 5, Asset: 0, Autonomy: 20 },
+                effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解。行政手続きは「証拠を残す」が鉄則。郵送なら特定記録や簡易書留、電子申告なら受信通知。「出した」と「出した証拠がある」は全く違う。",
-                lockRequirements: { Autonomy: 80 },
-                lockedFeedback: "LOCKED: 自律性が80以上必要。面倒くさがって「まあいいか」と流しました。"
+                lockRequirements: { Autonomy: 150 },
+                lockedFeedback: "LOCKED: 自律性が150以上必要。面倒くさがって「まあいいか」と流しました。"
             }
         ],
         adamDialogue: {
@@ -202,14 +202,14 @@ export const stage4Questions: Question[] = [
         choices: [
             {
                 text: "遺産があるから相続放棄は関係ない。何もしなくていい。",
-                effect: { CS: -25, Asset: -100000, Autonomy: 0 },
+                effect: { CS: -30, Asset: -30, Autonomy: 0 },
                 verdict: "WARNING",
                 feedback: "致命的な誤りです。プラスの遺産だけでなく「隠れた借金」も相続されます。3ヶ月以内に調査しないと、知らない借金を背負う可能性があります。",
                 lockRequirements: null
             },
             {
                 text: "まず負債の有無を調査し、必要なら相続放棄を検討する。期限は3ヶ月。",
-                effect: { CS: 10, Asset: 100000, Autonomy: 10 },
+                effect: { CS: 10, Asset: 30, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。相続は資産だけでなく負債も含みます。調査してから判断することで、隠れた借金を回避できます。",
                 lockRequirements: null
@@ -230,12 +230,12 @@ export const stage4Questions: Question[] = [
                 effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解。自主的修正申告なら過少申告加算税5%に軽減(税務調査後は10〜15%)。「見つからない可能性」を捨て、確実に解決する判断です。延滞税も日割りで加算されるため、早いほど負担は軽い。",
-                lockRequirements: { Autonomy: 80 },
-                lockedFeedback: "LOCKED: 自律性が80以上必要。不安に支配されていると、自発的に行動を起こす決断ができません。"
+                lockRequirements: { Asset: 180 },
+                lockedFeedback: "LOCKED: 資産が180以上必要。資産が不足していると、自発的に修正申告する余裕がありません。"
             },
             {
                 text: "様子を見る。税務調査が来なければ問題ない可能性もある。",
-                effect: { CS: -10, Asset: -50000, Autonomy: -10 },
+                effect: { CS: -10, Asset: -30, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "リスクの高い選択。発覚すれば過少申告加算税10〜15%+延滞税。自主的修正なら5%で済んだものが、税務調査後は大幅に負担増。数年間「いつか来るかも」という不安を抱えることになります。",
                 lockRequirements: null
@@ -256,14 +256,14 @@ export const stage4Questions: Question[] = [
         choices: [
             {
                 text: "確定申告の期限(3月15日)は過ぎているから無理。",
-                effect: { CS: -15, Asset: -60000, Autonomy: -10 },
+                effect: { CS: -20, Asset: -30, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "還付申告と確定申告は別。還付申告は翌年1月1日から5年後の12月31日まで可能。3年前の治療でもまだ間に合う。",
                 lockRequirements: null
             },
             {
                 text: "還付申告は5年間遡れる。今からでも確定申告して還付を受ける。",
-                effect: { CS: 10, Asset: 60000, Autonomy: 15 },
+                effect: { CS: 10, Asset: 30, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解。インプラント40万円なら控除額30万円(40万-10万)。税率20%なら約6万円の還付。レーシック、不妊治療、通院交通費(バス・電車)も対象。対象外は美容整形、予防接種、病気が見つからなかった健康診断。",
                 lockRequirements: null

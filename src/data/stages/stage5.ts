@@ -11,14 +11,14 @@ export const stage5Questions: Question[] = [
         choices: [
             {
                 text: "貯金を全て使い、足りない分は借金するしかない。",
-                effect: { CS: -30, Asset: -80000, Autonomy: -10 },
+                effect: { CS: -30, Asset: -30, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "無知による損失です。高額療養費制度により、一般所得者の自己負担上限は月約8〜9万円。100万円払う必要はありません。制度を知らないと、不要な借金を背負います。",
                 lockRequirements: null
             },
             {
                 text: "「高額療養費制度」を使い、自己負担を上限額に抑える。事前に限度額適用認定証を取得。",
-                effect: { CS: 10, Asset: 100000, Autonomy: 15 },
+                effect: { CS: 10, Asset: 30, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。公的制度を知っているだけで数十万円の差。限度額適用認定証があれば、窓口での支払いも上限額で済みます。",
                 lockRequirements: null
@@ -39,14 +39,14 @@ export const stage5Questions: Question[] = [
         choices: [
             {
                 text: "休職したら給料ゼロ。貯金を切り崩すしかない。",
-                effect: { CS: -15, Asset: -50000, Autonomy: -5 },
+                effect: { CS: -20, Asset: -30, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "制度の見落としです。健康保険の傷病手当金は、給与の約2/3を最長1年6ヶ月支給。申請しないと受け取れませんが、知っていれば収入を確保できます。",
                 lockRequirements: null
             },
             {
                 text: "傷病手当金を申請する。給与の約2/3が最長1年6ヶ月支給される。",
-                effect: { CS: 10, Asset: 150000, Autonomy: 10 },
+                effect: { CS: 10, Asset: 40, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。会社員の特権である健康保険の傷病手当金。申請主義なので、自分から動かないと受け取れません。退職後も継続受給可能(退職日に労務不能+1年以上の被保険者期間が条件)。",
                 lockRequirements: null
@@ -64,14 +64,14 @@ export const stage5Questions: Question[] = [
         choices: [
             {
                 text: "教育訓練給付金の対象講座か確認し、給付金を申請して受講する。",
-                effect: { CS: 15, Asset: -50000, Autonomy: 15 },
+                effect: { CS: 20, Asset: -30, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。雇用保険加入1年以上（初回）で利用可能。一般は20%、特定一般は40%、専門実践は最大70%給付。ハローワークで事前に相談すれば、対象講座と手続きがわかります。",
                 lockRequirements: null
             },
             {
                 text: "まずは独学や無料の教材で学び、必要なら有料講座を検討する。",
-                effect: { CS: 0, Asset: 0, Autonomy: 5 },
+                effect: { CS: 0, Asset: 0, Autonomy: 10 },
                 verdict: "NEUTRAL",
                 feedback: "独学も立派な選択。無料のオンライン教材やコミュニティも充実しています。ただし、教育訓練給付金(最大70%給付)という制度の存在は知っておくべき。使うかどうかは状況次第だが、「知らなかった」で機会を逃すのはもったいない。",
                 lockRequirements: null
@@ -93,14 +93,14 @@ export const stage5Questions: Question[] = [
         choices: [
             {
                 text: "育児休業給付金（67%→50%）を確認し、生活設計に組み込んで育休を取得する。",
-                effect: { CS: 10, Asset: 100000, Autonomy: 15 },
+                effect: { CS: 10, Asset: 30, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。社会保険料も免除されるため、実質的な手取り差は縮まります。制度を理解すれば、育児と仕事の両立が可能になります。",
                 lockRequirements: null
             },
             {
                 text: "給料が出ないなら育休は取れない。すぐ復帰するしかない。",
-                effect: { CS: 10, Asset: 0, Autonomy: -15 },
+                effect: { CS: 10, Asset: 0, Autonomy: -20 },
                 verdict: "WARNING",
                 feedback: "制度の誤解です。育児休業給付金は、最初の6ヶ月は給与の67%、以降50%が雇用保険から支給されます。「無収入」ではありません。",
                 lockRequirements: null
@@ -118,14 +118,14 @@ export const stage5Questions: Question[] = [
         choices: [
             {
                 text: "テレワークか欠席を提案し、回復に専念する。上司に状況を説明して会議の代理を依頼する。",
-                effect: { CS: 10, Asset: 0, Autonomy: 15 },
+                effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解。インフルエンザは発症後5日かつ解熱後2日の出席停止が目安(学校保健安全法準拠、企業も多くが準用)。テレワークで体調が許す範囲の対応は合理的。同僚への感染防止が社会人としての責任。",
                 lockRequirements: null
             },
             {
                 text: "同僚にインフルエンザのことは黙って出社する。マスクをすれば大丈夫。",
-                effect: { CS: -25, Asset: 0, Autonomy: -15 },
+                effect: { CS: -30, Asset: 0, Autonomy: -20 },
                 verdict: "WARNING",
                 feedback: "最悪の選択。職場全体に感染が広がり、プロジェクト全体が停止するリスク。感染症を隠して出社するのは「頑張り」ではなく「迷惑」。報告と休養が社会人の義務。",
                 lockRequirements: null
@@ -143,7 +143,7 @@ export const stage5Questions: Question[] = [
         choices: [
             {
                 text: "申請する。自己都合でも給付制限期間後に受給できる。待機中は就職活動を進める。",
-                effect: { CS: 10, Asset: 100000, Autonomy: 10 },
+                effect: { CS: 10, Asset: 30, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。自己都合退職の給付制限は原則2ヶ月(5年以内に2回まで、3回目以降は3ヶ月)。制限期間は転職準備に充て、制限明けから受給。早期再就職なら「再就職手当」(残日数の60〜70%)も。制度を理解して計画的に動くことが大切です。",
                 lockRequirements: null
@@ -175,11 +175,11 @@ export const stage5Questions: Question[] = [
             },
             {
                 text: "心療内科を予約する。早期受診が重症化を防ぐ。",
-                effect: { CS: 10, Asset: -5000, Autonomy: 20 },
+                effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。メンタルヘルスケアは「弱さ」ではなく「自己管理能力」。自立支援医療制度を使えば、医療費負担も軽減できます。",
-                lockRequirements: { Autonomy: 80 },
-                lockedFeedback: "LOCKED: 自律性が80以上必要。「助けを求める」という発想自体が浮かばない状態です。"
+                lockRequirements: { Autonomy: 150 },
+                lockedFeedback: "LOCKED: 自律性が150以上必要。「助けを求める」という発想自体が浮かばない状態です。"
             }
         ],
         adamDialogue: {
@@ -199,14 +199,14 @@ export const stage5Questions: Question[] = [
         choices: [
             {
                 text: "50万円を貯めるか、借りるしかない。",
-                effect: { CS: -10, Asset: -100000, Autonomy: -5 },
+                effect: { CS: -10, Asset: -30, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "制度の見落としです。出産育児一時金（50万円）が健康保険から支給されます。直接支払制度を使えば、窓口負担はほぼゼロにできます。知らなかったために50万円を自己負担しました。",
                 lockRequirements: null
             },
             {
                 text: "出産育児一時金（50万円）の直接支払制度を使い、自己負担を最小化する。",
-                effect: { CS: 10, Asset: 500000, Autonomy: 10 },
+                effect: { CS: 10, Asset: 50, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。出産は「病気ではない」ため保険適用外ですが、一時金で実質カバーされます。制度を知れば、出産のハードルは下がります。",
                 lockRequirements: null
@@ -224,18 +224,18 @@ export const stage5Questions: Question[] = [
         choices: [
             {
                 text: "生活保護は最後の手段。親戚に頭を下げて借金する。",
-                effect: { CS: -15, Asset: 30000, Autonomy: -10 },
+                effect: { CS: -20, Asset: 20, Autonomy: -10 },
                 verdict: "NEUTRAL",
                 feedback: "プライドを守る選択です。しかし、借金は返済義務が発生し、親戚関係も複雑になります。「援助」ではなく「負債」を選びました。",
                 lockRequirements: null
             },
             {
                 text: "生活保護を申請する。困窮時の公的支援は権利であり、恥ではない。",
-                effect: { CS: 0, Asset: 100000, Autonomy: 0 },
+                effect: { CS: 0, Asset: 30, Autonomy: 0 },
                 verdict: "NEUTRAL",
                 feedback: "合理的な選択です。生活保護は「税金で生きる」のではなく「再起するための一時的支援」。制度を使って立て直すことは、自立への第一歩です。",
-                lockRequirements: { Autonomy: 70 },
-                lockedFeedback: "LOCKED: 自律性が70以上必要。プライドが邪魔をして、「助けを求める」選択肢が見えません。"
+                lockRequirements: { Asset: 180 },
+                lockedFeedback: "LOCKED: 資産が180以上必要。資産が不足していると、公的支援を選ぶ余裕がありません。"
             }
         ],
         adamDialogue: {
@@ -253,14 +253,14 @@ export const stage5Questions: Question[] = [
         choices: [
             {
                 text: "任意継続を選ぶ。退職前と同じ保険証が使え、扶養家族がいれば追加保険料なしでカバーできる。",
-                effect: { CS: 10, Asset: -50000, Autonomy: -10 },
+                effect: { CS: 10, Asset: -30, Autonomy: -10 },
                 verdict: "NEUTRAL",
                 feedback: "継続性を重視した回答です。任意継続は最大2年間、会社負担分も自己負担になるため保険料は約2倍。扶養家族ありなら任意継続有利(追加保険料なし)。退職後20日以内に手続き必須。",
                 lockRequirements: null
             },
             {
                 text: "国民健康保険を選ぶ。失業中なら減免申請で保険料が下がる可能性がある。",
-                effect: { CS: 5, Asset: -30000, Autonomy: 10 },
+                effect: { CS: 10, Asset: -20, Autonomy: 10 },
                 verdict: "NEUTRAL",
                 feedback: "状況に応じた回答です。単身+前年収入低なら国保減免有利。国保には「扶養」がなく家族分の保険料が発生するが、失業減免を使えば大幅に安くなることも。退職後20日以内に任意継続の手続き期限あり。両方を試算して比較すれば、年間数十万円の差が出ます。",
                 lockRequirements: null

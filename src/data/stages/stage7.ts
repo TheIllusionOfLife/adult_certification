@@ -11,14 +11,14 @@ export const stage7Questions: Question[] = [
         choices: [
             {
                 text: "8日以内ならクーリングオフできるはず。",
-                effect: { CS: -15, Asset: -30000, Autonomy: -10 },
+                effect: { CS: -20, Asset: -20, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "最も多い誤解。通信販売(ネット通販、テレビショッピング)にはクーリングオフ制度は適用されない。返品は各ショップの「返品特約」に依存。特約がなければ商品到着後8日以内に返品可能(送料は購入者負担)。購入前に返品ポリシーを確認すべき。",
                 lockRequirements: null
             },
             {
                 text: "通信販売にはクーリングオフは適用されない。返品は「返品特約」を確認する。",
-                effect: { CS: 5, Asset: 0, Autonomy: 15 },
+                effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解。クーリングオフは訪問販売(8日)、電話勧誘販売(8日)、連鎖販売取引(20日)等が対象。ネット通販は「自分の意思で購入した」ため対象外。返品特約を事前に確認するのが唯一の防御策。",
                 lockRequirements: null
@@ -39,14 +39,14 @@ export const stage7Questions: Question[] = [
         choices: [
             {
                 text: "消費者センター（188）に相談する。第三者の介入で状況が変わることも多い。",
-                effect: { CS: 5, Asset: 0, Autonomy: 15 },
+                effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。消費者センターは無料で相談でき、あっせん（仲裁）もしてくれます。「相談先を知っている」ことが、不当な扱いへの最大の武器です。",
                 lockRequirements: null
             },
             {
                 text: "「返品不可」と言われたら仕方ない。諦める。",
-                effect: { CS: -15, Asset: -20000, Autonomy: -10 },
+                effect: { CS: -20, Asset: -20, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "泣き寝入りです。初期不良品の交換・返金は消費者の権利。消費者ホットライン（188）に相談すれば、適切な対応を求める手段が見つかります。",
                 lockRequirements: null
@@ -64,14 +64,14 @@ export const stage7Questions: Question[] = [
         choices: [
             {
                 text: "契約書にサインしたから、もう解約できない。",
-                effect: { CS: -20, Asset: -300000, Autonomy: -10 },
+                effect: { CS: -20, Asset: -50, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "権利の放棄です。訪問販売にはクーリングオフ制度があり、契約書面受領日から8日以内なら無条件解約可能。知らないと30万円を失います。",
                 lockRequirements: null
             },
             {
                 text: "クーリングオフを使う。書面で通知すれば8日以内は無条件解約できる。",
-                effect: { CS: 5, Asset: 0, Autonomy: 15 },
+                effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。クーリングオフは消費者の強力な武器。書面（内容証明郵便が確実）で通知すれば、理由不要で解約できます。",
                 lockRequirements: null
@@ -93,14 +93,14 @@ export const stage7Questions: Question[] = [
         choices: [
             {
                 text: "まず病院で検査を受け、症状が固定するまで示談しない。必要なら弁護士に相談。",
-                effect: { CS: 5, Asset: 0, Autonomy: 15 },
+                effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。交通事故の示談は「症状固定後」が原則。弁護士特約があれば費用負担なく相談可能。焦って示談すると、本来受け取れる額の半分以下になることも。",
                 lockRequirements: null
             },
             {
                 text: "30万円もらえるなら十分。示談書にサインする。",
-                effect: { CS: 0, Asset: -100000, Autonomy: -10 },
+                effect: { CS: 0, Asset: -30, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "早まった判断です。示談後に後遺症が出ても追加請求は困難。保険会社の初回提示は「低め」が基本。まず病院で精密検査を受け、弁護士に相談すべきでした。",
                 lockRequirements: null
@@ -118,14 +118,14 @@ export const stage7Questions: Question[] = [
         choices: [
             {
                 text: "何度も催促するしかない。弁護士は高いから諦めるかも。",
-                effect: { CS: -10, Asset: -200000, Autonomy: -10 },
+                effect: { CS: -10, Asset: -40, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "泣き寝入りに近い。フリーランスには公的な相談窓口がある。",
                 lockRequirements: null
             },
             {
                 text: "「フリーランス・トラブル110番」(0120-532-110)に相談。必要なら内容証明郵便で支払いを請求し、少額訴訟も検討。",
-                effect: { CS: 5, Asset: 0, Autonomy: 20 },
+                effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解。フリーランス・トラブル110番は厚労省委託の無料相談窓口。弁護士による助言も。2024年11月施行のフリーランス保護法で、発注者の報酬支払い遅延は法違反に。契約書・納品記録・メールのやり取りが証拠。少額訴訟(60万円以下)は弁護士不要、1回の審理で判決。",
                 lockRequirements: null
@@ -143,14 +143,14 @@ export const stage7Questions: Question[] = [
         choices: [
             {
                 text: "「月利10%は年利120%。ありえない数字」と判断し、断る。紹介ボーナスはポンジスキーム(自転車操業)の特徴。",
-                effect: { CS: 5, Asset: 0, Autonomy: 15 },
+                effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解。月利10%は年利120%で、世界最高の投資家でも不可能な数字。「紹介ボーナス」はMLM(連鎖販売)の特徴。ポンジスキームは新規参加者の資金で既存参加者に配当する自転車操業。資金が尽きれば破綻し、後から参加した人が最も損をする。",
                 lockRequirements: null
             },
             {
                 text: "AIなら可能かもしれない。30万円なら試してみる価値がある。",
-                effect: { CS: -25, Asset: -300000, Autonomy: -15 },
+                effect: { CS: -30, Asset: -50, Autonomy: -20 },
                 verdict: "WARNING",
                 feedback: "投資詐欺の典型。ポンジスキーム(自転車操業)+MLM(連鎖販売)の組み合わせ。初期は配当が出ることもあるが、それは新規参加者の資金。やがて破綻し、30万円と人間関係を失う。「AI」「自動」は詐欺の常套句。",
                 lockRequirements: null
@@ -168,15 +168,15 @@ export const stage7Questions: Question[] = [
         choices: [
             {
                 text: "「確認させてください」と時間をもらい、重要条項を読んでからサインする。",
-                effect: { CS: -5, Asset: 0, Autonomy: 20 },
+                effect: { CS: -10, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。契約は「読んで理解してサイン」が原則。読まずにサインしても法的には有効です。「読む権利」を行使する勇気が、あなたを守ります。",
-                lockRequirements: { Autonomy: 80 },
-                lockedFeedback: "LOCKED: 自律性が80以上必要。「店員を待たせたくない」という社会的圧力に屈してしまいます。"
+                lockRequirements: { Autonomy: 150 },
+                lockedFeedback: "LOCKED: 自律性が150以上必要。「店員を待たせたくない」という社会的圧力に屈してしまいます。"
             },
             {
                 text: "店員を待たせるのは悪いので、読まずにサインする。",
-                effect: { CS: 0, Asset: -30000, Autonomy: -25 },
+                effect: { CS: 0, Asset: -20, Autonomy: -30 },
                 verdict: "WARNING",
                 feedback: "思考停止です。2年縛り、自動更新、高額オプション・・・読まずにサインした契約のすべてがあなたを縛ります。「時間がない」は言い訳です。",
                 lockRequirements: null
@@ -206,7 +206,7 @@ export const stage7Questions: Question[] = [
             },
             {
                 text: "「形だけ」と言うならと、連帯保証人になる。",
-                effect: { CS: -20, Asset: -500000, Autonomy: -20 },
+                effect: { CS: -20, Asset: -50, Autonomy: -20 },
                 verdict: "WARNING",
                 feedback: "致命的なミスです。連帯保証は「借主と同等の返済義務」。知人が払えなければ、全額請求があなたに来ます。「形だけ」は法的に存在しません。",
                 lockRequirements: null
@@ -224,15 +224,15 @@ export const stage7Questions: Question[] = [
         choices: [
             {
                 text: "「やめた方がいい」と伝える。たとえ嫌われても、間違いは指摘すべき。",
-                effect: { CS: -10, Asset: 0, Autonomy: 15 },
+                effect: { CS: -10, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解。業務上横領は刑法253条、10年以下の懲役。友人は気分を害するかもしれないが、本当の友人なら忠告を受け入れるはず。もし関係が壊れるなら、それはその程度の関係だったということ。黙認は共犯意識につながる。",
-                lockRequirements: { CS: 60 },
-                lockedFeedback: "LOCKED: 社会的信用が60以上必要。自分に自信がないと、友人に意見することができません。"
+                lockRequirements: { Asset: 180 },
+                lockedFeedback: "LOCKED: 資産が180以上必要。資産が不足しており、友人に意見する余裕がありません。"
             },
             {
                 text: "「まあ、その程度なら」と流す。友人関係を壊したくない。",
-                effect: { CS: 5, Asset: 0, Autonomy: -20 },
+                effect: { CS: 10, Asset: 0, Autonomy: -20 },
                 verdict: "WARNING",
                 feedback: "関係維持を優先したが、業務上横領は刑法253条で10年以下の懲役。友人との関係は保たれますが、あなたは「黙認する人」になりました。友人がエスカレートした時、あなたも共犯意識を持つことになります。",
                 lockRequirements: null
@@ -253,7 +253,7 @@ export const stage7Questions: Question[] = [
         choices: [
             {
                 text: "よくわからないが、知人のためだからサインする。",
-                effect: { CS: -20, Asset: -300000, Autonomy: -20 },
+                effect: { CS: -20, Asset: -50, Autonomy: -20 },
                 verdict: "WARNING",
                 feedback: "危険。極度額は「保証人が負う上限額」。2020年民法改正で、個人の根保証は極度額を書面で定めないと無効。極度額が「300万円」なら、家賃滞納・原状回復・損害賠償の合計がその額まであなたに請求される。",
                 lockRequirements: null

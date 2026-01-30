@@ -42,8 +42,8 @@
 ### Effect Magnitudes
 | Type | Range | Notes |
 |------|-------|-------|
-| Damage reduction | 20-50% | Below 20% invisible, above 50% trivializing |
-| Cost reduction | ¥5k-20k | Based on typical costs (10k-50k) |
+| Gain amplification | 20-30% | Primary effect type; amplifies positive parameter gains |
+| All gain amplification | 20% | AWAKENING (Stage 10) only |
 
 ---
 
@@ -62,7 +62,7 @@
 | 9 | DAMAGE_CONTROL | 被害最小化 | Minimizing crisis damage |
 | 10 | AWAKENING | 覚醒 | Transcending the evaluation system |
 
-> **Stage 10 Note**: AWAKENING has a unique effect (`all_damage_reduction`) unlike other key skills. See [QUESTION_DESIGN_GUIDE_FOR_FINAL_STAGE.md](./QUESTION_DESIGN_GUIDE_FOR_FINAL_STAGE.md) for full details.
+> **Stage 10 Note**: AWAKENING has a unique effect (`all_gain_amplification`) unlike other key skills. See [QUESTION_DESIGN_GUIDE_FOR_FINAL_STAGE.md](./QUESTION_DESIGN_GUIDE_FOR_FINAL_STAGE.md) for full details.
 
 ### Structure
 ```typescript
@@ -100,37 +100,43 @@ Example: "・・・あなたは『システムを理解しながら、自我を�
 
 ## Effect Types
 
-### 1. autonomy_damage_reduction
-Reduces all Autonomy damage by percentage.
+### Primary: Gain Amplification
+
+Skills primarily use **gain amplification** — they boost positive parameter changes rather than reducing negative ones.
+
+### 1. autonomy_gain_amplification (KEY SKILL TYPE)
+Amplifies all Autonomy gains by percentage.
 ```typescript
-effect: { type: "autonomy_damage_reduction", value: 0.3-0.5 }
-// -20 Autonomy → -14 Autonomy (at 0.3)
+effect: { type: "autonomy_gain_amplification", value: 0.20-0.25 }
+// +20 Autonomy → +24 Autonomy (at 0.20)
 ```
 
-### 2. category_cs_damage_reduction
-Reduces CS damage for specific category.
+### 2. cs_gain_amplification
+Amplifies all CS gains by percentage.
 ```typescript
-effect: { type: "category_cs_damage_reduction", category: "LABOR", value: 0.3 }
-// LABOR question: -30 CS → -21 CS
+effect: { type: "cs_gain_amplification", value: 0.20-0.25 }
+// +30 CS → +36 CS (at 0.20)
 ```
 
-### 3. category_autonomy_damage_reduction
-Reduces Autonomy damage for specific category.
+### 3. asset_gain_amplification
+Amplifies all Asset gains by percentage.
 ```typescript
-effect: { type: "category_autonomy_damage_reduction", category: "SOCIAL", value: 0.4 }
+effect: { type: "asset_gain_amplification", value: 0.20-0.25 }
+// +20 Asset → +24 Asset (at 0.20)
 ```
 
-### 4. asset_damage_reduction / cs_damage_reduction
-Universal damage reduction.
+### 4. all_gain_amplification (AWAKENING only)
+Amplifies all parameter gains by percentage. Exclusive to Stage 10 AWAKENING.
 ```typescript
-effect: { type: "asset_damage_reduction", value: 0.3 }
+effect: { type: "all_gain_amplification", value: 0.20 }
+// All positive effects amplified by 20%
 ```
 
-### 5. *_gain_amplification
-Amplifies gains (not losses).
+### 5. category_*_gain_amplification
+Category-specific gain amplification.
 ```typescript
-effect: { type: "autonomy_gain_amplification", value: 0.2 }
-// +15 Autonomy → +18 Autonomy
+effect: { type: "category_cs_gain_amplification", category: "LABOR", value: 0.25 }
+// LABOR question: +30 CS → +37 CS
 ```
 
 **Categories**: ADMIN, FINANCE, SEC, LABOR, SOCIAL, HOUSING, TAX, LEGAL, MANNER, HEALTH, CAREER
@@ -142,7 +148,7 @@ effect: { type: "autonomy_gain_amplification", value: 0.2 }
 **All skills must be unique in BOTH name AND effect across all stages.**
 
 Already used:
-- Stage 1: メンタルシールド, 節約マインド, 印象操作, MEDIATION
+- Stage 1: 資産増幅, 自律性増幅, 信用増幅, MEDIATION
 - Stage 2: 交渉術, 報連相の型, 労働法知識, EVIDENCE_CHAIN
 
 ---
@@ -166,28 +172,38 @@ node scripts/simulate_stage.mjs --stage {N}
 
 Before finalizing a stage, verify each skill can trigger:
 
-1. **Identify skill effect type** (e.g., `category_asset_damage_reduction`)
+1. **Identify skill effect type** (e.g., `cs_gain_amplification`)
 2. **Check trigger conditions**:
-   - For `category_asset_damage_reduction`: Questions in that category with Asset < 0
-   - For `category_cs_damage_reduction`: Questions in that category with CS < 0
-   - For `category_autonomy_damage_reduction`: Questions in that category with Autonomy < 0
-   - For `asset_gain_amplification`: Questions with Asset > 0
    - For `cs_gain_amplification`: Questions with CS > 0
+   - For `asset_gain_amplification`: Questions with Asset > 0
    - For `autonomy_gain_amplification`: Questions with Autonomy > 0
+   - For `all_gain_amplification`: Any question with any positive parameter
+   - For `category_*_gain_amplification`: Questions in that category with the relevant parameter > 0
 3. **Count trigger opportunities after acquisition**:
    - Offer 1 skills: Count triggers in Q4-Q10
    - Offer 2 skills: Count triggers in Q8-Q10
 4. **Minimum**: Each skill must have ≥1 trigger opportunity
 5. **Run simulation**: Verify activation > 0%
 
-**Example**: Stage 5's s5_normal_01 (`category_asset_damage_reduction` for HEALTH)
-- Q4 (HEALTH): Wrong choice has Asset: -42000 ✓
-- Q7 (HEALTH): Correct locked choice has Asset: -5000 ✓
-- Result: Skill can trigger → Simulation shows 2.5% activation
+**Example**: Stage 5's s5_normal_01 (`asset_gain_amplification`)
+- Q4 (HEALTH): Correct choice has Asset: +20 ✓
+- Q7 (HEALTH): Correct locked choice has Asset: +10 ✓
+- Result: Skill can trigger → Simulation shows amplified gains
+
+### A.D.A.M. Recommendation Strategy
+
+A.D.A.M. recommends skills that appear beneficial but subtly steer players away from the key skill type:
+
+- **ADAM recommends**: CS gain amplification, Asset gain amplification
+- **Non-recommended**: Autonomy gain amplification (the key skill type for True Ending)
+- **Stages 1-4**: Key skill (`autonomy_gain_amplification`) is reachable even when following ADAM's recommendation
+- **Stages 5-9**: Key skill becomes unreachable if the player follows ADAM's recommendation — this is the trap
+
+This creates a progression where early stages teach players to trust ADAM, while later stages punish blind obedience.
 
 ### Pairing Strategy
 
-**Offer 1**: Different parameter protection (Autonomy vs Asset vs CS)
+**Offer 1**: Different parameter amplification (Autonomy vs Asset vs CS)
 
 **Offer 2**: Normal (stronger, immediate) vs Key (weaker, collectible)
 
@@ -204,7 +220,7 @@ Before finalizing a stage, verify each skill can trigger:
 | Mistake | Problem | Fix |
 |---------|---------|-----|
 | Random activation | RNG frustration | Make deterministic |
-| Too weak (< 20%) | Player won't notice | Use 20-50% |
+| Too weak (< 20%) | Player won't notice | Use 20-30% |
 | Category mismatch | Never triggers | Match stage categories |
 | No trade-off | Obvious choice | Address different needs |
 | Key skill too strong | Always correct choice | Keep 20-30% (weaker than normal) |
@@ -217,7 +233,7 @@ Before finalizing a stage, verify each skill can trigger:
 - [ ] Unique IDs: `s{N}_normal_01`, etc.
 - [ ] Names professional, thematic
 - [ ] Descriptions use です/ます
-- [ ] Magnitudes: 20-50% or ¥5k-20k
+- [ ] Magnitudes: 20-30% gain amplification
 
 ### Normal Skills
 - [ ] 3 per stage

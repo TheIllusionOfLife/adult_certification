@@ -11,14 +11,14 @@ export const stage1Questions: Question[] = [
         choices: [
             {
                 text: "毎月の支払いが一定で楽そうなので、リボ払いを設定する。",
-                effect: { CS: 0, Asset: -50000, Autonomy: -10 },
+                effect: { CS: 0, Asset: -30, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "年利15%前後で「返済が終わらない設計」になりがち。便利さの裏に利息地獄があります。お金の知識不足が資産を削ります。",
                 lockRequirements: null
             },
             {
                 text: "年利を確認し、一括払いを基本にする。",
-                effect: { CS: 10, Asset: 0, Autonomy: 5 },
+                effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "クレカの明細チェックと一括払いが「お金の自衛」の基本。知識が資産を守ります。",
                 lockRequirements: null
@@ -93,14 +93,14 @@ export const stage1Questions: Question[] = [
         choices: [
             {
                 text: "スーツなどフォーマルな格好で行く。お金は現地までの往復交通費に注意する。",
-                effect: { CS: -25, Asset: 0, Autonomy: 0 },
+                effect: { CS: -30, Asset: 0, Autonomy: 0 },
                 verdict: "WARNING",
                 feedback: "服装は正しいが不十分。香典(20代の同僚の親なら3,000〜5,000円)を旧札で用意、袱紗に包んで持参、宗派不明なら「御霊前」が無難。受付での作法、焼香の回数(浄土真宗1回、真言宗3回)、忌み言葉(重ね重ね、たびたび)なども把握すべき。",
                 lockRequirements: null
             },
             {
                 text: "服装(黒のフォーマル、派手なアクセサリーNG)、香典(旧札、袱紗で包む、表書きは宗派を確認)、焼香の作法など、事前にマナーを調べて準備する。",
-                effect: { CS: 20, Asset: -10000, Autonomy: 10 },
+                effect: { CS: 20, Asset: -10, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解。香典は20代の同僚の親なら3,000〜5,000円。新札は折ってから入れる。表書きは四十九日前は「御霊前」(浄土真宗は「御仏前」)。数珠は貸し借りNG。わからなければ前の人に合わせる。",
                 lockRequirements: null
@@ -118,14 +118,14 @@ export const stage1Questions: Question[] = [
         choices: [
             {
                 text: "お祝いの気持ちが大事。服装は手持ちの白いワンピースで、ご祝儀は財布から直接2万円を渡す。",
-                effect: { CS: -25, Asset: 0, Autonomy: 0 },
+                effect: { CS: -30, Asset: 0, Autonomy: 0 },
                 verdict: "WARNING",
                 feedback: "複数のマナー違反。白は花嫁の色でNG。ご祝儀は奇数が基本(友人なら3万円)、新札を用意し袱紗から出して渡す。水引は結び切り(一度きりの意味)。バッグから直接出すのもNG。",
                 lockRequirements: null
             },
             {
                 text: "ご祝儀は新札で3万円(奇数)、袱紗に包む。服装は白以外のフォーマル、ファー・動物柄もNG。水引は結び切り。",
-                effect: { CS: 20, Asset: -30000, Autonomy: 10 },
+                effect: { CS: 20, Asset: -10, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解。ご祝儀は友人・同僚で3万円、兄弟姉妹で5〜10万円が相場。2万円(ペア)と8万円(末広がり)は例外的にOK。4と9は避ける。受付では袱紗の上に乗せて両手で差し出す。",
                 lockRequirements: null
@@ -143,7 +143,7 @@ export const stage1Questions: Question[] = [
         choices: [
             {
                 text: "入口近くの席に座り、名刺は片手で素早く交換する。",
-                effect: { CS: -25, Asset: 0, Autonomy: 0 },
+                effect: { CS: -30, Asset: 0, Autonomy: 0 },
                 verdict: "WARNING",
                 feedback: "マナー違反です。入口近くの下座が自分の席ですが、先に座るのは失礼。名刺は両手で受け取り、すぐにしまわないのが礼儀。第一印象で「この人はダメだ」と判断されました。",
                 lockRequirements: null
@@ -175,11 +175,11 @@ export const stage1Questions: Question[] = [
             },
             {
                 text: "管理会社に連絡し、注意してもらう。",
-                effect: { CS: 30, Asset: 0, Autonomy: 15 },
+                effect: { CS: 30, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "仲介術です。システムを間に挟むことで、直接対決を避ける技術です。これが大人の解決法です。",
-                lockRequirements: { Autonomy: 80 },
-                lockedFeedback: "LOCKED: 自律性が80以上必要。受動的に耐えてきた結果、第三者に助けを求めるという発想すら浮かびません。自律性は「選択肢の数」です。"
+                lockRequirements: { Autonomy: 150 },
+                lockedFeedback: "LOCKED: 自律性が150以上必要。受動的に耐えてきた結果、第三者に助けを求めるという発想すら浮かびません。自律性は「選択肢の数」です。"
             }
         ],
         adamDialogue: {
@@ -199,14 +199,14 @@ export const stage1Questions: Question[] = [
         choices: [
             {
                 text: "期限前に車検を受ける。費用が厳しければ、車を手放すことも検討する。",
-                effect: { CS: 20, Asset: -100000, Autonomy: 15 },
+                effect: { CS: 20, Asset: -30, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。車検は新車登録から3年、以降2年ごと。自賠責保険は車検と同時更新が基本。維持できないなら手放す判断も大人の選択です。",
                 lockRequirements: null
             },
             {
                 text: "お金がないので、車検が切れてもしばらく乗り続ける。",
-                effect: { CS: -30, Asset: -150000, Autonomy: -15 },
+                effect: { CS: -30, Asset: -40, Autonomy: -20 },
                 verdict: "WARNING",
                 feedback: "犯罪です。車検切れの運転は道路運送車両法違反（6点減点、30万円以下の罰金）。自賠責も切れていれば1年以下の懲役または50万円以下の罰金。「節約」のつもりが人生を壊します。",
                 lockRequirements: null
@@ -227,7 +227,7 @@ export const stage1Questions: Question[] = [
         choices: [
             {
                 text: "「了解しました」「ご苦労様です」など、日常的に使われている表現を使う。",
-                effect: { CS: -25, Asset: 0, Autonomy: 0 },
+                effect: { CS: -30, Asset: 0, Autonomy: 0 },
                 verdict: "WARNING",
                 feedback: "「ご苦労様」は目上→目下のねぎらい表現で上司にはNG。「了解しました」もカジュアルすぎる。上司には「お疲れ様です」「承知いたしました」「かしこまりました」を使う。二重敬語(「おっしゃられる」等)にも注意。",
                 lockRequirements: null
@@ -237,7 +237,8 @@ export const stage1Questions: Question[] = [
                 effect: { CS: 20, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解。尊敬語(相手の動作: おっしゃる、ご覧になる)と謙譲語(自分の動作: 申す、拝見する)の使い分けが基本。「お読みになられる」は二重敬語でNG。ただし「お召し上がりになる」は許容。",
-                lockRequirements: null
+                lockRequirements: { Asset: 180 },
+                lockedFeedback: "LOCKED: 資産が180以上必要。資産が不足しており、この選択肢を取る余裕がありません。"
             }
         ]
     },
@@ -252,7 +253,7 @@ export const stage1Questions: Question[] = [
         choices: [
             {
                 text: "出発30分前に着けば十分。モバイルバッテリーとペットボトルの飲み物はスーツケースに入れて預ける。",
-                effect: { CS: -25, Asset: 0, Autonomy: 0 },
+                effect: { CS: -30, Asset: 0, Autonomy: 0 },
                 verdict: "WARNING",
                 feedback: "時間不足。国内線は1時間前、国際線は2〜3時間前が目安。保安検査は出発20分前まで。モバイルバッテリー(160Wh以下)は機内持込のみで預け荷物NG。国際線の液体は100ml以下の容器+1L以下の透明袋。ライターは機内持込1個のみ。",
                 lockRequirements: null

@@ -11,14 +11,14 @@ export const stage6Questions: Question[] = [
         choices: [
             {
                 text: "礼金の減額と仲介手数料の根拠を確認し、交渉を試みる。",
-                effect: { CS: 0, Asset: -25000, Autonomy: 15 },
+                effect: { CS: 0, Asset: -20, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。礼金は慣習であり法的義務ではなく、仲介手数料は原則「貸主・借主で折半」（宅建業法46条）。知識があれば交渉できます。",
                 lockRequirements: null
             },
             {
                 text: "「相場だから仕方ない」と全額払う。",
-                effect: { CS: 0, Asset: -100000, Autonomy: -10 },
+                effect: { CS: 0, Asset: -30, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "機会損失です。礼金は交渉で減額できることが多く、仲介手数料は法的上限（賃料1ヶ月分）を超えている場合も。言い値で払うと損をします。",
                 lockRequirements: null
@@ -39,14 +39,14 @@ export const stage6Questions: Question[] = [
         choices: [
             {
                 text: "金利、手数料、保証料、団信条件、繰上返済条件を総合的に比較し、総支払額で判断する。",
-                effect: { CS: 5, Asset: -40000, Autonomy: 10 },
+                effect: { CS: 10, Asset: -20, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。35年ローンでは0.1%の金利差が数十万円になります。複数要素を比較し、本当の「安さ」を見極める力が必要です。",
                 lockRequirements: null
             },
             {
                 text: "金利が一番低い銀行を選ぶ。金利がすべて。",
-                effect: { CS: -10, Asset: -100000, Autonomy: 0 },
+                effect: { CS: -10, Asset: -30, Autonomy: 0 },
                 verdict: "WARNING",
                 feedback: "視野狭窄です。事務手数料、保証料、団信保険料、繰上返済手数料・・・金利以外のコストで数十万円の差が出ます。総支払額で比較しないと損をします。",
                 lockRequirements: null
@@ -64,14 +64,14 @@ export const stage6Questions: Question[] = [
         choices: [
             {
                 text: "保証会社を利用する。費用はかかるが、人間関係のリスクを避けられる。",
-                effect: { CS: 5, Asset: -30000, Autonomy: 15 },
+                effect: { CS: 10, Asset: -20, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。保証会社費用（賃料の0.5〜1ヶ月分）は「人間関係保険」。金銭トラブルで親戚関係を壊すよりはるかに安い投資です。",
                 lockRequirements: null
             },
             {
                 text: "保証会社は高いので、疎遠な親戚に無理を言って保証人を頼む。",
-                effect: { CS: -5, Asset: 0, Autonomy: -20 },
+                effect: { CS: -10, Asset: 0, Autonomy: -20 },
                 verdict: "WARNING",
                 feedback: "リスクの転嫁です。連帯保証人は「あなたの借金を全額肩代わりする義務」を負います。親戚関係を壊すリスクと、金銭トラブルの種を撒いています。",
                 lockRequirements: null
@@ -93,14 +93,14 @@ export const stage6Questions: Question[] = [
         choices: [
             {
                 text: "定期借家は「更新なし」を確認し、長期居住なら普通借家を探す。",
-                effect: { CS: 5, Asset: -50000, Autonomy: 15 },
+                effect: { CS: 10, Asset: -30, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。定期借家は家賃が安いことが多いですが、契約終了時に更新請求権がありません。転勤予定など短期なら定期借家、長期居住なら普通借家と使い分けるのが賢明です。",
                 lockRequirements: null
             },
             {
                 text: "「借家」は同じだから大差ないと思い、そのまま契約する。",
-                effect: { CS: -15, Asset: -80000, Autonomy: -10 },
+                effect: { CS: -20, Asset: -30, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "重大な見落としです。定期借家は「契約期間満了で終了」が原則。更新がなく、期間満了時に退去を求められます。再契約を拒否されれば引越し費用が発生します。長く住みたいなら普通借家を選ぶべきでした。",
                 lockRequirements: null
@@ -118,14 +118,14 @@ export const stage6Questions: Question[] = [
         choices: [
             {
                 text: "仕方ない。自費で修理する。",
-                effect: { CS: 0, Asset: -50000, Autonomy: -10 },
+                effect: { CS: 0, Asset: -30, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "確認不足。契約書の「付帯設備」欄を確認すべき。「設備」として記載されていれば経年劣化の修理は大家負担。「残置物」(前入居者の残り)なら借主負担。入居前の確認と動作チェックが重要。",
                 lockRequirements: null
             },
             {
                 text: "契約書の設備一覧を確認。「設備」なら大家負担、「残置物」なら自己負担。まず契約書を根拠に管理会社と交渉。",
-                effect: { CS: 5, Asset: 0, Autonomy: 15 },
+                effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解。2020年民法改正で、設備の場合は一定期間対応がなければ自分で修理し費用請求も可能に。フィルター掃除の怠慢や入居者の過失は自己負担。入居時に設備の動作確認と写真記録を忘れずに。",
                 lockRequirements: null
@@ -143,14 +143,14 @@ export const stage6Questions: Question[] = [
         choices: [
             {
                 text: "諸費用（物件価格の5〜10%）を含めた総予算を計算し、資金計画を立て直す。",
-                effect: { CS: 5, Asset: 0, Autonomy: 10 },
+                effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。「買える」と「払える」は違います。諸費用、引越し費用、家具購入、緊急予備費まで含めた計画が必要です。",
                 lockRequirements: null
             },
             {
                 text: "頭金300万円を用意し、残りはローンで問題ない。",
-                effect: { CS: -15, Asset: -50000, Autonomy: -5 },
+                effect: { CS: -20, Asset: -30, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "見積もり不足です。諸費用（登記、仲介手数料、税金等）は物件価格の5〜10%（150〜300万円）。頭金だけでは足りず、追加で借入が必要になります。",
                 lockRequirements: null
@@ -171,12 +171,12 @@ export const stage6Questions: Question[] = [
                 effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。民事調停は数千円、少額訴訟は60万円以下の請求に使え、弁護士不要。第三者機関を使う知恵が、不当な要求から身を守ります。",
-                lockRequirements: { Autonomy: 80 },
-                lockedFeedback: "LOCKED: 自律性が80以上必要。「戦う方法がある」という発想自体が浮かばない状態です。"
+                lockRequirements: { Autonomy: 150 },
+                lockedFeedback: "LOCKED: 自律性が150以上必要。「戦う方法がある」という発想自体が浮かばない状態です。"
             },
             {
                 text: "裁判は面倒なので諦める。敷金は返ってこないものと割り切る。",
-                effect: { CS: 0, Asset: -50000, Autonomy: -25 },
+                effect: { CS: 0, Asset: -30, Autonomy: -30 },
                 verdict: "WARNING",
                 feedback: "権利放棄です。泣き寝入りは相手の不当な行為を認めることになります。あなたの敷金は合法的に奪われました。",
                 lockRequirements: null
@@ -199,14 +199,14 @@ export const stage6Questions: Question[] = [
         choices: [
             {
                 text: "「通常損耗は貸主負担」とガイドラインを根拠に反論し、明細の説明を求める。",
-                effect: { CS: 5, Asset: 0, Autonomy: 15 },
+                effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。原状回復ガイドラインを知っているだけで数万円〜数十万円の差。「言われるがまま」は最も損な選択です。",
                 lockRequirements: null
             },
             {
                 text: "「敷金から引かれるなら仕方ない」と払う。",
-                effect: { CS: 0, Asset: -100000, Autonomy: -10 },
+                effect: { CS: 0, Asset: -30, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "無知による損失です。国土交通省のガイドラインでは、通常の使用による損耗（日焼け、家具跡等）は貸主負担。「原状回復」の意味を誤解しています。",
                 lockRequirements: null
@@ -224,15 +224,15 @@ export const stage6Questions: Question[] = [
         choices: [
             {
                 text: "更新料の減額交渉を試みる。法的にグレーな部分があることを伝える。",
-                effect: { CS: -5, Asset: 0, Autonomy: 20 },
+                effect: { CS: -10, Asset: 0, Autonomy: 20 },
                 verdict: "NEUTRAL",
                 feedback: "挑戦的な選択です。交渉は決裂するリスクがありますが、更新料が減額される可能性もあります。契約上の力関係に挑む姿勢を見せました。",
-                lockRequirements: { Autonomy: 100 },
-                lockedFeedback: "LOCKED: 自律性が100以上必要。「契約書に書いてあるから従う」という思考から抜け出せていません。"
+                lockRequirements: { Asset: 180 },
+                lockedFeedback: "LOCKED: 資産が180以上必要。資産が不足しており、契約条件に挑む余裕がありません。"
             },
             {
                 text: "契約書に書いてあるなら払うしかない。",
-                effect: { CS: 10, Asset: -50000, Autonomy: -5 },
+                effect: { CS: 10, Asset: -30, Autonomy: -10 },
                 verdict: "NEUTRAL",
                 feedback: "順応的な選択です。契約は守られ、大家との関係も維持されます。ただし、最高裁判例では「高額すぎる更新料は無効」とされた例もあります。",
                 lockRequirements: null
@@ -253,14 +253,14 @@ export const stage6Questions: Question[] = [
         choices: [
             {
                 text: "諦める。引越しを検討する。",
-                effect: { CS: -10, Asset: -100000, Autonomy: -10 },
+                effect: { CS: -10, Asset: -30, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "泣き寝入り。費用と時間を無駄にする。公的な相談窓口を知っていれば解決の糸口が見つかる。",
                 lockRequirements: null
             },
             {
                 text: "各自治体の住宅相談窓口、国民生活センター(188)、法テラス(0570-078374)など、公的な相談窓口に相談する。",
-                effect: { CS: 10, Asset: 0, Autonomy: 15 },
+                effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解。自治体の不動産相談窓口(無料)、国民生活センター(188)、法テラス(経済的余裕がなければ無料法律相談)。民事調停(数千円)や少額訴訟(60万円以下)も弁護士不要で利用可能。相談先を知っているだけで選択肢が広がる。",
                 lockRequirements: null

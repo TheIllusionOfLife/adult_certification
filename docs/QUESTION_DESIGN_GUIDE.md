@@ -93,6 +93,10 @@ Correct:  CS: +20 to +40, Asset: 0, Autonomy: +5 to +15
 Wrong:    CS: -10 to -30, Asset: negative, Autonomy: -5 to -10
 ```
 
+**Knowledge Rule**: Correct = no negatives, Wrong = no positives (except Dilemma/Philosophy questions, which are exempt from this rule)
+
+**Effect Magnitude System**: Effects use a ±10/±20/±30/±40/±50 scale.
+
 **Example**:
 ```typescript
 {
@@ -106,7 +110,7 @@ Wrong:    CS: -10 to -30, Asset: negative, Autonomy: -5 to -10
         },
         {
             text: "「住民税は翌年課税」を思い出し、分割払いを交渉する",
-            effect: { CS: +30, Asset: -50000, Autonomy: +15 },
+            effect: { CS: +30, Asset: -50, Autonomy: +15 },
             verdict: "APPROVED",
             feedback: "正解。制度を理解し、交渉で負担を軽減しました。"
         }
@@ -134,11 +138,11 @@ Choice B (Independence):   CS: -10, Autonomy: +20
 
 **Anti-Pattern**:
 ```
-❌ BAD: A: CS: -10, Asset: -5000, Autonomy: -15  (all negative)
-        B: CS: +20, Asset: +10000, Autonomy: +15  (all positive)
+❌ BAD: A: CS: -10, Asset: -20, Autonomy: -15  (all negative)
+        B: CS: +20, Asset: +20, Autonomy: +15  (all positive)
 
-✅ GOOD: A: CS: +20, Asset: -5000, Autonomy: -10  (trades money for reputation)
-         B: CS: -10, Asset: +5000, Autonomy: +15  (opposite trade-off)
+✅ GOOD: A: CS: +20, Asset: -20, Autonomy: -10  (trades money for reputation)
+         B: CS: -10, Asset: +20, Autonomy: +15  (opposite trade-off)
 ```
 
 ---
@@ -196,7 +200,7 @@ Not all Q10s use the standard CS vs Autonomy trade-off:
 
 - **Standard**: CS gain vs Autonomy gain (Stage 1, 2, 4)
 - **Asset included**: Some choices include Asset costs/gains to show real-world consequences (Stage 3, 5, 6, 7, 8, 9)
-- **Flipped expectations**: Independence choice can include Asset gain (Stage 3: 自由選択 → Asset+10000)
+- **Flipped expectations**: Independence choice can include Asset gain (Stage 3: 自由選択 → Asset+10)
 
 #### Key Rules
 - Both choices MUST have `verdict: "NEUTRAL"`
@@ -210,22 +214,22 @@ Not all Q10s use the standard CS vs Autonomy trade-off:
 ### CS (Credit Score)
 | Change | Meaning | Example |
 |--------|---------|---------|
-| +30~40 | Perfect/very good | Correct navigation of systems |
+| +30~50 | Perfect/very good | Correct navigation of systems |
 | +10~20 | Good/acceptable | Following best practices |
 | -10~20 | Minor/bad mistake | Social errors |
-| -30 | Major mistake | Serious norm violations |
+| -30~50 | Major mistake | Serious norm violations |
 
-**Cumulative**: Start 50 → Best path 80+ (S rank), Worst 20-40 (C rank)
+**Cumulative**: Start 100 → Best path 200+ (S rank), Worst 50-100 (C rank)
 
-### Asset (Money)
+### Asset (Abstract Score)
 | Change | Meaning |
 |--------|---------|
-| +30k~50k | Large gain (bonus, negotiation) |
-| +10k | Small savings |
-| -5k~10k | Small/medium cost |
-| -30k~50k | Large cost (lawyer, emergency) |
+| +30~50 | Big gain (bonus, negotiation) |
+| +10~20 | Small gain |
+| -10~20 | Small cost |
+| -30~50 | Big cost (lawyer, emergency) |
 
-**Cumulative**: Start 100k → End 30k-120k, Game over if ≤ 0
+**Cumulative**: Start 100 → End range 50-250, Game over if ≤ 0
 
 ### Autonomy
 | Change | Meaning |
@@ -235,7 +239,7 @@ Not all Q10s use the standard CS vs Autonomy trade-off:
 | -10~20 | Moderate/major surrender |
 | -30 | Complete submission |
 
-**Cumulative**: Start 50 → Independent path 60-70, Compliant 30-40, Game over if ≤ 0
+**Cumulative**: Start 100 → Independent path 150+, Compliant 50-80, Game over if ≤ 0
 
 ---
 
@@ -244,7 +248,7 @@ Not all Q10s use the standard CS vs Autonomy trade-off:
 ### Core Principles (CRITICAL)
 
 1. **Parameter changes must be realistic**
-   - Match real-world consequences (e.g., リボ払い = -50K, not -10K)
+   - Match real-world consequences (e.g., リボ払い = -50, not -10)
    - Taking positive action should increase Autonomy, not decrease it
    - Following rules properly shouldn't hurt Autonomy
 
@@ -268,9 +272,13 @@ Not all Q10s use the standard CS vs Autonomy trade-off:
 ### Thresholds
 | Parameter | Low | Medium | High |
 |-----------|-----|--------|------|
-| CS | ≥20 | ≥40 | ≥60 |
-| Asset | ≥30k | ≥50k | ≥80k |
-| Autonomy | ≥40 | ≥60 | ≥80 |
+| CS | ≥50 | ≥100 | ≥150 |
+| Asset | ≥80 | ≥120 | ≥180 |
+| Autonomy | ≥80 | ≥120 | ≥150 |
+
+**Consistent lock assignments across all stages**:
+- Q7: Autonomy >= 150
+- Q9: Asset >= 180
 
 ### Safety Rules
 1. **ONE choice must have `lockRequirements: null`** - Always available
@@ -283,9 +291,9 @@ Not all Q10s use the standard CS vs Autonomy trade-off:
 ```typescript
 {
     text: "新しいスーツと靴を購入して、万全の状態で臨む。",
-    effect: { CS: 20, Asset: -30000, Autonomy: 10 },  // Good outcome
-    lockRequirements: { Asset: 50000 },  // Need money to invest
-    lockedFeedback: "資産が50,000円以上必要。お金がないとチャンスすら掴めない。"
+    effect: { CS: 20, Asset: -30, Autonomy: 10 },  // Good outcome
+    lockRequirements: { Asset: 180 },  // Need money to invest
+    lockedFeedback: "資産が180以上必要。お金がないとチャンスすら掴めない。"
 }
 ```
 
@@ -357,8 +365,8 @@ Guidelines by question type:
 ### Parameter Balance
 - [ ] Parameter changes are realistic to real-world consequences
 - [ ] Positive actions increase Autonomy (not decrease)
-- [ ] CS: -30 to +40, Asset: -50k to +50k, Autonomy: -30 to +20
-- [ ] Best path: 50 → 80+ CS (S rank)
+- [ ] CS: -30 to +40, Asset: -50 to +50, Autonomy: -30 to +30
+- [ ] Best path: 100 → 200+ CS (S rank)
 - [ ] Worst path: survives (no param hits 0)
 
 ### Content

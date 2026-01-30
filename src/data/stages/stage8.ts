@@ -11,14 +11,14 @@ export const stage8Questions: Question[] = [
         choices: [
             {
                 text: "何が起きているかわからず、とりあえず様子を見る。",
-                effect: { CS: -15, Asset: -500000, Autonomy: -10 },
+                effect: { CS: -20, Asset: -50, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "SIMスワップ攻撃の可能性。攻撃者があなたの電話番号を別のSIMに移し、SMS認証を突破して銀行口座を操作。すぐに通信キャリアに連絡してSIMを停止し、銀行口座を凍結すべき。時間が経つほど被害が拡大する。",
                 lockRequirements: null
             },
             {
                 text: "SIMスワップを疑い、通信キャリアに即連絡+銀行口座凍結。",
-                effect: { CS: 5, Asset: 0, Autonomy: 10 },
+                effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解。SIMスワップ攻撃は「圏外→不正送金」の流れが典型。通信キャリアへの即時連絡でSIM停止、銀行への連絡で口座凍結が最優先。対策としてSMS認証からアプリベース認証(Google Authenticator等)への切り替えが有効。",
                 lockRequirements: null
@@ -39,14 +39,14 @@ export const stage8Questions: Question[] = [
         choices: [
             {
                 text: "壊れたことないし、大丈夫だろう。バックアップは後回し。",
-                effect: { CS: -15, Asset: -50000, Autonomy: -10 },
+                effect: { CS: -20, Asset: -30, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "時間の問題です。HDDは必ず壊れます。ランサムウェアに感染したら、身代金を払うか全データを失うかの二択。「後悔先に立たず」を地で行く選択です。",
                 lockRequirements: null
             },
             {
                 text: "3-2-1ルール（3つのコピー、2種類の媒体、1つは遠隔地）でバックアップ体制を構築する。",
-                effect: { CS: 10, Asset: -10000, Autonomy: 10 },
+                effect: { CS: 10, Asset: -10, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。クラウドと外付けHDDの併用で、ほとんどのデータ消失リスクに対応できます。バックアップは「保険」。事故が起きてからでは遅いです。",
                 lockRequirements: null
@@ -64,14 +64,14 @@ export const stage8Questions: Question[] = [
         choices: [
             {
                 text: "覚えやすいパスワードを複数サイトで使い回す。",
-                effect: { CS: -20, Asset: -50000, Autonomy: -10 },
+                effect: { CS: -20, Asset: -30, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "最悪の選択です。1つのサイトが情報漏洩すれば、全てのアカウントが危険に。パスワードリスト攻撃で、あらゆるサービスを乗っ取られます。",
                 lockRequirements: null
             },
             {
                 text: "パスワードマネージャーを使い、サービスごとに強力なパスワードを自動生成・管理する。",
-                effect: { CS: 5, Asset: 0, Autonomy: 10 },
+                effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。マスターパスワード1つを覚えれば、何百ものサイトを安全に管理できます。初期設定の手間は、将来の被害と比べれば微々たるものです。",
                 lockRequirements: null
@@ -93,14 +93,14 @@ export const stage8Questions: Question[] = [
         choices: [
             {
                 text: "面倒なので「後で」をクリックし続ける。",
-                effect: { CS: -20, Asset: -100000, Autonomy: -10 },
+                effect: { CS: -20, Asset: -30, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "致命的な油断です。パスワードが漏洩した瞬間、口座は乗っ取られます。二段階認証は「最後の砦」。面倒さは、被害の大きさと比べれば取るに足りません。",
                 lockRequirements: null
             },
             {
                 text: "すぐに設定する。パスワードだけでは防げない攻撃がある。",
-                effect: { CS: 5, Asset: 0, Autonomy: 10 },
+                effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。パスワードは漏洩する前提で考えるべき。二段階認証があれば、パスワードが盗まれても口座は守られます。",
                 lockRequirements: null
@@ -118,7 +118,7 @@ export const stage8Questions: Question[] = [
         choices: [
             {
                 text: "初期化してフリマアプリで売却する。工場出荷状態にすれば大丈夫だろう。",
-                effect: { CS: -5, Asset: 5000, Autonomy: 0 },
+                effect: { CS: -10, Asset: 10, Autonomy: 0 },
                 verdict: "WARNING",
                 feedback: "リスクのある選択。初期化だけではデータ復元ツールで情報を取り出せる可能性があります。写真、メール、決済情報が流出するリスクを受け入れて利益を取りました。",
                 lockRequirements: null
@@ -146,14 +146,14 @@ export const stage8Questions: Question[] = [
         choices: [
             {
                 text: "カフェのWi-Fiだから安全。メールアドレスとパスワードを入力してログイン。",
-                effect: { CS: -20, Asset: -30000, Autonomy: -10 },
+                effect: { CS: -20, Asset: -20, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "危険です。悪意のある偽Wi-Fiかもしれません。入力した情報は攻撃者に筒抜け。公共Wi-Fiで機密情報を入力するのは、公衆の面前で暗証番号を叫ぶようなものです。",
                 lockRequirements: null
             },
             {
                 text: "公共Wi-Fiでは機密情報を扱わない。必要ならVPNを使うか、モバイル回線を使う。",
-                effect: { CS: 5, Asset: 0, Autonomy: 10 },
+                effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。公共Wi-Fiは「盗聴される前提」で使うべき。銀行、クレジットカード、重要なログインは避けるか、VPNで通信を暗号化してください。",
                 lockRequirements: null
@@ -171,7 +171,7 @@ export const stage8Questions: Question[] = [
         choices: [
             {
                 text: "本人確認のためなら仕方ない。免許証の表裏を撮影して送信する。",
-                effect: { CS: -10, Asset: -100000, Autonomy: -25 },
+                effect: { CS: -10, Asset: -30, Autonomy: -30 },
                 verdict: "WARNING",
                 feedback: "身元情報の流出です。詐欺サイトに免許証画像を渡したら、あなた名義で借金や契約が行われる可能性があります。「本人確認」を装った詐欺は多発しています。",
                 lockRequirements: null
@@ -181,8 +181,8 @@ export const stage8Questions: Question[] = [
                 effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。本人確認書類は「最重要個人情報」。送る前に、そのサービスが本物か、本当に必要かを確認。一度流出した身分証情報は取り消せません。",
-                lockRequirements: { Autonomy: 80 },
-                lockedFeedback: "LOCKED: 自律性が80以上必要。「言われたから送る」という思考停止状態です。"
+                lockRequirements: { Autonomy: 150 },
+                lockedFeedback: "LOCKED: 自律性が150以上必要。「言われたから送る」という思考停止状態です。"
             }
         ],
         adamDialogue: {
@@ -202,14 +202,14 @@ export const stage8Questions: Question[] = [
         choices: [
             {
                 text: "急いでリンクをクリックし、口座を確認する。",
-                effect: { CS: -25, Asset: -100000, Autonomy: -15 },
+                effect: { CS: -30, Asset: -30, Autonomy: -20 },
                 verdict: "WARNING",
                 feedback: "フィッシング詐欺にかかりました。偽サイトにIDとパスワードを入力し、口座情報を盗まれました。「緊急」「今すぐ」という煽りは詐欺の常套手段です。",
                 lockRequirements: null
             },
             {
                 text: "メールのリンクは使わず、公式アプリか、自分でURLを入力して確認する。",
-                effect: { CS: 5, Asset: 0, Autonomy: 10 },
+                effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。正規の連絡ならアプリや公式サイトでも確認できます。「メールのリンクは信じない」が鉄則。不安なら電話で直接確認を。",
                 lockRequirements: null
@@ -237,8 +237,8 @@ export const stage8Questions: Question[] = [
                 effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解。AIツールの利便性と情報管理の境界線を引く判断力があります。機密情報の流出リスクをゼロにしました。効率は落ちますが、情報セキュリティを守る姿勢は組織への責任。",
-                lockRequirements: { Autonomy: 100 },
-                lockedFeedback: "LOCKED: 自律性が100以上必要。「便利だから」という思考に流され、リスク評価ができていません。"
+                lockRequirements: { Asset: 180 },
+                lockedFeedback: "LOCKED: 資産が180以上必要。資産が不足しており、便利さの誘惑に抗えません。"
             }
         ],
         adamDialogue: {
@@ -256,14 +256,14 @@ export const stage8Questions: Question[] = [
         choices: [
             {
                 text: "保険証と同じ。カードが増えるだけで面倒。",
-                effect: { CS: -15, Asset: -50000, Autonomy: -10 },
+                effect: { CS: -20, Asset: -30, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "大きな誤解。マイナ保険証なら限度額適用認定証が不要(高額療養費の自己負担限度額が自動適用)。マイナポータルで過去の診療歴・処方薬を確認可能。確定申告の医療費控除も自動入力。2024年12月から従来の保険証は新規発行停止。",
                 lockRequirements: null
             },
             {
                 text: "限度額適用認定証が不要になり、高額療養費が自動適用される。医療費控除の自動入力も可能。",
-                effect: { CS: 10, Asset: 50000, Autonomy: 10 },
+                effect: { CS: 10, Asset: 30, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解。入院時に限度額適用認定証を事前申請する手間がなくなる。薬の飲み合わせチェック、過去の健診結果確認もできる。救急搬送時にも医療情報が共有される。",
                 lockRequirements: null

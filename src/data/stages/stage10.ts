@@ -11,14 +11,14 @@ export const stage10Questions: Question[] = [
         choices: [
             {
                 text: "特に変わらない。通知カードで十分。",
-                effect: { CS: -10, Asset: -50000, Autonomy: -10 },
+                effect: { CS: -10, Asset: -30, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "機会損失。e-Tax連携で確定申告が簡素化、コンビニで住民票・印鑑証明取得(手数料も安い)、マイナ保険証で限度額適用認定証不要、各種給付金のオンライン申請。2024年12月から保険証の新規発行停止。",
                 lockRequirements: null
             },
             {
                 text: "e-Tax連携、コンビニ交付、マイナ保険証、給付金申請など実益を理解して活用する。",
-                effect: { CS: +10, Asset: 50000, Autonomy: +10 },
+                effect: { CS: 10, Asset: 30, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解。個人情報リスクは「カードを持つこと」ではなく「暗証番号の管理」の問題。紛失時は24時間コールセンターで利用停止可能。メリットを理解した上で判断するのが大人。",
                 lockRequirements: null
@@ -39,14 +39,14 @@ export const stage10Questions: Question[] = [
         choices: [
             {
                 text: "25万円は少額だし、会社にバレたくないので申告しない。",
-                effect: { CS: -20, Asset: -50000, Autonomy: -10 },
+                effect: { CS: -20, Asset: -30, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "脱税です。「20万円ルール」は所得税の確定申告のみ。住民税は1円から申告義務があります。無申告は追徴課税（最大40%）のリスク。さらに、マイナンバーで副業収入は把握されています。",
                 lockRequirements: null
             },
             {
                 text: "所得税は確定申告、住民税は別途申告。経費を正しく計上し、将来のインボイス登録も検討する。",
-                effect: { CS: +15, Asset: 0, Autonomy: +10 },
+                effect: { CS: 20, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。副業収入20万円超は確定申告必須。20万円以下でも住民税申告は必要。経費（通信費、機材等）を適切に計上すれば税負担は減ります。年商1000万円超ならインボイス登録の検討も。",
                 lockRequirements: null
@@ -64,14 +64,14 @@ export const stage10Questions: Question[] = [
         choices: [
             {
                 text: "届出なしで払わない。どうせ将来もらえるか分からない。",
-                effect: { CS: -20, Asset: -100000, Autonomy: -10 },
+                effect: { CS: -20, Asset: -30, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "致命的なミスです。未納は「受給資格期間」にカウントされず、将来の年金が減額または受給不可に。さらに障害年金・遺族年金も受けられなくなります。2年の時効を過ぎると追納もできません。",
                 lockRequirements: null
             },
             {
                 text: "「免除」か「猶予」を申請する。届出すれば受給資格期間にカウントされ、追納も可能になる。",
-                effect: { CS: +15, Asset: 100000, Autonomy: +10 },
+                effect: { CS: 20, Asset: 30, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。免除は所得に応じて全額〜1/4免除があり、免除期間も受給資格にカウント（1/2〜7/8計算）。猶予は後から追納可能。届出なしの未納とは天と地の差。制度を使うことが自己防衛です。",
                 lockRequirements: null
@@ -93,7 +93,7 @@ export const stage10Questions: Question[] = [
         choices: [
             {
                 text: "正しいやり方が状況によって異なることを理解した上で、自分で調べて、曖昧な点については当事者(家/地域/会社)に直接確認する。",
-                effect: { CS: +15, Asset: 0, Autonomy: +10 },
+                effect: { CS: 20, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解。冠婚葬祭のマナーは地域・宗派・家庭によって異なる。「ネットの正解」が目の前の状況に合うとは限らない。結婚式のご祝儀相場、葬儀の表書き、内祝いのタイミング・・・基本を押さえた上で、わからなければ当事者に聞くのが最も確実で失礼のない方法。",
                 lockRequirements: null
@@ -118,14 +118,14 @@ export const stage10Questions: Question[] = [
         choices: [
             {
                 text: "よくわからないし、面倒くさそう。一切使わない。",
-                effect: { CS: -15, Asset: -50000, Autonomy: -10 },
+                effect: { CS: -20, Asset: -30, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "権利の放棄。公的相談窓口は税金で運営されている「あなたのためのサービス」。知らないだけで損をしている。",
                 lockRequirements: null
             },
             {
                 text: "対応する相談窓口を調べて活用する。",
-                effect: { CS: +10, Asset: 0, Autonomy: +15 },
+                effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解。様々な相談窓口がある。消費者ホットライン(188)、労働条件相談ほっとライン(0120-811-610)、法テラス(0570-078374)、みんなの人権110番(0570-003-110)、フリーランス・トラブル110番(0120-532-110)、金融サービス利用者相談室(0570-016811)。匿名OK、夜間・土日対応のものも多い。敷居は低い。困ったらまず相談。",
                 lockRequirements: null
@@ -143,14 +143,14 @@ export const stage10Questions: Question[] = [
         choices: [
             {
                 text: "スマホの支払いとローンは別。関係ない。",
-                effect: { CS: -15, Asset: -20000, Autonomy: -10 },
+                effect: { CS: -20, Asset: -20, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "大きな誤解。スマホの分割払いは信用取引。61日以上または3ヶ月以上の延滞でCIC(信用情報機関)に事故情報が登録。住宅ローン、クレカ作成、スマホ分割購入が5〜10年困難に。奨学金も3ヶ月以上延滞で登録。",
                 lockRequirements: null
             },
             {
                 text: "大いに関係ある。スマホ分割は信用取引であり、滞納は信用情報に記録される。",
-                effect: { CS: +10, Asset: 0, Autonomy: +10 },
+                effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解。CIC、JICC、全国銀行協会の信用情報は金融機関が共有。スマホ分割、クレカ、奨学金の延滞が全て記録される。自分の信用情報はCIC等に開示請求(約1,000円)で確認可能。信用を守ることが、将来の選択肢を守ること。",
                 lockRequirements: null
@@ -168,15 +168,15 @@ export const stage10Questions: Question[] = [
         choices: [
             {
                 text: "「私の人生は私が決めます。データは参考にしますが、提案内容を検証します。」と答える。",
-                effect: { CS: -10, Asset: 0, Autonomy: +15 },
+                effect: { CS: -10, Asset: 0, Autonomy: 20 },
                 verdict: "NEUTRAL",
                 feedback: "自律的選択です。システムの「善意」を疑い、主体性を守りました。",
-                lockRequirements: { Autonomy: 60 },
-                lockedFeedback: "自律性が60以上必要。システムに依存しすぎると、この選択肢すら見えなくなります。"
+                lockRequirements: { Autonomy: 150 },
+                lockedFeedback: "LOCKED: 自律性が150以上必要。システムに依存しすぎると、この選択肢すら見えなくなります。"
             },
             {
                 text: "「ありがとうございます。提案に従います。」と受け入れる。",
-                effect: { CS: +20, Asset: 0, Autonomy: -20 },
+                effect: { CS: 20, Asset: 0, Autonomy: -20 },
                 verdict: "NEUTRAL",
                 feedback: "従順な選択です。A.D.A.M.はあなたの選択を記録しました。",
                 lockRequirements: null
@@ -199,14 +199,14 @@ export const stage10Questions: Question[] = [
         choices: [
             {
                 text: "「ネットで調べれば分かるよ」と流す。教えるのは面倒だ。",
-                effect: { CS: -10, Asset: 0, Autonomy: -5 },
+                effect: { CS: -10, Asset: 0, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "知識の断絶です。あなたも最初は何も知らなかったはず。知識を独占することで、社会全体の「賢さ」は上がりません。無知な人が増えるほど、詐欺やブラック企業は繁栄します。",
                 lockRequirements: null
             },
             {
                 text: "基本的な仕組みを説明し、参考になる資料を教える。",
-                effect: { CS: +10, Asset: 0, Autonomy: +10 },
+                effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "継承の選択です。知識は共有することで価値が増えます。あなたが教えた知識が、いつか誰かを詐欺から守るかもしれません。それが「大人」の責任です。",
                 lockRequirements: null
@@ -224,18 +224,18 @@ export const stage10Questions: Question[] = [
         choices: [
             {
                 text: "「まあ、自分で経験して学ぶのも大事だよ」と流す。",
-                effect: { CS: -10, Asset: 0, Autonomy: -5 },
+                effect: { CS: -10, Asset: 0, Autonomy: -10 },
                 verdict: "NEUTRAL",
                 feedback: "無難な選択です。余計なお世話を避けました。でも、知識を持ちながら黙ることは、システムの共犯では？後輩は高い授業料を払うことになるかもしれません。",
                 lockRequirements: null
             },
             {
                 text: "具体的な計算例を見せて、複利の仕組みを説明する。",
-                effect: { CS: +10, Asset: 0, Autonomy: +10 },
+                effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "NEUTRAL",
                 feedback: "継承の選択です。時間と労力をかけて知識を伝えました。報われるかは分かりませんが、それが「大人」の責任です。知識は分かち合うことで力になります。",
-                lockRequirements: { Autonomy: 100 },
-                lockedFeedback: "自律性が100以上必要。他者を助ける余裕がないと、知識があっても伝えられません。"
+                lockRequirements: { Asset: 180 },
+                lockedFeedback: "LOCKED: 資産が180以上必要。資産が不足していると、他者を助ける余裕がありません。"
             }
         ],
         adamDialogue: {
@@ -253,14 +253,14 @@ export const stage10Questions: Question[] = [
         choices: [
             {
                 text: "大人とは、社会のルールを従順に守る存在のこと。私は社会に最適化された人間です。",
-                effect: { CS: +25, Asset: 0, Autonomy: -20 },
+                effect: { CS: 30, Asset: 0, Autonomy: -20 },
                 verdict: "NEUTRAL",
                 feedback: "模範的回答です。A.D.A.M.は満足しています。",
                 lockRequirements: null
             },
             {
                 text: "大人とは、社会を理解し、活用し、共に成長していく存在のこと。私は自分で考え、自分の意志で社会に貢献する人間です。",
-                effect: { CS: +5, Asset: 0, Autonomy: +25 },
+                effect: { CS: 10, Asset: 0, Autonomy: 30 },
                 verdict: "NEUTRAL",
                 feedback: "システムを理解し、活用し、しかし支配されない・・・それが真の「大人」です。",
                 lockRequirements: null

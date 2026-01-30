@@ -11,14 +11,14 @@ export const stage2Questions: Question[] = [
         choices: [
             {
                 text: "「すみません、忙しくて・・・」と、言い訳から入る。",
-                effect: { CS: -15, Asset: 0, Autonomy: 0 },
+                effect: { CS: -20, Asset: 0, Autonomy: 0 },
                 feedback: "失敗です。言い訳は信用を削ります。上司の時間を浪費し、問題解決が遅れます。",
                 verdict: "WARNING",
                 lockRequirements: null
             },
             {
                 text: "事実と影響と対策を先に伝える。",
-                effect: { CS: 20, Asset: 0, Autonomy: 5 },
+                effect: { CS: 20, Asset: 0, Autonomy: 10 },
                 feedback: "正解です。報連相の基本は「結論ファースト」。信用を守る最速の方法です。",
                 verdict: "APPROVED",
                 lockRequirements: null
@@ -39,7 +39,7 @@ export const stage2Questions: Question[] = [
         choices: [
             {
                 text: "個人で記録をつけつつ、表向きは従う。",
-                effect: { CS: 5, Asset: 0, Autonomy: 10 },
+                effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 feedback: "戦略的です。証拠を集めながら機を待つ。残業代の割増率は時間外25%、休日35%、深夜25%。請求の時効は3年。36協定なしの残業は違法です。",
                 verdict: "APPROVED",
                 lockRequirements: null
@@ -71,7 +71,7 @@ export const stage2Questions: Question[] = [
             },
             {
                 text: "「理由は私用です。日程の調整は可能です」と再度申請する。",
-                effect: { CS: -5, Asset: 0, Autonomy: 15 },
+                effect: { CS: -10, Asset: 0, Autonomy: 20 },
                 feedback: "正解です。有給取得に理由説明は不要（労基法39条）。会社には時季変更権がありますが、代替日の提示が必要です。",
                 verdict: "APPROVED",
                 lockRequirements: null
@@ -93,14 +93,14 @@ export const stage2Questions: Question[] = [
         choices: [
             {
                 text: "「仕方ない」と受け入れる。",
-                effect: { CS: 0, Asset: -30000, Autonomy: -15 },
+                effect: { CS: 0, Asset: -20, Autonomy: -20 },
                 feedback: "無知は搾取の入口です。30日分の解雇予告手当を放棄しました。",
                 verdict: "WARNING",
                 lockRequirements: null
             },
             {
                 text: "解雇予告手当（30日分）の支払いを求める。",
-                effect: { CS: 25, Asset: 30000, Autonomy: 10 },
+                effect: { CS: 20, Asset: 20, Autonomy: 10 },
                 feedback: "正解です。労働基準法第20条。知識は金になります。",
                 verdict: "APPROVED",
                 lockRequirements: null
@@ -118,14 +118,14 @@ export const stage2Questions: Question[] = [
         choices: [
             {
                 text: "特にこだわりはない。上司が提案した日程で辞める。",
-                effect: { CS: 0, Asset: -50000, Autonomy: -10 },
+                effect: { CS: 0, Asset: -30, Autonomy: -10 },
                 feedback: "退職日を1日ずらすだけで社会保険料に大きな差が出ることを知らない。社会保険料は「退職日の翌日が属する月の前月分まで」徴収。月末退職なら当月分まで厚生年金加入(会社折半)。月末前日退職だとその月は国保+国民年金(全額自己負担)に切り替え。月3〜5万円の差になりうる。",
                 verdict: "WARNING",
                 lockRequirements: null
             },
             {
                 text: "月末退職を選ぶ。社会保険料の仕組みを理解し、損をしない日程を自分で判断する。",
-                effect: { CS: 10, Asset: 0, Autonomy: 15 },
+                effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 feedback: "正解。3月31日退職なら3月分まで厚生年金(会社と折半)。3月30日退職なら3月分は国民年金+国保(全額自己負担)。月末退職の方が年金加入期間も延びる。転職先の入社日との空白にも注意。",
                 verdict: "APPROVED",
                 lockRequirements: null
@@ -143,14 +143,14 @@ export const stage2Questions: Question[] = [
         choices: [
             {
                 text: "上司の言う通りだと思い、転職先に入社延期を頼む。",
-                effect: { CS: 10, Asset: -20000, Autonomy: -15 },
+                effect: { CS: 10, Asset: -20, Autonomy: -20 },
                 feedback: "誤解に基づく損失です。民法627条により、期間の定めのない雇用は2週間前の意思表示で解約可能。転職先を待たせた3ヶ月分の機会費用は取り戻せません。",
                 verdict: "WARNING",
                 lockRequirements: null
             },
             {
                 text: "「法的には2週間で有効です。引継ぎは誠意を持って行います」と伝える。",
-                effect: { CS: -5, Asset: 0, Autonomy: 15 },
+                effect: { CS: -10, Asset: 0, Autonomy: 20 },
                 feedback: "正解です。法律は就業規則に優先します。ただし円満退職のため、引継ぎ計画を示して誠意を見せるのが大人の対応です。",
                 verdict: "APPROVED",
                 lockRequirements: null
@@ -175,11 +175,11 @@ export const stage2Questions: Question[] = [
             },
             {
                 text: "外部の相談窓口(労働条件相談ほっとライン、法テラス等)に相談し、記録を残す。",
-                effect: { CS: -5, Asset: 0, Autonomy: 30 },
+                effect: { CS: -10, Asset: 0, Autonomy: 30 },
                 feedback: "正解。社内で解決しなければ外部窓口へ。労働条件相談ほっとライン(0120-811-610)、法テラス(0570-078374)、みんなの人権110番(0570-003-110)。相談は無料・匿名可。記録(メール、日記、録音)が証拠になる。",
                 verdict: "APPROVED",
-                lockRequirements: { Autonomy: 70 },
-                lockedFeedback: "LOCKED: 自律性が70以上必要 - 外部に助けを求める勇気がありません。"
+                lockRequirements: { Autonomy: 150 },
+                lockedFeedback: "LOCKED: 自律性が150以上必要 - 外部に助けを求める勇気がありません。"
             }
         ],
         adamDialogue: {
@@ -199,14 +199,14 @@ export const stage2Questions: Question[] = [
         choices: [
             {
                 text: "「お願いします」と任せる。会社がやってくれるはず。",
-                effect: { CS: -15, Asset: -10000, Autonomy: -5 },
+                effect: { CS: -20, Asset: -10, Autonomy: -10 },
                 feedback: "致命的なミスです。源泉徴収票がないと確定申告ができず、追徴課税が待っています。会社は言わないと動きません。",
                 verdict: "WARNING",
                 lockRequirements: null
             },
             {
                 text: "「離職票と源泉徴収票は必ずお願いします」と具体的に伝える。",
-                effect: { CS: 15, Asset: 0, Autonomy: 10 },
+                effect: { CS: 20, Asset: 0, Autonomy: 10 },
                 feedback: "正解です。退職手続きは「もらう側」が主導しないと、会社は最低限しかしません。確認リストを作るのが大人です。",
                 verdict: "APPROVED",
                 lockRequirements: null
@@ -224,17 +224,18 @@ export const stage2Questions: Question[] = [
         choices: [
             {
                 text: "上司が認めないなら辞められない。転職先に入社延期を頼む。",
-                effect: { CS: 0, Asset: -20000, Autonomy: -15 },
+                effect: { CS: 0, Asset: -20, Autonomy: -20 },
                 feedback: "法的に間違い。民法627条により、期間の定めのない雇用は2週間前の意思表示で解約可能。退職届は内容証明郵便で送れば受け取り拒否は不可。転職先を待たせた機会費用は取り戻せない。",
                 verdict: "WARNING",
                 lockRequirements: null
             },
             {
                 text: "退職届を内容証明郵便で送付。法律上は2週間で退職できることを理解し、毅然と対応する。",
-                effect: { CS: -5, Asset: 0, Autonomy: 20 },
+                effect: { CS: -10, Asset: 0, Autonomy: 20 },
                 feedback: "正解。退職は労働者の権利。就業規則が「3ヶ月前」でも民法が優先。内容証明郵便なら受け取り拒否できず、日付の証拠も残る。引継ぎは誠意を持って行うが、退職自体を止める権利は会社にない。",
                 verdict: "APPROVED",
-                lockRequirements: null
+                lockRequirements: { Asset: 180 },
+                lockedFeedback: "LOCKED: 資産が180以上必要。資産が不足しており、この選択肢を取る余裕がありません。"
             }
         ]
     },
@@ -249,14 +250,14 @@ export const stage2Questions: Question[] = [
         choices: [
             {
                 text: "もう関係ないから、さっさと帰る。有給消化で最終日は顔を出さなくてもいい。",
-                effect: { CS: -15, Asset: 0, Autonomy: 0 },
+                effect: { CS: -20, Asset: 0, Autonomy: 0 },
                 feedback: "法的には問題ないが、社会は狭い。業界内で評判は回る。前職の同僚が将来の取引先や転職先の面接官になることもある。「あの人は最後が最悪だった」と記憶される。",
                 verdict: "WARNING",
                 lockRequirements: null
             },
             {
                 text: "菓子折りを持参し、お世話になった人に挨拶。「ありがとうございました」と感謝を伝える。社会は狭い。",
-                effect: { CS: 20, Asset: -3000, Autonomy: 10 },
+                effect: { CS: 20, Asset: -10, Autonomy: 10 },
                 feedback: "正解。退職後も人間関係は続く。前職の同僚からの紹介で仕事が来ることも。「立つ鳥跡を濁さず」は処世術。感謝の気持ちを形にすることで、良い印象を残せる。",
                 verdict: "APPROVED",
                 lockRequirements: null

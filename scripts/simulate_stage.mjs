@@ -713,7 +713,7 @@ function simulateStage({
   });
 
   // Player intent modes = pick representative clears using objective functions.
-  // Note: Asset is scaled by 1/1000 in composite objectives to keep magnitudes comparable.
+  // Note: Asset is now abstract (same scale as CS/Autonomy), no scaling needed.
   function pickBest(filterFn, scoreFn) {
     let best = null;
     for (const c of clears) {
@@ -761,7 +761,7 @@ function simulateStage({
     ),
     balanced_survivor: pickBest(
       null,
-      (c) => minOf3(c.CS, Math.floor(c.Asset / 1000), c.Autonomy)
+      (c) => minOf3(c.CS, c.Asset, c.Autonomy)
     ),
     autonomy_forward_but_S: pickBest(
       (c) => c.rank === "S",
@@ -1073,7 +1073,7 @@ function printReport(report) {
     for (const s of report.skillActivations) {
       const impactParts = [];
       if (s.totalImpact.CS !== 0) impactParts.push(`CS: ${s.totalImpact.CS >= 0 ? '+' : ''}${s.totalImpact.CS}`);
-      if (s.totalImpact.Asset !== 0) impactParts.push(`Asset: ${s.totalImpact.Asset >= 0 ? '+' : ''}${s.totalImpact.Asset.toLocaleString()}`);
+      if (s.totalImpact.Asset !== 0) impactParts.push(`Asset: ${s.totalImpact.Asset >= 0 ? '+' : ''}${s.totalImpact.Asset}`);
       if (s.totalImpact.Autonomy !== 0) impactParts.push(`Autonomy: ${s.totalImpact.Autonomy >= 0 ? '+' : ''}${s.totalImpact.Autonomy}`);
       const impactStr = impactParts.length > 0 ? impactParts.join(', ') : 'no impact';
       console.log(
@@ -1120,7 +1120,7 @@ function printReport(report) {
       continue;
     }
     console.log(
-      `- ${key}: rank=${c.rank}, CS=${c.CS}, Asset=${c.Asset.toLocaleString()}, Autonomy=${c.Autonomy}, skills=[${c.selectedSkills}]`
+      `- ${key}: rank=${c.rank}, CS=${c.CS}, Asset=${c.Asset}, Autonomy=${c.Autonomy}, skills=[${c.selectedSkills}]`
     );
     console.log(`  path: ${c.path}`);
   }
