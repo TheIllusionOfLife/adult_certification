@@ -259,9 +259,10 @@ Not all Q10s use the standard CS vs Autonomy trade-off:
    - ✅ Good: Lock the "investment" or "empowered" answer
 
 3. **Lock type distribution per stage**
-   - Every stage: **1 Asset lock + 1 Autonomy/CS lock**
-   - Stage 1: No CS lock (CS is the obvious goal, self-explanatory)
-   - Stage 2+: CS lock allowed
+   - Q7: Always Autonomy lock (≥130 for stages 1-4, ≥150 for stages 5-10)
+   - Q9: Narratively appropriate lock per stage (Asset, Autonomy, CS, or none)
+   - Stage 1: No Q9 lock, no CS lock
+   - Lock type should match the narrative context of the question
 
 4. **Lock availability must be meaningful (40-80%)**
    - 0% availability = impossible = bad design

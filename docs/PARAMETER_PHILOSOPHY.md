@@ -38,24 +38,24 @@ This teaches: "Society doesn't always reward doing the right thing. Autonomy has
 **Design Intent**: Represents economic capital as gate to opportunities
 
 **Characteristics**:
-- **Unlocks choices** via locks (e.g., "Asset >= 180 required")
+- **Unlocks choices** via locks (e.g., "Asset >= 130-180 required")
 - Not directly scored, but enables paths to higher CS
 - Game over if ≤ 0 (encourages resource management)
 - **"Money opens doors"** metaphor
 - **Abstract score** (NOT yen — represents economic capital as a dimensionless value)
 
 **Teaching Method**:
-- Stage 1: Introduce Asset lock (Q9 - buying interview suit)
 - Show that Asset gates access to better outcomes
 - Players learn: "Keep Asset healthy or lose opportunities"
+- Q9 locks vary per stage (narratively appropriate, not uniform)
 
-**Lock Example (Stage 1 Q9)**:
+**Lock Example (Stage 3 Q9)**:
 ```typescript
 {
-    text: "新しいスーツと靴を購入して、万全の状態で臨む。",
-    effect: { CS: 20, Asset: -30, Autonomy: 10 },
-    lockRequirements: { Asset: 180 },
-    lockedFeedback: "資産が180以上必要"
+    text: "自分でしっかり調べて理解してから対応する。",
+    effect: { CS: 10, Asset: 0, Autonomy: 20 },
+    lockRequirements: { Asset: 140 },
+    lockedFeedback: "資産が140以上必要。投資判断には十分な資産基盤が必要です。"
 }
 ```
 
@@ -82,10 +82,10 @@ This teaches: "Society doesn't always reward doing the right thing. Autonomy has
 **Lock Example (Stage 1 Q7)**:
 ```typescript
 {
-    text: "管理会社に連絡し、「匿名で」注意してもらう。",
-    effect: { CS: 30, Asset: 0, Autonomy: 15 },
-    lockRequirements: { Autonomy: 150 },
-    lockedFeedback: "自律性が150以上必要"
+    text: "管理会社に連絡し、注意してもらう。",
+    effect: { CS: 30, Asset: 0, Autonomy: 20 },
+    lockRequirements: { Autonomy: 130 },
+    lockedFeedback: "自律性が130以上必要"
 }
 ```
 
@@ -95,15 +95,16 @@ This teaches: "Society doesn't always reward doing the right thing. Autonomy has
 
 ### Teaching All Three Parameters
 
-**Q9 (Asset Lock)**:
-- Asset lock in Stage 1 (threshold: 180)
-- Clear cause-effect: "No money → can't buy suit → can't access better choice"
-- Teaches: Asset is a supportive resource that enables opportunities
+**Q9 (Narratively Appropriate Lock)**:
+- Each stage has a Q9 lock matching its narrative theme (or none for stage 1)
+- Lock type varies: Asset, Autonomy, or CS depending on stage context
+- Teaches: Different forms of capital gate different opportunities
 
 **Q7 (Autonomy Lock)**:
-- Autonomy lock to emphasize this parameter (threshold: 150)
+- Stages 1-4: Autonomy ≥130 (onboarding, lower barrier)
+- Stages 5-10: Autonomy ≥150 (standard difficulty)
 - Teaches: Autonomy = breadth of choices
-- Gates key skill pathway (MEDIATION)
+- Gates key skill pathway
 
 **No CS Locks in Stage 1**:
 - CS is straightforward (higher is better)
@@ -113,9 +114,9 @@ This teaches: "Society doesn't always reward doing the right thing. Autonomy has
 ### Parameter Introduction Strategy
 
 **Gradual Complexity**:
-1. **Stage 1**: 1 Autonomy lock (Q7) + 1 Asset lock (Q9)
-2. **Stage 2+**: More complex combinations (CS + Asset, all three, etc.)
-3. **Stage 5+**: Philosophical dilemmas (CS vs Autonomy trade-offs)
+1. **Stage 1**: 1 Autonomy lock (Q7, ≥130), no Q9 lock
+2. **Stages 2-4**: Autonomy lock (Q7, ≥130) + narratively appropriate Q9 lock
+3. **Stages 5-10**: Autonomy lock (Q7, ≥150) + narratively appropriate Q9 lock
 4. **Stage 10**: True Ending unlock (requires high Autonomy history via key skills)
 
 ---
@@ -150,39 +151,31 @@ This teaches: "Society doesn't always reward doing the right thing. Autonomy has
 
 ### Asset Balance (Starting: 100)
 
-**Stage 1 Range**:
-- Best path: ~97 Asset
-- Worst path: ~1 Asset (near game over)
-- Q9 lock threshold: 180
-
 **Design Goals**:
-- Q1 リボ払い trap (-50) creates major early divergence
-- Q8 co-signer trap (-50) is the deadliest question
-- Lock threshold at 180 creates meaningful gate (~44% availability)
+- Asset starts at 100 for all stages
+- Q9 lock thresholds vary per stage (130-180) based on narrative context
+- Wrong answers reduce Asset, right answers preserve or gain
+- Game over if Asset ≤ 0 (encourages resource management)
 
-**Future Stages**:
-- Gradually increase costs and stakes
-- Introduce larger Asset penalties
-- Make Asset management more critical
+**Per-Stage Q9 Lock Strategy**:
+- Not all stages use Asset locks — some use Autonomy or CS
+- Lock type should match the narrative: financial decisions = Asset, courage = Autonomy, credibility = CS
+- Each lock threshold must be reachable given the stage's effect distribution
 
 ---
 
 ### Autonomy Balance (Starting: 100)
 
-**Stage 1 Range**:
-- Best path: ~180 Autonomy (all active choices)
-- Worst path: ~5 Autonomy (all passive choices, near game over)
-- Lock threshold: 150 (Q7)
-
 **Design Goals**:
 - Show clear consequences of passivity
-- Q7 lock at 150 requires mostly positive choices to unlock (~49% availability)
-- Demonstrate trade-offs (Q5: work gives -15, friends gives +20)
+- Q7 lock split: stages 1-4 use Autonomy≥130, stages 5-10 use Autonomy≥150
+- Lower threshold for onboarding stages improves first-time player experience
+- Demonstrate trade-offs (dilemma questions: CS vs Autonomy)
 
 **Lock Cascade**:
 - Intentional: Sustained passivity leads to lockout
-- Fair: Need good choices in Q1-Q6 to reach threshold 150
-- Key skill pathway (MEDIATION) requires unlocking Q7 choice B
+- Fair: Need good choices in Q1-Q6 to reach threshold
+- Key skill pathway requires unlocking Q7 locked choice
 
 ---
 
@@ -254,24 +247,24 @@ Before finalizing a stage:
 
 ## Examples
 
-### Good Asset Lock (Stage 1 Q9)
+### Good Asset Lock (Stage 3 Q9)
 ```typescript
-text: "新しいスーツと靴を購入して、万全の状態で臨む。"
-lockRequirements: { Asset: 180 }
-lockedFeedback: "資産が180以上必要"
+text: "自分でしっかり調べて理解してから対応する。"
+lockRequirements: { Asset: 140 }
+lockedFeedback: "資産が140以上必要。投資判断には十分な資産基盤が必要です。"
 ```
-✅ Clear economic logic (buying costs money)
-✅ Threshold at 180 creates meaningful gate (~44% availability)
-✅ Feedback explains reason clearly
+✅ Clear economic logic (investment requires capital)
+✅ Threshold at 140 is reachable (max Asset ~200 in stage 3)
+✅ Feedback explains narrative reason
 
 ### Good Autonomy Lock (Stage 1 Q7)
 ```typescript
-text: "管理会社に連絡し、「匿名で」注意してもらう。"
-lockRequirements: { Autonomy: 150 }
-lockedFeedback: "自律性が150以上必要"
+text: "管理会社に連絡し、注意してもらう。"
+lockRequirements: { Autonomy: 130 }
+lockedFeedback: "自律性が130以上必要"
 ```
 ✅ Clear psychological logic (requires confidence to use systems)
-✅ High threshold (150) requires mostly positive choices (~49% availability)
+✅ Lower onboarding threshold (130) for stages 1-4
 ✅ Gates key skill pathway (MEDIATION)
 
 ### Bad Lock Example

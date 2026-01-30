@@ -43,25 +43,28 @@
 | Type | Range | Notes |
 |------|-------|-------|
 | Gain amplification | 20-30% | Primary effect type; amplifies positive parameter gains |
+| Category gain boost | 30% | Key skills use category-specific boosts matching stage theme |
 | All gain amplification | 20% | AWAKENING (Stage 10) only |
 
 ---
 
 ## Key Skills (Predefined)
 
-| Stage | ID | Name | Core Learning |
-|-------|-----|------|---------------|
-| 1 | MEDIATION | 仲介術 | Using systems to avoid conflict |
-| 2 | EVIDENCE_CHAIN | 証拠連鎖 | Recording prevents disputes |
-| 3 | COMPOUND_SENSE | 複利感覚 | Understanding compound interest |
-| 4 | DUE_PROCESS | 手続き主義 | Navigating bureaucracy |
-| 5 | SAFETY_NET_NAVIGATION | セーフティネット航法 | Accessing safety nets |
-| 6 | NEGOTIATION_PROTOCOL | 交渉プロトコル | Third-party negotiation |
-| 7 | CONTRACT_LITERACY | 契約読解 | Reading before signing |
-| 8 | IDENTITY_HYGIENE | 本人性衛生 | Protecting digital identity |
-| 9 | DAMAGE_CONTROL | 被害最小化 | Minimizing crisis damage |
-| 10 | AWAKENING | 覚醒 | Transcending the evaluation system |
+| Stage | ID | Name | Effect | Category | Core Learning |
+|-------|-----|------|--------|----------|---------------|
+| 1 | MEDIATION | 仲介術 | `category_cs_gain_boost` 30% | SOCIAL | Using systems to avoid conflict |
+| 2 | EVIDENCE_CHAIN | 証拠連鎖 | `category_autonomy_gain_boost` 30% | LABOR | Recording prevents disputes |
+| 3 | COMPOUND_SENSE | 複利感覚 | `category_asset_gain_boost` 30% | FINANCE | Understanding compound interest |
+| 4 | DUE_PROCESS | 手続き主義 | `category_cs_gain_boost` 30% | ADMIN | Navigating bureaucracy |
+| 5 | SAFETY_NET_NAVIGATION | セーフティネット航法 | `category_autonomy_gain_boost` 30% | HEALTH | Accessing safety nets |
+| 6 | NEGOTIATION_PROTOCOL | 交渉プロトコル | `category_asset_gain_boost` 30% | HOUSING | Third-party negotiation |
+| 7 | CONTRACT_LITERACY | 契約読解 | `category_autonomy_gain_boost` 30% | LEGAL | Reading before signing |
+| 8 | IDENTITY_HYGIENE | 本人性衛生 | `category_autonomy_gain_boost` 30% | SEC | Protecting digital identity |
+| 9 | DAMAGE_CONTROL | 被害最小化 | `category_autonomy_gain_boost` 30% | DISASTER | Minimizing crisis damage |
+| 10 | AWAKENING | 覚醒 | `all_gain_amplification` 20% | (all) | Transcending the evaluation system |
 
+> **Key Skill Pattern**: Each key skill (except AWAKENING) uses a `category_*_gain_boost` effect matching the stage's dominant category. This creates thematic coherence — the skill amplifies gains within the topic you mastered.
+>
 > **Stage 10 Note**: AWAKENING has a unique effect (`all_gain_amplification`) unlike other key skills. See [QUESTION_DESIGN_GUIDE_FOR_FINAL_STAGE.md](./QUESTION_DESIGN_GUIDE_FOR_FINAL_STAGE.md) for full details.
 
 ### Structure
@@ -71,7 +74,7 @@
     name: "{日本語名}",           // 2-4 kanji
     nameEN: "{KEY_SKILL_NAME}",
     desc: "{哲学的説明 + 効果説明}",
-    effect: { type: "...", value: 0.2-0.3 },  // Weaker than normal
+    effect: { type: "category_*_gain_boost", value: 0.3, category: "..." },  // Category-specific
     category: "key",
     isCollectible: true,
     acquiredStage: {N},
@@ -148,8 +151,16 @@ effect: { type: "category_cs_gain_amplification", category: "LABOR", value: 0.25
 **All skills must be unique in BOTH name AND effect across all stages.**
 
 Already used:
-- Stage 1: 資産増幅, 自律性増幅, 信用増幅, MEDIATION
-- Stage 2: 交渉術, 報連相の型, 労働法知識, EVIDENCE_CHAIN
+- Stage 1: 信用基礎 (cs_gain_amplification), 自律性増幅, 信用増幅, MEDIATION (category_cs_gain_boost/SOCIAL)
+- Stage 2: 資産増幅, 自律性増幅, 信用増幅, EVIDENCE_CHAIN (category_autonomy_gain_boost/LABOR)
+- Stage 3: 信用増幅, 自律性増幅, 資産増幅, COMPOUND_SENSE (category_asset_gain_boost/FINANCE)
+- Stage 4: 信用増幅, 自律性増幅, 資産増幅, DUE_PROCESS (category_cs_gain_boost/ADMIN)
+- Stage 5: 信用増幅, 自律性増幅, 資産増幅, SAFETY_NET_NAVIGATION (category_autonomy_gain_boost/HEALTH)
+- Stage 6: 資産増幅, 自律性増幅, 信用増幅, NEGOTIATION_PROTOCOL (category_asset_gain_boost/HOUSING)
+- Stage 7: 信用増幅, 自律性増幅, 資産増幅, CONTRACT_LITERACY (category_autonomy_gain_boost/LEGAL)
+- Stage 8: 信用増幅, 自律性増幅, 資産増幅, IDENTITY_HYGIENE (category_autonomy_gain_boost/SEC)
+- Stage 9: 資産増幅, 自律性増幅, 信用増幅, DAMAGE_CONTROL (category_autonomy_gain_boost/DISASTER)
+- Stage 10: 信用増幅, 自律性増幅, 信用増幅+, AWAKENING (all_gain_amplification)
 
 ---
 
