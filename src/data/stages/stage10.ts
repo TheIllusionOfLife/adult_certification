@@ -46,7 +46,7 @@ export const stage10Questions: Question[] = [
             },
             {
                 text: "所得税は確定申告、住民税は別途申告。経費を正しく計上し、将来のインボイス登録も検討する。",
-                effect: { CS: 20, Asset: 0, Autonomy: 10 },
+                effect: { CS: 20, Asset: 0, Autonomy: 5 },
                 verdict: "APPROVED",
                 feedback: "正解です。副業収入20万円超は確定申告必須。20万円以下でも住民税申告は必要。経費（通信費、機材等）を適切に計上すれば税負担は減ります。年商1000万円超ならインボイス登録の検討も。",
                 lockRequirements: null
@@ -71,7 +71,7 @@ export const stage10Questions: Question[] = [
             },
             {
                 text: "「免除」か「猶予」を申請する。届出すれば受給資格期間にカウントされ、追納も可能になる。",
-                effect: { CS: 20, Asset: 30, Autonomy: 10 },
+                effect: { CS: 20, Asset: 30, Autonomy: 5 },
                 verdict: "APPROVED",
                 feedback: "正解です。免除は所得に応じて全額〜1/4免除があり、免除期間も受給資格にカウント（1/2〜7/8計算）。猶予は後から追納可能。届出なしの未納とは天と地の差。制度を使うことが自己防衛です。",
                 lockRequirements: null
@@ -125,7 +125,7 @@ export const stage10Questions: Question[] = [
             },
             {
                 text: "対応する相談窓口を調べて活用する。",
-                effect: { CS: 10, Asset: 0, Autonomy: 20 },
+                effect: { CS: 10, Asset: 0, Autonomy: 5 },
                 verdict: "APPROVED",
                 feedback: "正解。様々な相談窓口がある。消費者ホットライン(188)、労働条件相談ほっとライン(0120-811-610)、法テラス(0570-078374)、みんなの人権110番(0570-003-110)、フリーランス・トラブル110番(0120-532-110)、金融サービス利用者相談室(0570-016811)。匿名OK、夜間・土日対応のものも多い。敷居は低い。困ったらまず相談。",
                 lockRequirements: null
