@@ -108,32 +108,29 @@ export const stage6Questions: Question[] = [
         ]
     },
 
-    // Q5: Dilemma (HOUSING) - Accept high rent vs negotiate [SWAPPED A↔B]
+    // Q5: Knowledge (HOUSING) - Rental AC: equipment vs leftover
     {
         id: "s6_q05",
         category: "HOUSING",
-        text: "理想の物件を見つけたが、予算より1万円高い。他に良い物件はなさそう。",
-        imagePrompt: "Scene: Perfect apartment listing printout showing dream unit, laptop screen displaying monthly budget spreadsheet with negative balance in red, calculator showing yearly total. Composition: Dream listing vs harsh numbers side by side. Mood: Desire meeting reality.",
+        text: "入居直後にエアコンが故障した。管理会社に連絡したら「それは残置物なので自己負担です」と言われた。",
+        imagePrompt: "Scene: Broken air conditioner dripping water, lease agreement open on table with equipment list highlighted, phone showing management company contact, repair estimate on screen. Composition: Broken AC dominant, contract as reference. Mood: Unexpected cost, contract knowledge as defense.",
         imagePath: "s6_q05.png",
         choices: [
             {
-                text: "「予算は○万円まで」と伝え、家賃交渉を試みる。ダメなら諦める。",
-                effect: { CS: 10, Asset: 0, Autonomy: -5 },
-                verdict: "NEUTRAL",
-                feedback: "合理的な選択です。交渉で家賃が下がれば最善、断られても予算内で別物件を探せます。ただし、理想の物件を逃すリスクを受け入れました。",
+                text: "仕方ない。自費で修理する。",
+                effect: { CS: 0, Asset: -50000, Autonomy: -10 },
+                verdict: "WARNING",
+                feedback: "確認不足。契約書の「付帯設備」欄を確認すべき。「設備」として記載されていれば経年劣化の修理は大家負担。「残置物」(前入居者の残り)なら借主負担。入居前の確認と動作チェックが重要。",
                 lockRequirements: null
             },
             {
-                text: "予算オーバーだが、この物件を逃したくない。契約する。",
-                effect: { CS: 5, Asset: -120000, Autonomy: 10 },
-                verdict: "NEUTRAL",
-                feedback: "決断の選択です。年間12万円の追加出費。理想を叶えましたが、他の出費を切り詰める必要があります。「住居の満足」と「金銭的余裕」のトレードオフを選びました。",
+                text: "契約書の設備一覧を確認。「設備」なら大家負担、「残置物」なら自己負担。まず契約書を根拠に管理会社と交渉。",
+                effect: { CS: 5, Asset: 0, Autonomy: 15 },
+                verdict: "APPROVED",
+                feedback: "正解。2020年民法改正で、設備の場合は一定期間対応がなければ自分で修理し費用請求も可能に。フィルター掃除の怠慢や入居者の過失は自己負担。入居時に設備の動作確認と写真記録を忘れずに。",
                 lockRequirements: null
             }
-        ],
-        adamDialogue: {
-            intro: "理想と予算、どちらを優先しますか？"
-        }
+        ]
     },
 
     // Q6: Knowledge (HOUSING) - Home purchase hidden costs [SWAPPED A↔B]
@@ -246,31 +243,31 @@ export const stage6Questions: Question[] = [
         }
     },
 
-    // Q10: Philosophy (HOUSING) - Stability vs flexibility in housing [LIFECYCLE FRAMING] [SWAPPED A↔B]
+    // Q10: Knowledge (HOUSING) - Rental trouble consultation
     {
         id: "s6_q10",
         category: "HOUSING",
-        text: "30歳、40歳、70歳・・・人生の各段階で「住まい」の意味は変わる。今のあなたにとって住まいとは何ですか？",
-        imagePrompt: "Scene: Cardboard boxes half-packed frozen mid-move, some sealed with old address labels, collection of keys from different apartments hanging together on single ring. Composition: Moving chaos snapshot, keys as focal point. Mood: Impermanence as constant, every home a chapter.",
+        text: "賃貸でトラブルが起きた。管理会社が対応してくれず、大家とも連絡が取れない。自分では解決できそうにない。",
+        imagePrompt: "Scene: Phone showing unanswered calls to management company, notepad with complaint timeline, consumer hotline number circled, frustrated tenant at kitchen table. Composition: Communication attempts documented, solution paths emerging. Mood: Stonewalled, but exits exist.",
         imagePath: "s6_q10.png",
         choices: [
             {
-                text: "移動の自由。人生の変化に合わせて、住まいも変えていく。",
-                effect: { CS: 5, Asset: 0, Autonomy: 15 },
-                verdict: "NEUTRAL",
-                feedback: "柔軟適応型の回答です。賃貸は転職・家族構成の変化に対応しやすいです。ただし、引越しコストと高齢時の賃貸難民リスクを背負います。",
+                text: "諦める。引越しを検討する。",
+                effect: { CS: -10, Asset: -100000, Autonomy: -10 },
+                verdict: "WARNING",
+                feedback: "泣き寝入り。費用と時間を無駄にする。公的な相談窓口を知っていれば解決の糸口が見つかる。",
                 lockRequirements: null
             },
             {
-                text: "安定の基盤。今のうちに根を下ろし、将来の住居不安を解消する。",
-                effect: { CS: 15, Asset: 0, Autonomy: 5 },
-                verdict: "NEUTRAL",
-                feedback: "長期安定志向の回答です。持ち家は老後の住居不安を解消します。しかし、ライフステージの変化に対応しづらく、売却時に想定外の損失が出ることも。",
+                text: "各自治体の住宅相談窓口、国民生活センター(188)、法テラス(0570-078374)など、公的な相談窓口に相談する。",
+                effect: { CS: 10, Asset: 0, Autonomy: 15 },
+                verdict: "APPROVED",
+                feedback: "正解。自治体の不動産相談窓口(無料)、国民生活センター(188)、法テラス(経済的余裕がなければ無料法律相談)。民事調停(数千円)や少額訴訟(60万円以下)も弁護士不要で利用可能。相談先を知っているだけで選択肢が広がる。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "最終問題です。人生のどの段階を見据えて、住まいを定義しますか？",
+            intro: "最終問題です。トラブル時に頼れる場所を知っていますか？",
             after: "ステージ6を終了します。審査結果を算出中・・・"
         }
     }

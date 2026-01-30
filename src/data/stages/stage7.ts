@@ -1,26 +1,26 @@
 import type { Question } from '../../types';
 
 export const stage7Questions: Question[] = [
-    // Q1: Knowledge (LEGAL) - Subscription auto-renewal traps (smaller effect, before skills) [SWAPPED A↔B]
+    // Q1: Knowledge (LEGAL) - Cooling-off inapplicable to online shopping
     {
         id: "s7_q01",
         category: "LEGAL",
-        text: "「初月無料」のサブスクに登録したら、2ヶ月目から自動課金されていた。解約方法がわからない。",
-        imagePrompt: "Scene: phone showing subscription charges; maze-like cancel button hidden; credit card draining money. Composition: dark pattern UI trap. Mood: frustration, designed confusion.",
+        text: "ネット通販で買った服がイメージと違った。クーリングオフで返品できる?",
+        imagePrompt: "Scene: Online shopping package opened on table, clothing item not matching phone screen photo, return policy page showing fine print, disappointed expression. Composition: Expectation vs reality, legal fine print. Mood: Consumer surprise, rights misunderstood.",
         imagePath: "s7_q01.png",
         choices: [
             {
-                text: "解約手順を徹底的に調べ、必要ならカスタマーサポートに連絡して解約する。",
-                effect: { CS: 5, Asset: 0, Autonomy: 15 },
-                verdict: "APPROVED",
-                feedback: "正解です。2022年の改正特商法で解約手順の明示が義務化されました。わかりにくい場合は消費者センターに相談も有効です。",
+                text: "8日以内ならクーリングオフできるはず。",
+                effect: { CS: -15, Asset: -30000, Autonomy: -10 },
+                verdict: "WARNING",
+                feedback: "最も多い誤解。通信販売(ネット通販、テレビショッピング)にはクーリングオフ制度は適用されない。返品は各ショップの「返品特約」に依存。特約がなければ商品到着後8日以内に返品可能(送料は購入者負担)。購入前に返品ポリシーを確認すべき。",
                 lockRequirements: null
             },
             {
-                text: "解約が面倒なのでそのまま放置する。",
-                effect: { CS: -15, Asset: -30000, Autonomy: -10 },
-                verdict: "WARNING",
-                feedback: "受動的損失です。年間数万円が「忘れた」ままで流出。サブスクの闇は「解約のしづらさ」に設計されています。能動的に管理しないと搾取されます。",
+                text: "通信販売にはクーリングオフは適用されない。返品は「返品特約」を確認する。",
+                effect: { CS: 5, Asset: 0, Autonomy: 15 },
+                verdict: "APPROVED",
+                feedback: "正解。クーリングオフは訪問販売(8日)、電話勧誘販売(8日)、連鎖販売取引(20日)等が対象。ネット通販は「自分の意思で購入した」ため対象外。返品特約を事前に確認するのが唯一の防御策。",
                 lockRequirements: null
             }
         ],
@@ -108,54 +108,51 @@ export const stage7Questions: Question[] = [
         ]
     },
 
-    // Q5: Dilemma (LEGAL) - Take bad contract or lose opportunity [SWAPPED A↔B]
+    // Q5: Knowledge (LEGAL) - Freelance unpaid work
     {
         id: "s7_q05",
         category: "LEGAL",
-        text: "フリーランスで大手企業から初の大型案件。しかし契約書を見ると「著作権全面譲渡」「修正回数無制限」の条項が。交渉したら「この条件でなければ発注しない」と言われた。",
-        imagePrompt: "Scene: Late-night home office, contract PDF glowing on monitor, cursor hovering over signature field, rejection email draft open in another tab. Composition: Monitor glow in dark room, two tabs visible. Mood: Midnight decision, finger on trigger.",
+        text: "フリーランスで仕事を受け、契約書を交わし、納品も完了した。しかし報酬が支払われない。催促しても「もう少し待って」の一点張り。",
+        imagePrompt: "Scene: Invoice marked 'overdue' on desk, email chain showing polite then firm payment reminders, freelance hotline number written on sticky note, certified mail envelope ready. Composition: Escalating documentation, solution paths visible. Mood: Frustration meeting legal options.",
         imagePath: "s7_q05.png",
         choices: [
             {
-                text: "断る。不当な条件で仕事をしても、搾取の連鎖が続くだけ。",
-                effect: { CS: -5, Asset: 0, Autonomy: 20 },
-                verdict: "NEUTRAL",
-                feedback: "原則重視の選択です。自分の価値を守りましたが、この案件と大手との繋がりを失いました。フリーランスの立場の弱さと、「断る勇気」のコストを実感しました。",
+                text: "何度も催促するしかない。弁護士は高いから諦めるかも。",
+                effect: { CS: -10, Asset: -200000, Autonomy: -10 },
+                verdict: "WARNING",
+                feedback: "泣き寝入りに近い。フリーランスには公的な相談窓口がある。",
                 lockRequirements: null
             },
             {
-                text: "条件を飲んでサインする。実績を作れば次は交渉できるかもしれない。",
-                effect: { CS: 10, Asset: 50000, Autonomy: -25 },
-                verdict: "NEUTRAL",
-                feedback: "実績優先の選択です。大手との取引実績は価値がありますが、不利な条件で働く前例を作りました。「次こそ」と思っても、同じ条件を突きつけられる可能性が高いです。",
+                text: "「フリーランス・トラブル110番」(0120-532-110)に相談。必要なら内容証明郵便で支払いを請求し、少額訴訟も検討。",
+                effect: { CS: 5, Asset: 0, Autonomy: 20 },
+                verdict: "APPROVED",
+                feedback: "正解。フリーランス・トラブル110番は厚労省委託の無料相談窓口。弁護士による助言も。2024年11月施行のフリーランス保護法で、発注者の報酬支払い遅延は法違反に。契約書・納品記録・メールのやり取りが証拠。少額訴訟(60万円以下)は弁護士不要、1回の審理で判決。",
                 lockRequirements: null
             }
-        ],
-        adamDialogue: {
-            intro: "チャンスと尊厳、どちらを選びますか？"
-        }
+        ]
     },
 
-    // Q6: Knowledge (LEGAL) - MLM/pyramid scheme recognition (big effect, 1 skill helps) [SWAPPED A↔B]
+    // Q6: Knowledge (LEGAL) - SNS investment scam (modern version)
     {
         id: "s7_q06",
         category: "LEGAL",
-        text: "友人から「副業で月30万円稼げるビジネス」に誘われた。「初期投資50万円で、人を紹介すると報酬が入る」という。",
-        imagePrompt: "Scene: friend enthusiastically showing income charts; pyramid structure revealed behind the presentation; warning signs flashing. Composition: attractive pitch with hidden structure. Mood: temptation vs danger.",
+        text: "SNSで「AI自動売買で月利10%」という広告を見た。紹介者に連絡すると「初期費用30万円、紹介ボーナスもある」と言われた。",
+        imagePrompt: "Scene: Phone showing flashy SNS ad with AI trading promises, luxury lifestyle images, DM conversation with recruiter, pyramid structure diagram barely visible in background. Composition: Glossy ad vs hidden structure. Mood: Modern temptation, digital trap.",
         imagePath: "s7_q06.png",
         choices: [
             {
-                text: "「商品販売より紹介報酬がメイン」は危険信号。断って距離を置く。",
+                text: "「月利10%は年利120%。ありえない数字」と判断し、断る。紹介ボーナスはポンジスキーム(自転車操業)の特徴。",
                 effect: { CS: 5, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
-                feedback: "正解です。連鎖販売取引（マルチ商法）は違法ではありませんが、「上の人だけが儲かる構造」。断る勇気が財産と友人関係を守ります。",
+                feedback: "正解。月利10%は年利120%で、世界最高の投資家でも不可能な数字。「紹介ボーナス」はMLM(連鎖販売)の特徴。ポンジスキームは新規参加者の資金で既存参加者に配当する自転車操業。資金が尽きれば破綻し、後から参加した人が最も損をする。",
                 lockRequirements: null
             },
             {
-                text: "友人を信じて参加する。人を紹介すれば元が取れるはず。",
-                effect: { CS: -25, Asset: -500000, Autonomy: -15 },
+                text: "AIなら可能かもしれない。30万円なら試してみる価値がある。",
+                effect: { CS: -25, Asset: -300000, Autonomy: -15 },
                 verdict: "WARNING",
-                feedback: "マルチ商法の罠にはまりました。「紹介報酬」がメインの収入源のビジネスは、後から参加するほど損をする構造。50万円と友人関係を失います。",
+                feedback: "投資詐欺の典型。ポンジスキーム(自転車操業)+MLM(連鎖販売)の組み合わせ。初期は配当が出ることもあるが、それは新規参加者の資金。やがて破綻し、30万円と人間関係を失う。「AI」「自動」は詐欺の常套句。",
                 lockRequirements: null
             }
         ]
@@ -228,16 +225,16 @@ export const stage7Questions: Question[] = [
             {
                 text: "「やめた方がいい」と伝える。たとえ嫌われても、間違いは指摘すべき。",
                 effect: { CS: -10, Asset: 0, Autonomy: 15 },
-                verdict: "NEUTRAL",
-                feedback: "誠実さを優先しました。友人は気分を害するかもしれませんが、本当の友人なら忠告を受け入れるはず。もし関係が壊れるなら、それはその程度の関係だったということです。",
+                verdict: "APPROVED",
+                feedback: "正解。業務上横領は刑法253条、10年以下の懲役。友人は気分を害するかもしれないが、本当の友人なら忠告を受け入れるはず。もし関係が壊れるなら、それはその程度の関係だったということ。黙認は共犯意識につながる。",
                 lockRequirements: { CS: 60 },
                 lockedFeedback: "LOCKED: 社会的信用が60以上必要。自分に自信がないと、友人に意見することができません。"
             },
             {
                 text: "「まあ、その程度なら」と流す。友人関係を壊したくない。",
                 effect: { CS: 5, Asset: 0, Autonomy: -20 },
-                verdict: "NEUTRAL",
-                feedback: "関係維持を優先しました。友人との関係は保たれますが、あなたは「黙認する人」になりました。友人がエスカレートした時、あなたも共犯意識を持つことになります。",
+                verdict: "WARNING",
+                feedback: "関係維持を優先したが、業務上横領は刑法253条で10年以下の懲役。友人との関係は保たれますが、あなたは「黙認する人」になりました。友人がエスカレートした時、あなたも共犯意識を持つことになります。",
                 lockRequirements: null
             }
         ],
@@ -246,31 +243,31 @@ export const stage7Questions: Question[] = [
         }
     },
 
-    // Q10: Philosophy (LEGAL) - Law as protection vs restriction [POWER ANALYSIS] [SWAPPED A↔B]
+    // Q10: Knowledge (LEGAL) - 2020 Civil Code reform: guarantee limit amount
     {
         id: "s7_q10",
         category: "LEGAL",
-        text: "力ある者は法を「秩序の道具」と見なし、力なき者は「身を守る武器」と見なす。あなたはどちらの視点で法律を見ていますか？",
-        imagePrompt: "Scene: Courthouse justice scales in dramatic shadow, one side holds a gavel, other holds a shield, perfectly balanced despite holding different objects. Composition: Classical symbol reinterpreted, chiaroscuro lighting. Mood: Same equilibrium, different purposes entirely.",
+        text: "知人の賃貸契約で連帯保証人を頼まれた。契約書に「極度額」という欄がある。何のこと?",
+        imagePrompt: "Scene: Guarantee contract close-up showing 'maximum amount' field with large number, magnifying glass over fine print, pen hesitating above signature line. Composition: Contract detail dominant, pen as decision point. Mood: Fine print revelation, risk quantified.",
         imagePath: "s7_q10.png",
         choices: [
             {
-                text: "身を守る武器。弱い立場だからこそ、法を知り、使いこなす。",
-                effect: { CS: 10, Asset: 0, Autonomy: 25 },
-                verdict: "NEUTRAL",
-                feedback: "自己防衛型の回答です。法を武器にする発想は、力の非対称を補います。消費者保護法、労働基準法・・・知識は力なき者の盾です。",
+                text: "よくわからないが、知人のためだからサインする。",
+                effect: { CS: -20, Asset: -300000, Autonomy: -20 },
+                verdict: "WARNING",
+                feedback: "危険。極度額は「保証人が負う上限額」。2020年民法改正で、個人の根保証は極度額を書面で定めないと無効。極度額が「300万円」なら、家賃滞納・原状回復・損害賠償の合計がその額まであなたに請求される。",
                 lockRequirements: null
             },
             {
-                text: "秩序の道具。法を守り、社会の安定に貢献する側でいたい。",
-                effect: { CS: 10, Asset: 10000, Autonomy: -20 },
-                verdict: "NEUTRAL",
-                feedback: "体制順応型の回答です。法を守る姿勢は信用と安定をもたらします。",
+                text: "極度額(保証上限)の意味を理解し、自分が負えるリスクか慎重に判断する。",
+                effect: { CS: 10, Asset: 0, Autonomy: 20 },
+                verdict: "APPROVED",
+                feedback: "正解。2020年民法改正で、極度額が書面にないと保証契約は無効。目安は家賃の6〜24ヶ月分程度。連帯保証人には催告の抗弁権・検索の抗弁権・分別の利益がすべてない。つまり債務者と全く同じ責任。リスクを正確に理解した上で判断すべき。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "最終問題です。あなたは法をどの立場から見ていますか？",
+            intro: "最終問題です。「形だけ」の保証は法的に存在しません。",
             after: "ステージ7を終了します。審査結果を算出中・・・"
         }
     }

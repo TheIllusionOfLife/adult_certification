@@ -48,7 +48,7 @@ export const stage5Questions: Question[] = [
                 text: "傷病手当金を申請する。給与の約2/3が最長1年6ヶ月支給される。",
                 effect: { CS: 10, Asset: 150000, Autonomy: 10 },
                 verdict: "APPROVED",
-                feedback: "正解です。会社員の特権である健康保険の傷病手当金。申請主義なので、自分から動かないと受け取れません。",
+                feedback: "正解です。会社員の特権である健康保険の傷病手当金。申請主義なので、自分から動かないと受け取れません。退職後も継続受給可能(退職日に労務不能+1年以上の被保険者期間が条件)。",
                 lockRequirements: null
             }
         ]
@@ -70,10 +70,10 @@ export const stage5Questions: Question[] = [
                 lockRequirements: null
             },
             {
-                text: "50万円は高すぎる。諦めて独学でやる。",
-                effect: { CS: -10, Asset: 0, Autonomy: -10 },
-                verdict: "WARNING",
-                feedback: "機会損失です。教育訓練給付金を使えば、受講費用の最大70%（専門実践教育訓練）が支給されます。50万円のコースが実質15万円に。制度を知らないと、キャリアアップの機会を逃します。",
+                text: "まずは独学や無料の教材で学び、必要なら有料講座を検討する。",
+                effect: { CS: 0, Asset: 0, Autonomy: 5 },
+                verdict: "NEUTRAL",
+                feedback: "独学も立派な選択。無料のオンライン教材やコミュニティも充実しています。ただし、教育訓練給付金(最大70%給付)という制度の存在は知っておくべき。使うかどうかは状況次第だが、「知らなかった」で機会を逃すのはもったいない。",
                 lockRequirements: null
             }
         ],
@@ -108,32 +108,29 @@ export const stage5Questions: Question[] = [
         ]
     },
 
-    // Q5: Dilemma (HEALTH) - Sick leave vs critical deadline
+    // Q5: Knowledge (HEALTH) - Proper response to infectious disease
     {
         id: "s5_q05",
         category: "HEALTH",
-        text: "体調不良で病院へ。医師から「過労による免疫低下。1週間の安静が必要」と言われた。しかし今週は昇進がかかったプロジェクトの締切がある。",
-        imagePrompt: "Scene: Doctor's diagnosis note stating exhaustion and one week rest required on desk, calendar on wall with presentation deadline circled in red, laptop showing half-finished slides. Composition: Medical note and calendar create tension, laptop caught between. Mood: Body vs career, impossible choice.",
+        text: "インフルエンザと診断された。明日は重要な会議。どうする?",
+        imagePrompt: "Scene: Thermometer showing fever, phone showing calendar with important meeting marked, flu medication on nightstand, mask hanging on door handle. Composition: Sick room with work pressure visible through phone. Mood: Duty vs responsibility to others.",
         imagePath: "s5_q05.png",
         choices: [
             {
-                text: "無理をしてでも出勤する。このチャンスを逃せば昇進は数年遅れる。",
-                effect: { CS: 10, Asset: 10000, Autonomy: -20 },
-                verdict: "NEUTRAL",
-                feedback: "キャリア優先の選択です。締切を守れば昇進に近づきますが、体を壊せば長期休職のリスクも。「今回だけ」が習慣化すると、燃え尽きへの道を歩むことになります。",
+                text: "テレワークか欠席を提案し、回復に専念する。上司に状況を説明して会議の代理を依頼する。",
+                effect: { CS: 10, Asset: 0, Autonomy: 15 },
+                verdict: "APPROVED",
+                feedback: "正解。インフルエンザは発症後5日かつ解熱後2日の出席停止が目安(学校保健安全法準拠、企業も多くが準用)。テレワークで体調が許す範囲の対応は合理的。同僚への感染防止が社会人としての責任。",
                 lockRequirements: null
             },
             {
-                text: "休む。健康を失えばキャリアも終わる。上司に状況を説明し、締切延長を交渉する。",
-                effect: { CS: -5, Asset: 0, Autonomy: 15 },
-                verdict: "NEUTRAL",
-                feedback: "健康優先の選択です。締切に間に合わなければ評価に影響しますが、長期的な働く力を守りました。ただし「休むべき時に休める職場か」という問いも残ります。",
+                text: "同僚にインフルエンザのことは黙って出社する。マスクをすれば大丈夫。",
+                effect: { CS: -25, Asset: 0, Autonomy: -15 },
+                verdict: "WARNING",
+                feedback: "最悪の選択。職場全体に感染が広がり、プロジェクト全体が停止するリスク。感染症を隠して出社するのは「頑張り」ではなく「迷惑」。報告と休養が社会人の義務。",
                 lockRequirements: null
             }
-        ],
-        adamDialogue: {
-            intro: "キャリアと健康、どちらを犠牲にしますか？"
-        }
+        ]
     },
 
     // Q6: Knowledge (LABOR) - Unemployment insurance (medium damage, 1 skill helps) [SWAPPED A↔B]
@@ -148,14 +145,14 @@ export const stage5Questions: Question[] = [
                 text: "申請する。自己都合でも給付制限期間後に受給できる。待機中は就職活動を進める。",
                 effect: { CS: 10, Asset: 100000, Autonomy: 10 },
                 verdict: "APPROVED",
-                feedback: "正解です。給付制限期間は転職準備に充て、制限明けから受給。制度を理解して計画的に動くことが大切です。",
+                feedback: "正解です。自己都合退職の給付制限は原則2ヶ月(5年以内に2回まで、3回目以降は3ヶ月)。制限期間は転職準備に充て、制限明けから受給。早期再就職なら「再就職手当」(残日数の60〜70%)も。制度を理解して計画的に動くことが大切です。",
                 lockRequirements: null
             },
             {
                 text: "自己都合だと失業保険はもらえないと思い、申請しない。",
                 effect: { CS: -20, Asset: 0, Autonomy: -10 },
                 verdict: "WARNING",
-                feedback: "大損です。自己都合退職でも給付制限（2〜3ヶ月待機）後に受給可能。申請しないのは権利の放棄です。",
+                feedback: "大損です。自己都合退職でも一定期間後に受給可能。申請しないのは権利の放棄です。",
                 lockRequirements: null
             }
         ]
@@ -258,14 +255,14 @@ export const stage5Questions: Question[] = [
                 text: "任意継続を選ぶ。退職前と同じ保険証が使え、扶養家族がいれば追加保険料なしでカバーできる。",
                 effect: { CS: 10, Asset: -50000, Autonomy: -10 },
                 verdict: "NEUTRAL",
-                feedback: "継続性を重視した回答です。任意継続は最大2年間、会社負担分も自己負担になるため保険料は約2倍。扶養家族がいれば有利ですが、「前と同じ」という安心感で選んでいるならば・・・。",
+                feedback: "継続性を重視した回答です。任意継続は最大2年間、会社負担分も自己負担になるため保険料は約2倍。扶養家族ありなら任意継続有利(追加保険料なし)。退職後20日以内に手続き必須。",
                 lockRequirements: null
             },
             {
                 text: "国民健康保険を選ぶ。失業中なら減免申請で保険料が下がる可能性がある。",
                 effect: { CS: 5, Asset: -30000, Autonomy: 10 },
                 verdict: "NEUTRAL",
-                feedback: "状況に応じた回答です。国保には「扶養」がなく家族分の保険料が発生しますが、失業減免を使えば大幅に安くなることも。両方を試算して比較すれば、年間数十万円の差が出ます。",
+                feedback: "状況に応じた回答です。単身+前年収入低なら国保減免有利。国保には「扶養」がなく家族分の保険料が発生するが、失業減免を使えば大幅に安くなることも。退職後20日以内に任意継続の手続き期限あり。両方を試算して比較すれば、年間数十万円の差が出ます。",
                 lockRequirements: null
             }
         ],

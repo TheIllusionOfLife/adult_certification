@@ -1,26 +1,26 @@
 import type { Question } from '../../types';
 
 export const stage10Questions: Question[] = [
-    // Q1: Integration (Admin + Digital + Health) - マイナンバーカード実益
+    // Q1: Integration (Admin + Digital + Health) - マイナンバーカードのメリット(具体的に)
     {
         id: "s10_q01",
         category: "INTEGRATION",
-        text: "マイナンバーカードを作るか迷っている。「面倒」「個人情報が心配」と聞くが、作らないとどうなる？",
+        text: "マイナンバーカードを持っている人と持っていない人。実際に何が違う?",
         imagePrompt: "Scene: Smartphone showing My Number Portal app with various service icons (health insurance, tax filing, certificate issuance), physical card beside phone, convenience store terminal in background. Composition: Digital and physical integration, services radiating from card. Mood: Bureaucratic convenience, connected services.",
         imagePath: "s10_q01.png",
         choices: [
             {
-                text: "作らなくても困らない。通知カードと保険証があれば十分。",
+                text: "特に変わらない。通知カードで十分。",
                 effect: { CS: -10, Asset: -50000, Autonomy: -10 },
                 verdict: "WARNING",
-                feedback: "機会損失です。2024年12月から健康保険証は新規発行停止、マイナ保険証へ移行。コンビニ交付（住民票等）、確定申告のe-Tax、各種給付金申請・・・カードがないと手続きが煩雑化し、時間とコストがかかります。",
+                feedback: "機会損失。e-Tax連携で確定申告が簡素化、コンビニで住民票・印鑑証明取得(手数料も安い)、マイナ保険証で限度額適用認定証不要、各種給付金のオンライン申請。2024年12月から保険証の新規発行停止。",
                 lockRequirements: null
             },
             {
-                text: "メリット・デメリットを調べ、保険証利用登録やコンビニ交付など実益を理解した上で判断する。",
+                text: "e-Tax連携、コンビニ交付、マイナ保険証、給付金申請など実益を理解して活用する。",
                 effect: { CS: +10, Asset: 50000, Autonomy: +10 },
                 verdict: "APPROVED",
-                feedback: "正解です。マイナポイント、コンビニ交付（手数料節約）、e-Tax連携、保険証利用・・・実益は多い。個人情報リスクは「カードを持つこと」ではなく「管理の仕方」の問題。情報を集めて判断するのが大人です。",
+                feedback: "正解。個人情報リスクは「カードを持つこと」ではなく「暗証番号の管理」の問題。紛失時は24時間コールセンターで利用停止可能。メリットを理解した上で判断するのが大人。",
                 lockRequirements: null
             }
         ],
@@ -83,79 +83,76 @@ export const stage10Questions: Question[] = [
     },
     // [SKILL OFFER 1 HAPPENS AFTER Q3]
 
-    // Q4: Integration (Finance + Crisis Management) - 生活防衛資金
+    // Q4: Integration (SOCIAL) - Ceremonial occasions etiquette
     {
         id: "s10_q04",
-        category: "INTEGRATION",
-        text: "投資を始めたいと思い立った。手元に50万円。全額投資に回して早く資産を増やしたい。",
-        imagePrompt: "Scene: Investment app showing stock charts on phone, savings account passbook showing 500,000 yen balance, calendar with 'unemployment' and 'hospital' marked as potential future events. Composition: Eager investment vs safety cushion, timeline of risks. Mood: Enthusiasm meeting prudence.",
+        category: "SOCIAL",
+        text: "冠婚葬祭に関して気をつけることは?",
+        imagePrompt: "Scene: Ceremonial items arranged on table - wedding gift envelope, funeral incense, seasonal greeting cards, regional specialty gifts - each with subtle question marks. Composition: Cultural items gallery, variety and nuance. Mood: Social customs, no single right answer.",
         imagePath: "s10_q04.png",
         choices: [
             {
-                text: "投資は早く始めるほど有利。50万円全額を投資信託に回す。",
-                effect: { CS: -15, Asset: -100000, Autonomy: -5 },
-                verdict: "WARNING",
-                feedback: "危険な判断です。失業や病気で収入が止まった時、投資資産を「底値」で売却する羽目になります。暴落時に生活費のために損切りするのは最悪のシナリオ。「生活防衛資金」という概念を知らないと、投資で逆に貧しくなります。",
+                text: "正しいやり方が状況によって異なることを理解した上で、自分で調べて、曖昧な点については当事者(家/地域/会社)に直接確認する。",
+                effect: { CS: +15, Asset: 0, Autonomy: +10 },
+                verdict: "APPROVED",
+                feedback: "正解。冠婚葬祭のマナーは地域・宗派・家庭によって異なる。「ネットの正解」が目の前の状況に合うとは限らない。結婚式のご祝儀相場、葬儀の表書き、内祝いのタイミング・・・基本を押さえた上で、わからなければ当事者に聞くのが最も確実で失礼のない方法。",
                 lockRequirements: null
             },
             {
-                text: "まず生活費3〜6ヶ月分を現金で確保。残りを投資に回す。",
-                effect: { CS: +10, Asset: 50000, Autonomy: +10 },
-                verdict: "APPROVED",
-                feedback: "正解です。生活防衛資金は「投資のための保険」。月20万円の生活費なら60〜120万円を現金で確保してから投資開始。これがないと、緊急時に資産を最悪のタイミングで手放すことになります。",
+                text: "自分のやり方を大正義として、当事者の誤りを正してあげる。",
+                effect: { CS: -20, Asset: 0, Autonomy: -10 },
+                verdict: "WARNING",
+                feedback: "最悪のアプローチ。冠婚葬祭に「唯一の正解」はない。御霊前/御仏前の使い分けも宗派で異なり、ご祝儀の金額も地域差がある。「正しさ」を押し付ける人は、場の空気を壊し、人間関係を損なう。謙虚さと柔軟さが大人のマナー。",
                 lockRequirements: null
             }
         ]
     },
 
-    // Q5: Meta-Awareness Dilemma - システム追従 vs 批判的思考
+    // Q5: Integration (ADMIN) - Public consultation services
     {
         id: "s10_q05",
-        category: "META",
-        text: "職場で「新しい評価システムが導入される」と発表された。AIが社員の行動を数値化し、昇進を決めるという。同僚は不満を漏らしている。",
-        imagePrompt: "Scene: Office meeting room with presentation showing AI evaluation metrics, employees with mixed expressions (compliance vs skepticism), invisible data streams flowing from workers to central system. Composition: Workers surrounded by measurement, choice of acceptance or questioning. Mood: Surveillance normalization, individual response.",
+        category: "ADMIN",
+        text: "公的な相談窓口の活用方法として正しいのは?",
+        imagePrompt: "Scene: Notebook page listing various helpline numbers with brief descriptions, phone beside it, comfortable home environment, cup of tea. Composition: Information compilation, accessible format. Mood: Empowerment through knowledge, low barrier to help.",
         imagePath: "s10_q05.png",
         choices: [
             {
-                text: "評価基準に合わせて行動を最適化する。システムに適応するのが合理的だ。",
-                effect: { CS: +15, Asset: 0, Autonomy: -15 },
-                verdict: "NEUTRAL",
-                feedback: "順応の選択です。評価システムに合わせることで、短期的には有利になります。しかし「評価されるために行動する」ことが習慣化すると、自分の判断基準を失います。",
+                text: "よくわからないし、面倒くさそう。一切使わない。",
+                effect: { CS: -15, Asset: -50000, Autonomy: -10 },
+                verdict: "WARNING",
+                feedback: "権利の放棄。公的相談窓口は税金で運営されている「あなたのためのサービス」。知らないだけで損をしている。",
                 lockRequirements: null
             },
             {
-                text: "評価基準の妥当性を検証し、問題があれば改善提案する。システムは人が作ったものだ。",
-                effect: { CS: 5, Asset: 0, Autonomy: +15 },
-                verdict: "NEUTRAL",
-                feedback: "批判的選択です。システムを疑い、改善を試みる姿勢は自律の証です。ただし、組織内での立場は弱くなるかもしれません。「正しさ」と「得」は必ずしも一致しません。",
+                text: "対応する相談窓口を調べて活用する。",
+                effect: { CS: +10, Asset: 0, Autonomy: +15 },
+                verdict: "APPROVED",
+                feedback: "正解。様々な相談窓口がある。消費者ホットライン(188)、労働条件相談ほっとライン(0120-811-610)、法テラス(0570-078374)、みんなの人権110番(0570-003-110)、フリーランス・トラブル110番(0120-532-110)、金融サービス利用者相談室(0570-016811)。匿名OK、夜間・土日対応のものも多い。敷居は低い。困ったらまず相談。",
                 lockRequirements: null
             }
-        ],
-        adamDialogue: {
-            intro: "評価されることと、自分の基準で生きること。どちらを選びますか？"
-        }
+        ]
     },
 
-    // Q6: Meta-Awareness Knowledge - 社会的信用の仕組み
+    // Q6: Integration (FINANCE) - Credit information (CIC) concrete damage
     {
         id: "s10_q06",
-        category: "META",
-        text: "社会的信用とは何か？世間の目、SNSの評判、職歴、学歴・・・様々な「信用」があなたを取り巻いている。",
-        imagePrompt: "Scene: Person standing in center surrounded by floating score displays (credit score, social media followers, employment record, educational certificates), some metrics glowing, others faded. Composition: Individual as intersection of multiple evaluation systems. Mood: Quantified existence, visibility of invisible judgments.",
+        category: "FINANCE",
+        text: "スマホの分割払いを3ヶ月滞納した。その後、住宅ローンの審査に落ちた。関係ある?",
+        imagePrompt: "Scene: Smartphone payment overdue notice beside mortgage rejection letter, CIC credit report showing negative mark, timeline connecting the two events. Composition: Cause and effect chain visible. Mood: Connected consequences, invisible damage revealed.",
         imagePath: "s10_q06.png",
         choices: [
             {
-                text: "気にしない。自分は自分だ。他人の評価は関係ない。",
-                effect: { CS: -15, Asset: -20000, Autonomy: 0 },
+                text: "スマホの支払いとローンは別。関係ない。",
+                effect: { CS: -15, Asset: -20000, Autonomy: -10 },
                 verdict: "WARNING",
-                feedback: "無視は危険です。社会的信用は「見えない通貨」。クレジットカードの審査、賃貸契約、就職面接・・・信用がないと選択肢が狭まります。無視することと、理解した上で距離を取ることは違います。",
+                feedback: "大きな誤解。スマホの分割払いは信用取引。61日以上または3ヶ月以上の延滞でCIC(信用情報機関)に事故情報が登録。住宅ローン、クレカ作成、スマホ分割購入が5〜10年困難に。奨学金も3ヶ月以上延滞で登録。",
                 lockRequirements: null
             },
             {
-                text: "信用の仕組みを理解し、必要な場面で適切に管理する。ただし、信用に支配されない。",
+                text: "大いに関係ある。スマホ分割は信用取引であり、滞納は信用情報に記録される。",
                 effect: { CS: +10, Asset: 0, Autonomy: +10 },
                 verdict: "APPROVED",
-                feedback: "正解です。社会的信用は「ゲームのルール」。ルールを知らずにプレイするより、知った上で戦略を立てる方が賢明です。ただし、信用のために自分を売らないこと。道具は使うもので、使われるものではありません。",
+                feedback: "正解。CIC、JICC、全国銀行協会の信用情報は金融機関が共有。スマホ分割、クレカ、奨学金の延滞が全て記録される。自分の信用情報はCIC等に開示請求(約1,000円)で確認可能。信用を守ることが、将来の選択肢を守ること。",
                 lockRequirements: null
             }
         ]

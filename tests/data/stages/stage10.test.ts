@@ -34,12 +34,12 @@ describe('Stage 10 Questions', () => {
         expect(choiceB.lockRequirements?.Autonomy).toBe(100);
     });
 
-    it('should have Q5 with both choices as NEUTRAL', () => {
+    it('should have Q5 with WARNING and APPROVED verdicts', () => {
         const q5 = stage10Questions.find(q => q.id === 's10_q05');
         expect(q5).toBeDefined();
         expect(q5!.choices).toHaveLength(2);
-        expect(q5!.choices[0].verdict).toBe('NEUTRAL');
-        expect(q5!.choices[1].verdict).toBe('NEUTRAL');
+        expect(q5!.choices[0].verdict).toBe('WARNING');
+        expect(q5!.choices[1].verdict).toBe('APPROVED');
     });
 
     it('should have Q9 with both choices as NEUTRAL', () => {
@@ -58,18 +58,31 @@ describe('Stage 10 Questions', () => {
         expect(q10!.choices[1].verdict).toBe('NEUTRAL');
     });
 
-    it('should have Q1-Q4 with INTEGRATION category', () => {
-        const integrationQuestions = stage10Questions.slice(0, 4);
+    it('should have Q1-Q3 with INTEGRATION category', () => {
+        const integrationQuestions = stage10Questions.slice(0, 3);
         integrationQuestions.forEach(q => {
             expect(q.category).toBe('INTEGRATION');
         });
     });
 
-    it('should have Q5-Q7 with META category', () => {
-        const metaQuestions = stage10Questions.slice(4, 7);
-        metaQuestions.forEach(q => {
-            expect(q.category).toBe('META');
-        });
+    it('should have Q4 with SOCIAL category', () => {
+        const q4 = stage10Questions[3];
+        expect(q4.category).toBe('SOCIAL');
+    });
+
+    it('should have Q5 with ADMIN category', () => {
+        const q5 = stage10Questions[4];
+        expect(q5.category).toBe('ADMIN');
+    });
+
+    it('should have Q6 with FINANCE category', () => {
+        const q6 = stage10Questions[5];
+        expect(q6.category).toBe('FINANCE');
+    });
+
+    it('should have Q7 with META category', () => {
+        const q7 = stage10Questions[6];
+        expect(q7.category).toBe('META');
     });
 
     it('should have Q8-Q9 with LEGACY category', () => {

@@ -13,14 +13,14 @@ export const stage1Questions: Question[] = [
                 text: "毎月の支払いが一定で楽そうなので、リボ払いを設定する。",
                 effect: { CS: 0, Asset: -50000, Autonomy: -10 },
                 verdict: "WARNING",
-                feedback: "罠です。年利15%前後で「返済が終わらない設計」になりがち。便利さの裏に利息地獄があります。お金の知識不足が資産を削ります。",
+                feedback: "年利15%前後で「返済が終わらない設計」になりがち。便利さの裏に利息地獄があります。お金の知識不足が資産を削ります。",
                 lockRequirements: null
             },
             {
                 text: "年利を確認し、一括払いを基本にする。",
                 effect: { CS: 10, Asset: 0, Autonomy: 5 },
                 verdict: "APPROVED",
-                feedback: "正解です。クレカの明細チェックと一括払いが「お金の自衛」の基本。知識が資産を守ります。",
+                feedback: "クレカの明細チェックと一括払いが「お金の自衛」の基本。知識が資産を守ります。",
                 lockRequirements: null
             }
         ],
@@ -66,14 +66,14 @@ export const stage1Questions: Question[] = [
                 text: "ネットやハガキで転送を申し込む。",
                 effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
-                feedback: "安全策です。1年間無料で転送してくれるシステムを使わない手はありません。自ら行動してリスクを回避しました。",
+                feedback: "安全策です。1年間無料で転送してくれるシステムを使わない手はありません。自ら行動してリスクを回避しました。なお、マイナポータルを使えば転出届のオンライン提出も可能。届出を怠ると最大5万円の過料が科されます。",
                 lockRequirements: null
             },
             {
                 text: "面倒だから出さない。",
                 effect: { CS: -30, Asset: 0, Autonomy: 0 },
                 verdict: "WARNING",
-                feedback: "ミスです。クレジットカードの更新カードや重要書類が旧住所に届き、見知らぬ誰かの手に渡ります。個人情報管理ができない人と見なされます。",
+                feedback: "ミスです。クレジットカードの更新カードや重要書類が旧住所に届き、見知らぬ誰かの手に渡ります。個人情報管理ができない人と見なされます。マイナポータルでの転出届オンライン提出も活用を。届出を怠ると最大5万円の過料が科されます。",
                 lockRequirements: null
             }
         ],
@@ -83,57 +83,54 @@ export const stage1Questions: Question[] = [
     },
     // [SKILL OFFER 1 HAPPENS AFTER Q3]
 
-    // Q4: Knowledge (SOCIAL) - Funeral etiquette (香典/袱紗)
+    // Q4: Knowledge (SOCIAL) - Funeral etiquette (broader scope)
     {
         id: "s1_q04",
         category: "SOCIAL",
-        text: "同僚の親の葬儀に参列することになった。香典（こうでん）を用意するが、正しいマナーは？",
+        text: "同僚の親の葬儀に参列することになった。注意することは?",
         imagePrompt: "Scene: Funeral envelope on table being prepared, crisp new bills beside it, fukusa cloth waiting nearby, brush pen for writing. Composition: Close-up on ceremonial items, hands preparing the offering. Mood: Solemnity, ritual precision required.",
         imagePath: "s1_q04.png",
         choices: [
             {
-                text: "「御霊前」と書いた新札を、袱紗（ふくさ）なしでそのまま渡す。",
+                text: "スーツなどフォーマルな格好で行く。お金は現地までの往復交通費に注意する。",
                 effect: { CS: -25, Asset: 0, Autonomy: 0 },
                 verdict: "WARNING",
-                feedback: "マナー違反です。新札は「不幸を準備していた」印象を与え、袱紗なしは礼を欠きます。同僚との関係に傷がつきました。",
+                feedback: "服装は正しいが不十分。香典(20代の同僚の親なら3,000〜5,000円)を旧札で用意、袱紗に包んで持参、宗派不明なら「御霊前」が無難。受付での作法、焼香の回数(浄土真宗1回、真言宗3回)、忌み言葉(重ね重ね、たびたび)なども把握すべき。",
                 lockRequirements: null
             },
             {
-                text: "旧札（または新札を折ってから）を袱紗（ふくさ）に包み、宗派を確認してから表書きを選ぶ。",
+                text: "服装(黒のフォーマル、派手なアクセサリーNG)、香典(旧札、袱紗で包む、表書きは宗派を確認)、焼香の作法など、事前にマナーを調べて準備する。",
                 effect: { CS: 20, Asset: -10000, Autonomy: 10 },
                 verdict: "APPROVED",
-                feedback: "正解です。仏式なら四十九日前は「御霊前」、後は「御仏前」。神式は「御玉串料」。宗派不明なら「御霊前」が無難。大人の常識が信頼を築きます。",
+                feedback: "正解。香典は20代の同僚の親なら3,000〜5,000円。新札は折ってから入れる。表書きは四十九日前は「御霊前」(浄土真宗は「御仏前」)。数珠は貸し借りNG。わからなければ前の人に合わせる。",
                 lockRequirements: null
             }
         ]
     },
 
-    // Q5: 山場 (True Dilemma) - NEW: Friends vs Career
+    // Q5: Knowledge (SOCIAL) - Wedding etiquette
     {
         id: "s1_q05",
         category: "SOCIAL",
-        text: "大学時代の親友から久々の連絡。「みんなで集まる！来週の金曜日、絶対来てね」。しかし翌日は重要なプレゼン。準備は終わっていない。",
-        imagePrompt: "Scene: Office desk late at night, unfinished presentation on laptop, phone showing group chat message with friends' smiling photo, wall clock showing 11 PM. Composition: Desk fills frame, phone and laptop compete for attention. Mood: Torn, warm memory vs cold deadline.",
+        text: "同僚の結婚式に招待された。初めてなので不安。服装やご祝儀のマナーは?",
+        imagePrompt: "Scene: Wedding invitation card on table beside wallet and formal outfit options, gift money envelope with mizuhiki visible, mirror reflecting outfit choices. Composition: Invitation centered, preparation items surrounding. Mood: First-time ceremony anxiety, etiquette unknown.",
         imagePath: "s1_q05.png",
         choices: [
             {
-                text: "人間関係が大事。参加して、徹夜で準備する。",
-                effect: { CS: 0, Asset: -5000, Autonomy: 20 },
-                verdict: "NEUTRAL",
-                feedback: "優先順位の選択です。自分の価値観で決めました。人脈は資産ですが、仕事より人を選ぶ勇気には代償（徹夜・交通費）が伴います。",
+                text: "お祝いの気持ちが大事。服装は手持ちの白いワンピースで、ご祝儀は財布から直接2万円を渡す。",
+                effect: { CS: -25, Asset: 0, Autonomy: 0 },
+                verdict: "WARNING",
+                feedback: "複数のマナー違反。白は花嫁の色でNG。ご祝儀は奇数が基本(友人なら3万円)、新札を用意し袱紗から出して渡す。水引は結び切り(一度きりの意味)。バッグから直接出すのもNG。",
                 lockRequirements: null
             },
             {
-                text: "仕事が大事。断って、準備に集中する。",
-                effect: { CS: 30, Asset: 0, Autonomy: -15 },
-                verdict: "NEUTRAL",
-                feedback: "現実的判断です。会社からの評価は上がりました。しかし、あなたは「仕事優先」を選ばされた感覚があるはずです。これが社会の圧力です。",
+                text: "ご祝儀は新札で3万円(奇数)、袱紗に包む。服装は白以外のフォーマル、ファー・動物柄もNG。水引は結び切り。",
+                effect: { CS: 20, Asset: -30000, Autonomy: 10 },
+                verdict: "APPROVED",
+                feedback: "正解。ご祝儀は友人・同僚で3万円、兄弟姉妹で5〜10万円が相場。2万円(ペア)と8万円(末広がり)は例外的にOK。4と9は避ける。受付では袱紗の上に乗せて両手で差し出す。",
                 lockRequirements: null
             }
-        ],
-        adamDialogue: {
-            intro: "ここからが本番です。あなたの価値観を試します。"
-        }
+        ]
     },
 
     // Q6: Knowledge (MANNER) - Business card exchange and seating etiquette
@@ -220,55 +217,51 @@ export const stage1Questions: Question[] = [
         }
     },
 
-    // Q9: Dilemma (LABOR) - Professional Appearance - Asset lock teaches "money opens doors"
+    // Q9: Knowledge (MANNER) - Proper keigo usage
     {
         id: "s1_q09",
-        category: "LABOR",
-        text: "明日、大手企業の最終面接。しかし手持ちのスーツがヨレヨレで、靴も傷んでいる。",
-        imagePrompt: "Scene: a worn suit and scuffed shoes beside an empty wallet; a shop window displaying a pristine suit with a big price tag; tomorrow's interview date looming on a calendar. Composition: split scene with the protagonist in center, pulled between the shabby clothes and the glowing new suit. Mood: desperation, inequality, make-or-break pressure.",
+        category: "MANNER",
+        text: "入社して間もない。上司にメールを送る際、正しい敬語は?",
+        imagePrompt: "Scene: Office computer screen showing email draft to supervisor, cursor blinking at greeting line, Japanese business etiquette book open beside keyboard. Composition: Screen fills frame, draft email with formal tone. Mood: Professional communication, first impression at work.",
         imagePath: "s1_q09.png",
         choices: [
             {
-                text: "今のスーツのまま面接に行く。中身で勝負。",
-                effect: { CS: -10, Asset: 0, Autonomy: 10 },
-                verdict: "NEUTRAL",
-                feedback: "信念の選択です。第一印象では不利でしたが、面接官の一部はあなたの中身を見てくれました。外見に頼らない覚悟は、ひとつの哲学です。",
+                text: "「了解しました」「ご苦労様です」など、日常的に使われている表現を使う。",
+                effect: { CS: -25, Asset: 0, Autonomy: 0 },
+                verdict: "WARNING",
+                feedback: "「ご苦労様」は目上→目下のねぎらい表現で上司にはNG。「了解しました」もカジュアルすぎる。上司には「お疲れ様です」「承知いたしました」「かしこまりました」を使う。二重敬語(「おっしゃられる」等)にも注意。",
                 lockRequirements: null
             },
             {
-                text: "新しいスーツと靴を購入して、万全の状態で臨む。",
-                effect: { CS: 20, Asset: -30000, Autonomy: 10 },
-                verdict: "NEUTRAL",
-                feedback: "投資の選択です。プロフェッショナルな外見が好印象を与えました。出費はありますが、これが「お金が扉を開く」現実です。",
-                lockRequirements: { Asset: 50000 },
-                lockedFeedback: "LOCKED: 資産が50,000円以上必要。スーツと靴を買う余裕がありません。お金がないと、チャンスすら掴めない。これが「資産の役割」です。"
+                text: "「お疲れ様です」「承知いたしました」など、相手の立場に応じた正しい敬語を調べて使う。",
+                effect: { CS: 20, Asset: 0, Autonomy: 10 },
+                verdict: "APPROVED",
+                feedback: "正解。尊敬語(相手の動作: おっしゃる、ご覧になる)と謙譲語(自分の動作: 申す、拝見する)の使い分けが基本。「お読みになられる」は二重敬語でNG。ただし「お召し上がりになる」は許容。",
+                lockRequirements: null
             }
-        ],
-        adamDialogue: {
-            intro: "見た目か、中身か。社会はどちらを見ていると思いますか？"
-        }
+        ]
     },
 
-    // Q10: Philosophy (SOCIAL) - Social basics meaning - Final reflection
+    // Q10: Knowledge (ADMIN) - How to fly for the first time
     {
         id: "s1_q10",
-        category: "SOCIAL",
-        text: "ステージ1の最終問題。あなたにとって「社会の基本」とは何ですか？",
-        imagePrompt: "Scene: Retro terminal screen filling the frame, cryptic evaluation metrics scrolling, input field with blinking cursor awaiting response, green phosphor glow on black. Composition: Full-screen CRT aesthetic, scan lines visible. Mood: Final judgment, system awaiting human input.",
+        category: "ADMIN",
+        text: "初めて飛行機に乗る。空港には何時間前に着けばいい? 荷物の注意点は?",
+        imagePrompt: "Scene: Airport departure terminal, flight information board showing departure times, traveler checking luggage contents against restriction list on phone, security checkpoint visible ahead. Composition: Terminal wide view, traveler small but focused. Mood: First flight nerves, preparation matters.",
         imagePath: "s1_q10.png",
         choices: [
             {
-                text: "空気を読み、波風を立てないこと。",
-                effect: { CS: 30, Asset: 0, Autonomy: -20 },
-                verdict: "NEUTRAL",
-                feedback: "服従的回答です。社会はあなたを歓迎します。",
+                text: "出発30分前に着けば十分。モバイルバッテリーとペットボトルの飲み物はスーツケースに入れて預ける。",
+                effect: { CS: -25, Asset: 0, Autonomy: 0 },
+                verdict: "WARNING",
+                feedback: "時間不足。国内線は1時間前、国際線は2〜3時間前が目安。保安検査は出発20分前まで。モバイルバッテリー(160Wh以下)は機内持込のみで預け荷物NG。国際線の液体は100ml以下の容器+1L以下の透明袋。ライターは機内持込1個のみ。",
                 lockRequirements: null
             },
             {
-                text: "ルールを理解し、必要なら使いこなすこと。",
-                effect: { CS: 10, Asset: 0, Autonomy: 20 },
-                verdict: "NEUTRAL",
-                feedback: "自律的回答です。システムを道具として見る視点。興味深いです。",
+                text: "国内線1時間前、国際線2〜3時間前に到着。バッテリーは機内持込、液体物は制限を確認。",
+                effect: { CS: 20, Asset: 0, Autonomy: 10 },
+                verdict: "APPROVED",
+                feedback: "正解。刃物は預け荷物のみ。ライターは機内持込1個のみ。モバイルバッテリーは預け入れ禁止(発火リスク)。国際線では液体物100ml以下の容器、ジッパー付き透明袋(1L以下)に入れる。",
                 lockRequirements: null
             }
         ],

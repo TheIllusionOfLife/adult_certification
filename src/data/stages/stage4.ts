@@ -161,26 +161,26 @@ export const stage4Questions: Question[] = [
         ]
     },
 
-    // Q7: Key Skill Pathway (ADMIN) - Proper document submission
+    // Q7: Key Skill Pathway (ADMIN) - Document submission evidence
     {
         id: "s4_q07",
         category: "ADMIN",
-        text: "重要な申請書類を提出。窓口で「コピーを取っておいてください」と言われたが、原本しか持っていない。",
-        imagePrompt: "Scene: an official submission counter; original document being handed over; ghost image of copy not taken; future dispute visualized. Composition: document exchange moment with warning signs. Mood: procedural vulnerability, evidence importance.",
+        text: "確定申告の書類を税務署に持参して提出した。控えに受付印をもらわなかった。",
+        imagePrompt: "Scene: Tax office counter, documents being handed over, receipt stamp sitting unused on counter, future loan application showing 'proof required' highlighted. Composition: Counter exchange moment, stamp as missed opportunity. Mood: Procedural vulnerability, evidence importance.",
         imagePath: "s4_q07.png",
         choices: [
             {
-                text: "「大丈夫だろう」と原本だけ提出する。",
+                text: "提出したから大丈夫。受付印なんて必要ない。",
                 effect: { CS: 0, Asset: 0, Autonomy: -25 },
                 verdict: "WARNING",
-                feedback: "危険です。書類が紛失した場合、提出した証拠がありません。「言った言わない」は、証拠がない方が負けます。",
+                feedback: "書類紛失時に提出の証拠がない。住宅ローン審査や各種申請で「申告書の控え(受付印付き)」を求められることがある。電子申告(e-Tax)なら受信通知が証拠になる。",
                 lockRequirements: null
             },
             {
-                text: "「コピーを取ってから再度来ます」と一度帰り、控えを確保してから提出する。",
+                text: "控えに受付印を押してもらい、提出の証拠を確保する。",
                 effect: { CS: 5, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
-                feedback: "正解です。二度手間に見えますが、証拠を残す習慣が将来のトラブルを防ぎます。手続き主義は自己防衛です。",
+                feedback: "正解。行政手続きは「証拠を残す」が鉄則。郵送なら特定記録や簡易書留、電子申告なら受信通知。「出した」と「出した証拠がある」は全く違う。",
                 lockRequirements: { Autonomy: 80 },
                 lockedFeedback: "LOCKED: 自律性が80以上必要。面倒くさがって「まあいいか」と流しました。"
             }
@@ -217,7 +217,7 @@ export const stage4Questions: Question[] = [
         ]
     },
 
-    // Q9: Dilemma (ADMIN) - Tax error: immediate correction vs wait and see
+    // Q9: Knowledge (ADMIN) - Tax error: immediate correction vs wait and see
     {
         id: "s4_q09",
         category: "ADMIN",
@@ -228,16 +228,16 @@ export const stage4Questions: Question[] = [
             {
                 text: "すぐに修正申告する。リスクを最小化し、誠実さを示す。",
                 effect: { CS: 10, Asset: 0, Autonomy: 10 },
-                verdict: "NEUTRAL",
-                feedback: "誠実な選択です。自主的な修正申告なら加算税は軽減されます。「見つからない可能性」を捨て、確実に解決する判断です。",
+                verdict: "APPROVED",
+                feedback: "正解。自主的修正申告なら過少申告加算税5%に軽減(税務調査後は10〜15%)。「見つからない可能性」を捨て、確実に解決する判断です。延滞税も日割りで加算されるため、早いほど負担は軽い。",
                 lockRequirements: { Autonomy: 80 },
                 lockedFeedback: "LOCKED: 自律性が80以上必要。不安に支配されていると、自発的に行動を起こす決断ができません。"
             },
             {
                 text: "様子を見る。税務調査が来なければ問題ない可能性もある。",
                 effect: { CS: -10, Asset: -50000, Autonomy: -10 },
-                verdict: "NEUTRAL",
-                feedback: "リスクを取る選択です。調査が来なければ支出ゼロですが、発覚すれば加算税と延滞税で負担増。数年間「いつか来るかも」という不安を抱えることになります。",
+                verdict: "WARNING",
+                feedback: "リスクの高い選択。発覚すれば過少申告加算税10〜15%+延滞税。自主的修正なら5%で済んだものが、税務調査後は大幅に負担増。数年間「いつか来るかも」という不安を抱えることになります。",
                 lockRequirements: null
             }
         ],
@@ -246,31 +246,31 @@ export const stage4Questions: Question[] = [
         }
     },
 
-    // Q10: Philosophy (ADMIN) - Trust in systems vs self-reliance [RETROSPECTIVE FRAMING]
+    // Q10: Knowledge (ADMIN) - Retroactive refund filing (5 years)
     {
         id: "s4_q10",
         category: "ADMIN",
-        text: "行政で困った経験を思い出してください。「システムに従った」か「システムを使った」か？その経験から、行政をどう見ますか？",
-        imagePrompt: "Scene: Old drawer pulled open revealing years of accumulated documents, stamps, receipts, some pristine some crumpled, layers of personal bureaucratic history. Composition: Overhead view into drawer, archaeological layers. Mood: Years of navigation crystallized, patterns in paper.",
+        text: "3年前に高額な歯科治療(インプラント40万円)をしたが、医療費控除の確定申告をしなかった。今から申告できる?",
+        imagePrompt: "Scene: Old dental receipt discovered in drawer, calendar showing years passed, tax refund calculation on notepad, surprised expression reflected in phone screen. Composition: Receipt discovery moment, time passed but opportunity remains. Mood: Pleasant surprise, money to reclaim.",
         imagePath: "s4_q10.png",
         choices: [
             {
-                text: "従った。ルールを守ることで、最終的には解決した。",
-                effect: { CS: 10, Asset: 0, Autonomy: -15 },
-                verdict: "NEUTRAL",
-                feedback: "順応的回答です。ルールに従う姿勢は確実な結果をもたらします。",
+                text: "確定申告の期限(3月15日)は過ぎているから無理。",
+                effect: { CS: -15, Asset: -60000, Autonomy: -10 },
+                verdict: "WARNING",
+                feedback: "還付申告と確定申告は別。還付申告は翌年1月1日から5年後の12月31日まで可能。3年前の治療でもまだ間に合う。",
                 lockRequirements: null
             },
             {
-                text: "使った。制度を調べ、自分に有利な方法を見つけた。",
-                effect: { CS: 5, Asset: 0, Autonomy: 20 },
-                verdict: "NEUTRAL",
-                feedback: "戦略的回答です。制度の使い方を知る者は、同じルールでも違う結果を得ます。ただし、その知識を得るには時間と労力が必要です。",
+                text: "還付申告は5年間遡れる。今からでも確定申告して還付を受ける。",
+                effect: { CS: 10, Asset: 60000, Autonomy: 15 },
+                verdict: "APPROVED",
+                feedback: "正解。インプラント40万円なら控除額30万円(40万-10万)。税率20%なら約6万円の還付。レーシック、不妊治療、通院交通費(バス・電車)も対象。対象外は美容整形、予防接種、病気が見つからなかった健康診断。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "最終問題です。過去の経験から、システムとの関係を定義してください。",
+            intro: "最終問題です。「知っているか」で数万円の差がつく領域です。",
             after: "ステージ4を終了します。審査結果を算出中・・・"
         }
     }
