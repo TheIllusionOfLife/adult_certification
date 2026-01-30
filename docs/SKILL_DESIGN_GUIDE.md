@@ -150,17 +150,17 @@ effect: { type: "category_cs_gain_amplification", category: "LABOR", value: 0.25
 
 **All skills must be unique in BOTH name AND effect across all stages.**
 
-Already used:
-- Stage 1: 信用基礎 (cs_gain_amplification), 自律性増幅, 信用増幅, MEDIATION (category_cs_gain_boost/SOCIAL)
-- Stage 2: 資産増幅, 自律性増幅, 信用増幅, EVIDENCE_CHAIN (category_autonomy_gain_boost/LABOR)
-- Stage 3: 信用増幅, 自律性増幅, 資産増幅, COMPOUND_SENSE (category_asset_gain_boost/FINANCE)
-- Stage 4: 信用増幅, 自律性増幅, 資産増幅, DUE_PROCESS (category_cs_gain_boost/ADMIN)
-- Stage 5: 信用増幅, 自律性増幅, 資産増幅, SAFETY_NET_NAVIGATION (category_autonomy_gain_boost/HEALTH)
-- Stage 6: 資産増幅, 自律性増幅, 信用増幅, NEGOTIATION_PROTOCOL (category_asset_gain_boost/HOUSING)
-- Stage 7: 信用増幅, 自律性増幅, 資産増幅, CONTRACT_LITERACY (category_autonomy_gain_boost/LEGAL)
-- Stage 8: 信用増幅, 自律性増幅, 資産増幅, IDENTITY_HYGIENE (category_autonomy_gain_boost/SEC)
-- Stage 9: 資産増幅, 自律性増幅, 信用増幅, DAMAGE_CONTROL (category_autonomy_gain_boost/DISASTER)
-- Stage 10: 信用増幅, 自律性増幅, 信用増幅+, AWAKENING (all_gain_amplification)
+Already used (all names unique per stage theme):
+- Stage 1: 第一印象, 自立心, 社交術, MEDIATION
+- Stage 2: 給与交渉力, 職場自律, 勤勉評価, EVIDENCE_CHAIN
+- Stage 3: 金融信用, 財務自律, 資産運用, COMPOUND_SENSE
+- Stage 4: 行政信頼, 申請自律, 節税効果, DUE_PROCESS
+- Stage 5: 制度理解, 受給自律, 保障活用, SAFETY_NET_NAVIGATION
+- Stage 6: 契約防衛, 交渉自律, 入居信用, NEGOTIATION_PROTOCOL
+- Stage 7: 法的信用, 権利主張, 損害回避, CONTRACT_LITERACY
+- Stage 8: 電子信用, 情報自衛, 詐欺耐性, IDENTITY_HYGIENE
+- Stage 9: 備蓄管理, 危機判断, 復興信用, DAMAGE_CONTROL
+- Stage 10: 総合信用, 統合自律, 継承信用, AWAKENING
 
 ---
 
