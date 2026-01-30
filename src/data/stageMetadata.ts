@@ -216,7 +216,7 @@ const stage5Definition: StageDefinition = {
         offer2: [
             createKeySkill(
                 'SAFETY_NET_NAVIGATION',
-                'セーフティネット航法',
+                '安全網航法',
                 'SAFETY_NET_NAVIGATION',
                 '社会保障という航路図を読み、危機を乗り越える技術。健康・福祉関連の問題における自律性の新規獲得値を30%増幅します。',
                 { type: 'category_autonomy_gain_boost', value: 0.3, category: 'HEALTH' },

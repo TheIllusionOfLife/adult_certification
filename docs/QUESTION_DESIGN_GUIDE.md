@@ -39,7 +39,7 @@ Each stage has a core theme defined by its Key Skill. All questions must align w
 | 2 | Labor/Work | 証拠連鎖 (EVIDENCE_CHAIN) | Recording prevents disputes |
 | 3 | Finance/Money | 複利感覚 (COMPOUND_SENSE) | Understanding compound interest |
 | 4 | Administration | 手続き主義 (DUE_PROCESS) | Navigating bureaucracy |
-| 5 | Social Safety Net | セーフティネット航法 (SAFETY_NET_NAVIGATION) | Accessing safety nets |
+| 5 | Social Safety Net | 安全網航法 (SAFETY_NET_NAVIGATION) | Accessing safety nets |
 | 6 | Housing | 交渉プロトコル (NEGOTIATION_PROTOCOL) | Third-party negotiation |
 | 7 | Contracts/Legal | 契約読解 (CONTRACT_LITERACY) | Reading before signing |
 | 8 | Digital Identity | 本人性衛生 (IDENTITY_HYGIENE) | Protecting digital identity |

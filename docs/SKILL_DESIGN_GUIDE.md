@@ -56,7 +56,7 @@
 | 2 | EVIDENCE_CHAIN | 証拠連鎖 | `category_autonomy_gain_boost` 30% | LABOR | Recording prevents disputes |
 | 3 | COMPOUND_SENSE | 複利感覚 | `category_asset_gain_boost` 30% | FINANCE | Understanding compound interest |
 | 4 | DUE_PROCESS | 手続き主義 | `category_cs_gain_boost` 30% | ADMIN | Navigating bureaucracy |
-| 5 | SAFETY_NET_NAVIGATION | セーフティネット航法 | `category_autonomy_gain_boost` 30% | HEALTH | Accessing safety nets |
+| 5 | SAFETY_NET_NAVIGATION | 安全網航法 | `category_autonomy_gain_boost` 30% | HEALTH | Accessing safety nets |
 | 6 | NEGOTIATION_PROTOCOL | 交渉プロトコル | `category_asset_gain_boost` 30% | HOUSING | Third-party negotiation |
 | 7 | CONTRACT_LITERACY | 契約読解 | `category_autonomy_gain_boost` 30% | LEGAL | Reading before signing |
 | 8 | IDENTITY_HYGIENE | 本人性衛生 | `category_autonomy_gain_boost` 30% | SEC | Protecting digital identity |
@@ -151,16 +151,16 @@ effect: { type: "category_cs_gain_amplification", category: "LABOR", value: 0.25
 **All skills must be unique in BOTH name AND effect across all stages.**
 
 Already used (all names unique per stage theme):
-- Stage 1: 第一印象, 自立心, 社交術, MEDIATION
-- Stage 2: 対価意識, 退路確保, 実績証明, EVIDENCE_CHAIN
-- Stage 3: 数字の目, 自制心, 種銭の器, COMPOUND_SENSE
-- Stage 4: 窓口力, 書類の型, 控除の知恵, DUE_PROCESS
-- Stage 5: 制度の地図, 申請の勇気, 公助の盾, SAFETY_NET_NAVIGATION
-- Stage 6: 敷金防衛, 相見積の眼, 住まいの目利き, NEGOTIATION_PROTOCOL
-- Stage 7: 条文の盾, 異議申立, 示談の勘, CONTRACT_LITERACY
-- Stage 8: デジタル鎧, 痕跡消去, 見破りの目, IDENTITY_HYGIENE
-- Stage 9: 72時間の備え, 初動対応, 再建の礎, DAMAGE_CONTROL
-- Stage 10: 俯瞰の目, 不惑の意志, 次世代への鍵, AWAKENING
+- Stage 1: 第一印象, 自立心, 社交術, 仲介術
+- Stage 2: 対価意識, 退路確保, 実績証明, 証拠連鎖
+- Stage 3: 数字の目, 自制心, 種銭の器, 複利感覚
+- Stage 4: 窓口力, 書類の型, 控除の知恵, 手続き主義
+- Stage 5: 制度の地図, 申請の勇気, 公助の盾, 安全網航法
+- Stage 6: 敷金防衛, 相見積の眼, 住まいの目利き, 交渉プロトコル
+- Stage 7: 条文の盾, 異議申立, 示談の勘, 契約読解
+- Stage 8: デジタル鎧, 痕跡消去, 見破りの目, 本人性衛生
+- Stage 9: 72時間の備え, 初動対応, 再建の礎, 被害最小化
+- Stage 10: 俯瞰の目, 不惑の意志, 次世代への鍵, 覚醒
 
 ---
 
