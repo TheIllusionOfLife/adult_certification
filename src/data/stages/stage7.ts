@@ -18,7 +18,7 @@ export const stage7Questions: Question[] = [
             },
             {
                 text: "通信販売にはクーリングオフは適用されない。返品は「返品特約」を確認する。",
-                effect: { CS: 10, Asset: 0, Autonomy: 20 },
+                effect: { CS: 10, Asset: 10, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解。クーリングオフは訪問販売(8日)、電話勧誘販売(8日)、連鎖販売取引(20日)等が対象。ネット通販は「自分の意思で購入した」ため対象外。返品特約を事前に確認するのが唯一の防御策。",
                 lockRequirements: null
@@ -71,7 +71,7 @@ export const stage7Questions: Question[] = [
             },
             {
                 text: "クーリングオフを使う。書面で通知すれば8日以内は無条件解約できる。",
-                effect: { CS: 10, Asset: 0, Autonomy: 20 },
+                effect: { CS: 10, Asset: 10, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。クーリングオフは消費者の強力な武器。書面（内容証明郵便が確実）で通知すれば、理由不要で解約できます。",
                 lockRequirements: null
@@ -93,7 +93,7 @@ export const stage7Questions: Question[] = [
         choices: [
             {
                 text: "まず病院で検査を受け、症状が固定するまで示談しない。必要なら弁護士に相談。",
-                effect: { CS: 10, Asset: 0, Autonomy: 20 },
+                effect: { CS: 10, Asset: 10, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。交通事故の示談は「症状固定後」が原則。弁護士特約があれば費用負担なく相談可能。焦って示談すると、本来受け取れる額の半分以下になることも。",
                 lockRequirements: null
@@ -143,7 +143,7 @@ export const stage7Questions: Question[] = [
         choices: [
             {
                 text: "「月利10%は年利120%。ありえない数字」と判断し、断る。紹介ボーナスはポンジスキーム(自転車操業)の特徴。",
-                effect: { CS: 10, Asset: 0, Autonomy: 20 },
+                effect: { CS: 10, Asset: 10, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解。月利10%は年利120%で、世界最高の投資家でも不可能な数字。「紹介ボーナス」はMLM(連鎖販売)の特徴。ポンジスキームは新規参加者の資金で既存参加者に配当する自転車操業。資金が尽きれば破綻し、後から参加した人が最も損をする。",
                 lockRequirements: null
@@ -199,7 +199,7 @@ export const stage7Questions: Question[] = [
         choices: [
             {
                 text: "「連帯保証は無理」と断る。どんなに親しくても、他人の借金リスクは負えない。",
-                effect: { CS: 10, Asset: 0, Autonomy: 20 },
+                effect: { CS: 10, Asset: 10, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。連帯保証を断ることは冷たいことではなく、自己防衛です。2020年の民法改正で保護は強化されましたが、リスクの本質は変わりません。",
                 lockRequirements: null

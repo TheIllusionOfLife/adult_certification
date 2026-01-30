@@ -46,7 +46,7 @@ export const stage1Questions: Question[] = [
             },
             {
                 text: "次の更新の時でいい。",
-                effect: { CS: -30, Asset: 0, Autonomy: 0 },
+                effect: { CS: -20, Asset: 0, Autonomy: 0 },
                 verdict: "WARNING",
                 feedback: "違法です。選挙権も行使できず、行政サービスも受けられない「幽霊市民」になります。社会はルールを無視する人を排除します。",
                 lockRequirements: null
@@ -71,7 +71,7 @@ export const stage1Questions: Question[] = [
             },
             {
                 text: "面倒だから出さない。",
-                effect: { CS: -30, Asset: 0, Autonomy: 0 },
+                effect: { CS: -20, Asset: 0, Autonomy: 0 },
                 verdict: "WARNING",
                 feedback: "ミスです。クレジットカードの更新カードや重要書類が旧住所に届き、見知らぬ誰かの手に渡ります。個人情報管理ができない人と見なされます。マイナポータルでの転出届オンライン提出も活用を。届出を怠ると最大5万円の過料が科されます。",
                 lockRequirements: null
@@ -93,7 +93,7 @@ export const stage1Questions: Question[] = [
         choices: [
             {
                 text: "スーツなどフォーマルな格好で行く。お金は現地までの往復交通費に注意する。",
-                effect: { CS: -30, Asset: 0, Autonomy: 0 },
+                effect: { CS: -20, Asset: 0, Autonomy: 0 },
                 verdict: "WARNING",
                 feedback: "服装は正しいが不十分。香典(20代の同僚の親なら3,000〜5,000円)を旧札で用意、袱紗に包んで持参、宗派不明なら「御霊前」が無難。受付での作法、焼香の回数(浄土真宗1回、真言宗3回)、忌み言葉(重ね重ね、たびたび)なども把握すべき。",
                 lockRequirements: null
@@ -143,7 +143,7 @@ export const stage1Questions: Question[] = [
         choices: [
             {
                 text: "入口近くの席に座り、名刺は片手で素早く交換する。",
-                effect: { CS: -30, Asset: 0, Autonomy: 0 },
+                effect: { CS: -20, Asset: 0, Autonomy: 0 },
                 verdict: "WARNING",
                 feedback: "マナー違反です。入口近くの下座が自分の席ですが、先に座るのは失礼。名刺は両手で受け取り、すぐにしまわないのが礼儀。第一印象で「この人はダメだ」と判断されました。",
                 lockRequirements: null
@@ -178,8 +178,8 @@ export const stage1Questions: Question[] = [
                 effect: { CS: 30, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "仲介術です。システムを間に挟むことで、直接対決を避ける技術です。これが大人の解決法です。",
-                lockRequirements: { Autonomy: 150 },
-                lockedFeedback: "LOCKED: 自律性が150以上必要。受動的に耐えてきた結果、第三者に助けを求めるという発想すら浮かびません。自律性は「選択肢の数」です。"
+                lockRequirements: { Autonomy: 130 },
+                lockedFeedback: "LOCKED: 自律性が130以上必要。受動的に耐えてきた結果、第三者に助けを求めるという発想すら浮かびません。自律性は「選択肢の数」です。"
             }
         ],
         adamDialogue: {
@@ -227,7 +227,7 @@ export const stage1Questions: Question[] = [
         choices: [
             {
                 text: "「了解しました」「ご苦労様です」など、日常的に使われている表現を使う。",
-                effect: { CS: -30, Asset: 0, Autonomy: 0 },
+                effect: { CS: -20, Asset: 0, Autonomy: 0 },
                 verdict: "WARNING",
                 feedback: "「ご苦労様」は目上→目下のねぎらい表現で上司にはNG。「了解しました」もカジュアルすぎる。上司には「お疲れ様です」「承知いたしました」「かしこまりました」を使う。二重敬語(「おっしゃられる」等)にも注意。",
                 lockRequirements: null
@@ -252,7 +252,7 @@ export const stage1Questions: Question[] = [
         choices: [
             {
                 text: "出発30分前に着けば十分。モバイルバッテリーとペットボトルの飲み物はスーツケースに入れて預ける。",
-                effect: { CS: -30, Asset: 0, Autonomy: 0 },
+                effect: { CS: -20, Asset: 0, Autonomy: 0 },
                 verdict: "WARNING",
                 feedback: "時間不足。国内線は1時間前、国際線は2〜3時間前が目安。保安検査は出発20分前まで。モバイルバッテリー(160Wh以下)は機内持込のみで預け荷物NG。国際線の液体は100ml以下の容器+1L以下の透明袋。ライターは機内持込1個のみ。",
                 lockRequirements: null

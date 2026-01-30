@@ -125,7 +125,7 @@ export const stage8Questions: Question[] = [
             },
             {
                 text: "データ消去ソフトで上書き処理後、メーカーや通信キャリアの公式回収プログラムを利用する。",
-                effect: { CS: 10, Asset: 0, Autonomy: 10 },
+                effect: { CS: 10, Asset: 10, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解。データ消去ソフトで上書き処理すれば復元リスクを大幅に低減。メーカーや通信キャリアの公式回収プログラムなら適切に処分される。物理的破壊も有効だが、レアメタル回収の観点では公式回収が望ましい。",
                 lockRequirements: null
@@ -209,7 +209,7 @@ export const stage8Questions: Question[] = [
             },
             {
                 text: "メールのリンクは使わず、公式アプリか、自分でURLを入力して確認する。",
-                effect: { CS: 10, Asset: 0, Autonomy: 10 },
+                effect: { CS: 10, Asset: 10, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。正規の連絡ならアプリや公式サイトでも確認できます。「メールのリンクは信じない」が鉄則。不安なら電話で直接確認を。",
                 lockRequirements: null
@@ -234,7 +234,7 @@ export const stage8Questions: Question[] = [
             },
             {
                 text: "機密情報は一切入力しない。AIには一般的な質問だけにする。",
-                effect: { CS: 10, Asset: 0, Autonomy: 10 },
+                effect: { CS: 10, Asset: 10, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解。AIツールの利便性と情報管理の境界線を引く判断力があります。機密情報の流出リスクをゼロにしました。効率は落ちますが、情報セキュリティを守る姿勢は組織への責任。",
                 lockRequirements: { Autonomy: 150 },

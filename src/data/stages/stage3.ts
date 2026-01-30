@@ -171,8 +171,8 @@ export const stage3Questions: Question[] = [
                 effect: { CS: 10, Asset: 10, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。高金利借入は「最後の手段」。借りる前に「本当に必要か」「他に方法はないか」を考える習慣が、破滅を防ぎます。",
-                lockRequirements: { Autonomy: 150 },
-                lockedFeedback: "LOCKED: 自律性が150以上必要。焦りと欲求に支配され、「他の選択肢を探す」という発想が浮かびません。"
+                lockRequirements: { Autonomy: 130 },
+                lockedFeedback: "LOCKED: 自律性が130以上必要。焦りと欲求に支配され、「他の選択肢を探す」という発想が浮かびません。"
             },
             {
                 text: "「30日無利息なら大丈夫」と借りる。",

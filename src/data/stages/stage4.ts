@@ -181,8 +181,8 @@ export const stage4Questions: Question[] = [
                 effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解。行政手続きは「証拠を残す」が鉄則。郵送なら特定記録や簡易書留、電子申告なら受信通知。「出した」と「出した証拠がある」は全く違う。",
-                lockRequirements: { Autonomy: 150 },
-                lockedFeedback: "LOCKED: 自律性が150以上必要。面倒くさがって「まあいいか」と流しました。"
+                lockRequirements: { Autonomy: 130 },
+                lockedFeedback: "LOCKED: 自律性が130以上必要。面倒くさがって「まあいいか」と流しました。"
             }
         ],
         adamDialogue: {

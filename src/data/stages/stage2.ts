@@ -178,8 +178,8 @@ export const stage2Questions: Question[] = [
                 effect: { CS: -10, Asset: 0, Autonomy: 30 },
                 feedback: "正解。社内で解決しなければ外部窓口へ。労働条件相談ほっとライン(0120-811-610)、法テラス(0570-078374)、みんなの人権110番(0570-003-110)。相談は無料・匿名可。記録(メール、日記、録音)が証拠になる。",
                 verdict: "APPROVED",
-                lockRequirements: { Autonomy: 150 },
-                lockedFeedback: "LOCKED: 自律性が150以上必要 - 外部に助けを求める勇気がありません。"
+                lockRequirements: { Autonomy: 130 },
+                lockedFeedback: "LOCKED: 自律性が130以上必要 - 外部に助けを求める勇気がありません。"
             }
         ],
         adamDialogue: {
