@@ -18,7 +18,7 @@ export const stage9Questions: Question[] = [
             },
             {
                 text: "災害用伝言ダイヤル（171）や災害用伝言板を使う。事前に家族と集合場所を決めておく。",
-                effect: { CS: 10, Asset: 0, Autonomy: 20 },
+                effect: { CS: 20, Asset: 10, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。「171」は毎月1日と15日に体験利用可能。家族との事前の取り決め（集合場所、連絡方法）が、混乱時の命綱になります。",
                 lockRequirements: null
@@ -64,7 +64,7 @@ export const stage9Questions: Question[] = [
         choices: [
             {
                 text: "ハザードマップで浸水・土砂災害リスクを確認し、リスクと利便性を天秤にかけて判断する。",
-                effect: { CS: 10, Asset: 0, Autonomy: 20 },
+                effect: { CS: 20, Asset: 10, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。ハザードマップは自治体のウェブサイトで無料閲覧可能。リスクを知った上で住むのと、知らずに住むのでは、備えの質が違います。",
                 lockRequirements: null
@@ -93,7 +93,7 @@ export const stage9Questions: Question[] = [
         choices: [
             {
                 text: "片付け前に被害状況を写真・動画で記録。購入記録や修理見積もりを集めてから請求する。罹災証明書も自治体に申請。",
-                effect: { CS: 10, Asset: 0, Autonomy: 20 },
+                effect: { CS: 10, Asset: 10, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。罹災証明書の取得が公的支援の入口。被災者生活再建支援金(最大300万円)の申請にも写真記録が必要。自治体窓口に早めに相談を。「片付けてしまった後」では証拠がなくなります。",
                 lockRequirements: null
@@ -125,7 +125,7 @@ export const stage9Questions: Question[] = [
             },
             {
                 text: "公式情報(自治体HP、NHK)を確認してから判断する。未確認情報は拡散しない。",
-                effect: { CS: 10, Asset: 0, Autonomy: 20 },
+                effect: { CS: 20, Asset: 10, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解。災害時の情報は「出典を確認」が鉄則。自治体の公式SNSアカウント、NHKのニュース速報、気象庁のサイトが信頼できる情報源。「速さ」より「正確さ」が人命を守る。",
                 lockRequirements: null
@@ -206,7 +206,7 @@ export const stage9Questions: Question[] = [
             },
             {
                 text: "家財保険に加入する。建物は大家の責任でも、家財は自分の責任。ハザードマップと併せてリスク把握する。",
-                effect: { CS: 10, Asset: 0, Autonomy: 20 },
+                effect: { CS: 10, Asset: 10, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解。家財保険は火災だけでなく水害、盗難、落雷もカバー。個人賠償責任特約もつけておけば、階下への漏水事故なども補償。月額数百円で大きなリスクをカバーできる。",
                 lockRequirements: null

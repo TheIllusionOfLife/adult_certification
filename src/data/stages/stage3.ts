@@ -11,7 +11,7 @@ export const stage3Questions: Question[] = [
         choices: [
             {
                 text: "複利が増える。「利息に利息がつく」から時間とともに差が開く。",
-                effect: { CS: 10, Asset: 0, Autonomy: 10 },
+                effect: { CS: 10, Asset: 20, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。10年で4万円差、30年で約40万円差。複利は「時間を味方につける」技術です。NISAなら年間360万円(生涯1800万円)まで運用益が非課税。若いうちから始めるほど複利の恩恵は大きくなります。",
                 lockRequirements: null
@@ -39,7 +39,7 @@ export const stage3Questions: Question[] = [
         choices: [
             {
                 text: "「住民税は翌年課税」を思い出し、2年目は手取りが減ることを予算に組み込む。",
-                effect: { CS: 10, Asset: 0, Autonomy: 10 },
+                effect: { CS: 10, Asset: 10, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。1年目は住民税ゼロで手取りが多く感じるが、2年目6月から天引き開始。手取り減少ショックに備え、1年目のうちに差額分を貯蓄しておくべき。税の仕組みを知る者だけが備えられます。",
                 lockRequirements: null
@@ -71,7 +71,7 @@ export const stage3Questions: Question[] = [
             },
             {
                 text: "CICなどの信用情報機関に開示請求し、自分の信用履歴を確認する。",
-                effect: { CS: 10, Asset: 0, Autonomy: 20 },
+                effect: { CS: 20, Asset: 10, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。開示手数料は約1,000円。過去の延滞や強制解約が記録されていれば原因が判明します。情報を知ることが、信用回復の第一歩です。",
                 lockRequirements: null
@@ -118,7 +118,7 @@ export const stage3Questions: Question[] = [
         choices: [
             {
                 text: "NISAかiDeCoを活用する。非課税制度を使って資産形成を始める。",
-                effect: { CS: 10, Asset: 0, Autonomy: 20 },
+                effect: { CS: 10, Asset: 20, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解。NISAは年間360万円まで運用益非課税、いつでも引き出し可能。iDeCoは所得控除で節税効果あり(年収400万なら年約2.4万円節税)、ただし60歳まで引き出せない。両制度の特性を理解して使い分けるのが賢明。",
                 lockRequirements: null
@@ -143,7 +143,7 @@ export const stage3Questions: Question[] = [
         choices: [
             {
                 text: "公的保険（高額療養費制度等）を確認し、本当に必要な保障だけを選ぶ。",
-                effect: { CS: 10, Asset: 0, Autonomy: 20 },
+                effect: { CS: 10, Asset: 20, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。公的保険を理解した上で「足りない部分だけ」民間保険で補う。保険は「安心」ではなく「確率とコストの計算」です。",
                 lockRequirements: null
@@ -168,7 +168,7 @@ export const stage3Questions: Question[] = [
         choices: [
             {
                 text: "まず「なぜ30万円必要か」を再検討し、他の手段（分割払い交渉、家族相談）を探る。",
-                effect: { CS: 10, Asset: 0, Autonomy: 20 },
+                effect: { CS: 10, Asset: 10, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。高金利借入は「最後の手段」。借りる前に「本当に必要か」「他に方法はないか」を考える習慣が、破滅を防ぎます。",
                 lockRequirements: { Autonomy: 150 },
@@ -199,7 +199,7 @@ export const stage3Questions: Question[] = [
         choices: [
             {
                 text: "JASSOに連絡し、「減額返還」か「返還期限猶予」を申請する。",
-                effect: { CS: 10, Asset: 0, Autonomy: 20 },
+                effect: { CS: 10, Asset: 10, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。年収300万円以下なら「減額返還」で月額を1/2〜1/3に、「返還期限猶予」で最長10年間返済を止められます。制度を知らないだけで人生が詰む人がいます。困ったら、まず相談です。",
                 lockRequirements: null

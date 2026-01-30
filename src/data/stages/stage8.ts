@@ -18,7 +18,7 @@ export const stage8Questions: Question[] = [
             },
             {
                 text: "SIMスワップを疑い、通信キャリアに即連絡+銀行口座凍結。",
-                effect: { CS: 10, Asset: 0, Autonomy: 10 },
+                effect: { CS: 20, Asset: 10, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解。SIMスワップ攻撃は「圏外→不正送金」の流れが典型。通信キャリアへの即時連絡でSIM停止、銀行への連絡で口座凍結が最優先。対策としてSMS認証からアプリベース認証(Google Authenticator等)への切り替えが有効。",
                 lockRequirements: null
@@ -71,7 +71,7 @@ export const stage8Questions: Question[] = [
             },
             {
                 text: "パスワードマネージャーを使い、サービスごとに強力なパスワードを自動生成・管理する。",
-                effect: { CS: 10, Asset: 0, Autonomy: 10 },
+                effect: { CS: 10, Asset: 10, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。マスターパスワード1つを覚えれば、何百ものサイトを安全に管理できます。初期設定の手間は、将来の被害と比べれば微々たるものです。",
                 lockRequirements: null
@@ -100,7 +100,7 @@ export const stage8Questions: Question[] = [
             },
             {
                 text: "すぐに設定する。パスワードだけでは防げない攻撃がある。",
-                effect: { CS: 10, Asset: 0, Autonomy: 10 },
+                effect: { CS: 10, Asset: 10, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。パスワードは漏洩する前提で考えるべき。二段階認証があれば、パスワードが盗まれても口座は守られます。",
                 lockRequirements: null

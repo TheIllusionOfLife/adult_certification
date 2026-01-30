@@ -11,7 +11,7 @@ export const stage6Questions: Question[] = [
         choices: [
             {
                 text: "礼金の減額と仲介手数料の根拠を確認し、交渉を試みる。",
-                effect: { CS: 0, Asset: -20, Autonomy: 20 },
+                effect: { CS: 10, Asset: 10, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。礼金は慣習であり法的義務ではなく、仲介手数料は原則「貸主・借主で折半」（宅建業法46条）。知識があれば交渉できます。",
                 lockRequirements: null
@@ -39,7 +39,7 @@ export const stage6Questions: Question[] = [
         choices: [
             {
                 text: "金利、手数料、保証料、団信条件、繰上返済条件を総合的に比較し、総支払額で判断する。",
-                effect: { CS: 10, Asset: -20, Autonomy: 10 },
+                effect: { CS: 10, Asset: 10, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。35年ローンでは0.1%の金利差が数十万円になります。複数要素を比較し、本当の「安さ」を見極める力が必要です。",
                 lockRequirements: null
@@ -64,7 +64,7 @@ export const stage6Questions: Question[] = [
         choices: [
             {
                 text: "保証会社を利用する。費用はかかるが、人間関係のリスクを避けられる。",
-                effect: { CS: 10, Asset: -20, Autonomy: 20 },
+                effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。保証会社費用（賃料の0.5〜1ヶ月分）は「人間関係保険」。金銭トラブルで親戚関係を壊すよりはるかに安い投資です。",
                 lockRequirements: null
@@ -93,7 +93,7 @@ export const stage6Questions: Question[] = [
         choices: [
             {
                 text: "定期借家は「更新なし」を確認し、長期居住なら普通借家を探す。",
-                effect: { CS: 10, Asset: -30, Autonomy: 20 },
+                effect: { CS: 10, Asset: 10, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。定期借家は家賃が安いことが多いですが、契約終了時に更新請求権がありません。転勤予定など短期なら定期借家、長期居住なら普通借家と使い分けるのが賢明です。",
                 lockRequirements: null
@@ -125,7 +125,7 @@ export const stage6Questions: Question[] = [
             },
             {
                 text: "契約書の設備一覧を確認。「設備」なら大家負担、「残置物」なら自己負担。まず契約書を根拠に管理会社と交渉。",
-                effect: { CS: 10, Asset: 0, Autonomy: 20 },
+                effect: { CS: 10, Asset: 20, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解。2020年民法改正で、設備の場合は一定期間対応がなければ自分で修理し費用請求も可能に。フィルター掃除の怠慢や入居者の過失は自己負担。入居時に設備の動作確認と写真記録を忘れずに。",
                 lockRequirements: null
@@ -143,7 +143,7 @@ export const stage6Questions: Question[] = [
         choices: [
             {
                 text: "諸費用（物件価格の5〜10%）を含めた総予算を計算し、資金計画を立て直す。",
-                effect: { CS: 10, Asset: 0, Autonomy: 10 },
+                effect: { CS: 10, Asset: 20, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。「買える」と「払える」は違います。諸費用、引越し費用、家具購入、緊急予備費まで含めた計画が必要です。",
                 lockRequirements: null
@@ -168,7 +168,7 @@ export const stage6Questions: Question[] = [
         choices: [
             {
                 text: "「民事調停」や「少額訴訟」など、裁判以外の解決手段を調べて活用する。",
-                effect: { CS: 10, Asset: 0, Autonomy: 20 },
+                effect: { CS: 10, Asset: 20, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。民事調停は数千円、少額訴訟は60万円以下の請求に使え、弁護士不要。第三者機関を使う知恵が、不当な要求から身を守ります。",
                 lockRequirements: { Autonomy: 150 },
@@ -199,7 +199,7 @@ export const stage6Questions: Question[] = [
         choices: [
             {
                 text: "「通常損耗は貸主負担」とガイドラインを根拠に反論し、明細の説明を求める。",
-                effect: { CS: 10, Asset: 0, Autonomy: 20 },
+                effect: { CS: 10, Asset: 20, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。原状回復ガイドラインを知っているだけで数万円〜数十万円の差。「言われるがまま」は最も損な選択です。",
                 lockRequirements: null
@@ -260,7 +260,7 @@ export const stage6Questions: Question[] = [
             },
             {
                 text: "各自治体の住宅相談窓口、国民生活センター(188)、法テラス(0570-078374)など、公的な相談窓口に相談する。",
-                effect: { CS: 10, Asset: 0, Autonomy: 20 },
+                effect: { CS: 10, Asset: 20, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解。自治体の不動産相談窓口(無料)、国民生活センター(188)、法テラス(経済的余裕がなければ無料法律相談)。民事調停(数千円)や少額訴訟(60万円以下)も弁護士不要で利用可能。相談先を知っているだけで選択肢が広がる。",
                 lockRequirements: null
