@@ -1,26 +1,26 @@
 import type { Question } from '../../types';
 
 export const stage8Questions: Question[] = [
-    // Q1: Knowledge (SEC) - SIM swap attack awareness (smaller effect, before skills)
+    // Q1: Knowledge (SEC) - SIM swap attack (concrete scenario)
     {
         id: "s8_q01",
         category: "SEC",
-        text: "「SIMスワップ詐欺」という言葉を聞いた。どんな攻撃か知らないが、対策は必要？",
-        imagePrompt: "Scene: a phone losing signal; attacker taking over same number on new device; bank SMS codes being intercepted. Composition: invisible takeover process. Mood: silent threat, hidden vulnerability.",
+        text: "突然スマホが「圏外」になった。再起動しても戻らない。直後に銀行から「送金完了」の通知メールが届いた。",
+        imagePrompt: "Scene: Phone showing 'no service' on screen, email notification from bank about unauthorized transfer visible on laptop, panic setting in, carrier store in distance. Composition: Phone fills foreground, bank alert creates urgency. Mood: Silent attack in progress, time critical.",
         imagePath: "s8_q01.png",
         choices: [
             {
-                text: "聞いたことがない攻撃は気にしなくていい。自分には関係ない。",
-                effect: { CS: -15, Asset: 0, Autonomy: -10 },
+                text: "何が起きているかわからず、とりあえず様子を見る。",
+                effect: { CS: -15, Asset: -500000, Autonomy: -10 },
                 verdict: "WARNING",
-                feedback: "危険な無知です。SIMスワップは攻撃者があなたの電話番号を乗っ取る手口。SMS認証を突破され、銀行口座やSNSを乗っ取られます。知らないことは弱点です。",
+                feedback: "SIMスワップ攻撃の可能性。攻撃者があなたの電話番号を別のSIMに移し、SMS認証を突破して銀行口座を操作。すぐに通信キャリアに連絡してSIMを停止し、銀行口座を凍結すべき。時間が経つほど被害が拡大する。",
                 lockRequirements: null
             },
             {
-                text: "SMSではなくアプリベースの認証（Google Authenticator等）を優先的に使う。",
+                text: "SIMスワップを疑い、通信キャリアに即連絡+銀行口座凍結。",
                 effect: { CS: 5, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
-                feedback: "正解です。SMS認証はSIMスワップに脆弱。認証アプリやハードウェアキーを使えば、電話番号を乗っ取られても認証は守られます。",
+                feedback: "正解。SIMスワップ攻撃は「圏外→不正送金」の流れが典型。通信キャリアへの即時連絡でSIM停止、銀行への連絡で口座凍結が最優先。対策としてSMS認証からアプリベース認証(Google Authenticator等)への切り替えが有効。",
                 lockRequirements: null
             }
         ],
@@ -117,17 +117,17 @@ export const stage8Questions: Question[] = [
         imagePath: "s8_q05.png",
         choices: [
             {
-                text: "初期化して売却する。工場出荷状態にすれば大丈夫だろう。",
+                text: "初期化してフリマアプリで売却する。工場出荷状態にすれば大丈夫だろう。",
                 effect: { CS: -5, Asset: 5000, Autonomy: 0 },
-                verdict: "NEUTRAL",
-                feedback: "経済性を優先した選択です。数千円を回収できましたが、初期化だけではデータ復元ツールで情報を取り出せる可能性があります。リスクを受け入れて利益を取りました。",
+                verdict: "WARNING",
+                feedback: "リスクのある選択。初期化だけではデータ復元ツールで情報を取り出せる可能性があります。写真、メール、決済情報が流出するリスクを受け入れて利益を取りました。",
                 lockRequirements: null
             },
             {
-                text: "売却せず物理的に破壊して廃棄する。データ復元のリスクを完全に排除。",
+                text: "データ消去ソフトで上書き処理後、メーカーや通信キャリアの公式回収プログラムを利用する。",
                 effect: { CS: 10, Asset: 0, Autonomy: 10 },
-                verdict: "NEUTRAL",
-                feedback: "安全性を優先した選択です。売却益は得られませんでしたが、写真、メール、決済情報の流出リスクをゼロにしました。数千円より個人情報を重く見た判断です。",
+                verdict: "APPROVED",
+                feedback: "正解。データ消去ソフトで上書き処理すれば復元リスクを大幅に低減。メーカーや通信キャリアの公式回収プログラムなら適切に処分される。物理的破壊も有効だが、レアメタル回収の観点では公式回収が望ましい。",
                 lockRequirements: null
             }
         ],
@@ -228,15 +228,15 @@ export const stage8Questions: Question[] = [
             {
                 text: "効率を優先して機密情報も入力する。AIの方が正確だし、業務が早く終わる。",
                 effect: { CS: -10, Asset: 0, Autonomy: 0 },
-                verdict: "NEUTRAL",
-                feedback: "効率を取った選択です。業務速度は上がりましたが、AIサービスは入力データを学習に使用する可能性があります。情報漏洩が起きた場合、責任はあなたに。便利さの代償を受け入れました。",
+                verdict: "WARNING",
+                feedback: "危険な選択。AIサービスは入力データを学習に使用する可能性があります。機密情報の漏洩が起きた場合、責任はあなたに。便利さの代償は計り知れない。",
                 lockRequirements: null
             },
             {
                 text: "機密情報は一切入力しない。AIには一般的な質問だけにする。",
-                effect: { CS: 10, Asset: 0, Autonomy: 0 },
-                verdict: "NEUTRAL",
-                feedback: "安全を取った選択です。効率は落ちますが、機密情報の流出リスクをゼロにしました。AIツールの利便性と情報管理の境界線を引く判断力があります。",
+                effect: { CS: 10, Asset: 0, Autonomy: 10 },
+                verdict: "APPROVED",
+                feedback: "正解。AIツールの利便性と情報管理の境界線を引く判断力があります。機密情報の流出リスクをゼロにしました。効率は落ちますが、情報セキュリティを守る姿勢は組織への責任。",
                 lockRequirements: { Autonomy: 100 },
                 lockedFeedback: "LOCKED: 自律性が100以上必要。「便利だから」という思考に流され、リスク評価ができていません。"
             }
@@ -246,31 +246,31 @@ export const stage8Questions: Question[] = [
         }
     },
 
-    // Q10: Philosophy (SEC) - Privacy vs connectivity [DATA REALITY CHECK]
+    // Q10: Knowledge (SEC) - My Number health insurance card benefits
     {
         id: "s8_q10",
         category: "SEC",
-        text: "あなたの検索履歴、位置情報、購買記録は企業に売買されている。その時、「個人情報」は何ですか？",
-        imagePrompt: "Scene: Vending machine displaying personal data packets as products behind glass, browsing history, location logs, purchase records each with price tags, coin slot glowing. Composition: Machine fills frame, data products on shelves. Mood: Surreal marketplace, your life for sale.",
+        text: "マイナ保険証を使うと何が変わる? 従来の保険証と同じ?",
+        imagePrompt: "Scene: Hospital reception counter, My Number card being presented, screen showing automatic high-cost medical limit application, pharmacist checking medication history on system. Composition: Card presentation moment, digital benefits flowing. Mood: Seamless healthcare, invisible advantages.",
         imagePath: "s8_q10.png",
         choices: [
             {
-                text: "守るべき人格の一部。売買されること自体が間違っている。",
-                effect: { CS: 10, Asset: 0, Autonomy: 15 },
-                verdict: "NEUTRAL",
-                feedback: "プライバシー重視の回答です。原理的には正しいですが、現実のデジタル経済から離脱するコストは高く、機会損失も生じます。",
+                text: "保険証と同じ。カードが増えるだけで面倒。",
+                effect: { CS: -15, Asset: -50000, Autonomy: -10 },
+                verdict: "WARNING",
+                feedback: "大きな誤解。マイナ保険証なら限度額適用認定証が不要(高額療養費の自己負担限度額が自動適用)。マイナポータルで過去の診療歴・処方薬を確認可能。確定申告の医療費控除も自動入力。2024年12月から従来の保険証は新規発行停止。",
                 lockRequirements: null
             },
             {
-                text: "売買される商品。どうせ取られるなら、自分にも利益を還元させる。",
-                effect: { CS: 0, Asset: 5000, Autonomy: -10 },
-                verdict: "NEUTRAL",
-                feedback: "実利的回答です。ポイント還元、無料サービス・・・データ提供の見返りを最大化する姿勢。ただし、一度渡した情報は取り戻せません。",
+                text: "限度額適用認定証が不要になり、高額療養費が自動適用される。医療費控除の自動入力も可能。",
+                effect: { CS: 10, Asset: 50000, Autonomy: 10 },
+                verdict: "APPROVED",
+                feedback: "正解。入院時に限度額適用認定証を事前申請する手間がなくなる。薬の飲み合わせチェック、過去の健診結果確認もできる。救急搬送時にも医療情報が共有される。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "最終問題です。あなたのデータは誰のものですか？",
+            intro: "最終問題です。デジタル化の実益を理解していますか？",
             after: "ステージ8を終了します。審査結果を算出中・・・"
         }
     }

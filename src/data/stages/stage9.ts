@@ -92,48 +92,45 @@ export const stage9Questions: Question[] = [
         imagePath: "s9_q04.png",
         choices: [
             {
-                text: "片付け前に被害状況を写真・動画で記録。購入記録や修理見積もりを集めてから請求する。",
+                text: "片付け前に被害状況を写真・動画で記録。購入記録や修理見積もりを集めてから請求する。罹災証明書も自治体に申請。",
                 effect: { CS: 5, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
-                feedback: "正解です。「片付けてしまった後」では証拠がなくなります。日頃から高額家財の写真と購入記録を保存しておくと、いざという時に役立ちます。",
+                feedback: "正解です。罹災証明書の取得が公的支援の入口。被災者生活再建支援金(最大300万円)の申請にも写真記録が必要。自治体窓口に早めに相談を。「片付けてしまった後」では証拠がなくなります。",
                 lockRequirements: null
             },
             {
                 text: "保険会社に電話すれば、あとは向こうがやってくれるはず。",
                 effect: { CS: -15, Asset: -100000, Autonomy: -5 },
                 verdict: "WARNING",
-                feedback: "受け身すぎます。被害状況の写真、購入時の領収書、修理見積もりがないと、保険金は満額出ません。「証拠がない被害」は認められません。",
+                feedback: "受け身すぎます。被害状況の写真、購入時の領収書、修理見積もりがないと、保険金は満額出ません。罹災証明書の取得が公的支援の入口。被災者生活再建支援金(最大300万円)の申請にも写真記録が必要。自治体窓口に早めに相談を。",
                 lockRequirements: null
             }
         ]
     },
 
-    // Q5: Dilemma (DISASTER) - 災害時のSNS情報拡散
+    // Q5: Knowledge (DISASTER) - Disaster fake news handling
     {
         id: "s9_q05",
         category: "DISASTER",
-        text: "大地震直後、SNSで「〇〇地区で火災発生、逃げろ」という投稿が流れてきた。家族がその地区にいる。公式発表はまだない。",
-        imagePrompt: "Scene: Phone screen showing viral disaster post with alarming headline and retweet count, official news app showing no updates yet, family photo visible in background, finger hovering over share button. Composition: Phone dominates, share/ignore decision moment. Mood: Information fog, speed vs accuracy.",
+        text: "大地震後、SNSで「〇〇地区の浄水場が汚染された。水道水を飲むな」という投稿がバズっている。",
+        imagePrompt: "Scene: Phone screen showing viral disaster post with alarming headline and retweet count, official news app showing no updates yet, water bottle in hand, finger hovering over share button. Composition: Phone dominates, share/ignore decision moment. Mood: Information fog, panic potential.",
         imagePath: "s9_q05.png",
         choices: [
             {
-                text: "家族や知人に早く知らせるため、そのまま拡散する。誰かの役に立つかもしれない。",
-                effect: { CS: -5, Asset: 0, Autonomy: 10 },
-                verdict: "NEUTRAL",
-                feedback: "速度を優先した選択です。本当の情報なら人を救えますが、デマなら混乱を拡大させます。善意の拡散がデマ拡大に加担する可能性を受け入れました。",
+                text: "家族や知人に早く知らせるため、そのまま拡散する。",
+                effect: { CS: -15, Asset: 0, Autonomy: -10 },
+                verdict: "WARNING",
+                feedback: "デマの可能性。災害時のSNSは誤情報が急速に広がる。善意の拡散がパニックを助長する。公式情報(自治体HP、NHK、気象庁)を確認してから判断すべき。",
                 lockRequirements: null
             },
             {
-                text: "公式情報が出るまで拡散しない。デマかもしれない。",
-                effect: { CS: 10, Asset: 0, Autonomy: 5 },
-                verdict: "NEUTRAL",
-                feedback: "正確性を優先した選択です。デマの拡散は防げますが、本当の情報だった場合、伝達の遅れが命取りになる可能性も。慎重さは美徳ですが、代償もあります。",
+                text: "公式情報(自治体HP、NHK)を確認してから判断する。未確認情報は拡散しない。",
+                effect: { CS: 10, Asset: 0, Autonomy: 15 },
+                verdict: "APPROVED",
+                feedback: "正解。災害時の情報は「出典を確認」が鉄則。自治体の公式SNSアカウント、NHKのニュース速報、気象庁のサイトが信頼できる情報源。「速さ」より「正確さ」が人命を守る。",
                 lockRequirements: null
             }
-        ],
-        adamDialogue: {
-            intro: "情報の速度と正確性、どちらを優先しますか？"
-        }
+        ]
     },
 
     // Q6: Knowledge (DISASTER) - Earthquake/fire insurance separation (biggest effect, 1 skill helps)
@@ -180,7 +177,7 @@ export const stage9Questions: Question[] = [
                 text: "確定申告で医療費控除を申請する。領収書を集め、還付を受ける。",
                 effect: { CS: 5, Asset: 20000, Autonomy: 20 },
                 verdict: "APPROVED",
-                feedback: "正解です。20万円の医療費なら、約1〜2万円の還付が期待できます。交通費も対象。セルフメディケーション税制との選択も可能。「会社員だから確定申告は関係ない」は大きな誤解です。",
+                feedback: "正解です。20万円の医療費なら、約1〜2万円の還付が期待できます。交通費も対象。医療費が10万円未満でも、OTC医薬品の年間購入額が1.2万円超なら最大8.8万円の控除が可能(セルフメディケーション税制、医療費控除との選択制)。「会社員だから確定申告は関係ない」は大きな誤解です。",
                 lockRequirements: { Autonomy: 70 },
                 lockedFeedback: "LOCKED: 自律性が70以上必要。「確定申告は面倒」という先入観で行動できません。"
             }
@@ -192,85 +189,81 @@ export const stage9Questions: Question[] = [
     },
     // [SKILL OFFER 2 HAPPENS AFTER Q7]
 
-    // Q8: Knowledge (DISASTER) - Post-disaster support systems
+    // Q8: Knowledge (DISASTER) - Rental property contents insurance
     {
         id: "s9_q08",
         category: "DISASTER",
-        text: "災害で家が半壊した。どんな公的支援が受けられる？",
-        imagePrompt: "Scene: Half-destroyed house viewed through broken window frame, support application documents spread on makeshift table (plywood on crates), pen and flashlight beside them. Composition: Destruction framed by window, documents as focus of action. Mood: Devastation meeting bureaucracy, rebuilding begins with paperwork.",
+        text: "賃貸に住んでいるが、家財保険には入っていない。「賃貸だから建物は大家の責任。保険は不要」と思っている。",
+        imagePrompt: "Scene: Rental apartment living room with electronics and furniture, insurance pamphlet on coffee table, water stain on ceiling hinting at leak risk, hazard map pinned to fridge. Composition: Comfortable home with hidden vulnerabilities. Mood: False security, affordable protection available.",
         imagePath: "s9_q08.png",
         choices: [
             {
-                text: "運が悪かったと諦める。自力で何とかするしかない。",
-                effect: { CS: -20, Asset: -200000, Autonomy: -10 },
+                text: "賃貸だから保険は不要。大家が入っているはず。",
+                effect: { CS: -15, Asset: -200000, Autonomy: -10 },
                 verdict: "WARNING",
-                feedback: "権利の放棄です。被災者生活再建支援金（最大300万円）、災害援護資金貸付、住宅応急修理制度など、多くの公的支援があります。知らないと使えません。",
+                feedback: "大家の火災保険は建物のみ。家財(家電、家具、衣類)は対象外。水害・盗難・漏水被害も家財保険でカバー。月額数百円〜。加入しないと数百万円の損害を全額自己負担。",
                 lockRequirements: null
             },
             {
-                text: "自治体の窓口に相談し、被災者生活再建支援金や各種支援制度を申請する。",
-                effect: { CS: 5, Asset: 50000, Autonomy: 15 },
+                text: "家財保険に加入する。建物は大家の責任でも、家財は自分の責任。ハザードマップと併せてリスク把握する。",
+                effect: { CS: 5, Asset: 0, Autonomy: 15 },
                 verdict: "APPROVED",
-                feedback: "正解です。罹災証明書の取得が支援の入口。被害認定によって支援額が変わるので、正確な被害報告と写真記録が重要です。支援金の一部を受給できました。",
+                feedback: "正解。家財保険は火災だけでなく水害、盗難、落雷もカバー。個人賠償責任特約もつけておけば、階下への漏水事故なども補償。月額数百円で大きなリスクをカバーできる。",
                 lockRequirements: null
             }
         ]
     },
 
-    // Q9: Dilemma + Lock (DISASTER) - Help others vs self-preservation [SWAPPED A↔B]
+    // Q9: Knowledge (DISASTER) - Evacuation behavior during heavy rain
     {
         id: "s9_q09",
         category: "DISASTER",
-        text: "津波警報発令。高台に逃げる途中、足の不自由な高齢者が助けを求めている。",
-        imagePrompt: "Scene: Coastal evacuation road view while running uphill, elderly person ahead struggling to climb, tsunami warning siren tower blaring, high ground directional sign pointing forward. Composition: Road perspective, person blocking path to safety. Mood: Seconds matter, humanity vs survival.",
+        text: "大雨警報が出た。自宅はハザードマップで浸水想定区域。避難指示はまだ出ていない。",
+        imagePrompt: "Scene: Window showing heavy rain outside, phone displaying weather alert level 3, hazard map on table showing flood zone with home marked, emergency bag by door. Composition: Rain visible through window, preparation visible indoors. Mood: Rising urgency, prepared response.",
         imagePath: "s9_q09.png",
         choices: [
             {
-                text: "一緒に逃げる。手を貸して、できる限り速く高台を目指す。",
-                effect: { CS: 10, Asset: 0, Autonomy: -10 },
-                verdict: "NEUTRAL",
-                feedback: "人道的な選択です。しかし、助けようとして共倒れになるケースも少なくありません。「てんでんこ」（各自バラバラに逃げる）の教訓は、共倒れを防ぐ知恵でもあります。",
-                lockRequirements: { CS: 70 },
-                lockedFeedback: "LOCKED: 社会的信用が70以上必要。社会からの信頼が低いと、「他者を助ける」という発想が浮かびにくくなります。"
+                text: "避難指示が出るまで大丈夫。出たら避難する。",
+                effect: { CS: -15, Asset: -100000, Autonomy: -10 },
+                verdict: "WARNING",
+                feedback: "危険。警戒レベル5(緊急安全確保)の段階では既に手遅れの可能性。レベル3(高齢者等避難)で避難開始が推奨。ハザードマップで確認した避難場所・経路を使い、早めに行動すべき。",
+                lockRequirements: null
             },
             {
-                text: "自分の命が優先。見捨てて高台に向かう。",
-                effect: { CS: -10, Asset: 0, Autonomy: 15 },
-                verdict: "NEUTRAL",
-                feedback: "生存本能の選択です。自分が助からなければ、誰も助けられません。冷酷に見えますが、「生き残る」ことも責任の一つです。",
+                text: "警戒レベル3の段階で避難開始。避難場所と経路はハザードマップで事前確認済み。",
+                effect: { CS: 10, Asset: 0, Autonomy: 15 },
+                verdict: "APPROVED",
+                feedback: "正解。警戒レベル: 1(注意)→2(避難行動確認)→3(高齢者等避難)→4(避難指示=全員避難)→5(緊急安全確保=手遅れ)。レベル4が出る前に行動。非常持出袋、モバイルバッテリー、現金、保険証コピーを持って避難。",
                 lockRequirements: null
             }
-        ],
-        adamDialogue: {
-            intro: "自分と他者、どちらを優先しますか？"
-        }
+        ]
     },
 
-    // Q10: Philosophy (DISASTER) - 「想定外」に対する姿勢
+    // Q10: Knowledge (DISASTER) - Earthquake evacuation (specific knowledge)
     {
         id: "s9_q10",
         category: "DISASTER",
-        text: "ハザードマップの浸水想定を超える被害が発生した。「想定外だった」という声が上がる。そもそも「想定」とは何か？",
-        imagePrompt: "Scene: Flooded street with water line clearly above hazard map prediction marker on wall, map itself partially submerged, rescue boat in distance, 'unexpected' headline on floating newspaper. Composition: Water level vs prediction marker creates visual irony. Mood: Assumptions shattered, reality exceeds models.",
+        text: "地震発生。自宅マンション5階。避難警報が出ている。どうする?",
+        imagePrompt: "Scene: Apartment room shaking, items falling from shelves, emergency stairs sign glowing, breaker panel on wall, door slightly ajar. Composition: Chaos with clear exit path visible. Mood: Immediate danger, practiced response needed.",
         imagePath: "s9_q10.png",
         choices: [
             {
-                text: "想定は常に更新し続けるべき。過去最大を超える災害は必ず起こる。",
-                effect: { CS: 15, Asset: -10000, Autonomy: 5 },
-                verdict: "NEUTRAL",
-                feedback: "予防重視の回答です。想定を引き上げ続ければ被害は減らせます。ただし最悪の最悪に備え続けるコストは無限に膨らみます。どこかで線を引く判断も必要です。",
+                text: "まず身の安全確保(テーブル下など)。揺れが収まったら非常階段で避難。ブレーカーを落とし(通電火災防止)、ガスの元栓を閉める。避難場所はハザードマップで確認済みの場所へ。",
+                effect: { CS: 10, Asset: 0, Autonomy: 15 },
+                verdict: "APPROVED",
+                feedback: "正解。通電火災は地震後に電気が復旧した際に発火するもので、阪神大震災の火災原因の多くを占める。エレベーターは絶対に使わない(閉じ込めリスク)。避難時はドアを開けて逃げ道を確保。",
                 lockRequirements: null
             },
             {
-                text: "想定を超えた時の「逃げ方」を決めておく。想定外を想定する。",
-                effect: { CS: 10, Asset: 0, Autonomy: 5 },
-                verdict: "NEUTRAL",
-                feedback: "適応重視の回答です。「想定内は守り、想定外は適応する」という二段構え。完璧な準備は不可能でも、想定が崩れた時にどう動くかを決めておけば、混乱の中でも判断できます。",
+                text: "エレベーターで急いで避難する。",
+                effect: { CS: -20, Asset: 0, Autonomy: -15 },
+                verdict: "WARNING",
+                feedback: "致命的な判断ミス。地震時のエレベーターは閉じ込めのリスクが極めて高い。停電で動かなくなり、救助まで数時間〜数日かかることも。必ず非常階段を使う。",
                 lockRequirements: null
             }
         ],
         adamDialogue: {
-            intro: "最終問題です。想定外は言い訳か、それとも準備の限界か？",
+            intro: "最終問題です。地震発生時、正しい行動を取れますか？",
             after: "ステージ9を終了します。審査結果を算出中・・・"
         }
     }
