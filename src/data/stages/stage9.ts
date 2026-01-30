@@ -46,7 +46,7 @@ export const stage9Questions: Question[] = [
             },
             {
                 text: "水・食料・照明・情報（ラジオ）・衛生用品を「最低3日分」揃え、定期的に点検する。",
-                effect: { CS: 10, Asset: -10, Autonomy: 5 },
+                effect: { CS: 20, Asset: -10, Autonomy: 5 },
                 verdict: "APPROVED",
                 feedback: "正解です。災害後72時間は自助が基本。備蓄は買って終わりではなく、賞味期限チェックと入れ替え（ローリングストック）が必要です。",
                 lockRequirements: null
@@ -93,7 +93,7 @@ export const stage9Questions: Question[] = [
         choices: [
             {
                 text: "片付け前に被害状況を写真・動画で記録。購入記録や修理見積もりを集めてから請求する。罹災証明書も自治体に申請。",
-                effect: { CS: 10, Asset: 10, Autonomy: 10 },
+                effect: { CS: 20, Asset: 10, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。罹災証明書の取得が公的支援の入口。被災者生活再建支援金(最大300万円)の申請にも写真記録が必要。自治体窓口に早めに相談を。「片付けてしまった後」では証拠がなくなります。",
                 lockRequirements: null
@@ -150,7 +150,7 @@ export const stage9Questions: Question[] = [
             },
             {
                 text: "地震保険に加入する。火災保険だけでは地震による被害は補償されない。",
-                effect: { CS: 10, Asset: -20, Autonomy: 10 },
+                effect: { CS: 20, Asset: -20, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。地震保険は火災保険の特約として加入が必要。保険料は高いですが、「家を失うリスク」と比較すれば合理的な投資です。",
                 lockRequirements: null
@@ -206,7 +206,7 @@ export const stage9Questions: Question[] = [
             },
             {
                 text: "家財保険に加入する。建物は大家の責任でも、家財は自分の責任。ハザードマップと併せてリスク把握する。",
-                effect: { CS: 10, Asset: 10, Autonomy: 20 },
+                effect: { CS: 20, Asset: 10, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解。家財保険は火災だけでなく水害、盗難、落雷もカバー。個人賠償責任特約もつけておけば、階下への漏水事故なども補償。月額数百円で大きなリスクをカバーできる。",
                 lockRequirements: null

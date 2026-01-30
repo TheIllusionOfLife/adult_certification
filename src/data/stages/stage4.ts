@@ -46,7 +46,7 @@ export const stage4Questions: Question[] = [
             },
             {
                 text: "友人や同僚に頼む。成人であれば誰でも証人になれる。",
-                effect: { CS: 10, Asset: 10, Autonomy: 10 },
+                effect: { CS: 15, Asset: 10, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。法律は「成年の証人2名」としか定めていません。制度を正しく理解すれば、選択肢が広がります。",
                 lockRequirements: null
@@ -153,7 +153,7 @@ export const stage4Questions: Question[] = [
             },
             {
                 text: "年明けすぐに書類を揃え、1月中に下書きを完成させる。",
-                effect: { CS: 10, Asset: 0, Autonomy: 20 },
+                effect: { CS: 15, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。源泉徴収票は1月末までに届きます。早めに準備すれば、不明点を税務署に相談する余裕もあり、控除の漏れも防げます。",
                 lockRequirements: null

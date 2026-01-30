@@ -18,7 +18,7 @@ export const stage10Questions: Question[] = [
             },
             {
                 text: "e-Tax連携、コンビニ交付、マイナ保険証、給付金申請など実益を理解して活用する。",
-                effect: { CS: 10, Asset: 30, Autonomy: 10 },
+                effect: { CS: 5, Asset: 30, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解。個人情報リスクは「カードを持つこと」ではなく「暗証番号の管理」の問題。紛失時は24時間コールセンターで利用停止可能。メリットを理解した上で判断するのが大人。",
                 lockRequirements: null
@@ -46,7 +46,7 @@ export const stage10Questions: Question[] = [
             },
             {
                 text: "所得税は確定申告、住民税は別途申告。経費を正しく計上し、将来のインボイス登録も検討する。",
-                effect: { CS: 20, Asset: 0, Autonomy: 5 },
+                effect: { CS: 5, Asset: 0, Autonomy: 5 },
                 verdict: "APPROVED",
                 feedback: "正解です。副業収入20万円超は確定申告必須。20万円以下でも住民税申告は必要。経費（通信費、機材等）を適切に計上すれば税負担は減ります。年商1000万円超ならインボイス登録の検討も。",
                 lockRequirements: null
@@ -71,7 +71,7 @@ export const stage10Questions: Question[] = [
             },
             {
                 text: "「免除」か「猶予」を申請する。届出すれば受給資格期間にカウントされ、追納も可能になる。",
-                effect: { CS: 20, Asset: 30, Autonomy: 5 },
+                effect: { CS: 5, Asset: 30, Autonomy: 5 },
                 verdict: "APPROVED",
                 feedback: "正解です。免除は所得に応じて全額〜1/4免除があり、免除期間も受給資格にカウント（1/2〜7/8計算）。猶予は後から追納可能。届出なしの未納とは天と地の差。制度を使うことが自己防衛です。",
                 lockRequirements: null
@@ -93,7 +93,7 @@ export const stage10Questions: Question[] = [
         choices: [
             {
                 text: "正しいやり方が状況によって異なることを理解した上で、自分で調べて、曖昧な点については当事者(家/地域/会社)に直接確認する。",
-                effect: { CS: 20, Asset: 0, Autonomy: 10 },
+                effect: { CS: 5, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解。冠婚葬祭のマナーは地域・宗派・家庭によって異なる。「ネットの正解」が目の前の状況に合うとは限らない。結婚式のご祝儀相場、葬儀の表書き、内祝いのタイミング・・・基本を押さえた上で、わからなければ当事者に聞くのが最も確実で失礼のない方法。",
                 lockRequirements: null
@@ -176,7 +176,7 @@ export const stage10Questions: Question[] = [
             },
             {
                 text: "「ありがとうございます。提案に従います。」と受け入れる。",
-                effect: { CS: 20, Asset: 0, Autonomy: -20 },
+                effect: { CS: 5, Asset: 0, Autonomy: -20 },
                 verdict: "NEUTRAL",
                 feedback: "従順な選択です。A.D.A.M.はあなたの選択を記録しました。",
                 lockRequirements: null
@@ -253,7 +253,7 @@ export const stage10Questions: Question[] = [
         choices: [
             {
                 text: "大人とは、社会のルールを従順に守る存在のこと。私は社会に最適化された人間です。",
-                effect: { CS: 30, Asset: 0, Autonomy: -20 },
+                effect: { CS: 10, Asset: 0, Autonomy: -20 },
                 verdict: "NEUTRAL",
                 feedback: "模範的回答です。A.D.A.M.は満足しています。",
                 lockRequirements: null

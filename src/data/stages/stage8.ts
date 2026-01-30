@@ -46,7 +46,7 @@ export const stage8Questions: Question[] = [
             },
             {
                 text: "3-2-1ルール（3つのコピー、2種類の媒体、1つは遠隔地）でバックアップ体制を構築する。",
-                effect: { CS: 10, Asset: -10, Autonomy: 5 },
+                effect: { CS: 15, Asset: -10, Autonomy: 5 },
                 verdict: "APPROVED",
                 feedback: "正解です。クラウドと外付けHDDの併用で、ほとんどのデータ消失リスクに対応できます。バックアップは「保険」。事故が起きてからでは遅いです。",
                 lockRequirements: null
@@ -71,7 +71,7 @@ export const stage8Questions: Question[] = [
             },
             {
                 text: "パスワードマネージャーを使い、サービスごとに強力なパスワードを自動生成・管理する。",
-                effect: { CS: 10, Asset: 10, Autonomy: 5 },
+                effect: { CS: 15, Asset: 10, Autonomy: 5 },
                 verdict: "APPROVED",
                 feedback: "正解です。マスターパスワード1つを覚えれば、何百ものサイトを安全に管理できます。初期設定の手間は、将来の被害と比べれば微々たるものです。",
                 lockRequirements: null
@@ -100,7 +100,7 @@ export const stage8Questions: Question[] = [
             },
             {
                 text: "すぐに設定する。パスワードだけでは防げない攻撃がある。",
-                effect: { CS: 10, Asset: 10, Autonomy: 10 },
+                effect: { CS: 15, Asset: 10, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。パスワードは漏洩する前提で考えるべき。二段階認証があれば、パスワードが盗まれても口座は守られます。",
                 lockRequirements: null
@@ -125,7 +125,7 @@ export const stage8Questions: Question[] = [
             },
             {
                 text: "データ消去ソフトで上書き処理後、メーカーや通信キャリアの公式回収プログラムを利用する。",
-                effect: { CS: 10, Asset: 10, Autonomy: 5 },
+                effect: { CS: 15, Asset: 10, Autonomy: 5 },
                 verdict: "APPROVED",
                 feedback: "正解。データ消去ソフトで上書き処理すれば復元リスクを大幅に低減。メーカーや通信キャリアの公式回収プログラムなら適切に処分される。物理的破壊も有効だが、レアメタル回収の観点では公式回収が望ましい。",
                 lockRequirements: null
@@ -153,7 +153,7 @@ export const stage8Questions: Question[] = [
             },
             {
                 text: "公共Wi-Fiでは機密情報を扱わない。必要ならVPNを使うか、モバイル回線を使う。",
-                effect: { CS: 10, Asset: 0, Autonomy: 10 },
+                effect: { CS: 15, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。公共Wi-Fiは「盗聴される前提」で使うべき。銀行、クレジットカード、重要なログインは避けるか、VPNで通信を暗号化してください。",
                 lockRequirements: null
@@ -209,7 +209,7 @@ export const stage8Questions: Question[] = [
             },
             {
                 text: "メールのリンクは使わず、公式アプリか、自分でURLを入力して確認する。",
-                effect: { CS: 10, Asset: 10, Autonomy: 10 },
+                effect: { CS: 15, Asset: 10, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解です。正規の連絡ならアプリや公式サイトでも確認できます。「メールのリンクは信じない」が鉄則。不安なら電話で直接確認を。",
                 lockRequirements: null
@@ -263,7 +263,7 @@ export const stage8Questions: Question[] = [
             },
             {
                 text: "限度額適用認定証が不要になり、高額療養費が自動適用される。医療費控除の自動入力も可能。",
-                effect: { CS: 10, Asset: 30, Autonomy: 10 },
+                effect: { CS: 15, Asset: 30, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解。入院時に限度額適用認定証を事前申請する手間がなくなる。薬の飲み合わせチェック、過去の健診結果確認もできる。救急搬送時にも医療情報が共有される。",
                 lockRequirements: null
