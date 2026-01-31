@@ -106,7 +106,7 @@ export const stage10Questions: Question[] = [
         category: "SOCIAL",
         text: "冠婚葬祭に関して気をつけることは?",
         textEN: "What should you be careful about regarding ceremonial occasions (冠婚葬祭) -- weddings, funerals, and other formal events?",
-        imagePrompt: "Scene: Ceremonial items arranged on table - wedding gift envelope, funeral incense, seasonal greeting cards, regional specialty gifts - each with subtle question marks. Composition: Cultural items gallery, variety and nuance. Mood: Social customs, no single right answer.",
+        imagePrompt: "Scene: A Japanese Shinto shrine wedding. A middle-aged Japanese man in a dark suit stands in the middle of the gathering, confidently holding up a guest's gift envelope and pointing at it critically, lecturing the embarrassed owner. Other guests in formal kimono sit on wooden benches around them, frozen mid-conversation, eyes wide with discomfort. Incense smoke drifts from a nearby brazier. A furoshiki-wrapped gift and greeting cards sit abandoned on a wooden table in the foreground, forgotten because of the disruption. Composition: The man stands as the tallest figure in center, everyone else seated or shrinking. Wooden table with ceremonial items anchors the foreground. Shrine architecture frames the background. Mood: Overbearing confidence disrupting a sacred occasion, collective cringe. Key props: gift envelope, furoshiki-wrapped regional gift, wooden table, incense brazier, shrine torii in background.",
         imagePath: "s10_q04.png",
         choices: [
             {
@@ -136,7 +136,7 @@ export const stage10Questions: Question[] = [
         category: "ADMIN",
         text: "公的な相談窓口の活用方法として正しいのは?",
         textEN: "What is the correct way to utilize public consultation services?",
-        imagePrompt: "Scene: Notebook page listing various helpline numbers with brief descriptions, phone beside it, comfortable home environment, cup of tea. Composition: Information compilation, accessible format. Mood: Empowerment through knowledge, low barrier to help.",
+        imagePrompt: "Scene: A person sitting at a kitchen table, confidently making a phone call while looking at a laptop screen showing a public services directory. Warm lighting, a mug of coffee nearby. A speech bubble icon or headset icon floats subtly to suggest active consultation. Composition: Medium shot, warm domestic setting, focus on the person's calm and proactive demeanor. Mood: Reassurance, accessibility, taking the first step toward getting help.",
         imagePath: "s10_q05.png",
         choices: [
             {
