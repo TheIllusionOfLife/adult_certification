@@ -35,6 +35,11 @@ export const DOM_IDS = {
     START_SCREEN: 'start-screen',
     DIFFICULTY_LIST: 'difficulty-list',
 
+    // A.D.A.M. Speech Screen
+    ADAM_SPEECH_SCREEN: 'adam-speech-screen',
+    ADAM_SPEECH_TEXT: 'adam-speech-text',
+    ADAM_SPEECH_BTN: 'adam-speech-btn',
+
     // Mascot (A.D.A.M.)
     MASCOT_CONTAINER: 'mascot-container',
     MASCOT_IMG: 'mascot-img',

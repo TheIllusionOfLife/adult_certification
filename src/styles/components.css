@@ -361,6 +361,75 @@
     font-weight: bold;
 }
 
+/* A.D.A.M. Dedicated Speech Screen */
+#adam-speech-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 1);
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-xl);
+    padding-top: 40px;
+    padding-bottom: 60px;
+    box-sizing: border-box;
+    animation: adam-screen-fade-in 0.3s ease-out;
+}
+
+.adam-speech-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-width: 480px;
+    width: 100%;
+}
+
+.adam-speech-mascot {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 20px rgba(76, 201, 240, 0.3));
+    animation: adam-float 3s ease-in-out infinite;
+}
+
+#adam-speech-text {
+    font-size: 0.95rem;
+    color: #e0e0e0;
+    line-height: 1.8;
+    text-align: left;
+    white-space: pre-line;
+    padding: 20px 24px;
+    background: rgba(26, 26, 26, 0.8);
+    border-left: 4px solid var(--accent-color);
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 80px;
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+#adam-speech-screen .btn-proceed {
+    margin-top: 30px;
+    flex-shrink: 0;
+}
+
+@keyframes adam-screen-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes adam-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
 /* A.D.A.M. Comment Section (in feedback overlay) */
 .adam-comment-section {
     display: flex;
