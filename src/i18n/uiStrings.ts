@@ -23,7 +23,7 @@ export const UI_LOCK_AUTONOMY = (n: number) => t(`自律性が${n}以上必要`,
 export const UI_GAME_OVER_ADAM = () =>
     t('[A.D.A.M.]: 判定・・・あなたは「生体プロセッサ」に再利用されます。',
       '[A.D.A.M.]: Verdict... You will be repurposed as a "bio-processor."');
-export const UI_RESTART = () => t('人生再起動', 'RESTART');
+export const UI_RESTART = () => t('人生再起動', 'REBOOT LIFE');
 
 // Stage complete
 export const UI_STAGE_COMPLETE = () => 'STAGE COMPLETE';
