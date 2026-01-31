@@ -24,7 +24,7 @@ export const stage1Questions: Question[] = [
                 textEN: "Check the annual interest rate. Don't casually use revolving or installment payments.",
                 effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
-                feedback: "クレジッドカードの明細チェックがお金の自衛の基本。知識が資産を守ります。",
+                feedback: "クレジットカードの明細チェックがお金の自衛の基本。知識が資産を守ります。",
                 feedbackEN: "Reviewing your credit card statements is the foundation of financial self-defense. Knowledge protects your assets.",
                 lockRequirements: null
             }
