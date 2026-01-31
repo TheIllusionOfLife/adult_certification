@@ -41,7 +41,7 @@ export const stage2Questions: Question[] = [
         category: "LABOR",
         text: "残業代が支払われていない。タイムカードは定時で押すよう言われている。",
         textEN: "Your overtime isn't being paid. You've been told to clock out at the regular end time.",
-        imagePrompt: "Scene: a time clock showing 6PM while office lights blaze behind; a worker with heavy bags under their eyes holding their own phone showing 11PM; a supervisor's silhouette pointing at the clock. Composition: time clock in foreground, exhausted worker in middle, oppressive figure looming. Mood: exploitation, hidden truth, fatigue.",
+        imagePrompt: "Scene: An empty office floor at night, rows of desks with monitors still glowing, one worker alone typing under a single desk lamp, the wall clock reading past 10 PM. Composition: Wide overhead angle showing the vast empty floor, the lone worker tiny at their desk, clock visible on the far wall. Mood: Late-night isolation, unpaid hours dissolving into silence.",
         imagePath: "s2_q02.png",
         choices: [
             {
@@ -297,7 +297,7 @@ export const stage2Questions: Question[] = [
         category: "MANNER",
         text: "退職日。引継ぎも手続きも終えた。最後にどう振る舞う？",
         textEN: "It's your last day. Handover and paperwork are done. How do you conduct yourself at the end?",
-        imagePrompt: "Scene: Office desk being cleared for the last time, small gift box of sweets ready to distribute, colleagues visible through glass partition, personal items in bag. Composition: Desk clearing moment, farewell preparations. Mood: Last impressions, bridge burning or building.",
+        imagePrompt: "Scene: An office hallway seen from behind a person walking toward the exit, a small paper bag of farewell gifts in one hand, colleagues waving from cubicles on either side. Composition: One-point perspective down the hallway, the exit door bright with daylight, the walking figure in silhouette. Mood: A chapter closing, the weight of how you leave.",
         imagePath: "s2_q10.png",
         choices: [
             {

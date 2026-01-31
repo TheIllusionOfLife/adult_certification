@@ -7,7 +7,7 @@ export const stage1Questions: Question[] = [
         category: "FINANCE",
         text: "新社会人になり、クレジットカードを初めて作った。リボ払いを勧められたが、どうする？",
         textEN: "You just started your first job and got your first credit card. The salesperson recommends revolving payments (リボ払い). What do you do?",
-        imagePrompt: "Scene: Credit card application form on counter, revolving payment checkbox prominently displayed, salesperson's finger pointing at it, fine print showing high interest rate partially visible. Composition: Form fills frame, finger draws attention to checkbox. Mood: Pressure, hidden trap in plain sight.",
+        imagePrompt: "Scene: A shiny new credit card resting on a cafe table next to a receipt, the card catching light like a trophy, a young person's hand reaching for it. Composition: Low angle close-up of the card and receipt, shallow depth of field, background blurred cafe atmosphere. Mood: Excitement of a first card, innocence before the trap.",
         imagePath: "s1_q01.png",
         choices: [
             {
@@ -41,7 +41,7 @@ export const stage1Questions: Question[] = [
         category: "ADMIN",
         text: "引越しをした。住民票の移動（転入届）はいつまでにすべき？",
         textEN: "You've moved to a new address. By when must you submit your Moving-in Notification (転入届) to transfer your residence record?",
-        imagePrompt: "Scene: moving boxes piled high; a wall calendar with pages flying off toward a deadline; a government counter with a stern clerk tapping the desk; a large clock ticking. Composition: boxes and calendar in foreground, clerk behind the counter. Mood: bureaucratic deadline panic.",
+        imagePrompt: "Scene: Half-unpacked apartment at dusk, cardboard boxes stacked against bare walls, a single overhead light casting long shadows, a city hall envelope sitting unopened on the kitchen counter. Composition: Wide shot from the hallway looking into the room, boxes dominating the space, the envelope small but lit. Mood: Solitude of starting over, an errand waiting in the quiet.",
         imagePath: "s1_q02.png",
         choices: [
             {
@@ -71,7 +71,7 @@ export const stage1Questions: Question[] = [
         category: "ADMIN",
         text: "郵便局への転居届。「大事な郵便は住所変更したから大丈夫」と出していない。",
         textEN: "You haven't submitted a mail forwarding request (転居届) to the post office, thinking 'I've already updated my address for important mail, so it's fine.'",
-        imagePrompt: "Scene: an old mailbox overflowing with letters and packages; a shadowy stranger reaching toward the mail; the protagonist watching from a distance. Composition: mailbox close-up with reaching hands, protagonist small in the background. Mood: vulnerability and regret.",
+        imagePrompt: "Scene: A row of apartment mailboxes in a dim corridor, one slot stuffed full with envelopes spilling out, a forwarding notice form lying blank on the floor below it. Composition: Eye-level shot of the mailbox row, the overflowing slot in focus, corridor stretching into darkness behind. Mood: Neglect accumulating, important things slipping through the cracks.",
         imagePath: "s1_q03.png",
         choices: [
             {

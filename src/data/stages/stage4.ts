@@ -7,7 +7,7 @@ export const stage4Questions: Question[] = [
         category: "ADMIN",
         text: "引越し後の手続き。住民票、マイナンバーカード、運転免許証、銀行・・・全部やる必要がある？",
         textEN: "Post-move procedures. Residence record, My Number Card, driver's license, bank... Do you really need to update all of them?",
-        imagePrompt: "Scene: a maze of government buildings with different counters; a checklist floating with many items; confused citizen holding moving boxes. Composition: bureaucratic labyrinth with multiple paths. Mood: overwhelm, procedural complexity.",
+        imagePrompt: "Scene: A kitchen table covered with scattered documents: residence card, driver's license, bank passbook, My Number notification, all fanned out like a losing hand of cards, a mug of cold coffee pushed aside. Composition: Top-down bird's-eye view of the table, documents filling the frame, the coffee mug off-center. Mood: Paperwork avalanche after moving, adulting in its rawest form.",
         imagePath: "s4_q01.png",
         choices: [
             {

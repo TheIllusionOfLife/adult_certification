@@ -196,7 +196,7 @@ export const stage6Questions: Question[] = [
         category: "HOUSING",
         text: "大家との敷金返還トラブル。話し合いでは解決せず、「裁判するしかない」と言われた。",
         textEN: "A dispute with the landlord over your security deposit return. Negotiation failed, and you're told 'the only option is to go to court.'",
-        imagePrompt: "Scene: Standoff at apartment doorway, landlord's hand holding inflated bill, tenant's hand holding smartphone showing legal rights article, keys on hook between them. Composition: Doorway frames confrontation, hands and documents central. Mood: Dispute at threshold, knowledge as leverage.",
+        imagePrompt: "Scene: A worn apartment entrance, keys already returned on the counter, a repair bill with circled charges taped to the wall, scuff marks on the floor that look years old. Composition: Shot from inside the empty apartment looking toward the door, the bill prominent on the wall, natural light from the hallway spilling in. Mood: Moving out but not free yet, the cost of leaving.",
         imagePath: "s6_q07.png",
         choices: [
             {
@@ -301,7 +301,7 @@ export const stage6Questions: Question[] = [
         category: "HOUSING",
         text: "賃貸でトラブルが起きた。管理会社が対応してくれず、大家とも連絡が取れない。自分では解決できそうにない。",
         textEN: "A problem arose with your rental. The management company won't respond, and you can't reach the landlord. You can't resolve it on your own.",
-        imagePrompt: "Scene: Phone showing unanswered calls to management company, notepad with complaint timeline, consumer hotline number circled, frustrated tenant at kitchen table. Composition: Communication attempts documented, solution paths emerging. Mood: Stonewalled, but exits exist.",
+        imagePrompt: "Scene: A small apartment kitchen at night, a person sitting alone at the table with their head in their hands, phone on the table showing a long call log of unanswered calls, a notepad with crossed-out numbers beside it. Composition: Overhead angle looking down at the table, the person's posture conveying exhaustion, phone screen glowing as the only bright element. Mood: Hitting a wall, no one picking up, running out of options alone.",
         imagePath: "s6_q10.png",
         choices: [
             {

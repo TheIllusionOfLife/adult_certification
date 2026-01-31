@@ -106,7 +106,7 @@ export const stage5Questions: Question[] = [
         category: "HEALTH",
         text: "育児休業を取りたいが、「給料が出ないなら取れない」と思っている。",
         textEN: "You want to take parental leave, but think 'If there's no salary, I can't afford it.'",
-        imagePrompt: "Scene: new parent with baby looking at finances; employment insurance document showing 67% wage replacement. Composition: misconception vs reality. Mood: worry transforming to possibility.",
+        imagePrompt: "Scene: A nursery at dawn, soft light through curtains, a crib with a sleeping infant, a laptop open on the rocking chair showing a parental leave calculator, baby bottles drying on the counter. Composition: Warm interior shot, crib centered, laptop glow as secondary light source, gentle domestic atmosphere. Mood: New life meets new anxiety, money worries in a tender moment.",
         imagePath: "s5_q04.png",
         choices: [
             {
@@ -136,7 +136,7 @@ export const stage5Questions: Question[] = [
         category: "HEALTH",
         text: "インフルエンザと診断された。明日は重要な会議。どうする?",
         textEN: "You've been diagnosed with influenza. There's an important meeting tomorrow. What do you do?",
-        imagePrompt: "Scene: Thermometer showing fever, phone showing calendar with important meeting marked, flu medication on nightstand, mask hanging on door handle. Composition: Sick room with work pressure visible through phone. Mood: Duty vs responsibility to others.",
+        imagePrompt: "Scene: A rumpled bed with tangled blankets, tissue box nearly empty beside it, a phone face-up on the pillow showing a calendar notification for tomorrow's meeting, morning light cutting harsh through blinds. Composition: Close-up of the pillow area, phone screen sharp in focus, everything else soft and feverish. Mood: Sick-day guilt, the pull between rest and obligation.",
         imagePath: "s5_q05.png",
         choices: [
             {
