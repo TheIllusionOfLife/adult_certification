@@ -102,7 +102,7 @@ export class UIManager {
             langBtn.className = 'lang-toggle-btn';
             this.dom.startScreen.insertBefore(langBtn, this.dom.startScreen.firstChild);
         }
-        langBtn.textContent = getLang() === 'ja' ? 'EN' : 'JA';
+        langBtn.textContent = getLang() === 'ja' ? 'EN' : '日本語';
         langBtn.onclick = () => {
             setLang(getLang() === 'ja' ? 'en' : 'ja');
             this.showStartScreen(onSelect);

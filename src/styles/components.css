@@ -693,7 +693,7 @@
 .lang-toggle-btn {
     position: absolute;
     top: 12px;
-    right: 12px;
+    left: 12px;
     z-index: 210;
     padding: 6px 14px;
     font-size: 0.85rem;
