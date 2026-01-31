@@ -684,7 +684,7 @@ export class UIManager {
             case 'SILVER':
                 return {
                     nameJP: UI.UI_LICENSE_SILVER_JP(),
-                    nameEN: 'SILVER ADULT LICENSE',
+                    nameEN: 'BLUE ADULT LICENSE',
                     symbol: 'S',
                     color: '#c0c0c0',
                     gradientStart: '#c0c0c0',

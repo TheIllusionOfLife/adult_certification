@@ -73,7 +73,7 @@ export const UI_KEY_SKILL_LOCKED = (qNum: string | number, letter: string) =>
       `You must pick choice ${letter} on Q${qNum}.`);
 
 // Title screen
-export const UI_TITLE_DESC = () => t('オールSで立派な大人になろう', 'Aim for all S ranks and become a proper adult');
+export const UI_TITLE_DESC = () => t('オールSで立派な大人になろう', 'S-rank every stage. Prove you\'re licensed to adult.');
 
 // License names (JP kept identical, EN for display)
 export const UI_LICENSE_TRUE_JP = () => t('大人免許不要', 'Adult License Not Required');

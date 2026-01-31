@@ -78,7 +78,7 @@ const stage2Definition: StageDefinition = {
                 '自分の労働の価値を正しく見積もる力。社会的信用の新規獲得値を100%増幅します。',
                 { type: 'cs_gain_amplification', value: 1.0 },
                 true,
-                '「給与交渉力」を推奨します。利益を最大化する姿勢は、社会適応の証です。',
+                '「対価意識」を推奨します。利益を最大化する姿勢は、社会適応の証です。',
                 'Fair Compensation',
                 "The ability to correctly assess your labor's value. Amplifies Credit gains by 100%.",
                 "I recommend 'Fair Compensation.' Maximizing returns is proof of social adaptation."
