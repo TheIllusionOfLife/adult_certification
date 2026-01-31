@@ -165,6 +165,7 @@ export class UIManager {
     }
 
     private lastScores = { CS: 100, Asset: 100, Autonomy: 100 };
+    private adamSpeechShownFor = new Set<string>();
     private typewriterTimerId: ReturnType<typeof setTimeout> | null = null;
     private typewriterResolve: (() => void) | null = null;
 
@@ -242,26 +243,16 @@ export class UIManager {
         };
     }
 
-    private static stripAdamPrefix(lines: string[]): string[] {
-        return lines
-            .filter(l => !l.startsWith('[SYSTEM]'))
-            .map(l => l.replace(/^\[A\.D\.A\.M\.\]: ?/, ''));
+    private getLocalizedDialogue(stageNum: number) {
+        const d = this.getStageDialogue(stageNum);
+        if (!d) return null;
+        return getLang() === 'en' && d.en ? d.en : d.ja;
     }
 
     private getAdamLinesForTiming(timing: 'intro' | 'keySkillAcquired'): string[] | null {
-        const stageNum = this.engine.state.currentStage;
-        const d = this.getStageDialogue(stageNum);
-        if (!d) return null;
-
-        if (timing === 'intro') {
-            const raw = getLang() === 'en' && d.en ? d.en.intro : d.ja.intro;
-            return UIManager.stripAdamPrefix(raw);
-        }
-        if (timing === 'keySkillAcquired') {
-            const raw = getLang() === 'en' && d.en ? d.en.keySkillAcquired : d.ja.keySkillAcquired;
-            return UIManager.stripAdamPrefix(raw);
-        }
-        return null;
+        const dl = this.getLocalizedDialogue(this.engine.state.currentStage);
+        if (!dl) return null;
+        return dl[timing] ?? null;
     }
 
     updateHUD() {
@@ -334,8 +325,6 @@ export class UIManager {
 
         this.doRenderQuestion(q);
     }
-
-    private adamSpeechShownFor = new Set<string>();
 
     private doRenderQuestion(q: Question) {
 
@@ -673,11 +662,9 @@ export class UIManager {
             : `<span style="color: #888;">${UI.UI_KEY_SKILL_NOT_OBTAINED()}</span>`;
 
         // Use stage-specific outro from adamDialogue if available, fall back to generic ending.desc
-        const d = this.getStageDialogue(s.currentStage);
+        const dl = this.getLocalizedDialogue(s.currentStage);
         const rankKey = ending.rank as 'S' | 'A' | 'B' | 'C';
-        const adamComment = d
-            ? (getLang() === 'en' && d.en ? d.en.outro[rankKey] : d.ja.outro[rankKey]) || ending.desc
-            : ending.desc;
+        const adamComment = dl?.outro[rankKey] || ending.desc;
 
         this.dom.ovTitle.innerText = UI.UI_STAGE_COMPLETE();
         this.dom.ovTitle.style.color = "var(--accent-color)";
