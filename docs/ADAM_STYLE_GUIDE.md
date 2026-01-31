@@ -70,7 +70,7 @@ Dry and subtle irony through formal language:
 
 ### 5. The "・・・" Pause
 
-Use "・・・" (6 dots) sparingly for A.D.A.M.'s hesitation/thought:
+Use "・・・" (3× katakana middle dot, U+30FB) sparingly for A.D.A.M.'s hesitation/thought:
 - "・・・厄介な知識です。"
 - "・・・あなたは私の想定を超えています。"
 

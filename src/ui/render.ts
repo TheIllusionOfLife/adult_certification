@@ -166,22 +166,23 @@ export class UIManager {
 
     private lastScores = { CS: 100, Asset: 100, Autonomy: 100 };
     private typewriterTimerId: ReturnType<typeof setTimeout> | null = null;
+    private typewriterResolve: (() => void) | null = null;
 
     private typewriterEffect(element: HTMLElement, text: string, speed = 30): Promise<void> {
         return new Promise((resolve) => {
-            if (this.typewriterTimerId !== null) {
-                clearTimeout(this.typewriterTimerId);
-                this.typewriterTimerId = null;
-            }
+            this.cancelTypewriter();
+            this.typewriterResolve = resolve;
             element.textContent = '';
             let i = 0;
             const tick = () => {
                 if (i < text.length) {
                     element.textContent += text[i];
                     i++;
+                    element.scrollTop = element.scrollHeight;
                     this.typewriterTimerId = setTimeout(tick, speed);
                 } else {
                     this.typewriterTimerId = null;
+                    this.typewriterResolve = null;
                     resolve();
                 }
             };
@@ -193,6 +194,10 @@ export class UIManager {
         if (this.typewriterTimerId !== null) {
             clearTimeout(this.typewriterTimerId);
             this.typewriterTimerId = null;
+        }
+        if (this.typewriterResolve) {
+            this.typewriterResolve();
+            this.typewriterResolve = null;
         }
     }
 
@@ -224,10 +229,13 @@ export class UIManager {
                 this.dom.adamSpeechBtn.style.opacity = '1';
             }
         };
-        this.dom.adamSpeechText.onclick = skipHandler;
+        this.dom.adamSpeechScreen.onclick = (e) => {
+            if (e.target === this.dom.adamSpeechBtn) return;
+            skipHandler();
+        };
 
         this.dom.adamSpeechBtn.onclick = () => {
-            this.dom.adamSpeechText.onclick = null;
+            this.dom.adamSpeechScreen.onclick = null;
             this.dom.adamSpeechScreen.style.display = 'none';
             this.cancelTypewriter();
             onDismiss();
@@ -329,7 +337,7 @@ export class UIManager {
 
     private adamSpeechShownFor = new Set<string>();
 
-    private doRenderQuestion(q: ReturnType<GameEngine['getCurrentQuestion']> & {}) {
+    private doRenderQuestion(q: Question) {
 
         this.dom.qCat.innerText = q.category;
         this.dom.qNum.innerText = `Q.${this.engine.state.currentQuestionIndex + 1} / ${this.engine.state.questions.length}`;
