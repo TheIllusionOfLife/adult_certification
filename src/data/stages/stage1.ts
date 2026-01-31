@@ -20,12 +20,12 @@ export const stage1Questions: Question[] = [
                 lockRequirements: null
             },
             {
-                text: "年利を確認し、一括払いを基本にする。",
-                textEN: "Check the annual interest rate and default to one-time payments.",
+                text: "年利を確認し、なんとなくでリボ払いや分割払いを利用しない。",
+                textEN: "Check the annual interest rate. Don't casually use revolving or installment payments.",
                 effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
-                feedback: "クレカの明細チェックと一括払いが「お金の自衛」の基本。知識が資産を守ります。",
-                feedbackEN: "Reviewing your credit card statements and paying in full is the foundation of financial self-defense. Knowledge protects your assets.",
+                feedback: "クレジッドカードの明細チェックがお金の自衛の基本。知識が資産を守ります。",
+                feedbackEN: "Reviewing your credit card statements is the foundation of financial self-defense. Knowledge protects your assets.",
                 lockRequirements: null
             }
         ],
@@ -88,8 +88,8 @@ export const stage1Questions: Question[] = [
                 textEN: "Too much hassle. Skip it.",
                 effect: { CS: -20, Asset: 0, Autonomy: 0 },
                 verdict: "WARNING",
-                feedback: "ミスです。クレジットカードの更新カードや重要書類が旧住所に届き、見知らぬ誰かの手に渡ります。個人情報管理ができない人と見なされます。マイナポータルでの転出届オンライン提出も活用を。届出を怠ると最大5万円の過料が科されます。",
-                feedbackEN: "A mistake. Your replacement credit card and important documents will arrive at your old address, potentially ending up in a stranger's hands. You'll be seen as someone who can't manage personal information. Use My Number Portal for online notifications. Failure to notify can result in a fine of up to 50,000 yen.",
+                feedback: "ミスです。クレジットカードの更新カードや重要書類が旧住所に届き、見知らぬ誰かの手に渡ります。マイナポータルでの転出届オンライン提出も活用を。届出を怠ると最大5万円の過料が科されます。",
+                feedbackEN: "A mistake. Your replacement credit card and important documents will arrive at your old address, potentially ending up in a stranger's hands. Use My Number Portal for online notifications. Failure to notify can result in a fine of up to 50,000 yen.",
                 lockRequirements: null
             }
         ],
@@ -110,12 +110,12 @@ export const stage1Questions: Question[] = [
         imagePath: "s1_q04.png",
         choices: [
             {
-                text: "スーツなどフォーマルな格好で行く。お金は現地までの往復交通費に注意する。",
-                textEN: "Wear a formal suit and mind the round-trip transportation costs.",
+                text: "通勤時のスーツなどで行く。お金は現地までの往復交通費さえあればとりあえず大丈夫。",
+                textEN: "Go in your regular work suit. Just make sure you have round-trip transportation costs covered.",
                 effect: { CS: -20, Asset: 0, Autonomy: 0 },
                 verdict: "WARNING",
-                feedback: "服装は正しいが不十分。香典(こうでん)を旧札で用意。20代の同僚の親なら3,000〜5,000円、袱紗(ふくさ)に包んで持参、宗派不明なら「御霊前」が無難。受付での作法、焼香(しょうこう)の回数(浄土真宗1回、真言宗3回)、忌み言葉(重ね重ね、たびたび)なども把握すべき。",
-                feedbackEN: "The attire is correct but insufficient. You must prepare condolence money (香典) using old bills. For a colleague's parent in your 20s, 3,000-5,000 yen is appropriate, wrapped in a fukusa cloth. Use 'Goreizen (御霊前)' if the denomination is unknown. You should also know reception etiquette, incense-offering (焼香) procedures (1 time for Jodo Shinshu, 3 for Shingon), and taboo words (repetitive phrases like 'kasanegasane').",
+                feedback: "服装は光沢のない黒の喪服が原則。香典(こうでん)を旧札で用意。20代の同僚の親なら3,000〜5,000円、袱紗(ふくさ)に包んで持参、宗派不明なら「御霊前」が無難。受付での作法、焼香(しょうこう)の回数、忌み言葉(重ね重ね、たびたび)なども把握すべき。",
+                feedbackEN: "Matte-black mourning attire is the rule. You must also prepare condolence money (香典) using old bills. For a colleague's parent in your 20s, 3,000-5,000 yen is appropriate, wrapped in a fukusa cloth. Use 'Goreizen (御霊前)' if the denomination is unknown. You should also know reception etiquette, incense-offering (焼香) procedures, and taboo words (repetitive phrases like 'kasanegasane').",
                 lockRequirements: null
             },
             {
@@ -123,7 +123,7 @@ export const stage1Questions: Question[] = [
                 textEN: "Wear black formal attire (no flashy accessories), prepare condolence money (香典) with old bills wrapped in a fukusa cloth, check the denomination for the inscription, and research etiquette like incense-offering (焼香) procedures beforehand.",
                 effect: { CS: 20, Asset: -10, Autonomy: 10 },
                 verdict: "APPROVED",
-                feedback: "正解。香典は20代の同僚の親なら3,000〜5,000円。新札は折ってから入れる。表書きは四十九日前は「御霊前」(浄土真宗は「御仏前」)。数珠は貸し借りNG。わからなければ前の人に合わせる。",
+                feedback: "正解。香典は20代の同僚の親なら3,000〜5,000円。新札は折ってから入れます。表書きは四十九日前は「御霊前」(浄土真宗は「御仏前」)。数珠は貸し借りNG。わからなければ前の人に合わせます。",
                 feedbackEN: "Correct. Condolence money for a colleague's parent in your 20s is 3,000-5,000 yen. New bills should be folded before inserting. The inscription before the 49th day is 'Goreizen (御霊前)' (or 'Gobutsuzen (御仏前)' for Jodo Shinshu). Never lend or borrow prayer beads. When in doubt, follow the person ahead of you.",
                 lockRequirements: null
             }
@@ -144,7 +144,7 @@ export const stage1Questions: Question[] = [
                 textEN: "Use common expressions like 'Ryokai shimashita' and 'Go-kurou-sama desu.'",
                 effect: { CS: -20, Asset: 0, Autonomy: 0 },
                 verdict: "WARNING",
-                feedback: "「ご苦労様」は目上→目下のねぎらい表現で上司にはNG。「了解しました」もカジュアルすぎる。上司には「お疲れ様です」「承知いたしました」「かしこまりました」を使う。二重敬語(「おっしゃられる」等)にも注意。",
+                feedback: "「ご苦労様」は目上から目下へのねぎらい表現で、上司にはNG。「了解しました」もカジュアルすぎます。「お疲れ様です」「承知いたしました」「かしこまりました」などを使います。おっしゃられる等の二重敬語にも注意。",
                 feedbackEN: "'Go-kurou-sama' is a phrase used by superiors to subordinates. Never use it with your boss. 'Ryokai shimashita' is too casual. Use 'Otsukaresama desu,' 'Shouchi itashimashita,' or 'Kashikomarimashita' with superiors. Also watch out for double honorifics (e.g., 'ossharareru').",
                 lockRequirements: null
             },
@@ -166,7 +166,7 @@ export const stage1Questions: Question[] = [
         category: "MANNER",
         text: "取引先との初めての打ち合わせ。会議室に通されたが、席順と名刺交換のマナーがわからない。",
         textEN: "Your first meeting with a client. You've been shown to the meeting room, but you're unsure about seating order and business card exchange etiquette.",
-        imagePrompt: "Scene: a meeting room with a table; seats arranged with door visible; business cards being exchanged between two people. Composition: seating diagram overlay with proper positions marked. Mood: professional tension, first impression stakes.",
+        imagePrompt: "Scene: Meeting room viewed from the doorway, long table with chairs on both sides, business card holder open on the near edge, two people mid-bow exchanging cards. Composition: Doorway frames the room, table recedes into depth, card exchange in the foreground. Mood: Quiet formality, the weight of a first impression.",
         imagePath: "s1_q06.png",
         choices: [
             {
@@ -309,8 +309,8 @@ export const stage1Questions: Question[] = [
                 textEN: "Arrive 1 hour early for domestic, 2-3 hours for international. Batteries are carry-on only; check liquid restrictions.",
                 effect: { CS: 20, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
-                feedback: "正解。刃物は預け荷物のみ。ライターは機内持込1個のみ。モバイルバッテリーは預け入れ禁止(発火リスク)。国際線では液体物100ml以下の容器、ジッパー付き透明袋(1L以下)に入れる。",
-                feedbackEN: "Correct. Sharp objects go in checked luggage only. Only 1 lighter allowed in carry-on. Portable batteries cannot be checked (fire risk). For international flights, liquids must be in containers of 100ml or less, placed in a resealable transparent bag (1L max).",
+                feedback: "正解。モバイルバッテリーは預け入れ禁止(発火リスク)。国際線では液体物100ml以下の容器、ジッパー付き透明袋(1L以下)に入れる。",
+                feedbackEN: "Correct. Portable batteries cannot be checked (fire risk). For international flights, liquids must be in containers of 100ml or less, placed in a resealable transparent bag (1L max).",
                 lockRequirements: null
             },
             {
@@ -318,8 +318,8 @@ export const stage1Questions: Question[] = [
                 textEN: "Play it safe and arrive 15 minutes early. Put portable batteries and water bottles in the checked suitcase.",
                 effect: { CS: -20, Asset: 0, Autonomy: 0 },
                 verdict: "WARNING",
-                feedback: "時間不足。国内線は1時間前、国際線は2〜3時間前が目安。保安検査は出発20分前まで。モバイルバッテリー(160Wh以下)は機内持込のみで預け荷物NG。国際線の液体は100ml以下の容器+1L以下の透明袋。ライターは機内持込1個のみ。",
-                feedbackEN: "Not enough time. Aim for 1 hour before domestic, 2-3 hours before international flights. Security closes 20 minutes before departure. Portable batteries (under 160Wh) are carry-on only, never checked. International liquids must be in 100ml containers in a 1L transparent bag. Only 1 lighter allowed in carry-on.",
+                feedback: "搭乗できません。国内線は1時間前、国際線は2〜3時間前が目安。保安検査は出発20分前まで。モバイルバッテリー(160Wh以下)は機内持込のみで預け荷物NGなど、要確認。",
+                feedbackEN: "You won't make your flight. Aim for 1 hour before domestic, 2-3 hours before international flights. Security closes 20 minutes before departure. Portable batteries (under 160Wh) are carry-on only, never checked. Always verify restrictions before packing.",
                 lockRequirements: null
             }
         ],

@@ -114,8 +114,8 @@ export const stage9Questions: Question[] = [
                 textEN: "Photograph and video-record the damage before cleaning up. Gather purchase records and repair estimates before filing. Also apply for a Disaster Damage Certificate (罹災証明書) from your municipality.",
                 effect: { CS: 20, Asset: 10, Autonomy: 10 },
                 verdict: "APPROVED",
-                feedback: "正解です。罹災証明書の取得が公的支援の入口。被災者生活再建支援金(最大300万円)の申請にも写真記録が必要。自治体窓口に早めに相談を。「片付けてしまった後」では証拠がなくなります。",
-                feedbackEN: "Correct. Obtaining the Disaster Damage Certificate is the gateway to public support. Photo records are needed for the Disaster Victim Life Reconstruction Grant (up to 3 million yen). Consult your municipal office early. Once you clean up, the evidence is gone.",
+                feedback: "正解です。罹災（りさい）証明書の取得が公的支援の入口。被災者生活再建支援金(最大300万円)の申請にも写真記録が必要。自治体窓口に早めに相談を。",
+                feedbackEN: "Correct. Obtaining the Disaster Damage Certificate (罹災証明書) is the gateway to public support. Photo records are needed for the Disaster Victim Life Reconstruction Grant (up to 3 million yen). Consult your municipal office early.",
                 lockRequirements: null
             },
             {
@@ -123,8 +123,8 @@ export const stage9Questions: Question[] = [
                 textEN: "Just call the insurance company. They'll handle the rest.",
                 effect: { CS: -20, Asset: -30, Autonomy: -10 },
                 verdict: "WARNING",
-                feedback: "受け身すぎます。被害状況の写真、購入時の領収書、修理見積もりがないと、保険金は満額出ません。罹災証明書の取得が公的支援の入口。被災者生活再建支援金(最大300万円)の申請にも写真記録が必要。自治体窓口に早めに相談を。",
-                feedbackEN: "Too passive. Without photos of the damage, purchase receipts, and repair estimates, you won't receive full insurance payout. The Disaster Damage Certificate is the gateway to public support. Photo records are needed for the reconstruction grant (up to 3 million yen). Consult your municipal office early.",
+                feedback: "受け身すぎます。被害状況の写真、購入時の領収書、修理見積もりがないと、保険金は満額出ません。罹災（りさい）証明書の取得が公的支援の入口。自治体窓口に早めに相談を。",
+                feedbackEN: "Too passive. Without photos of the damage, purchase receipts, and repair estimates, you won't receive full insurance payout. The Disaster Damage Certificate (罹災証明書) is the gateway to public support. Consult your municipal office early.",
                 lockRequirements: null
             }
         ]
@@ -144,8 +144,8 @@ export const stage9Questions: Question[] = [
                 textEN: "Share it immediately to warn family and friends.",
                 effect: { CS: -20, Asset: 0, Autonomy: -10 },
                 verdict: "WARNING",
-                feedback: "デマの可能性。災害時のSNSは誤情報が急速に広がる。善意の拡散がパニックを助長する。公式情報(自治体HP、NHK、気象庁)を確認してから判断すべき。",
-                feedbackEN: "Possibly fake news. During disasters, misinformation spreads rapidly on social media. Well-meaning sharing can amplify panic. Verify with official sources (municipal websites, NHK, Japan Meteorological Agency) before deciding.",
+                feedback: "デマの可能性。善意の拡散がパニックを助長します。公式情報(自治体HP、NHK、気象庁)を確認してから判断しましょう。",
+                feedbackEN: "Possibly fake news. Well-meaning sharing can amplify panic. Verify with official sources (municipal websites, NHK, Japan Meteorological Agency) before deciding.",
                 lockRequirements: null
             },
             {
@@ -153,7 +153,7 @@ export const stage9Questions: Question[] = [
                 textEN: "Verify with official sources (municipal website, NHK) before deciding. Don't share unconfirmed information.",
                 effect: { CS: 20, Asset: 0, Autonomy: 5 },
                 verdict: "APPROVED",
-                feedback: "正解。災害時の情報は「出典を確認」が鉄則。自治体の公式SNSアカウント、NHKのニュース速報、気象庁のサイトが信頼できる情報源。「速さ」より「正確さ」が人命を守る。",
+                feedback: "正解。災害時の情報は「出典を確認」が鉄則。自治体の公式SNSアカウント、NHKのニュース速報、気象庁のサイトが信頼できる情報源。「速さ」より「正確さ」が人命を守ります。",
                 feedbackEN: "Correct. The golden rule for disaster information: 'verify the source.' Municipal official social media accounts, NHK breaking news, and the Meteorological Agency website are reliable sources. 'Accuracy' over 'speed' saves lives.",
                 lockRequirements: null
             }
@@ -204,8 +204,8 @@ export const stage9Questions: Question[] = [
                 textEN: "Year-end adjustment is done, so there's nothing more I can do.",
                 effect: { CS: -20, Asset: -20, Autonomy: -10 },
                 verdict: "WARNING",
-                feedback: "損をしています。医療費控除は年末調整では処理されません。年間医療費が10万円（または総所得の5%）を超えた分は、確定申告で所得控除が受けられます。知らないだけで税金を多く払っています。",
-                feedbackEN: "You're losing money. Medical expense deductions aren't handled by year-end adjustment. Amounts exceeding 100,000 yen per year (or 5% of gross income) can be deducted through a tax return (確定申告). You're overpaying taxes simply from not knowing.",
+                feedback: "損をしています。医療費控除は年末調整では処理されません。年間医療費が10万円（または総所得の5%）を超えた分は、確定申告で所得控除が受けられます。",
+                feedbackEN: "You're losing money. Medical expense deductions aren't handled by year-end adjustment. Amounts exceeding 100,000 yen per year (or 5% of gross income) can be deducted through a tax return (確定申告).",
                 lockRequirements: null
             },
             {
@@ -213,8 +213,8 @@ export const stage9Questions: Question[] = [
                 textEN: "File a tax return (確定申告) to claim the medical expense deduction. Collect receipts and receive a refund.",
                 effect: { CS: 10, Asset: 20, Autonomy: 20 },
                 verdict: "APPROVED",
-                feedback: "正解です。20万円の医療費なら、約1〜2万円の還付が期待できます。交通費も対象。医療費が10万円未満でも、OTC医薬品の年間購入額が1.2万円超なら最大8.8万円の控除が可能(セルフメディケーション税制、医療費控除との選択制)。「会社員だから確定申告は関係ない」は大きな誤解です。",
-                feedbackEN: "Correct. With 200,000 yen in medical expenses, you can expect a refund of about 10,000-20,000 yen. Transportation costs also qualify. Even under 100,000 yen, if annual OTC medicine purchases exceed 12,000 yen, you can deduct up to 88,000 yen (Self-Medication Tax System, an alternative to the medical expense deduction). 'Tax returns don't concern salaried employees' is a major misconception.",
+                feedback: "正解です。20万円の医療費なら、約1〜2万円の還付が期待できます。交通費も対象。10万円未満の医療費で利用可能な場合もあります。「会社員だから確定申告は関係ない」は大きな誤解です。",
+                feedbackEN: "Correct. With 200,000 yen in medical expenses, you can expect a refund of about 10,000-20,000 yen. Transportation costs also qualify. Some deductions are available even under 100,000 yen. 'Tax returns don't concern salaried employees' is a major misconception.",
                 lockRequirements: { Autonomy: 150 },
                 lockedFeedback: "LOCKED: 自律性が150以上必要。「確定申告は面倒」という先入観で行動できません。",
                 lockedFeedbackEN: "LOCKED: Autonomy of 150 or higher required. The preconception that 'tax returns are a hassle' prevents you from taking action."
@@ -243,7 +243,7 @@ export const stage9Questions: Question[] = [
                 textEN: "Get contents insurance. The building is the landlord's responsibility, but your belongings are your own. Assess risks alongside the hazard map.",
                 effect: { CS: 20, Asset: 10, Autonomy: 20 },
                 verdict: "APPROVED",
-                feedback: "正解。家財保険は火災だけでなく水害、盗難、落雷もカバー。個人賠償責任特約もつけておけば、階下への漏水事故なども補償。月額数百円で大きなリスクをカバーできる。",
+                feedback: "正解。家財保険は火災だけでなく水害、盗難、落雷もカバー。個人賠償責任特約もつけておけば、階下への漏水事故なども補償。月額数百円で大きなリスクをカバーできます。",
                 feedbackEN: "Correct. Contents insurance covers not just fire, but also water damage, theft, and lightning. Adding personal liability coverage also covers accidents like water leaking to the floor below. For just a few hundred yen per month, you can cover major risks.",
                 lockRequirements: null
             },
@@ -273,7 +273,7 @@ export const stage9Questions: Question[] = [
                 textEN: "It's fine until an evacuation order is issued. I'll evacuate when it comes.",
                 effect: { CS: -20, Asset: -30, Autonomy: -10 },
                 verdict: "WARNING",
-                feedback: "危険。警戒レベル5(緊急安全確保)の段階では既に手遅れの可能性。レベル3(高齢者等避難)で避難開始が推奨。ハザードマップで確認した避難場所・経路を使い、早めに行動すべき。",
+                feedback: "危険。警戒レベル5(緊急安全確保)の段階では既に手遅れの可能性。レベル3(高齢者等避難)で避難開始が推奨。ハザードマップで確認した避難場所・経路を使い、早めに行動すべきです。",
                 feedbackEN: "Dangerous. By alert level 5 (Emergency Safety Measures), it may already be too late. Evacuation should begin at level 3 (Evacuation for the Elderly, etc.). Use the shelter and routes confirmed on your hazard map and act early.",
                 lockRequirements: null
             },
@@ -305,7 +305,7 @@ export const stage9Questions: Question[] = [
                 textEN: "First secure your safety (under a table, etc.). Once shaking stops, evacuate via emergency stairs. Turn off the breaker (to prevent electrical fire) and shut the gas valve. Head to the shelter confirmed on your hazard map.",
                 effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
-                feedback: "正解。通電火災は地震後に電気が復旧した際に発火するもので、阪神大震災の火災原因の多くを占める。エレベーターは絶対に使わない(閉じ込めリスク)。避難時はドアを開けて逃げ道を確保。",
+                feedback: "正解。通電火災は地震後に電気が復旧した際に発火するもので、火災原因の多くを占めています。エレベーターは絶対に使わない(閉じ込めリスク)。避難時はドアを開けて逃げ道を確保します。",
                 feedbackEN: "Correct. Electrical fires ignite when power is restored after an earthquake, accounting for many fires in the Great Hanshin Earthquake. Never use elevators (entrapment risk). Open doors during evacuation to secure escape routes.",
                 lockRequirements: null
             },
@@ -314,7 +314,7 @@ export const stage9Questions: Question[] = [
                 textEN: "Evacuate quickly by elevator.",
                 effect: { CS: -20, Asset: 0, Autonomy: -20 },
                 verdict: "WARNING",
-                feedback: "致命的な判断ミス。地震時のエレベーターは閉じ込めのリスクが極めて高い。停電で動かなくなり、救助まで数時間〜数日かかることも。必ず非常階段を使う。",
+                feedback: "致命的な判断ミス。地震時のエレベーターは閉じ込めのリスクが極めて高い。停電で動かなくなり、救助まで数時間〜数日かかることも。必ず非常階段を使いましょう。",
                 feedbackEN: "A fatal judgment error. Elevators during an earthquake carry an extremely high risk of entrapment. Power outages can leave you stuck for hours to days. Always use the emergency stairs.",
                 lockRequirements: null
             }

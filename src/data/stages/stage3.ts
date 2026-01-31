@@ -5,7 +5,7 @@ export const stage3Questions: Question[] = [
     {
         id: "s3_q01",
         category: "FINANCE",
-        text: "先輩から「若いうちからNISAで積立投資しろ。複利の力が味方になる」と言われた。複利とは?",
+        text: "先輩から「若いうちからNISAで積立投資しろ。複利の力が味方になる」と言われた。複利とは？",
         textEN: "A senior colleague told you: 'Start investing through NISA while you're young. Compound interest will work in your favor.' What is compound interest?",
         imagePrompt: "Scene: Calculator on desk showing computation, notebook with hand-drawn graph showing diverging lines (straight vs curved upward), 10-year timeline written with arrows. Composition: Calculator and notebook fill frame, mathematical revelation. Mood: Hidden power of numbers revealed.",
         imagePath: "s3_q01.png",
@@ -15,8 +15,8 @@ export const stage3Questions: Question[] = [
                 textEN: "Compound interest grows because 'interest earns interest,' so the gap widens over time.",
                 effect: { CS: 10, Asset: 20, Autonomy: 10 },
                 verdict: "APPROVED",
-                feedback: "正解です。10年で4万円差、30年で約40万円差。複利は「時間を味方につける」技術です。NISAなら年間360万円(生涯1800万円)まで運用益が非課税。若いうちから始めるほど複利の恩恵は大きくなります。",
-                feedbackEN: "Correct. A 40,000 yen difference in 10 years, about 400,000 yen in 30. Compound interest is the technique of 'making time your ally.' With NISA, investment gains up to 3.6 million yen/year (lifetime cap: 18 million yen) are tax-free. The earlier you start, the greater the benefit.",
+                feedback: "正解です。複利は時間を味方につける技術です。NISAなら年間360万円(生涯1800万円)まで運用益が非課税。若いうちから始めるほど複利の恩恵は大きくなります。",
+                feedbackEN: "Correct. Compound interest is the technique of 'making time your ally.' With NISA, investment gains up to 3.6 million yen/year (lifetime cap: 18 million yen) are tax-free. The earlier you start, the greater the benefit.",
                 lockRequirements: null
             },
             {
@@ -24,8 +24,8 @@ export const stage3Questions: Question[] = [
                 textEN: "Simple and compound interest are the same. At 3% annual interest, you just earn 30,000 yen each year.",
                 effect: { CS: -20, Asset: 0, Autonomy: 0 },
                 verdict: "WARNING",
-                feedback: "誤りです。単利は130万円、複利は約134万円。「利息に利息がつく」効果を理解していないと、長期資産形成で損をします。NISAは年間360万円(生涯1800万円)まで運用益非課税。複利+非課税の力を知らないのは大きな機会損失です。",
-                feedbackEN: "Incorrect. Simple interest yields 1.3 million yen; compound interest yields about 1.34 million. Without understanding 'interest on interest,' you lose out in long-term wealth building. NISA provides tax-free investment gains up to 3.6 million yen/year (lifetime: 18 million). Not knowing the power of compound interest + tax exemption is a major missed opportunity.",
+                feedback: "誤りです。利息に利息がつく効果を理解していないと、長期資産形成で損をします。NISAは年間360万円(生涯1800万円)まで運用益非課税。複利+非課税の力を知らないのは大きな機会損失です。",
+                feedbackEN: "Incorrect. Without understanding 'interest on interest,' you lose out in long-term wealth building. NISA provides tax-free investment gains up to 3.6 million yen/year (lifetime: 18 million). Not knowing the power of compound interest + tax exemption is a major missed opportunity.",
                 lockRequirements: null
             }
         ],
@@ -104,7 +104,7 @@ export const stage3Questions: Question[] = [
     {
         id: "s3_q04",
         category: "FINANCE",
-        text: "住宅ローン。金利は変動金利と固定金利どちらにする?",
+        text: "住宅ローン。金利は変動金利と固定金利どちらにする？",
         textEN: "Taking out a mortgage. Should you choose a variable or fixed interest rate?",
         imagePrompt: "Scene: Real estate office consultation room, bank pamphlets spread across glass table, loan officer's hands gesturing at rate comparison chart on tablet screen. Composition: Glass table reflection, tablet glow, professional setting. Mood: Guidance sought, numbers on display.",
         imagePath: "s3_q04.png",
@@ -114,7 +114,7 @@ export const stage3Questions: Question[] = [
                 textEN: "Go with whatever an acquaintance recommended.",
                 effect: { CS: -20, Asset: 0, Autonomy: -10 },
                 verdict: "WARNING",
-                feedback: "他人任せの判断。変動金利は低金利だが将来の上昇リスクあり、固定金利は安定だが割高。収入の安定性、返済期間、金利上昇時の余力を自分で評価すべき。人生最大の借金を他人の一言で決めるのは危険。",
+                feedback: "他人任せの判断。変動金利は低金利だが将来の上昇リスクあり、固定金利は安定だが割高。収入の安定性、返済期間、金利上昇時の余力を自分で評価すべきです。人生最大の借金を他人の一言で決めるのは危険です。",
                 feedbackEN: "Delegating the decision to someone else. Variable rates are lower but carry risk of increase; fixed rates are stable but more expensive. You should evaluate your income stability, loan term, and capacity for rate increases yourself. Deciding your biggest lifetime debt on someone else's word is dangerous.",
                 lockRequirements: null
             },
@@ -123,7 +123,7 @@ export const stage3Questions: Question[] = [
                 textEN: "Research it yourself, compare pros and cons, and decide based on your own situation.",
                 effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
-                feedback: "正解。変動金利(0.4〜0.7%)は低金利だが上昇リスク、固定金利(2%前後)は安定だが割高。3000万円35年で金利1%の差は約600万円。収入・家族構成・リスク許容度で正解は変わる。団信(団体信用生命保険)の条件も要チェック。",
+                feedback: "正解。変動金利(0.4〜0.7%)は低金利だが上昇リスク、固定金利(2%前後)は安定だが割高。3000万円35年で金利1%の差は約600万円。収入・家族構成・リスク許容度で正解は変わります。団信(団体信用生命保険)の条件も要チェック。",
                 feedbackEN: "Correct. Variable rate (0.4-0.7%) is low but carries risk; fixed rate (around 2%) is stable but costly. A 1% difference on a 30-million-yen, 35-year loan equals about 6 million yen. The right answer depends on your income, family situation, and risk tolerance. Also check the terms of group credit life insurance (団信).",
                 lockRequirements: null
             }
@@ -144,7 +144,7 @@ export const stage3Questions: Question[] = [
                 textEN: "Use NISA or iDeCo. Start building assets through tax-exempt programs.",
                 effect: { CS: 10, Asset: 20, Autonomy: 20 },
                 verdict: "APPROVED",
-                feedback: "正解。NISAは年間360万円まで運用益非課税、いつでも引き出し可能。iDeCoは所得控除で節税効果あり(年収400万なら年約2.4万円節税)、ただし60歳まで引き出せない。両制度の特性を理解して使い分けるのが賢明。",
+                feedback: "正解。NISAは年間360万円まで運用益非課税、いつでも引き出し可能。iDeCoは所得控除で節税効果あり(年収400万なら年約2.4万円節税)、ただし60歳まで引き出せません。両制度の特性を理解して使い分けるのが賢明。",
                 feedbackEN: "Correct. NISA provides tax-free gains on up to 3.6 million yen/year and allows withdrawals anytime. iDeCo offers income tax deduction benefits (about 24,000 yen/year saved at 4 million yen income), but funds are locked until age 60. Understanding both programs and using them strategically is wise.",
                 lockRequirements: null
             },
@@ -153,7 +153,7 @@ export const stage3Questions: Question[] = [
                 textEN: "Investing is scary, so I'll just save in the bank.",
                 effect: { CS: -10, Asset: 0, Autonomy: -10 },
                 verdict: "WARNING",
-                feedback: "インフレで貯金は実質目減りする。年2%のインフレなら100万円は10年後に実質約82万円の価値に。非課税制度(NISA・iDeCo)を使わない機会損失は大きい。投資しないリスクも理解すべき。",
+                feedback: "インフレで貯金は実質目減りします。年2%のインフレなら100万円は10年後に実質約82万円の価値に。非課税制度(NISA・iDeCo)を使わない機会損失は大きい。投資しないリスクも理解すべきです。",
                 feedbackEN: "Inflation erodes savings. At 2% annual inflation, 1 million yen is worth only about 820,000 yen in 10 years. The opportunity cost of not using tax-exempt programs (NISA/iDeCo) is enormous. Understand that not investing is also a risk.",
                 lockRequirements: null
             }
@@ -273,8 +273,8 @@ export const stage3Questions: Question[] = [
                 textEN: "Passive income is important, so follow the real estate company's recommendation and start investing.",
                 effect: { CS: -20, Asset: -50, Autonomy: -20 },
                 verdict: "WARNING",
-                feedback: "危険。ワンルームマンション投資は空室リスク、修繕費、管理費、固定資産税を考慮すると利回りが大幅に下がる。「サブリース契約で安心」も解約トラブル多発。不動産会社は売った時点で利益確定、リスクは買主が負う。",
-                feedbackEN: "Dangerous. When you factor in vacancy risk, repair costs, management fees, and property tax, the return on one-room apartment investment drops significantly. 'Sublease contract for security' also has frequent cancellation disputes. The real estate company locks in profit at the point of sale. You bear the risk.",
+                feedback: "注意しましょう。ワンルームマンション投資は空室リスク、修繕費、管理費、固定資産税を考慮すると利回りが大幅に下がります。「サブリース契約で安心」も解約トラブル多発。不動産会社は売った時点で利益確定、リスクは買主が負います。",
+                feedbackEN: "Be careful. When you factor in vacancy risk, repair costs, management fees, and property tax, the return on one-room apartment investment drops significantly. 'Sublease contract for security' also has frequent cancellation disputes. The real estate company locks in profit at the point of sale. You bear the risk.",
                 lockRequirements: null
             },
             {
@@ -282,8 +282,8 @@ export const stage3Questions: Question[] = [
                 textEN: "Do thorough research before acting. Understand yield calculations, vacancy risk, management fees, repair reserves, and other hidden costs before deciding.",
                 effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
-                feedback: "正解。表面利回りと実質利回りの差、サブリース契約の解約リスク、築年数による資産価値の下落。投資判断は自分の責任。営業マンは売る側。「不労所得」の甘い言葉の裏にあるリスクを理解してから動く。",
-                feedbackEN: "Correct. The gap between gross and net yield, sublease cancellation risk, and asset depreciation with building age. Investment decisions are your responsibility. The salesperson is on the selling side. Understand the risks behind the sweet promise of 'passive income' before making a move.",
+                feedback: "間違いありません。表面利回りと実質利回りの差、サブリース契約の解約リスク、築年数による資産価値の下落。投資判断は自分の責任。営業マンは売る側。「不労所得」の甘い言葉の裏にあるリスクを理解してから動きましょう。",
+                feedbackEN: "No doubt about it. The gap between gross and net yield, sublease cancellation risk, and asset depreciation with building age. Investment decisions are your responsibility. The salesperson is on the selling side. Understand the risks behind the sweet promise of 'passive income' before making a move.",
                 lockRequirements: { Asset: 140 },
                 lockedFeedback: "LOCKED: 資産が140以上必要。投資判断には十分な資産基盤が必要です。",
                 lockedFeedbackEN: "LOCKED: Asset of 140 or higher required. Sound investment decisions require a solid financial foundation."
@@ -295,7 +295,7 @@ export const stage3Questions: Question[] = [
     {
         id: "s3_q10",
         category: "FINANCE",
-        text: "配偶者がパートで年収を増やしたいと言っている。「103万円を超えると損する」と聞いたが本当?",
+        text: "配偶者がパートで年収を増やしたいと言っている。「103万円を超えると損する」と聞いたが本当？",
         textEN: "Your spouse wants to increase their part-time income. You've heard 'earning over 1.03 million yen means you lose money.' Is that true?",
         imagePrompt: "Scene: Kitchen table with salary calculation notes, tax threshold chart drawn by hand, two pay stubs side by side, calculator showing different scenarios. Composition: Handwritten calculations dominate, practical household finance. Mood: Family budget strategy, hidden thresholds.",
         imagePath: "s3_q10.png",
@@ -305,8 +305,8 @@ export const stage3Questions: Question[] = [
                 textEN: "Keeping it under 1.03 million yen is the smartest move.",
                 effect: { CS: -20, Asset: 0, Autonomy: -10 },
                 verdict: "WARNING",
-                feedback: "壁の種類を混同。従来103万円は所得税発生ラインでしたが、税制改正により段階的に引き上げが進んでいます（2025年時点で123万円、さらに178万円への引き上げが与野党間で合意済み）。106万円は社会保険加入ライン、130万円は扶養から外れるライン。世帯全体の収入で判断すべきです。",
-                feedbackEN: "You're confusing different thresholds. The 1.03 million yen income tax threshold has been gradually raised through tax reform (1.23 million as of 2025, with cross-party agreement to raise it to 1.78 million). The 1.06 million yen wall triggers social insurance enrollment; the 1.3 million yen wall removes dependent status. Decisions should be based on total household income.",
+                feedback: "壁の種類を混同。従来103万円は所得税発生ラインでしたが、税制改正により段階的な引き上げが進んでいます。最新情報を確認し、世帯全体の収入で判断すべきです。",
+                feedbackEN: "You're confusing different thresholds. The 1.03 million yen income tax threshold has been gradually raised through tax reform. Check the latest figures, and make decisions based on total household income.",
                 lockRequirements: null
             },
             {
@@ -314,8 +314,8 @@ export const stage3Questions: Question[] = [
                 textEN: "Understand the differences between the 1.03M / 1.06M / 1.3M yen thresholds and decide based on total household income.",
                 effect: { CS: 10, Asset: 10, Autonomy: 20 },
                 verdict: "APPROVED",
-                feedback: "正解。壁の影響は家族構成・勤務先規模で異なる。所得税の非課税ライン（税制改正で段階的に引き上げ中）、106万円の壁(従業員51人以上の企業で社会保険加入)、130万円の壁(社会保険の扶養外れ)。150万・201万円は配偶者特別控除の段階的減少。最新の税制改正を確認し、世帯全体で試算する習慣が重要。",
-                feedbackEN: "Correct. The impact of each threshold varies by family structure and employer size. The income tax exemption line (being raised incrementally through tax reform), the 1.06M wall (social insurance enrollment at companies with 51+ employees), and the 1.3M wall (loss of dependent status). The 1.5M and 2.01M thresholds mark gradual reduction of the spousal special deduction. Always check the latest tax reforms and calculate as a household.",
+                feedback: "正解。壁の影響は家族構成・勤務先規模で異なります。最新の税制改正を確認し、世帯全体で試算する習慣が重要です。",
+                feedbackEN: "Correct. The impact of each threshold varies by family structure and employer size. Always check the latest tax reforms and calculate as a household.",
                 lockRequirements: null
             }
         ],

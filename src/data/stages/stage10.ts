@@ -5,7 +5,7 @@ export const stage10Questions: Question[] = [
     {
         id: "s10_q01",
         category: "INTEGRATION",
-        text: "マイナンバーカードを持っている人と持っていない人。実際に何が違う?",
+        text: "マイナンバーカードを持っている人と持っていない人。実際に何が違う？",
         textEN: "What's the real difference between having and not having a My Number Card (マイナンバーカード)?",
         imagePrompt: "Scene: Smartphone showing My Number Portal app with various service icons (health insurance, tax filing, certificate issuance), physical card beside phone, convenience store terminal in background. Composition: Digital and physical integration, services radiating from card. Mood: Bureaucratic convenience, connected services.",
         imagePath: "s10_q01.png",
@@ -114,8 +114,8 @@ export const stage10Questions: Question[] = [
                 textEN: "Understand that the 'right' approach varies by situation, do your own research, and directly ask the parties involved (family/region/company) about anything unclear.",
                 effect: { CS: 20, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
-                feedback: "正解。冠婚葬祭のマナーは地域・宗派・家庭によって異なる。「ネットの正解」が目の前の状況に合うとは限らない。結婚式のご祝儀相場、葬儀の表書き、内祝いのタイミング・・・基本を押さえた上で、わからなければ当事者に聞くのが最も確実で失礼のない方法。",
-                feedbackEN: "Correct. Ceremonial etiquette varies by region, religious denomination, and family. 'Internet answers' may not fit the specific situation. Wedding gift amounts, funeral envelope inscriptions, return gift timing... learn the basics, then ask the parties involved when unsure. That's the most reliable and respectful approach.",
+                feedback: "正解。冠婚葬祭のマナーは地域・宗派・家庭によって異なります。「ネットの正解」が目の前の状況に合うとは限りません。基本を押さえた上で、わからなければ当事者に聞くのが最も確実で失礼のない方法です。",
+                feedbackEN: "Correct. Ceremonial etiquette varies by region, religious denomination, and family. 'Internet answers' may not fit the specific situation. Learn the basics, then ask the parties involved when unsure. That's the most reliable and respectful approach.",
                 lockRequirements: null
             },
             {
@@ -123,8 +123,8 @@ export const stage10Questions: Question[] = [
                 textEN: "Treat your own way as the absolute truth and correct others' 'mistakes.'",
                 effect: { CS: -50, Asset: 0, Autonomy: 0 },
                 verdict: "WARNING",
-                feedback: "最悪のアプローチ。冠婚葬祭に「唯一の正解」はない。御霊前/御仏前の使い分けも宗派で異なり、ご祝儀の金額も地域差がある。「正しさ」を押し付ける人は、場の空気を壊し、人間関係を損なう。謙虚さと柔軟さが大人のマナー。",
-                feedbackEN: "The worst approach. There is no 'single correct answer' for ceremonial occasions. Even the choice between condolence envelope labels varies by denomination, and gift amounts differ by region. Pushing your 'correctness' on others ruins the atmosphere and damages relationships. Humility and flexibility are the hallmarks of adult etiquette.",
+                feedback: "最悪のアプローチ。冠婚葬祭に「唯一の正解」はありません。「正しさ」を押し付ける人は、場の空気を壊し、人間関係を損ないます。謙虚さと柔軟さが大人のマナーです。",
+                feedbackEN: "The worst approach. There is no 'single correct answer' for ceremonial occasions. Pushing your 'correctness' on others ruins the atmosphere and damages relationships. Humility and flexibility are the hallmarks of adult etiquette.",
                 lockRequirements: null
             }
         ]
@@ -144,7 +144,7 @@ export const stage10Questions: Question[] = [
                 textEN: "I don't really understand them, and they seem like a hassle. I won't use them at all.",
                 effect: { CS: -10, Asset: -30, Autonomy: -50 },
                 verdict: "WARNING",
-                feedback: "権利の放棄。公的相談窓口は税金で運営されている「あなたのためのサービス」。知らないだけで損をしている。",
+                feedback: "権利の放棄。公的相談窓口は税金で運営されている「あなたのためのサービス」。知らないだけで損をしています。",
                 feedbackEN: "Surrendering your rights. Public consultation services are 'services built for you' funded by taxes. You're losing out simply from not knowing.",
                 lockRequirements: null
             },
@@ -153,7 +153,7 @@ export const stage10Questions: Question[] = [
                 textEN: "Research and utilize the appropriate consultation service.",
                 effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
-                feedback: "正解。様々な相談窓口がある。消費者ホットライン(188)、労働条件相談ほっとライン(0120-811-610)、法テラス(0570-078374)、みんなの人権110番(0570-003-110)、フリーランス・トラブル110番(0120-532-110)、金融サービス利用者相談室(0570-016811)。匿名OK、夜間・土日対応のものも多い。敷居は低い。困ったらまず相談。",
+                feedback: "正解。様々な公的相談窓口があります。消費者ホットライン、労働条件相談ほっとライン、法テラス、みんなの人権110番、フリーランス・トラブル110番、金融サービス利用者相談室など。匿名OK、夜間・土日対応のものも多く、敷居は低いです。",
                 feedbackEN: "Correct. Various services exist: Consumer Hotline (188), Labor Conditions Consultation Hotline (0120-811-610), Legal Support Center (0570-078374), Human Rights Hotline (0570-003-110), Freelance Trouble Hotline (0120-532-110), Financial Services User Consultation Office (0570-016811). Many accept anonymous calls and are available evenings/weekends. The barrier is low. When in trouble, consult first.",
                 lockRequirements: null
             }
@@ -164,13 +164,13 @@ export const stage10Questions: Question[] = [
     {
         id: "s10_q06",
         category: "FINANCE",
-        text: "スマホの分割払いを3ヶ月滞納した。その後、住宅ローンの審査に落ちた。関係ある?",
+        text: "スマホの分割払いを3ヶ月滞納した。その後、住宅ローンの審査に落ちた。関係ある？",
         textEN: "You missed 3 months of smartphone installment payments. Later, your mortgage application was rejected. Is there a connection?",
-        imagePrompt: "Scene: Smartphone payment overdue notice beside mortgage rejection letter, CIC credit report showing negative mark, timeline connecting the two events. Composition: Cause and effect chain visible. Mood: Connected consequences, invisible damage revealed.",
+        imagePrompt: "Scene: Overdue smartphone payment notice on desk, mortgage rejection letter partially visible underneath, credit report with a red mark circled. Composition: Documents layered on desk, overdue notice on top, rejection letter beneath, red mark drawing the eye. Mood: Delayed consequences surfacing, a small oversight casting a long shadow.",
         imagePath: "s10_q06.png",
         choices: [
             {
-                text: "大いに関係ある。スマホ分割は信用取引であり、滞納は信用情報に記録される。",
+                text: "大いに関係あります。スマホ分割は信用取引であり、滞納は信用情報に記録されます。",
                 textEN: "Absolutely related. Smartphone installments are credit transactions, and delinquency is recorded on your credit report.",
                 effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
@@ -252,8 +252,8 @@ export const stage10Questions: Question[] = [
                 textEN: "Explain the basic system and point them to helpful resources.",
                 effect: { CS: 20, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
-                feedback: "継承の選択です。知識は共有することで価値が増えます。あなたが教えた知識が、いつか誰かを詐欺から守るかもしれません。それが「大人」の責任です。",
-                feedbackEN: "A choice of legacy. Knowledge grows in value when shared. What you teach today may someday protect someone from fraud. That is an 'adult's' responsibility.",
+                feedback: "継承の選択です。知識は共有することで価値が増えます。あなたが教えた知識が、いつか誰かを詐欺から守るかもしれません。",
+                feedbackEN: "A choice of legacy. Knowledge grows in value when shared. What you teach today may someday protect someone from fraud.",
                 lockRequirements: null
             }
         ]

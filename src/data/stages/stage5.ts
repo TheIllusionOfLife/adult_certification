@@ -88,8 +88,8 @@ export const stage5Questions: Question[] = [
                 textEN: "Start with self-study and free materials, then consider paid courses if needed.",
                 effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "NEUTRAL",
-                feedback: "独学も立派な選択。無料のオンライン教材やコミュニティも充実しています。ただし、教育訓練給付金(最大70%給付)という制度の存在は知っておくべき。使うかどうかは状況次第だが、無知で機会を逃すのはもったいない。",
-                feedbackEN: "Self-study is a valid choice. Free online resources and communities are plentiful. However, you should at least know about the Education and Training Benefit (up to 70% coverage). Whether to use it depends on circumstances, but missing opportunities due to ignorance is a waste.",
+                feedback: "独学も立派な選択。無料のオンライン教材やコミュニティも充実しています。ただし、教育訓練給付金(最大70%給付)という制度の存在自体は知っておきましょう。",
+                feedbackEN: "Self-study is a valid choice. Free online resources and communities are plentiful. However, you should at least know that the Education and Training Benefit (up to 70% coverage) exists.",
                 lockRequirements: null
             }
         ],
@@ -144,7 +144,7 @@ export const stage5Questions: Question[] = [
                 textEN: "Go to work without telling colleagues about the flu. A mask should be enough.",
                 effect: { CS: -30, Asset: 0, Autonomy: -30 },
                 verdict: "WARNING",
-                feedback: "最悪の選択。職場全体に感染が広がり、プロジェクト全体が停止するリスク。感染症を隠して出社するのは「頑張り」ではなく「迷惑」。報告と休養が社会人の義務。",
+                feedback: "最悪の選択。職場全体に感染が広がり、プロジェクト全体が停止するリスク。感染症を隠して出社するのは「頑張り」ではなく「迷惑」。報告と休養が社会人の義務です。",
                 feedbackEN: "The worst choice. You risk spreading the infection across the entire workplace, shutting down the project. Hiding an infectious disease to show up is not 'dedication.' It's irresponsible. Reporting and resting is a professional obligation.",
                 lockRequirements: null
             },
@@ -153,7 +153,7 @@ export const stage5Questions: Question[] = [
                 textEN: "Propose remote work or absence and focus on recovery. Explain the situation to your supervisor and arrange a substitute for the meeting.",
                 effect: { CS: 15, Asset: 0, Autonomy: 5 },
                 verdict: "APPROVED",
-                feedback: "正解。インフルエンザは発症後5日かつ解熱後2日の出席停止が目安(学校保健安全法準拠、企業も多くが準用)。テレワークで体調が許す範囲の対応は合理的。同僚への感染防止が社会人としての責任。",
+                feedback: "正解。インフルエンザは発症後5日かつ解熱後2日の出席停止が目安(学校保健安全法準拠、企業も多くが準用)。テレワークで体調が許す範囲の対応は合理的。同僚への感染防止が社会人としての責任です。",
                 feedbackEN: "Correct. The guideline for influenza is 5 days after onset and 2 days after fever breaks (per the School Health and Safety Act, adopted by many companies). Remote work within your capacity is reasonable. Preventing spread to colleagues is a professional responsibility.",
                 lockRequirements: null
             }

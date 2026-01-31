@@ -5,7 +5,7 @@ export const stage7Questions: Question[] = [
     {
         id: "s7_q01",
         category: "LEGAL",
-        text: "ネット通販で買った服がイメージと違った。クーリングオフで返品できる?",
+        text: "ネット通販で買った服がイメージと違った。クーリングオフで返品できる？",
         textEN: "The clothes you bought online don't match your expectations. Can you return them using the cooling-off period?",
         imagePrompt: "Scene: Online shopping package opened on table, clothing item not matching phone screen photo, return policy page showing fine print, disappointed expression. Composition: Expectation vs reality, legal fine print. Mood: Consumer surprise, rights misunderstood.",
         imagePath: "s7_q01.png",
@@ -15,8 +15,8 @@ export const stage7Questions: Question[] = [
                 textEN: "I should be able to use the cooling-off period within 8 days.",
                 effect: { CS: -20, Asset: -20, Autonomy: -10 },
                 verdict: "WARNING",
-                feedback: "最も多い誤解。通信販売(ネット通販、テレビショッピング)にはクーリングオフ制度は適用されない。返品は各ショップの「返品特約」に依存。特約がなければ商品到着後8日以内に返品可能(送料は購入者負担)。購入前に返品ポリシーを確認すべき。",
-                feedbackEN: "The most common misconception. The cooling-off system does not apply to mail-order sales (online shopping, TV shopping). Returns depend on each shop's 'return policy.' Without a policy, you can return items within 8 days of delivery (shipping at your expense). Always check the return policy before buying.",
+                feedback: "最も多い誤解。通信販売にはクーリングオフ制度は適用されません。返品は各ショップの「返品特約」に依存します。特約がなければ商品到着後8日以内に返品可能(送料は購入者負担)。購入前に返品ポリシーを確認すべきです。",
+                feedbackEN: "The most common misconception. The cooling-off system does not apply to mail-order sales. Returns depend on each shop's 'return policy.' Without a policy, you can return items within 8 days of delivery (shipping at your expense). Always check the return policy before buying.",
                 lockRequirements: null
             },
             {
@@ -24,7 +24,7 @@ export const stage7Questions: Question[] = [
                 textEN: "The cooling-off period doesn't apply to mail-order sales. Check the 'return policy' for returns.",
                 effect: { CS: 10, Asset: 10, Autonomy: 10 },
                 verdict: "APPROVED",
-                feedback: "正解。クーリングオフは訪問販売(8日)、電話勧誘販売(8日)、連鎖販売取引(20日)等が対象。ネット通販は「自分の意思で購入した」ため対象外。返品特約を事前に確認するのが唯一の防御策。",
+                feedback: "正解。クーリングオフは訪問販売(8日)、電話勧誘販売(8日)、連鎖販売取引(20日)等が対象です。ネット通販は「自分の意思で購入した」ため対象外。返品特約を事前に確認するのが唯一の防御策です。",
                 feedbackEN: "Correct. Cooling-off applies to door-to-door sales (8 days), telemarketing sales (8 days), MLM transactions (20 days), etc. Online shopping is excluded because 'you purchased of your own will.' Checking the return policy in advance is your only defense.",
                 lockRequirements: null
             }
@@ -58,7 +58,7 @@ export const stage7Questions: Question[] = [
                 textEN: "If they say 'no returns,' there's nothing to do. Give up.",
                 effect: { CS: -20, Asset: -20, Autonomy: -10 },
                 verdict: "WARNING",
-                feedback: "泣き寝入りです。初期不良品の交換・返金は消費者の権利。消費者ホットライン（188）に相談すれば、適切な対応を求める手段が見つかります。",
+                feedback: "泣き寝入りです。初期不良品の交換・返金は消費者の権利。消費者ホットライン（188）に相談し、適切な対応手段を探りましょう。",
                 feedbackEN: "Giving in. Exchanging or refunding defective products is a consumer right. Calling the Consumer Hotline (188) will help you find the means to demand proper handling.",
                 lockRequirements: null
             }
@@ -174,7 +174,7 @@ export const stage7Questions: Question[] = [
                 textEN: "Judge that '10% monthly = 120% annual returns is impossible' and decline. Referral bonuses are a hallmark of Ponzi schemes.",
                 effect: { CS: 10, Asset: 10, Autonomy: 10 },
                 verdict: "APPROVED",
-                feedback: "正解。月利10%は年利120%で、世界最高の投資家でも不可能な数字。「紹介ボーナス」はMLM(連鎖販売)の特徴。ポンジスキームは新規参加者の資金で既存参加者に配当する自転車操業。資金が尽きれば破綻し、後から参加した人が最も損をする。",
+                feedback: "正解。月利10%は年利120%で、世界最高の投資家でも不可能な数字。紹介ボーナスはMLM(連鎖販売)の特徴。ポンジスキームは新規参加者の資金で既存参加者に配当する自転車操業。資金が尽きれば破綻し、後から参加した人が最も損をします。",
                 feedbackEN: "Correct. 10% monthly means 120% annually, impossible even for the world's best investors. 'Referral bonuses' are a hallmark of MLM (multi-level marketing). Ponzi schemes pay existing members with new members' money. When funds run out, it collapses, and latecomers lose the most.",
                 lockRequirements: null
             },
@@ -183,8 +183,8 @@ export const stage7Questions: Question[] = [
                 textEN: "Maybe AI makes it possible. 300,000 yen might be worth trying.",
                 effect: { CS: -30, Asset: -50, Autonomy: -20 },
                 verdict: "WARNING",
-                feedback: "投資詐欺の典型。ポンジスキーム(自転車操業)+MLM(連鎖販売)の組み合わせ。初期は配当が出ることもあるが、それは新規参加者の資金。やがて破綻し、30万円と人間関係を失う。「AI」「自動」は詐欺の常套句。",
-                feedbackEN: "A textbook investment scam. Ponzi scheme + MLM combination. Early payouts may happen, but they come from new members' money. It will eventually collapse, and you'll lose 300,000 yen and your relationships. 'AI' and 'automated' are common scam buzzwords.",
+                feedback: "投資詐欺の典型。ポンジスキーム(自転車操業)+MLM(連鎖販売)の組み合わせ。初期は配当が出ることもありますが、それは新規参加者の資金です。やがて破綻し、お金も人間関係も失います。",
+                feedbackEN: "A textbook investment scam. Ponzi scheme + MLM combination. Early payouts may happen, but they come from new members' money. It will eventually collapse, and you'll lose your money and your relationships.",
                 lockRequirements: null
             }
         ]
@@ -239,8 +239,8 @@ export const stage7Questions: Question[] = [
         imagePath: "s7_q08.png",
         choices: [
             {
-                text: "「連帯保証は無理」と断る。どんなに親しくても、他人の借金リスクは負えない。",
-                textEN: "Decline: 'I can't be a joint guarantor.' No matter how close, you can't take on someone else's debt risk.",
+                text: "「連帯保証は無理」と断る。どんなに親しくても、赤の他人の借金リスクは負えない。",
+                textEN: "Decline: 'I can't be a joint guarantor.' No matter how close, you can't take on a stranger's debt risk.",
                 effect: { CS: 10, Asset: 10, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。連帯保証を断ることは冷たいことではなく、自己防衛です。2020年の民法改正で保護は強化されましたが、リスクの本質は変わりません。",
@@ -273,8 +273,8 @@ export const stage7Questions: Question[] = [
                 textEN: "Tell them 'you should stop.' Even if it costs the friendship, wrongdoing should be pointed out.",
                 effect: { CS: -10, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
-                feedback: "正解。業務上横領は刑法253条、10年以下の懲役。友人は気分を害するかもしれないが、本当の友人なら忠告を受け入れるはず。もし関係が壊れるなら、それはその程度の関係だったということ。黙認は共犯意識につながる。",
-                feedbackEN: "Correct. Occupational embezzlement carries up to 10 years' imprisonment under Article 253 of the Penal Code. Your friend may be offended, but a true friend would accept the warning. If the relationship breaks, it wasn't that strong to begin with. Staying silent breeds complicity.",
+                feedback: "正解。業務上横領は刑法253条、10年以下の懲役。友人は気分を害するかもしれませんが、本当の友人なら忠告を受け入れるはずです。",
+                feedbackEN: "Correct. Occupational embezzlement carries up to 10 years' imprisonment under Article 253 of the Penal Code. Your friend may be offended, but a true friend would accept the warning.",
                 lockRequirements: { Autonomy: 180 },
                 lockedFeedback: "LOCKED: 自律性が180以上必要。周囲に流されず、間違いを指摘する勇気がありません。",
                 lockedFeedbackEN: "LOCKED: Autonomy of 180 or higher required. You lack the courage to call out wrongdoing without being swayed by those around you."
@@ -284,8 +284,8 @@ export const stage7Questions: Question[] = [
                 textEN: "Brush it off: 'Well, if it's just that much...' You don't want to ruin the friendship.",
                 effect: { CS: 10, Asset: 0, Autonomy: -20 },
                 verdict: "WARNING",
-                feedback: "関係維持を優先したが、業務上横領は刑法253条で10年以下の懲役。友人との関係は保たれますが、あなたは「黙認する人」になりました。友人がエスカレートした時、あなたも共犯意識を持つことになります。",
-                feedbackEN: "You prioritized the relationship, but occupational embezzlement carries up to 10 years' imprisonment under the Penal Code. The friendship is preserved, but you've become 'someone who looks the other way.' If your friend escalates, you'll carry a sense of complicity.",
+                feedback: "関係維持を優先しましたが、業務上横領は刑法253条で10年以下の懲役です。あなたも共犯意識を持つことになります。",
+                feedbackEN: "You prioritized the relationship, but occupational embezzlement carries up to 10 years' imprisonment under the Penal Code. You'll carry a sense of complicity.",
                 lockRequirements: null
             }
         ],
@@ -309,8 +309,8 @@ export const stage7Questions: Question[] = [
                 textEN: "I don't really understand, but I'll sign for my acquaintance's sake.",
                 effect: { CS: -20, Asset: -50, Autonomy: -20 },
                 verdict: "WARNING",
-                feedback: "危険。極度額は「保証人が負う上限額」。2020年民法改正で、個人の根保証は極度額を書面で定めないと無効。極度額が「300万円」なら、家賃滞納・原状回復・損害賠償の合計がその額まであなたに請求される。",
-                feedbackEN: "Dangerous. The maximum liability amount is the 'upper limit of the guarantor's obligation.' Under the 2020 Civil Code revision, personal revolving guarantees without a written maximum amount are void. If it says '3 million yen,' you can be billed up to that amount for unpaid rent, restoration costs, and damages combined.",
+                feedback: "危険。極度額は「保証人が負う上限額」。極度額が「300万円」なら、家賃滞納・原状回復・損害賠償の合計がその額まで請求されます。",
+                feedbackEN: "Dangerous. The maximum liability amount is the 'upper limit of the guarantor's obligation.' If it says '3 million yen,' you can be billed up to that amount for unpaid rent, restoration costs, and damages combined.",
                 lockRequirements: null
             },
             {
@@ -318,8 +318,8 @@ export const stage7Questions: Question[] = [
                 textEN: "Understand the meaning of the maximum liability amount and carefully assess whether you can bear the risk.",
                 effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
-                feedback: "正解。2020年民法改正で、極度額が書面にないと保証契約は無効。目安は家賃の6〜24ヶ月分程度。連帯保証人には催告の抗弁権・検索の抗弁権・分別の利益がすべてない。つまり債務者と全く同じ責任。リスクを正確に理解した上で判断すべき。",
-                feedbackEN: "Correct. Under the 2020 Civil Code revision, guarantee contracts without a written maximum amount are void. Typical amounts are 6-24 months' rent. Joint guarantors have no right of defense of demand, no right of defense of search, and no benefit of division. In other words, identical responsibility to the debtor. Understand the risk precisely before deciding.",
+                feedback: "正解。2020年民法改正で、極度額が書面にないと保証契約は無効。目安は家賃の6〜24ヶ月分程度ですが、連帯保証人は債務者と同じ責任を負います。",
+                feedbackEN: "Correct. Under the 2020 Civil Code revision, guarantee contracts without a written maximum amount are void. Typical amounts are 6-24 months' rent, and joint guarantors bear the same responsibility as the debtor.",
                 lockRequirements: null
             }
         ],

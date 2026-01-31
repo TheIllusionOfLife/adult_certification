@@ -208,7 +208,7 @@ export const stage4Questions: Question[] = [
                 textEN: "I submitted it, so it's fine. No need for a receipt stamp.",
                 effect: { CS: 0, Asset: 0, Autonomy: -30 },
                 verdict: "WARNING",
-                feedback: "書類紛失時に提出の証拠がない。住宅ローン審査や各種申請で「申告書の控え(受付印付き)」を求められることがある。電子申告(e-Tax)なら受信通知が証拠になる。",
+                feedback: "書類紛失時に提出の証拠がない。住宅ローン審査や各種申請で「申告書の控え(受付印付き)」を求められることがあります。電子申告(e-Tax)なら受信通知が証拠になります。",
                 feedbackEN: "If documents are lost, you have no proof of submission. Mortgage screenings and various applications may require 'a copy of the return with a receipt stamp.' With e-Tax, the acknowledgment notification serves as proof.",
                 lockRequirements: null
             },
@@ -217,7 +217,7 @@ export const stage4Questions: Question[] = [
                 textEN: "Get a receipt stamp on your copy to secure proof of submission.",
                 effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
-                feedback: "正解。行政手続きは「証拠を残す」が鉄則。郵送なら特定記録や簡易書留、電子申告なら受信通知。「出した」と「出した証拠がある」は全く違う。",
+                feedback: "正解。行政手続きは「証拠を残す」が鉄則。郵送なら特定記録や簡易書留、電子申告なら受信通知。「出した」と「出した証拠がある」は全く違います。",
                 feedbackEN: "Correct. The golden rule of administrative procedures is 'keep proof.' For mail: use tracked or registered delivery. For e-Tax: the acknowledgment notification. 'I submitted it' and 'I have proof I submitted it' are entirely different things.",
                 lockRequirements: { Autonomy: 130 },
                 lockedFeedback: "LOCKED: 自律性が130以上必要。面倒くさがって「まあいいか」と流しました。",
@@ -277,7 +277,7 @@ export const stage4Questions: Question[] = [
                 textEN: "File an amended return immediately. Minimize risk and demonstrate integrity.",
                 effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
-                feedback: "正解。自主的修正申告なら過少申告加算税5%に軽減(税務調査後は10〜15%)。「見つからない可能性」を捨て、確実に解決する判断です。延滞税も日割りで加算されるため、早いほど負担は軽い。",
+                feedback: "正解。自主的修正申告なら過少申告加算税5%に軽減(税務調査後は10〜15%)。「見つからない可能性」を捨て、確実に解決する判断です。延滞税も日割りで加算されるため、早いほど負担は軽いです。",
                 feedbackEN: "Correct. A voluntary amended return reduces the underreporting penalty to 5% (vs 10-15% after an audit). Choosing certainty over 'maybe they won't notice' is the right call. Late payment tax accrues daily, so sooner means lighter burden.",
                 lockRequirements: { Asset: 130 },
                 lockedFeedback: "LOCKED: 資産が130以上必要。修正申告には今すぐ支払える経済的な余裕が必要です。",
@@ -303,7 +303,7 @@ export const stage4Questions: Question[] = [
     {
         id: "s4_q10",
         category: "ADMIN",
-        text: "3年前に高額な歯科治療(インプラント40万円)をしたが、医療費控除の確定申告をしなかった。今から申告できる?",
+        text: "3年前に高額な歯科治療（インプラント40万円）をしたが、医療費控除の確定申告をしなかった。今から申告できる？",
         textEN: "Three years ago, you had expensive dental work (implant: 400,000 yen) but didn't file for the medical expense deduction. Can you still file?",
         imagePrompt: "Scene: Old dental receipt discovered in drawer, calendar showing years passed, tax refund calculation on notepad, surprised expression reflected in phone screen. Composition: Receipt discovery moment, time passed but opportunity remains. Mood: Pleasant surprise, money to reclaim.",
         imagePath: "s4_q10.png",
@@ -313,8 +313,8 @@ export const stage4Questions: Question[] = [
                 textEN: "Refund filings can go back 5 years. File now and claim the refund.",
                 effect: { CS: 10, Asset: 30, Autonomy: 20 },
                 verdict: "APPROVED",
-                feedback: "正解。インプラント40万円なら控除額30万円(40万-10万)。税率20%なら約6万円の還付。レーシック、不妊治療、通院交通費(バス・電車)も対象。対象外は美容整形、予防接種、病気が見つからなかった健康診断。",
-                feedbackEN: "Correct. A 400,000 yen implant gives a 300,000 yen deduction (400K minus 100K threshold). At a 20% tax rate, that's about a 60,000 yen refund. LASIK, fertility treatment, and commuting costs (bus/train) also qualify. Excluded: cosmetic surgery, vaccinations, and health checkups with no diagnosis.",
+                feedback: "正解。インプラント40万円なら控除額30万円(40万-10万)。税率20%なら約6万円の還付。レーシック、不妊治療、通院交通費(バス・電車)も対象です。",
+                feedbackEN: "Correct. A 400,000 yen implant gives a 300,000 yen deduction (400K minus 100K threshold). At a 20% tax rate, that's about a 60,000 yen refund. LASIK, fertility treatment, and commuting costs (bus/train) also qualify.",
                 lockRequirements: null
             },
             {
@@ -322,7 +322,7 @@ export const stage4Questions: Question[] = [
                 textEN: "The filing deadline (March 15) has passed, so it's too late.",
                 effect: { CS: -20, Asset: -30, Autonomy: -10 },
                 verdict: "WARNING",
-                feedback: "還付申告と確定申告は別。還付申告は翌年1月1日から5年後の12月31日まで可能。3年前の治療でもまだ間に合う。",
+                feedback: "還付申告と確定申告は別。還付申告は翌年1月1日から5年後の12月31日まで可能。3年前の治療でもまだ間に合います。",
                 feedbackEN: "Refund filing and regular tax filing are different. Refund filings are accepted from January 1 of the following year through December 31 five years later. Treatment from 3 years ago is still eligible.",
                 lockRequirements: null
             }

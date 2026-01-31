@@ -23,7 +23,7 @@ export const stage2Questions: Question[] = [
                 text: "事実と影響と対策を先に伝える。",
                 textEN: "Lead with the facts, impact, and proposed solution.",
                 effect: { CS: 20, Asset: 0, Autonomy: 10 },
-                feedback: "正解です。報連相の基本は「結論ファースト」。信用を守る最速の方法です。",
+                feedback: "正解です。報連相の基本は結論ファースト。信用を守る最速の方法です。",
                 feedbackEN: "Correct. The foundation of 'Hou-Ren-Sou' (報連相: Report, Contact, Consult) is 'conclusion first.' It's the fastest way to preserve trust.",
                 verdict: "APPROVED",
                 lockRequirements: null
@@ -57,8 +57,8 @@ export const stage2Questions: Question[] = [
                 text: "「違法です」と上司に直接抗議し、労基署への相談をほのめかす。",
                 textEN: "Confront your boss directly: 'This is illegal,' and hint at reporting to the Labor Standards Office.",
                 effect: { CS: -20, Asset: 0, Autonomy: 20 },
-                feedback: "正論ですが、職場で孤立しました。正義を振りかざすタイミングを誤ると、味方がいなくなります。証拠を固めてからでも遅くはなかったはずです。困ったら「労働条件相談ほっとライン(0120-811-610)」に無料電話相談を。平日夜間・土日も対応。",
-                feedbackEN: "You're right, but now you're isolated at work. Wielding justice at the wrong time leaves you without allies. It wasn't too late to build your case first. If in trouble, call the Labor Conditions Consultation Hotline (0120-811-610), free and available evenings and weekends.",
+                feedback: "正論ですが、職場で孤立するリスクがあります。困ったら「労働条件相談ほっとライン(0120-811-610)」に無料電話相談を。平日夜間・土日も対応。",
+                feedbackEN: "You're right, but you risk being isolated at work. If in trouble, call the Labor Conditions Consultation Hotline (0120-811-610), free and available evenings and weekends.",
                 verdict: "WARNING",
                 lockRequirements: null
             }
@@ -134,7 +134,7 @@ export const stage2Questions: Question[] = [
     {
         id: "s2_q05",
         category: "LABOR",
-        text: "会社を辞めることになった。日程は多少調整可能。いつ辞める?",
+        text: "会社を辞めることになった。日程は多少調整可能。いつ辞める？",
         textEN: "You've decided to resign. The timing is somewhat flexible. When do you leave?",
         imagePrompt: "Scene: Calendar showing end of month dates circled, social insurance explanation document beside it, calculator showing premium comparison, resignation letter draft on desk. Composition: Calendar dominant, financial documents supporting. Mood: Strategic timing, hidden financial impact.",
         imagePath: "s2_q05.png",
@@ -143,8 +143,8 @@ export const stage2Questions: Question[] = [
                 text: "特にこだわりはない。上司が提案した日程で辞める。",
                 textEN: "No preference. Just go with whatever date my boss suggests.",
                 effect: { CS: 0, Asset: -30, Autonomy: -10 },
-                feedback: "退職日を1日ずらすだけで社会保険料に大きな差が出ることを知らない。社会保険料は「退職日の翌日が属する月の前月分まで」徴収。月末退職なら当月分まで厚生年金加入(会社折半)。月末前日退職だとその月は国保+国民年金(全額自己負担)に切り替え。月3〜5万円の差になりうる。",
-                feedbackEN: "You don't realize that shifting the resignation date by just one day can significantly change your social insurance premiums. Premiums are collected 'up to the month before the month containing the day after resignation.' Resigning on the last day of the month keeps you on Employees' Pension (split with employer) for that month. Resigning one day earlier switches you to National Health Insurance + National Pension (fully self-paid). That's a potential difference of 30,000-50,000 yen per month.",
+                feedback: "退職日の1日のずれが数万の差になりうります。月末退職なら当月分まで厚生年金加入(会社折半)ですが、月末前日退職だとその月は国保+国民年金(全額自己負担)に切り替えとなってしまいます。",
+                feedbackEN: "A one-day difference in your resignation date can mean tens of thousands of yen in social insurance costs. Resigning on the last day of the month keeps you on Employees' Pension (split with employer) for that month. Resigning one day earlier switches you to National Health Insurance + National Pension (fully self-paid).",
                 verdict: "WARNING",
                 lockRequirements: null
             },
@@ -152,7 +152,7 @@ export const stage2Questions: Question[] = [
                 text: "月末退職を選ぶ。社会保険料の仕組みを理解し、損をしない日程を自分で判断する。",
                 textEN: "Choose end-of-month resignation. Understand the social insurance system and pick the date that minimizes financial loss.",
                 effect: { CS: 10, Asset: 0, Autonomy: 20 },
-                feedback: "正解。3月31日退職なら3月分まで厚生年金(会社と折半)。3月30日退職なら3月分は国民年金+国保(全額自己負担)。月末退職の方が年金加入期間も延びる。転職先の入社日との空白にも注意。",
+                feedback: "正解。3月31日退職なら3月分まで厚生年金(会社と折半)。3月30日退職なら3月分は国民年金+国保(全額自己負担)。月末退職の方が年金加入期間も延びます。転職先の入社日との空白にも注意。",
                 feedbackEN: "Correct. Resign March 31 and you're on Employees' Pension (split with employer) through March. Resign March 30 and March switches to National Pension + NHI (fully self-paid). End-of-month resignation also extends your pension enrollment period. Mind any gap before your new job's start date.",
                 verdict: "APPROVED",
                 lockRequirements: null
@@ -194,7 +194,7 @@ export const stage2Questions: Question[] = [
     {
         id: "s2_q07",
         category: "LABOR",
-        text: "職場でハラスメントを受けている。上司に相談したが改善されない。誰に相談すべき?",
+        text: "職場でハラスメントを受けている。上司に相談したが改善されない。誰に相談すべき？",
         textEN: "You're being harassed at work. You reported it to your supervisor, but nothing changed. Who should you consult?",
         imagePrompt: "Scene: Office corridor, employee looking exhausted leaning against wall, phone showing contact list with helpline numbers, HR door closed ahead. Composition: Corridor perspective, employee small against institutional backdrop. Mood: Isolation, hidden exit routes.",
         imagePath: "s2_q07.png",
@@ -272,7 +272,7 @@ export const stage2Questions: Question[] = [
                 text: "上司が認めないなら辞められない。転職先に入社延期を頼む。",
                 textEN: "If the boss won't accept it, I can't resign. Ask the new employer to delay.",
                 effect: { CS: 0, Asset: -20, Autonomy: -20 },
-                feedback: "法的に間違い。民法627条により、期間の定めのない雇用は2週間前の意思表示で解約可能。退職届は内容証明郵便で送れば受け取り拒否は不可。転職先を待たせた機会費用は取り戻せない。",
+                feedback: "法的に間違い。民法627条により、期間の定めのない雇用は2週間前の意思表示で解約可能。退職届は内容証明郵便で送れば受け取り拒否は不可。転職先を待たせた機会費用は取り戻せません。",
                 feedbackEN: "Legally incorrect. Under Civil Code Article 627, employment without a fixed term can be terminated with 2 weeks' notice. Send your resignation via certified mail (内容証明郵便). Refusal is not possible. The opportunity cost of delaying your new job is irrecoverable.",
                 verdict: "WARNING",
                 lockRequirements: null
@@ -281,7 +281,7 @@ export const stage2Questions: Question[] = [
                 text: "退職届を内容証明郵便で送付。法律上は2週間で退職できることを理解し、毅然と対応する。",
                 textEN: "Send the resignation letter via certified mail. Understand that legally you can resign in 2 weeks, and stand firm.",
                 effect: { CS: -10, Asset: 0, Autonomy: 20 },
-                feedback: "正解。退職は労働者の権利。就業規則が「3ヶ月前」でも民法が優先。内容証明郵便なら受け取り拒否できず、日付の証拠も残る。引継ぎは誠意を持って行うが、退職自体を止める権利は会社にない。",
+                feedback: "正解。退職は労働者の権利。就業規則が「3ヶ月前」でも民法が優先。内容証明郵便なら受け取り拒否できず、日付の証拠も残ります。引継ぎは誠意を持って行うが、退職自体を止める権利は会社にありません。",
                 feedbackEN: "Correct. Resignation is a worker's right. Even if company rules say '3 months,' the Civil Code takes precedence. Certified mail cannot be refused and provides dated proof. Handle the transition with good faith, but the company has no right to block your resignation.",
                 verdict: "APPROVED",
                 lockRequirements: { Autonomy: 150 },
@@ -295,7 +295,7 @@ export const stage2Questions: Question[] = [
     {
         id: "s2_q10",
         category: "MANNER",
-        text: "退職日。引継ぎも手続きも終えた。最後にどう振る舞う?",
+        text: "退職日。引継ぎも手続きも終えた。最後にどう振る舞う？",
         textEN: "It's your last day. Handover and paperwork are done. How do you conduct yourself at the end?",
         imagePrompt: "Scene: Office desk being cleared for the last time, small gift box of sweets ready to distribute, colleagues visible through glass partition, personal items in bag. Composition: Desk clearing moment, farewell preparations. Mood: Last impressions, bridge burning or building.",
         imagePath: "s2_q10.png",
@@ -304,7 +304,7 @@ export const stage2Questions: Question[] = [
                 text: "もう関係ないから、さっさと帰る。有給消化で最終日は顔を出さなくてもいい。",
                 textEN: "It doesn't matter anymore. Leave quickly. You could even skip the last day using paid leave.",
                 effect: { CS: -20, Asset: 0, Autonomy: 0 },
-                feedback: "法的には問題ないが、社会は狭い。業界内で評判は回る。前職の同僚が将来の取引先や転職先の面接官になることもある。「あの人は最後が最悪だった」と記憶される。",
+                feedback: "法的には問題ないが、社会は狭い。業界内で評判は回ります。前職の同僚が将来の取引先や転職先の面接官になることもあります。「あの人は最後が最悪だった」と記憶されます。",
                 feedbackEN: "Legally fine, but the world is small. Reputations circulate within industries. Former colleagues may become future clients or interviewers. You'll be remembered as 'the one who left on a bad note.'",
                 verdict: "WARNING",
                 lockRequirements: null
@@ -313,7 +313,7 @@ export const stage2Questions: Question[] = [
                 text: "菓子折りを持参し、お世話になった人に挨拶。「ありがとうございました」と感謝を伝える。社会は狭い。",
                 textEN: "Bring a box of sweets, visit those who helped you, and express your gratitude. The professional world is small.",
                 effect: { CS: 20, Asset: -10, Autonomy: 10 },
-                feedback: "正解。退職後も人間関係は続く。前職の同僚からの紹介で仕事が来ることも。「立つ鳥跡を濁さず」は処世術。感謝の気持ちを形にすることで、良い印象を残せる。",
+                feedback: "正解。退職後も人間関係は続く。前職の同僚からの紹介で仕事が来ることも。「立つ鳥跡を濁さず」は処世術。感謝の気持ちを形にすることで、良い印象を残せます。",
                 feedbackEN: "Correct. Relationships continue after you leave. Referrals from former colleagues can lead to opportunities. 'A bird that leaves should not soil the nest' (立つ鳥跡を濁さず) is a life skill. Expressing gratitude tangibly leaves a lasting positive impression.",
                 verdict: "APPROVED",
                 lockRequirements: null

@@ -69,8 +69,8 @@ export const stage6Questions: Question[] = [
     {
         id: "s6_q03",
         category: "HOUSING",
-        text: "賃貸契約で「連帯保証人が必要」と言われた。親に頼めないが、保証会社を使うと費用がかかる。",
-        textEN: "You're told a joint guarantor is required for your rental contract. You can't ask your parents, but using a guarantee company costs money.",
+        text: "賃貸契約で「連帯保証人が必要」と言われた。頼める身内はいないが、保証会社を使うと費用がかかる。",
+        textEN: "You're told a joint guarantor is required for your rental contract. You have no family to ask, but using a guarantee company costs money.",
         imagePrompt: "Scene: Rental application form on table, guarantor section highlighted with blank fields, phone showing estranged relative's contact, guarantee company pamphlet with fee schedule nearby. Composition: Form centered, two options at edges. Mood: Independence costs money, relationships cost more.",
         imagePath: "s6_q03.png",
         choices: [
@@ -318,8 +318,8 @@ export const stage6Questions: Question[] = [
                 textEN: "Consult public services: your local government's housing consultation desk, the National Consumer Affairs Center (188), Legal Support Center (法テラス, 0570-078374), etc.",
                 effect: { CS: 10, Asset: 20, Autonomy: 20 },
                 verdict: "APPROVED",
-                feedback: "正解。自治体の不動産相談窓口(無料)、国民生活センター(188)、法テラス(経済的余裕がなければ無料法律相談)。民事調停(数千円)や少額訴訟(60万円以下)も弁護士不要で利用可能。相談先を知っているだけで選択肢が広がる。",
-                feedbackEN: "Correct. Municipal real estate consultation desks (free), the National Consumer Affairs Center (188), and Legal Support Center (free legal advice if financially constrained). Civil mediation (a few thousand yen) and small claims court (up to 600,000 yen) don't require a lawyer. Just knowing where to turn expands your options.",
+                feedback: "正解。自治体の不動産相談窓口(無料)、国民生活センター(188)、法テラス(経済的余裕がなければ無料法律相談)。民事調停(数千円)や少額訴訟(60万円以下)も弁護士不要で利用可能です。",
+                feedbackEN: "Correct. Municipal real estate consultation desks (free), the National Consumer Affairs Center (188), and Legal Support Center (free legal advice if financially constrained). Civil mediation (a few thousand yen) and small claims court (up to 600,000 yen) don't require a lawyer.",
                 lockRequirements: null
             }
         ],

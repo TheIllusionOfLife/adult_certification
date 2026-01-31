@@ -24,7 +24,7 @@ export const stage8Questions: Question[] = [
                 textEN: "You don't understand what's happening, so you wait and see.",
                 effect: { CS: -20, Asset: -50, Autonomy: -10 },
                 verdict: "WARNING",
-                feedback: "SIMスワップ攻撃の可能性。攻撃者があなたの電話番号を別のSIMに移し、SMS認証を突破して銀行口座を操作。すぐに通信キャリアに連絡してSIMを停止し、銀行口座を凍結すべき。時間が経つほど被害が拡大する。",
+                feedback: "SIMスワップ攻撃の可能性。攻撃者があなたの電話番号を別のSIMに移し、SMS認証を突破して銀行口座を操作。すぐに通信キャリアに連絡してSIMを停止し、銀行口座を凍結すべきです。",
                 feedbackEN: "Possible SIM swap attack. The attacker transferred your phone number to another SIM, bypassed SMS authentication, and accessed your bank account. You should immediately contact your carrier to suspend the SIM and freeze your bank account. The longer you wait, the more damage is done.",
                 lockRequirements: null
             }
@@ -69,7 +69,7 @@ export const stage8Questions: Question[] = [
     {
         id: "s8_q03",
         category: "SEC",
-        text: "パスワードを覚えきれない。「同じパスワードを使い回す」か「メモに書く」か「パスワードマネージャーを使う」か。",
+        text: "パスワードを覚えきれない。同じパスワードを使い回すか、メモに書くか、パスワードマネージャーを使うか。",
         textEN: "You can't remember all your passwords. Should you reuse the same password, write them down, or use a password manager?",
         imagePrompt: "Scene: Computer monitor showing multiple login screens with password fields, sticky notes on monitor edge with simple passwords visible, password manager notification popup in corner. Composition: Screen fills frame, bad habits exposed. Mood: Vulnerability on display.",
         imagePath: "s8_q03.png",
@@ -153,8 +153,8 @@ export const stage8Questions: Question[] = [
                 textEN: "Factory reset it and sell on a resale app. Returning to factory settings should be enough.",
                 effect: { CS: -10, Asset: 10, Autonomy: 0 },
                 verdict: "WARNING",
-                feedback: "リスクのある選択。初期化だけではデータ復元ツールで情報を取り出せる可能性があります。写真、メール、決済情報が流出するリスクを受け入れて利益を取りました。",
-                feedbackEN: "A risky choice. Factory reset alone may not prevent data recovery tools from extracting your information. You accepted the risk of photos, emails, and payment data leaking in exchange for profit.",
+                feedback: "リスクのある選択。初期化だけではデータ復元ツールで情報を取り出せる可能性があります。",
+                feedbackEN: "A risky choice. Factory reset alone may not prevent data recovery tools from extracting your information.",
                 lockRequirements: null
             }
         ],
@@ -187,7 +187,7 @@ export const stage8Questions: Question[] = [
                 textEN: "Don't handle sensitive information on public Wi-Fi. Use a VPN or mobile data if needed.",
                 effect: { CS: 15, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
-                feedback: "正解です。公共Wi-Fiは「盗聴される前提」で使うべき。銀行、クレジットカード、重要なログインは避けるか、VPNで通信を暗号化してください。",
+                feedback: "正解です。公共Wi-Fiは「盗聴される前提」で使うべきです。銀行、クレジットカード、重要なログインは避けるか、VPNで通信を暗号化してください。",
                 feedbackEN: "Correct. Use public Wi-Fi under the assumption it's being intercepted. Avoid banking, credit cards, and important logins, or encrypt your connection with a VPN.",
                 lockRequirements: null
             }
@@ -208,8 +208,8 @@ export const stage8Questions: Question[] = [
                 textEN: "If it's for identity verification, it can't be helped. Take photos of both sides of your license and send them.",
                 effect: { CS: -10, Asset: -30, Autonomy: -30 },
                 verdict: "WARNING",
-                feedback: "身元情報の流出です。詐欺サイトに免許証画像を渡したら、あなた名義で借金や契約が行われる可能性があります。「本人確認」を装った詐欺は多発しています。",
-                feedbackEN: "Identity information leak. Handing your license photo to a scam site could lead to loans or contracts being made in your name. Scams disguised as 'identity verification' are rampant.",
+                feedback: "身元情報の流出です。詐欺サイトに免許証画像を渡したら、あなた名義で借金や契約が行われる可能性があります。本人確認を装った詐欺は多発しています。",
+                feedbackEN: "Identity information leak. Handing your license photo to a scam site could lead to loans or contracts being made in your name. Scams disguised as identity verification are rampant.",
                 lockRequirements: null
             },
             {
@@ -217,8 +217,8 @@ export const stage8Questions: Question[] = [
                 textEN: "Verify the service's legitimacy first. If suspicious, don't send it. If needed, access the official site directly to confirm.",
                 effect: { CS: 10, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
-                feedback: "正解です。本人確認書類は「最重要個人情報」。送る前に、そのサービスが本物か、本当に必要かを確認。一度流出した身分証情報は取り消せません。",
-                feedbackEN: "Correct. Identity documents are 'top-tier personal information.' Before sending, verify that the service is legitimate and the request is genuine. Once leaked, ID information cannot be revoked.",
+                feedback: "正解です。本人確認書類は最重要個人情報。送る前に、そのサービスが本物か、本当に必要かを確認。一度流出した身分証情報は取り消せません。",
+                feedbackEN: "Correct. Identity documents are top-tier personal information. Before sending, verify that the service is legitimate and the request is genuine. Once leaked, ID information cannot be revoked.",
                 lockRequirements: { Autonomy: 150 },
                 lockedFeedback: "LOCKED: 自律性が150以上必要。「言われたから送る」という思考停止状態です。",
                 lockedFeedbackEN: "LOCKED: Autonomy of 150 or higher required. You're in a thoughtless state of 'I was told to, so I'll send it.'"
@@ -277,7 +277,7 @@ export const stage8Questions: Question[] = [
                 textEN: "Prioritize efficiency and input confidential information. AI is more accurate and gets work done faster.",
                 effect: { CS: -10, Asset: 0, Autonomy: 0 },
                 verdict: "WARNING",
-                feedback: "危険な選択。AIサービスは入力データを学習に使用する可能性があります。機密情報の漏洩が起きた場合、責任はあなたに。便利さの代償は計り知れない。",
+                feedback: "危険な選択。AIサービスは入力データを学習に使用する可能性があります。機密情報の漏洩が起きた場合、責任はあなたに。便利さの代償は計り知れません。",
                 feedbackEN: "A dangerous choice. AI services may use input data for training. If confidential information leaks, the responsibility falls on you. The cost of convenience can be immeasurable.",
                 lockRequirements: null
             },
@@ -286,8 +286,8 @@ export const stage8Questions: Question[] = [
                 textEN: "Never input confidential information. Only use the AI for general questions.",
                 effect: { CS: 15, Asset: 0, Autonomy: 10 },
                 verdict: "APPROVED",
-                feedback: "正解。AIツールの利便性と情報管理の境界線を引く判断力があります。機密情報の流出リスクをゼロにしました。効率は落ちますが、情報セキュリティを守る姿勢は組織への責任。",
-                feedbackEN: "Correct. You have the judgment to draw a line between AI convenience and information security. You've reduced the risk of confidential data leakage to zero. Efficiency drops, but protecting information security is your responsibility to the organization.",
+                feedback: "正解。利用規約を確認し、適切に活用しましょう。情報セキュリティを守る姿勢は組織への責任です。",
+                feedbackEN: "Correct. Check the terms of service and use AI tools appropriately. Protecting information security is your responsibility to the organization.",
                 lockRequirements: { Autonomy: 170 },
                 lockedFeedback: "LOCKED: 自律性が170以上必要。便利さの誘惑に抗うには自律性が必要です。",
                 lockedFeedbackEN: "LOCKED: Autonomy of 170 or higher required. Resisting the temptation of convenience requires autonomy."
@@ -313,7 +313,7 @@ export const stage8Questions: Question[] = [
                 textEN: "No need for a High-Cost Medical Expense Limit Certificate; high-cost medical benefits are applied automatically. Auto-filling for medical expense deductions is also possible.",
                 effect: { CS: 15, Asset: 30, Autonomy: 10 },
                 verdict: "APPROVED",
-                feedback: "正解。入院時に限度額適用認定証を事前申請する手間がなくなる。薬の飲み合わせチェック、過去の健診結果確認もできる。救急搬送時にも医療情報が共有される。",
+                feedback: "正解。入院時に限度額適用認定証を事前申請する手間がなくなります。薬の飲み合わせチェック、過去の健診結果確認もできます。救急搬送時にも医療情報が共有されます。",
                 feedbackEN: "Correct. No more pre-applying for the Limit Certificate when hospitalized. You can also check drug interactions and past health checkup results. Medical information is shared even during emergency transport.",
                 lockRequirements: null
             },
@@ -322,8 +322,8 @@ export const stage8Questions: Question[] = [
                 textEN: "Same as a regular insurance card. Just another card to carry around.",
                 effect: { CS: -20, Asset: -30, Autonomy: -10 },
                 verdict: "WARNING",
-                feedback: "大きな誤解。マイナ保険証なら限度額適用認定証が不要(高額療養費の自己負担限度額が自動適用)。マイナポータルで過去の診療歴・処方薬を確認可能。確定申告の医療費控除も自動入力。2024年12月から従来の保険証は新規発行停止。",
-                feedbackEN: "A big misconception. The My Number Insurance Card eliminates the need for the Limit Certificate (high-cost medical expense limits are auto-applied). You can check past medical history and prescriptions via the My Number Portal. Medical expense deductions auto-fill for tax returns. As of December 2024, traditional insurance cards are no longer newly issued.",
+                feedback: "大きな誤解。マイナ保険証なら限度額適用認定証が不要(高額療養費の自己負担限度額が自動適用)。マイナポータルで過去の診療歴・処方薬を確認可能。確定申告の医療費控除も自動入力できます。",
+                feedbackEN: "A big misconception. The My Number Insurance Card eliminates the need for the Limit Certificate (high-cost medical expense limits are auto-applied). You can check past medical history and prescriptions via the My Number Portal. Medical expense deductions auto-fill for tax returns.",
                 lockRequirements: null
             }
         ],
