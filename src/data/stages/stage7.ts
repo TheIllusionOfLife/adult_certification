@@ -46,11 +46,11 @@ export const stage7Questions: Question[] = [
         choices: [
             {
                 text: "消費者センター（188）に相談する。第三者の介入で状況が変わることも多い。",
-                textEN: "Consult the Consumer Affairs Center (188). Third-party intervention often changes the situation.",
+                textEN: "Consult the Consumer Hotline (188). Third-party intervention often changes the situation.",
                 effect: { CS: 10, Asset: 0, Autonomy: 5 },
                 verdict: "APPROVED",
                 feedback: "正解です。消費者センターは無料で相談でき、あっせん（仲裁）もしてくれます。「相談先を知っている」ことが、不当な扱いへの最大の武器です。",
-                feedbackEN: "Correct. The Consumer Affairs Center offers free consultations and can mediate. Knowing where to seek help is your greatest weapon against unfair treatment.",
+                feedbackEN: "Correct. The Consumer Hotline (188) offers free consultations and can mediate. Knowing where to seek help is your greatest weapon against unfair treatment.",
                 lockRequirements: null
             },
             {
@@ -240,7 +240,7 @@ export const stage7Questions: Question[] = [
         choices: [
             {
                 text: "「連帯保証は無理」と断る。どんなに親しくても、赤の他人の借金リスクは負えない。",
-                textEN: "Decline: 'I can't be a joint guarantor.' No matter how close, you can't take on a stranger's debt risk.",
+                textEN: "Decline: 'I can't be a joint guarantor.' No matter how close, you can't take on someone else's debt risk.",
                 effect: { CS: 10, Asset: 10, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。連帯保証を断ることは冷たいことではなく、自己防衛です。2020年の民法改正で保護は強化されましたが、リスクの本質は変わりません。",

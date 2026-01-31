@@ -201,7 +201,7 @@ export const stage10Questions: Question[] = [
         choices: [
             {
                 text: "「私の人生は私が決めます。データは参考にしますが、提案内容を検証します。」と答える。",
-                textEN: "'I decide my own life. I'll use the data as reference, but I'll verify the suggestions myself.' you reply.",
+                textEN: "'I decide my own life. I'll use the data as reference, but I'll verify the suggestions myself.' You reply.",
                 effect: { CS: 0, Asset: 0, Autonomy: 20 },
                 verdict: "NEUTRAL",
                 feedback: "自律的選択です。システムの「善意」を疑い、主体性を守りました。",
@@ -212,7 +212,7 @@ export const stage10Questions: Question[] = [
             },
             {
                 text: "「ありがとうございます。提案に従います。」と受け入れる。",
-                textEN: "'Thank you. I'll follow your suggestion.' you accept.",
+                textEN: "'Thank you. I'll follow your suggestion.' You accept.",
                 effect: { CS: 0, Asset: 0, Autonomy: -50 },
                 verdict: "NEUTRAL",
                 feedback: "従順な選択です。A.D.A.M.はあなたの選択を記録しました。",

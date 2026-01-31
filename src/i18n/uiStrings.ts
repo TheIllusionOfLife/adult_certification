@@ -12,7 +12,7 @@ export const UI_SKILLS_NONE = () => t('未所持', 'None');
 export const UI_SKILL_SELECT_TITLE = () => t('スキル選択', 'Skill Select');
 export const UI_RECOMMENDED_BADGE = () => t('推奨', 'REC');
 export const UI_SKILL_DEFAULT_RECOMMEND = (name: string) =>
-    t(`「${name}」を推奨します。実利的な選択です。`, `I recommend "${name}." A pragmatic choice.`);
+    t(`「${name}」を推奨します。実利的な選択です。`, `I recommend "${name}". A pragmatic choice.`);
 
 // Lock reasons
 export const UI_LOCK_CS = (n: number) => t(`社会的信用が${n}以上必要`, `Credit must be ${n}+`);

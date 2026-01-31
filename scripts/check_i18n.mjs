@@ -7,10 +7,12 @@
  */
 
 import { readFileSync, readdirSync } from 'fs';
-import { join, basename } from 'path';
+import { join, basename, dirname } from 'path';
+import { fileURLToPath } from 'url';
 
-const STAGES_DIR = join(import.meta.dirname, '../src/data/stages');
-const METADATA_FILE = join(import.meta.dirname, '../src/data/stageMetadata.ts');
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const STAGES_DIR = join(__dirname, '../src/data/stages');
+const METADATA_FILE = join(__dirname, '../src/data/stageMetadata.ts');
 
 let totalMissing = 0;
 let totalChecked = 0;

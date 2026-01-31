@@ -672,9 +672,7 @@ export function getADAMCommentForEffect(effect: { CS: number; Asset: number; Aut
     const { CS, Asset, Autonomy } = effect;
 
     // Check CS first (most important metric)
-    const csComment = getADAMComment(CS);
-    const defaultComment = t("処理完了です。", "Processing complete.");
-    if (csComment !== defaultComment) return csComment;
+    if (CS >= 30 || CS <= -20) return getADAMComment(CS);
 
     // Check other metrics
     if (Autonomy <= -15) return t(
@@ -690,5 +688,5 @@ export function getADAMCommentForEffect(effect: { CS: number; Asset: number; Aut
         "Unjust enrichment... No, legitimate compensation."
     );
 
-    return defaultComment;
+    return t("処理完了です。", "Processing complete.");
 }

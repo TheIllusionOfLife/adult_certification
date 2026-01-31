@@ -545,7 +545,7 @@ const stage10Definition: StageDefinition = {
                 '「総合信用」を推奨します。総合的な判断力は、最終審査において重要です。',
                 "Bird's Eye View",
                 'The perspective to see the whole and grasp the essence. Amplifies Credit gains by 100%.',
-                "I recommend 'Bird\\'s Eye View.' Comprehensive judgment is crucial in the final exam."
+                "I recommend 'Bird's Eye View.' Comprehensive judgment is crucial in the final exam."
             ),
             createNormalSkill(
                 's10_normal_02',
