@@ -4,6 +4,7 @@ import { applySkillEffects, getSkillActivations, type SkillActivation } from '..
 import { getADAMCommentForEffect } from '../data/adamDialogue';
 import { CONFIG } from '../config';
 import { GlobalProgressStorage } from '../storage/GlobalProgressStorage';
+import { t } from '../i18n/lang';
 import * as UI from '../i18n/uiStrings';
 
 export class GameEngine {
@@ -91,7 +92,7 @@ export class GameEngine {
 
         return {
             outcome: modifiedEffect,
-            feedback: `${choice.feedback}<br><br><span style="color:#aaa; font-size:0.9em;">[A.D.A.M.]: ${adamComment}</span>`,
+            feedback: `${t(choice.feedback, choice.feedbackEN)}<br><br><span style="color:#aaa; font-size:0.9em;">[A.D.A.M.]: ${adamComment}</span>`,
             isTerminated,
             skillActivations
         };
