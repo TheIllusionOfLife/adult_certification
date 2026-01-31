@@ -144,7 +144,7 @@ export const stage7Questions: Question[] = [
                 textEN: "All I can do is keep sending reminders. Lawyers are expensive, so I might give up.",
                 effect: { CS: -10, Asset: -40, Autonomy: -10 },
                 verdict: "WARNING",
-                feedback: "泣き寝入りに近い。フリーランスには公的な相談窓口がある。",
+                feedback: "泣き寝入りに近い。フリーランス用の公的な相談窓口を利用しましょう。",
                 feedbackEN: "Close to giving in. There are public consultation services for freelancers.",
                 lockRequirements: null
             },
