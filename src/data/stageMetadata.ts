@@ -6,10 +6,10 @@ import {
     type StageDefinition,
 } from './stages/stageTemplate';
 
-// Stage 1: Social Basics
+// Stage 1: Launch into Society
 const stage1Definition: StageDefinition = {
     id: 1,
-    theme: 'Social Basics',
+    theme: 'Launch into Society',
     themeJP: '社会への出発便',
     keySkillId: 'MEDIATION',
     skills: {
@@ -64,10 +64,10 @@ const stage1Definition: StageDefinition = {
     },
 };
 
-// Stage 2: Work Fundamentals
+// Stage 2: Workplace Survival
 const stage2Definition: StageDefinition = {
     id: 2,
-    theme: 'Work Fundamentals',
+    theme: 'Workplace Survival',
     themeJP: '職場の生存術',
     keySkillId: 'EVIDENCE_CHAIN',
     skills: {
@@ -122,10 +122,10 @@ const stage2Definition: StageDefinition = {
     },
 };
 
-// Stage 3: Money Fundamentals
+// Stage 3: Fortress of Finance
 const stage3Definition: StageDefinition = {
     id: 3,
-    theme: 'Money Fundamentals',
+    theme: 'Fortress of Finance',
     themeJP: '財務の砦',
     keySkillId: 'COMPOUND_SENSE',
     skills: {
@@ -180,10 +180,10 @@ const stage3Definition: StageDefinition = {
     },
 };
 
-// Stage 4: Administrative Procedures
+// Stage 4: Bureaucratic Labyrinth
 const stage4Definition: StageDefinition = {
     id: 4,
-    theme: 'Administrative Procedures',
+    theme: 'Bureaucratic Labyrinth',
     themeJP: '行政の迷宮',
     keySkillId: 'DUE_PROCESS',
     skills: {
@@ -238,10 +238,10 @@ const stage4Definition: StageDefinition = {
     },
 };
 
-// Stage 5: Social Safety Nets
+// Stage 5: Safety Net Compass
 const stage5Definition: StageDefinition = {
     id: 5,
-    theme: 'Social Safety Nets',
+    theme: 'Safety Net Compass',
     themeJP: '社会保障の羅針盤',
     keySkillId: 'SAFETY_NET_NAVIGATION',
     skills: {
@@ -296,10 +296,10 @@ const stage5Definition: StageDefinition = {
     },
 };
 
-// Stage 6: Life Contracts
+// Stage 6: The Fine Print
 const stage6Definition: StageDefinition = {
     id: 6,
-    theme: 'Life Contracts',
+    theme: 'The Fine Print',
     themeJP: '契約の攻防',
     keySkillId: 'NEGOTIATION_PROTOCOL',
     skills: {
@@ -354,10 +354,10 @@ const stage6Definition: StageDefinition = {
     },
 };
 
-// Stage 7: Legal Protection
+// Stage 7: Shield of Law
 const stage7Definition: StageDefinition = {
     id: 7,
-    theme: 'Legal Protection',
+    theme: 'Shield of Law',
     themeJP: '法の盾',
     keySkillId: 'CONTRACT_LITERACY',
     skills: {
@@ -412,10 +412,10 @@ const stage7Definition: StageDefinition = {
     },
 };
 
-// Stage 8: Digital Citizenship
+// Stage 8: Digital Citizen
 const stage8Definition: StageDefinition = {
     id: 8,
-    theme: 'Digital Citizenship',
+    theme: 'Digital Citizen',
     themeJP: '電子市民',
     keySkillId: 'IDENTITY_HYGIENE',
     skills: {
@@ -470,10 +470,10 @@ const stage8Definition: StageDefinition = {
     },
 };
 
-// Stage 9: Crisis Management
+// Stage 9: Damage Control
 const stage9Definition: StageDefinition = {
     id: 9,
-    theme: 'Crisis Management',
+    theme: 'Damage Control',
     themeJP: '危機管理',
     keySkillId: 'DAMAGE_CONTROL',
     skills: {
@@ -528,10 +528,10 @@ const stage9Definition: StageDefinition = {
     },
 };
 
-// Stage 10: Final Certification
+// Stage 10: The Final Verdict
 const stage10Definition: StageDefinition = {
     id: 10,
-    theme: 'Final Certification',
+    theme: 'The Final Verdict',
     themeJP: '最終認定',
     keySkillId: 'AWAKENING',
     skills: {
