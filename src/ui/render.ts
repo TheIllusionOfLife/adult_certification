@@ -9,6 +9,7 @@ import { GlobalProgressStorage } from '../storage/GlobalProgressStorage';
 import { STAGE_METADATA, getStageMetadata } from '../data/stageMetadata';
 import { getLang, setLang, t } from '../i18n/lang';
 import * as UI from '../i18n/uiStrings';
+import { adamDialogue, adamDialogueEN } from '../data/adamDialogue';
 
 // Vite glob import for assets
 const images = import.meta.glob('../assets/*.{png,jpg,jpeg,webp}', { eager: true });
@@ -37,6 +38,9 @@ interface DOMElements {
     mascotContainer: HTMLElement;
     mascotImg: HTMLImageElement;
     titleLogo: HTMLImageElement;
+    adamSpeechScreen: HTMLElement;
+    adamSpeechText: HTMLElement;
+    adamSpeechBtn: HTMLButtonElement;
 }
 
 export class UIManager {
@@ -75,7 +79,10 @@ export class UIManager {
             diffList: getEl<HTMLElement>(DOM_IDS.DIFFICULTY_LIST),
             mascotContainer: getEl<HTMLElement>(DOM_IDS.MASCOT_CONTAINER),
             mascotImg: getEl<HTMLImageElement>(DOM_IDS.MASCOT_IMG),
-            titleLogo: getEl<HTMLImageElement>(DOM_IDS.TITLE_LOGO)
+            titleLogo: getEl<HTMLImageElement>(DOM_IDS.TITLE_LOGO),
+            adamSpeechScreen: getEl<HTMLElement>(DOM_IDS.ADAM_SPEECH_SCREEN),
+            adamSpeechText: getEl<HTMLElement>(DOM_IDS.ADAM_SPEECH_TEXT),
+            adamSpeechBtn: getEl<HTMLButtonElement>(DOM_IDS.ADAM_SPEECH_BTN)
         };
     }
 
@@ -158,6 +165,95 @@ export class UIManager {
     }
 
     private lastScores = { CS: 100, Asset: 100, Autonomy: 100 };
+    private adamSpeechShownFor = new Set<string>();
+    private typewriterTimerId: ReturnType<typeof setTimeout> | null = null;
+    private typewriterResolve: (() => void) | null = null;
+
+    private typewriterEffect(element: HTMLElement, text: string, speed = 30): Promise<void> {
+        return new Promise((resolve) => {
+            this.cancelTypewriter();
+            this.typewriterResolve = resolve;
+            element.textContent = '';
+            let i = 0;
+            const tick = () => {
+                if (i < text.length) {
+                    element.textContent += text[i];
+                    i++;
+                    element.scrollTop = element.scrollHeight;
+                    this.typewriterTimerId = setTimeout(tick, speed);
+                } else {
+                    this.typewriterTimerId = null;
+                    this.typewriterResolve = null;
+                    resolve();
+                }
+            };
+            tick();
+        });
+    }
+
+    private cancelTypewriter(): void {
+        if (this.typewriterTimerId !== null) {
+            clearTimeout(this.typewriterTimerId);
+            this.typewriterTimerId = null;
+        }
+        if (this.typewriterResolve) {
+            this.typewriterResolve();
+            this.typewriterResolve = null;
+        }
+    }
+
+    private getStageDialogue(stageNum: number) {
+        const key = `stage${stageNum}` as keyof typeof adamDialogue;
+        const ja = adamDialogue[key];
+        const en = adamDialogueEN[key];
+        if (!ja) return null;
+        return { ja, en: en || null };
+    }
+
+    showAdamSpeech(lines: string[], onDismiss: () => void): void {
+        const text = lines.filter(l => l.length > 0).join('\n');
+        this.dom.adamSpeechScreen.style.display = 'flex';
+        this.dom.adamSpeechBtn.disabled = true;
+        this.dom.adamSpeechBtn.style.opacity = '0.5';
+
+        this.typewriterEffect(this.dom.adamSpeechText, text, 25).then(() => {
+            this.dom.adamSpeechBtn.disabled = false;
+            this.dom.adamSpeechBtn.style.opacity = '1';
+        });
+
+        // Allow click to skip typewriter
+        const skipHandler = () => {
+            if (this.typewriterTimerId !== null) {
+                this.cancelTypewriter();
+                this.dom.adamSpeechText.textContent = text;
+                this.dom.adamSpeechBtn.disabled = false;
+                this.dom.adamSpeechBtn.style.opacity = '1';
+            }
+        };
+        this.dom.adamSpeechScreen.onclick = (e) => {
+            if (e.target === this.dom.adamSpeechBtn) return;
+            skipHandler();
+        };
+
+        this.dom.adamSpeechBtn.onclick = () => {
+            this.dom.adamSpeechScreen.onclick = null;
+            this.dom.adamSpeechScreen.style.display = 'none';
+            this.cancelTypewriter();
+            onDismiss();
+        };
+    }
+
+    private getLocalizedDialogue(stageNum: number) {
+        const d = this.getStageDialogue(stageNum);
+        if (!d) return null;
+        return getLang() === 'en' && d.en ? d.en : d.ja;
+    }
+
+    private getAdamLinesForTiming(timing: 'intro' | 'keySkillAcquired'): string[] | null {
+        const dl = this.getLocalizedDialogue(this.engine.state.currentStage);
+        if (!dl) return null;
+        return dl[timing] ?? null;
+    }
 
     updateHUD() {
         const s = this.engine.state;
@@ -214,6 +310,23 @@ export class UIManager {
             this.finishGame();
             return;
         }
+
+        // A.D.A.M. speech screen before Q1 (intro)
+        const idx = this.engine.state.currentQuestionIndex;
+        const timing = idx === 0 ? 'intro' : null;
+        if (timing && !this.adamSpeechShownFor.has(`${timing}-${idx}`)) {
+            this.adamSpeechShownFor.add(`${timing}-${idx}`);
+            const lines = this.getAdamLinesForTiming(timing);
+            if (lines) {
+                this.showAdamSpeech(lines, () => this.doRenderQuestion(q));
+                return;
+            }
+        }
+
+        this.doRenderQuestion(q);
+    }
+
+    private doRenderQuestion(q: Question) {
 
         this.dom.qCat.innerText = q.category;
         this.dom.qNum.innerText = `Q.${this.engine.state.currentQuestionIndex + 1} / ${this.engine.state.questions.length}`;
@@ -480,7 +593,7 @@ export class UIManager {
                     // Show A.D.A.M. comment for key skills
                     if (s.category === 'key' && s.adamComment) {
                         const adamText = t(s.adamComment, s.adamCommentEN);
-                        this.dom.ovBody.innerHTML += `<br><br><span style="color:#f72585; font-style:italic;">[A.D.A.M.]: ${adamText}</span>`;
+                        this.dom.ovBody.innerHTML += `<br><br><span style="color:#f72585; font-style:italic;">${adamText}</span>`;
                     }
 
                     // Update skill list display
@@ -500,9 +613,26 @@ export class UIManager {
     }
 
     closeFeedback() {
+        const idx = this.engine.state.currentQuestionIndex;
+        const skillOfferIdx = CONFIG.SKILL_OFFER_POSITIONS.indexOf(idx);
+
         this.dom.overlay.style.display = 'none';
         this.dom.skillBox.style.display = 'none';
         this.engine.nextQuestion();
+
+        // After skill offer 2 → keySkillAcquired (only if key skill was obtained)
+        if (skillOfferIdx === 1 && this.engine.state.keySkills.length > 0) {
+            const key = `keySkillAcquired-${idx}`;
+            if (!this.adamSpeechShownFor.has(key)) {
+                this.adamSpeechShownFor.add(key);
+                const lines = this.getAdamLinesForTiming('keySkillAcquired');
+                if (lines) {
+                    this.showAdamSpeech(lines, () => this.renderCurrentQuestion());
+                    return;
+                }
+            }
+        }
+
         this.renderCurrentQuestion();
     }
 
@@ -531,6 +661,11 @@ export class UIManager {
             ? `<span style="color: #4cc9f0;">${UI.UI_KEY_SKILL_OBTAINED()}</span>`
             : `<span style="color: #888;">${UI.UI_KEY_SKILL_NOT_OBTAINED()}</span>`;
 
+        // Use stage-specific outro from adamDialogue if available, fall back to generic ending.desc
+        const dl = this.getLocalizedDialogue(s.currentStage);
+        const rankKey = ending.rank as 'S' | 'A' | 'B' | 'C';
+        const adamComment = dl?.outro[rankKey] || ending.desc;
+
         this.dom.ovTitle.innerText = UI.UI_STAGE_COMPLETE();
         this.dom.ovTitle.style.color = "var(--accent-color)";
 
@@ -544,7 +679,7 @@ export class UIManager {
                 </div>
                 <div class="adam-comment-section">
                     <img src="${this.dom.mascotImg.src}" alt="A.D.A.M." class="adam-comment-img" />
-                    <div class="adam-comment-text">[A.D.A.M.]: ${ending.desc}</div>
+                    <div class="adam-comment-text">${adamComment}</div>
                 </div>
                 <div style="margin-top: 15px; font-size: 0.85rem; color: #666;">Key Skill: ${keySkillStatus}</div>
             </div>
@@ -632,7 +767,7 @@ export class UIManager {
 
                 <div class="adam-comment-section">
                     <img src="${this.dom.mascotImg.src}" alt="A.D.A.M." class="adam-comment-img" />
-                    <div class="adam-comment-text">[A.D.A.M.]: ${licenseInfo.adamComment}</div>
+                    <div class="adam-comment-text">${licenseInfo.adamComment}</div>
                 </div>
             </div>
         `;
