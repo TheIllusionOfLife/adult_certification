@@ -59,7 +59,7 @@ export const stage5Questions: Question[] = [
                 effect: { CS: 15, Asset: 40, Autonomy: 5 },
                 verdict: "APPROVED",
                 feedback: "正解です。会社員の特権である健康保険の傷病手当金。申請主義なので、自分から動かないと受け取れません。退職後も継続受給可能(退職日に労務不能+1年以上の被保険者期間が条件)。",
-                feedbackEN: "Correct. The Injury and Sickness Allowance is an employee health insurance benefit. It operates on an application basis — you must act to receive it. You can continue receiving it even after resignation (if incapable of work on your last day + 1 year of continuous enrollment).",
+                feedbackEN: "Correct. The Injury and Sickness Allowance is an employee health insurance benefit. It operates on an application basis, so you must act to receive it. You can continue receiving it even after resignation (if incapable of work on your last day + 1 year of continuous enrollment).",
                 lockRequirements: null
             }
         ]
@@ -145,7 +145,7 @@ export const stage5Questions: Question[] = [
                 effect: { CS: -30, Asset: 0, Autonomy: -30 },
                 verdict: "WARNING",
                 feedback: "最悪の選択。職場全体に感染が広がり、プロジェクト全体が停止するリスク。感染症を隠して出社するのは「頑張り」ではなく「迷惑」。報告と休養が社会人の義務。",
-                feedbackEN: "The worst choice. You risk spreading the infection across the entire workplace, shutting down the project. Hiding an infectious disease to show up is not 'dedication' — it's irresponsible. Reporting and resting is a professional obligation.",
+                feedbackEN: "The worst choice. You risk spreading the infection across the entire workplace, shutting down the project. Hiding an infectious disease to show up is not 'dedication.' It's irresponsible. Reporting and resting is a professional obligation.",
                 lockRequirements: null
             },
             {
@@ -214,7 +214,7 @@ export const stage5Questions: Question[] = [
                 effect: { CS: 10, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。メンタルヘルスケアは「弱さ」ではなく「自己管理能力」。自立支援医療制度を使えば、医療費負担も軽減できます。",
-                feedbackEN: "Correct. Mental healthcare is not 'weakness' — it's self-management. Using the Self-Support Medical Care system (自立支援医療制度) can also reduce medical costs.",
+                feedbackEN: "Correct. Mental healthcare is not 'weakness.' It's self-management. Using the Self-Support Medical Care system (自立支援医療制度) can also reduce medical costs.",
                 lockRequirements: { Autonomy: 150 },
                 lockedFeedback: "LOCKED: 自律性が150以上必要。「助けを求める」という発想自体が浮かばない状態です。",
                 lockedFeedbackEN: "LOCKED: Autonomy of 150 or higher required. The very idea of 'asking for help' doesn't cross your mind."
@@ -283,7 +283,7 @@ export const stage5Questions: Question[] = [
                 effect: { CS: 0, Asset: 30, Autonomy: 0 },
                 verdict: "NEUTRAL",
                 feedback: "合理的な選択です。生活保護は「税金で生きる」のではなく「再起するための一時的支援」。制度を使って立て直すことは、自立への第一歩です。",
-                feedbackEN: "A rational choice. Public assistance isn't 'living off taxes' — it's 'temporary support for getting back on your feet.' Using the system to rebuild is the first step toward self-reliance.",
+                feedbackEN: "A rational choice. Public assistance isn't 'living off taxes.' It's 'temporary support for getting back on your feet.' Using the system to rebuild is the first step toward self-reliance.",
                 lockRequirements: { Autonomy: 180 },
                 lockedFeedback: "LOCKED: 自律性が180以上必要。「恥ずかしい」という感情に支配され、権利を行使する自律性がありません。",
                 lockedFeedbackEN: "LOCKED: Autonomy of 180 or higher required. You're controlled by the feeling of 'shame' and lack the autonomy to exercise your rights."

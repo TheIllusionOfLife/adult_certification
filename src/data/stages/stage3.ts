@@ -70,13 +70,13 @@ export const stage3Questions: Question[] = [
         id: "s3_q03",
         category: "FINANCE",
         text: "クレジットカードの審査に落ちた。理由を知りたいが、自分の「信用情報」はどこで確認できる？",
-        textEN: "Your credit card application was rejected. You want to know why — where can you check your credit information (信用情報)?",
+        textEN: "Your credit card application was rejected. You want to know why. Where can you check your credit information (信用情報)?",
         imagePrompt: "Scene: a rejected credit card application; CIC/JICC logos glowing; a person's credit history visualized as a report card. Composition: credit score concept with accessible information path. Mood: rejection turning to empowerment through knowledge.",
         imagePath: "s3_q03.png",
         choices: [
             {
                 text: "信用情報は企業秘密だから、本人でも見られないはず。",
-                textEN: "Credit information is a trade secret — even the individual can't see it.",
+                textEN: "Credit information is a trade secret. Even the individual can't see it.",
                 effect: { CS: -20, Asset: 0, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "誤りです。CIC、JICC、全国銀行協会に開示請求すれば、自分の信用情報を確認できます。延滞や債務整理の記録は5〜10年残り、審査に影響します。知らないと対策できません。",
@@ -175,12 +175,12 @@ export const stage3Questions: Question[] = [
                 effect: { CS: 10, Asset: 20, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。公的保険を理解した上で「足りない部分だけ」民間保険で補う。保険は「安心」ではなく「確率とコストの計算」です。",
-                feedbackEN: "Correct. Understand public insurance first, then fill only the gaps with private insurance. Insurance isn't 'peace of mind' — it's a calculation of probability and cost.",
+                feedbackEN: "Correct. Understand public insurance first, then fill only the gaps with private insurance. Insurance isn't 'peace of mind.' It's a calculation of probability and cost.",
                 lockRequirements: null
             },
             {
                 text: "「万が一」が怖いので、勧められるまま全部加入する。",
-                textEN: "Fear of 'what if' wins — sign up for everything as recommended.",
+                textEN: "Fear of 'what if' wins. Sign up for everything as recommended.",
                 effect: { CS: 0, Asset: -40, Autonomy: -20 },
                 verdict: "WARNING",
                 feedback: "過剰防衛です。日本には高額療養費制度があり、医療費の自己負担には上限があります。恐怖で売り込まれると、不要な保険料を払い続けることになります。",
@@ -212,7 +212,7 @@ export const stage3Questions: Question[] = [
             },
             {
                 text: "「30日無利息なら大丈夫」と借りる。",
-                textEN: "Borrow it — '30 days interest-free should be fine.'",
+                textEN: "Borrow it. '30 days interest-free should be fine.'",
                 effect: { CS: 0, Asset: -30, Autonomy: -20 },
                 verdict: "WARNING",
                 feedback: "罠にはまりました。30日で返せなければ年利18%。30万円が半年で約3万円の利息に。「簡単に借りられる」は「簡単に搾取される」と同義です。",
@@ -274,7 +274,7 @@ export const stage3Questions: Question[] = [
                 effect: { CS: -20, Asset: -50, Autonomy: -20 },
                 verdict: "WARNING",
                 feedback: "危険。ワンルームマンション投資は空室リスク、修繕費、管理費、固定資産税を考慮すると利回りが大幅に下がる。「サブリース契約で安心」も解約トラブル多発。不動産会社は売った時点で利益確定、リスクは買主が負う。",
-                feedbackEN: "Dangerous. When you factor in vacancy risk, repair costs, management fees, and property tax, the return on one-room apartment investment drops significantly. 'Sublease contract for security' also has frequent cancellation disputes. The real estate company locks in profit at the point of sale — you bear the risk.",
+                feedbackEN: "Dangerous. When you factor in vacancy risk, repair costs, management fees, and property tax, the return on one-room apartment investment drops significantly. 'Sublease contract for security' also has frequent cancellation disputes. The real estate company locks in profit at the point of sale. You bear the risk.",
                 lockRequirements: null
             },
             {

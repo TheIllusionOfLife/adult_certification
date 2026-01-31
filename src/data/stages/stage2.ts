@@ -58,7 +58,7 @@ export const stage2Questions: Question[] = [
                 textEN: "Confront your boss directly: 'This is illegal,' and hint at reporting to the Labor Standards Office.",
                 effect: { CS: -20, Asset: 0, Autonomy: 20 },
                 feedback: "正論ですが、職場で孤立しました。正義を振りかざすタイミングを誤ると、味方がいなくなります。証拠を固めてからでも遅くはなかったはずです。困ったら「労働条件相談ほっとライン(0120-811-610)」に無料電話相談を。平日夜間・土日も対応。",
-                feedbackEN: "You're right, but now you're isolated at work. Wielding justice at the wrong time leaves you without allies. It wasn't too late to build your case first. If in trouble, call the Labor Conditions Consultation Hotline (0120-811-610) — free, available evenings and weekends.",
+                feedbackEN: "You're right, but now you're isolated at work. Wielding justice at the wrong time leaves you without allies. It wasn't too late to build your case first. If in trouble, call the Labor Conditions Consultation Hotline (0120-811-610), free and available evenings and weekends.",
                 verdict: "WARNING",
                 lockRequirements: null
             }
@@ -70,7 +70,7 @@ export const stage2Questions: Question[] = [
         id: "s2_q03",
         category: "LABOR",
         text: "有給休暇を申請したら「理由は？繁忙期だから無理」と言われた。",
-        textEN: "You applied for paid leave and were told: 'What's the reason? It's busy season — request denied.'",
+        textEN: "You applied for paid leave and were told: 'What's the reason? It's busy season. Request denied.'",
         imagePrompt: "Scene: an office with a worker standing before a supervisor's desk holding a vacation request form; supervisor with arms crossed looking stern; a calendar on the wall showing busy season marked in red. Composition: worker in foreground looking small, supervisor looming behind desk, calendar visible in background. Mood: confrontation, rights vs authority, bureaucratic pressure.",
         imagePath: "s2_q03.png",
         choices: [
@@ -141,10 +141,10 @@ export const stage2Questions: Question[] = [
         choices: [
             {
                 text: "特にこだわりはない。上司が提案した日程で辞める。",
-                textEN: "No preference — just go with whatever date my boss suggests.",
+                textEN: "No preference. Just go with whatever date my boss suggests.",
                 effect: { CS: 0, Asset: -30, Autonomy: -10 },
                 feedback: "退職日を1日ずらすだけで社会保険料に大きな差が出ることを知らない。社会保険料は「退職日の翌日が属する月の前月分まで」徴収。月末退職なら当月分まで厚生年金加入(会社折半)。月末前日退職だとその月は国保+国民年金(全額自己負担)に切り替え。月3〜5万円の差になりうる。",
-                feedbackEN: "You don't realize that shifting the resignation date by just one day can significantly change your social insurance premiums. Premiums are collected 'up to the month before the month containing the day after resignation.' Resigning on the last day of the month keeps you on Employees' Pension (split with employer) for that month. Resigning one day earlier switches you to National Health Insurance + National Pension (fully self-paid) — a potential difference of 30,000-50,000 yen per month.",
+                feedbackEN: "You don't realize that shifting the resignation date by just one day can significantly change your social insurance premiums. Premiums are collected 'up to the month before the month containing the day after resignation.' Resigning on the last day of the month keeps you on Employees' Pension (split with employer) for that month. Resigning one day earlier switches you to National Health Insurance + National Pension (fully self-paid). That's a potential difference of 30,000-50,000 yen per month.",
                 verdict: "WARNING",
                 lockRequirements: null
             },
@@ -217,7 +217,7 @@ export const stage2Questions: Question[] = [
                 verdict: "APPROVED",
                 lockRequirements: { Autonomy: 130 },
                 lockedFeedback: "LOCKED: 自律性が130以上必要 - 外部に助けを求める勇気がありません。",
-                lockedFeedbackEN: "LOCKED: Autonomy of 130 or higher required — you lack the courage to seek outside help."
+                lockedFeedbackEN: "LOCKED: Autonomy of 130 or higher required. You lack the courage to seek outside help."
             }
         ],
         adamDialogue: {
@@ -273,7 +273,7 @@ export const stage2Questions: Question[] = [
                 textEN: "If the boss won't accept it, I can't resign. Ask the new employer to delay.",
                 effect: { CS: 0, Asset: -20, Autonomy: -20 },
                 feedback: "法的に間違い。民法627条により、期間の定めのない雇用は2週間前の意思表示で解約可能。退職届は内容証明郵便で送れば受け取り拒否は不可。転職先を待たせた機会費用は取り戻せない。",
-                feedbackEN: "Legally incorrect. Under Civil Code Article 627, employment without a fixed term can be terminated with 2 weeks' notice. Send your resignation via certified mail (内容証明郵便) — refusal is not possible. The opportunity cost of delaying your new job is irrecoverable.",
+                feedbackEN: "Legally incorrect. Under Civil Code Article 627, employment without a fixed term can be terminated with 2 weeks' notice. Send your resignation via certified mail (内容証明郵便). Refusal is not possible. The opportunity cost of delaying your new job is irrecoverable.",
                 verdict: "WARNING",
                 lockRequirements: null
             },
@@ -302,7 +302,7 @@ export const stage2Questions: Question[] = [
         choices: [
             {
                 text: "もう関係ないから、さっさと帰る。有給消化で最終日は顔を出さなくてもいい。",
-                textEN: "It doesn't matter anymore — leave quickly. You could even skip the last day using paid leave.",
+                textEN: "It doesn't matter anymore. Leave quickly. You could even skip the last day using paid leave.",
                 effect: { CS: -20, Asset: 0, Autonomy: 0 },
                 feedback: "法的には問題ないが、社会は狭い。業界内で評判は回る。前職の同僚が将来の取引先や転職先の面接官になることもある。「あの人は最後が最悪だった」と記憶される。",
                 feedbackEN: "Legally fine, but the world is small. Reputations circulate within industries. Former colleagues may become future clients or interviewers. You'll be remembered as 'the one who left on a bad note.'",

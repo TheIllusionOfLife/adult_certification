@@ -12,7 +12,7 @@ export const stage4Questions: Question[] = [
         choices: [
             {
                 text: "チェックリストを作り、住民票→マイナンバー→免許→銀行の順で一気に処理する。",
-                textEN: "Make a checklist and process them in order: residence record, My Number Card, driver's license, then bank — all at once.",
+                textEN: "Make a checklist and process them in order: residence record, My Number Card, driver's license, then bank, all at once.",
                 effect: { CS: 20, Asset: 0, Autonomy: 20 },
                 verdict: "APPROVED",
                 feedback: "正解です。住民票を先に移すと、他の手続きがスムーズに進みます。行政手続きには「正しい順序」があります。",
@@ -21,7 +21,7 @@ export const stage4Questions: Question[] = [
             },
             {
                 text: "面倒なので住民票だけ移して、他は後回し。",
-                textEN: "Too much hassle — just transfer the residence record and deal with the rest later.",
+                textEN: "Too much hassle. Just transfer the residence record and deal with the rest later.",
                 effect: { CS: -20, Asset: -10, Autonomy: -10 },
                 verdict: "WARNING",
                 feedback: "手続き漏れです。運転免許証の住所変更を怠ると身分証明として使えなくなり、銀行手続きが滞ります。後回しにするほど問題が複雑化します。",

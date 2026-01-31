@@ -85,7 +85,7 @@ export const stage1Questions: Question[] = [
             },
             {
                 text: "面倒だから出さない。",
-                textEN: "Too much hassle — skip it.",
+                textEN: "Too much hassle. Skip it.",
                 effect: { CS: -20, Asset: 0, Autonomy: 0 },
                 verdict: "WARNING",
                 feedback: "ミスです。クレジットカードの更新カードや重要書類が旧住所に届き、見知らぬ誰かの手に渡ります。個人情報管理ができない人と見なされます。マイナポータルでの転出届オンライン提出も活用を。届出を怠ると最大5万円の過料が科されます。",
@@ -145,7 +145,7 @@ export const stage1Questions: Question[] = [
                 effect: { CS: -20, Asset: 0, Autonomy: 0 },
                 verdict: "WARNING",
                 feedback: "「ご苦労様」は目上→目下のねぎらい表現で上司にはNG。「了解しました」もカジュアルすぎる。上司には「お疲れ様です」「承知いたしました」「かしこまりました」を使う。二重敬語(「おっしゃられる」等)にも注意。",
-                feedbackEN: "'Go-kurou-sama' is a phrase used by superiors to subordinates — never use it with your boss. 'Ryokai shimashita' is too casual. Use 'Otsukaresama desu,' 'Shouchi itashimashita,' or 'Kashikomarimashita' with superiors. Also watch out for double honorifics (e.g., 'ossharareru').",
+                feedbackEN: "'Go-kurou-sama' is a phrase used by superiors to subordinates. Never use it with your boss. 'Ryokai shimashita' is too casual. Use 'Otsukaresama desu,' 'Shouchi itashimashita,' or 'Kashikomarimashita' with superiors. Also watch out for double honorifics (e.g., 'ossharareru').",
                 lockRequirements: null
             },
             {
@@ -195,7 +195,7 @@ export const stage1Questions: Question[] = [
         id: "s1_q07",
         category: "HOUSING",
         text: "隣人の騒音が酷い。深夜2時の壁ドンと音楽。どう対処する？",
-        textEN: "Your neighbor's noise is unbearable — wall-banging and loud music at 2 AM. How do you deal with it?",
+        textEN: "Your neighbor's noise is unbearable: wall-banging and loud music at 2 AM. How do you deal with it?",
         imagePrompt: "Scene: a thin apartment wall vibrating as loud music leaks through; the neighbor's partying silhouette on the other side; the protagonist covering their ears; a clock showing 2 AM. Composition: wall dividing the two sides, sound waves spilling across. Mood: exhaustion, frustration, fear of confrontation.",
         imagePath: "s1_q07.png",
         choices: [
@@ -205,7 +205,7 @@ export const stage1Questions: Question[] = [
                 effect: { CS: 0, Asset: 0, Autonomy: -30 },
                 verdict: "WARNING",
                 feedback: "思考停止です。ストレスで自律性が削られ、やがて精神が崩壊します。我慢は美徳ではなく、自己破壊です。",
-                feedbackEN: "Mental shutdown. Stress erodes your autonomy, and eventually your mental health collapses. Endurance is not a virtue — it's self-destruction.",
+                feedbackEN: "Mental shutdown. Stress erodes your autonomy, and eventually your mental health collapses. Endurance is not a virtue. It's self-destruction.",
                 lockRequirements: null
             },
             {
@@ -278,12 +278,12 @@ export const stage1Questions: Question[] = [
                 effect: { CS: -30, Asset: 0, Autonomy: 0 },
                 verdict: "WARNING",
                 feedback: "複数のマナー違反。白は花嫁の色でNG。ご祝儀は奇数が基本(友人なら3万円)、新札を用意し袱紗から出して渡す。水引(みずひき)は結び切り(一度きりの意味)。バッグから直接出すのもNG。",
-                feedbackEN: "Multiple etiquette violations. White is the bride's color — strictly off-limits. Gift money should be an odd number (30,000 yen for a friend), using new bills presented from a fukusa cloth. The mizuhiki knot must be a 'musubi-kiri' (tied once, meaning 'once in a lifetime'). Pulling money directly from your bag is also a faux pas.",
+                feedbackEN: "Multiple etiquette violations. White is the bride's color, strictly off-limits. Gift money should be an odd number (30,000 yen for a friend), using new bills presented from a fukusa cloth. The mizuhiki knot must be a 'musubi-kiri' (tied once, meaning 'once in a lifetime'). Pulling money directly from your bag is also a faux pas.",
                 lockRequirements: null
             },
             {
                 text: "ご祝儀は新札で3万円(奇数)、袱紗に包む。服装は白以外のフォーマル、ファー・動物柄もNG。水引は結び切り。",
-                textEN: "Prepare 30,000 yen (odd number) in new bills, wrapped in a fukusa cloth. Wear formal attire that isn't white — no fur or animal prints. Use a musubi-kiri mizuhiki envelope.",
+                textEN: "Prepare 30,000 yen (odd number) in new bills, wrapped in a fukusa cloth. Wear formal attire that isn't white, no fur or animal prints. Use a musubi-kiri mizuhiki envelope.",
                 effect: { CS: 20, Asset: -10, Autonomy: 10 },
                 verdict: "APPROVED",
                 feedback: "正解。ご祝儀は友人・同僚で3万円、兄弟姉妹で5〜10万円が相場。2万円(ペア)と8万円(末広がり)は例外的にOK。4と9は避ける。受付では袱紗の上に乗せて両手で差し出す。",
@@ -319,7 +319,7 @@ export const stage1Questions: Question[] = [
                 effect: { CS: -20, Asset: 0, Autonomy: 0 },
                 verdict: "WARNING",
                 feedback: "時間不足。国内線は1時間前、国際線は2〜3時間前が目安。保安検査は出発20分前まで。モバイルバッテリー(160Wh以下)は機内持込のみで預け荷物NG。国際線の液体は100ml以下の容器+1L以下の透明袋。ライターは機内持込1個のみ。",
-                feedbackEN: "Not enough time. Aim for 1 hour before domestic, 2-3 hours before international flights. Security closes 20 minutes before departure. Portable batteries (under 160Wh) are carry-on only — never checked. International liquids must be in 100ml containers in a 1L transparent bag. Only 1 lighter allowed in carry-on.",
+                feedbackEN: "Not enough time. Aim for 1 hour before domestic, 2-3 hours before international flights. Security closes 20 minutes before departure. Portable batteries (under 160Wh) are carry-on only, never checked. International liquids must be in 100ml containers in a 1L transparent bag. Only 1 lighter allowed in carry-on.",
                 lockRequirements: null
             }
         ],
