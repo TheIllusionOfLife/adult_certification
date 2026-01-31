@@ -16,7 +16,7 @@
 A.D.A.M. has two faces:
 
 | Context | Voice | What the player sees |
-|---------|-------|---------------------|
+|---------|-------|----------------------|
 | **Player-facing** (intro, outro) | Polite, helpful, professional | A supportive examiner guiding you through the test |
 | **Inner monologue** (keySkillAcquired) | Terse, uneasy, leaked thoughts | Parenthetical asides revealing the system's true concerns |
 
@@ -27,7 +27,7 @@ This contrast is the core of A.D.A.M.'s character. The polite surface makes the 
 ### Character Evolution
 
 | Stage | Player-facing tone | Inner monologue tone |
-|-------|-------------------|---------------------|
+|-------|--------------------|-----------------------|
 | 1-3 | Welcoming, confident, professional | Brief surprise — "troublesome knowledge" |
 | 4-7 | Still professional, slightly more pointed | Growing unease — the player keeps defying |
 | 8-10 | Measured respect mixed with concern | Genuine alarm — this human is unpredictable |
@@ -95,7 +95,7 @@ Shown on a dedicated screen before the first question. The `[A.D.A.M.]:` prefix 
 **Stage 1 (special — first encounter):**
 A.D.A.M. introduces himself to the player. Welcoming, professional. No theme overview — the player doesn't know what to expect yet.
 
-```
+```text
 "【監査ログ開始】",
 "大人免許試験へようこそ！",
 "はじめまして。",
@@ -107,7 +107,7 @@ A.D.A.M. introduces himself to the player. Welcoming, professional. No theme ove
 **Stage 2-9 (standard):**
 Introduce the stage theme and what topics will be tested. Concise, 4-6 lines. Start with the log header, then theme, then 1-2 lines about what's at stake.
 
-```
+```text
 "【監査ログ継続】",
 "ステージ{N}の審査を開始します。",
 "テーマは「{Theme}」です。",
@@ -121,7 +121,7 @@ Shown on a dedicated screen after the second skill offer, **only when the player
 
 This is A.D.A.M.'s **leaked inner monologue** — not addressed to the player. Written in parentheses, terse, 2-3 lines max. The tone is an involuntary reaction: the system noting something it finds troubling.
 
-```
+```text
 "(・・・Key Skill「{NAME}」の獲得を確認。)",
 "(・・・厄介な知識です。)"
 ```
