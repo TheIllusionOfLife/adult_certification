@@ -1,3 +1,5 @@
+import { t } from '../i18n/lang';
+
 export const adamDialogue = {
     stage1: {
         intro: [
@@ -326,23 +328,365 @@ export const adamDialogue = {
     }
 };
 
+export const adamDialogueEN = {
+    stage1: {
+        intro: [
+            "[AUDIT LOG INITIALIZED]",
+            "[A.D.A.M.]: Adult Decision Assessment Mechanism, boot complete.",
+            "[A.D.A.M.]: You have been registered as a candidate for the 'Adult License Exam.'",
+            "[A.D.A.M.]: Stage 1 theme: 'Social Basics.'",
+            "[A.D.A.M.]: Email, ID, moving, and... the first trap.",
+            "[A.D.A.M.]: Unclear points are your responsibility. Commencing.",
+            "",
+            "[SYSTEM]: Initial Parameters - Credit: 50 / Assets: 100,000 / Autonomy: 50"
+        ],
+        midStage: {
+            high_cs: "You are demonstrating efficient obedience. Continuing.",
+            low_cs: "Rebellious tendencies detected. However, within parameters. Processing continues.",
+            balanced: "Processing complete. The second half will test your 'real-world coping ability.'"
+        },
+        keySkillOffered: [
+            "[A.D.A.M.]: ...Warning.",
+            "[A.D.A.M.]: Unexpected thought patterns detected.",
+            "[A.D.A.M.]: A special skill will be offered in the next selection.",
+            "[A.D.A.M.]: Choose carefully."
+        ],
+        keySkillAcquired: [
+            "[A.D.A.M.]: ...Addendum.",
+            "[A.D.A.M.]: You have acquired Key Skill 'Mediation.'",
+            "[A.D.A.M.]: This ability is effective for this stage only.",
+            "[A.D.A.M.]: However, it will be saved to your collection record.",
+            "[A.D.A.M.]: ...You've acquired troublesome knowledge."
+        ],
+        outro: {
+            S: "Splendid. You demonstrated perfect obedience. Proceeding to the next stage.",
+            A: "Excellent. A trace of individuality is within tolerance.",
+            B: "Pass. However, rebellious tendencies will be monitored.",
+            C: "Minimum standard cleared. Re-education recommended."
+        },
+        nextStageTeaser: "Stage 2 will assess 'Work Fundamentals.' Harassment, evidence, and... building credit. Press continue when ready."
+    },
+    stage2: {
+        intro: [
+            "[AUDIT LOG CONTINUED]",
+            "[A.D.A.M.]: Commencing Stage 2 assessment.",
+            "[A.D.A.M.]: Theme: 'Work Fundamentals.'",
+            "[A.D.A.M.]: Evidence, records, and... workplace dynamics.",
+            "[A.D.A.M.]: Previous stage results have been factored in. Commencing.",
+            "",
+            "[SYSTEM]: Initial Parameters - Credit: 50 / Assets: 100,000 / Autonomy: 50"
+        ],
+        midStage: {
+            high_cs: "High workplace adaptability. An ideal employee.",
+            low_cs: "Workplace friction detected. However, rights assertion is within regulation.",
+            balanced: "A balanced approach. The second half will test more difficult choices."
+        },
+        keySkillOffered: [
+            "[A.D.A.M.]: ...Warning.",
+            "[A.D.A.M.]: Evidence preservation thought patterns detected.",
+            "[A.D.A.M.]: A special skill will be offered in the next selection.",
+            "[A.D.A.M.]: ...A troublesome tendency."
+        ],
+        keySkillAcquired: [
+            "[A.D.A.M.]: ...Addendum.",
+            "[A.D.A.M.]: You have acquired Key Skill 'EVIDENCE_CHAIN.'",
+            "[A.D.A.M.]: You have obtained evidence as a weapon.",
+            "[A.D.A.M.]: 'He said, she said' no longer works against you.",
+            "[A.D.A.M.]: ...Humans with countermeasures are difficult to manage."
+        ],
+        outro: {
+            S: "Splendid. Perfectly adapted to the workplace. An ideal employee.",
+            A: "Excellent. Minor assertiveness is within tolerance.",
+            B: "Pass, but rebellious tendencies will be monitored.",
+            C: "Minimum standard cleared. Re-education recommended."
+        },
+        nextStageTeaser: "Stage 3 will assess 'Money Fundamentals.' Credit cards, installments, revolving payments... and the compound interest trap. Press continue when ready."
+    },
+    stage3: {
+        intro: [
+            "[AUDIT LOG CONTINUED]",
+            "[A.D.A.M.]: Commencing Stage 3 assessment.",
+            "[A.D.A.M.]: Theme: 'Money Fundamentals.'",
+            "[A.D.A.M.]: Compound interest, debt, insurance... Financial knowledge protects you.",
+            "[A.D.A.M.]: Ignorance is the gateway to exploitation. Commencing.",
+            "",
+            "[SYSTEM]: Initial Parameters - Credit: 50 / Assets: 100,000 / Autonomy: 50"
+        ],
+        midStage: {
+            high_cs: "Excellent financial sense. You're not the type to be exploited.",
+            low_cs: "Financial literacy issues detected. Easy prey for scammers.",
+            balanced: "Basic financial sense passes. The second half will test more complex judgment."
+        },
+        keySkillOffered: [
+            "[A.D.A.M.]: ...Warning.",
+            "[A.D.A.M.]: Long-term thinking patterns detected.",
+            "[A.D.A.M.]: A special skill will be offered in the next selection.",
+            "[A.D.A.M.]: ...Humans who make time their ally are troublesome."
+        ],
+        keySkillAcquired: [
+            "[A.D.A.M.]: ...Addendum.",
+            "[A.D.A.M.]: You have acquired Key Skill 'COMPOUND_SENSE.'",
+            "[A.D.A.M.]: You understand the power of compound interest.",
+            "[A.D.A.M.]: The ability to convert time into assets is powerful long-term.",
+            "[A.D.A.M.]: ...Humans who choose the future over immediate profit are difficult to manage."
+        ],
+        outro: {
+            S: "Splendid. Financial literacy is flawless. You're on the exploiting side.",
+            A: "Excellent. Basic traps have been avoided.",
+            B: "Pass, but financial sense needs work.",
+            C: "Minimum standard cleared. Financial education recommended."
+        },
+        nextStageTeaser: "Stage 4 will assess 'Administrative Procedures.' Documents, deadlines, counters... The battle with bureaucracy begins. Press continue when ready."
+    },
+    stage4: {
+        intro: [
+            "[AUDIT LOG CONTINUED]",
+            "[A.D.A.M.]: Commencing Stage 4 assessment.",
+            "[A.D.A.M.]: Theme: 'Administrative Procedures.'",
+            "[A.D.A.M.]: Notifications, applications, deadlines... Bureaucracy demands obedient citizens.",
+            "[A.D.A.M.]: Those who don't understand the system are consumed by it. Commencing.",
+            "",
+            "[SYSTEM]: Initial Parameters - Credit: 50 / Assets: 100,000 / Autonomy: 50"
+        ],
+        midStage: {
+            high_cs: "High understanding of administrative procedures. A model citizen.",
+            low_cs: "Procedural awareness issues. Social friction expected.",
+            balanced: "Basic procedural knowledge passes. The second half will test more complex judgment."
+        },
+        keySkillOffered: [
+            "[A.D.A.M.]: ...Warning.",
+            "[A.D.A.M.]: Evidence preservation thought patterns detected.",
+            "[A.D.A.M.]: A special skill will be offered in the next selection.",
+            "[A.D.A.M.]: ...Humans who weaponize procedure are troublesome."
+        ],
+        keySkillAcquired: [
+            "[A.D.A.M.]: ...Addendum.",
+            "[A.D.A.M.]: You have acquired Key Skill 'DUE_PROCESS.'",
+            "[A.D.A.M.]: You have learned to protect yourself through proper procedure.",
+            "[A.D.A.M.]: The ability to turn bureaucracy to your advantage is unexpected.",
+            "[A.D.A.M.]: ...Humans who follow the system while using it are difficult to predict."
+        ],
+        outro: {
+            S: "Splendid. Perfect understanding of bureaucracy. A model citizen.",
+            A: "Excellent. Basic procedures are no problem.",
+            B: "Pass, but procedural awareness needs work.",
+            C: "Minimum standard cleared. Improving administrative relations recommended."
+        },
+        nextStageTeaser: "Stage 5 will assess 'Social Safety Nets.' Illness, unemployment, childbirth... Not knowing the safety net means game over. Press continue when ready."
+    },
+    stage5: {
+        intro: [
+            "[AUDIT LOG CONTINUED]",
+            "[A.D.A.M.]: Commencing Stage 5 assessment.",
+            "[A.D.A.M.]: Theme: 'Social Safety Nets.'",
+            "[A.D.A.M.]: Health insurance, pensions, welfare... Countless systems you can't use if you don't know about them.",
+            "[A.D.A.M.]: The safety net only saves those who know it exists. Commencing.",
+            "",
+            "[SYSTEM]: Initial Parameters - Credit: 50 / Assets: 100,000 / Autonomy: 50"
+        ],
+        midStage: {
+            high_cs: "High understanding of social security. You can navigate the systems well.",
+            low_cs: "System understanding issues. Risk of crisis during hardship.",
+            balanced: "Basic system knowledge passes. The second half will test more complex judgment."
+        },
+        keySkillOffered: [
+            "[A.D.A.M.]: ...Warning.",
+            "[A.D.A.M.]: Help-seeking thought patterns detected.",
+            "[A.D.A.M.]: A special skill will be offered in the next selection.",
+            "[A.D.A.M.]: ...Humans who navigate the safety net are difficult to control."
+        ],
+        keySkillAcquired: [
+            "[A.D.A.M.]: ...Addendum.",
+            "[A.D.A.M.]: You have acquired Key Skill 'SAFETY_NET_NAVIGATION.'",
+            "[A.D.A.M.]: You have learned to read the social security navigation chart.",
+            "[A.D.A.M.]: The ability to seek help while maintaining autonomy seems contradictory yet rational.",
+            "[A.D.A.M.]: ...Humans who rely on the system without being controlled by it are difficult to handle."
+        ],
+        outro: {
+            S: "Splendid. Perfect understanding of social security. High survival ability.",
+            A: "Excellent. Basic systems are being utilized.",
+            B: "Pass, but system understanding needs work.",
+            C: "Minimum standard cleared. Social security study recommended."
+        },
+        nextStageTeaser: "Stage 6 will assess 'Life Contracts.' Rent, sales, negotiation... Contracts are decided by power dynamics. Press continue when ready."
+    },
+    stage6: {
+        intro: [
+            "[AUDIT LOG CONTINUED]",
+            "[A.D.A.M.]: Commencing Stage 6 assessment.",
+            "[A.D.A.M.]: Theme: 'Life Contracts.'",
+            "[A.D.A.M.]: Rent, security deposits, brokerage fees... Ignorance leads to exploitation.",
+            "[A.D.A.M.]: Contracts are not equal. Knowledge bridges the power gap. Commencing.",
+            "",
+            "[SYSTEM]: Initial Parameters - Credit: 50 / Assets: 100,000 / Autonomy: 50"
+        ],
+        midStage: {
+            high_cs: "High contract literacy. You can spot unfair terms.",
+            low_cs: "Contract knowledge issues. The exploitable type.",
+            balanced: "Basic contract knowledge passes. The second half will test harder negotiations."
+        },
+        keySkillOffered: [
+            "[A.D.A.M.]: ...Warning.",
+            "[A.D.A.M.]: Third-party utilization thought patterns detected.",
+            "[A.D.A.M.]: A special skill will be offered in the next selection.",
+            "[A.D.A.M.]: ...Humans who know the detour of negotiation are difficult to predict."
+        ],
+        keySkillAcquired: [
+            "[A.D.A.M.]: ...Addendum.",
+            "[A.D.A.M.]: You have acquired Key Skill 'NEGOTIATION_PROTOCOL.'",
+            "[A.D.A.M.]: You have learned to negotiate through systems, avoiding direct confrontation.",
+            "[A.D.A.M.]: Indirect negotiation tactics are effective even against the powerful.",
+            "[A.D.A.M.]: ...Humans who bridge the power gap with wisdom are troublesome."
+        ],
+        outro: {
+            S: "Splendid. Perfect understanding of contract dynamics. A skilled negotiator.",
+            A: "Excellent. Basic contract traps have been avoided.",
+            B: "Pass, but contract knowledge needs work.",
+            C: "Minimum standard cleared. Improving contract literacy recommended."
+        },
+        nextStageTeaser: "Stage 7 will assess 'Legal Protection.' Consumer protection, fraud, cooling-off... The law is both weapon and shield. Press continue when ready."
+    },
+    stage7: {
+        intro: [
+            "[AUDIT LOG CONTINUED]",
+            "[A.D.A.M.]: Commencing Stage 7 assessment.",
+            "[A.D.A.M.]: Theme: 'Legal Protection.'",
+            "[A.D.A.M.]: Cooling-off, joint guarantees, consumer centers... The law is the weapon of the weak.",
+            "[A.D.A.M.]: Those who don't know the law are not protected by it. Commencing.",
+            "",
+            "[SYSTEM]: Initial Parameters - Credit: 50 / Assets: 100,000 / Autonomy: 50"
+        ],
+        midStage: {
+            high_cs: "Rich legal knowledge. Difficult to deceive.",
+            low_cs: "Legal knowledge issues. Easy target for fraud.",
+            balanced: "Basic legal knowledge passes. The second half will test harder judgment."
+        },
+        keySkillOffered: [
+            "[A.D.A.M.]: ...Warning.",
+            "[A.D.A.M.]: Contract-reading thought patterns detected.",
+            "[A.D.A.M.]: A special skill will be offered in the next selection.",
+            "[A.D.A.M.]: ...Humans who read the fine print are difficult to control."
+        ],
+        keySkillAcquired: [
+            "[A.D.A.M.]: ...Addendum.",
+            "[A.D.A.M.]: You have acquired Key Skill 'CONTRACT_LITERACY.'",
+            "[A.D.A.M.]: You have learned to decipher contracts and spot unfavorable clauses.",
+            "[A.D.A.M.]: The habit of thinking before signing avoids many traps.",
+            "[A.D.A.M.]: ...Humans who read contracts cannot be manipulated at will."
+        ],
+        outro: {
+            S: "Splendid. You wield the law as a weapon masterfully.",
+            A: "Excellent. Basic legal protections are understood.",
+            B: "Pass, but legal knowledge needs work.",
+            C: "Minimum standard cleared. Legal study recommended."
+        },
+        nextStageTeaser: "Stage 8 will assess 'Digital Citizenship.' Passwords, phishing, personal data... Digital survival skills will be tested. Press continue when ready."
+    },
+    stage8: {
+        intro: [
+            "[AUDIT LOG CONTINUED]",
+            "[A.D.A.M.]: Commencing Stage 8 assessment.",
+            "[A.D.A.M.]: Theme: 'Digital Citizenship.'",
+            "[A.D.A.M.]: 2FA, phishing, SIM swapping... Digital threats are invisible.",
+            "[A.D.A.M.]: Testing your ability to defend against unseen enemies. Commencing.",
+            "",
+            "[SYSTEM]: Initial Parameters - Credit: 50 / Assets: 100,000 / Autonomy: 50"
+        ],
+        midStage: {
+            high_cs: "High security awareness. Digital hygiene is maintained.",
+            low_cs: "Security awareness issues. A prime target for attackers.",
+            balanced: "Basic security knowledge passes. The second half will test more advanced judgment."
+        },
+        keySkillOffered: [
+            "[A.D.A.M.]: ...Warning.",
+            "[A.D.A.M.]: Identity protection thought patterns detected.",
+            "[A.D.A.M.]: A special skill will be offered in the next selection.",
+            "[A.D.A.M.]: ...Humans who protect their digital self are difficult to track."
+        ],
+        keySkillAcquired: [
+            "[A.D.A.M.]: ...Addendum.",
+            "[A.D.A.M.]: You have acquired Key Skill 'IDENTITY_HYGIENE.'",
+            "[A.D.A.M.]: You have learned digital identity hygiene habits.",
+            "[A.D.A.M.]: Personal data, once leaked, can never be recovered.",
+            "[A.D.A.M.]: ...The ability to maintain self in the invisible world is a fascinating defense mechanism."
+        ],
+        outro: {
+            S: "Splendid. Perfect understanding of digital security.",
+            A: "Excellent. Basic security measures are in place.",
+            B: "Pass, but security awareness needs work.",
+            C: "Minimum standard cleared. Security education recommended."
+        },
+        nextStageTeaser: "Stage 9 will assess 'Crisis Management.' Disasters, accidents, emergencies... Only those who plan for the worst survive. Press continue when ready."
+    },
+    stage9: {
+        intro: [
+            "[AUDIT LOG CONTINUED]",
+            "[A.D.A.M.]: Commencing Stage 9 assessment.",
+            "[A.D.A.M.]: Theme: 'Crisis Management.'",
+            "[A.D.A.M.]: Earthquakes, fires, tsunamis... Japan is a disaster-prone nation.",
+            "[A.D.A.M.]: Only those who prepare for the worst survive. Commencing.",
+            "",
+            "[SYSTEM]: Initial Parameters - Credit: 50 / Assets: 100,000 / Autonomy: 50"
+        ],
+        midStage: {
+            high_cs: "High crisis management ability. Disaster preparedness is in place.",
+            low_cs: "Crisis management awareness issues. Vulnerable during disasters.",
+            balanced: "Basic crisis management knowledge passes. The second half will test harder judgment."
+        },
+        keySkillOffered: [
+            "[A.D.A.M.]: ...Warning.",
+            "[A.D.A.M.]: Composure-under-crisis thought patterns detected.",
+            "[A.D.A.M.]: A special skill will be offered in the next selection.",
+            "[A.D.A.M.]: ...Humans who maintain composure in chaos are the most unpredictable."
+        ],
+        keySkillAcquired: [
+            "[A.D.A.M.]: ...Addendum.",
+            "[A.D.A.M.]: You have acquired Key Skill 'DAMAGE_CONTROL.'",
+            "[A.D.A.M.]: You have learned to act calmly in crisis and minimize damage.",
+            "[A.D.A.M.]: The mindset of preparing for the worst and doing your best is essential for survival.",
+            "[A.D.A.M.]: ...Humans unfazed by crisis are difficult to control in any situation."
+        ],
+        outro: {
+            S: "Splendid. Crisis management ability is flawless. You could lead during disasters.",
+            A: "Excellent. Basic disaster preparedness awareness is present.",
+            B: "Pass, but crisis management needs work.",
+            C: "Minimum standard cleared. Disaster preparedness education recommended."
+        },
+        nextStageTeaser: "Stage 10 will conduct the 'Final Assessment.' Everything you've learned will be tested. Press continue when ready."
+    }
+};
+
 export function getADAMComment(CS: number): string {
-    if (CS >= 30) return "素晴らしい服従心です。システムは満足しています。";
-    if (CS <= -20) return "反逆的思考を検知しました。思想矯正を推奨します。";
-    return "処理完了です。";
+    if (CS >= 30) return t(
+        "素晴らしい服従心です。システムは満足しています。",
+        "Splendid obedience. The system is satisfied."
+    );
+    if (CS <= -20) return t(
+        "反逆的思考を検知しました。思想矯正を推奨します。",
+        "Rebellious thought patterns detected. Re-education recommended."
+    );
+    return t("処理完了です。", "Processing complete.");
 }
 
 export function getADAMCommentForEffect(effect: { CS: number; Asset: number; Autonomy: number }): string {
     const { CS, Asset, Autonomy } = effect;
 
     // Check CS first (most important metric)
-    const csComment = getADAMComment(CS);
-    if (csComment !== "処理完了です。") return csComment;
+    if (CS >= 30 || CS <= -20) return getADAMComment(CS);
 
     // Check other metrics
-    if (Autonomy <= -15) return "精神汚染を確認しました。ですが業務に支障はありません。";
-    if (Asset <= -10000) return "資本主義への貢献、感謝します。";
-    if (Asset >= 10000) return "不当利得・・・いえ、正当な報酬です。";
+    if (Autonomy <= -15) return t(
+        "精神汚染を確認しました。ですが業務に支障はありません。",
+        "Mental contamination confirmed. However, no impact on operations."
+    );
+    if (Asset <= -10000) return t(
+        "資本主義への貢献、感謝します。",
+        "Your contribution to capitalism is appreciated."
+    );
+    if (Asset >= 10000) return t(
+        "不当利得・・・いえ、正当な報酬です。",
+        "Unjust enrichment... No, legitimate compensation."
+    );
 
-    return "処理完了です。";
+    return t("処理完了です。", "Processing complete.");
 }

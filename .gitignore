@@ -15,7 +15,7 @@ node_modules
 dist
 dist-ssr
 *.local
-auth_certification_itch.zip
+adult_certification_itch.zip
 
 # Environment Variables
 .env

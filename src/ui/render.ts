@@ -7,6 +7,8 @@ import { DOM_IDS } from './domIds';
 import { RecordStorage } from '../storage/RecordStorage';
 import { GlobalProgressStorage } from '../storage/GlobalProgressStorage';
 import { STAGE_METADATA, getStageMetadata } from '../data/stageMetadata';
+import { getLang, setLang, t } from '../i18n/lang';
+import * as UI from '../i18n/uiStrings';
 
 // Vite glob import for assets
 const images = import.meta.glob('../assets/*.{png,jpg,jpeg,webp}', { eager: true });
@@ -89,15 +91,28 @@ export class UIManager {
         this.dom.startScreen.style.display = 'flex';
         this.dom.diffList.innerHTML = '';
 
-        // Initialize start screen logic if needed (currently static text handled in HTML)
+        // Language toggle
+        const titleDesc = document.getElementById('title-desc');
+        if (titleDesc) titleDesc.textContent = UI.UI_TITLE_DESC();
 
+        let langBtn = document.getElementById('lang-toggle') as HTMLButtonElement | null;
+        if (!langBtn) {
+            langBtn = document.createElement('button');
+            langBtn.id = 'lang-toggle';
+            langBtn.className = 'lang-toggle-btn';
+            this.dom.startScreen.insertBefore(langBtn, this.dom.startScreen.firstChild);
+        }
+        langBtn.textContent = getLang() === 'ja' ? 'EN' : '日本語';
+        langBtn.onclick = () => {
+            setLang(getLang() === 'ja' ? 'en' : 'ja');
+            this.showStartScreen(onSelect);
+        };
 
         // All 10 stages - only show unlocked stages (previous stage beaten)
-        // themeJP comes from stageMetadata.ts
         const allStages: { key: string, name: string, desc: string, keySkillId: string }[] = STAGE_METADATA.map((stage) => ({
             key: `Stage${stage.id}`,
             name: `STAGE ${stage.id}`,
-            desc: stage.themeJP,
+            desc: t(stage.themeJP, stage.theme),
             keySkillId: stage.keySkillId
         }));
 
@@ -129,7 +144,7 @@ export class UIManager {
                     <span class="diff-desc">${stage.desc}</span>
                 </div>
                 <div class="btn-right-col">
-                    ${hasKeySkill ? '<span class="key-indicator" title="Key Skill 獲得済"></span>' : ''}
+                    ${hasKeySkill ? `<span class="key-indicator" title="Key Skill ${UI.UI_KEY_SKILL_OBTAINED()}"></span>` : ''}
                     ${safeRank ? `<span class="rank-stamp ${rankClass}">${safeRank}</span>` : ''}
                     <span class="arrow">▶</span>
                 </div>
@@ -146,6 +161,11 @@ export class UIManager {
 
     updateHUD() {
         const s = this.engine.state;
+
+        // Update stat labels for current language
+        const labels = document.querySelectorAll('.stat-label');
+        const labelTexts = [UI.UI_LABEL_CS(), UI.UI_LABEL_ASSET(), UI.UI_LABEL_AUTONOMY()];
+        labels.forEach((el, i) => { if (labelTexts[i]) el.textContent = labelTexts[i]; });
 
         // Helper for animation
         const animate = (el: HTMLElement, newVal: number, oldVal: number) => {
@@ -197,7 +217,7 @@ export class UIManager {
 
         this.dom.qCat.innerText = q.category;
         this.dom.qNum.innerText = `Q.${this.engine.state.currentQuestionIndex + 1} / ${this.engine.state.questions.length}`;
-        this.dom.qText.innerText = q.text;
+        this.dom.qText.innerText = t(q.text, q.textEN);
 
         // Image Handling
         if (q.imagePath) {
@@ -225,16 +245,16 @@ export class UIManager {
 
             btn.className = isLocked ? 'choice-btn choice-locked' : 'choice-btn';
 
-            let content = `<span class="choice-letter">${String.fromCharCode(65 + i)}</span><span class="choice-text">${c.text}</span>`;
+            let content = `<span class="choice-letter">${String.fromCharCode(65 + i)}</span><span class="choice-text">${t(c.text, c.textEN)}</span>`;
 
             if (isLocked && c.lockRequirements) {
-                // Generate simple lock reason text
                 const req = c.lockRequirements;
                 const parts: string[] = [];
-                if (req.CS !== undefined) parts.push(`社会的信用が${req.CS}以上必要`);
-                if (req.Asset !== undefined) parts.push(`資産が${req.Asset}以上必要`);
-                if (req.Autonomy !== undefined) parts.push(`自律性が${req.Autonomy}以上必要`);
-                content += `<div class="lock-reason">${parts.join('、')}</div>`;
+                if (req.CS !== undefined) parts.push(UI.UI_LOCK_CS(req.CS));
+                if (req.Asset !== undefined) parts.push(UI.UI_LOCK_ASSET(req.Asset));
+                if (req.Autonomy !== undefined) parts.push(UI.UI_LOCK_AUTONOMY(req.Autonomy));
+                const sep = getLang() === 'en' ? '; ' : '、';
+                content += `<div class="lock-reason">${parts.join(sep)}</div>`;
             }
 
             btn.innerHTML = content;
@@ -274,7 +294,7 @@ export class UIManager {
         // Format skill activation messages as HTML
         const skillMessagesHTML = skillActivations.length > 0
             ? "<br>" + skillActivations.map(sa =>
-                `<span style="color:#4cc9f0">【${sa.skillName}】発動: ${sa.description} (${sa.originalValue} → ${sa.modifiedValue})</span>`
+                `<span style="color:#4cc9f0">${UI.UI_SKILL_ACTIVATION(sa.skillName, sa.description, sa.originalValue, sa.modifiedValue)}</span>`
             ).join("<br>")
             : "";
 
@@ -299,15 +319,15 @@ export class UIManager {
         this.dom.ovBody.innerHTML = mainFeedback + skillMessagesHTML;
         this.dom.ovStats.innerHTML = `
             <div class="stat-result ${getAnimClass(CS)}">
-                <span style="font-size:0.8em">社会的信用</span><br>
+                <span style="font-size:0.8em">${UI.UI_STAT_CS_SHORT()}</span><br>
                 <span style="font-size:1.2em; font-weight:bold">${CS > 0 ? '+' : ''}${CS}</span>
             </div>
             <div class="stat-result ${getAnimClass(Asset)}">
-                <span style="font-size:0.8em">資産</span><br>
+                <span style="font-size:0.8em">${UI.UI_STAT_ASSET_SHORT()}</span><br>
                 <span style="font-size:1.2em; font-weight:bold">${Asset > 0 ? '+' : ''}${Asset}</span>
             </div>
             <div class="stat-result ${getAnimClass(Autonomy)}">
-                <span style="font-size:0.8em">自律性</span><br>
+                <span style="font-size:0.8em">${UI.UI_STAT_AUTONOMY_SHORT()}</span><br>
                 <span style="font-size:1.2em; font-weight:bold">${Autonomy > 0 ? '+' : ''}${Autonomy}</span>
             </div>
         `;
@@ -322,9 +342,9 @@ export class UIManager {
             this.dom.ovBody.innerHTML += `
                 <div class="adam-comment-section" style="margin-top: 20px;">
                     <img src="${this.dom.mascotImg.src}" alt="A.D.A.M." class="adam-comment-img" />
-                    <div class="adam-comment-text">[A.D.A.M.]: 判定・・・あなたは「生体プロセッサ」に再利用されます。</div>
+                    <div class="adam-comment-text">${UI.UI_GAME_OVER_ADAM()}</div>
                 </div>`;
-            this.dom.btnNext.innerText = "人生再起動";
+            this.dom.btnNext.innerText = UI.UI_RESTART();
             this.dom.btnNext.onclick = () => location.reload();
             this.dom.btnNext.disabled = false;
             this.dom.btnNext.style.opacity = '1';
@@ -395,15 +415,18 @@ export class UIManager {
         // Title section
         const title = document.createElement('div');
         title.className = 'skill-offer-title';
-        title.innerHTML = `<h3>スキル選択</h3>`;
+        title.innerHTML = `<h3>${UI.UI_SKILL_SELECT_TITLE()}</h3>`;
         wrapper.appendChild(title);
 
         // A.D.A.M. recommendation speech
         if (recommendedSkill) {
             const adamSection = document.createElement('div');
             adamSection.className = 'adam-recommendation';
-            const defaultComment = `「${recommendedSkill.skill.name}」を推奨します。実利的な選択です。`;
-            const comment = recommendedSkill.skill.recommendComment || defaultComment;
+            const skillDisplayName = t(recommendedSkill.skill.name, recommendedSkill.skill.nameEN);
+            const defaultComment = UI.UI_SKILL_DEFAULT_RECOMMEND(skillDisplayName);
+            const comment = recommendedSkill.skill.recommendComment
+                ? t(recommendedSkill.skill.recommendComment, recommendedSkill.skill.recommendCommentEN)
+                : defaultComment;
             adamSection.innerHTML = `
                 <img src="${this.dom.mascotImg.src}" alt="A.D.A.M." class="adam-recommend-img" />
                 <div class="adam-recommend-speech">
@@ -431,7 +454,7 @@ export class UIManager {
             if (isRecommended) className += ' skill-recommended';
             sBtn.className = className;
 
-            const recommendedBadge = isRecommended ? '<span class="recommended-badge">推奨</span>' : '';
+            const recommendedBadge = isRecommended ? `<span class="recommended-badge">${UI.UI_RECOMMENDED_BADGE()}</span>` : '';
 
             // Show locked reason for key skills that weren't earned
             const lockedReasonHtml = isLocked && lockedReason
@@ -442,8 +465,8 @@ export class UIManager {
                 ${recommendedBadge}
                 <div class="skill-letter-circle">${String.fromCharCode(65 + i)}</div>
                 <div class="skill-content">
-                    <span class="skill-name">${s.name}</span>
-                    <span class="skill-desc">${s.desc}</span>
+                    <span class="skill-name">${t(s.name, s.nameEN)}</span>
+                    <span class="skill-desc">${t(s.desc, s.descEN)}</span>
                     ${lockedReasonHtml}
                 </div>
             `;
@@ -456,13 +479,14 @@ export class UIManager {
 
                     // Show A.D.A.M. comment for key skills
                     if (s.category === 'key' && s.adamComment) {
-                        this.dom.ovBody.innerHTML += `<br><br><span style="color:#f72585; font-style:italic;">[A.D.A.M.]: ${s.adamComment}</span>`;
+                        const adamText = t(s.adamComment, s.adamCommentEN);
+                        this.dom.ovBody.innerHTML += `<br><br><span style="color:#f72585; font-style:italic;">[A.D.A.M.]: ${adamText}</span>`;
                     }
 
                     // Update skill list display
                     const allSkills = [...this.engine.activeSkills];
-                    const skillNames = allSkills.map(skill => skill.name);
-                    this.dom.skillList.innerText = skillNames.length > 0 ? skillNames.join(', ') : "未所持";
+                    const skillNames = allSkills.map(skill => t(skill.name, skill.nameEN));
+                    this.dom.skillList.innerText = skillNames.length > 0 ? skillNames.join(', ') : UI.UI_SKILLS_NONE();
 
                     this.closeFeedback();
                 });
@@ -504,19 +528,19 @@ export class UIManager {
         const stageKeySkillId = stageMetadata?.keySkillId;
         const keySkillObtained = stageKeySkillId && s.keySkills.includes(stageKeySkillId);
         const keySkillStatus = keySkillObtained
-            ? '<span style="color: #4cc9f0;">獲得済</span>'
-            : '<span style="color: #888;">未獲得</span>';
+            ? `<span style="color: #4cc9f0;">${UI.UI_KEY_SKILL_OBTAINED()}</span>`
+            : `<span style="color: #888;">${UI.UI_KEY_SKILL_NOT_OBTAINED()}</span>`;
 
-        this.dom.ovTitle.innerText = "STAGE COMPLETE";
+        this.dom.ovTitle.innerText = UI.UI_STAGE_COMPLETE();
         this.dom.ovTitle.style.color = "var(--accent-color)";
 
         this.dom.ovBody.innerHTML = `
             <div style="text-align: center;">
-                <div style="margin-bottom: 15px;">ステージ ${s.currentStage} 終了</div>
+                <div style="margin-bottom: 15px;">${UI.UI_STAGE_N_END(s.currentStage)}</div>
                 <strong style="font-size:2.5rem; color:var(--accent-color)">${ending.rank}</strong><br>
                 <span style="font-size:1.2rem; color:var(--accent-color)">${ending.title}</span><br><br>
                 <div style="font-size:0.9rem; color:#888; margin-bottom: 15px;">
-                    社会的信用: ${s.CS} / 資産: ${s.Asset} / 自律性: ${s.Autonomy}
+                    ${UI.UI_RESULT_STATS(s.CS, s.Asset, s.Autonomy)}
                 </div>
                 <div class="adam-comment-section">
                     <img src="${this.dom.mascotImg.src}" alt="A.D.A.M." class="adam-comment-img" />
@@ -531,7 +555,7 @@ export class UIManager {
         // Stage 10: Show "最終認定" button to proceed to license screen
         // Other stages: Show "TITLE" button to return to title
         if (s.currentStage === 10) {
-            this.dom.btnNext.innerText = "最終認定";
+            this.dom.btnNext.innerText = UI.UI_FINAL_CERT();
             this.dom.btnNext.onclick = () => this.showFinalCertificationEnding();
         } else {
             this.dom.btnNext.innerText = "TITLE";
@@ -552,7 +576,7 @@ export class UIManager {
         // License information based on type
         const licenseInfo = this.getLicenseInfo(licenseType);
 
-        this.dom.ovTitle.innerText = "最終認定";
+        this.dom.ovTitle.innerText = UI.UI_FINAL_CERT();
         this.dom.ovTitle.style.color = licenseInfo.color;
 
         // Get license image if available
@@ -603,7 +627,7 @@ export class UIManager {
                 </div>
 
                 <div style="font-size: 0.85rem; color: ${totalKeySkills >= 10 ? '#4cc9f0' : '#666'}; margin-bottom: 20px;">
-                    Key Skill: ${totalKeySkills}/10 ${totalKeySkills >= 10 ? '✓ 完全収集' : ''}
+                    Key Skill: ${totalKeySkills}/10 ${totalKeySkills >= 10 ? UI.UI_KEY_SKILL_COMPLETE() : ''}
                 </div>
 
                 <div class="adam-comment-section">
@@ -637,58 +661,58 @@ export class UIManager {
         switch (licenseType) {
             case 'TRUE':
                 return {
-                    nameJP: '大人免許不要',
+                    nameJP: UI.UI_LICENSE_TRUE_JP(),
                     nameEN: 'ADULT LICENSE NOT REQUIRED',
                     symbol: '自',
                     color: '#ffd700',
                     gradientStart: '#ffd700',
                     gradientEnd: '#ff6b6b',
-                    adamComment: '大人とは何か、その答えを自分で見つけたのですね。あなたには大人免許など必要ありません。おめでとうございます。',
+                    adamComment: UI.UI_LICENSE_TRUE_ADAM(),
                     imagePath: 'license_true.png'
                 };
             case 'GOLD':
                 return {
-                    nameJP: 'ゴールド大人免許',
+                    nameJP: UI.UI_LICENSE_GOLD_JP(),
                     nameEN: 'GOLD ADULT LICENSE',
                     symbol: 'G',
                     color: '#ffd700',
                     gradientStart: '#ffd700',
                     gradientEnd: '#b8860b',
-                    adamComment: '全てのステージでSランクを達成しました。完璧な適合者です。あなたは社会システムの理想的な構成員となりました。おめでとうございます。',
+                    adamComment: UI.UI_LICENSE_GOLD_ADAM(),
                     imagePath: 'license_gold.png'
                 };
             case 'SILVER':
                 return {
-                    nameJP: 'ブルー大人免許',
-                    nameEN: 'SILVER ADULT LICENSE',
+                    nameJP: UI.UI_LICENSE_SILVER_JP(),
+                    nameEN: 'BLUE ADULT LICENSE',
                     symbol: 'S',
                     color: '#c0c0c0',
                     gradientStart: '#c0c0c0',
                     gradientEnd: '#808080',
-                    adamComment: '優秀な成績です。社会の期待に応える能力を持っています。まだ伸びしろはありますが、十分に大人と認められます。',
+                    adamComment: UI.UI_LICENSE_SILVER_ADAM(),
                     imagePath: 'license_blue.png'
                 };
             case 'BRONZE':
                 return {
-                    nameJP: 'グリーン大人免許',
+                    nameJP: UI.UI_LICENSE_BRONZE_JP(),
                     nameEN: 'GREEN ADULT LICENSE',
                     symbol: 'G',
                     color: '#cd7f32',
                     gradientStart: '#cd7f32',
                     gradientEnd: '#8b4513',
-                    adamComment: '基準はクリアしました。社会で生きていくための最低限の知識は持っています。・・・もう少し努力すれば、より良い評価が得られたでしょう。',
+                    adamComment: UI.UI_LICENSE_BRONZE_ADAM(),
                     imagePath: 'license_green.png'
                 };
             case 'PAPER':
             default:
                 return {
-                    nameJP: 'ペーパー大人免許',
+                    nameJP: UI.UI_LICENSE_PAPER_JP(),
                     nameEN: 'PAPER ADULT LICENSE',
                     symbol: 'P',
                     color: '#888888',
                     gradientStart: '#888888',
                     gradientEnd: '#444444',
-                    adamComment: 'ギリギリの合格です。社会システムの基本は理解しましたが、まだ危うい部分があります。・・・再教育を推奨します。',
+                    adamComment: UI.UI_LICENSE_PAPER_ADAM(),
                     imagePath: 'license_paper.png'
                 };
         }

@@ -55,6 +55,9 @@
     font-weight: 700;
     margin-bottom: 4px;
     opacity: 0.9;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .stat-value {
@@ -153,6 +156,9 @@
     box-shadow: none;
     text-align: center;
     box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /* Overlay */

@@ -4,6 +4,8 @@ import { applySkillEffects, getSkillActivations, type SkillActivation } from '..
 import { getADAMCommentForEffect } from '../data/adamDialogue';
 import { CONFIG } from '../config';
 import { GlobalProgressStorage } from '../storage/GlobalProgressStorage';
+import { t } from '../i18n/lang';
+import * as UI from '../i18n/uiStrings';
 
 export class GameEngine {
     state: GameState;
@@ -90,7 +92,7 @@ export class GameEngine {
 
         return {
             outcome: modifiedEffect,
-            feedback: `${choice.feedback}<br><br><span style="color:#aaa; font-size:0.9em;">[A.D.A.M.]: ${adamComment}</span>`,
+            feedback: `${t(choice.feedback, choice.feedbackEN)}<br><br><span style="color:#aaa; font-size:0.9em;">[A.D.A.M.]: ${adamComment}</span>`,
             isTerminated,
             skillActivations
         };
@@ -109,21 +111,21 @@ export class GameEngine {
         };
 
         let rank = "C";
-        let title = "最低限合格";
-        let desc = "最低限の基準はクリアしました。再教育を推奨します。";
+        let title = UI.UI_RANK_C_TITLE();
+        let desc = UI.UI_RANK_C_DESC();
 
         if (s.CS >= thresholds.S.CS) {
             rank = "S";
-            title = "完全適合者";
-            desc = "完璧です。あなたは素晴らしい社会の一員となれるでしょう。";
+            title = UI.UI_RANK_S_TITLE();
+            desc = UI.UI_RANK_S_DESC();
         } else if (s.CS >= thresholds.A.CS) {
             rank = "A";
-            title = "上級適合者";
-            desc = "優秀な成績です。多少の誤りは残っていますが、許容範囲です。";
+            title = UI.UI_RANK_A_TITLE();
+            desc = UI.UI_RANK_A_DESC();
         } else if (s.CS >= thresholds.B.CS) {
             rank = "B";
-            title = "一般適合者";
-            desc = "可もなく不可もなく。代替可能な人材です。";
+            title = UI.UI_RANK_B_TITLE();
+            desc = UI.UI_RANK_B_DESC();
         }
         // C = clear: If CS >= 1 and you finished, you get C rank
         // Game over happens at CS <= 0, so completing means at least C
@@ -215,7 +217,7 @@ export class GameEngine {
             return {
                 skill,
                 isAvailable: false,
-                lockedReason: `Q${questionNum}で選択肢${choiceLetter}を選ぶ必要があります。`
+                lockedReason: UI.UI_KEY_SKILL_LOCKED(questionNum, choiceLetter)
             };
         });
     }

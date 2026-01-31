@@ -36,12 +36,14 @@ export interface GlobalProgress {
 
 export interface Choice {
     text: string;
+    textEN?: string;
     effect: {
         CS: number;
         Asset: number;
         Autonomy: number;
     };
     feedback: string;
+    feedbackEN?: string;
     // Player-facing overlay label. When omitted, UI falls back to CS delta.
     verdict?: 'APPROVED' | 'WARNING' | 'NEUTRAL';
     lockRequirements?: {
@@ -50,17 +52,21 @@ export interface Choice {
         Autonomy?: number;
     } | null;
     lockedFeedback?: string;
+    lockedFeedbackEN?: string;
 }
 
 export interface ADAMDialogue {
     intro?: string;
+    introEN?: string;
     after?: string;
+    afterEN?: string;
 }
 
 export interface Question {
     id: string;
     category: string;
     text: string;
+    textEN?: string;
     imagePrompt: string; // Original 'image' field, used for generation
     imagePath?: string;   // Path to generated asset
     choices: Choice[];
@@ -85,15 +91,18 @@ export interface Skill {
     name: string;
     nameEN?: string;
     desc: string;
+    descEN?: string;
     effect: SkillEffect;
     effects?: SkillEffect[];  // For multi-effect skills (applied in addition to main effect)
     category?: 'normal' | 'key';
     isCollectible?: boolean; // True for key skills that count toward True Ending unlock
     acquiredStage?: number;
     adamComment?: string;
+    adamCommentEN?: string;
     keySkillRequirement?: KeySkillRequirement; // For key skills: which Q/choice unlocks it
     isRecommended?: boolean; // A.D.A.M.'s recommendation - helps new players trust the system
     recommendComment?: string; // A.D.A.M.'s speech when recommending this skill
+    recommendCommentEN?: string;
 }
 
 export interface StageMetadata {
