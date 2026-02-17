@@ -12,7 +12,17 @@ import * as UI from '../i18n/uiStrings';
 import { adamDialogue, adamDialogueEN } from '../data/adamDialogue';
 
 // Vite glob import for assets
-const images = import.meta.glob('../assets/*.{png,jpg,jpeg,webp}', { eager: true });
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore - verify environment supports glob
+let images: Record<string, unknown> = {};
+try {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    images = import.meta.glob('../assets/*.{png,jpg,jpeg,webp}', { eager: true });
+} catch {
+    // Fallback for environments where import.meta.glob is not available (e.g. Bun tests)
+    images = {};
+}
 
 interface DOMElements {
     mainImage: HTMLImageElement;
@@ -131,8 +141,9 @@ export class UIManager {
         allStages.forEach((stage, index) => {
             if (!this.recordStorage.isStageUnlocked(index)) return; // Don't render locked stages
 
-            const btn = document.createElement('div');
+            const btn = document.createElement('button');
             btn.className = 'diff-btn';
+            btn.type = 'button';
 
             const record = this.recordStorage.get(stage.key);
             const validRanks: readonly string[] = CONFIG.VALID_RANKS;
