@@ -28,13 +28,11 @@ Object.defineProperty(globalThis, 'localStorage', {
 
 describe('GlobalProgressStorage', () => {
     beforeEach(() => {
-        // eslint-disable-next-line no-undef
         localStorage.clear();
         vi.clearAllMocks();
     });
 
     afterEach(() => {
-        // eslint-disable-next-line no-undef
         localStorage.clear();
     });
 
@@ -44,7 +42,6 @@ describe('GlobalProgressStorage', () => {
             keySkillsCollected: ['skill1', 'skill2'],
             completedStages: [1, 2],
         };
-        // eslint-disable-next-line no-undef
         localStorage.setItem(CONFIG.STORAGE_KEYS.GLOBAL_PROGRESS, JSON.stringify(validData));
 
         const storage = new GlobalProgressStorage();
@@ -52,7 +49,6 @@ describe('GlobalProgressStorage', () => {
     });
 
     it('handles malformed JSON gracefully', () => {
-        // eslint-disable-next-line no-undef
         const getItemSpy = vi.spyOn(localStorage, 'getItem');
         getItemSpy.mockReturnValueOnce('{invalid-json');
 
@@ -69,7 +65,6 @@ describe('GlobalProgressStorage', () => {
             stageRanks: { 1: 'S' },
             // Missing keySkillsCollected and completedStages
         };
-        // eslint-disable-next-line no-undef
         localStorage.setItem(CONFIG.STORAGE_KEYS.GLOBAL_PROGRESS, JSON.stringify(invalidData));
 
         const storage = new GlobalProgressStorage();
@@ -86,7 +81,6 @@ describe('GlobalProgressStorage', () => {
             keySkillsCollected: 12345,
             completedStages: "should-be-array",
         };
-        // eslint-disable-next-line no-undef
         localStorage.setItem(CONFIG.STORAGE_KEYS.GLOBAL_PROGRESS, JSON.stringify(invalidData));
 
         const storage = new GlobalProgressStorage();
@@ -98,12 +92,11 @@ describe('GlobalProgressStorage', () => {
     });
 
     it('should reject invalid rank values', () => {
-         const invalidData = {
+        const invalidData = {
             stageRanks: { 1: 'X' }, // Invalid rank
             keySkillsCollected: [],
             completedStages: [1],
         };
-        // eslint-disable-next-line no-undef
         localStorage.setItem(CONFIG.STORAGE_KEYS.GLOBAL_PROGRESS, JSON.stringify(invalidData));
 
         const storage = new GlobalProgressStorage();
