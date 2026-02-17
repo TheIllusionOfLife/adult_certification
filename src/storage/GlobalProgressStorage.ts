@@ -43,26 +43,30 @@ export class GlobalProgressStorage {
     /**
      * Validate the loaded data structure.
      */
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    private isValid(data: any): data is GlobalProgress {
+    private isValid(data: unknown): data is GlobalProgress {
         if (!data || typeof data !== 'object') return false;
 
+        const progress = data as Record<string, unknown>;
+
         // Validate completedStages
-        if (!Array.isArray(data.completedStages)) return false;
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        if (!data.completedStages.every((id: any) => typeof id === 'number')) return false;
+        const completedStages = progress.completedStages;
+        if (!Array.isArray(completedStages)) return false;
+        if (!completedStages.every((id) => typeof id === 'number')) return false;
 
         // Validate keySkillsCollected
-        if (!Array.isArray(data.keySkillsCollected)) return false;
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        if (!data.keySkillsCollected.every((id: any) => typeof id === 'string')) return false;
+        const keySkillsCollected = progress.keySkillsCollected;
+        if (!Array.isArray(keySkillsCollected)) return false;
+        if (!keySkillsCollected.every((id) => typeof id === 'string')) return false;
 
         // Validate stageRanks
-        if (!data.stageRanks || typeof data.stageRanks !== 'object' || Array.isArray(data.stageRanks)) return false;
+        const stageRanks = progress.stageRanks;
+        if (!stageRanks || typeof stageRanks !== 'object' || Array.isArray(stageRanks)) return false;
 
+        const ranks = stageRanks as Record<string, unknown>;
         const validRanks = ['S', 'A', 'B', 'C'];
-        for (const key in data.stageRanks) {
-            if (!validRanks.includes(data.stageRanks[key])) return false;
+        for (const key in ranks) {
+            const val = ranks[key];
+            if (typeof val !== 'string' || !validRanks.includes(val)) return false;
         }
 
         return true;

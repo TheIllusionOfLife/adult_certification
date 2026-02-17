@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { GlobalProgressStorage } from '../../src/storage/GlobalProgressStorage';
 import { CONFIG } from '../../src/config';
@@ -20,18 +19,22 @@ const localStorageMock = (() => {
     };
 })();
 
-Object.defineProperty(global, 'localStorage', {
+// Use globalThis to avoid linter errors with 'global'
+Object.defineProperty(globalThis, 'localStorage', {
     value: localStorageMock,
-    writable: true // Ensure it can be overwritten if needed
+    writable: true,
+    configurable: true // Allow overwriting/deleting if needed
 });
 
 describe('GlobalProgressStorage', () => {
     beforeEach(() => {
+        // eslint-disable-next-line no-undef
         localStorage.clear();
         vi.clearAllMocks();
     });
 
     afterEach(() => {
+        // eslint-disable-next-line no-undef
         localStorage.clear();
     });
 
@@ -41,6 +44,7 @@ describe('GlobalProgressStorage', () => {
             keySkillsCollected: ['skill1', 'skill2'],
             completedStages: [1, 2],
         };
+        // eslint-disable-next-line no-undef
         localStorage.setItem(CONFIG.STORAGE_KEYS.GLOBAL_PROGRESS, JSON.stringify(validData));
 
         const storage = new GlobalProgressStorage();
@@ -48,12 +52,16 @@ describe('GlobalProgressStorage', () => {
     });
 
     it('handles malformed JSON gracefully', () => {
-        localStorage.setItem(CONFIG.STORAGE_KEYS.GLOBAL_PROGRESS, '{invalid-json');
+        // eslint-disable-next-line no-undef
+        const getItemSpy = vi.spyOn(localStorage, 'getItem');
+        getItemSpy.mockReturnValueOnce('{invalid-json');
 
         const storage = new GlobalProgressStorage();
         const progress = storage.getProgress();
 
         expect(progress.stageRanks).toEqual({});
+
+        getItemSpy.mockRestore();
     });
 
     it('should reject invalid data structure (missing fields)', () => {
@@ -61,6 +69,7 @@ describe('GlobalProgressStorage', () => {
             stageRanks: { 1: 'S' },
             // Missing keySkillsCollected and completedStages
         };
+        // eslint-disable-next-line no-undef
         localStorage.setItem(CONFIG.STORAGE_KEYS.GLOBAL_PROGRESS, JSON.stringify(invalidData));
 
         const storage = new GlobalProgressStorage();
@@ -77,6 +86,7 @@ describe('GlobalProgressStorage', () => {
             keySkillsCollected: 12345,
             completedStages: "should-be-array",
         };
+        // eslint-disable-next-line no-undef
         localStorage.setItem(CONFIG.STORAGE_KEYS.GLOBAL_PROGRESS, JSON.stringify(invalidData));
 
         const storage = new GlobalProgressStorage();
@@ -93,6 +103,7 @@ describe('GlobalProgressStorage', () => {
             keySkillsCollected: [],
             completedStages: [1],
         };
+        // eslint-disable-next-line no-undef
         localStorage.setItem(CONFIG.STORAGE_KEYS.GLOBAL_PROGRESS, JSON.stringify(invalidData));
 
         const storage = new GlobalProgressStorage();
