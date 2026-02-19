@@ -47,10 +47,12 @@ export class UIManager {
     engine: GameEngine;
     private dom: DOMElements;
     private recordStorage: RecordStorage;
+    private globalProgressStorage: GlobalProgressStorage;
 
     constructor(engine: GameEngine) {
         this.engine = engine;
         this.recordStorage = new RecordStorage();
+        this.globalProgressStorage = new GlobalProgressStorage();
         const getEl = <T extends HTMLElement>(id: string): T => {
             const el = document.getElementById(id);
             if (!el) throw new Error(`Required element #${id} not found`);
@@ -124,8 +126,7 @@ export class UIManager {
         }));
 
         // Get collected key skills from global progress
-        const globalProgress = new GlobalProgressStorage();
-        const collectedKeySkills = globalProgress.getKeySkillsCollected();
+        const collectedKeySkills = this.globalProgressStorage.getKeySkillsCollected();
 
         // Only show stages that are unlocked (Stage 1 always visible, others require previous stage beaten)
         allStages.forEach((stage, index) => {
