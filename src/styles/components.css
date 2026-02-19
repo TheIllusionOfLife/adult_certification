@@ -806,3 +806,116 @@
     transform: rotate(-25deg);
     vertical-align: middle;
 }
+
+/* License and Final Certification Styles */
+.license-img {
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+    margin: 0 auto 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    display: block;
+}
+
+.license-placeholder {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.license-placeholder-content {
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.license-symbol {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.license-name-en {
+    font-size: 0.8rem;
+    margin-top: 5px;
+}
+
+.final-certification {
+    text-align: center;
+}
+
+.license-name-jp {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.key-skill-summary {
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+}
+
+/* UI Feedback and Ending Styles */
+.skill-activation-msg {
+    color: var(--color-positive);
+}
+
+.stat-label {
+    font-size: 0.8em;
+}
+
+.stat-value {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.adam-comment-special {
+    color: var(--color-negative);
+    font-style: italic;
+}
+
+.key-skill-obtained {
+    color: var(--color-positive);
+}
+
+.key-skill-not-obtained {
+    color: var(--color-text-muted);
+}
+
+.ending-container {
+    text-align: center;
+}
+
+.ending-subtitle {
+    margin-bottom: 15px;
+}
+
+.ending-rank {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+}
+
+.ending-title {
+    font-size: 1.2rem;
+    color: var(--accent-color);
+}
+
+.ending-desc {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin-bottom: 15px;
+}
+
+.key-skill-status-container {
+    margin-top: 15px;
+    font-size: 0.85rem;
+    color: var(--color-text-dark-muted);
+}
+
+.adam-comment-final {
+    margin-top: 20px;
+}
