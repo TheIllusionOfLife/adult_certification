@@ -1,5 +1,6 @@
 import type { GlobalProgress, LicenseType } from '../types';
 import { CONFIG } from '../config';
+import { encodeData, decodeData } from '../utils/security';
 
 const STORAGE_KEY = CONFIG.STORAGE_KEYS.GLOBAL_PROGRESS;
 const TOTAL_KEY_SKILLS = CONFIG.TOTAL_STAGES;
@@ -22,7 +23,8 @@ export class GlobalProgressStorage {
         try {
             const stored = localStorage.getItem(STORAGE_KEY);
             if (stored) {
-                return JSON.parse(stored);
+                const decoded = decodeData(stored);
+                return JSON.parse(decoded);
             }
         } catch {
             console.warn('Failed to load global progress, resetting');
@@ -39,7 +41,8 @@ export class GlobalProgressStorage {
      */
     private save(): void {
         try {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(this.progress));
+            const data = JSON.stringify(this.progress);
+            localStorage.setItem(STORAGE_KEY, encodeData(data));
         } catch {
             console.warn('Failed to save global progress (private browsing?)');
         }

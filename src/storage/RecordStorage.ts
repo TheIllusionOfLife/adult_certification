@@ -1,4 +1,5 @@
 import { CONFIG } from '../config';
+import { encodeData, decodeData } from '../utils/security';
 
 export interface StageRecord {
     rank: string;
@@ -26,7 +27,8 @@ export class RecordStorage {
         try {
             const stored = localStorage.getItem(CONFIG.STORAGE_KEYS.RECORDS);
             if (stored) {
-                this.records = JSON.parse(stored);
+                const decoded = decodeData(stored);
+                this.records = JSON.parse(decoded);
             }
         } catch {
             // eslint-disable-next-line no-console
@@ -52,7 +54,8 @@ export class RecordStorage {
                 date: new Date().toLocaleDateString(),
             };
             try {
-                localStorage.setItem(CONFIG.STORAGE_KEYS.RECORDS, JSON.stringify(this.records));
+                const data = JSON.stringify(this.records);
+                localStorage.setItem(CONFIG.STORAGE_KEYS.RECORDS, encodeData(data));
             } catch {
                 // eslint-disable-next-line no-console
                 console.warn('Failed to save record (private browsing?)');
