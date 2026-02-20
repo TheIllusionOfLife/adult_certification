@@ -13,16 +13,15 @@ import { adamDialogue, adamDialogueEN } from '../data/adamDialogue';
 
 // Vite glob import for assets
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore - verify environment supports glob
-let images: Record<string, unknown> = {};
-try {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    images = import.meta.glob('../assets/*.{png,jpg,jpeg,webp}', { eager: true });
-} catch {
-    // Fallback for environments where import.meta.glob is not available (e.g. Bun tests)
-    images = {};
-}
+// @ts-expect-error `import.meta.glob` is a Vite-specific feature not recognized by the TS compiler by default.
+const images: Record<string, { default: string }> = (() => {
+    try {
+        return import.meta.glob('../assets/*.{png,jpg,jpeg,webp}', { eager: true });
+    } catch {
+        // Fallback for environments where import.meta.glob is not available (e.g. Bun tests)
+        return {};
+    }
+})();
 
 interface DOMElements {
     mainImage: HTMLImageElement;
