@@ -1,3 +1,4 @@
 [test]
 # Exclude Playwright E2E tests from bun test (they require playwright runner)
 root = "./tests"
+preload = ["./tests/setup.ts"]
