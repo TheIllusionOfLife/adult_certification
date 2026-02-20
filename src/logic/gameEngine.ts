@@ -13,8 +13,8 @@ export class GameEngine {
     activeSkills: Skill[] = []; // Currently active skills for this stage
     private globalProgress: GlobalProgressStorage;
 
-    constructor(questions: Question[], stageId: number = 1) {
-        this.globalProgress = new GlobalProgressStorage();
+    constructor(questions: Question[], stageId: number = 1, globalProgress?: GlobalProgressStorage) {
+        this.globalProgress = globalProgress || new GlobalProgressStorage();
         const stageMetadata = getStageMetadata(stageId);
         const initialParams = stageMetadata?.initialParams || CONFIG.DEFAULT_INITIAL_PARAMS;
 

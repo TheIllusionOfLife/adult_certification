@@ -133,7 +133,7 @@ export class UIManager {
         }));
 
         // Get collected key skills from global progress
-        const globalProgress = new GlobalProgressStorage();
+        const globalProgress = this.engine.getGlobalProgress();
         const collectedKeySkills = globalProgress.getKeySkillsCollected();
 
         // Only show stages that are unlocked (Stage 1 always visible, others require previous stage beaten)

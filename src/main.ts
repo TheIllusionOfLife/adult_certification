@@ -1,6 +1,7 @@
 import './style.css';
 import { GameEngine } from './logic/gameEngine';
 import { UIManager } from './ui/render';
+import { GlobalProgressStorage } from './storage/GlobalProgressStorage';
 import type { Question } from './types';
 
 // Stage question registry - add more stages as they are implemented
@@ -21,8 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const app = document.getElementById('game-container');
   if (!app) return;
 
+  // Shared storage instance to avoid redundant I/O
+  const globalProgress = new GlobalProgressStorage();
+
   // Initial Engine with empty questions to satisfy constructor
-  let engine = new GameEngine([], 1);
+  let engine = new GameEngine([], 1, globalProgress);
   const ui = new UIManager(engine);
 
   // Show Start Screen
@@ -37,14 +41,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Load questions for the selected stage
       const questions = await importer();
-      engine = new GameEngine(questions, stageNum);
+      engine = new GameEngine(questions, stageNum, globalProgress);
       engine.difficulty = `Stage${stageNum}` as typeof engine.difficulty;
 
     } catch (error) {
       console.warn(`Failed to load questions for Stage ${stageNum}. Using Stage 1 as fallback.`, error);
       try {
         const fallbackQuestions = await stageImporters[1]();
-        engine = new GameEngine(fallbackQuestions, 1);
+        engine = new GameEngine(fallbackQuestions, 1, globalProgress);
         engine.difficulty = "Stage1";
       } catch (fallbackError) {
         console.error('Failed to load Stage 1 fallback. Cannot start the game.', fallbackError);
