@@ -63,7 +63,7 @@ export class GlobalProgressStorage {
         if (!stageRanks || typeof stageRanks !== 'object' || Array.isArray(stageRanks)) return false;
 
         const ranks = stageRanks as Record<string, unknown>;
-        const validRanks = ['S', 'A', 'B', 'C'];
+        const validRanks = CONFIG.VALID_RANKS as readonly string[];
         for (const key in ranks) {
             const val = ranks[key];
             if (typeof val !== 'string' || !validRanks.includes(val)) return false;
