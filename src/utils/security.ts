@@ -7,7 +7,9 @@
  * Encodes a string to Base64.
  */
 export function encodeData(data: string): string {
-    return btoa(data);
+    return btoa(encodeURIComponent(data).replace(/%([0-9A-F]{2})/g,
+        (_match, p1) => String.fromCharCode(parseInt(p1, 16))
+    ));
 }
 
 /**
@@ -23,7 +25,11 @@ export function decodeData(encoded: string): string {
     }
 
     try {
-        return atob(encoded);
+        const binaryString = atob(encoded);
+        const percentEncoded = Array.from(binaryString, char =>
+            '%' + ('00' + char.charCodeAt(0).toString(16)).slice(-2)
+        ).join('');
+        return decodeURIComponent(percentEncoded);
     } catch {
         // Not a valid base64 string, return as is
         return encoded;
