@@ -155,17 +155,21 @@ export class UIManager {
                 btn.classList.add('stage-perfected');
             }
 
-            btn.innerHTML = `
-                <div class="diff-info">
-                    <span class="diff-name">${stage.name}</span>
-                    <span class="diff-desc">${stage.desc}</span>
-                </div>
-                <div class="btn-right-col">
-                    ${hasKeySkill ? `<span class="key-indicator" title="Key Skill ${UI.UI_KEY_SKILL_OBTAINED()}"></span>` : ''}
-                    ${safeRank ? `<span class="rank-stamp ${rankClass}">${safeRank}</span>` : ''}
-                    <span class="arrow">▶</span>
-                </div>
-            `;
+            btn.textContent = '';
+            const rightColChildren: Node[] = [];
+            if (hasKeySkill) {
+                const ki = this.h('span', 'key-indicator'); ki.title = `Key Skill ${UI.UI_KEY_SKILL_OBTAINED()}`;
+                rightColChildren.push(ki);
+            }
+            if (safeRank) {
+                rightColChildren.push(this.h('span', `rank-stamp ${rankClass}`, safeRank));
+            }
+            rightColChildren.push(this.h('span', 'arrow', '▶'));
+
+            btn.append(
+                this.h('div', 'diff-info', '', [this.h('span', 'diff-name', stage.name), this.h('span', 'diff-desc', stage.desc)]),
+                this.h('div', 'btn-right-col', '', rightColChildren)
+            );
             btn.addEventListener('click', () => {
                 this.dom.startScreen.style.display = 'none';
                 onSelect(index + 1); // Pass stage number (1-indexed)
@@ -368,7 +372,8 @@ export class UIManager {
 
             btn.className = isLocked ? 'choice-btn choice-locked' : 'choice-btn';
 
-            let content = `<span class="choice-letter">${String.fromCharCode(65 + i)}</span><span class="choice-text">${t(c.text, c.textEN)}</span>`;
+            btn.textContent = '';
+            btn.append(this.h('span', 'choice-letter', String.fromCharCode(65 + i)), this.h('span', 'choice-text', t(c.text, c.textEN)));
 
             if (isLocked && c.lockRequirements) {
                 const req = c.lockRequirements;
@@ -377,10 +382,8 @@ export class UIManager {
                 if (req.Asset !== undefined) parts.push(UI.UI_LOCK_ASSET(req.Asset));
                 if (req.Autonomy !== undefined) parts.push(UI.UI_LOCK_AUTONOMY(req.Autonomy));
                 const sep = getLang() === 'en' ? '; ' : '、';
-                content += `<div class="lock-reason">${parts.join(sep)}</div>`;
+                btn.appendChild(this.h('div', 'lock-reason', parts.join(sep)));
             }
-
-            btn.innerHTML = content;
 
             if (!isLocked) {
                 btn.addEventListener('click', () => this.handleChoice(c, q, i));
@@ -440,20 +443,14 @@ export class UIManager {
         const mainFeedback = feedback.replace(/<br><br><span.*?\[A\.D\.A\.M\.\]:.*?<\/span>$/, '');
 
         this.dom.ovBody.innerHTML = mainFeedback + skillMessagesHTML;
-        this.dom.ovStats.innerHTML = `
-            <div class="stat-result ${getAnimClass(CS)}">
-                <span class="stat-label">${UI.UI_STAT_CS_SHORT()}</span><br>
-                <span class="stat-value">${CS > 0 ? '+' : ''}${CS}</span>
-            </div>
-            <div class="stat-result ${getAnimClass(Asset)}">
-                <span class="stat-label">${UI.UI_STAT_ASSET_SHORT()}</span><br>
-                <span class="stat-value">${Asset > 0 ? '+' : ''}${Asset}</span>
-            </div>
-            <div class="stat-result ${getAnimClass(Autonomy)}">
-                <span class="stat-label">${UI.UI_STAT_AUTONOMY_SHORT()}</span><br>
-                <span class="stat-value">${Autonomy > 0 ? '+' : ''}${Autonomy}</span>
-            </div>
-        `;
+        this.dom.ovStats.textContent = '';
+        [
+            { l: UI.UI_STAT_CS_SHORT(), v: CS }, { l: UI.UI_STAT_ASSET_SHORT(), v: Asset }, { l: UI.UI_STAT_AUTONOMY_SHORT(), v: Autonomy }
+        ].forEach(s => {
+            const labelS = this.h('span', 'stat-label', s.l);
+            const valS = this.h('span', 'stat-value', (s.v > 0 ? '+' : '') + s.v);
+            this.dom.ovStats.appendChild(this.h('div', `stat-result ${getAnimClass(s.v)}`, '', [labelS, document.createElement('br'), valS]));
+        });
 
         // Mascot Reaction
         if (CS > 0) this.updateMascot('happy');
@@ -499,6 +496,14 @@ export class UIManager {
         this.preloadNextQuestionImage();
     }
 
+    private h(tag: string, cls: string, txt?: string, children: Node[] = []) {
+        const el = document.createElement(tag);
+        if (cls) el.className = cls;
+        if (txt) el.textContent = txt;
+        children.forEach(c => el.appendChild(c));
+        return el;
+    }
+
     private preloadNextQuestionImage() {
         const nextIndex = this.engine.state.currentQuestionIndex + 1;
         if (nextIndex >= this.engine.state.questions.length) return;
@@ -536,9 +541,7 @@ export class UIManager {
         wrapper.className = 'skill-offer-wrapper';
 
         // Title section
-        const title = document.createElement('div');
-        title.className = 'skill-offer-title';
-        title.innerHTML = `<h3>${UI.UI_SKILL_SELECT_TITLE()}</h3>`;
+        const title = this.h('div', 'skill-offer-title', '', [this.h('h3', '', UI.UI_SKILL_SELECT_TITLE())]);
         wrapper.appendChild(title);
 
         // A.D.A.M. recommendation speech
@@ -550,13 +553,9 @@ export class UIManager {
             const comment = recommendedSkill.skill.recommendComment
                 ? t(recommendedSkill.skill.recommendComment, recommendedSkill.skill.recommendCommentEN)
                 : defaultComment;
-            adamSection.innerHTML = `
-                <img src="${this.dom.mascotImg.src}" alt="A.D.A.M." class="adam-recommend-img" />
-                <div class="adam-recommend-speech">
-                    <span class="adam-label">[A.D.A.M.]:</span>
-                    ${comment}
-                </div>
-            `;
+            adamSection.textContent = '';
+            const img = this.h('img', 'adam-recommend-img'); Object.assign(img, { src: this.dom.mascotImg.src, alt: 'A.D.A.M.' });
+            adamSection.append(img, this.h('div', 'adam-recommend-speech', '', [this.h('span', 'adam-label', '[A.D.A.M.]:'), document.createTextNode(` ${comment}`)]));
             wrapper.appendChild(adamSection);
         }
 
@@ -584,15 +583,16 @@ export class UIManager {
                 ? `<span class="skill-locked-reason">${lockedReason}</span>`
                 : '';
 
-            sBtn.innerHTML = `
-                ${recommendedBadge}
-                <div class="skill-letter-circle">${String.fromCharCode(65 + i)}</div>
-                <div class="skill-content">
-                    <span class="skill-name">${t(s.name, s.nameEN)}</span>
-                    <span class="skill-desc">${t(s.desc, s.descEN)}</span>
-                    ${lockedReasonHtml}
-                </div>
-            `;
+            sBtn.textContent = '';
+            sBtn.append(
+                ...(isRecommended ? [this.h('span', 'recommended-badge', UI.UI_RECOMMENDED_BADGE())] : []),
+                this.h('div', 'skill-letter-circle', String.fromCharCode(65 + i)),
+                this.h('div', 'skill-content', '', [
+                    this.h('span', 'skill-name', t(s.name, s.nameEN)),
+                    this.h('span', 'skill-desc', t(s.desc, s.descEN)),
+                    ...(isLocked && lockedReason ? [this.h('span', 'skill-locked-reason', lockedReason)] : [])
+                ])
+            );
 
             if (isLocked) {
                 sBtn.disabled = true;
