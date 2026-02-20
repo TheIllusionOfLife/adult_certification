@@ -12,7 +12,16 @@ import * as UI from '../i18n/uiStrings';
 import { adamDialogue, adamDialogueEN } from '../data/adamDialogue';
 
 // Vite glob import for assets
-const images = import.meta.glob('../assets/*.{png,jpg,jpeg,webp}', { eager: true });
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error `import.meta.glob` is a Vite-specific feature not recognized by the TS compiler by default.
+const images: Record<string, { default: string }> = (() => {
+    try {
+        return import.meta.glob('../assets/*.{png,jpg,jpeg,webp}', { eager: true });
+    } catch {
+        // Fallback for environments where import.meta.glob is not available (e.g. Bun tests)
+        return {};
+    }
+})();
 
 interface DOMElements {
     mainImage: HTMLImageElement;
@@ -131,8 +140,9 @@ export class UIManager {
         allStages.forEach((stage, index) => {
             if (!this.recordStorage.isStageUnlocked(index)) return; // Don't render locked stages
 
-            const btn = document.createElement('div');
+            const btn = document.createElement('button');
             btn.className = 'diff-btn';
+            btn.type = 'button';
 
             const record = this.recordStorage.get(stage.key);
             const validRanks: readonly string[] = CONFIG.VALID_RANKS;
@@ -410,7 +420,7 @@ export class UIManager {
         // Format skill activation messages as HTML
         const skillMessagesHTML = skillActivations.length > 0
             ? "<br>" + skillActivations.map(sa =>
-                `<span style="color:#4cc9f0">${UI.UI_SKILL_ACTIVATION(sa.skillName, sa.description, sa.originalValue, sa.modifiedValue)}</span>`
+                `<span class="skill-activation-msg">${UI.UI_SKILL_ACTIVATION(sa.skillName, sa.description, sa.originalValue, sa.modifiedValue)}</span>`
             ).join("<br>")
             : "";
 
@@ -437,9 +447,8 @@ export class UIManager {
         [
             { l: UI.UI_STAT_CS_SHORT(), v: CS }, { l: UI.UI_STAT_ASSET_SHORT(), v: Asset }, { l: UI.UI_STAT_AUTONOMY_SHORT(), v: Autonomy }
         ].forEach(s => {
-            const valS = this.h('span', '', (s.v > 0 ? '+' : '') + s.v);
-            Object.assign(valS.style, { fontSize: '1.2em', fontWeight: 'bold' });
-            const labelS = this.h('span', '', s.l); labelS.style.fontSize = '0.8em';
+            const labelS = this.h('span', 'stat-label', s.l);
+            const valS = this.h('span', 'stat-value', (s.v > 0 ? '+' : '') + s.v);
             this.dom.ovStats.appendChild(this.h('div', `stat-result ${getAnimClass(s.v)}`, '', [labelS, document.createElement('br'), valS]));
         });
 
@@ -451,7 +460,7 @@ export class UIManager {
         if (isTerminated) {
             this.dom.btnNext.style.display = 'block';
             this.dom.ovBody.innerHTML += `
-                <div class="adam-comment-section" style="margin-top: 20px;">
+                <div class="adam-comment-section adam-comment-final">
                     <img src="${this.dom.mascotImg.src}" alt="A.D.A.M." class="adam-comment-img" />
                     <div class="adam-comment-text">${UI.UI_GAME_OVER_ADAM()}</div>
                 </div>`;
@@ -594,7 +603,7 @@ export class UIManager {
                     // Show A.D.A.M. comment for key skills
                     if (s.category === 'key' && s.adamComment) {
                         const adamText = t(s.adamComment, s.adamCommentEN);
-                        this.dom.ovBody.innerHTML += `<br><br><span style="color:#f72585; font-style:italic;">${adamText}</span>`;
+                        this.dom.ovBody.innerHTML += `<div class="adam-comment-special-block">${adamText}</div>`;
                     }
 
                     // Update skill list display
@@ -659,8 +668,8 @@ export class UIManager {
         const stageKeySkillId = stageMetadata?.keySkillId;
         const keySkillObtained = stageKeySkillId && s.keySkills.includes(stageKeySkillId);
         const keySkillStatus = keySkillObtained
-            ? `<span style="color: #4cc9f0;">${UI.UI_KEY_SKILL_OBTAINED()}</span>`
-            : `<span style="color: #888;">${UI.UI_KEY_SKILL_NOT_OBTAINED()}</span>`;
+            ? `<span class="key-skill-obtained">${UI.UI_KEY_SKILL_OBTAINED()}</span>`
+            : `<span class="key-skill-not-obtained">${UI.UI_KEY_SKILL_NOT_OBTAINED()}</span>`;
 
         // Use stage-specific outro from adamDialogue if available, fall back to generic ending.desc
         const dl = this.getLocalizedDialogue(s.currentStage);
@@ -671,18 +680,18 @@ export class UIManager {
         this.dom.ovTitle.style.color = "var(--accent-color)";
 
         this.dom.ovBody.innerHTML = `
-            <div style="text-align: center;">
-                <div style="margin-bottom: 15px;">${UI.UI_STAGE_N_END(s.currentStage)}</div>
-                <strong style="font-size:2.5rem; color:var(--accent-color)">${ending.rank}</strong><br>
-                <span style="font-size:1.2rem; color:var(--accent-color)">${ending.title}</span><br><br>
-                <div style="font-size:0.9rem; color:#888; margin-bottom: 15px;">
+            <div class="ending-container">
+                <div class="ending-subtitle">${UI.UI_STAGE_N_END(s.currentStage)}</div>
+                <strong class="ending-rank">${ending.rank}</strong>
+                <span class="ending-title">${ending.title}</span>
+                <div class="ending-desc">
                     ${UI.UI_RESULT_STATS(s.CS, s.Asset, s.Autonomy)}
                 </div>
                 <div class="adam-comment-section">
                     <img src="${this.dom.mascotImg.src}" alt="A.D.A.M." class="adam-comment-img" />
                     <div class="adam-comment-text">${adamComment}</div>
                 </div>
-                <div style="margin-top: 15px; font-size: 0.85rem; color: #666;">Key Skill: ${keySkillStatus}</div>
+                <div class="key-skill-status-container">Key Skill: ${keySkillStatus}</div>
             </div>
         `;
         this.dom.ovStats.innerHTML = "";
@@ -721,48 +730,31 @@ export class UIManager {
             const assetPath = `../assets/${licenseInfo.imagePath}`;
             const mod = images[assetPath] as { default: string } | undefined;
             if (mod?.default) {
-                licenseImageHtml = `<img src="${mod.default}" alt="${licenseInfo.nameJP}" style="
-                    width: 200px;
-                    height: auto;
-                    border-radius: 10px;
-                    margin: 0 auto 20px;
-                    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-                    display: block;
-                " />`;
+                licenseImageHtml = `<img src="${mod.default}" alt="${licenseInfo.nameJP}" class="license-img" />`;
             }
         }
         // Fallback to placeholder if no image
         if (!licenseImageHtml) {
-            licenseImageHtml = `<div class="license-placeholder" style="
-                width: 200px;
-                height: 200px;
-                background: linear-gradient(135deg, ${licenseInfo.gradientStart}, ${licenseInfo.gradientEnd});
-                border-radius: 10px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin: 0 auto 20px;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            ">
-                <div style="text-align: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
-                    <div style="font-size: 2.5rem; font-weight: bold;">${licenseInfo.symbol}</div>
-                    <div style="font-size: 0.8rem; margin-top: 5px;">${licenseInfo.nameEN}</div>
+            licenseImageHtml = `<div class="license-placeholder" style="background: linear-gradient(135deg, ${licenseInfo.gradientStart}, ${licenseInfo.gradientEnd});">
+                <div class="license-placeholder-content">
+                    <div class="license-symbol">${licenseInfo.symbol}</div>
+                    <div class="license-name-en">${licenseInfo.nameEN}</div>
                 </div>
             </div>`;
         }
 
         // Build the final certification display (overall results only, no Stage 10 stats)
         this.dom.ovBody.innerHTML = `
-            <div class="final-certification" style="text-align: center;">
+            <div class="final-certification">
                 <div class="license-image-container">
                     ${licenseImageHtml}
                 </div>
 
-                <div style="font-size: 1.5rem; font-weight: bold; color: ${licenseInfo.color}; margin-bottom: 20px;">
+                <div class="license-name-jp" style="color: ${licenseInfo.color}">
                     ${licenseInfo.nameJP}
                 </div>
 
-                <div style="font-size: 0.85rem; color: ${totalKeySkills >= 10 ? '#4cc9f0' : '#666'}; margin-bottom: 20px;">
+                <div class="key-skill-summary" style="color: ${totalKeySkills >= 10 ? 'var(--color-positive)' : 'var(--color-text-dark-muted)'}">
                     Key Skill: ${totalKeySkills}/10 ${totalKeySkills >= 10 ? UI.UI_KEY_SKILL_COMPLETE() : ''}
                 </div>
 
