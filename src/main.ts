@@ -42,10 +42,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     } catch (error) {
       console.warn(`Failed to load questions for Stage ${stageNum}. Using Stage 1 as fallback.`, error);
-      // Fallback to Stage 1
-      const fallbackQuestions = await stageImporters[1]();
-      engine = new GameEngine(fallbackQuestions, 1);
-      engine.difficulty = "Stage1";
+      try {
+        const fallbackQuestions = await stageImporters[1]();
+        engine = new GameEngine(fallbackQuestions, 1);
+        engine.difficulty = "Stage1";
+      } catch (fallbackError) {
+        console.error('Failed to load Stage 1 fallback. Cannot start the game.', fallbackError);
+        alert('Failed to load game data. Please check your connection and try again.');
+        return;
+      }
     }
 
     ui.setEngine(engine);
