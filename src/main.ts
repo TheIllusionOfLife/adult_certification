@@ -1,6 +1,7 @@
 import './style.css';
 import { GameEngine } from './logic/gameEngine';
 import { UIManager } from './ui/render';
+import { GlobalProgressStorage } from './storage/GlobalProgressStorage';
 import type { Question } from './types';
 
 // Import all stage questions (add more as stages are implemented)
@@ -33,8 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const app = document.getElementById('game-container');
   if (!app) return;
 
+  // Shared storage instance to avoid redundant I/O
+  const globalProgress = new GlobalProgressStorage();
+
   // Initial Engine with empty questions to satisfy constructor
-  let engine = new GameEngine([], 1);
+  let engine = new GameEngine([], 1, globalProgress);
   const ui = new UIManager(engine);
 
   // Show Start Screen
@@ -46,10 +50,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!selected) {
       console.warn(`Stage ${stageNum} questions not yet implemented. Using Stage 1.`);
       // Fallback to Stage 1 if stage not implemented
-      engine = new GameEngine(stage1Questions, 1);
+      engine = new GameEngine(stage1Questions, 1, globalProgress);
       engine.difficulty = "Stage1";
     } else {
-      engine = new GameEngine(selected, stageNum);
+      engine = new GameEngine(selected, stageNum, globalProgress);
       engine.difficulty = `Stage${stageNum}` as typeof engine.difficulty;
     }
 
