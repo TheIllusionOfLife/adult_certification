@@ -593,7 +593,7 @@ export class UIManager {
                     // Show A.D.A.M. comment for key skills
                     if (s.category === 'key' && s.adamComment) {
                         const adamText = t(s.adamComment, s.adamCommentEN);
-                        this.dom.ovBody.innerHTML += `<br><br><span class="adam-comment-special">${adamText}</span>`;
+                        this.dom.ovBody.innerHTML += `<div class="adam-comment-special-block">${adamText}</div>`;
                     }
 
                     // Update skill list display
@@ -672,8 +672,8 @@ export class UIManager {
         this.dom.ovBody.innerHTML = `
             <div class="ending-container">
                 <div class="ending-subtitle">${UI.UI_STAGE_N_END(s.currentStage)}</div>
-                <strong class="ending-rank">${ending.rank}</strong><br>
-                <span class="ending-title">${ending.title}</span><br><br>
+                <strong class="ending-rank">${ending.rank}</strong>
+                <span class="ending-title">${ending.title}</span>
                 <div class="ending-desc">
                     ${UI.UI_RESULT_STATS(s.CS, s.Asset, s.Autonomy)}
                 </div>

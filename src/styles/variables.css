@@ -29,6 +29,8 @@
    --color-text-muted: #888;
    --color-text-dark-muted: #666;
    --color-text-subtle: #aaa;
+   --color-text-on-dark: white;
+   --shadow-text-strong: rgba(0,0,0,0.5);
 
    /* Rank colors */
    --rank-s-color: #fbc02d;

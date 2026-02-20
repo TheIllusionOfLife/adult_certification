@@ -808,30 +808,30 @@
 }
 
 /* License and Final Certification Styles */
-.license-img {
+.license-img,
+.license-placeholder {
     width: 200px;
-    height: auto;
     border-radius: 10px;
     margin: 0 auto 20px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.license-img {
+    height: auto;
     display: block;
 }
 
 .license-placeholder {
-    width: 200px;
     height: 200px;
-    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
 .license-placeholder-content {
     text-align: center;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    color: var(--color-text-on-dark);
+    text-shadow: 2px 2px 4px var(--shadow-text-strong);
 }
 
 .license-symbol {
@@ -878,6 +878,12 @@
     font-style: italic;
 }
 
+.adam-comment-special-block {
+    margin-top: 1.5rem;
+    color: var(--color-negative);
+    font-style: italic;
+}
+
 .key-skill-obtained {
     color: var(--color-positive);
 }
@@ -897,11 +903,14 @@
 .ending-rank {
     font-size: 2.5rem;
     color: var(--accent-color);
+    display: block;
 }
 
 .ending-title {
     font-size: 1.2rem;
     color: var(--accent-color);
+    display: block;
+    margin-bottom: 1.5rem;
 }
 
 .ending-desc {
