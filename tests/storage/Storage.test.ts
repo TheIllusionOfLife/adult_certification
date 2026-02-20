@@ -6,12 +6,16 @@ import { CONFIG } from '../../src/config';
 
 // Simple localStorage mock
 const mockStorage: Record<string, string> = {};
-(globalThis as any).localStorage = {
-    getItem: (key: string) => mockStorage[key] || null,
-    setItem: (key: string, value: string) => { mockStorage[key] = value; },
-    removeItem: (key: string) => { delete mockStorage[key]; },
-    clear: () => { for (const key in mockStorage) delete mockStorage[key]; }
-};
+Object.defineProperty(globalThis, 'localStorage', {
+    value: {
+        getItem: (key: string) => mockStorage[key] || null,
+        setItem: (key: string, value: string) => { mockStorage[key] = value; },
+        removeItem: (key: string) => { delete mockStorage[key]; },
+        clear: () => { for (const key in mockStorage) delete mockStorage[key]; }
+    },
+    writable: true,
+    configurable: true,
+});
 
 describe('Security Utilities', () => {
     it('should encode data to base64', () => {

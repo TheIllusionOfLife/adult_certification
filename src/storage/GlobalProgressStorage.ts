@@ -24,9 +24,15 @@ export class GlobalProgressStorage {
             const stored = localStorage.getItem(STORAGE_KEY);
             if (stored) {
                 const decoded = decodeData(stored);
-                return JSON.parse(decoded);
+                const data = JSON.parse(decoded);
+                if (this.isValid(data)) {
+                    return data;
+                }
+                // eslint-disable-next-line no-console
+                console.warn('Invalid global progress data, resetting');
             }
         } catch {
+            // eslint-disable-next-line no-console
             console.warn('Failed to load global progress, resetting');
         }
         return {
@@ -37,6 +43,38 @@ export class GlobalProgressStorage {
     }
 
     /**
+     * Validate the loaded data structure.
+     */
+    private isValid(data: unknown): data is GlobalProgress {
+        if (!data || typeof data !== 'object') return false;
+
+        const progress = data as Record<string, unknown>;
+
+        // Validate completedStages
+        const completedStages = progress.completedStages;
+        if (!Array.isArray(completedStages)) return false;
+        if (!completedStages.every((id) => typeof id === 'number')) return false;
+
+        // Validate keySkillsCollected
+        const keySkillsCollected = progress.keySkillsCollected;
+        if (!Array.isArray(keySkillsCollected)) return false;
+        if (!keySkillsCollected.every((id) => typeof id === 'string')) return false;
+
+        // Validate stageRanks
+        const stageRanks = progress.stageRanks;
+        if (!stageRanks || typeof stageRanks !== 'object' || Array.isArray(stageRanks)) return false;
+
+        const ranks = stageRanks as Record<string, unknown>;
+        const validRanks = CONFIG.VALID_RANKS as readonly string[];
+        for (const key in ranks) {
+            const val = ranks[key];
+            if (typeof val !== 'string' || !validRanks.includes(val)) return false;
+        }
+
+        return true;
+    }
+
+    /**
      * Save progress to localStorage.
      */
     private save(): void {
@@ -44,6 +82,7 @@ export class GlobalProgressStorage {
             const data = JSON.stringify(this.progress);
             localStorage.setItem(STORAGE_KEY, encodeData(data));
         } catch {
+            // eslint-disable-next-line no-console
             console.warn('Failed to save global progress (private browsing?)');
         }
     }

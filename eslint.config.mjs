@@ -52,6 +52,9 @@ export default [
             },
             globals: {
                 console: 'readonly',
+                document: 'readonly',
+                window: 'readonly',
+                localStorage: 'readonly',
                 describe: 'readonly',
                 it: 'readonly',
                 expect: 'readonly',
