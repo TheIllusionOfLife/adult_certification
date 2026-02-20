@@ -15,83 +15,33 @@ describe('getOverlayPresentation', () => {
         });
     });
 
-    it('returns APPROVED presentation when choiceVerdict is APPROVED', () => {
+    it.each([
+        { choiceVerdict: 'APPROVED' as const, csDelta: -10, expected: { title: 'APPROVED', colorVar: 'var(--accent-color)' } },
+        { choiceVerdict: 'WARNING' as const, csDelta: 10, expected: { title: 'WARNING', colorVar: 'var(--primary-color)' } },
+        { choiceVerdict: 'NEUTRAL' as const, csDelta: 0, expected: { title: 'RECORDED', colorVar: 'var(--accent-color)' } },
+    ])('returns $expected.title presentation when choiceVerdict is $choiceVerdict', ({ choiceVerdict, csDelta, expected }) => {
         const input = {
             isTerminated: false,
-            csDelta: -10,
-            choiceVerdict: 'APPROVED' as const
+            csDelta,
+            choiceVerdict,
         };
         const result = getOverlayPresentation(input);
-        expect(result).toEqual({
-            title: 'APPROVED',
-            colorVar: 'var(--accent-color)'
-        });
-    });
-
-    it('returns WARNING presentation when choiceVerdict is WARNING', () => {
-        const input = {
-            isTerminated: false,
-            csDelta: 10,
-            choiceVerdict: 'WARNING' as const
-        };
-        const result = getOverlayPresentation(input);
-        expect(result).toEqual({
-            title: 'WARNING',
-            colorVar: 'var(--primary-color)'
-        });
-    });
-
-    it('returns RECORDED presentation when choiceVerdict is NEUTRAL', () => {
-        const input = {
-            isTerminated: false,
-            csDelta: 0,
-            choiceVerdict: 'NEUTRAL' as const
-        };
-        const result = getOverlayPresentation(input);
-        expect(result).toEqual({
-            title: 'RECORDED',
-            colorVar: 'var(--accent-color)'
-        });
+        expect(result).toEqual(expected);
     });
 
     describe('fallback logic (when choiceVerdict is undefined)', () => {
-        it('returns APPROVED when csDelta is positive', () => {
+        it.each([
+            { csDelta: 10, case: 'positive', expected: { title: 'APPROVED', colorVar: 'var(--accent-color)' } },
+            { csDelta: 0, case: 'zero', expected: { title: 'APPROVED', colorVar: 'var(--accent-color)' } },
+            { csDelta: -5, case: 'negative', expected: { title: 'WARNING', colorVar: 'var(--primary-color)' } },
+        ])('returns $expected.title when csDelta is $case ($csDelta)', ({ csDelta, expected }) => {
             const input = {
                 isTerminated: false,
-                csDelta: 10,
-                choiceVerdict: undefined
+                csDelta,
+                choiceVerdict: undefined,
             };
             const result = getOverlayPresentation(input);
-            expect(result).toEqual({
-                title: 'APPROVED',
-                colorVar: 'var(--accent-color)'
-            });
-        });
-
-        it('returns APPROVED when csDelta is zero', () => {
-            const input = {
-                isTerminated: false,
-                csDelta: 0,
-                choiceVerdict: undefined
-            };
-            const result = getOverlayPresentation(input);
-            expect(result).toEqual({
-                title: 'APPROVED',
-                colorVar: 'var(--accent-color)'
-            });
-        });
-
-        it('returns WARNING when csDelta is negative', () => {
-            const input = {
-                isTerminated: false,
-                csDelta: -5,
-                choiceVerdict: undefined
-            };
-            const result = getOverlayPresentation(input);
-            expect(result).toEqual({
-                title: 'WARNING',
-                colorVar: 'var(--primary-color)'
-            });
+            expect(result).toEqual(expected);
         });
     });
 });
