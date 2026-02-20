@@ -188,6 +188,77 @@ describe('GameEngine', () => {
             // Asset fails even though CS passes
             expect(engine.isChoiceLocked(choice)).toBe(true);
         });
+
+        it('returns false when multiple requirements are all met', () => {
+            engine.state.CS = 80;
+            engine.state.Asset = 200;
+            engine.state.Autonomy = 50;
+            const choice: Choice = {
+                text: 'Multiple requirements met',
+                effect: { CS: 0, Asset: 0, Autonomy: 0 },
+                feedback: 'test',
+                lockRequirements: { CS: 80, Asset: 200, Autonomy: 50 },
+            };
+            expect(engine.isChoiceLocked(choice)).toBe(false);
+        });
+
+        it('returns true when all multiple requirements are failing', () => {
+            engine.state.CS = 50;
+            engine.state.Asset = 100;
+            engine.state.Autonomy = 30;
+            const choice: Choice = {
+                text: 'All requirements failing',
+                effect: { CS: 0, Asset: 0, Autonomy: 0 },
+                feedback: 'test',
+                lockRequirements: { CS: 80, Asset: 200, Autonomy: 50 },
+            };
+            expect(engine.isChoiceLocked(choice)).toBe(true);
+        });
+
+        it('returns false when Asset meets requirement exactly', () => {
+            engine.state.Asset = 200;
+            const choice: Choice = {
+                text: 'Asset exactly 200',
+                effect: { CS: 0, Asset: 0, Autonomy: 0 },
+                feedback: 'test',
+                lockRequirements: { Asset: 200 },
+            };
+            expect(engine.isChoiceLocked(choice)).toBe(false);
+        });
+
+        it('returns false when Autonomy meets requirement exactly', () => {
+            engine.state.Autonomy = 50;
+            const choice: Choice = {
+                text: 'Autonomy exactly 50',
+                effect: { CS: 0, Asset: 0, Autonomy: 0 },
+                feedback: 'test',
+                lockRequirements: { Autonomy: 50 },
+            };
+            expect(engine.isChoiceLocked(choice)).toBe(false);
+        });
+
+        it('returns false for empty lock requirements object', () => {
+            const choice: Choice = {
+                text: 'Empty lock requirements',
+                effect: { CS: 0, Asset: 0, Autonomy: 0 },
+                feedback: 'test',
+                lockRequirements: {},
+            };
+            expect(engine.isChoiceLocked(choice)).toBe(false);
+        });
+
+        it('returns false when state is above requirements', () => {
+            engine.state.CS = 100;
+            engine.state.Asset = 300;
+            engine.state.Autonomy = 70;
+            const choice: Choice = {
+                text: 'Above requirements',
+                effect: { CS: 0, Asset: 0, Autonomy: 0 },
+                feedback: 'test',
+                lockRequirements: { CS: 80, Asset: 200, Autonomy: 50 },
+            };
+            expect(engine.isChoiceLocked(choice)).toBe(false);
+        });
     });
 
     describe('processChoice', () => {
