@@ -46,6 +46,7 @@ export const DOM_IDS = {
 
     // Title screen
     TITLE_LOGO: 'title-logo-img',
+    TITLE_DESC: 'title-desc',
 } as const;
 
 // Type for DOM element ID values

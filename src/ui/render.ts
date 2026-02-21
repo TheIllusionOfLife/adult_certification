@@ -47,6 +47,7 @@ interface DOMElements {
     mascotContainer: HTMLElement;
     mascotImg: HTMLImageElement;
     titleLogo: HTMLImageElement;
+    titleDesc: HTMLElement;
     adamSpeechScreen: HTMLElement;
     adamSpeechText: HTMLElement;
     adamSpeechBtn: HTMLButtonElement;
@@ -89,6 +90,7 @@ export class UIManager {
             mascotContainer: getEl<HTMLElement>(DOM_IDS.MASCOT_CONTAINER),
             mascotImg: getEl<HTMLImageElement>(DOM_IDS.MASCOT_IMG),
             titleLogo: getEl<HTMLImageElement>(DOM_IDS.TITLE_LOGO),
+            titleDesc: getEl<HTMLElement>(DOM_IDS.TITLE_DESC),
             adamSpeechScreen: getEl<HTMLElement>(DOM_IDS.ADAM_SPEECH_SCREEN),
             adamSpeechText: getEl<HTMLElement>(DOM_IDS.ADAM_SPEECH_TEXT),
             adamSpeechBtn: getEl<HTMLButtonElement>(DOM_IDS.ADAM_SPEECH_BTN)
@@ -108,8 +110,7 @@ export class UIManager {
         this.dom.diffList.innerHTML = '';
 
         // Language toggle
-        const titleDesc = document.getElementById('title-desc');
-        if (titleDesc) titleDesc.textContent = UI.UI_TITLE_DESC();
+        this.dom.titleDesc.textContent = UI.UI_TITLE_DESC();
 
         let langBtn = document.getElementById('lang-toggle') as HTMLButtonElement | null;
         if (!langBtn) {
