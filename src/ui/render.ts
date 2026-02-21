@@ -50,6 +50,7 @@ interface DOMElements {
     adamSpeechScreen: HTMLElement;
     adamSpeechText: HTMLElement;
     adamSpeechBtn: HTMLButtonElement;
+    statLabels: NodeListOf<Element>;
 }
 
 export class UIManager {
@@ -91,7 +92,8 @@ export class UIManager {
             titleLogo: getEl<HTMLImageElement>(DOM_IDS.TITLE_LOGO),
             adamSpeechScreen: getEl<HTMLElement>(DOM_IDS.ADAM_SPEECH_SCREEN),
             adamSpeechText: getEl<HTMLElement>(DOM_IDS.ADAM_SPEECH_TEXT),
-            adamSpeechBtn: getEl<HTMLButtonElement>(DOM_IDS.ADAM_SPEECH_BTN)
+            adamSpeechBtn: getEl<HTMLButtonElement>(DOM_IDS.ADAM_SPEECH_BTN),
+            statLabels: document.querySelectorAll('.stat-label')
         };
     }
 
@@ -273,7 +275,7 @@ export class UIManager {
         const s = this.engine.state;
 
         // Update stat labels for current language
-        const labels = document.querySelectorAll('.stat-label');
+        const labels = this.dom.statLabels;
         const labelTexts = [UI.UI_LABEL_CS(), UI.UI_LABEL_ASSET(), UI.UI_LABEL_AUTONOMY()];
         labels.forEach((el, i) => { if (labelTexts[i]) el.textContent = labelTexts[i]; });
 
