@@ -371,6 +371,23 @@ describe('GameEngine', () => {
                 'Attempted to process locked choice'
             );
         });
+
+        it('returns clean feedback and separate adamComment', () => {
+            const questions = createTestQuestions();
+            const engine = new GameEngine(questions, 1);
+            const question = questions[0];
+            const choice = question.choices[0];
+            choice.feedback = 'Clean feedback';
+
+            const result = engine.processChoice(choice, question, 0);
+
+            expect(result.feedback).toBe('Clean feedback');
+            expect(result.adamComment).toBeDefined();
+            expect(typeof result.adamComment).toBe('string');
+            // Ensure feedback doesn't contain HTML tags from previous implementation
+            expect(result.feedback).not.toContain('<br>');
+            expect(result.feedback).not.toContain('A.D.A.M.');
+        });
     });
 
     describe('calculateEnding', () => {

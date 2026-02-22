@@ -404,6 +404,7 @@ export class UIManager {
     showFeedback(result: {
         outcome: { CS: number; Asset: number; Autonomy: number };
         feedback: string;
+        adamComment: string;
         isTerminated: boolean;
         skillActivations: SkillActivation[]
         choiceVerdict?: Choice['verdict'];
@@ -417,13 +418,6 @@ export class UIManager {
             return '';
         };
 
-        // Format skill activation messages as HTML
-        const skillMessagesHTML = skillActivations.length > 0
-            ? "<br>" + skillActivations.map(sa =>
-                `<span class="skill-activation-msg">${UI.UI_SKILL_ACTIVATION(sa.skillName, sa.description, sa.originalValue, sa.modifiedValue)}</span>`
-            ).join("<br>")
-            : "";
-
         const overlay = getOverlayPresentation({
             isTerminated,
             csDelta: CS,
@@ -432,17 +426,19 @@ export class UIManager {
         this.dom.ovTitle.innerText = overlay.title;
         this.dom.ovTitle.style.color = overlay.colorVar;
 
-        // A.D.A.M. comment section commented out for smoother gameplay flow
-        // const adamCommentMatch = feedback.match(/\[A\.D\.A\.M\.\]: (.+)$/);
-        // const adamCommentHTML = adamCommentMatch
-        //     ? `<div class="adam-comment-section">
-        //         <img src="${this.dom.mascotImg.src}" alt="A.D.A.M." class="adam-comment-img" />
-        //         <div class="adam-comment-text">[A.D.A.M.]: ${adamCommentMatch[1]}</div>
-        //        </div>`
-        //     : '';
-        const mainFeedback = feedback.replace(/<br><br><span.*?\[A\.D\.A\.M\.\]:.*?<\/span>$/, '');
+        this.dom.ovBody.textContent = '';
+        this.dom.ovBody.appendChild(document.createTextNode(feedback));
 
-        this.dom.ovBody.innerHTML = mainFeedback + skillMessagesHTML;
+        if (skillActivations.length > 0) {
+            this.dom.ovBody.appendChild(document.createElement('br'));
+            skillActivations.forEach(sa => {
+                const span = document.createElement('span');
+                span.className = 'skill-activation-msg';
+                span.textContent = UI.UI_SKILL_ACTIVATION(sa.skillName, sa.description, sa.originalValue, sa.modifiedValue);
+                this.dom.ovBody.appendChild(span);
+                this.dom.ovBody.appendChild(document.createElement('br'));
+            });
+        }
         this.dom.ovStats.textContent = '';
         [
             { l: UI.UI_STAT_CS_SHORT(), v: CS }, { l: UI.UI_STAT_ASSET_SHORT(), v: Asset }, { l: UI.UI_STAT_AUTONOMY_SHORT(), v: Autonomy }
@@ -459,11 +455,23 @@ export class UIManager {
 
         if (isTerminated) {
             this.dom.btnNext.style.display = 'block';
-            this.dom.ovBody.innerHTML += `
-                <div class="adam-comment-section adam-comment-final">
-                    <img src="${this.dom.mascotImg.src}" alt="A.D.A.M." class="adam-comment-img" />
-                    <div class="adam-comment-text">${UI.UI_GAME_OVER_ADAM()}</div>
-                </div>`;
+
+            const adamSection = document.createElement('div');
+            adamSection.className = 'adam-comment-section adam-comment-final';
+
+            const img = document.createElement('img');
+            img.src = this.dom.mascotImg.src;
+            img.alt = 'A.D.A.M.';
+            img.className = 'adam-comment-img';
+
+            const text = document.createElement('div');
+            text.className = 'adam-comment-text';
+            text.textContent = UI.UI_GAME_OVER_ADAM();
+
+            adamSection.appendChild(img);
+            adamSection.appendChild(text);
+            this.dom.ovBody.appendChild(adamSection);
+
             this.dom.btnNext.innerText = UI.UI_RESTART();
             this.dom.btnNext.onclick = () => location.reload();
             this.dom.btnNext.disabled = false;
@@ -603,7 +611,10 @@ export class UIManager {
                     // Show A.D.A.M. comment for key skills
                     if (s.category === 'key' && s.adamComment) {
                         const adamText = t(s.adamComment, s.adamCommentEN);
-                        this.dom.ovBody.innerHTML += `<div class="adam-comment-special-block">${adamText}</div>`;
+                        const block = document.createElement('div');
+                        block.className = 'adam-comment-special-block';
+                        block.textContent = adamText;
+                        this.dom.ovBody.appendChild(block);
                     }
 
                     // Update skill list display

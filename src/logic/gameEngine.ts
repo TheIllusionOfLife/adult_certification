@@ -54,6 +54,7 @@ export class GameEngine {
     processChoice(choice: Choice, question: Question, choiceIndex: number): {
         outcome: { CS: number, Asset: number, Autonomy: number },
         feedback: string,
+        adamComment: string,
         isTerminated: boolean,
         skillActivations: SkillActivation[]
     } {
@@ -92,7 +93,8 @@ export class GameEngine {
 
         return {
             outcome: modifiedEffect,
-            feedback: `${t(choice.feedback, choice.feedbackEN)}<br><br><span style="color:#aaa; font-size:0.9em;">[A.D.A.M.]: ${adamComment}</span>`,
+            feedback: t(choice.feedback, choice.feedbackEN),
+            adamComment,
             isTerminated,
             skillActivations
         };
