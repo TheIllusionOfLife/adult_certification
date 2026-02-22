@@ -18,3 +18,8 @@
 **Vulnerability:** `GlobalProgressStorage` was parsing and returning `localStorage` data without any validation.
 **Learning:** Client-side storage is user-controllable and potentially malicious. Assuming data integrity can lead to runtime errors or undefined behavior.
 **Prevention:** Implement strict schema validation (using `isValid` type guards) for all data loaded from untrusted sources like `localStorage` before using it.
+
+## 2025-02-18 - [XSS in Feedback Rendering]
+**Vulnerability:** Game engine returned pre-formatted HTML string for feedback (concatenated with ADAM commentary), which was then inserted into the DOM using `innerHTML`. This allowed potential XSS if the feedback source was compromised or contained malicious content.
+**Learning:** Separation of concerns is critical for security. The logic layer (engine) should return raw data, and the presentation layer (renderer) should handle formatting and safe DOM insertion.
+**Prevention:** Always use `textContent` or safe DOM creation methods (e.g., `document.createElement`) instead of `innerHTML` for dynamic content. Refactor logic to return structured data rather than HTML strings.
