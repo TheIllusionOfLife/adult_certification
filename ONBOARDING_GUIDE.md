@@ -238,7 +238,6 @@ adult_certification/
 │   ├── PRODUCTION_GUIDE.md       # ステージ制作ワークフロー
 │   └── UI_UX_GUIDELINES.md       # UI/UX ガイドライン
 │
-├── legacy/                 # アーカイブ（旧コード・旧ドキュメント）
 ├── public/                 # Vite の公開ディレクトリ（ADAM.png, logo）
 ├── dist/                   # ビルド成果物（git 管理外が望ましい）
 ├── screenshots/            # スクリーンショット集（PC/モバイル）
