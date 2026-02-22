@@ -4,16 +4,20 @@
  */
 
 /**
- * Encodes a string to Base64.
+ * Encodes a string to Base64 using TextEncoder for better performance with UTF-8 content.
  */
 export function encodeData(data: string): string {
-    return btoa(encodeURIComponent(data).replace(/%([0-9A-F]{2})/g,
-        (_match, p1) => String.fromCharCode(parseInt(p1, 16))
-    ));
+    const bytes = new TextEncoder().encode(data);
+    const CHUNK_SIZE = 0x8000; // 32KB chunk size to avoid stack overflow
+    let binary = '';
+    for (let i = 0; i < bytes.length; i += CHUNK_SIZE) {
+        binary += String.fromCharCode(...bytes.subarray(i, i + CHUNK_SIZE));
+    }
+    return btoa(binary);
 }
 
 /**
- * Decodes a Base64 string.
+ * Decodes a Base64 string using TextDecoder for better performance.
  * Falls back to the original string if decoding fails or if it looks like JSON (plaintext).
  */
 export function decodeData(encoded: string): string {
@@ -26,12 +30,13 @@ export function decodeData(encoded: string): string {
 
     try {
         const binaryString = atob(encoded);
-        const percentEncoded = Array.from(binaryString, char =>
-            '%' + ('00' + char.charCodeAt(0).toString(16)).slice(-2)
-        ).join('');
-        return decodeURIComponent(percentEncoded);
+        const bytes = new Uint8Array(binaryString.length);
+        for (let i = 0; i < binaryString.length; i++) {
+            bytes[i] = binaryString.charCodeAt(i);
+        }
+        return new TextDecoder('utf-8', { fatal: true }).decode(bytes);
     } catch {
-        // Not a valid base64 string, return as is
+        // Not a valid base64 string or invalid UTF-8, return as is
         return encoded;
     }
 }
