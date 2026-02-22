@@ -27,6 +27,11 @@ function die(message) {
   process.exit(1);
 }
 
+function isSafePath(absPath) {
+  const relative = path.relative(process.cwd(), absPath);
+  return !relative.startsWith("..") && !path.isAbsolute(relative);
+}
+
 function parseArgs(argv) {
   const args = {
     stage: 1,
@@ -124,6 +129,9 @@ function createTSRequire(baseDir) {
     let absPath;
     if (request.startsWith(".")) {
       absPath = path.resolve(baseDir, request);
+      if (!isSafePath(absPath)) {
+        die(`Access denied: import ${request} resolves outside project root`);
+      }
     } else {
       // Non-relative: delegate to native require (node_modules, builtins)
       return require(request);
@@ -177,6 +185,9 @@ function createTSRequire(baseDir) {
 
 function evalTSModule(filePath) {
   const abs = path.resolve(process.cwd(), filePath);
+  if (!isSafePath(abs)) {
+    die(`Access denied: ${filePath} is outside project root`);
+  }
   if (!fs.existsSync(abs)) {
     die(`File not found: ${filePath}`);
   }
@@ -249,6 +260,9 @@ function computePercentiles(values) {
 
 function safeReadJSON(filePath) {
   const abs = path.resolve(process.cwd(), filePath);
+  if (!isSafePath(abs)) {
+    die(`Access denied: ${filePath} is outside project root`);
+  }
   if (!fs.existsSync(abs)) die(`Meta file not found: ${filePath}`);
   try {
     return JSON.parse(fs.readFileSync(abs, "utf8"));

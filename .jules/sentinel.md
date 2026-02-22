@@ -18,3 +18,11 @@
 **Vulnerability:** `GlobalProgressStorage` was parsing and returning `localStorage` data without any validation.
 **Learning:** Client-side storage is user-controllable and potentially malicious. Assuming data integrity can lead to runtime errors or undefined behavior.
 **Prevention:** Implement strict schema validation (using `isValid` type guards) for all data loaded from untrusted sources like `localStorage` before using it.
+
+## 2025-05-23 - Path Traversal in Developer Scripts
+
+**Vulnerability:** Input validation for file paths was missing in `scripts/simulate_stage.mjs`, allowing paths to resolve outside the project root via `--meta` and `--stageFile` arguments.
+
+**Learning:** Using `path.resolve(process.cwd(), filePath)` alone is not sufficient to prevent path traversal. It correctly makes the path absolute, but does not restrict it to the intended directory.
+
+**Prevention:** After resolving a path, use `path.relative(root, resolvedPath)` to verify that the target is within the `root` directory. Ensure the relative path doesn't start with `..` and is not absolute (important for Windows cross-drive resolution).
