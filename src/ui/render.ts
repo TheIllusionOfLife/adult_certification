@@ -181,7 +181,7 @@ export class UIManager {
         });
     }
 
-    private lastScores = { CS: 100, Asset: 100, Autonomy: 100 };
+    private lastScores = { ...CONFIG.DEFAULT_INITIAL_PARAMS };
     private adamSpeechShownFor = new Set<string>();
     private typewriterTimerId: ReturnType<typeof setTimeout> | null = null;
     private typewriterResolve: (() => void) | null = null;
