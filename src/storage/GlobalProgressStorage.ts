@@ -10,10 +10,17 @@ const TOTAL_KEY_SKILLS = CONFIG.TOTAL_STAGES;
  * Tracks stage ranks, key skills collected, and completed stages.
  */
 export class GlobalProgressStorage {
-    private progress: GlobalProgress;
+    private _progress: GlobalProgress | null = null;
+
+    private get progress(): GlobalProgress {
+        if (!this._progress) {
+            this._progress = this.load();
+        }
+        return this._progress;
+    }
 
     constructor() {
-        this.progress = this.load();
+        // Data is loaded lazily on first access
     }
 
     /**
