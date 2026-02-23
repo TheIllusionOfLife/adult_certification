@@ -1,38 +1,68 @@
-
 import { describe, it, expect } from 'bun:test';
 import { shuffle } from '../../src/utils/shuffle';
 
 describe('shuffle', () => {
-    it('should contain the same elements after shuffle', () => {
-        const array = [1, 2, 3, 4, 5];
-        const originalSet = new Set(array);
-        const result = shuffle(array);
-
-        expect(result.length).toBe(array.length);
-        result.forEach(item => {
-            expect(originalSet.has(item)).toBe(true);
-        });
+    it('should return an array of the same length', () => {
+        const input = [1, 2, 3, 4, 5];
+        const result = shuffle(input);
+        expect(result).toHaveLength(input.length);
     });
 
-    it('should change the order of elements (statistically)', () => {
-        const array = Array.from({ length: 100 }, (_, i) => i);
-        const original = [...array];
-        const result = shuffle(array);
-
-        // It's extremely unlikely that a shuffled array of 100 items is identical to the original
-        expect(result).not.toEqual(original);
+    it('should contain all the same elements as the original array', () => {
+        const input = [1, 2, 3, 4, 5];
+        const result = shuffle(input);
+        expect([...result].sort((a, b) => a - b)).toEqual([...input].sort((a, b) => a - b));
     });
 
-    it('should shuffle in-place', () => {
-        const array = [1, 2, 3, 4, 5];
-        const result = shuffle(array);
+    it('should return a new array instance', () => {
+        const input = [1, 2, 3];
+        const result = shuffle(input);
+        expect(result).not.toBe(input);
+    });
 
-        // This expects the function to return the same array instance
-        expect(result).toBe(array);
+    it('should not modify the original array', () => {
+        const input = [1, 2, 3];
+        const inputCopy = [...input];
+        shuffle(input);
+        expect(input).toEqual(inputCopy);
+    });
 
-        // This expects the original array to be modified
-        // Note: checking if it's different from initial state is hard without a copy,
-        // but we already checked result !== original (conceptually) in the previous test.
-        // Here we just check reference equality.
+    it('should handle an empty array', () => {
+        const input: number[] = [];
+        const result = shuffle(input);
+        expect(result).toEqual([]);
+        expect(result).not.toBe(input);
+    });
+
+    it('should handle a single-element array', () => {
+        const input = [1];
+        const result = shuffle(input);
+        expect(result).toEqual([1]);
+        expect(result).not.toBe(input);
+    });
+
+    it('should work with different data types', () => {
+        const input = [{ a: 1 }, { b: 2 }, { c: 3 }];
+        const result = shuffle(input);
+        expect(result).toHaveLength(3);
+        expect(result).toContain(input[0]);
+        expect(result).toContain(input[1]);
+        expect(result).toContain(input[2]);
+    });
+
+    it('should produce deterministic reordering when random source is controlled', () => {
+        const input = [1, 2, 3, 4];
+        const originalRandom = Math.random;
+        const sequence = [0, 0, 0];
+        let idx = 0;
+
+        Math.random = () => sequence[idx++] ?? 0;
+
+        try {
+            const result = shuffle(input);
+            expect(result).toEqual([2, 3, 4, 1]);
+        } finally {
+            Math.random = originalRandom;
+        }
     });
 });

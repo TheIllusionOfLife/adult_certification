@@ -111,4 +111,17 @@ describe('GlobalProgressStorage', () => {
 
         expect(progress.stageRanks[1]).toBeUndefined();
     });
+
+    it('loads data lazily', () => {
+        // eslint-disable-next-line no-undef
+        const getItemSpy = vi.spyOn(localStorage, 'getItem');
+        const storage = new GlobalProgressStorage();
+
+        // Constructor should NOT call getItem
+        expect(getItemSpy).not.toHaveBeenCalled();
+
+        // Accessing property should call getItem
+        storage.getProgress();
+        expect(getItemSpy).toHaveBeenCalled();
+    });
 });
