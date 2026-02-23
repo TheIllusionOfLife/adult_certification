@@ -5,15 +5,12 @@ import { CONFIG } from '../config';
 import { getOverlayPresentation } from './overlayVerdict';
 import { DOM_IDS } from './domIds';
 import { RecordStorage } from '../storage/RecordStorage';
-import { GlobalProgressStorage } from '../storage/GlobalProgressStorage';
 import { STAGE_METADATA, getStageMetadata } from '../data/stageMetadata';
 import { getLang, setLang, t } from '../i18n/lang';
 import * as UI from '../i18n/uiStrings';
 import { adamDialogue, adamDialogueEN } from '../data/adamDialogue';
 
 // Vite glob import for assets
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error `import.meta.glob` is a Vite-specific feature not recognized by the TS compiler by default.
 const images: Record<string, { default: string }> = (() => {
     try {
         return import.meta.glob('../assets/*.{png,jpg,jpeg,webp}', { eager: true });
@@ -50,6 +47,7 @@ interface DOMElements {
     adamSpeechScreen: HTMLElement;
     adamSpeechText: HTMLElement;
     adamSpeechBtn: HTMLButtonElement;
+    statLabels: NodeListOf<HTMLElement>;
 }
 
 export class UIManager {
@@ -91,7 +89,8 @@ export class UIManager {
             titleLogo: getEl<HTMLImageElement>(DOM_IDS.TITLE_LOGO),
             adamSpeechScreen: getEl<HTMLElement>(DOM_IDS.ADAM_SPEECH_SCREEN),
             adamSpeechText: getEl<HTMLElement>(DOM_IDS.ADAM_SPEECH_TEXT),
-            adamSpeechBtn: getEl<HTMLButtonElement>(DOM_IDS.ADAM_SPEECH_BTN)
+            adamSpeechBtn: getEl<HTMLButtonElement>(DOM_IDS.ADAM_SPEECH_BTN),
+            statLabels: document.querySelectorAll<HTMLElement>('.stat-label')
         };
     }
 
@@ -273,7 +272,7 @@ export class UIManager {
         const s = this.engine.state;
 
         // Update stat labels for current language
-        const labels = document.querySelectorAll('.stat-label');
+        const labels = this.dom.statLabels;
         const labelTexts = [UI.UI_LABEL_CS(), UI.UI_LABEL_ASSET(), UI.UI_LABEL_AUTONOMY()];
         labels.forEach((el, i) => { if (labelTexts[i]) el.textContent = labelTexts[i]; });
 
@@ -575,13 +574,6 @@ export class UIManager {
             if (isLocked) className += ' skill-locked';
             if (isRecommended) className += ' skill-recommended';
             sBtn.className = className;
-
-            const recommendedBadge = isRecommended ? `<span class="recommended-badge">${UI.UI_RECOMMENDED_BADGE()}</span>` : '';
-
-            // Show locked reason for key skills that weren't earned
-            const lockedReasonHtml = isLocked && lockedReason
-                ? `<span class="skill-locked-reason">${lockedReason}</span>`
-                : '';
 
             sBtn.textContent = '';
             sBtn.append(
