@@ -27,6 +27,28 @@ function die(message) {
   process.exit(1);
 }
 
+function isSafePath(absPath) {
+  const root = process.cwd();
+  let realRoot = root;
+  try {
+    realRoot = fs.realpathSync(root);
+  } catch {
+    /* fallback to CWD */
+  }
+
+  let target = absPath;
+  try {
+    if (fs.existsSync(absPath)) {
+      target = fs.realpathSync(absPath);
+    }
+  } catch {
+    /* fallback to resolved path */
+  }
+
+  const relative = path.relative(realRoot, target);
+  return !relative.startsWith("..") && !path.isAbsolute(relative);
+}
+
 function parseArgs(argv) {
   const args = {
     stage: 1,
@@ -124,6 +146,9 @@ function createTSRequire(baseDir) {
     let absPath;
     if (request.startsWith(".")) {
       absPath = path.resolve(baseDir, request);
+      if (!isSafePath(absPath)) {
+        die(`Access denied: import ${request} resolves outside project root`);
+      }
     } else {
       // Non-relative: delegate to native require (node_modules, builtins)
       return require(request);
@@ -135,6 +160,9 @@ function createTSRequire(baseDir) {
         const withExt = absPath + ext;
         if (fs.existsSync(withExt)) {
           absPath = withExt;
+          if (!isSafePath(absPath)) {
+            die(`Access denied: resolved import ${withExt} is outside project root`);
+          }
           break;
         }
       }
@@ -177,6 +205,9 @@ function createTSRequire(baseDir) {
 
 function evalTSModule(filePath) {
   const abs = path.resolve(process.cwd(), filePath);
+  if (!isSafePath(abs)) {
+    die(`Access denied: ${filePath} is outside project root`);
+  }
   if (!fs.existsSync(abs)) {
     die(`File not found: ${filePath}`);
   }
@@ -249,6 +280,9 @@ function computePercentiles(values) {
 
 function safeReadJSON(filePath) {
   const abs = path.resolve(process.cwd(), filePath);
+  if (!isSafePath(abs)) {
+    die(`Access denied: ${filePath} is outside project root`);
+  }
   if (!fs.existsSync(abs)) die(`Meta file not found: ${filePath}`);
   try {
     return JSON.parse(fs.readFileSync(abs, "utf8"));
