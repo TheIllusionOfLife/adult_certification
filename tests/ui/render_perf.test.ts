@@ -46,21 +46,24 @@ describe('UIManager Performance', () => {
 
     it('should cache title-desc element to avoid repeated DOM queries', () => {
         const onSelect = mock();
-
-        // Spy while preserving the original implementation.
         const getElementByIdSpy = spyOn(document, 'getElementById');
 
-        try {
-            // First call to showStartScreen
-            ui.showStartScreen(onSelect);
-            expect(getElementByIdSpy).not.toHaveBeenCalledWith('title-desc');
+        // First call to showStartScreen
+        ui.showStartScreen(onSelect);
 
-            // Second call to showStartScreen
-            getElementByIdSpy.mockClear();
-            ui.showStartScreen(onSelect);
-            expect(getElementByIdSpy).not.toHaveBeenCalledWith('title-desc');
-        } finally {
-            getElementByIdSpy.mockRestore();
-        }
+        // Check that none of the calls were for 'title-desc'
+        const callsForTitleDesc = getElementByIdSpy.mock.calls.filter(args => args[0] === 'title-desc');
+        expect(callsForTitleDesc.length).toBe(0);
+
+        // Clear mock for next assertion
+        getElementByIdSpy.mockClear();
+
+        // Second call to showStartScreen
+        ui.showStartScreen(onSelect);
+
+        const callsForTitleDesc2 = getElementByIdSpy.mock.calls.filter(args => args[0] === 'title-desc');
+        expect(callsForTitleDesc2.length).toBe(0);
+
+        getElementByIdSpy.mockRestore();
     });
 });
