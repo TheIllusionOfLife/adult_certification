@@ -27,6 +27,32 @@ function die(message) {
   process.exit(1);
 }
 
+function isSafePath(absPath) {
+  let projectRoot;
+  try {
+    projectRoot = fs.realpathSync(process.cwd());
+  } catch {
+    return false;
+  }
+
+  let resolvedPath;
+  try {
+    // Resolve symlinks when the target exists.
+    resolvedPath = fs.realpathSync(absPath);
+  } catch {
+    // For non-existent paths (e.g. extension probing), resolve the existing parent.
+    try {
+      const realParent = fs.realpathSync(path.dirname(absPath));
+      resolvedPath = path.join(realParent, path.basename(absPath));
+    } catch {
+      return false;
+    }
+  }
+
+  const relative = path.relative(projectRoot, resolvedPath);
+  return !relative.startsWith("..") && !path.isAbsolute(relative);
+}
+
 function parseArgs(argv) {
   const args = {
     stage: 1,
@@ -124,6 +150,9 @@ function createTSRequire(baseDir) {
     let absPath;
     if (request.startsWith(".")) {
       absPath = path.resolve(baseDir, request);
+      if (!isSafePath(absPath)) {
+        die(`Access denied: import ${request} resolves outside project root`);
+      }
     } else {
       // Non-relative: delegate to native require (node_modules, builtins)
       return require(request);
@@ -143,6 +172,9 @@ function createTSRequire(baseDir) {
     // If still not found or not a TS file, try native require
     if (!fs.existsSync(absPath) || !absPath.match(/\.(ts|mts|cts)$/)) {
       return require(request);
+    }
+    if (!isSafePath(absPath)) {
+      die(`Access denied: import ${request} resolves outside project root`);
     }
 
     // Check module cache
@@ -177,6 +209,9 @@ function createTSRequire(baseDir) {
 
 function evalTSModule(filePath) {
   const abs = path.resolve(process.cwd(), filePath);
+  if (!isSafePath(abs)) {
+    die(`Access denied: ${filePath} is outside project root`);
+  }
   if (!fs.existsSync(abs)) {
     die(`File not found: ${filePath}`);
   }
@@ -249,6 +284,9 @@ function computePercentiles(values) {
 
 function safeReadJSON(filePath) {
   const abs = path.resolve(process.cwd(), filePath);
+  if (!isSafePath(abs)) {
+    die(`Access denied: ${filePath} is outside project root`);
+  }
   if (!fs.existsSync(abs)) die(`Meta file not found: ${filePath}`);
   try {
     return JSON.parse(fs.readFileSync(abs, "utf8"));

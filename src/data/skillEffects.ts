@@ -428,7 +428,7 @@ export function getSkillActivations(
 
         // Apply each effect individually and report activations
         skillEffects.forEach((eff) => {
-            const stateBeforeEffect = { ...currentState };
+            const stateBeforeEffect = currentState;
             currentState = applySingleEffect(eff, currentState, question);
             const stateAfterEffect = currentState;
 
