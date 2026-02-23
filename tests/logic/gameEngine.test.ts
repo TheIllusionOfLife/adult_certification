@@ -376,8 +376,7 @@ describe('GameEngine', () => {
             const questions = createTestQuestions();
             const engine = new GameEngine(questions, 1);
             const question = questions[0];
-            const choice = question.choices[0];
-            choice.feedback = 'Clean feedback';
+            const choice = { ...question.choices[0], feedback: 'Clean feedback' };
 
             const result = engine.processChoice(choice, question, 0);
 

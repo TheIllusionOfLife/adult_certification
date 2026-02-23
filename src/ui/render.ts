@@ -431,12 +431,14 @@ export class UIManager {
 
         if (skillActivations.length > 0) {
             this.dom.ovBody.appendChild(document.createElement('br'));
-            skillActivations.forEach(sa => {
+            skillActivations.forEach((sa, index) => {
                 const span = document.createElement('span');
                 span.className = 'skill-activation-msg';
                 span.textContent = UI.UI_SKILL_ACTIVATION(sa.skillName, sa.description, sa.originalValue, sa.modifiedValue);
                 this.dom.ovBody.appendChild(span);
-                this.dom.ovBody.appendChild(document.createElement('br'));
+                if (index < skillActivations.length - 1) {
+                    this.dom.ovBody.appendChild(document.createElement('br'));
+                }
             });
         }
         this.dom.ovStats.textContent = '';
