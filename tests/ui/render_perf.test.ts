@@ -47,35 +47,20 @@ describe('UIManager Performance', () => {
     it('should cache title-desc element to avoid repeated DOM queries', () => {
         const onSelect = mock();
 
-        // Spy on document.getElementById
-        const originalGetElementById = document.getElementById;
-        let callCount = 0;
-
-        // We override getElementById to count calls specifically for 'title-desc'
-        document.getElementById = (elementId: string) => {
-            if (elementId === 'title-desc') {
-                callCount++;
-            }
-            return originalGetElementById.call(document, elementId);
-        };
+        // Spy while preserving the original implementation.
+        const getElementByIdSpy = spyOn(document, 'getElementById');
 
         try {
             // First call to showStartScreen
             ui.showStartScreen(onSelect);
-
-            // After optimization, this should be 0 calls (because it's cached in constructor).
-            expect(callCount).toBe(0);
-
-            // Reset count
-            callCount = 0;
+            expect(getElementByIdSpy).not.toHaveBeenCalledWith('title-desc');
 
             // Second call to showStartScreen
+            getElementByIdSpy.mockClear();
             ui.showStartScreen(onSelect);
-            expect(callCount).toBe(0);
-
+            expect(getElementByIdSpy).not.toHaveBeenCalledWith('title-desc');
         } finally {
-            // Restore original method
-            document.getElementById = originalGetElementById;
+            getElementByIdSpy.mockRestore();
         }
     });
 });
