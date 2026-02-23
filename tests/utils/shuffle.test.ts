@@ -11,7 +11,7 @@ describe('shuffle', () => {
     it('should contain all the same elements as the original array', () => {
         const input = [1, 2, 3, 4, 5];
         const result = shuffle(input);
-        expect([...result].sort()).toEqual([...input].sort());
+        expect([...result].sort((a, b) => a - b)).toEqual([...input].sort((a, b) => a - b));
     });
 
     it('should return a new array instance', () => {
@@ -50,10 +50,19 @@ describe('shuffle', () => {
         expect(result).toContain(input[2]);
     });
 
-    it('should eventually change the order for a larger array', () => {
-        const input = Array.from({ length: 100 }, (_, i) => i);
-        const result = shuffle(input);
-        // While theoretically possible it stays the same, for 100 elements it's 1/100! which is negligible
-        expect(result).not.toEqual(input);
+    it('should produce deterministic reordering when random source is controlled', () => {
+        const input = [1, 2, 3, 4];
+        const originalRandom = Math.random;
+        const sequence = [0, 0, 0];
+        let idx = 0;
+
+        Math.random = () => sequence[idx++] ?? 0;
+
+        try {
+            const result = shuffle(input);
+            expect(result).toEqual([2, 3, 4, 1]);
+        } finally {
+            Math.random = originalRandom;
+        }
     });
 });
