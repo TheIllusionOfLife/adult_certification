@@ -48,12 +48,6 @@ describe('Security Utilities', () => {
         expect(decodeData('')).toBe('');
     });
 
-    it('should handle null/undefined gracefully (if types allow)', () => {
-        // Typescript says string, but at runtime it might be null if called from JS.
-        // Current impl might throw or return 'null'.
-        // Let's stick to valid inputs as per type definition for now.
-    });
-
     it('decodeData should handle plaintext JSON fallback', () => {
         const json = '{"foo":"bar"}';
         expect(decodeData(json)).toBe(json);

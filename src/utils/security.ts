@@ -9,11 +9,11 @@
 export function encodeData(data: string): string {
     const bytes = new TextEncoder().encode(data);
     const CHUNK_SIZE = 0x8000; // 32KB chunk size to avoid stack overflow
-    let binary = '';
+    const binaryChunks: string[] = [];
     for (let i = 0; i < bytes.length; i += CHUNK_SIZE) {
-        binary += String.fromCharCode(...bytes.subarray(i, i + CHUNK_SIZE));
+        binaryChunks.push(String.fromCharCode(...bytes.subarray(i, i + CHUNK_SIZE)));
     }
-    return btoa(binary);
+    return btoa(binaryChunks.join(''));
 }
 
 /**
