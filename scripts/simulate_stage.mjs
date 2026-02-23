@@ -28,7 +28,28 @@ function die(message) {
 }
 
 function isSafePath(absPath) {
-  const relative = path.relative(process.cwd(), absPath);
+  let projectRoot;
+  try {
+    projectRoot = fs.realpathSync(process.cwd());
+  } catch {
+    return false;
+  }
+
+  let resolvedPath;
+  try {
+    // Resolve symlinks when the target exists.
+    resolvedPath = fs.realpathSync(absPath);
+  } catch {
+    // For non-existent paths (e.g. extension probing), resolve the existing parent.
+    try {
+      const realParent = fs.realpathSync(path.dirname(absPath));
+      resolvedPath = path.join(realParent, path.basename(absPath));
+    } catch {
+      return false;
+    }
+  }
+
+  const relative = path.relative(projectRoot, resolvedPath);
   return !relative.startsWith("..") && !path.isAbsolute(relative);
 }
 
@@ -151,6 +172,9 @@ function createTSRequire(baseDir) {
     // If still not found or not a TS file, try native require
     if (!fs.existsSync(absPath) || !absPath.match(/\.(ts|mts|cts)$/)) {
       return require(request);
+    }
+    if (!isSafePath(absPath)) {
+      die(`Access denied: import ${request} resolves outside project root`);
     }
 
     // Check module cache
