@@ -7,7 +7,6 @@
 ## Quick Start
 
 ### Prerequisites
-- Read `legacy/improvement_plan_2026-01-24_integrated.md` (sections 3-6)
 - Study Stage 1 implementation (`src/data/stages/stage1.ts`)
 - Read `QUESTION_DESIGN_GUIDE.md` and `SKILL_DESIGN_GUIDE.md`
 
