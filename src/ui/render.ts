@@ -50,7 +50,7 @@ interface DOMElements {
     adamSpeechScreen: HTMLElement;
     adamSpeechText: HTMLElement;
     adamSpeechBtn: HTMLButtonElement;
-    statLabels: NodeListOf<Element>;
+    statLabels: NodeListOf<HTMLElement>;
 }
 
 export class UIManager {
@@ -93,7 +93,7 @@ export class UIManager {
             adamSpeechScreen: getEl<HTMLElement>(DOM_IDS.ADAM_SPEECH_SCREEN),
             adamSpeechText: getEl<HTMLElement>(DOM_IDS.ADAM_SPEECH_TEXT),
             adamSpeechBtn: getEl<HTMLButtonElement>(DOM_IDS.ADAM_SPEECH_BTN),
-            statLabels: document.querySelectorAll('.stat-label')
+            statLabels: document.querySelectorAll<HTMLElement>('.stat-label')
         };
     }
 
