@@ -1,5 +1,5 @@
 export type Lang = 'ja' | 'en';
-const STORAGE_KEY = 'ac_lang';
+export const STORAGE_KEY = 'ac_lang';
 
 function readStoredLang(): Lang {
     try { return (localStorage.getItem(STORAGE_KEY) as Lang) || 'ja'; }
@@ -12,6 +12,10 @@ export function getLang(): Lang { return currentLang; }
 export function setLang(lang: Lang): void {
     currentLang = lang;
     try { localStorage.setItem(STORAGE_KEY, lang); } catch { /* SSR / test */ }
+}
+
+export function _resetLangForTesting(): void {
+    currentLang = readStoredLang();
 }
 
 /** Resolve bilingual field: returns EN when active, JP as fallback. */
