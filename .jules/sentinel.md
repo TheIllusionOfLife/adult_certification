@@ -12,7 +12,7 @@
 
 **Learning:** While client-side integrity is not critical for this game, storing sensitive or progress-related data in plaintext is a weak practice. Simple encoding like Base64 provides a basic layer of obfuscation that prevents casual tampering.
 
-**Prevention:** Always use at least basic encoding or obfuscation for data stored in `localStorage` that represents user progress or achievements. Ensure backward compatibility by checking for legacy formats (e.g., checking for leading `{` for JSON) during the transition.
+**Prevention:** Always use at least basic encoding or obfuscation for data stored in `localStorage` that represents user progress or achievements. Ensure backward compatibility by checking for legacy formats (e.g., checking for legacy formats) during the transition.
 
 ## 2025-02-13 - [Blind Trust in LocalStorage]
 **Vulnerability:** `GlobalProgressStorage` was parsing and returning `localStorage` data without any validation.
@@ -31,3 +31,11 @@
 **Learning:** Using `path.resolve(process.cwd(), filePath)` alone is not sufficient to prevent path traversal. It correctly makes the path absolute, but does not restrict it to the intended directory.
 
 **Prevention:** After resolving a path, use `path.relative(root, resolvedPath)` to verify that the target is within the `root` directory. Ensure the relative path doesn't start with `..` and is not absolute (important for Windows cross-drive resolution).
+
+## 2025-05-24 - Missing Content Security Policy (CSP)
+
+**Vulnerability:** The application lacked a Content Security Policy (CSP), leaving it vulnerable to Cross-Site Scripting (XSS) and data injection attacks. Inline styles and event handlers (`ontouchstart`) further weakened the security posture.
+
+**Learning:** Implementing a strict CSP (`script-src 'self'`) significantly reduces the attack surface by preventing the execution of unauthorized scripts. Refactoring inline styles to CSS classes not only improves maintainability but also prepares the codebase for a stricter `style-src` policy in the future.
+
+**Prevention:** Always include a CSP meta tag in the HTML head. Avoid inline event handlers and styles. Use `script-src 'self'` as a baseline and only relax directives (like `style-src 'unsafe-inline'`) when absolutely necessary for legacy support or specific library requirements.

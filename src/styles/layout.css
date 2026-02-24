@@ -2,6 +2,11 @@
  * Layout - Grid, Containers, HUD
  */
 
+/* Helper Classes */
+.hidden {
+    display: none !important;
+}
+
 /* Top HUD */
 #hud {
     padding: var(--space-md) var(--space-lg);
@@ -271,4 +276,11 @@
     display: flex;
     flex-direction: column;
     height: auto;
+}
+
+/* Difficulty List Container */
+.difficulty-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
