@@ -31,3 +31,11 @@
 **Learning:** Using `path.resolve(process.cwd(), filePath)` alone is not sufficient to prevent path traversal. It correctly makes the path absolute, but does not restrict it to the intended directory.
 
 **Prevention:** After resolving a path, use `path.relative(root, resolvedPath)` to verify that the target is within the `root` directory. Ensure the relative path doesn't start with `..` and is not absolute (important for Windows cross-drive resolution).
+
+## 2025-05-24 - Insecure Data Obfuscation
+
+**Vulnerability:** Game save data was stored using plain Base64 encoding in `src/utils/security.ts`, allowing trivial decoding and tampering of local storage data.
+
+**Learning:** Client-side data storage without server validation requires stronger obfuscation to deter casual cheating. Simple encoding like Base64 is insufficient as it is easily recognizable and reversible.
+
+**Prevention:** Implemented a custom obfuscation layer (XOR cipher with versioning `v1:`) on top of Base64 to increase the effort required for tampering, while maintaining backward compatibility for existing saves.
