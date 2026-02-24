@@ -673,9 +673,8 @@ export class UIManager {
         // Always show regular ending first (including Stage 10)
         this.showRegularEnding(ending);
 
-        if (this.engine.difficulty) {
-            this.saveRecord(this.engine.difficulty, ending.rank, s.CS);
-        }
+        const stageKey = `Stage${this.engine.state.currentStage}`;
+        this.saveRecord(stageKey, ending.rank, s.CS);
     }
 
     private showRegularEnding(ending: { rank: string; title: string; desc: string }) {
