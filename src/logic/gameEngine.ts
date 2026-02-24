@@ -9,7 +9,6 @@ import * as UI from '../i18n/uiStrings';
 
 export class GameEngine {
     state: GameState;
-    difficulty: string = ""; // Kept for backwards compatibility
     activeSkills: Skill[] = []; // Currently active skills for this stage
     private globalProgress: GlobalProgressStorage;
 
