@@ -278,7 +278,11 @@ export class UIManager {
         // Update stat labels for current language
         const labels = this.dom.statLabels;
         const labelTexts = [UI.UI_LABEL_CS(), UI.UI_LABEL_ASSET(), UI.UI_LABEL_AUTONOMY()];
-        labels.forEach((el, i) => { if (labelTexts[i]) el.textContent = labelTexts[i]; });
+        labels.forEach((el, i) => {
+            if (labelTexts[i] && el.textContent !== labelTexts[i]) {
+                el.textContent = labelTexts[i];
+            }
+        });
 
         // Helper for animation
         const animate = (el: HTMLElement, newVal: number, oldVal: number) => {
