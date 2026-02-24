@@ -2,26 +2,6 @@ import type { StageMetadata, Skill } from '../../types';
 import { CONFIG } from '../../config';
 
 /**
- * Default rank thresholds used by all stages.
- * Based on CONFIG.RANK_THRESHOLDS for CS values.
- */
-export const DEFAULT_RANK_THRESHOLDS = {
-    S: { CS: CONFIG.RANK_THRESHOLDS.S },
-    A: { CS: CONFIG.RANK_THRESHOLDS.A },
-    B: { CS: CONFIG.RANK_THRESHOLDS.B },
-    // C = clear (CS >= 1), no explicit threshold needed
-} as const;
-
-/**
- * Default initial parameters used when stage doesn't specify custom values.
- */
-export const DEFAULT_INITIAL_PARAMS = {
-    CS: CONFIG.DEFAULT_INITIAL_PARAMS.CS,
-    Asset: CONFIG.DEFAULT_INITIAL_PARAMS.Asset,
-    Autonomy: CONFIG.DEFAULT_INITIAL_PARAMS.Autonomy,
-} as const;
-
-/**
  * Input definition for creating stage metadata.
  * Skills and basic info are required; rankThresholds and initialParams are optional.
  */
@@ -48,7 +28,7 @@ export interface StageDefinition {
 
 /**
  * Factory function to create StageMetadata from a StageDefinition.
- * Applies default rankThresholds and initialParams if not specified.
+ * Applies default rankThresholds and initialParams from CONFIG if not specified.
  */
 export function createStageMetadata(definition: StageDefinition): StageMetadata {
     return {
@@ -56,8 +36,13 @@ export function createStageMetadata(definition: StageDefinition): StageMetadata 
         theme: definition.theme,
         themeJP: definition.themeJP,
         keySkillId: definition.keySkillId,
-        initialParams: definition.initialParams ?? { ...DEFAULT_INITIAL_PARAMS },
-        rankThresholds: definition.rankThresholds ?? { ...DEFAULT_RANK_THRESHOLDS },
+        initialParams: definition.initialParams ?? { ...CONFIG.DEFAULT_INITIAL_PARAMS },
+        rankThresholds: definition.rankThresholds ?? {
+            S: { CS: CONFIG.RANK_THRESHOLDS.S },
+            A: { CS: CONFIG.RANK_THRESHOLDS.A },
+            B: { CS: CONFIG.RANK_THRESHOLDS.B },
+            // C = clear (CS >= 1), no explicit threshold needed
+        },
         skills: definition.skills,
     };
 }

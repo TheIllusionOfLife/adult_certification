@@ -7,10 +7,6 @@ export type StageDifficulty = 'Stage1' | 'Stage2' | 'Stage3' | 'Stage4' | 'Stage
 
 export type Difficulty = LegacyDifficulty | StageDifficulty;
 
-// ============================================================
-// FUTURE ARCHITECTURE: Global Ending System (Stage 10+)
-// ============================================================
-
 /**
  * License types for the 5 ending outcomes.
  * Determined by key skill collection and worst rank across completed stages.
@@ -31,8 +27,6 @@ export interface GlobalProgress {
     keySkillsCollected: string[];                       // Array of key skill IDs
     completedStages: number[];                          // Array of completed stage IDs
 }
-
-// ============================================================
 
 export interface Choice {
     text: string;

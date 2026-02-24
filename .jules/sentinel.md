@@ -39,3 +39,11 @@
 **Learning:** Client-side data storage without server validation requires stronger obfuscation to deter casual cheating. Simple encoding like Base64 is insufficient as it is easily recognizable and reversible.
 
 **Prevention:** Implemented a custom obfuscation layer (XOR cipher with versioning `v1:`) on top of Base64 to increase the effort required for tampering, while maintaining backward compatibility for existing saves.
+
+## 2025-05-24 - Missing Content Security Policy (CSP)
+
+**Vulnerability:** The application lacked a Content Security Policy (CSP), leaving it vulnerable to Cross-Site Scripting (XSS) and data injection attacks. Inline styles and event handlers (`ontouchstart`) further weakened the security posture.
+
+**Learning:** Implementing a strict CSP (`script-src 'self'`) significantly reduces the attack surface by preventing the execution of unauthorized scripts. Refactoring inline styles to CSS classes not only improves maintainability but also prepares the codebase for a stricter `style-src` policy in the future.
+
+**Prevention:** Always include a CSP meta tag in the HTML head. Avoid inline event handlers and styles. Use `script-src 'self'` as a baseline and only relax directives (like `style-src 'unsafe-inline'`) when absolutely necessary for legacy support or specific library requirements.

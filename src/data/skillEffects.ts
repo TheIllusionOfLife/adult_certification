@@ -37,49 +37,119 @@ const amplifyGain = (value: number, amplification: number): number => {
     return Math.floor(value * (1 + amplification));
 };
 
+type StatKey = keyof Effect;
+
+const createDamageReductionHandler = (
+    stat: StatKey,
+    desc: string,
+    descEN: string
+): EffectHandler => ({
+    shouldApply: (_, current) => current[stat] < 0,
+    apply: (effect, current) => ({
+        ...current,
+        [stat]: reduceDamage(current[stat], effect.value),
+    }),
+    description: desc,
+    descriptionEN: descEN,
+    getValues: (_, original, modified) => ({
+        originalValue: original[stat],
+        modifiedValue: modified[stat],
+    }),
+});
+
+const createCategoryDamageReductionHandler = (
+    stat: StatKey,
+    desc: string,
+    descEN: string
+): EffectHandler => ({
+    shouldApply: (effect, current, question) =>
+        question.category === effect.category && current[stat] < 0,
+    apply: (effect, current) => ({
+        ...current,
+        [stat]: reduceDamage(current[stat], effect.value),
+    }),
+    description: desc,
+    descriptionEN: descEN,
+    getValues: (_, original, modified) => ({
+        originalValue: original[stat],
+        modifiedValue: modified[stat],
+    }),
+});
+
+const createGainAmplificationHandler = (
+    stat: StatKey,
+    desc: string,
+    descEN: string
+): EffectHandler => ({
+    shouldApply: (_, current) => current[stat] > 0,
+    apply: (effect, current) => ({
+        ...current,
+        [stat]: amplifyGain(current[stat], effect.value),
+    }),
+    description: desc,
+    descriptionEN: descEN,
+    getValues: (_, original, modified) => ({
+        originalValue: original[stat],
+        modifiedValue: modified[stat],
+    }),
+});
+
+const createCategoryGainAmplificationHandler = (
+    stat: StatKey,
+    desc: string,
+    descEN: string
+): EffectHandler => ({
+    shouldApply: (effect, current, question) =>
+        question.category === effect.category && current[stat] > 0,
+    apply: (effect, current) => ({
+        ...current,
+        [stat]: amplifyGain(current[stat], effect.value),
+    }),
+    description: desc,
+    descriptionEN: descEN,
+    getValues: (_, original, modified) => ({
+        originalValue: original[stat],
+        modifiedValue: modified[stat],
+    }),
+});
+
+const createFlatBonusHandler = (
+    stat: StatKey,
+    desc: string,
+    descEN: string
+): EffectHandler => ({
+    shouldApply: () => true,
+    apply: (effect, current) => ({
+        ...current,
+        [stat]: current[stat] + effect.value,
+    }),
+    description: desc,
+    descriptionEN: descEN,
+    getValues: (_, original, modified) => ({
+        originalValue: original[stat],
+        modifiedValue: modified[stat],
+    }),
+});
+
 const EFFECT_HANDLERS: Record<string, EffectHandler> = {
     // === Damage Reduction Effects ===
-    autonomy_damage_reduction: {
-        shouldApply: (_, current) => current.Autonomy < 0,
-        apply: (effect, current) => ({
-            ...current,
-            Autonomy: reduceDamage(current.Autonomy, effect.value),
-        }),
-        description: '自律性減少軽減',
-        descriptionEN: 'Autonomy loss reduced',
-        getValues: (_, original, modified) => ({
-            originalValue: original.Autonomy,
-            modifiedValue: modified.Autonomy,
-        }),
-    },
+    autonomy_damage_reduction: createDamageReductionHandler(
+        'Autonomy',
+        '自律性減少軽減',
+        'Autonomy loss reduced'
+    ),
 
-    cs_damage_reduction: {
-        shouldApply: (_, current) => current.CS < 0,
-        apply: (effect, current) => ({
-            ...current,
-            CS: reduceDamage(current.CS, effect.value),
-        }),
-        description: '社会的信用低下軽減',
-        descriptionEN: 'Credit loss reduced',
-        getValues: (_, original, modified) => ({
-            originalValue: original.CS,
-            modifiedValue: modified.CS,
-        }),
-    },
+    cs_damage_reduction: createDamageReductionHandler(
+        'CS',
+        '社会的信用低下軽減',
+        'Credit loss reduced'
+    ),
 
-    asset_damage_reduction: {
-        shouldApply: (_, current) => current.Asset < 0,
-        apply: (effect, current) => ({
-            ...current,
-            Asset: reduceDamage(current.Asset, effect.value),
-        }),
-        description: '資産減少軽減',
-        descriptionEN: 'Asset loss reduced',
-        getValues: (_, original, modified) => ({
-            originalValue: original.Asset,
-            modifiedValue: modified.Asset,
-        }),
-    },
+    asset_damage_reduction: createDamageReductionHandler(
+        'Asset',
+        '資産減少軽減',
+        'Asset loss reduced'
+    ),
 
     autonomy_small_damage_reduction: {
         shouldApply: (effect, current) =>
@@ -97,50 +167,23 @@ const EFFECT_HANDLERS: Record<string, EffectHandler> = {
     },
 
     // === Category-Specific Damage Reduction ===
-    category_cs_damage_reduction: {
-        shouldApply: (effect, current, question) =>
-            question.category === effect.category && current.CS < 0,
-        apply: (effect, current) => ({
-            ...current,
-            CS: reduceDamage(current.CS, effect.value),
-        }),
-        description: '社会的信用低下軽減',
-        descriptionEN: 'Credit loss reduced',
-        getValues: (_, original, modified) => ({
-            originalValue: original.CS,
-            modifiedValue: modified.CS,
-        }),
-    },
+    category_cs_damage_reduction: createCategoryDamageReductionHandler(
+        'CS',
+        '社会的信用低下軽減',
+        'Credit loss reduced'
+    ),
 
-    category_autonomy_damage_reduction: {
-        shouldApply: (effect, current, question) =>
-            question.category === effect.category && current.Autonomy < 0,
-        apply: (effect, current) => ({
-            ...current,
-            Autonomy: reduceDamage(current.Autonomy, effect.value),
-        }),
-        description: '自律性減少軽減',
-        descriptionEN: 'Autonomy loss reduced',
-        getValues: (_, original, modified) => ({
-            originalValue: original.Autonomy,
-            modifiedValue: modified.Autonomy,
-        }),
-    },
+    category_autonomy_damage_reduction: createCategoryDamageReductionHandler(
+        'Autonomy',
+        '自律性減少軽減',
+        'Autonomy loss reduced'
+    ),
 
-    category_asset_damage_reduction: {
-        shouldApply: (effect, current, question) =>
-            question.category === effect.category && current.Asset < 0,
-        apply: (effect, current) => ({
-            ...current,
-            Asset: reduceDamage(current.Asset, effect.value),
-        }),
-        description: '資産減少軽減',
-        descriptionEN: 'Asset loss reduced',
-        getValues: (_, original, modified) => ({
-            originalValue: original.Asset,
-            modifiedValue: modified.Asset,
-        }),
-    },
+    category_asset_damage_reduction: createCategoryDamageReductionHandler(
+        'Asset',
+        '資産減少軽減',
+        'Asset loss reduced'
+    ),
 
     admin_cost_reduction: {
         shouldApply: (_, current, question) => question.category === 'ADMIN' && current.Asset < 0,
@@ -157,136 +200,61 @@ const EFFECT_HANDLERS: Record<string, EffectHandler> = {
     },
 
     // === Gain Amplification Effects ===
-    cs_gain_amplification: {
-        shouldApply: (_, current) => current.CS > 0,
-        apply: (effect, current) => ({
-            ...current,
-            CS: amplifyGain(current.CS, effect.value),
-        }),
-        description: '社会的信用獲得増幅',
-        descriptionEN: 'Credit gain amplified',
-        getValues: (_, original, modified) => ({
-            originalValue: original.CS,
-            modifiedValue: modified.CS,
-        }),
-    },
+    cs_gain_amplification: createGainAmplificationHandler(
+        'CS',
+        '社会的信用獲得増幅',
+        'Credit gain amplified'
+    ),
 
-    asset_gain_amplification: {
-        shouldApply: (_, current) => current.Asset > 0,
-        apply: (effect, current) => ({
-            ...current,
-            Asset: amplifyGain(current.Asset, effect.value),
-        }),
-        description: '資産獲得増幅',
-        descriptionEN: 'Asset gain amplified',
-        getValues: (_, original, modified) => ({
-            originalValue: original.Asset,
-            modifiedValue: modified.Asset,
-        }),
-    },
+    asset_gain_amplification: createGainAmplificationHandler(
+        'Asset',
+        '資産獲得増幅',
+        'Asset gain amplified'
+    ),
 
-    autonomy_gain_amplification: {
-        shouldApply: (_, current) => current.Autonomy > 0,
-        apply: (effect, current) => ({
-            ...current,
-            Autonomy: amplifyGain(current.Autonomy, effect.value),
-        }),
-        description: '自律性獲得増幅',
-        descriptionEN: 'Autonomy gain amplified',
-        getValues: (_, original, modified) => ({
-            originalValue: original.Autonomy,
-            modifiedValue: modified.Autonomy,
-        }),
-    },
+    autonomy_gain_amplification: createGainAmplificationHandler(
+        'Autonomy',
+        '自律性獲得増幅',
+        'Autonomy gain amplified'
+    ),
 
     // === Category-Specific Gain Boosts ===
-    category_cs_gain_boost: {
-        shouldApply: (effect, current, question) =>
-            question.category === effect.category && current.CS > 0,
-        apply: (effect, current) => ({
-            ...current,
-            CS: amplifyGain(current.CS, effect.value),
-        }),
-        description: '社会的信用獲得増幅',
-        descriptionEN: 'Credit gain amplified',
-        getValues: (_effect, original, modified) => ({
-            originalValue: original.CS,
-            modifiedValue: modified.CS,
-        }),
-    },
+    category_cs_gain_boost: createCategoryGainAmplificationHandler(
+        'CS',
+        '社会的信用獲得増幅',
+        'Credit gain amplified'
+    ),
 
-    category_asset_gain_boost: {
-        shouldApply: (effect, current, question) =>
-            question.category === effect.category && current.Asset > 0,
-        apply: (effect, current) => ({
-            ...current,
-            Asset: amplifyGain(current.Asset, effect.value),
-        }),
-        description: '資産獲得増幅',
-        descriptionEN: 'Asset gain amplified',
-        getValues: (_effect, original, modified) => ({
-            originalValue: original.Asset,
-            modifiedValue: modified.Asset,
-        }),
-    },
+    category_asset_gain_boost: createCategoryGainAmplificationHandler(
+        'Asset',
+        '資産獲得増幅',
+        'Asset gain amplified'
+    ),
 
-    category_autonomy_gain_boost: {
-        shouldApply: (effect, current, question) =>
-            question.category === effect.category && current.Autonomy > 0,
-        apply: (effect, current) => ({
-            ...current,
-            Autonomy: amplifyGain(current.Autonomy, effect.value),
-        }),
-        description: '自律性獲得増幅',
-        descriptionEN: 'Autonomy gain amplified',
-        getValues: (_effect, original, modified) => ({
-            originalValue: original.Autonomy,
-            modifiedValue: modified.Autonomy,
-        }),
-    },
+    category_autonomy_gain_boost: createCategoryGainAmplificationHandler(
+        'Autonomy',
+        '自律性獲得増幅',
+        'Autonomy gain amplified'
+    ),
 
     // === Flat Bonus Effects ===
-    flat_cs_bonus: {
-        shouldApply: () => true, // Always applies
-        apply: (effect, current) => ({
-            ...current,
-            CS: current.CS + effect.value,
-        }),
-        description: '社会的信用固定ボーナス',
-        descriptionEN: 'Credit flat bonus',
-        getValues: (_, original, modified) => ({
-            originalValue: original.CS,
-            modifiedValue: modified.CS,
-        }),
-    },
+    flat_cs_bonus: createFlatBonusHandler(
+        'CS',
+        '社会的信用固定ボーナス',
+        'Credit flat bonus'
+    ),
 
-    flat_asset_bonus: {
-        shouldApply: () => true,
-        apply: (effect, current) => ({
-            ...current,
-            Asset: current.Asset + effect.value,
-        }),
-        description: '資産固定ボーナス',
-        descriptionEN: 'Asset flat bonus',
-        getValues: (_, original, modified) => ({
-            originalValue: original.Asset,
-            modifiedValue: modified.Asset,
-        }),
-    },
+    flat_asset_bonus: createFlatBonusHandler(
+        'Asset',
+        '資産固定ボーナス',
+        'Asset flat bonus'
+    ),
 
-    flat_autonomy_bonus: {
-        shouldApply: () => true,
-        apply: (effect, current) => ({
-            ...current,
-            Autonomy: current.Autonomy + effect.value,
-        }),
-        description: '自律性固定ボーナス',
-        descriptionEN: 'Autonomy flat bonus',
-        getValues: (_, original, modified) => ({
-            originalValue: original.Autonomy,
-            modifiedValue: modified.Autonomy,
-        }),
-    },
+    flat_autonomy_bonus: createFlatBonusHandler(
+        'Autonomy',
+        '自律性固定ボーナス',
+        'Autonomy flat bonus'
+    ),
 
     // === All Gain Amplification (Stage 10 Key Skill: AWAKENING) ===
     all_gain_amplification: {
