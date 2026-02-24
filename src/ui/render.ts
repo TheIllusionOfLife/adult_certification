@@ -43,7 +43,7 @@ export class UIManager {
     }
 
     saveRecord(difficulty: string, rank: string, score: number) {
-        this.recordStorage.save(difficulty, rank, score);
+        void this.recordStorage.save(difficulty, rank, score);
     }
 
     setEngine(engine: GameEngine) {
