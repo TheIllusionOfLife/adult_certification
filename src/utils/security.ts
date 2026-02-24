@@ -4,12 +4,12 @@
  */
 
 // A simple key for XOR cipher to prevent trivial Base64 decoding.
-const SALT = "L2A-SEC-v1";
+const XOR_KEY = "L2A-SEC-v1";
 
 function xor(bytes: Uint8Array): Uint8Array {
     const result = new Uint8Array(bytes.length);
     for (let i = 0; i < bytes.length; i++) {
-        result[i] = bytes[i] ^ SALT.charCodeAt(i % SALT.length);
+        result[i] = bytes[i] ^ XOR_KEY.charCodeAt(i % XOR_KEY.length);
     }
     return result;
 }
@@ -49,10 +49,7 @@ export function decodeData(encoded: string): string {
         const payload = isV1 ? encoded.slice(3) : encoded;
 
         const binaryString = atob(payload);
-        const bytes = new Uint8Array(binaryString.length);
-        for (let i = 0; i < binaryString.length; i++) {
-            bytes[i] = binaryString.charCodeAt(i);
-        }
+        const bytes = Uint8Array.from(binaryString, c => c.charCodeAt(0));
 
         const decrypted = isV1 ? xor(bytes) : bytes;
 
