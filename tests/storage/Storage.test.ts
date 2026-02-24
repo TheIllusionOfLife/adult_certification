@@ -83,14 +83,25 @@ describe('Storage New Format', () => {
         expect(decodeData(stored!)).toContain('"S"');
     });
 
-    it('RecordStorage should save in encoded format', () => {
+    it('RecordStorage should save in encoded format', async () => {
         const storage = new RecordStorage();
-        storage.save('Stage1', 'S', 200);
+        await storage.save('Stage1', 'S', 200);
 
         const stored = localStorage.getItem(CONFIG.STORAGE_KEYS.RECORDS);
         expect(stored).not.toBeNull();
         expect(stored).not.toContain('{');
         expect(decodeData(stored!)).toContain('"S"');
+    });
+
+    it('RecordStorage should round-trip data correctly', async () => {
+        const storage1 = new RecordStorage();
+        await storage1.save('Stage2', 'A', 300);
+
+        const storage2 = new RecordStorage();
+        const record = storage2.get('Stage2');
+        expect(record).toBeDefined();
+        expect(record?.rank).toBe('A');
+        expect(record?.score).toBe(300);
     });
 
     it('should round-trip data correctly', () => {
