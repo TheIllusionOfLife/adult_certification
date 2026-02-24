@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach, mock } from 'bun:test';
 import { UIManager } from '../../src/ui/render';
 import { GameEngine } from '../../src/logic/gameEngine';
 import { DOM_IDS } from '../../src/ui/domIds';
+import * as UI from '../../src/i18n/uiStrings';
 
 describe('UIManager', () => {
     let ui: UIManager;
@@ -70,18 +71,15 @@ describe('UIManager', () => {
     });
 
     it('updates HUD labels correctly', () => {
-        // Initially labels are "Initial X"
         const labels = document.querySelectorAll('.stat-label');
         expect(labels[0].textContent).toBe('Initial 1');
-
-        // updateHUD is called. It uses UI strings.
-        // We need to know what UI strings return.
-        // Assuming they return something different than "Initial X"
+        expect(labels[1].textContent).toBe('Initial 2');
+        expect(labels[2].textContent).toBe('Initial 3');
 
         ui.updateHUD();
 
-        expect(labels[0].textContent).not.toBe('Initial 1');
-        // We can check actual values if we import UI, but just checking change is enough for now
-        // to verify we didn't break it with the "if changed" check.
+        expect(labels[0].textContent).toBe(UI.UI_LABEL_CS());
+        expect(labels[1].textContent).toBe(UI.UI_LABEL_ASSET());
+        expect(labels[2].textContent).toBe(UI.UI_LABEL_AUTONOMY());
     });
 });
