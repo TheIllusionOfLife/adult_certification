@@ -42,14 +42,12 @@ document.addEventListener('DOMContentLoaded', () => {
       // Load questions for the selected stage
       const questions = await importer();
       engine = new GameEngine(questions, stageNum, globalProgress);
-      engine.difficulty = `Stage${stageNum}` as typeof engine.difficulty;
 
     } catch (error) {
       console.warn(`Failed to load questions for Stage ${stageNum}. Using Stage 1 as fallback.`, error);
       try {
         const fallbackQuestions = await stageImporters[1]();
         engine = new GameEngine(fallbackQuestions, 1, globalProgress);
-        engine.difficulty = "Stage1";
       } catch (fallbackError) {
         console.error('Failed to load Stage 1 fallback. Cannot start the game.', fallbackError);
         alert('Failed to load game data. Please check your connection and try again.');
