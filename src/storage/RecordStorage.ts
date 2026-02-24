@@ -15,6 +15,8 @@ export type RecordMap = Record<string, StageRecord>;
  */
 export class RecordStorage {
     private records: RecordMap = {};
+    private pendingWriteTimer: ReturnType<typeof setTimeout> | null = null;
+    private pendingResolvers: Array<() => void> = [];
 
     constructor() {
         this.load();
@@ -55,8 +57,12 @@ export class RecordStorage {
                     date: new Date().toLocaleDateString(),
                 };
 
-                // Defer persistence to avoid blocking UI
-                setTimeout(() => {
+                // Coalesce rapid writes into a single deferred localStorage operation.
+                this.pendingResolvers.push(resolve);
+                if (this.pendingWriteTimer !== null) {
+                    clearTimeout(this.pendingWriteTimer);
+                }
+                this.pendingWriteTimer = setTimeout(() => {
                     try {
                         const data = JSON.stringify(this.records);
                         localStorage.setItem(CONFIG.STORAGE_KEYS.RECORDS, encodeData(data));
@@ -64,7 +70,10 @@ export class RecordStorage {
                         // eslint-disable-next-line no-console
                         console.warn('Failed to save record (private browsing?)');
                     }
-                    resolve();
+                    this.pendingWriteTimer = null;
+                    const resolvers = [...this.pendingResolvers];
+                    this.pendingResolvers = [];
+                    resolvers.forEach((r) => r());
                 }, 0);
             } else {
                 resolve();
