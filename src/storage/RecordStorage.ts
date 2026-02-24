@@ -15,6 +15,8 @@ export type RecordMap = Record<string, StageRecord>;
  */
 export class RecordStorage {
     private records: RecordMap = {};
+    private saveTimeout: ReturnType<typeof setTimeout> | null = null;
+    private pendingResolves: (() => void)[] = [];
 
     constructor() {
         this.load();
@@ -40,27 +42,48 @@ export class RecordStorage {
     /**
      * Save a stage completion record (only if rank is better than existing).
      */
-    save(stageKey: string, rank: string, score: number): void {
-        const rankOrder: Record<string, number> = { S: 4, A: 3, B: 2, C: 1 };
-        const existing = this.records[stageKey];
-        const existingRankValue = existing ? (rankOrder[existing.rank] ?? 0) : 0;
-        const newRankValue = rankOrder[rank] ?? 0;
+    save(stageKey: string, rank: string, score: number): Promise<void> {
+        return new Promise((resolve) => {
+            const rankOrder: Record<string, number> = { S: 4, A: 3, B: 2, C: 1 };
+            const existing = this.records[stageKey];
+            const existingRankValue = existing ? (rankOrder[existing.rank] ?? 0) : 0;
+            const newRankValue = rankOrder[rank] ?? 0;
 
-        // Only update if new rank is better or first time
-        if (!existing || newRankValue > existingRankValue) {
-            this.records[stageKey] = {
-                rank,
-                score,
-                date: new Date().toLocaleDateString(),
-            };
-            try {
-                const data = JSON.stringify(this.records);
-                localStorage.setItem(CONFIG.STORAGE_KEYS.RECORDS, encodeData(data));
-            } catch {
-                // eslint-disable-next-line no-console
-                console.warn('Failed to save record (private browsing?)');
+            // Only update if new rank is better or first time
+            if (!existing || newRankValue > existingRankValue) {
+                this.records[stageKey] = {
+                    rank,
+                    score,
+                    date: new Date().toLocaleDateString(),
+                };
+
+                // Queue this resolve to be called after persistence
+                this.pendingResolves.push(resolve);
+
+                // Schedule persistence if not already scheduled
+                if (!this.saveTimeout) {
+                    this.saveTimeout = setTimeout(() => this.persist(), 0);
+                }
+            } else {
+                resolve();
             }
+        });
+    }
+
+    private persist(): void {
+        this.saveTimeout = null;
+        try {
+            const data = JSON.stringify(this.records);
+            localStorage.setItem(CONFIG.STORAGE_KEYS.RECORDS, encodeData(data));
+        } catch {
+            // eslint-disable-next-line no-console
+            console.warn('Failed to save record (private browsing?)');
         }
+
+        // Resolve all waiting promises
+        const resolves = this.pendingResolves;
+        this.pendingResolves = [];
+        resolves.forEach((resolve) => resolve());
     }
 
     /**
