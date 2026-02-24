@@ -10,7 +10,7 @@ import { StartScreen } from './renderers/StartScreen';
 import { HUD } from './renderers/HUD';
 import { AdamSpeech } from './renderers/AdamSpeech';
 import { QuestionScreen } from './renderers/QuestionScreen';
-import { FeedbackScreen } from './renderers/FeedbackScreen';
+import { FeedbackScreen, type FeedbackResult } from './renderers/FeedbackScreen';
 import { SkillScreen } from './renderers/SkillScreen';
 import { EndingScreen } from './renderers/EndingScreen';
 
@@ -79,9 +79,9 @@ export class UIManager {
         if (timing) {
             const key = `${timing}-${idx}`;
             if (!this.adamSpeech.hasShownFor(key)) {
-                this.adamSpeech.markShown(key);
                 const lines = this.getAdamLinesForTiming(timing);
                 if (lines) {
+                    this.adamSpeech.markShown(key);
                     this.showAdamSpeech(lines, () => this.doRenderQuestion(q));
                     return;
                 }
@@ -107,7 +107,7 @@ export class UIManager {
         this.showFeedback({ ...result, choiceVerdict: choice.verdict });
     }
 
-    showFeedback(result: any) {
+    showFeedback(result: FeedbackResult) {
         const idx = this.engine.state.currentQuestionIndex;
         const shouldOfferSkills = !result.isTerminated && CONFIG.SKILL_OFFER_POSITIONS.includes(idx);
 
@@ -155,9 +155,9 @@ export class UIManager {
         if (skillOfferIdx === 1 && this.engine.state.keySkills.length > 0) {
             const key = `keySkillAcquired-${idx}`;
             if (!this.adamSpeech.hasShownFor(key)) {
-                this.adamSpeech.markShown(key);
                 const lines = this.getAdamLinesForTiming('keySkillAcquired');
                 if (lines) {
+                    this.adamSpeech.markShown(key);
                     this.showAdamSpeech(lines, () => this.renderCurrentQuestion());
                     return;
                 }
@@ -192,9 +192,8 @@ export class UIManager {
             () => location.reload()
         );
 
-        if (this.engine.difficulty) {
-            this.saveRecord(this.engine.difficulty, ending.rank, s.CS);
-        }
+        const stageKey = `Stage${this.engine.state.currentStage}`;
+        this.saveRecord(stageKey, ending.rank, s.CS);
     }
 
     private getStageDialogue(stageNum: number) {
