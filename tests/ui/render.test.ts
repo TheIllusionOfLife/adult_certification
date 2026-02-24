@@ -37,6 +37,11 @@ describe('UIManager', () => {
             <div id="${DOM_IDS.ADAM_SPEECH_TEXT}"></div>
             <button id="${DOM_IDS.ADAM_SPEECH_BTN}"></button>
             <div id="title-desc"></div>
+            <div id="hud">
+                <span class="stat-label">Initial 1</span>
+                <span class="stat-label">Initial 2</span>
+                <span class="stat-label">Initial 3</span>
+            </div>
         `;
 
         // Mock Engine with empty questions
@@ -62,5 +67,21 @@ describe('UIManager', () => {
             expect(item.tagName).toBe('BUTTON');
             expect(item.getAttribute('type')).toBe('button');
         });
+    });
+
+    it('updates HUD labels correctly', () => {
+        // Initially labels are "Initial X"
+        const labels = document.querySelectorAll('.stat-label');
+        expect(labels[0].textContent).toBe('Initial 1');
+
+        // updateHUD is called. It uses UI strings.
+        // We need to know what UI strings return.
+        // Assuming they return something different than "Initial X"
+
+        ui.updateHUD();
+
+        expect(labels[0].textContent).not.toBe('Initial 1');
+        // We can check actual values if we import UI, but just checking change is enough for now
+        // to verify we didn't break it with the "if changed" check.
     });
 });
