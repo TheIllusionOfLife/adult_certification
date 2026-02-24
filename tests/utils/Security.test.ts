@@ -6,8 +6,19 @@ describe('Security Utilities', () => {
     it('should encode and decode ASCII strings', () => {
         const input = 'Hello World';
         const encoded = encodeData(input);
-        expect(encoded).toBe(btoa(input)); // For ASCII, it should be simple base64
+        expect(encoded).not.toBe(btoa(input)); // Should use obfuscation
         const decoded = decodeData(encoded);
+        expect(decoded).toBe(input);
+    });
+
+    it('should decode legacy Base64 encoded strings', () => {
+        const input = 'Legacy Test';
+        // Manually encode as base64 (simulating old format)
+        const bytes = new TextEncoder().encode(input);
+        const binary = String.fromCharCode(...bytes);
+        const legacyEncoded = btoa(binary);
+
+        const decoded = decodeData(legacyEncoded);
         expect(decoded).toBe(input);
     });
 

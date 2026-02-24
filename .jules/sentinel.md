@@ -32,6 +32,14 @@
 
 **Prevention:** After resolving a path, use `path.relative(root, resolvedPath)` to verify that the target is within the `root` directory. Ensure the relative path doesn't start with `..` and is not absolute (important for Windows cross-drive resolution).
 
+## 2025-05-24 - Insecure Data Obfuscation
+
+**Vulnerability:** Game save data was stored using plain Base64 encoding in `src/utils/security.ts`, allowing trivial decoding and tampering of local storage data.
+
+**Learning:** Client-side data storage without server validation requires stronger obfuscation to deter casual cheating. Simple encoding like Base64 is insufficient as it is easily recognizable and reversible.
+
+**Prevention:** Implemented a custom obfuscation layer (XOR cipher with versioning `v1:`) on top of Base64 to increase the effort required for tampering, while maintaining backward compatibility for existing saves.
+
 ## 2025-05-24 - Missing Content Security Policy (CSP)
 
 **Vulnerability:** The application lacked a Content Security Policy (CSP), leaving it vulnerable to Cross-Site Scripting (XSS) and data injection attacks. Inline styles and event handlers (`ontouchstart`) further weakened the security posture.
