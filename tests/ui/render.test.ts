@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach, mock } from 'bun:test';
 import { UIManager } from '../../src/ui/render';
 import { GameEngine } from '../../src/logic/gameEngine';
 import { DOM_IDS } from '../../src/ui/domIds';
+import * as UI from '../../src/i18n/uiStrings';
 
 describe('UIManager', () => {
     let ui: UIManager;
@@ -37,6 +38,11 @@ describe('UIManager', () => {
             <div id="${DOM_IDS.ADAM_SPEECH_TEXT}"></div>
             <button id="${DOM_IDS.ADAM_SPEECH_BTN}"></button>
             <div id="title-desc"></div>
+            <div id="hud">
+                <span class="stat-label">Initial 1</span>
+                <span class="stat-label">Initial 2</span>
+                <span class="stat-label">Initial 3</span>
+            </div>
         `;
 
         // Mock Engine with empty questions
@@ -62,5 +68,17 @@ describe('UIManager', () => {
             expect(item.tagName).toBe('BUTTON');
             expect(item.getAttribute('type')).toBe('button');
         });
+    });
+
+    it('updates HUD labels correctly', () => {
+        // Initially labels are "Initial X"
+        const labels = document.querySelectorAll('.stat-label');
+        expect(labels[0].textContent).toBe('Initial 1');
+
+        ui.updateHUD();
+
+        expect(labels[0].textContent).toBe(UI.UI_LABEL_CS());
+        expect(labels[1].textContent).toBe(UI.UI_LABEL_ASSET());
+        expect(labels[2].textContent).toBe(UI.UI_LABEL_AUTONOMY());
     });
 });
